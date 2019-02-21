@@ -62,7 +62,7 @@ if(isset($_POST['ced_rnx_noti_save_basic']))
 					}	
 				}	
 			}	
-			update_option($k, sanitize_text_field($val));
+			update_option($k, $val);
 		}
 	}
 }	
@@ -89,31 +89,31 @@ if(isset($_POST['ced_rnx_noti_save_return']))
 <div class="ced-news-wrap">
 	<div class="ced-rnx-news-col">
 		<p><?php _e('Are you facing ','woocommerce-refund-and-exchange-lite');?><b><?php _e('Order Cancel','woocommerce-refund-and-exchange-lite'); ?></b> <?php _e('issue on time of order dilevery','woocommerce-refund-and-exchange-lite');?> ? </br> <?php _e('Provide your customer cancel order feature to cancel order if they are intrested in that purchase','woocommerce-refund-and-exchange-lite'); ?>.</p>
-		<a href="https://codecanyon.net/item/woocommerce-refund-and-exchange/17810207" target="_blank" class="ced-rnx-news-button"><?php _e('Get Cancel Feature Now','woocommerce-refund-and-exchange-lite'); ?></a>
+		<a href="https://makewebbetter.com/product/woocommerce-rma-return-refund-exchange/" target="_blank" class="ced-rnx-news-button"><?php _e('Get Cancel Feature Now','woocommerce-refund-and-exchange-lite'); ?></a>
 	</div>
 	<div class="ced-rnx-news-col">
 		<p><?php _e("Don't want to refund money to customer account, Are you thinking about refund money as <b>Store Credit</b>",'woocommerce-refund-and-exchange-lite'); ?> ? </p>
-		<a href="https://codecanyon.net/item/woocommerce-refund-and-exchange/17810207" target="_blank" class="ced-rnx-news-button"><?php _e("Get Store Credit(Wallet) feature Now","woocommerce-refund-and-exchange-lite"); ?></a>
+		<a href="https://makewebbetter.com/product/woocommerce-rma-return-refund-exchange/" target="_blank" class="ced-rnx-news-button"><?php _e("Get Store Credit(Wallet) feature Now","woocommerce-refund-and-exchange-lite"); ?></a>
 	</div>
 	<div class="ced-rnx-news-col">
 		<p><?php _e("Are you want to allow customer to only <b>Refund Defected Product Not Whole Order </b>","woocommerce-refund-and-exchange-lite"); ?> ?</p>
-		<a href="https://codecanyon.net/item/woocommerce-refund-and-exchange/17810207" target="_blank" class="ced-rnx-news-button"><?php _e('Get Best Solution Now','woocommerce-refund-and-exchange-lite'); ?></a>
+		<a href="https://makewebbetter.com/product/woocommerce-rma-return-refund-exchange/" target="_blank" class="ced-rnx-news-button"><?php _e('Get Best Solution Now','woocommerce-refund-and-exchange-lite'); ?></a>
 	</div>
 	<div class="ced-rnx-news-col">
 		<p><?php _e("Are you thinking about <b>Disable Product(s)</b> that you don't want to get refunded or exchanged","woocommerce-refund-and-exchange-lite"); ?> ?</p>
-		<a href="https://codecanyon.net/item/woocommerce-refund-and-exchange/17810207" target="_blank" class="ced-rnx-news-button"><?php _e('Disable your Product Now','woocommerce-refund-and-exchange-lite');?></a>
+		<a href="https://makewebbetter.com/product/woocommerce-rma-return-refund-exchange/" target="_blank" class="ced-rnx-news-button"><?php _e('Disable your Product Now','woocommerce-refund-and-exchange-lite');?></a>
 	</div>
 	<div class="ced-rnx-news-col">
 		<p><?php _e("<b>Disable Product Category</b> and slash down the product category which you don't want to get refunded or exchanged. Are you needed this feature",'woocommerce-refund-and-exchange-lite'); ?> ?</p>
-		<a href="https://codecanyon.net/item/woocommerce-refund-and-exchange/17810207" target="_blank" class="ced-rnx-news-button"><?php _e("Get It Now","woocommerce-refund-and-exchange-lite"); ?></a>
+		<a href="https://makewebbetter.com/product/woocommerce-rma-return-refund-exchange/" target="_blank" class="ced-rnx-news-button"><?php _e("Get It Now","woocommerce-refund-and-exchange-lite"); ?></a>
 	</div>
 	<div class="ced-rnx-news-col">
 		<p><?php _e("Are you want to <b>Allow Guest Users</b> for refund and exchange request","woocommerce-refund-and-exchange-lite"); ?> ?</p>
-		<a href="https://codecanyon.net/item/woocommerce-refund-and-exchange/17810207" target="_blank" class="ced-rnx-news-button"><?php _e("Allow Guest users Now","woocommerce-refund-and-exchange-lite"); ?></a>
+		<a href="https://makewebbetter.com/product/woocommerce-rma-return-refund-exchange/" target="_blank" class="ced-rnx-news-button"><?php _e("Allow Guest users Now","woocommerce-refund-and-exchange-lite"); ?></a>
 	</div>
 	<div class="ced-rnx-news-col">
 		<p><?php _e("Are you thinking about the giving <b>Exchange Feature</b> to your customer for making strong trust","woocommerce-refund-and-exchange-lite"); ?> ?</p>
-		<a href="https://codecanyon.net/item/woocommerce-refund-and-exchange/17810207" target="_blank" class="ced-rnx-news-button"><?php _e("Get Exchange Feature Now","woocommerce-refund-and-exchange-lite"); ?></a>
+		<a href="https://makewebbetter.com/product/woocommerce-rma-return-refund-exchange/" target="_blank" class="ced-rnx-news-button"><?php _e("Get Exchange Feature Now","woocommerce-refund-and-exchange-lite"); ?></a>
 	</div>
 </div>
 <div class="wrap ced_rnx_notification">
@@ -449,7 +449,7 @@ if(isset($_POST['ced_rnx_noti_save_return']))
 	?>
 	<div class="ced-rnx-sidebar">
 		<div class="ced-rnx-sidebar-inner">
-			<a href="https://codecanyon.net/item/woocommerce-refund-and-exchange/17810207" target="_blank" class="ced0sidebar-button">
+			<a href="https://makewebbetter.com/product/woocommerce-rma-return-refund-exchange/" target="_blank" class="ced0sidebar-button">
 				<img src="<?php echo MWB_REFUND_N_EXCHANGE_LITE_URL.'/admin/images/Side_Banner.png'?>">
 			</a>
 		</div>

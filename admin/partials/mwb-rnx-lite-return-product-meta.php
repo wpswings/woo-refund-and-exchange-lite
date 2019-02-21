@@ -202,7 +202,7 @@ if(isset($return_datas) && !empty($return_datas))
 			{
 				$ced_rnx_manage_stock_for_return = 'yes';
 			}
-			$manage_stock = get_option('ced_rnx_return_request_manage_stock');
+			$manage_stock = get_option('mwb_wrma_return_request_manage_stock');
 			if($manage_stock == "yes" && $ced_rnx_manage_stock_for_return == 'yes')
 			{
 				?> <div id="ced_rnx_stock_button_wrapper"><?php _e( 'When Product Bacck in stock then for stock management click on ', 'woocommerce-refund-and-exchange-lite' ); ?> <input type="button" name="ced_rnx_stock_back" class="button button-primary" id="ced_rnx_stock_back" data-type="ced_rnx_return" data-orderid="<?php echo $order_id; ?>" Value="Manage Stock" ></div> <?php

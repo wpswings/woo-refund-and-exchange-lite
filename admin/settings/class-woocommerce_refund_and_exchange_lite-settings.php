@@ -132,7 +132,7 @@ if(!class_exists('MwbBasicframeworkAdminSettings')){
 						'desc'          => __( 'Enable Refund Request', 'woocommerce-refund-and-exchange-lite' ),
 						'default'       => 'no',
 						'type'          => 'checkbox',
-						'id' 		=> 'ced_rnx_return_enable'
+						'id' 		=> 'mwb_wrma_return_enable'
 						),
 
 					array(
@@ -140,7 +140,7 @@ if(!class_exists('MwbBasicframeworkAdminSettings')){
 						'desc'          => __( 'Include Tax with Product Refund Request.', 'woocommerce-refund-and-exchange-lite' ),
 						'default'       => 'no',
 						'type'          => 'checkbox',
-						'id' 		=> 'ced_rnx_return_tax_enable'
+						'id' 		=> 'mwb_wrma_return_tax_enable'
 						),
 
 					array(
@@ -148,28 +148,28 @@ if(!class_exists('MwbBasicframeworkAdminSettings')){
 						'desc'          => __( 'If days exceeds from the day of order delivered then Refund Request will not be send. If value is 0 or blank then Refund button will not visible at order detail page.', 'woocommerce-refund-and-exchange-lite' ),
 						'type'          => 'number',
 						'custom_attributes'   => array('min'=>'0'),
-						'id' 		=> 'ced_rnx_return_days'
+						'id' 		=> 'mwb_wrma_return_days'
 						),
 					array(
 						'title'         => __( 'Enable Attachment on Request Form', 'woocommerce-refund-and-exchange-lite' ),
 						'desc'          => __( 'Enable this for user to send the attachment. User can attach <i>.png, .jpg, .jpeg</i> type files.', 'woocommerce-refund-and-exchange-lite' ),
 						'default'       => 'no',
 						'type'          => 'checkbox',
-						'id' 		=> 'ced_rnx_return_attach_enable'
+						'id' 		=> 'mwb_wrma_return_attach_enable'
 						),
 					array(
 						'title'         => __( 'Enable Refund Reason Description', 'woocommerce-refund-and-exchange-lite' ),
 						'desc'          => __( 'Enable this for user to send the detail description of Refund request.', 'woocommerce-refund-and-exchange-lite' ),
 						'default'       => 'no',
 						'type'          => 'checkbox',
-						'id' 		=> 'ced_rnx_return_request_description'
+						'id' 		=> 'mwb_wrma_return_request_description'
 						),
 					array(
 						'title'         => __( 'Enable Manage Stock', 'woocommerce-refund-and-exchange-lite' ),
 						'desc'          => __( 'Enable this to increase product stock when Refund request is accepted.', 'woocommerce-refund-and-exchange-lite' ),
 						'default'       => 'no',
 						'type'          => 'checkbox',
-						'id' 		=> 'ced_rnx_return_request_manage_stock'
+						'id' 		=> 'mwb_wrma_return_request_manage_stock'
 						),
 					array(
 						'title'    => __( 'Select the orderstatus in which the order can be Refunded', 'woocommerce-refund-and-exchange-lite' ),
@@ -180,7 +180,7 @@ if(!class_exists('MwbBasicframeworkAdminSettings')){
 						'type'     => 'multiselect',
 						'options'  => $status,
 						'desc_tip' =>  true,
-						'id' 		=> 'ced_rnx_return_order_status'
+						'id' 		=> 'mwb_wrma_return_order_status'
 						),
 					array(
 						'type' 	=> 'sectionend',

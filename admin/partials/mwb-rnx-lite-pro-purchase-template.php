@@ -59,7 +59,7 @@ else
 	     ?>
      	<h2 class="ced-purchase-heading"><?php _e('Please Purchase Our Premium version for this feature and also for some more exciting feature.','woocommerce-refund-and-exchange-lite'); ?></h2>
      	<div class="ced-rnx-purchase-conetnt">
-     		<a class="ced-rnx-news-button ced-prcchase-button" href="https://codecanyon.net/item/woocommerce-refund-and-exchange/17810207" target="_blank"> <?php _e('Get it now','woocommerce-refund-and-exchange-lite');?>
+     		<a class="ced-rnx-news-button ced-prcchase-button" href="https://makewebbetter.com/product/woocommerce-rma-return-refund-exchange/" target="_blank"> <?php _e('Get it now','woocommerce-refund-and-exchange-lite');?>
      	</a>
      	</div>
      </div>

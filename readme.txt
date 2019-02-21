@@ -6,7 +6,7 @@ Requires at least: 4.0
 Tested up to: 4.9.3
 WC requires at least: 3.0.0
 WC tested up to: 3.3.1
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 Requires PHP: 5.6
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -17,7 +17,7 @@ This plugin allows customers to submit product refund request or exchange reques
 
 **Looking for dedicated Refund System  for your shopping site?**
 
-Make a smart move with [WooCommerce Refund and Exchange Pro](https://codecanyon.net/item/woocommerce-refund-and-exchange/17810207)
+Make a smart move with [WooCommerce Refund and Exchange Pro](https://makewebbetter.com/product/woocommerce-rma-return-refund-exchange/)
 
 **WooCommerce Refund and Exchange plugin** gives your customers an easy and simple Refund Management system stuffed with organized Exchange, Wallet, Cancel features.
 
@@ -60,16 +60,16 @@ Ultimately leads to easy returns for your customers with increased conversions.
 * Product category disable feature.
 
 
-* For **Premium Plugin** you can [visit here](https://codecanyon.net/item/woocommerce-refund-and-exchange/17810207)
+* For **Premium Plugin** you can [visit here](https://makewebbetter.com/product/woocommerce-rma-return-refund-exchange/)
 
 = Premium Plugin Live Demo = 
 
 Explore complete feature of premium plugin, by looking at the live demo.
 
-* For **Frontend demo**  [visit here](http://demo.makewebbetter.com/woocommerce-refund-and-exchange/)
-* For **Backend demo**   [visit here](http://demo.makewebbetter.com/woocommerce-refund-and-exchange/request-for-personal-demo/)
+* For **Frontend demo**  [visit here](https://demo.makewebbetter.com/woocommerce-refund-and-exchange-with-rma/)
+* For **Backend demo**   [visit here](http://demo.makewebbetter.com/woocommerce-refund-and-exchange-with-rma/request-for-personal-demo/)
 
-* **Offer over Premium** We are offering 25 % Discount on our premium plugin. You can Grab this Offer till 20th June only!
+* **Offer over Premium** We are offering UPTO 30 % Discount on our premium plugin.
 
 = WooCommerce Refund & Exchange WC-Vendor Addon  = 
 
@@ -78,13 +78,13 @@ Explore complete feature of premium plugin, by looking at the live demo.
 
 * For **WooCommerce Refund & Exchange WC-Vendor Addon** you can [visit here](https://makewebbetter.com/product/woocommerce-refund-exchange-wc-vendor-addon/)
 
-= WooCommerce Refund and Exchange Dokan Addon =
+= WooCommerce RMA For Dokan =
 
-*WooCommerce Refund and Exchange Dokan Addon helps the vendor to straight forwardly know about which product is getting refunded and exchanged. This also makes a modernize process for Refund & Exchange.*
+*WooCommerce RMA For Dokan helps the vendor to straight forwardly know about which product is getting refunded and exchanged. This also makes a modernize process for Refund & Exchange.*
 
 *This extension extends an all-new streamlined solution proper buying and selling of a product keeping heed with refund policy and returns policy. This will relieve the admin from imposing refund and exchange reasonings on the customers.*
 
-* For **WooCommerce Refund and Exchange Dokan Addon** you can [visit here](https://makewebbetter.com/product/dokan-woocommerce-refund-exchange-addon/)
+* For **WooCommerce RMA For Dokan** you can [visit here](https://makewebbetter.com/product/woocommerce-rma-dokan-refund-exchange/)
 
 
 = Want Help! =
@@ -180,15 +180,17 @@ It's a very easy way, go to the Woocommerce -> Settings ->RAE setting ->Refund  
 
 == Changelog ==
 
+= 1.0.1 =
+* Fix: Tweak in pre-defined reason save field
+
 = 1.0.0 =
 * First version 
 
 
 == Upgrade Notice ==
 
-= 1.0.0 =
-* First version 
-
+= 1.0.1 =
+* Fix: Tweak in pre-defined reason save field
 	
 == Screenshots ==
 

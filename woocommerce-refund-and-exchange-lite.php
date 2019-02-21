@@ -16,9 +16,11 @@
  * Plugin Name:       WooCommerce Refund and Exchange Lite
  * Plugin URI:        http://makewebbetter.com/woocommerce-refund-and-exchange-lite
  * Description:       WooCommerce Refund and Exchange lite allows users to submit product refund. The plugin provides a dedicated mailing system that would help to communicate better between store owner and customers.This is lite version of Woocommerce Refund And Exchnage.
- * Version:           1.0.0
+ * Version:           1.0.2
  * Author:            makewebbetter
  * Author URI:        http://makewebbetter.com/
+ * WC tested up to:   3.4.4
+ * Tested up to: 	  4.9.6
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       woocommerce-refund-and-exchange-lite
@@ -38,7 +40,7 @@ if (function_exists('is_multisite') && is_multisite())
 	{
 		$activated = false;
 	}
-	if ( is_plugin_active( 'woocommerce-refund-and-exchange/woocommerce-refund-and-exchange.php' ) )
+	if ( is_plugin_active( 'woocommerce-rma-for-return-refund-and-exchange/mwb-woocommerce-rma.php.php' ) )
 	{
 		$activated = false;
 		$ced_rnx_activated_main = true;
@@ -50,7 +52,7 @@ else
 	{
 		$activated = false;
 	}
-	if (in_array('woocommerce-refund-and-exchange/woocommerce-refund-and-exchange.php', apply_filters('active_plugins', get_option('active_plugins'))))
+	if (in_array('woocommerce-rma-for-return-refund-and-exchange/mwb-woocommerce-rma.php', apply_filters('active_plugins', get_option('active_plugins'))))
 	{
 		$activated = false;
 		$ced_rnx_activated_main = true;
@@ -141,7 +143,7 @@ if ($activated)
 		if ($plugin == $plugin_file) {
 			$settings = array (
 					'settings' => '<a href="' . admin_url ( 'admin.php?page=wc-settings&tab=ced_rnx_setting' ) . '">' . __ ( 'Settings', 'woocommerce-refund-and-exchange-lite' ) . '</a>',
-					'get_full_version' => '<a href="https://codecanyon.net/item/woocommerce-refund-and-exchange/17810207" target="_blank">' . __ ( 'Get Premium version', 'woocommerce-refund-and-exchange-lite' ) . '</a>',
+					'get_full_version' => '<a href="https://makewebbetter.com/product/woocommerce-rma-return-refund-exchange/" target="_blank">' . __ ( 'Get Premium version', 'woocommerce-refund-and-exchange-lite' ) . '</a>',
 			);
 			$actions = array_merge ( $settings, $actions );
 		}
@@ -237,7 +239,7 @@ else
  	{ 
  		?>
 		<div class="error notice is-dismissible">
-			<p><?php _e( 'Woocommerce Refund & Exchange is activated so you didnot need to install WooCommerce Refund and Exchange Lite because Main version is contains all the feature of our lite extention .', 'woocommerce-refund-and-exchange-lite' ); ?></p>
+			<p><?php _e( 'WooCommerce RMA | Return-Refund-Exchange is activated so you didnot need to install WooCommerce Refund and Exchange Lite because Main version is contains all the feature of our lite extention .', 'woocommerce-refund-and-exchange-lite' ); ?></p>
 		</div>
    		<style>
    		#message{display:none;}
