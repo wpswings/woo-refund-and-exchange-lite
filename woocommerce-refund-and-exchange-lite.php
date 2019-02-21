@@ -67,7 +67,6 @@ if ($activated)
 
 	/**
 	 * The code that runs during plugin activation.
-	 * 
 	 */
 	function activate_woocommerce_refund_and_exchange_lite() {
 		$email = get_option('admin_email', false);
