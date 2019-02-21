@@ -180,6 +180,9 @@ It's a very easy way, go to the Woocommerce -> Settings ->RAE setting ->Refund  
 
 == Changelog ==
 
+= 1.0.2 =
+* Fix: bug fixes .
+
 = 1.0.1 =
 * Fix: Tweak in pre-defined reason save field
 
