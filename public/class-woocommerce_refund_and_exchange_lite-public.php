@@ -168,11 +168,11 @@ class woocommerce_refund_and_exchange_lite_Public {
 		if($ced_rnx_next_return)
 		{				
 			//Return Request at order detail page
-			$ced_rnx_return = get_option('ced_rnx_return_enable', false);
+			$ced_rnx_return = get_option('mwb_wrma_return_enable', false);
 			if($ced_rnx_return == 'yes')
 			{
 
-				$statuses = get_option('ced_rnx_return_order_status', array());
+				$statuses = get_option('mwb_wrma_return_order_status', array());
 				$order_status ="wc-".$order->get_status();
 
 				if(in_array($order_status, $statuses))
@@ -191,7 +191,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 					$days = $today_date - $order_date;
 					$day_diff = floor($days/(60*60*24));
 
-					$day_allowed = get_option('ced_rnx_return_days', false);
+					$day_allowed = get_option('mwb_wrma_return_days', false);
 
 					$return_button_text = __('Refund','woocommerce_refund_and_exchange_lite');
 					
@@ -669,7 +669,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 		$return_min_amount = get_option('ced_rnx_return_minimum_amount', false);
 
 				//Return Request at order detail page
-		$ced_rnx_return = get_option('ced_rnx_return_enable', false);
+		$ced_rnx_return = get_option('mwb_wrma_return_enable', false);
 		if($ced_rnx_return == 'yes')
 		{
 			if( WC()->version < "3.0.0" )
@@ -680,7 +680,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 			{
 				$order_id=$order->get_id();
 			}
-			$statuses = get_option('ced_rnx_return_order_status', array());
+			$statuses = get_option('mwb_wrma_return_order_status', array());
 			$order_status ="wc-".$order->get_status();
 			$product_datas = get_post_meta($order_id, 'ced_rnx_return_product', true);
 			if(isset($product_datas) && !empty($product_datas))
@@ -819,7 +819,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 								$order_date = strtotime($order_date);
 								$days = $today_date - $order_date;
 								$day_diff = floor($days/(60*60*24));
-								$day_allowed = get_option('ced_rnx_return_days', false);
+								$day_allowed = get_option('mwb_wrma_return_days', false);
 								
 
 								if($day_allowed >= $day_diff && $day_allowed != 0)	
@@ -864,7 +864,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 							}
 						}
 						
-						$statuses = get_option('ced_rnx_return_order_status', array());
+						$statuses = get_option('mwb_wrma_return_order_status', array());
 						$order_status ="wc-".$order->get_status();
 						if(in_array($order_status, $statuses))
 						{
@@ -884,7 +884,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 								$order_date = strtotime($order_date);
 								$days = $today_date - $order_date;
 								$day_diff = floor($days/(60*60*24));
-								$day_allowed = get_option('ced_rnx_return_days', false);
+								$day_allowed = get_option('mwb_wrma_return_days', false);
 								
 
 							if($day_allowed >= $day_diff && $day_allowed != 0)
@@ -931,7 +931,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 				
 				$days = $today_date - $order_date;
 				$day_diff = floor($days/(60*60*24));
-				$day_allowed = get_option('ced_rnx_return_days', false);
+				$day_allowed = get_option('mwb_wrma_return_days', false);
 				if($day_allowed >= $day_diff && $day_allowed != 0)	
 				{
 					$page_id = $ced_rnx_return_request_form_page_id;

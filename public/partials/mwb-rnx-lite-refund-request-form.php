@@ -73,7 +73,7 @@ if($allowed)
 		{
 			$order = wc_get_order($order_id);
 			//Check enable return
-			$return_enable = get_option('ced_rnx_return_enable', false);
+			$return_enable = get_option('mwb_wrma_return_enable', false);
 			
 			if(isset($return_enable) && !empty($return_enable))
 			{
@@ -126,7 +126,7 @@ if($allowed)
 			
 			$days = $today_date - $order_date;
 			$day_diff = floor($days/(60*60*24));
-			$day_allowed = get_option('ced_rnx_return_days', false);  //Check allowed days
+			$day_allowed = get_option('mwb_wrma_return_days', false);  //Check allowed days
 			
 			
 				if($day_allowed >= $day_diff && $day_allowed != 0)
@@ -148,7 +148,7 @@ if($allowed)
 
 				if($allowed)
 				{
-					$statuses = get_option('ced_rnx_return_order_status', array());
+					$statuses = get_option('mwb_wrma_return_order_status', array());
 					$order_status ="wc-".$order->get_status();
 					if(!in_array($order_status, $statuses))
 					{
@@ -201,7 +201,7 @@ if($allowed)
 					</thead>
 					<tbody>
 						<?php
-						$ced_rnx_in_tax = get_option('ced_rnx_return_tax_enable', false);
+						$ced_rnx_in_tax = get_option('mwb_wrma_return_tax_enable', false);
 						$in_tax = false;
 						if($ced_rnx_in_tax == 'yes')
 						{
@@ -387,7 +387,7 @@ if($allowed)
 			</p>
 			
 			<?php 
-			$predefined_return_desc = get_option('ced_rnx_return_request_description', false);
+			$predefined_return_desc = get_option('mwb_wrma_return_request_description', false);
 			if(isset($predefined_return_desc))
 			{	
 				if($predefined_return_desc == 'yes')
@@ -429,7 +429,7 @@ if($allowed)
 			
 			<form action="" method="post" id="ced_rnx_return_request_form" data-orderid="<?php echo $order_id;?>" enctype="multipart/form-data">
 				<?php 
-				$return_attachment = get_option('ced_rnx_return_attach_enable', false);
+				$return_attachment = get_option('mwb_wrma_return_attach_enable', false);
 				if(isset($return_attachment) && !empty($return_attachment))
 				{	
 					if($return_attachment == 'yes')

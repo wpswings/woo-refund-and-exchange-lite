@@ -770,7 +770,7 @@ class woocommerce_refund_and_exchange_lite_Admin {
 					{
 						if($ced_rnx_type == 'ced_rnx_return')
 						{ 
-							$manage_stock = get_option('ced_rnx_return_request_manage_stock');
+							$manage_stock = get_option('mwb_wrma_return_request_manage_stock');
 							if($manage_stock == "yes")
 							{
 								$ced_rnx_return_data = get_post_meta($order_id, 'ced_rnx_return_product', true);
