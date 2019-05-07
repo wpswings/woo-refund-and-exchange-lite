@@ -237,12 +237,12 @@ if(isset($_POST['ced_rnx_noti_save_return']))
 													<input type="text" class="input-text" value="<?php echo $predefine_reason;?>" class="ced_rnx_return_predefined_reason" name="ced_rnx_return_predefined_reason[]">
 													<?php 
 												}
-												else
-												{
+												//else
+												/*{
 													?>
 													<input type="text" class="input-text" class="ced_rnx_return_predefined_reason" name="ced_rnx_return_predefined_reason[]">
 													<?php 
-												}
+												}*/
 											}	
 										}
 										else
@@ -259,6 +259,7 @@ if(isset($_POST['ced_rnx_noti_save_return']))
 						</tbody>
 					</table>
 				</div>
+				
 				<p class="submit">
 					<input type="submit" value="<?php _e('Save changes', 'woocommerce-refund-and-exchange-lite' ); ?>" class="button-primary woocommerce-save-button ced-rnx-save-button" name="ced_rnx_noti_save_basic"> 
 				</p>

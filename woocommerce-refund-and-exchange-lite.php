@@ -16,13 +16,13 @@
  * Plugin Name:       WooCommerce Refund and Exchange Lite
  * Plugin URI:        http://makewebbetter.com/woocommerce-refund-and-exchange-lite
  * Description:       WooCommerce Refund and Exchange lite allows users to submit product refund. The plugin provides a dedicated mailing system that would help to communicate better between store owner and customers.This is lite version of Woocommerce Refund And Exchnage.
- * Version:           1.0.2
- * Author:            makewebbetter
+ * Version:           1.0.4
+ * Author:            MakeWebBetter
  * Author URI:        http://makewebbetter.com/
- * WC tested up to:   3.4.4
- * Tested up to: 	  4.9.6
- * License:           GPL-2.0+
- * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ * WC tested up to:   3.6.1
+ * Tested up to: 	  5.1.1
+ * License:           GPL-3.0+
+ * License URI:       http://www.gnu.org/licenses/gpl-3.0.txt
  * Text Domain:       woocommerce-refund-and-exchange-lite
  * Domain Path:       /languages
  */
@@ -33,6 +33,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 $activated = true;
 $ced_rnx_activated_main = false;
+$ced_rnx_activated_main_cc= false;
 if (function_exists('is_multisite') && is_multisite())
 {
 	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
@@ -40,11 +41,17 @@ if (function_exists('is_multisite') && is_multisite())
 	{
 		$activated = false;
 	}
-	if ( is_plugin_active( 'woocommerce-rma-for-return-refund-and-exchange/mwb-woocommerce-rma.php.php' ) )
+	if ( is_plugin_active( 'woocommerce-rma-for-return-refund-and-exchange/mwb-woocommerce-rma.php' ) )
 	{
 		$activated = false;
 		$ced_rnx_activated_main = true;
 	}
+	if ( is_plugin_active( 'woocommerce-refund-and-exchange/woocommerce-refund-and-exchange.php' ) )
+	{
+		$activated = false;
+		$ced_rnx_activated_main_cc = true;
+	}
+
 }
 else
 {
@@ -56,6 +63,11 @@ else
 	{
 		$activated = false;
 		$ced_rnx_activated_main = true;
+	}
+	if (in_array('woocommerce-refund-and-exchange/woocommerce-refund-and-exchange.php', apply_filters('active_plugins', get_option('active_plugins'))))
+	{
+		$activated = false;
+		$ced_rnx_activated_main_cc = true;
 	}
 }
 
@@ -255,6 +267,14 @@ else
  		add_action( 'admin_init', 'ced_rnx_plugin_deactivate_lite' );  
  	}
  	
+ 	if($ced_rnx_activated_main_cc)
+ 	{
+ 		add_action( 'admin_init', 'ced_rnx_plugin_deactivate_when_pro_is_activated' );
+ 	}
+ 	else
+ 	{
+ 		add_action( 'admin_init', 'ced_rnx_plugin_deactivate_lite' ); 
+ 	}
  	/**
  	 * Call Admin notices
  	 * @name ced_rnx_plugin_deactivate()

@@ -15,10 +15,10 @@ if(!class_exists('MwbBasicframeworkAdminSettings')){
 			add_meta_box('ced_rnx_order_refund', __('Refund Requested Products','woocommerce-refund-and-exchange-lite'), array($this, 'ced_rnx_order_return'), 'shop_order');
 			
 			$this->id = 'ced_rnx_setting';
-			
+
 			add_filter( 'woocommerce_settings_tabs_array', array($this,'ced_rnx_add_settings_tab'), 50 );
-			add_action( 'woocommerce_settings_tabs_' . $this->id, array($this,'ced_rnx_settings_tab') );
 			add_action( 'woocommerce_sections_' . $this->id, array( $this, 'ced_rnx_output_sections' ) );
+			add_action( 'woocommerce_settings_tabs_' . $this->id, array($this,'ced_rnx_settings_tab') );
 			add_action( 'woocommerce_settings_save_' . $this->id, array( $this, 'ced_rnx_setting_save' ) );
 		}
 
@@ -28,7 +28,7 @@ if(!class_exists('MwbBasicframeworkAdminSettings')){
 		 * @link http://www.makewebbetter.com/
 		 */
 	 	public static function ced_rnx_add_settings_tab( $settings_tabs ) {
-	 		$settings_tabs['ced_rnx_setting'] = __( 'RAE Setting', 'woocommerce-settings-tab-demo' );
+	 		$settings_tabs['ced_rnx_setting'] = __( 'RAE Setting', 'woocommerce-refund-and-exchange-lite' );
 	 		return $settings_tabs;
 	 	}
 	 	
@@ -38,7 +38,7 @@ if(!class_exists('MwbBasicframeworkAdminSettings')){
 	 		woocommerce_admin_fields( self::ced_rnx_get_settings($current_section) );
 	 		if(isset($_GET['section']))
 			{
-				if(sanitize_text_field($_GET['section']) !='refund')
+				if(sanitize_text_field($_GET['section']) !='refund' )
 				{
 					include_once MWB_REFUND_N_EXCHANGE_LITE_DIRPATH.'admin/partials/mwb-rnx-lite-pro-purchase-template.php';
 					?>
@@ -53,7 +53,9 @@ if(!class_exists('MwbBasicframeworkAdminSettings')){
 					</style>
 					<?php
 				}
+					
 			}
+			echo '</div>';
 	 	}
 
 		/**
@@ -64,17 +66,40 @@ if(!class_exists('MwbBasicframeworkAdminSettings')){
 		public function ced_rnx_output_sections() {
 
 			global $current_section;
+			echo '<div id="test">';
 			$sections = $this->ced_rnx_get_sections();
-
+			echo '<div id="mwb_lite_main_header" class="mwb_lite_main-header">
+			 	  <div class="mwb_lite_header_content_left">
+				    <h3 class="mwb_lite_setting_title">'.__("RAE Settings","woocommerce-refund-and-exchange-lite").'</h3>
+			 	  </div>
+			 	   <div class="mwb_lite_header_content_right">
+				      <ul>
+				      	<li>
+				      	  <a href="https://makewebbetter.com/contact-us/" target="_blank">
+						  <span class="dashicons dashicons-phone"></span></a>
+						</li>
+						<li>
+						  <a href="https://docs.makewebbetter.com/woocommerce-refund-and-exchange-lite/?utm_source=MWB-RMA-org&utm_medium=MWB-ORG-Page&utm_campaign=MWB-doc" target="_blank">
+						   <span class="dashicons dashicons-media-document"></span></a>
+						</li>
+						<li class="mwb_lite_header_menu_button"><a href="https://makewebbetter.com/product/woocommerce-rma-return-refund-exchange/" class="" title="" target="_blank">GO PRO NOW</a></li>
+				      </ul>
+			 	  </div>
+				
+			</div>';
+			echo '<div class="mwb_lte_nav_bar">';
 			echo '<ul class="subsubsub">';
 
 			$array_keys = array_keys( $sections );
 
 			foreach ( $sections as $id => $label ) {
 				echo '<li><a href="' . admin_url( 'admin.php?page=wc-settings&tab=' . $this->id . '&section=' . sanitize_title( $id ) ) . '" class="' . ( $current_section == $id ? 'current' : '' ) . '">' . $label . '</a> ' . ( end( $array_keys ) == $id ? '' : '|' ) . ' </li>';
+
 			}
-			echo '<li> | <a href="'.admin_url().'admin.php?page=ced-rnx-notification">'.__('Mail Configuration','woocommerce-refund-and-exchange-lite').'</a></li>';			
+			echo '<li> | <a href="'.admin_url().'admin.php?page=ced-rnx-notification">'.__('Mail Configuration','woocommerce-refund-and-exchange-lite').'</a></li>';	
+			echo '</div>';		
 			echo '</ul><br class="clear ced_rnx_clear"/>';
+			echo '</div>';
 		}
 
 		/**
@@ -85,13 +110,13 @@ if(!class_exists('MwbBasicframeworkAdminSettings')){
 		public function ced_rnx_get_sections() {
 
 			$sections = array(
-				'refund'             	=>  __( 'Refund Products', 'woocommerce-refund-and-exchange-lite' ),
+				'refund'        =>  __( 'Refund Products', 'woocommerce-refund-and-exchange-lite' ),
 				'exchange'              =>  __( 'Exchange Products', 'woocommerce-refund-and-exchange-lite' ),
 				'other'     	=>  __( 'Common Setting', 'woocommerce-refund-and-exchange-lite' ),
 				'cancel'	   	=>  __( 'Cancel Order', 'woocommerce-refund-and-exchange-lite' ),	
 				'text_setting'  =>  __( 'Text Settings' , 'woocommerce-refund-and-exchange-lite' ),
 				'catalog_setting'=> __('Catalog Settings', 'woocommerce-refund-and-exchange-lite'),
-
+				
 				);
 
 			return apply_filters( 'ced_rnx_get_sections_' . $this->id, $sections );
@@ -118,8 +143,10 @@ if(!class_exists('MwbBasicframeworkAdminSettings')){
 
 			$statuses = wc_get_order_statuses();
 			$status=$statuses;
+			
 			if ( 'refund' == $current_section || $current_section == '') 
 	    	{
+	    		
 				$settings = array(
 
 					array(
@@ -183,10 +210,29 @@ if(!class_exists('MwbBasicframeworkAdminSettings')){
 						'id' 		=> 'mwb_wrma_return_order_status'
 						),
 					array(
+						'title'         => __( 'Enable Refund Rules', 'woocommerce-refund-and-exchange-lite' ),
+						'desc'          => __( 'Enable, if you want to show custom Refund Policy Rules on Refund Request Form.', 'woocommerce-refund-and-exchange-lite' ),
+						'default'       => 'no',
+						'type'          => 'checkbox',
+						'id' 			=> 'mwb_wrma_refund_rules_editor_enable'
+						),
+					array(
+
+						'title'         => __( 'Refund Rules Editor ', 'woocommerce-refund-and-exchange-lite' ),
+						'desc'          => __( 'Custom Refund Rules Editor (HTML and CSS allowed).Put your custom Refund rules here.', 'woocommerce-refund-and-exchange-lite' ),
+						'default'		=>'',
+						'type'          => 'textarea',
+						'desc_tip' 		=>  true,
+						'id' 			=> 'mwb_wrma_return_request_rules_editor',
+						'class'      	=> 'mwb_wrma_return_request_rules_editor'
+					),
+
+					array(
 						'type' 	=> 'sectionend',
 						),
-
+					
 					);
+				
 			}
 			else
 			{
@@ -197,6 +243,7 @@ if(!class_exists('MwbBasicframeworkAdminSettings')){
 						),
 					);
 			}
+
 			return apply_filters( 'ced_rnx_get_settings_exchange' . $this->id, $settings );
 
 		}

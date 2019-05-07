@@ -349,7 +349,9 @@ if($allowed)
 				<div class="ced_rnx_return_notification_checkbox"><img src="<?php echo MWB_REFUND_N_EXCHANGE_LITE_URL?>public/images/loading.gif" width="40px"></div>
 			</div>
 			<hr/>
-			<div class="ced_rnx_note_tag_wrapper">
+			<?php $refund_rules_enable=get_option('mwb_wrma_refund_rules_editor_enable','no');
+			$refund_rules=get_option('mwb_wrma_return_request_rules_editor',''); ?>
+			<div class="ced_rnx_note_tag_wrapper" <?php if(isset($refund_rules_enable) && $refund_rules_enable =='yes'){ if(isset($refund_rules) && !empty($refund_rules)) {?> style="float: left;width: 60%;" <?php }}?> >
 			<p class="form-row form-row form-row-wide">
 				<label>
 					<b>
@@ -370,9 +372,11 @@ if($allowed)
 						<?php 
 						foreach($predefined_return_reason as $predefine_reason)
 						{
+							if(!empty($predefine_reason)){
 							?>
 							<option value="<?php echo $predefine_reason?>"><?php echo $predefine_reason?></option>
 							<?php 
+						}
 						}
 						?>
 						<option value=""><?php _e( 'Other', 'woocommerce-refund-and-exchange-lite' )?></option>
@@ -453,6 +457,17 @@ if($allowed)
 				</p>
 			</form>
 			<br/>
+			</div>
+			
+			<div <?php if(isset($refund_rules_enable) && $refund_rules_enable =='yes'){ ?> style="float: left;width: 37%;margin-left: 3%;" <?php }?> class="ced_rnx_refund_rules_display"  >
+			<?php 	
+				
+				if(isset($refund_rules_enable) && $refund_rules_enable =='yes'){
+				if(isset($refund_rules) && !empty($refund_rules)){
+					echo $refund_rules;
+				}
+			}
+				?>
 			</div>
 			<div class="ced-rnx_customer_detail">
 				<?php 
