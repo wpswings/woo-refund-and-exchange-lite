@@ -226,9 +226,10 @@
 	 			autoplay: true,
 	 			autoplaySpeed: 4000,
 	 		});
-
+	 		$(document).find('#wpbody-content').addClass('mwb_custom_wrap');
 
 	 	});
+
 
 	 });
 

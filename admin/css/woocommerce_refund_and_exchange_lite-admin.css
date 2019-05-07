@@ -16,355 +16,365 @@
   border-top:1px solid #eee;
   border-bottom:1px solid #eee;
 }
-.ced_rnx_return_loader, .ced_rnx_exchange_loader {
-  background: #ffffff none repeat scroll 0 0;
-  display: none;
-  height: 100%;
-  left: 0;
-  position: absolute;
-  right: 0;
-  text-align: center;
-  top: 0;
-  z-index: 99;
+.mwb_wrma_return_request_rules_editor {
+  width: 95% !important;
+  height: 200px;
+  margin-top: 20px !important; 
 }
-.ced_rnx_return_loader > img, .ced_rnx_exchange_loader > img {
-  position: absolute;
-  top: 50%;
-}
-.ced_rnx_extra_reason {
-  position: relative;
-}
-.ced_rnx_add_fee, .ced_rnx_exchange_add_fee {
-  padding: 3px 0;
-}
-#ced_rnx_add_fee, #ced_rnx_exchange_add_fee {
-  margin: 2px 0 4px 1px;
-}
-.ced_return_fee_txt, .ced_exchange_fee_txt {
-  width: 50%;
-}
-.ced_return_fee_value, .ced_exchange_fee_value {
-  margin: 0 10px 0 10px;
-  width: 20%;
-}
-.ced_rnx_order_exchange_product_list img{
-  height:50px;
-  width:50px;
-}
-.widefat .column-order_status mark.return-requested:after {
-  background-size: 100% 100%;
-  color: #999999;
-  content: "";
-  height: 17px !important;
-  width: 17px !important;
-  background-image: url("../images/return-requested.png");
-}
-.widefat .column-order_status mark.return-requested:after {
-  font-family: WooCommerce;
-  font-variant: normal;
-  font-weight: 400;
-  height: 100%;
-  left: 0;
-  line-height: 1;
-  margin: 0;
-  position: absolute;
-  text-align: center;
-  text-indent: 0;
-  text-transform: none;
-  top: 0;
-  width: 100%;
-}
-.widefat .column-order_status mark.return-approved:after {
-  background-size: 100% 100%;
-  color: #999999;
-  content: "";
-  height: 17px !important;
-  width: 17px !important;
-  background-image: url("../images/return-accepted.png");
-}
-.widefat .column-order_status mark.return-approved:after {
-  font-family: WooCommerce;
-  font-variant: normal;
-  font-weight: 400;
-  height: 100%;
-  left: 0;
-  line-height: 1;
-  margin: 0;
-  position: absolute;
-  text-align: center;
-  text-indent: 0;
-  text-transform: none;
-  top: 0;
-  width: 100%;
-}
-.widefat .column-order_status mark.return-cancelled:after {
-  background-size: 100% 100%;
-  color: #999999;
-  content: "";
-  height: 17px !important;
-  width: 17px !important;
-  background-image: url("../images/return-cancelled.png");
-}
-.widefat .column-order_status mark.return-cancelled:after {
-  font-family: WooCommerce;
-  font-variant: normal;
-  font-weight: 400;
-  height: 100%;
-  left: 0;
-  line-height: 1;
-  margin: 0;
-  position: absolute;
-  text-align: center;
-  text-indent: 0;
-  text-transform: none;
-  top: 0;
-  width: 100%;
-}
-.widefat .column-order_status mark.exchange-request::after {
-  background-size: 100% 100%;
-  color: #999999;
-  content: "";
-  height: 17px !important;
-  width: 17px !important;
-  background-image: url("../images/exchange-request.png");
-}
-.widefat .column-order_status mark.exchange-request:after {
-  font-family: WooCommerce;
-  font-variant: normal;
-  font-weight: 400;
-  height: 100%;
-  left: 0;
-  line-height: 1;
-  margin: 0;
-  position: absolute;
-  text-align: center;
-  text-indent: 0;
-  text-transform: none;
-  top: 0;
-  width: 100%;
-}
-.widefat .column-order_status mark.exchange-approve:after {
-  background-size: 100% 100%;
-  color: #999999;
-  content: "";
-  height: 17px !important;
-  width: 17px !important;
-  background-image: url("../images/exchange-accept.png");
-}
-.widefat .column-order_status mark.exchange-approve:after {
-  font-family: WooCommerce;
-  font-variant: normal;
-  font-weight: 400;
-  height: 100%;
-  left: 0;
-  line-height: 1;
-  margin: 0;
-  position: absolute;
-  text-align: center;
-  text-indent: 0;
-  text-transform: none;
-  top: 0;
-  width: 100%;
-}
-.widefat .column-order_status mark.exchange-cancel:after {
-  background-size: 100% 100%;
-  color: #999999;
-  content: "";
-  height: 17px !important;
-  width: 17px !important;
-  background-image: url("../images/exchange-cancel.png");
-}
-.widefat .column-order_status mark.exchange-cancel:after {
-  font-family: WooCommerce;
-  font-variant: normal;
-  font-weight: 400;
-  height: 100%;
-  left: 0;
-  line-height: 1;
-  margin: 0;
-  position: absolute;
-  text-align: center;
-  text-indent: 0;
-  text-transform: none;
-  top: 0;
-  width: 100%;
-}
-.ced_rnx_notification_section{
-  padding: 0 30px!important;
-}
-.ced_rnx_notification_section .input-text {
-  margin-bottom: 10px;
-  margin-right: 6px;
-  width: 49%;
-}
-#ced_rnx_return_predefined_reason_wrapper,#ced_rnx_exchange_predefined_reason_wrapper {
-  text-align: left;
-}
-#ced_rnx_return_predefined_reason_wrapper:after,
-#ced_rnx_exchange_predefined_reason_wrapper:after{
-  clear: both;
-  display: block;
-  content: "";
-}
-table.ced_rnx_notification_section tr th, table.ced_rnx_notification_section tr td {
-  padding: 10px 10px;
-}
-table.ced_rnx_notification_section tr th h2, table.ced_rnx_notification_section tr td h2{
-  padding:0px;
-  margin: 0px;
-}
-#ced_rnx_exchange_predefined_reason_add, #ced_rnx_return_predefined_reason_add {
-  background-color: #a0a0a0;
-  border-radius: 40px;
-  color: #ffffff;
-  height: auto;
-  margin-top: 15px;
-  padding: 4px 20px;
-  box-shadow: none;
-}
-#ced_rnx_accordion table.ced_rnx_notification_section tr th {
-  width: 25%;
-}
-#ced_rnx_accordion h2 {
-  background-color: #889cb7;
-  color: #ffffff;
-  cursor: pointer;
-  margin: 10px;
-  padding: 10px 10px 10px 20px;
-  border-radius: 40px;
-  position: relative;
-}
-#ced_rnx_accordion .ced_rnx_content_sec{
-  display: none;
-  padding: 0 20px;
-}
-#ced_rnx_accordion .ced_rnx_content_sec.ced_rnx_notification_sec_active{
-  display: block;
-}
-#ced_rnx_accordion  table.ced_rnx_notification_section{
-  background-color: #fff;
-  margin:0px;
-}
-.exchange-request.tips {
-  width: 15px !important;
-}
-.return-approved.tips {
-  width: 15px !important;
-}
-.return-requested.tips {
-  width: 15px !important;
-}
-.ced_rnx_basic_setting {
-  background-color: #889cb7;
-  border-radius: 40px;
-  color: #ffffff;
-  margin: 10px;
-  padding: 10px 10px 10px 20px;
-  position: relative;
-  cursor: pointer;
-}
-.ced_rnx_basic_setting::after ,
-.ced_rnx_accord_sec_wrap > h2:after{
-  content: "+";
-  float: right;
-  font-size: 26px;
-  padding-right: 14px;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 0
-}
-.ced_rnx_slide_active::after {
-  content: "-"!important;
-}
-.ced_rnx_basic_wrapper{
-  display:none;
-  padding: 0 20px;
-}
-.ced_rnx_catalog_dropdwn {
-  background-color: #ffffff;
-  border: 2px solid #cccccc;
-  border-radius: 5px;
-  margin-top: 10px;
-  padding: 10px;
-}
-.ced_rnx_catalog_name_text
-{
-  font-size:20px;
-  float:left;
-  color:white;
-}
-.ced_rnx_catalog_add
-{
-  font-size:35px;
-  text-decoration:none;
-  color:white;
-  float:right;
-}
-.ced_rnx_catalog_delete
-{
-  font-size:35px;
-  text-decoration:none;
-  color:white;
-  float:right;
-  margin-left: 10px;
-}
-.ced_rnx_catalog_delete:hover,
-.ced_rnx_catalog_delete:focus,
-.ced_rnx_catalog_add:hover,
-.ced_rnx_catalog_add:focus{
-  color: #000;
-  outline: 0;
-}
-.form-table#ced_rnx_time_based_policy{
-  border : 1px solid;
-}
-.form-table#ced_rnx_price_based_policy{
-  border : 1px solid;
-}
-.ced_bar_custom_style{
-  margin:10px;
-  padding: 10px;
-}
-.ced_rnx_error_notice
-{
-  height:4%;
-  padding: 1%;
-  font-size: 13px;
-  background-color: white;
-  font-weight: bold;
-  border-left:4px solid red;
-}
-#ced_rnx_catalog_table th
-{
-  text-align: left;
-}
-#ced_rnx_catalog_table th,
-#ced_rnx_catalog_table td,
-.ced_rnx_catalog_toggle table tr th,
-.ced_rnx_catalog_toggle table tr td{
-  padding: 10px 10px 10px 0;
-}
-.ced_rnx_catalog_wrapper {
-  background-color: #889cb7;
-  padding: 10px;
-  margin-bottom: 20px;
-}
-.ced_rnx_catalog_exchange_days ,
-.ced_rnx_catalog_refund_days,
-.ced_rnx_catalog_name{
-  height: 36px!important;
-  margin-right: 10px;
-}
-.ced_rnx_catalog_toggle table tr th {
-  text-align: left;
-}
-#ced_rnx_catalog_table td #product ~ .select2.select2-container {
-  width: 100%!important;
-}
-#ced_rnx_catalog_table td #product ~ .select2.select2-container .selection .select2-selection{
-  border-color: #cccccc!important;
-}
+/*.mwb_custom_wrap .mwb_lte_nav_bar ul li {
+    float: left;
+    width: 70%;
+
+    }*/
+    .ced_rnx_return_loader, .ced_rnx_exchange_loader {
+      background: #ffffff none repeat scroll 0 0;
+      display: none;
+      height: 100%;
+      left: 0;
+      position: absolute;
+      right: 0;
+      text-align: center;
+      top: 0;
+      z-index: 99;
+    }
+    .ced_rnx_return_loader > img, .ced_rnx_exchange_loader > img {
+      position: absolute;
+      top: 50%;
+    }
+    .ced_rnx_extra_reason {
+      position: relative;
+    }
+    .ced_rnx_add_fee, .ced_rnx_exchange_add_fee {
+      padding: 3px 0;
+    }
+    #ced_rnx_add_fee, #ced_rnx_exchange_add_fee {
+      margin: 2px 0 4px 1px;
+    }
+    .ced_return_fee_txt, .ced_exchange_fee_txt {
+      width: 50%;
+    }
+    .ced_return_fee_value, .ced_exchange_fee_value {
+      margin: 0 10px 0 10px;
+      width: 20%;
+    }
+    .ced_rnx_order_exchange_product_list img{
+      height:50px;
+      width:50px;
+    }
+    .widefat .column-order_status mark.return-requested:after {
+      background-size: 100% 100%;
+      color: #999999;
+      content: "";
+      height: 17px !important;
+      width: 17px !important;
+      background-image: url("../images/return-requested.png");
+    }
+    .widefat .column-order_status mark.return-requested:after {
+      font-family: WooCommerce;
+      font-variant: normal;
+      font-weight: 400;
+      height: 100%;
+      left: 0;
+      line-height: 1;
+      margin: 0;
+      position: absolute;
+      text-align: center;
+      text-indent: 0;
+      text-transform: none;
+      top: 0;
+      width: 100%;
+    }
+    .widefat .column-order_status mark.return-approved:after {
+      background-size: 100% 100%;
+      color: #999999;
+      content: "";
+      height: 17px !important;
+      width: 17px !important;
+      background-image: url("../images/return-accepted.png");
+    }
+    .widefat .column-order_status mark.return-approved:after {
+      font-family: WooCommerce;
+      font-variant: normal;
+      font-weight: 400;
+      height: 100%;
+      left: 0;
+      line-height: 1;
+      margin: 0;
+      position: absolute;
+      text-align: center;
+      text-indent: 0;
+      text-transform: none;
+      top: 0;
+      width: 100%;
+    }
+    .widefat .column-order_status mark.return-cancelled:after {
+      background-size: 100% 100%;
+      color: #999999;
+      content: "";
+      height: 17px !important;
+      width: 17px !important;
+      background-image: url("../images/return-cancelled.png");
+    }
+    .widefat .column-order_status mark.return-cancelled:after {
+      font-family: WooCommerce;
+      font-variant: normal;
+      font-weight: 400;
+      height: 100%;
+      left: 0;
+      line-height: 1;
+      margin: 0;
+      position: absolute;
+      text-align: center;
+      text-indent: 0;
+      text-transform: none;
+      top: 0;
+      width: 100%;
+    }
+    .widefat .column-order_status mark.exchange-request::after {
+      background-size: 100% 100%;
+      color: #999999;
+      content: "";
+      height: 17px !important;
+      width: 17px !important;
+      background-image: url("../images/exchange-request.png");
+    }
+    .widefat .column-order_status mark.exchange-request:after {
+      font-family: WooCommerce;
+      font-variant: normal;
+      font-weight: 400;
+      height: 100%;
+      left: 0;
+      line-height: 1;
+      margin: 0;
+      position: absolute;
+      text-align: center;
+      text-indent: 0;
+      text-transform: none;
+      top: 0;
+      width: 100%;
+    }
+    .widefat .column-order_status mark.exchange-approve:after {
+      background-size: 100% 100%;
+      color: #999999;
+      content: "";
+      height: 17px !important;
+      width: 17px !important;
+      background-image: url("../images/exchange-accept.png");
+    }
+    .widefat .column-order_status mark.exchange-approve:after {
+      font-family: WooCommerce;
+      font-variant: normal;
+      font-weight: 400;
+      height: 100%;
+      left: 0;
+      line-height: 1;
+      margin: 0;
+      position: absolute;
+      text-align: center;
+      text-indent: 0;
+      text-transform: none;
+      top: 0;
+      width: 100%;
+    }
+    .widefat .column-order_status mark.exchange-cancel:after {
+      background-size: 100% 100%;
+      color: #999999;
+      content: "";
+      height: 17px !important;
+      width: 17px !important;
+      background-image: url("../images/exchange-cancel.png");
+    }
+    .widefat .column-order_status mark.exchange-cancel:after {
+      font-family: WooCommerce;
+      font-variant: normal;
+      font-weight: 400;
+      height: 100%;
+      left: 0;
+      line-height: 1;
+      margin: 0;
+      position: absolute;
+      text-align: center;
+      text-indent: 0;
+      text-transform: none;
+      top: 0;
+      width: 100%;
+    }
+    .ced_rnx_notification_section{
+      padding: 0 30px!important;
+    }
+    .ced_rnx_notification_section .input-text {
+      margin-bottom: 10px;
+      margin-right: 6px;
+      width: 49%;
+    }
+    #ced_rnx_return_predefined_reason_wrapper,#ced_rnx_exchange_predefined_reason_wrapper {
+      text-align: left;
+    }
+    #ced_rnx_return_predefined_reason_wrapper:after,
+    #ced_rnx_exchange_predefined_reason_wrapper:after{
+      clear: both;
+      display: block;
+      content: "";
+    }
+    table.ced_rnx_notification_section tr th, table.ced_rnx_notification_section tr td {
+      padding: 10px 10px;
+    }
+    table.ced_rnx_notification_section tr th h2, table.ced_rnx_notification_section tr td h2{
+      padding:0px;
+      margin: 0px;
+    }
+    #ced_rnx_exchange_predefined_reason_add, #ced_rnx_return_predefined_reason_add {
+      background-color: #a0a0a0;
+      border-radius: 40px;
+      color: #ffffff;
+      height: auto;
+      margin-top: 15px;
+      padding: 4px 20px;
+      box-shadow: none;
+    }
+    #ced_rnx_accordion table.ced_rnx_notification_section tr th {
+      width: 25%;
+    }
+    #ced_rnx_accordion h2 {
+      background-color: #889cb7;
+      color: #ffffff;
+      cursor: pointer;
+      margin: 10px;
+      padding: 10px 10px 10px 20px;
+      border-radius: 40px;
+      position: relative;
+    }
+    #ced_rnx_accordion .ced_rnx_content_sec{
+      display: none;
+      padding: 0 20px;
+    }
+    #ced_rnx_accordion .ced_rnx_content_sec.ced_rnx_notification_sec_active{
+      display: block;
+    }
+    #ced_rnx_accordion  table.ced_rnx_notification_section{
+      background-color: #fff;
+      margin:0px;
+    }
+    .exchange-request.tips {
+      width: 15px !important;
+    }
+    .return-approved.tips {
+      width: 15px !important;
+    }
+    .return-requested.tips {
+      width: 15px !important;
+    }
+    .ced_rnx_basic_setting {
+      background-color: #889cb7;
+      border-radius: 40px;
+      color: #ffffff;
+      margin: 10px;
+      padding: 10px 10px 10px 20px;
+      position: relative;
+      cursor: pointer;
+    }
+    .ced_rnx_basic_setting::after ,
+    .ced_rnx_accord_sec_wrap > h2:after{
+      content: "+";
+      float: right;
+      font-size: 26px;
+      padding-right: 14px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 0
+    }
+    .ced_rnx_slide_active::after {
+      content: "-"!important;
+    }
+    .ced_rnx_basic_wrapper{
+      display:none;
+      padding: 0 20px;
+    }
+    .ced_rnx_catalog_dropdwn {
+      background-color: #ffffff;
+      border: 2px solid #cccccc;
+      border-radius: 5px;
+      margin-top: 10px;
+      padding: 10px;
+    }
+    .ced_rnx_catalog_name_text
+    {
+      font-size:20px;
+      float:left;
+      color:white;
+    }
+    .ced_rnx_catalog_add
+    {
+      font-size:35px;
+      text-decoration:none;
+      color:white;
+      float:right;
+    }
+    .ced_rnx_catalog_delete
+    {
+      font-size:35px;
+      text-decoration:none;
+      color:white;
+      float:right;
+      margin-left: 10px;
+    }
+    .ced_rnx_catalog_delete:hover,
+    .ced_rnx_catalog_delete:focus,
+    .ced_rnx_catalog_add:hover,
+    .ced_rnx_catalog_add:focus{
+      color: #000;
+      outline: 0;
+    }
+    .form-table#ced_rnx_time_based_policy{
+      border : 1px solid;
+    }
+    .form-table#ced_rnx_price_based_policy{
+      border : 1px solid;
+    }
+    .ced_bar_custom_style{
+      margin:10px;
+      padding: 10px;
+    }
+    .ced_rnx_error_notice
+    {
+      height:4%;
+      padding: 1%;
+      font-size: 13px;
+      background-color: white;
+      font-weight: bold;
+      border-left:4px solid red;
+    }
+    #ced_rnx_catalog_table th
+    {
+      text-align: left;
+    }
+    #ced_rnx_catalog_table th,
+    #ced_rnx_catalog_table td,
+    .ced_rnx_catalog_toggle table tr th,
+    .ced_rnx_catalog_toggle table tr td{
+      padding: 10px 10px 10px 0;
+    }
+    .ced_rnx_catalog_wrapper {
+      background-color: #889cb7;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+    .ced_rnx_catalog_exchange_days ,
+    .ced_rnx_catalog_refund_days,
+    .ced_rnx_catalog_name{
+      height: 36px!important;
+      margin-right: 10px;
+    }
+    .ced_rnx_catalog_toggle table tr th {
+      text-align: left;
+    }
+    #ced_rnx_catalog_table td #product ~ .select2.select2-container {
+      width: 100%!important;
+    }
+    #ced_rnx_catalog_table td #product ~ .select2.select2-container .selection .select2-selection{
+      border-color: #cccccc!important;
+    }
 /*================================
 =            Sidebar style            =
 ================================*/
@@ -929,6 +939,7 @@ table.ced_rnx_notification_section tr th h2, table.ced_rnx_notification_section 
 .ced_rnx_mail_unsuccess_messege {
   color: #ff0000;
 }
+
 /*=====  End of common css  ======*/
 /*===============================
 =            sidebar            =
@@ -1065,3 +1076,82 @@ table.ced_rnx_notification_section tr th h2, table.ced_rnx_notification_section 
   }
 }
 /*=====  End of sidebar media query  ======*/
+.mwb_lite_main-header ,.mwb_lite_main-header *{
+  box-sizing: border-box;
+}
+.mwb_lite_main-header {
+  display: flex;
+  background-color: #374585;
+  color: #ffffff;
+  align-items: center;
+  flex-wrap: wrap;
+  border-bottom: 10px solid #73B9F0;
+}
+.mwb_lite_header_content_left {
+  align-items: center;
+  display: flex;
+  flex: 0 0 60%;
+  padding: 20px 15px;
+}
+.mwb_lite_header_content_right {
+  flex: 0 0 40%;
+  padding: 20px 15px;
+}
+.mwb_lite_header_content_right ul{
+  margin: 0;
+  text-align: right;
+}
+.mwb_lite_header_content_right ul li{
+  display: inline-block;
+  margin: 0 10px;
+}
+.mwb_lite_header_content_right ul li a{
+  color: #cccccc;
+  text-decoration: none;
+}
+.mwb_lite_setting_title {
+  padding: 0;
+  color: #ffffff;
+  font-size: 20px;
+}
+.mwb_lite_header_content_right ul li.mwb_lite_header_menu_button a {
+  display: inline-block;
+  background-color: #73B9F0;
+  font-weight: 600;
+  padding: 7px 20px;
+  border-radius: 4px;
+  color: #ffffff !important;
+}
+.mwb_lte_nav_bar {
+  padding-right: 20px;
+}
+.mwb_lte_nav_bar .subsubsub {
+  margin: 0 !important;
+  background-color: #ffffff;
+  display: block;
+  width: 100%;
+  padding: 10px;
+}
+.mwb_lte_nav_bar .subsubsub li a{
+  font-size: 13px;
+}
+.mwb_lite_header_content_right ul li:first-child .dashicons.dashicons-phone {
+  transform: rotate(90deg);
+}
+@media screen and (max-width: 675px) {
+  .mwb_lite_header_content_left,
+  .mwb_lite_header_content_right{
+    flex: 0 0 100%;
+    justify-content: center;
+  }
+  .mwb_lite_header_content_right ul{
+    text-align: center;
+  }
+  .mwb_lite_header_content_left {
+    padding-bottom: 0;
+  }
+}
+
+#wpfooter {
+  bottom: auto;
+}

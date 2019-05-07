@@ -193,7 +193,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 
 					$day_allowed = get_option('mwb_wrma_return_days', false);
 
-					$return_button_text = __('Refund','woocommerce_refund_and_exchange_lite');
+					$return_button_text = __('Refund','woocommerce-refund-and-exchange-lite');
 					
 					if($day_allowed >= $day_diff && $day_allowed != 0)
 					{

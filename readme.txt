@@ -3,9 +3,9 @@ Contributors: makewebbetter
 Donate link:  https://makewebbetter.com/
 Tags: 	ecommerce,return,refund, woocommerce, woocommerce exchange, woocommerce online exchange, woocommerce product change, woocommerce purchase refund, woocommerce refund, woocommerce refund policy, woocommerce refund status, wordpress
 Requires at least: 4.0
-Tested up to: 4.9.3
+Tested up to: 5.1.1
 WC requires at least: 3.0.0
-WC tested up to: 3.3.1
+WC tested up to: 3.6.1
 Stable tag: 1.0.1
 Requires PHP: 5.6
 License: GPLv3 or later 
@@ -17,7 +17,7 @@ This plugin allows customers to submit product refund request or exchange reques
 
 **Looking for dedicated Refund System  for your shopping site?**
 
-Make a smart move with [WooCommerce Refund and Exchange Pro](https://makewebbetter.com/product/woocommerce-rma-return-refund-exchange/)
+Make a smart move with [WooCommerce Refund and Exchange Pro](https://makewebbetter.com/product/woocommerce-rma-return-refund-exchange/?utm_source=MWB-RMA-org&utm_medium=MWB-ORG-Page&utm_campaign=MWB-RMA1)
 
 **WooCommerce Refund and Exchange plugin** gives your customers an easy and simple Refund Management system stuffed with organized Exchange, Wallet, Cancel features.
 
@@ -35,7 +35,6 @@ Ultimately leads to easy returns for your customers with increased conversions.
 * Dedicated refund system.
 * Return an order after delivery.
 * Efficient tax handling.
-* Enable refund feature for a time-frame.
 * Allow customer to Add  a reason for refund.
 * Admin Can set predefined reason request.
 * User can send attachment with refund request.
@@ -60,23 +59,23 @@ Ultimately leads to easy returns for your customers with increased conversions.
 * Product category disable feature.
 
 
-* For **Premium Plugin** you can [visit here](https://makewebbetter.com/product/woocommerce-rma-return-refund-exchange/)
+* For **Premium Plugin** you can [visit here](https://makewebbetter.com/product/woocommerce-rma-return-refund-exchange/?utm_source=MWB-RMA-org&utm_medium=MWB-ORG-Page&utm_campaign=MWB-premium_plugin)
 
 = Premium Plugin Live Demo = 
 
 Explore complete feature of premium plugin, by looking at the live demo.
 
-* For **Frontend demo**  [visit here](https://demo.makewebbetter.com/woocommerce-refund-and-exchange-with-rma/)
-* For **Backend demo**   [visit here](http://demo.makewebbetter.com/woocommerce-refund-and-exchange-with-rma/request-for-personal-demo/)
+* For **Frontend demo**  [visit here](https://demo.makewebbetter.com/woocommerce-rma-for-return-refund-and-exchange/my-account/orders/?visitor=true&utm_source=MWB-RMA-org&utm_medium=MWB-ORG-Page&utm_campaign=MWB-frontend_demo)
+* For **Backend demo**   [visit here](https://demo.makewebbetter.com/woocommerce-rma-for-return-refund-and-exchange/get-your-personal-demo/?utm_source=MWB-RMA-org&utm_medium=MWB-ORG-Page&utm_campaign=MWB-backend_demo)
 
-* **Offer over Premium** We are offering UPTO 30 % Discount on our premium plugin.
+* **Offer over Premium** We are offering 10 % Discount on our premium plugin.
 
-= WooCommerce Refund & Exchange WC-Vendor Addon  = 
+= WooCommerce RMA for WC-Vendors  = 
 
 *It comforts merchants to sell their products from an all new automated platform. This too streamlines process for Refund and Exchange. This plugin also manages request and other related information on refund and exchange which was earlier controlled all by Admin. This in returned resulted lower buying by the customer and moving on to next seller. Via this plugin, vendor can simply chuck out that situation and thereby allow to handle refund and exchange request with ease and also grant permission to accept or reject the customer's refund and exchange request.*
 
 
-* For **WooCommerce Refund & Exchange WC-Vendor Addon** you can [visit here](https://makewebbetter.com/product/woocommerce-refund-exchange-wc-vendor-addon/)
+* For **WooCommerce RMA for WC-Vendors** you can [visit here](https://makewebbetter.com/product/woocommerce-rma-wc-vendors-refund-exchange/?utm_source=MWB-RMA-org&utm_medium=MWB-ORG-Page&utm_campaign=MWB-wcVendor)
 
 = WooCommerce RMA For Dokan =
 
@@ -84,14 +83,14 @@ Explore complete feature of premium plugin, by looking at the live demo.
 
 *This extension extends an all-new streamlined solution proper buying and selling of a product keeping heed with refund policy and returns policy. This will relieve the admin from imposing refund and exchange reasonings on the customers.*
 
-* For **WooCommerce RMA For Dokan** you can [visit here](https://makewebbetter.com/product/woocommerce-rma-dokan-refund-exchange/)
+* For **WooCommerce RMA For Dokan** you can [visit here](https://makewebbetter.com/product/woocommerce-rma-dokan-refund-exchange/?utm_source=MWB-RMA-org&utm_medium=MWB-ORG-Page&utm_campaign=MWB-dokan)
 
 
 = Want Help! =
 
-* For **Plugin Documentation** you can [visit here](http://docs.makewebbetter.com/woocommerce-refund-and-exchange-lite/)
+* For **Plugin Documentation** you can [visit here](http://docs.makewebbetter.com/woocommerce-refund-and-exchange-lite/?utm_source=MWB-RMA-org&utm_medium=MWB-ORG-Page&utm_campaign=MWB-doc)
 
-* For **More Plugins By makewebbetter** [visit here](https://makewebbetter.com/store/ ) 
+* For **More Plugins By makewebbetter** [visit here](https://makewebbetter.com/store/?utm_source=MWB-RMA-org&utm_medium=MWB-ORG-Page&utm_campaign=MWB-more_plugin ) 
 
 * For **More Plugins By makewebbetter over codecanyon** you can [visit here](https://codecanyon.net/user/makewebbetter/portfolio)
 
@@ -102,7 +101,7 @@ If you need support or have any question then kindly use our online chat window 
 
 = Follow Us =
 
-* **Our Official Website** - [https://makewebbetter.com/](https://makewebbetter.com/) 
+* **Our Official Website** - [https://makewebbetter.com/](https://makewebbetter.com/?utm_source=MWB-RMA-org&utm_medium=MWB-ORG-Page&utm_campaign=MWB-official) 
 * **Our Codecanyon Portfolio** -[https://codecanyon.net/user/makewebbetter/portfolio](https://codecanyon.net/user/makewebbetter/portfolio)	
 * **Our Facebook Page** - [https://www.facebook.com/makewebbetter](https://www.facebook.com/makewebbetter)
 * **Our Google+ Account** - [https://plus.google.com/111610242430101820802](https://plus.google.com/111610242430101820802)
@@ -180,9 +179,6 @@ It's a very easy way, go to the Woocommerce -> Settings ->RAE setting ->Refund  
 
 == Changelog ==
 
-= 1.0.2 =
-* Fix: bug fixes .
-
 = 1.0.1 =
 * Fix: Tweak in pre-defined reason save field
 
@@ -192,8 +188,18 @@ It's a very easy way, go to the Woocommerce -> Settings ->RAE setting ->Refund  
 
 == Upgrade Notice ==
 
-= 1.0.1 =
+= 1.0.2 =
 * Fix: Tweak in pre-defined reason save field
+
+== 1.0.3 ==
+* Fix: Blank field validation For pred-defined reasons.
+
+== 1.0.4 ==
+
+*Compatibility  With Latest WordPress(5.1.1) And Woocommerce(3.6.1)
+*New:Admin can show refund policy rules on the Refund Form
+
+
 	
 == Screenshots ==
 
