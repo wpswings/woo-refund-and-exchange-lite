@@ -199,6 +199,11 @@ It's a very easy way, go to the Woocommerce -> Settings ->RAE setting ->Refund  
 *Compatibility  With Latest WordPress(5.1.1) And Woocommerce(3.6.1)
 *New:Admin can show refund policy rules on the Refund Form
 
+== 1.0.5 ==
+
+* Compatibility  With Latest WordPress(5.2.2) And Woocommerce(3.6.5)
+* Updated in plugin core and updtaded language.
+* Fix: Line items deletion at customer order section at refund approved.
 
 	
 == Screenshots ==
