@@ -180,6 +180,9 @@ class Mwb_Rma {
 		$this->loader->add_filter( 'template_include',  $plugin_public, 'mwb_rma_product_return_template');
 		$this->loader->add_filter( 'woocommerce_my_account_my_orders_actions',$plugin_public, 'mwb_rma_refund_exchange_button',10, 2 );
 		$this->loader->add_action( 'woocommerce_order_details_after_order_table',$plugin_public, 'mwb_rma_typ_order_return_button');
+		//$this->loader->add_action( 'mwb_rma_refund_form_after_purchase_note' , $plugin_public , 'test_func_callback');
+		$this->loader->add_action( 'wp_ajax_mwb_rma_return_upload_files',$plugin_public, 'mwb_rma_order_return_attach_files');
+		$this->loader->add_action( 'wp_ajax_nopriv_mwb_rma_return_upload_files',$plugin_public, 'mwb_rma_order_return_attach_files');
 	}
 
 	/**

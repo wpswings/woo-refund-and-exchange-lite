@@ -95,8 +95,17 @@ class Mwb_Rma_Public {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-
+		
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/mwb-rma-public.js', array( 'jquery' ), $this->version, false );
+		$ajax_nonce = wp_create_nonce( "mwb-rma-ajax-security-string" );
+		$translation_array = array(
+			'attachment_msg'		=> __( 'File should be of .png , .jpg, or .jpeg extension' , 'mwb-rma'),
+			'return_subject_msg' 	=> __( 'Please enter refund subject.', 'mwb-rma' ),
+			'return_reason_msg'		=> __( 'Please enter refund reason.', 'mwb-rma' ),
+			'mwb_rma_nonce'			=>	$ajax_nonce,
+			'ajaxurl' 				=> admin_url('admin-ajax.php'),
+		);
+		wp_localize_script(  $this->plugin_name, 'global_mwb_rma', $translation_array );
 
 	}
 
@@ -162,11 +171,11 @@ class Mwb_Rma_Public {
 					if($mwb_rma_refund_max_days >= $day_diff && $mwb_rma_refund_max_days != 0){
 						$return_url = add_query_arg('order_id',$order_id,$return_url);
 						$return_url = wp_nonce_url($return_url,'mwb_rma_return_form_nonce','mwb_rma_return_form_nonce');
-							?>
-							<form action="<?php echo $return_url ?>" method="post">
-								<input type="hidden" value="<?php echo $order_id?>" name="order_id">
-								<p><input type="submit" class="btn button" value="<?php _e('Refund Request','mwb-rma');?>" name="mwb_rma_new_return_request"></p>
-							</form>
+						?>
+						<form action="<?php echo $return_url ?>" method="post">
+							<input type="hidden" value="<?php echo $order_id?>" name="order_id">
+							<p><input type="submit" class="btn button" value="<?php _e('Refund Request','mwb-rma');?>" name="mwb_rma_new_return_request"></p>
+						</form>
 						<?php 
 					}
 				}
@@ -207,7 +216,7 @@ class Mwb_Rma_Public {
 				{
 					
 					$order_date = date_i18n( 'd-m-Y', strtotime( $order->get_date_created() ) );
-			
+
 					$today_date = date_i18n( 'd-m-Y' );
 					$order_date = strtotime($order_date);
 					$today_date = strtotime($today_date);
@@ -237,5 +246,92 @@ class Mwb_Rma_Public {
 		return $actions;
 	}
 
+	public function test_func_callback(){
+		$set_qty = 1;
+		if(isset($product_data) && !empty($product_data))
+		{
+			foreach($product_data as $key=>$data)
+			{
+				if($item['product_id'] == $data['product_id'] && $item['variation_id'] == $data['variation_id'])
+				{
+					$checked = 'checked="checked"';
+					$set_qty = $data['qty'];
+					break;
+				}
+			}
+		}
+	}
 
+	/**
+	 * This function is to save return request Attachment
+	 * 
+	 * @author makewebbetter<webmaster@makewebbetter.com>
+	 * @link http://www.makewebbetter.com/
+	 */
+	public function mwb_rma_order_return_attach_files()
+	{
+		$check_ajax = check_ajax_referer( 'mwb-rma-ajax-security-string', 'security_check' );
+		if ( $check_ajax ) 
+		{
+			if(current_user_can('mwb-rma-refund-request'))
+			{
+				if(isset($_FILES['mwb_rma_return_request_files']))
+				{
+					if(isset($_FILES['mwb_rma_return_request_files']['tmp_name']))
+					{
+						$filename = array();
+						$order_id = sanitize_text_field($_POST['mwb_rma_return_request_order']);
+						$count = sizeof($_FILES['mwb_rma_return_request_files']['tmp_name']);
+						for($i=0;$i<$count;$i++)
+						{
+							if(isset($_FILES['mwb_rma_return_request_files']['tmp_name'][$i]))
+							{	
+								$directory = ABSPATH.'wp-content/attachment';
+								if (!file_exists($directory)) 
+								{
+									mkdir($directory, 0755, true);
+								}
+
+								$sourcePath = sanitize_text_field($_FILES['mwb_rma_return_request_files']['tmp_name'][$i]);
+								$targetPath = $directory.'/'.$order_id.'-'.sanitize_text_field($_FILES['mwb_rma_return_request_files']['name'][$i]);
+
+								$filename[] = $order_id.'-'.sanitize_text_field($_FILES['mwb_rma_return_request_files']['name'][$i]);
+								move_uploaded_file($sourcePath,$targetPath) ;
+							}
+						}
+
+						$request_files = get_post_meta($order_id, 'mwb_rma_return_attachment', true);
+
+						$pending = true;
+						if(isset($request_files) && !empty($request_files))
+						{
+							foreach($request_files as $date=>$request_file)
+							{
+								if($request_file['status'] == 'pending')
+								{
+									unset($request_files[$date][0]);
+									$request_files[$date]['files'] = $filename;
+									$request_files[$date]['status'] = 'pending';
+									$pending = false;
+									break;
+								}
+							}
+						}
+
+						if($pending)
+						{	
+							$request_files = array();
+							$date = date("d-m-Y");
+							$request_files[$date]['files'] = $filename;
+							$request_files[$date]['status'] = 'pending';
+						}
+
+						update_post_meta($order_id, 'mwb_rma_return_attachment', $request_files);
+						echo 'success';
+					}
+				}
+			}
+		die();
+		}
+	}
 }

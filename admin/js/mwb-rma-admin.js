@@ -33,9 +33,8 @@
 
 	 	jQuery(".add_more_button").click(function(){
 	 		var id = jQuery(this).closest('table').find("tr:first").find("input:text").attr('id');
-	 		console.log(jQuery(this).closest('table').find("tr:first").find("div").attr('id'));
 	 		var td = jQuery(this).closest('table').find("tr:first").find("input:text").closest('td');
-	 		var html='<a href="#" class="mwb_rma_remove_button">Remove</a><br>';
+	 		var html='<a href="#" class="mwb_rma_remove_button">'+global_mwb_rma.remove+'</a><br>';
 	 		var clone = jQuery('#'+id+'_wrapper').clone();
 	 		clone.children().append(html).find("input:text").attr('value', '');
 			clone.appendTo(td);

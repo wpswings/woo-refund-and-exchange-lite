@@ -2,3 +2,18 @@
  * All of the CSS for your public-facing functionality should be
  * included in this file.
  */
+
+ .mwb_rma_return_form_detail{
+ 	float: left;
+ 	width: 60%;
+ }
+
+ .mwb_rma_refund_rules_wrapper{
+ 	float: left;
+ 	width: 37%;
+ 	margin-left: 3%;
+ }
+ 
+ #mwb_rma_return_alert{
+ 	display: none;
+ }
