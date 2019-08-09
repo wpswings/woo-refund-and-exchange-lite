@@ -87,7 +87,7 @@
 			var rr_subject = jQuery("#mwb_rma_return_request_subject").val();
 			var alerthtml = '';
 			var selected_product = {};
-
+			var count = 0;
 			if(rr_subject == '' || rr_subject == null)
 			{
 				rr_subject = jQuery("#mwb_rma_return_request_subject_text").val();
@@ -128,6 +128,25 @@
 				jQuery("#mwb_rma_return_alert").html(alerthtml);
 			}	
 
+
+			$(".mwb_rma_return_column").each(function(){
+				if($(this).find("td:eq(0)").children('.mwb_rma_return_product')){
+					var product_info = {};
+					var variation_id = $(this).data("variationid");
+					var product_id = $(this).data("productid");
+					var item_id = $(this).data("itemid");
+					var product_price = $(this).find('.mwb_rma_product_amount').val();
+					var product_qty = $(this).find("td:eq(1)").children('.mwb_rma_return_product_qty').val();
+					product_info['product_id'] = product_id;
+					product_info['variation_id'] = variation_id;
+					product_info['item_id'] = item_id;
+					product_info['price'] = product_price;
+					product_info['qty'] = product_qty;
+					selected_product[count] = product_info;
+					count++;
+				}
+			});
+
 			var data = {	
 				action	:'mwb_rma_return_product_info',
 				products: selected_product,
@@ -137,11 +156,10 @@
 				orderid : orderid,
 				security_check	:	global_mwb_rma.mwb_rma_nonce	
 			}
-			console.log(data);
+			
 			var formData = new FormData(this);
 			formData.append('action', 'mwb_rma_return_upload_files');
 			formData.append('security_check', global_mwb_rma.mwb_rma_nonce);
-			console.log(formData);
 			$.ajax({
 				url: global_mwb_rma.ajaxurl, 
 				type: "POST",             
@@ -151,7 +169,29 @@
 				processData:false,
 				success: function(respond)   
 				{
-					console.log(respond);
+					//Send return request
+					
+					$.ajax({
+						url: global_mwb_rma.ajaxurl, 
+						type: "POST",  
+						data: data,
+						dataType :'json',	
+						success: function(response) 
+						{
+							jQuery("#mwb_rma_return_alert").html(response.msg);
+							$("#mwb_rma_return_alert").removeClass('woocommerce-error');
+							$("#mwb_rma_return_alert").addClass("woocommerce-message");
+							$("#mwb_rma_return_alert").css("color", "#8FAE1B");
+							$("#mwb_rma_return_alert").show();
+							jQuery('html, body').animate({
+								scrollTop: jQuery("#mwb_rma_return_request_container").offset().top
+							}, 800);
+							window.setTimeout(function() {
+									window.location.href = global_mwb_rma.myaccount_url;
+							}, 1000);
+						}
+					});
+
 				}
 			});
 			

@@ -33,12 +33,6 @@ $mail_config_refund = array(
 				'str'			=> __( "These are order shortcode that you can use in EMAIL MESSESGES. It will be changed with order's dynamic values.", 'mwb-rma' ),
 				'ss_both'		=> __('%s Note :%s Use %s [order] %s for Order Number, %s [siteurl] %s for home page url and %s [username] %s for user name.','mwb-woocommerce-rma'),
 			),
-			array(
-				'title'         => __( '', 'mwb-rma' ),
-				'type'          => 'display_text',
-				'shortcode'		=> '[_order_total] , [formatted_shipping_address] , [formatted_billing_address] , [_billing_company] , [_billing_email] , [_billing_phone] , [_billing_country] , [_billing_address_1] , [_billing_address_2] , [_billing_state] , [_billing_postcode] , [_shipping_first_name] , [_shipping_last_name] , [_shipping_company] , [_shipping_country] , [_shipping_address_1] , [_shipping_address_2] , [_shipping_city] , [_shipping_state] , [_shipping_postcode] , [_payment_method_title] , [_order_shipping]',
-			),
-
 		),
 	), 
 	array(

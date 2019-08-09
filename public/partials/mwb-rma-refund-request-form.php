@@ -38,6 +38,7 @@ if($allowed){
 	if($order_id == 0 || $current_user_id == 0)
 	{
 		$allowed = false;
+		$allowed= apply_filters( 'mwb_rma_refund_form_allowed_user',$allowed);
 	}
 
 	if(!is_numeric($order_id))
@@ -198,7 +199,7 @@ if($allowed){
 											wc_display_item_downloads( $item );
 											?>
 											<p>
-												<!-- <input type="hidden" name="mwb_rma_product_amount" class="mwb_rma_product_amount" value="<?php //echo $mwb_actual_price; ?>"> -->
+												<input type="hidden" name="mwb_rma_product_amount" class="mwb_rma_product_amount" value="<?php echo $mwb_rma_actual_price; ?>">
 												<b><?php _e( 'Price', 'mwb-rma' ); ?> :</b> <?php 
 												echo wc_price( $mwb_rma_actual_price ); 
 												if($in_tax == true)
