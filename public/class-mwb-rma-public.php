@@ -724,7 +724,7 @@ class Mwb_Rma_Public {
 
 				wc_mail($to, $subject, $html_content, $headers );
 
-				$order->update_status('wc-return-requested', 'User Request to Refund Product');
+				$order->update_status('wc-refund-requested', 'User Request to Refund Product');
 				$response['msg'] = __('Message send successfully.You have received a notification mail regarding this, Please check your mail. Soon You redirect to My Account Page. Thanks', 'mwb-rma');
 				$auto_accept_day_allowed = false;
 				$auto_accept_day_allowed = apply_filters( 'auto_accept_day_allowed',$auto_accept_day_allowed,$order);

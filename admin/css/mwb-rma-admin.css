@@ -623,6 +623,12 @@ transform: rotate(90deg);
   top: -11px;
 }
 
+  /* ======== Order Edit page CSS =======*/
+#mwb_rma_return_meta_wrapper img {
+    width: 80px;
+    height: 80px;
+}
+
   /* ======== LOADER CSS =======*/
   #mwb_rma_loader {
     background-color: rgba(255, 255, 255, 0.6);

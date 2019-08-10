@@ -354,7 +354,7 @@ if($allowed){
 					}?>
 					<p class="form-row form-row form-row-wide">
 						<input type="submit" name="mwb_rma_return_request_submit" value="<?php _e('Submit Request', 'mwb-rma');?>" class="button btn">
-						<div class="mwb_rma_return_notification"><img src="" width="40px"></div>
+						<div class="mwb_rma_return_notification"><img src="<?php echo MWB_RMA_URL?>public/images/loading.gif" width="40px"></div>
 					</p>
 				</form>
 			</div>

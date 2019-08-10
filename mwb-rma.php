@@ -144,6 +144,20 @@ if($activated){
 
 
 	/**
+	 * This function is used for formatting the price seprator
+	 * @author makewebbetter<webmaster@makewebbetter.com>
+	 * @link http://www.makewebbetter.com/
+	 * @param unknown $price
+	 * @return price
+	 */
+	function mwb_rma_currency_seprator($price)
+	{
+		$price = apply_filters( 'formatted_woocommerce_price', number_format( $price, wc_get_price_decimals(), wc_get_price_decimal_separator(), wc_get_price_thousand_separator() ), $price, wc_get_price_decimals(), wc_get_price_decimal_separator(), wc_get_price_thousand_separator() );
+
+		return $price;
+	}
+
+	/**
 	 * Add capabilities, priority must be after the initial role 
 	 * @name admin_settings_for_pmr()
 	 * @author makewebbetter<webmaster@makewebbetter.com>
