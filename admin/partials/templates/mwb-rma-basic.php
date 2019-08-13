@@ -56,6 +56,8 @@ $mail_config_basic = array(
 			array(
 				'title'         => __( '', 'mwb-rma' ),
 				'type'          => 'add_more_button',
+				'label'			=> 'ADD MORE',
+				'class'			=> 'add_more_button',
 				'id' 			=> 'mwb_rma_rpr_add_more_button',
 				'desc_tip'		=> __( "Add text boxes to enter Predefine Return reason which will be displayed on the Return Request Form", 'mwb-rma' ),
 			),

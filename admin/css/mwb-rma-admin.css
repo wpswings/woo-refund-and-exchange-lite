@@ -197,6 +197,14 @@
 #mwb_rma_other_setting_upload_image {
     vertical-align: middle;
 }
+
+
+ /*=============================================
+=           order edit page        =
+=============================================*/
+.mwb_rma_return_loader{
+  display: none;
+}
 @media screen and (max-width: 675px) {
   .mwb_rma_header_content_left,
   .mwb_rma_header_content_right{

@@ -392,6 +392,9 @@ class mwb_rma_admin_settings {
 					}elseif($value['type'] == 'add_more_text'){
 							?>
 						<td><?php $this->mwb_rma_add_more_text_html($value,$mwb_setting_values);?></td><?php
+					}elseif($value['type'] == 'textarea'){
+							?>
+						<td><?php $this->mwb_rma_generate_textarea_html($value,$mwb_setting_values);?></td><?php
 					}
 					?>
 				</tr>
@@ -423,11 +426,12 @@ class mwb_rma_admin_settings {
 		return $mwb_setting_update_arr;
 	}
 
+	
 	public function mwb_rma_add_more_button_html($value,$general_settings){
 		$mwb_signup_value = isset($general_settings[$value['id']]) ? ($general_settings[$value['id']]) : '';
 		?>
 		<p>
-			<input type="button" value="<?php _e('ADD MORE', 'mwb-rma' ); ?>" class="button add_more_button" id="<?php echo (array_key_exists('id', $value))?$value['id']:''; ?>">
+			<input type="button" value="<?php _e($value['label'], 'mwb-rma' ); ?>" class="button <?php _e($value['class'], 'mwb-rma' ); ?>" id="<?php echo (array_key_exists('id', $value))?$value['id']:''; ?>">
 		</p>
 		<?php
 
@@ -513,9 +517,10 @@ class mwb_rma_admin_settings {
 			</label>
 		</div>
 		<?php
+		}
 	}
-	
-}
+
+
 
 
 }

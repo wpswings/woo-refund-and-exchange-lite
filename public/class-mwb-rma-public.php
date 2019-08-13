@@ -114,7 +114,7 @@ class Mwb_Rma_Public {
 			'attachment_msg'		=> __( 'File should be of .png , .jpg, or .jpeg extension' , 'mwb-rma'),
 			'return_subject_msg' 	=> __( 'Please enter refund subject.', 'mwb-rma' ),
 			'return_reason_msg'		=> __( 'Please enter refund reason.', 'mwb-rma' ),
-			'mwb_rma_nonce'			=>	$ajax_nonce,
+			'mwb_rma_nonce'			=> $ajax_nonce,
 			'ajaxurl' 				=> admin_url('admin-ajax.php'),
 			'myaccount_url' 		=> $myaccount_page_url,
 		);
@@ -131,8 +131,9 @@ class Mwb_Rma_Public {
 
 	public function mwb_rma_product_return_template($template){
 		
-		$mwb_rma_return_request_form_page_id = get_option('mwb_rma_return_request_form_page_id');
-		if(is_page($mwb_rma_return_request_form_page_id))
+		$mwb_rma_pages = get_option('mwb_rma_pages');
+		$page_id = $mwb_rma_pages['pages']['mwb_rma_return_form'];
+		if(is_page($page_id))
 		{
 
 			$located = locate_template('mwb-rma/public/partials/mwb-rma-refund-request-form.php');
@@ -158,7 +159,8 @@ class Mwb_Rma_Public {
 	public function mwb_rma_typ_order_return_button($order){
 
 		$mwb_rma_refund_settings = get_option( 'mwb_rma_refund_settings' ,array());
-		$mwb_rma_return_request_form_page_id =  get_option('mwb_rma_return_request_form_page_id',true);
+		$mwb_rma_pages = get_option('mwb_rma_pages');
+		$page_id = $mwb_rma_pages['pages']['mwb_rma_return_form'];
 
 		if(isset($mwb_rma_refund_settings) && !empty($mwb_rma_refund_settings) && is_array($mwb_rma_refund_settings)){
 
@@ -179,7 +181,6 @@ class Mwb_Rma_Public {
 					$today_date = strtotime($today_date);
 					$days = $today_date - $order_date;
 					$day_diff = floor($days/(60*60*24));
-					$page_id=$mwb_rma_return_request_form_page_id;
 					$return_url = get_permalink($page_id);
 					if($mwb_rma_refund_max_days >= $day_diff && $mwb_rma_refund_max_days != 0){
 						$return_url = add_query_arg('order_id',$order_id,$return_url);
@@ -243,8 +244,9 @@ class Mwb_Rma_Public {
 					if($day_allowed >= $day_diff && $day_allowed != 0)
 					{
 
-						$mwb_rma_return_request_form_page_id = get_option('mwb_rma_return_request_form_page_id');
-						$return_url = get_permalink($mwb_rma_return_request_form_page_id);
+						$mwb_rma_pages = get_option('mwb_rma_pages');
+						$page_id = $mwb_rma_pages['pages']['mwb_rma_return_form'];
+						$return_url = get_permalink($page_id);
 						$order_id = $order->get_id();
 						$return_url = add_query_arg('order_id',$order_id,$return_url);
 						$return_url = wp_nonce_url($return_url,'mwb_rma_return_form_nonce','mwb_rma_return_form_nonce');
@@ -257,60 +259,6 @@ class Mwb_Rma_Public {
 			}
 		}
 		return $actions;
-	}
-
-	public function test_func_callback($order_id,$message){
-				$order = new WC_Order($order_id);
-				$fname = get_post_meta($order_id, '_billing_first_name', true);
-				$lname = get_post_meta($order_id, '_billing_last_name', true);
-				$billing_company = get_post_meta($order_id, '_billing_company', true);
-				$billing_email = get_post_meta($order_id, '_billing_email', true);
-				$billing_phone = get_post_meta($order_id, '_billing_phone', true);
-				$billing_country = get_post_meta($order_id, '_billing_country', true);
-				$billing_address_1 = get_post_meta($order_id, '_billing_address_1', true);
-				$billing_address_2 = get_post_meta($order_id, '_billing_address_2', true);
-				$billing_state = get_post_meta($order_id, '_billing_state', true);
-				$billing_postcode = get_post_meta($order_id, '_billing_postcode', true);
-				$shipping_first_name = get_post_meta($order_id, '_shipping_first_name', true);
-				$shipping_last_name = get_post_meta($order_id, '_shipping_last_name', true);
-				$shipping_company = get_post_meta($order_id, '_shipping_company', true);
-				$shipping_country = get_post_meta($order_id, '_shipping_country', true);
-				$shipping_address_1 = get_post_meta($order_id, '_shipping_address_1', true);
-				$shipping_address_2 = get_post_meta($order_id, '_shipping_address_2', true);
-				$shipping_city = get_post_meta($order_id, '_shipping_city', true);
-				$shipping_state = get_post_meta($order_id, '_shipping_state', true);
-				$shipping_postcode = get_post_meta($order_id, '_shipping_postcode', true);
-				$payment_method_tittle = get_post_meta($order_id, '_payment_method_title', true);
-				$order_shipping = get_post_meta($order_id, '_order_shipping', true);
-				$order_total = get_post_meta($order_id, '_order_total', true);
-				$refundable_amount = get_post_meta($order_id, 'refundable_amount', true);
-
-				$message = str_replace('[_billing_company]', $billing_company, $message);
-				$message = str_replace('[_billing_email]', $billing_email, $message);
-				$message = str_replace('[_billing_phone]', $billing_phone, $message);
-				$message = str_replace('[_billing_country]', $billing_country, $message);
-				$message = str_replace('[_billing_address_1]', $billing_address_1, $message);
-				$message = str_replace('[_billing_address_2]', $billing_address_2, $message);
-				$message = str_replace('[_billing_state]', $billing_state, $message);
-				$message = str_replace('[_billing_postcode]', $billing_postcode, $message);
-				$message = str_replace('[_shipping_first_name]', $shipping_first_name, $message);
-				$message = str_replace('[_shipping_last_name]', $shipping_last_name, $message);
-				$message = str_replace('[_shipping_company]', $shipping_company, $message);
-				$message = str_replace('[_shipping_country]', $shipping_country, $message);
-				$message = str_replace('[_shipping_address_1]', $shipping_address_1, $message);
-				$message = str_replace('[_shipping_address_2]', $shipping_address_2, $message);
-				$message = str_replace('[_shipping_city]', $shipping_city, $message);
-				$message = str_replace('[_shipping_state]', $shipping_state, $message);
-				$message = str_replace('[_shipping_postcode]', $shipping_postcode, $message);
-				$message = str_replace('[_payment_method_title]', $payment_method_tittle, $message);
-				$message = str_replace('[_order_shipping]', $order_shipping, $message);
-				$message = str_replace('[_order_total]', $order_total, $message);
-				//$message = str_replace('[_refundable_amount]', $refundable_amount, $message);
-				$message = str_replace('[formatted_shipping_address]', $order->get_formatted_shipping_address(), $message);
-				$message = str_replace('[formatted_billing_address]', $order->get_formatted_billing_address(), $message);
-				// print_r($order_id);
-				return $message;
-		
 	}
 
 	/**
@@ -449,100 +397,7 @@ class Mwb_Rma_Public {
 				$mail_header = stripslashes(isset($mwb_rma_mail_basic_settings['mwb_rma_mail_header'])? $mwb_rma_mail_basic_settings['mwb_rma_mail_header']:'');
 				$mail_footer = stripslashes(isset($mwb_rma_mail_basic_settings['mwb_rma_mail_footer'])? $mwb_rma_mail_basic_settings['mwb_rma_mail_footer']:'');
 
-				$message = '<html>
-					<body>
-						'.do_action('wrnx_return_request_before_mail_content', $order_id).'
-						<style>
-							body {
-								box-shadow: 2px 2px 10px #ccc;
-								color: #767676;
-								font-family: Arial,sans-serif;
-								margin: 80px auto;
-								max-width: 700px;
-								padding-bottom: 30px;
-								width: 100%;
-							}
-
-							h2 {
-								font-size: 30px;
-								margin-top: 0;
-								color: #fff;
-								padding: 40px;
-								background-color: #557da1;
-							}
-
-							h4 {
-								color: #557da1;
-								font-size: 20px;
-								margin-bottom: 10px;
-							}
-
-							.content {
-								padding: 0 40px;
-							}
-
-							.Customer-detail ul li p {
-								margin: 0;
-							}
-
-							.details .Shipping-detail {
-								width: 40%;
-								float: right;
-							}
-
-							.details .Billing-detail {
-								width: 60%;
-								float: left;
-							}
-
-							.details .Shipping-detail ul li,.details .Billing-detail ul li {
-								list-style-type: none;
-								margin: 0;
-							}
-
-							.details .Billing-detail ul,.details .Shipping-detail ul {
-								margin: 0;
-								padding: 0;
-							}
-
-							.clear {
-								clear: both;
-							}
-
-							table,td,th {
-								border: 2px solid #ccc;
-								padding: 15px;
-								text-align: left;
-							}
-
-							table {
-								border-collapse: collapse;
-								width: 100%;
-							}
-
-							.info {
-								display: inline-block;
-							}
-
-							.bold {
-								font-weight: bold;
-							}
-
-							.footer {
-								margin-top: 30px;
-								text-align: center;
-								color: #99B1D8;
-								font-size: 12px;
-							}
-							dl.variation dd {
-								font-size: 12px;
-								margin: 0;
-							}
-						</style>
-						<div class="header" style="text-align:center;padding: 10px;">
-							'.$mail_header.'
-						</div>	
-						<div class="header">
+				$message_details = '<div class="header">
 							<h2>'.$reason_subject.'</h2>
 						</div>
 						<div class="content">
@@ -594,9 +449,9 @@ class Mwb_Rma_Public {
 															// //print_r($item_meta);
 															// $item_meta_html = wc_display_item_meta($item_meta,array('echo'=> false));
 															//print_r()
-															$message .= '<tr>
+															$message_details .= '<tr>
 															<td>'.$item['name'].'<br>';
-																$message .= '<small>'.$item_meta_html.'</small>
+																$message_details .= '<small>'.$item_meta_html.'</small>
 																<td>'.$item['qty'].'</td>
 																<td>'.wc_price($requested_product['price']*$item['qty']).'</td>
 															</tr>';
@@ -606,45 +461,15 @@ class Mwb_Rma_Public {
 											}	
 										}
 
-										$message .= '<tr>
+										$message_details .= '<tr>
 										<th colspan="2">'.__('Refund Total', 'mwb-rma').':</th>
 										<td>'.wc_price($total).'</td>
 									</tr>
 								</tbody>
 							</table>
-						</div>
-						<div class="Customer-detail">
-							<h4>'.__('Customer details', 'mwb-rma').'</h4>
-							<ul>
-								<li><p class="info">
-									<span class="bold">'.__('Email', 'mwb-rma').': </span>'.get_post_meta($order_id, '_billing_email', true).'
-								</p></li>
-								<li><p class="info">
-									<span class="bold">'.__('Tel', 'mwb-rma').': </span>'.get_post_meta($order_id, '_billing_phone', true).'
-								</p></li>
-							</ul>
-						</div>
-						<div class="details">
-							<div class="Shipping-detail">
-								<h4>'.__('Shipping Address', 'mwb-rma').'</h4>
-								'.$order->get_formatted_shipping_address().'
-							</div>
-							<div class="Billing-detail">
-								<h4>'.__('Billing Address', 'mwb-rma').'</h4>
-								'.$order->get_formatted_billing_address().'
-							</div>
-							<div class="clear"></div>
-						</div>
-						
-					</div>
-					<div class="footer" style="text-align:center;padding: 10px;">
-						'.$mail_footer.'
-					</div>
-
-				</body>
-				</html>';
-				
-
+						</div>';
+				$message = create_mail_html($order_id,$message_details);		
+			
 				$headers = array();
 				$headers[] = "Content-Type: text/html; charset=UTF-8";
 				$to = isset($mwb_rma_mail_basic_settings['mwb_rma_mail_from_email'])? $mwb_rma_mail_basic_settings['mwb_rma_mail_from_email']:'';
@@ -655,8 +480,8 @@ class Mwb_Rma_Public {
 					
 				//Send mail to User that we recieved your request
 
-				$fname =  isset($mwb_rma_mail_basic_settings['mwb_rma_mail_from_email'])? $mwb_rma_mail_basic_settings['mwb_rma_mail_from_email']:'';
-				$fmail =  isset($mwb_rma_mail_basic_settings['mwb_rma_mail_from_name'])? $mwb_rma_mail_basic_settings['mwb_rma_mail_from_name']:'';
+				$fmail =  isset($mwb_rma_mail_basic_settings['mwb_rma_mail_from_email'])? $mwb_rma_mail_basic_settings['mwb_rma_mail_from_email']:'';
+				$fname =  isset($mwb_rma_mail_basic_settings['mwb_rma_mail_from_name'])? $mwb_rma_mail_basic_settings['mwb_rma_mail_from_name']:'';
 
 				$to = get_post_meta($order_id, '_billing_email', true);
 				$headers = array();
@@ -664,14 +489,15 @@ class Mwb_Rma_Public {
 				$headers[] = "Content-Type: text/html; charset=UTF-8";
 				$subject = isset($mwb_rma_mail_refund_settings['mwb_rma_mail_return_subject'])? $mwb_rma_mail_refund_settings['mwb_rma_mail_return_subject']:'';
 				$subject = str_replace('[order]', "#".$order_id, $subject);
+
 				$message = stripslashes(isset($mwb_rma_mail_refund_settings['mwb_rma_mail_return_message'])? $mwb_rma_mail_refund_settings['mwb_rma_mail_return_message']:'');
 
-				$message = str_replace('[order]', "#".$order_id, $message);
-				$message = str_replace('[siteurl]', home_url(), $message);
 				$firstname = get_post_meta($order_id, '_billing_first_name', true);
 				$lname = get_post_meta($order_id, '_billing_last_name', true);
-				
 				$fullname = $firstname." ".$lname;
+				
+				$message = str_replace('[order]', "#".$order_id, $message);
+				$message = str_replace('[siteurl]', home_url(), $message);
 				$message = str_replace('[username]', $fullname, $message);
 
 				$mwb_rma_shortcode='';

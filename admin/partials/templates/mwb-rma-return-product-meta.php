@@ -26,7 +26,6 @@ else
 
 $return_datas = get_post_meta($order_id, 'mwb_rma_return_request_product', true);
 $line_items  = $order->get_items( apply_filters( 'woocommerce_admin_order_item_types', 'line_item' ) );
-// print_r($line_items);
 
 if(isset($return_datas) && !empty($return_datas))
 {
@@ -128,21 +127,11 @@ if(isset($return_datas) && !empty($return_datas))
 			</table>
 		</div>
 		<div class="mwb_rma_extra_reason">
-		<?php
-		if($return_data['status'] == 'pending')
-		{
-			?>
-			<input type="hidden" value="<?php echo mwb_rma_currency_seprator($return_data['amount'])?>" id="ced_rnx_refund_amount">
-			<input type="hidden" value="<?php echo $return_data['subject']?>" id="ced_rnx_refund_reason">
-			<?php
-		}
-		?>
-		<p>
-			<strong><?php _e('Refund Amount', 'mwb-rma');?> :</strong> <?php echo wc_price($return_data['amount'])?> 
-			<!-- <input type="hidden" name="ced_rnx_total_amount_for_refund" class="ced_rnx_total_amount_for_refund" value="<?php //echo ced_rnx_lite_currency_seprator($return_data['amount']); ?>"> -->
-		</p>
+			<p>
+				<strong><?php _e('Refund Amount', 'mwb-rma');?> :</strong> <?php echo wc_price($return_data['amount'])?>
+			</p>
 		</div>
-		<div class="ced_rnx_reason">	
+		<div class="mwb_rma_reason">	
 			<p><strong><?php _e('Subject', 'mwb-rma');?> :</strong><i> <?php echo $return_data['subject']?></i></p></p>
 			<p><b><?php _e('Reason', 'mwb-rma');?> :</b></p>
 			<p><?php echo $return_data['reason']?></p>
@@ -169,6 +158,10 @@ if(isset($return_datas) && !empty($return_datas))
 									<a href="<?php echo content_url()?>/attachment/<?php echo $attachment?>" target="_blank"><?php _e('Attachment','mwb-rma');?>-<?php echo $count;?></a>
 									<?php 
 									$count++;
+								}else{
+									?>
+										<p><?php _e('No attachment from customer', 'mwb-rma');?></p>
+									<?php
 								}
 							}	
 							break;
@@ -187,11 +180,59 @@ if(isset($return_datas) && !empty($return_datas))
 			}
 			?>
 		</div>
+		<div class="mwb_rma_return_loader">
+			<img src="<?php echo MWB_RMA_URL?>admin/images/loader.gif" ">
+		</div>
+		<?php
+
+		if($return_data['status'] == 'complete')
+		{?>
+			<input type="hidden" name="mwb_rma_total_amount_for_refund" class="mwb_rma_total_amount_for_refund" value="<?php echo mwb_rma_currency_seprator($return_data['amount']); ?>">
+			<input type="hidden" value="<?php echo $return_data['subject']?>" id="mwb_rma_refund_reason">
+
+			<?php
+			$approve_date=date_create($return_data['approve_date']);
+			$date_format = get_option('date_format');
+			$approve_date=date_format($approve_date,$date_format);
+			$mwb_rma_refund_amount = get_post_meta($order_id,'mwb_rma_refund_amount',true);
+
+			_e( 'Following product refund request is approved on', 'mwb-rma' ); ?> <b><?php echo $approve_date?>.</b><?php
+
+			if($mwb_rma_refund_amount !='yes'){?>
+				<input type="button" name="mwb_rma_left_amount" class="button button-primary" data-orderid="<?php echo $order_id; ?>" id="mwb_rma_left_amount" Value="Refund Amount" > <?php
+			}
+
+			$mwb_rma_manage_stock_for_return = get_post_meta($order_id,'mwb_rma_manage_stock_for_return',true);
+			if($mwb_rma_manage_stock_for_return == '')
+			{
+				$mwb_rma_manage_stock_for_return = 'yes';
+			}
+			$mwb_rma_refund_settings = get_option( 'mwb_rma_refund_settings' ,array());
+			$manage_stock = isset($mwb_rma_refund_settings['mwb_rma_return_request_manage_stock'])? $mwb_rma_refund_settings['mwb_rma_return_request_manage_stock']:'';
+			if($manage_stock == "on" && $mwb_rma_manage_stock_for_return == 'yes')
+			{
+				?> <p id="mwb_rma_stock_button_wrapper"><?php _e( 'When Product Back in stock then for stock management click on ', 'mwb-rma' ); ?> <input type="button" name="mwb_rma_stock_back" class="button button-primary" id="mwb_rma_stock_back" data-type="mwb_rma_return" data-orderid="<?php echo $order_id; ?>" Value="Manage Stock" ></p> <?php
+			}
+		}
+		?>
+		<p>
+		<?php
+			if($return_data['status'] == 'cancel')
+			{
+				$approve_date=date_create($return_data['cancel_date']);
+				$approve_date=date_format($approve_date,"F d, Y");
+					
+				_e( 'Following product refund request is cancelled on', 'mwb-rma' ); ?> <b><?php echo $approve_date?>.</b>
+				<?php
+			}
+		?>
+		</p>
 		<?php
 	}
 
 
 }else{
+
 	$mwb_rma_return_form_url='';	
 	$mwb_rma_return_form_url = apply_filters( 'mwb_rma_return_form_url' ,$mwb_rma_return_form_url);
 	

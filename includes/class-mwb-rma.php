@@ -159,7 +159,10 @@ class Mwb_Rma {
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'mwb_rma_add_order_edit_meta_box' );
 		$this->loader->add_action( 'init', $plugin_admin, 'mwb_rma_register_custom_order_status' );
 		$this->loader->add_filter( 'wc_order_statuses', $plugin_admin, 'mwb_rma_add_custom_order_status');
-		//$this->loader->add_filter( 'mwb_rma_setting_tabs' , $plugin_admin , 'test_func_callback',10,1);
+		$this->loader->add_action( 'wp_ajax_mwb_rma_return_req_approve' , $plugin_admin , 'mwb_rma_return_req_approve_callback');
+		$this->loader->add_action( 'wp_ajax_mwb_rma_return_req_cancel' , $plugin_admin , 'mwb_rma_return_req_cancel_callback');
+		$this->loader->add_action( 'woocommerce_refund_created', $plugin_admin, 'mwb_rma_action_woocommerce_order_refunded', 10, 2 );
+		$this->loader->add_action('wp_ajax_mwb_rma_manage_stock' , $plugin_admin , 'mwb_rma_manage_stock' );
 		
 
 	}

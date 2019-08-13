@@ -84,12 +84,6 @@ if($allowed){
 			$reason = apply_filters('mwb_rma_return_order_amount', $reason);
 			// print_r($reason);
 		}
-		$mwb_rma_pro_active=false;
-		if ( is_plugin_active( 'woocommerce/woocommerce.php' ) )
-		{
-			$mwb_rma_pro_active=true;
-		}
-		do_action( 'mwb_rma_refund_form_return_product' , $order_id);
 	}
 }
 
