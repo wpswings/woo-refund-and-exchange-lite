@@ -133,6 +133,7 @@ class Mwb_Rma_Public {
 		
 		$mwb_rma_pages = get_option('mwb_rma_pages');
 		$page_id = $mwb_rma_pages['pages']['mwb_rma_return_form'];
+
 		if(is_page($page_id))
 		{
 
@@ -161,27 +162,135 @@ class Mwb_Rma_Public {
 		$mwb_rma_refund_settings = get_option( 'mwb_rma_refund_settings' ,array());
 		$mwb_rma_pages = get_option('mwb_rma_pages');
 		$page_id = $mwb_rma_pages['pages']['mwb_rma_return_form'];
+		$return_url = get_permalink($page_id);
 
 		if(isset($mwb_rma_refund_settings) && !empty($mwb_rma_refund_settings) && is_array($mwb_rma_refund_settings)){
 
 			$mwb_rma_refund_enable = isset($mwb_rma_refund_settings['mwb_rma_return_enable'])?$mwb_rma_refund_settings['mwb_rma_return_enable']:'';
-			$mwb_rma_refund_max_days=isset($mwb_rma_refund_settings['mwb_rma_return_days'])?$mwb_rma_refund_settings['mwb_rma_return_days']:'';
+			$mwb_rma_refund_max_days = isset($mwb_rma_refund_settings['mwb_rma_return_days'])?$mwb_rma_refund_settings['mwb_rma_return_days']:'';
+
+			$statuses = isset($mwb_rma_refund_settings['mwb_rma_return_order_status'])?$mwb_rma_refund_settings['mwb_rma_return_order_status']:array();
+
 
 			if($mwb_rma_refund_enable == 'on'){
 
-				$order_id=$order->get_id();
 				$order_date = date_i18n( 'd-m-Y', strtotime( $order->get_date_created()  ) );
-				$statuses = isset($mwb_rma_refund_settings['mwb_rma_return_order_status'])?$mwb_rma_refund_settings['mwb_rma_return_order_status']:array();
+				$today_date = date_i18n( 'd-m-Y' );
+				$order_date = strtotime($order_date);
+				$today_date = strtotime($today_date);
+				$days = $today_date - $order_date;
+				$day_diff = floor($days/(60*60*24));
 				$order_status ="wc-".$order->get_status();
 
+				$order_id=$order->get_id();
+				$product_datas = get_post_meta($order_id, 'mwb_rma_return_request_product', true);
+				if(isset($product_datas) && !empty($product_datas))
+				{
+					?>
+					<h2><?php _e( 'Refund Requested Product', 'mwb-rma' ); ?></h2>
+					<?php 
+					foreach($product_datas as $key=>$product_data)
+					{
+						$date=date_create($key);
+						$date_format = get_option('date_format');
+						$date=date_format($date,$date_format);
+						?>
+						<p><?php _e( 'Following product Refund request made on', 'woocommerce-refund-and-exchange-lite' ); ?> <b><?php echo $date?>.</b></p>
+						<table class="shop_table order_details">
+							<thead>
+								<tr>
+									<th class="product-name"><?php _e( 'Product', 'mwb-rma' ); ?></th>
+									<th class="product-total"><?php _e( 'Total', 'mwb-rma' ); ?></th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php 
+								$line_items  = $order->get_items();
+								$return_products = $product_data['products'];
+								foreach($line_items as $item_id => $item ) 
+								{
+									foreach($return_products as $return_product)
+									{
+										if(isset($return_product['item_id']))
+										{	
+											if($return_product['item_id'] == $item_id)
+											{
+												?><tr>
+													<td class="product-name">
+														<?php 
+														$product = apply_filters( 'woocommerce_order_item_product', $order->get_product_from_item( $item ), $item );
+
+														$is_visible        = $product && $product->is_visible();
+														$product_permalink = apply_filters( 'woocommerce_order_item_permalink', $is_visible ? $product->get_permalink( $item ) : '', $item, $order );
+
+														echo $product_permalink ? sprintf( '<a href="%s">%s</a>', $product_permalink,$product->get_name() ) : $product->get_name();
+														echo '<strong class="product-quantity">' . sprintf( '&times; %s', $return_product['qty'] ) . '</strong>';
+
+														do_action( 'woocommerce_order_item_meta_start', $item_id, $item, $order );wc_display_item_meta( $item );
+															wc_display_item_downloads( $item );
+
+														do_action( 'woocommerce_order_item_meta_end', $item_id, $item, $order );
+														?>
+													</td>
+													<td class="product-total"><?php 
+													echo wc_price($return_product['price']*$return_product['qty']);
+													?></td>
+												</tr>
+
+												<?php 
+											}
+										}
+									}	
+								}
+								?>
+								<tr>
+									<th scope="row"><?php _e('Refund Amount', 'mwb-rma') ?></th>
+									<th><?php echo wc_price($product_data['amount']); ?></th>
+								</tr>
+							</tbody>
+						</table>
+						<?php
+						if($product_data['status'] == 'complete')
+						{
+							$appdate=date_create($product_data['approve_date']);
+							$format = get_option('date_format');
+							$appdate=date_format($appdate,$format);
+							?>
+							<p><?php _e('Above product Refund request is approved on','mwb-rma');?> <b><?php echo $appdate?>.</b></p>
+							<?php 
+						}
+
+						if($product_data['status'] == 'cancel')
+						{
+							$appdate=date_create($product_data['cancel_date']);
+							$format = get_option('date_format');
+							$appdate=date_format($appdate,$format);
+							?>
+							<p><?php _e('Above product Refund request is cancelled on','mwb-rma');?> <b><?php echo $appdate?>.</b></p>
+							<?php 
+						}
+					}
+
+					if(in_array($order_status, $statuses))
+					{
+						if($mwb_rma_refund_max_days >= $day_diff && $mwb_rma_refund_max_days != 0){
+							$return_url = add_query_arg('order_id',$order_id,$return_url);
+							$return_url = wp_nonce_url($return_url,'mwb_rma_return_form_nonce','mwb_rma_return_form_nonce');
+							?>
+							<form action="<?php echo $return_url ?>" method="post">
+								<input type="hidden" value="<?php echo $order_id?>" name="order_id">
+								<p><input type="submit" class="btn button" value="<?php _e('Refund Request','mwb-rma');?>" name="mwb_rma_new_return_request"></p>
+							</form>
+							<?php 
+						}
+					}
+
+				}
+
+				
+			
 				if(in_array($order_status, $statuses))
 				{
-					$today_date = date_i18n( 'd-m-Y' );
-					$order_date = strtotime($order_date);
-					$today_date = strtotime($today_date);
-					$days = $today_date - $order_date;
-					$day_diff = floor($days/(60*60*24));
-					$return_url = get_permalink($page_id);
 					if($mwb_rma_refund_max_days >= $day_diff && $mwb_rma_refund_max_days != 0){
 						$return_url = add_query_arg('order_id',$order_id,$return_url);
 						$return_url = wp_nonce_url($return_url,'mwb_rma_return_form_nonce','mwb_rma_return_form_nonce');
@@ -331,8 +440,6 @@ class Mwb_Rma_Public {
 						echo 'success';
 					}
 				}
-
-
 			}
 		wp_die();
 		}
@@ -344,33 +451,21 @@ class Mwb_Rma_Public {
 		{
 			if(current_user_can('mwb-rma-refund-request'))
 			{
-				$user_email = $current_user->user_email;
-				$user_name = $current_user->display_name;
 				$order_id = sanitize_text_field($_POST['orderid']);
 				$subject = sanitize_text_field($_POST['subject']);
 				$reason = sanitize_text_field($_POST['reason']);
-				// $mwb_rnx_products = array();
+				$mwb_rnx_products = array();
 				$pending = true;
-				
-				// $mwb_rnx_products = apply_filters('mwb_rnx_get_product_details', $order_id, $mwb_rnx_products);
-				// if(is_array($mwb_rnx_products) && !empty($mwb_rnx_products)){
-				// 	$products = $mwb_rnx_products['products'];
-				// 	$pending = $mwb_rnx_products['pending'];
-				// }
+				$post_data=$_POST;
 				$products = get_post_meta($order_id, 'mwb_rma_return_request_product', true);
-				if(isset($products) && !empty($products))
-				{
-					foreach($products as $date=>$product)
-					{
-						if($product['status'] == 'pending')
-						{
-							$products[$date] = $_POST;
-								$products[$date]['status'] = 'pending'; //update requested products
-								$pending = false;
-								break;
-						}	
-					}
+
+				//update refund requested products
+				$mwb_rnx_products = apply_filters('mwb_rnx_get_product_details', $mwb_rnx_products ,$order_id,$post_data);
+				if(is_array($mwb_rnx_products) && !empty($mwb_rnx_products)){
+					$products = $mwb_rnx_products['products'];
+					$pending = $mwb_rnx_products['pending'];
 				}
+
 				if($pending)
 				{
 					if(!is_array($products))
@@ -388,7 +483,7 @@ class Mwb_Rma_Public {
 				update_post_meta($order_id, 'mwb_rma_return_request_product', $products);
 
 
-					//Send mail to merchant
+				//Send mail to merchant
 				$mwb_rma_mail_basic_settings = get_option('mwb_rma_mail_basic_settings',array());
 				$mwb_rma_mail_refund_settings = get_option('mwb_rma_mail_refund_settings',array());
 
@@ -424,7 +519,6 @@ class Mwb_Rma_Public {
 											$total = 0;
 											foreach( $order->get_items() as $item_id => $item )
 											{
-												//$product = apply_filters( 'woocommerce_order_item_product', $order->get_product_from_item( $item ), $item );
 												foreach($requested_products as $requested_product)
 												{
 													if(isset($requested_product['item_id']))
@@ -442,13 +536,10 @@ class Mwb_Rma_Public {
 															}
 
 															$subtotal = $requested_product['price']*$item['qty'];
-															
+															$item_meta      = new WC_Order_Item_Product( $item);
+															$item_meta_html = wc_display_item_meta($item_meta,array('echo'=> false));
+
 															$total += $subtotal;
-															//print_r($_product);
-															// $item_meta      = new WC_Order_Item_Product( $item, $_product );
-															// //print_r($item_meta);
-															// $item_meta_html = wc_display_item_meta($item_meta,array('echo'=> false));
-															//print_r()
 															$message_details .= '<tr>
 															<td>'.$item['name'].'<br>';
 																$message_details .= '<small>'.$item_meta_html.'</small>
@@ -468,6 +559,7 @@ class Mwb_Rma_Public {
 								</tbody>
 							</table>
 						</div>';
+					
 				$message = create_mail_html($order_id,$message_details);		
 			
 				$headers = array();
@@ -476,10 +568,9 @@ class Mwb_Rma_Public {
 				$subject = isset($mwb_rma_mail_refund_settings['mwb_rma_mail_merchant_return_subject'])? $mwb_rma_mail_refund_settings['mwb_rma_mail_merchant_return_subject']:'';
 				$subject = str_replace('[order]', "#".$order_id, $subject);	
 				
-				wc_mail( $to, $subject, $message, $headers );
-					
+				wc_mail( $to, $subject, $message, $headers );	
 				//Send mail to User that we recieved your request
-
+		
 				$fmail =  isset($mwb_rma_mail_basic_settings['mwb_rma_mail_from_email'])? $mwb_rma_mail_basic_settings['mwb_rma_mail_from_email']:'';
 				$fname =  isset($mwb_rma_mail_basic_settings['mwb_rma_mail_from_name'])? $mwb_rma_mail_basic_settings['mwb_rma_mail_from_name']:'';
 
@@ -499,14 +590,14 @@ class Mwb_Rma_Public {
 				$message = str_replace('[order]', "#".$order_id, $message);
 				$message = str_replace('[siteurl]', home_url(), $message);
 				$message = str_replace('[username]', $fullname, $message);
-
+				
 				$mwb_rma_shortcode='';
 				$mwb_rma_shortcode = $message;
 
-				$mwb_rma_shortcode = apply_filters( 'mwb_rma_add_shortcode_refund_mail' , $order_id,$mwb_rma_shortcode);
+			
+				$mwb_rma_shortcode = apply_filters( 'mwb_rma_add_shortcode_refund_mail' , $mwb_rma_shortcode,$order_id);
 				
 				$message = $mwb_rma_shortcode;
-				
 				$mwb_rma_refund_template = false;
 				$mwb_rma_refund_template = apply_filters('mwb_rma_refund_template',$mwb_rma_refund_template );
 
@@ -565,5 +656,23 @@ class Mwb_Rma_Public {
 		}
 	}
 
+	public function mwb_rma_pro_active(){
+		global $rma_pro_activated;
+		$rma_pro_activated=false;
+		if (function_exists('is_multisite') && is_multisite())
+		{
+			include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+			if ( is_plugin_active( 'mwb-rma-pro/mwb-rma-pro.php' ) )
+			{
+				$rma_pro_activated = true;
+			}
 
+		}else{
+			if (in_array('mwb-rma-pro/mwb-rma-pro.php', apply_filters('active_plugins', get_option('active_plugins'))))
+			{
+				$rma_pro_activated = true;
+			}
+		}
+
+	}
 }

@@ -31,6 +31,8 @@
 
 	jQuery(document).ready(function(){
 
+		jQuery(document).find('#mwb_rma_return_order_status').select2();
+
 	 	jQuery(".add_more_button").click(function(){
 	 		var id = jQuery(this).closest('table').find("tr:first").find("input:text").attr('id');
 	 		var td = jQuery(this).closest('table').find("tr:first").find("input:text").closest('td');
@@ -97,7 +99,7 @@
 	 	});	
 
 	 	jQuery("#mwb_rma_left_amount").click(function(){
-	 		//jQuery(this).attr('disabled','disabled');
+	 		jQuery(this).attr('disabled','disabled');
 
 	 		var order_id = jQuery(this).data('orderid');
 	 		var refund_amount = jQuery(".mwb_rma_total_amount_for_refund").val();
@@ -132,11 +134,9 @@
 
 
 	 	jQuery(document).on('click','#mwb_rma_stock_back',function(){
-	 		//jQuery(this).attr('disabled','disabled');
+	 		jQuery(this).attr('disabled','disabled');
 	 		var order_id = jQuery(this).data('orderid');
 	 		var type = jQuery(this).data('type');
-	 		console.log(order_id);
-	 		console.log(type);
 	 		var data = { 
 	 			action   : 'mwb_rma_manage_stock' ,
 	 			order_id : order_id ,
@@ -163,12 +163,14 @@
 	 				}
 	 				else
 	 				{
-	 					
 	 					jQuery("#post").prepend('<div id="messege" class="notice notice-error is-dismissible" id="message"><p>'+response.msg+'</p><button class="notice-dismiss" type="button"><span class="screen-reader-text">Dismiss this notice.</span></button></div>'); 
 	 					jQuery('html, body').animate({
 	 						scrollTop: jQuery("body").offset().top
 	 					}, 2000, "linear", function(){
-	 					});
+	 						window.setTimeout(function() {
+	 							window.location.reload();
+	 						}, 1000);
+	 					}); 
 	 				}
 	 			}
 	 		});

@@ -376,10 +376,8 @@ if($activated){
 	{
 		$domain = "mwb-rma";
 		$locale = apply_filters( 'plugin_locale', get_locale(), $domain );
-		load_textdomain( $domain, MWB_WRMA_DIRPATH .'languages/'.$domain.'-' . $locale . '.mo' );
+		load_textdomain( $domain, MWB_RMA_DIR_PATH .'languages/'.$domain.'-' . $locale . '.mo' );
 		$var=load_plugin_textdomain( $domain, false, plugin_basename( dirname(__FILE__) ) . '/languages' );
-
-		
 	}
 	add_action('plugins_loaded', 'mwb_rma_load_plugin_textdomain');
 

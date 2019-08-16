@@ -38,7 +38,7 @@ if($allowed){
 	if($order_id == 0 || $current_user_id == 0)
 	{
 		$allowed = false;
-		$allowed= apply_filters( 'mwb_rma_refund_form_allowed_user',$allowed);
+		$allowed = apply_filters( 'mwb_rma_refund_form_allowed_user',$allowed);
 	}
 
 	if(!is_numeric($order_id))
@@ -50,8 +50,9 @@ if($allowed){
 			$myaccount_page_url = get_permalink( $myaccount_page );
 		}
 		$allowed = false;
-		$reason = __('Please choose an Order.','woocommerce-refund-and-exchange-lite').'<a href="'.$myaccount_page_url.'">'.__('Click Here','mwb-rma').'</a>';
+		$reason = __('Please choose an Order.','mwb-rma').'<a href="'.$myaccount_page_url.'">'.__('Click Here','mwb-rma').'</a>';
 		$reason = apply_filters('mwb_rma_return_choose_order', $reason);
+		update_post_meta($order_id,"mwb_rma_refund_request_not_allowed_reason",$reason);
 	}
 	else 
 	{
@@ -64,8 +65,9 @@ if($allowed){
 				$myaccount_page = get_option( 'woocommerce_myaccount_page_id' );
 				$myaccount_page_url = get_permalink( $myaccount_page );
 				$allowed = false;
-				$reason = __("This order #$order_id is not associated to your account. <a href='$myaccount_page_url'>Click Here</a>",'woocommerce-refund-and-exchange-lite' );
+				$reason = __("This order #$order_id is not associated to your account. <a href='$myaccount_page_url'>Click Here</a>",'mwb-rma' );
 				$reason = apply_filters('mwb_rma_return_choose_order', $reason);
+				update_post_meta($order_id,"mwb_rma_refund_request_not_allowed_reason",$reason);
 			}			
 		}
 	}
@@ -80,10 +82,26 @@ if($allowed){
 			
 		}else{
 			$allowed = false;
-			$reason = __('Refund request is disabled.','woocommerce-refund-and-exchange-lite' );
+			$reason = __('Refund request is disabled.','mwb-rma' );
 			$reason = apply_filters('mwb_rma_return_order_amount', $reason);
-			// print_r($reason);
+			update_post_meta($order_id,"mwb_rma_refund_request_not_allowed_reason",$reason);
 		}
+	}
+
+	global $rma_pro_activated;
+	
+	if(!$rma_pro_activated){
+		if($allowed){
+			$order = wc_get_order( $order_id );
+			$order_status ="wc-".$order->get_status();
+			if($order_status == 'wc-refund-approved'){
+				$allowed = false;
+				$reason = __('Refund request already approved.','mwb-rma' );
+				$reason = apply_filters('mwb_rma_return_already_approved', $reason);
+				update_post_meta($order_id,"mwb_rma_refund_request_not_allowed_reason",$reason);
+			}
+		}
+		
 	}
 }
 
@@ -188,9 +206,10 @@ if($allowed){
 											<?php 
 											echo apply_filters( 'woocommerce_order_item_name', $product_permalink ? sprintf( '<a href="%s">%s</a>', $product_permalink, $item['name'] ) : $item['name'], $item, $is_visible );
 											echo apply_filters( 'woocommerce_order_item_quantity_html', ' <strong class="product-quantity">' . sprintf( '&times; %s', $item['qty'] ) . '</strong>', $item );
-											//do_action( 'woocommerce_order_item_meta_start', $item_id, $item, $order );
+											do_action( 'woocommerce_order_item_meta_start', $item_id, $item, $order );
 											wc_display_item_meta( $item );
 											wc_display_item_downloads( $item );
+											do_action( 'woocommerce_order_item_meta_end', $item_id, $item, $order );
 											?>
 											<p>
 												<input type="hidden" name="mwb_rma_product_amount" class="mwb_rma_product_amount" value="<?php echo $mwb_rma_actual_price; ?>">
@@ -218,10 +237,9 @@ if($allowed){
 											<?php 
 										}	
 										?>
-										<!-- <input type="hidden" id="quanty" value="<?php //echo $item['qty']; ?>">  -->
 									</td>
 								</tr>
-								<?php if ( $show_purchase_note && $purchase_note ) { print_r("gsgsdfgdsg"); ?>
+								<?php if ( $show_purchase_note && $purchase_note ) { ?>
 
 								<tr class="product-purchase-note">
 									<td colspan="3"><?php echo wpautop( do_shortcode( wp_kses_post( $purchase_note ) ) ); ?></td>
@@ -371,8 +389,14 @@ if($allowed){
 	</div>
 	<?php
 }else{
-	$return_request_not_send = __('Refund Request can\'t be send. ', 'mwb-rma' );
-	$reason = apply_filters('mwb_rma_return_request_not_send', $return_request_not_send);
+	$get_reason = get_post_meta($order_id, 'mwb_rma_refund_request_not_allowed_reason',true);
+	if(isset($reason) && !empty($reason)){
+		$reason=$get_reason;
+	}else{
+
+		$return_request_not_send = __('Refund Request can\'t be send. ', 'mwb-rma' );
+		$reason = apply_filters('mwb_rma_return_request_not_send', $return_request_not_send);
+	}
 	echo $reason;
 }
 

@@ -74,6 +74,7 @@ class Mwb_Rma_Admin {
 		 */
 
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/mwb-rma-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style( 'mwb-rma-select2-css', plugin_dir_url( __FILE__ ) . 'css/mwb_ps-select2.min.css', array(), $this->version, 'all' );
 		wp_register_style( 'woocommerce_admin_styles', WC()->plugin_url() . '/assets/css/admin.css', array(), WC_VERSION );
 		wp_enqueue_style( 'woocommerce_admin_menu_styles' );
 		wp_enqueue_style( 'woocommerce_admin_styles' );
@@ -134,6 +135,7 @@ class Mwb_Rma_Admin {
 			'ajaxurl' => admin_url('admin-ajax.php'),
 		);
 		wp_localize_script(  $this->plugin_name, 'global_mwb_rma', $translation_array );
+		wp_enqueue_script( "mwb-rma-select2-js", plugin_dir_url( __FILE__ ) . 'js/mwb_ps-select2.min.js', array( 'jquery' ), $this->version, false );
 	}
 
 	/**
@@ -172,20 +174,12 @@ class Mwb_Rma_Admin {
 		$mwb_rma_refund_settings = get_option( 'mwb_rma_refund_settings', array() );
 		if(isset($mwb_rma_refund_settings) && !empty($mwb_rma_refund_settings) && is_array($mwb_rma_refund_settings)){
 			$mwb_rma_return_enable = $mwb_rma_refund_settings['mwb_rma_return_enable'];
-			$mwb_rma_max_return_days =  $mwb_rma_refund_settings['mwb_rma_return_days'];
-			$mwb_rma_return_status =  $mwb_rma_refund_settings['mwb_rma_return_order_status'];
-			//$order = wc_get_order( $order_id );
-			// $order_status ="wc-".$order->get_status();
 			if(isset($mwb_rma_return_enable) && $mwb_rma_return_enable == 'on'){
-				if(isset($mwb_rma_max_return_days) && $mwb_rma_max_return_days != 0 ){
-					//if(isset($mwb_rma_return_status) && is_array($mwb_rma_return_status) && in_array($order_status, $mwb_rma_return_status) ){
-
-						add_meta_box('mwb_rma_order_refund', 
-							__('Refund Requested Products','mwb-rma'),
-							array($this, 'mwb_rma_order_return'),
-							'shop_order');
-					//}
-				}
+				add_meta_box('mwb_rma_order_refund', 
+					__('Refund Requested Products','mwb-rma'),
+					array($this, 'mwb_rma_order_return'),
+					'shop_order');
+				
 			}
 		}
 	}
@@ -330,11 +324,15 @@ class Mwb_Rma_Admin {
 				$approve = str_replace('[username]', $fullname, $approve);
 				$approve = str_replace('[order]', "#".$orderid, $approve);
 				$approve = str_replace('[siteurl]', home_url(), $approve);
-				
+
+				$mwb_rma_shortcode='';
+				$mwb_rma_shortcode = $approve;
+				$mwb_rma_shortcode = apply_filters( 'mwb_rma_add_shortcode_refund_approve_mail' , $mwb_rma_shortcode,$orderid);
+				$approve = $mwb_rma_shortcode;
 			
 			$message_details='';
 			$message_details='<div class="header">
-						<h2>'.__('Your Refund Request is Approved', 'woocommerce-refund-and-exchange-lite').'</h2>
+						<h2>'.__('Your Refund Request is Approved', 'mwb-rma').'</h2>
 					</div>
 					<div class="content">
 						<div class="reason">
@@ -345,9 +343,9 @@ class Mwb_Rma_Admin {
 							<table>
 								<tbody>
 									<tr>
-										<th>'.__('Product', 'woocommerce-refund-and-exchange-lite').'</th>
-										<th>'.__('Quantity', 'woocommerce-refund-and-exchange-lite').'</th>
-										<th>'.__('Price', 'woocommerce-refund-and-exchange-lite').'</th>
+										<th>'.__('Product', 'mwb-rma').'</th>
+										<th>'.__('Quantity', 'mwb-rma').'</th>
+										<th>'.__('Price', 'mwb-rma').'</th>
 									</tr>';
 									$order = wc_get_order($orderid);
 									$final_stotal=0;
@@ -370,8 +368,6 @@ class Mwb_Rma_Admin {
 										}
 										foreach( $order->get_items() as $item_id => $item )
 										{
-											
-											// $product = apply_filters( 'woocommerce_order_item_product', $order->get_product_from_item( $item ), $item );
 											foreach($requested_products as $requested_product)
 											{
 												if($item_id == $requested_product['item_id'])
@@ -390,10 +386,8 @@ class Mwb_Rma_Admin {
 													$prod_price = $requested_product['price'];
 													$subtotal = $prod_price*$requested_product['qty'];
 													$total += $subtotal;
-													
-													// $item_meta      = new WC_Order_Item_Product( $item, $_product );
-													// $item_meta_html = wc_display_item_meta($item_meta,array('echo'=> false));
-							
+													$item_meta      = new WC_Order_Item_Product( $item );
+													$item_meta_html = wc_display_item_meta($item_meta,array('echo'=> false));
 													$message_details.= '<tr>
 													<td>'.$item['name'].'<br>';
 														$message_details.= '<small>'.$item_meta_html.'</small>
@@ -410,7 +404,7 @@ class Mwb_Rma_Admin {
 									</tr>';
 								}
 			$message_details.= ' <tr>
-										<th colspan="2">'.__('Refund Total', 'woocommerce-refund-and-exchange-lite').':</th>
+										<th colspan="2">'.__('Refund Total', 'mwb-rma').':</th>
 										<td>'.wc_price($total_price).'</td>
 									</tr>
 								</tbody>
@@ -420,7 +414,6 @@ class Mwb_Rma_Admin {
 			$message = create_mail_html($orderid,$message_details);
 			$html_content = $message;
 
-
 			$to = get_post_meta($orderid, '_billing_email', true);
 			$headers = array();
 			$headers[] = "From: $fname <$fmail>";
@@ -428,15 +421,6 @@ class Mwb_Rma_Admin {
 			$subject = isset($mwb_rma_mail_refund_settings['mwb_rma_mail_return_approve_subject'])? $mwb_rma_mail_refund_settings['mwb_rma_mail_return_approve_subject']:'';
 
 			wc_mail($to, $subject, $html_content, $headers);
-
-			$new_fee_old            = new stdClass();
-			$new_fee_old->name      = esc_attr( "Refundable Amount" );
-			$new_fee_old->amount    = (float) esc_attr( $total_price );
-			$new_fee_old->tax_class = '';
-			$new_fee_old->taxable   = false;
-			$new_fee->tax       = $totalProducttax;
-			$new_fee_old->tax_data  = array();
-			$item_id = $order->add_fee( $new_fee_old );
 
 			$order->update_status('wc-refund-approved', __('User Request of Refund Product is approved','mwb-rma'));
 			$order->calculate_totals();
@@ -518,6 +502,11 @@ class Mwb_Rma_Admin {
 				$message = str_replace('[order]', "#".$orderid, $message);
 				$message = str_replace('[siteurl]', home_url(), $message);
 
+				$mwb_rma_shortcode='';
+				$mwb_rma_shortcode = $message;
+				$mwb_rma_shortcode = apply_filters( 'mwb_rma_add_shortcode_refund_cancel_mail' , $mwb_rma_shortcode,$orderid);
+				$message = $mwb_rma_shortcode;
+
 				$mail_header = stripslashes(isset($mwb_rma_mail_basic_settings['mwb_rma_mail_header'])? $mwb_rma_mail_basic_settings['mwb_rma_mail_header']:'');
 				$mail_footer = stripslashes(isset($mwb_rma_mail_basic_settings['mwb_rma_mail_footer'])? $mwb_rma_mail_basic_settings['mwb_rma_mail_footer']:'');
 				$subject = isset($mwb_rma_mail_refund_settings['mwb_rma_mail_return_cancel_subject'])? $mwb_rma_mail_refund_settings['mwb_rma_mail_return_cancel_subject']:'';
@@ -572,7 +561,7 @@ class Mwb_Rma_Admin {
 	/**
 	 * update left amount because amount is refunded.
 	 * 
-	 * @name ced_rnx_action_woocommerce_order_refunded
+	 * @name mwb_rma_action_woocommerce_order_refunded
 	 * @author makewebbetter<webmaster@makewebbetter.com>
 	 * @link http://www.makewebbetter.com/
 	 */
@@ -584,7 +573,7 @@ class Mwb_Rma_Admin {
 		/**
 	 * Manage stock when product is actually back in stock.
 	 * 
-	 * @name ced_rnx_manage_stock
+	 * @name mwb_rma_manage_stock
 	 * @author makewebbetter<webmaster@makewebbetter.com>
 	 * @link http://www.makewebbetter.com/
 	 */
@@ -599,7 +588,7 @@ class Mwb_Rma_Admin {
 				if($order_id > 0)
 				{
 					$mwb_rma_type = isset($_POST['type']) ? $_POST['type'] : '' ;
-
+					$ms_flag=true;
 					if($mwb_rma_type != '')
 					{
 						if($mwb_rma_type == 'mwb_rma_return')
@@ -613,6 +602,7 @@ class Mwb_Rma_Admin {
 								{
 									foreach ($mwb_rma_return_data as $date => $requested_data) {
 										$mwb_rma_returned_products = $requested_data['products'];
+
 										if(is_array($mwb_rma_returned_products) && !empty($mwb_rma_returned_products))
 										{
 											foreach ($mwb_rma_returned_products as $key => $product_data) 
@@ -620,40 +610,40 @@ class Mwb_Rma_Admin {
 												if($product_data['variation_id'] > 0)
 												{
 													$product =wc_get_product($product_data['variation_id']);
-													$prod_id=$product_data['variation_id'];
+													$prod_id = $product_data['variation_id'];
 												}
 												else
 												{
-													$product =wc_get_product($product_data['product_id']);
-													$prod_id=$product_data['product_id'];
+													$product = wc_get_product($product_data['product_id']);
+													$prod_id = $product_data['product_id'];
 												}
+												$pro_avail = $product->managing_stock();
+												if(!$pro_avail){
+													$ms_flag=false;
+												}
+
 												if($product->managing_stock())
 												{
-													$avaliable_qty = $product_data['qty'];
-													if($product_data['variation_id'] > 0)
-													{
-														$total_stock = get_post_meta($product_data['variation_id'],'_stock',true);
-														$total_stock = $total_stock + $avaliable_qty;
-														wc_update_product_stock( $product_data['variation_id'],$total_stock, 'set' );
-													}
-													else
-													{
-														$total_stock = get_post_meta($product_data['product_id'],'_stock',true);
-														$total_stock = $total_stock + $avaliable_qty;
-														wc_update_product_stock( $product_data['product_id'],$total_stock, 'set' );
-													}
+													$get_update_stock=get_post_meta( $order_id,$prod_id.'mwb_rma_manage_stock_for_return',true);
 
-													//update_post_meta($order_id,'mwb_rma_manage_stock_for_return','no');
-													$response['result'] = 'success';
-													$response['msg'] = __('Product Stock is updated Succesfully.','mwb-rma');
-												}
-												else
-												{
-													$prod_ids[]=$prod_id;
-													$response['pro_arr']=$prod_ids;
-													print_r($prod_ids);
-													$response['result'] = false;
-													$response['msg'] = __('Product Stock is not updated as manage stock setting of product is disable.','mwb-rma');
+													if(isset($get_update_stock) && $get_update_stock != 'yes'){
+														$avaliable_qty = $product_data['qty'];
+														if($product_data['variation_id'] > 0)
+														{
+															$total_stock = get_post_meta($product_data['variation_id'],'_stock',true);
+															$total_stock = $total_stock + $avaliable_qty;
+															wc_update_product_stock( $product_data['variation_id'],$total_stock, 'set' );
+														}
+														else
+														{
+															$total_stock = get_post_meta($product_data['product_id'],'_stock',true);
+															$total_stock = $total_stock + $avaliable_qty;
+															wc_update_product_stock( $product_data['product_id'],$total_stock, 'set' );
+														}
+
+														update_post_meta($order_id,$prod_id.'mwb_rma_manage_stock_for_return','yes');
+													
+													}
 												}
 											}
 										}
@@ -664,8 +654,15 @@ class Mwb_Rma_Admin {
 					}
 
 				}
+				if($ms_flag){
+					$response['result'] = 'success';
+					$response['msg'] = __('Product Stock is updated Succesfully.','mwb-rma');
+				}else{
+					$response['result'] = false;
+					$response['msg'] = __('Product Stock is not updated as manage stock setting of product is disable.','mwb-rma');
+				}
 				echo json_encode($response);
-				die();
+				wp_die();
 			}
 		}
 	}

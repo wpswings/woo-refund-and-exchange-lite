@@ -5,72 +5,110 @@
  * @link       https://makewebbetter.com/
  * @since      1.0.0
  *
- * @package    Mwb_Rma
- * @subpackage Mwb_Rma/admin/partials
+ * @package    mwb-rma
+ * @subpackage mwb-rma/admin/partials
  */
 
 /**This class is for generating the html for the settings.
  *
  * 
- * This file use to display the function fot the html
+ * This file use to display the function for the html
  *
- * @package    Mwb_Rma
- * @subpackage Mwb_Rma/admin/partials
+ * @package    mwb-rma
+ * @subpackage mwb-rma/admin/partials
  * @author     makewebbetter <webmaster@makewebbetter.com>
  */
 class mwb_rma_admin_settings {
 
-	public function mwb_rma_generate_general_html($mwb_general_settings) {
-		foreach ($mwb_general_settings as $key => $value) {
-				if ($value['type'] == "title") {
-					?>
-					<div class="mwb_rma_general_row_wrap">
-						<?php $this->mwb_rma_generate_heading($value);?>
-				<?php }?>
-				<?php if($value['type'] != "title" && $value['type'] != "sectionend") { ?>
-				<div class="mwb_rma_general_row">
-					<?php $this->mwb_rma_generate_label($value);?>
-					<div class="mwb_rma_general_content">
-						<?php 
-						$this->mwb_rma_generate_tool_tip($value);
-						if($value['type'] == "checkbox") {
-							$this->mwb_rma_generate_checkbox_html($value);
-						}
-						if ($value['type'] == "number") {
-							$this->mwb_rma_generate_number_html($value);
-						}
-						if ($value['type'] == "multiple_checkbox") {
-							foreach ($value['multiple_checkbox'] as $k => $val) {
-								$this->mwb_rma_generate_checkbox_html($val);
-							}
-						}
-						if ($value['type'] == "text") {
-							$this->mwb_rma_generate_text_html($value);
-						}
-						if ($value['type'] == "textarea") {
-							$this->mwb_rma_generate_textarea_html($value);
-						}
-						if ($value['type'] == "number_text") {
-							foreach ($value['number_text'] as $k => $val) {
-								if ($val['type'] == 'text') {
-									$this->mwb_rma_generate_text_html($val);
+	/**
+	*This function is for generating the html for tab settings
+	*@name mwb_rma_generate_tab_settings_html
+	*@param $value
+	*@since 1.0.0 
+	*/
 
-								}
-								if ($val['type'] == 'number') {
-									$this->mwb_rma_generate_number_html($val);
-									echo get_woocommerce_currency_symbol();
-								}
-							}
-						}
+	public function mwb_rma_generate_tab_settings_html($settings_array,$setting_values){
+		$mwb_settings_array = isset($settings_array) ? $settings_array : array();
+		$mwb_setting_values = isset($setting_values) ? $setting_values : array();
+		
+		if(isset($mwb_settings_array) && !empty($mwb_settings_array) && is_array($mwb_settings_array)) {
+			foreach ($mwb_settings_array as $key => $value) {
+				?>
+				<tr>
+					<td><?php $this->mwb_rma_generate_label($value); ?></td>
+					<?php if(isset($value['desc_tip']) && !empty($value['desc_tip']) && $value['type'] != 'checkbox'){ ?>
+						<td><?php $this->mwb_rma_generate_tool_tip($value);?></td>
+						<?php
+					}else{
 						?>
-					</div>
-				</div>
-				<?php }?>
-			<?php if ($value['type'] == "sectionend"):?>
-				 </div>	
-				<?php endif;?>
-		<?php } 
+						<td></td>
+						<?php
+					}
+					?>
+					<?php
+					if($value['type'] == 'checkbox'){
+						?>
+						<td><?php $this->mwb_rma_generate_checkbox_html($value,$mwb_setting_values);?></td>
+						<?php
+					}elseif($value['type'] == 'number'){
+						?>
+						<td><?php $this->mwb_rma_generate_number_html($value,$mwb_setting_values);?></td>
+						<?php
+					}elseif($value['type'] == 'multiselect'){
+						?>
+						<td><?php $this->mwb_rma_generate_searchSelect_html($value,$mwb_setting_values);?></td><?php
+					}elseif($value['type'] == 'wp_editor'){
+							?>
+						<td><?php $this->mwb_rma_generate_wp_editor($value,$mwb_setting_values);?></td><?php
+					}elseif($value['type'] == 'text'){
+							?>
+						<td><?php $this->mwb_rma_generate_text_html($value,$mwb_setting_values);?></td><?php
+					}elseif($value['type'] == 'add_more_button'){
+							?>
+						<td><?php $this->mwb_rma_add_more_button_html($value,$mwb_setting_values);?></td><?php
+					}elseif($value['type'] == 'display_text'){
+							?>
+						<td><?php $this->mwb_rma_display_text_html($value);?></td><?php
+					}elseif($value['type'] == 'add_more_text'){
+							?>
+						<td><?php $this->mwb_rma_add_more_text_html($value,$mwb_setting_values);?></td><?php
+					}
+					do_action('mwb_rma_add_html_type',$value, $mwb_setting_values);
+					?>
+				</tr>
+				<?php
+			}
+		}
 	}
+
+	/**
+	*This function is used to save tab settings values
+	*@name mwb_rma_save_tab_settings
+	*@param $value
+	*@since 1.0.0 
+	*/
+
+	public function mwb_rma_save_tab_settings($post,$setting_array){
+		$mwb_settings_array = isset($setting_array) ? $setting_array : array();
+		$mwb_setting_post = isset($post) ? $post : array();
+		$mwb_setting_update_arr = [];
+		foreach( $mwb_settings_array as $arr_key => $ref_val ){
+			foreach ($ref_val['data'] as $key1 => $ref_val) {
+				foreach($mwb_setting_post as $pd_key => $pd_val){
+					if( $ref_val['type'] != 'display_text' ){
+						$text_type = array_key_exists('val_type', $ref_val);
+						if( $ref_val['type'] == 'text'  ){
+							$mwb_setting_update_arr[$pd_key] = isset($pd_val) ? stripcslashes(sanitize_text_field($pd_val)):'';
+						}else{
+							$mwb_setting_update_arr[$pd_key] = isset($pd_val)? $pd_val:'';
+						}
+					}
+				}
+			}
+		}
+		return $mwb_setting_update_arr;
+	}
+
 
 	/**
 	*This function is for generating for the checkbox for the Settings
@@ -153,7 +191,7 @@ class mwb_rma_admin_settings {
 	
 	/**
 	*This function is for generating for the wp_editor for the Settings
-	*@name mwb_rma_generate_label
+	*@name mwb_rma_generate_wp_editor
 	*@param $value
 	*@since 1.0.0 
 	*/
@@ -201,22 +239,6 @@ class mwb_rma_admin_settings {
 		<?php
 	}
 
-
-	/**
-	*This function is for generating for the heading for the Settings
-	*@name mwb_rma_generate_heading
-	*@param $value
-	*@since 1.0.0 
-	*/
-	public function mwb_rma_generate_heading($value) {
-		if(array_key_exists('title',$value)) {?>
-			<div class="mwb_rma_general_sign_title">
-				<?php echo $value['title'];?>
-			</div>
-			<?php 
-		}
-	}
-
 	/**
 	*This function is for generating for the Tool tip for the Settings
 	*@name mwb_rma_generate_tool_tip
@@ -258,35 +280,6 @@ class mwb_rma_admin_settings {
 	}
 
 	/**
-	*This function is for generating for the text html
-	*@name mwb_rma_generate_textarea_html
-	*@param $value
-	*@since 1.0.0 
-	*/
-	public function mwb_rma_generate_textarea_html($value,$general_settings) {
-		$mwb_signup_value = isset($general_settings[$value['id']]) ? ($general_settings[$value['id']]) : '';
-		if(empty($mwb_signup_value)) {
-			$mwb_signup_value = array_key_exists('default',$value)?$value['default']:'';
-		}
-		?>
-		<span class="description"><?php echo array_key_exists('desc', $value)?$value['desc']:'';?></span>	
-		<label for="mwb_rma_general_text_points" class="mwb_rma_label">
-			<textarea 
-				<?php if (array_key_exists('custom_attributes', $value)) {
-				foreach ($value['custom_attributes'] as $attribute_name => $attribute_val) {
-						echo  $attribute_name ;
-						echo  "=$attribute_val"; 
-						
-					}
-				}?>  name="<?php echo (array_key_exists('id', $value))?$value['id']:''; ?>" id="<?php echo (array_key_exists('id', $value))?$value['id']:''; ?>"
-				class="<?php echo (array_key_exists('class', $value))?$value['class']:'';?>"><?php echo (array_key_exists('desc', $value))?$value['desc']:'';?><?php echo $mwb_signup_value;?>
-			</textarea>
-		</label>
-		<p class="description"><?php echo $value['desc2']; ?></p>
-		<?php
-	}
-
-	/**
 	 * Generate save button html for setting page
 	 * @since 1.0.0
 	 * @name mwb_wgm_save_button_html()
@@ -302,7 +295,7 @@ class mwb_rma_admin_settings {
 
 	/**
 	*This function is for generating the notice of the save settings
-	*@name mwb_rma_generate_textarea_html
+	*@name mwb_rma_settings_saved
 	*@param $value
 	*@since 1.0.0 
 	*/
@@ -318,114 +311,11 @@ class mwb_rma_admin_settings {
 	}
 
 	/**
-	*This function is used for the saving and filtering the input.
-	*@name mwb_rma_save_notification_settings
+	*This function is to create add more button
+	*@name mwb_rma_add_more_button_html
 	*@param $value
 	*@since 1.0.0 
 	*/
-	public  function mwb_rma_filter_checkbox_notification_settings($POST,$name) {
-		$_POST[$name] = isset($_POST[$name]) ? 1 : 0;
-	}
-
-	/**
-	*This function is used for the saving and filtering the input.
-	*@name mwb_rma_save_notification_settings
-	*@param $value
-	*@since 1.0.0 
-	*/
-	public function  mwb_rma_filter_subj_email_notification_settings($POST,$name) {
-		$_POST[$name] = (isset($_POST[$name])&& !empty($_POST[$name])) ? $_POST[$name] :'';
-		return $_POST[$name];
-	}
-
-	public function mwb_rma_generate_label_for_membership($value) {
-		?>
-		<label for="mwb_rma_membership_level_name">
-			<?php echo $value; ?>
-		</label>
-
-		<?php
-	}
-
-	public function mwb_rma_generate_tab_settings_html($settings_array,$setting_values){
-		$mwb_settings_array = isset($settings_array) ? $settings_array : array();
-		$mwb_setting_values = isset($setting_values) ? $setting_values : array();
-		
-		if(isset($mwb_settings_array) && !empty($mwb_settings_array) && is_array($mwb_settings_array)) {
-			foreach ($mwb_settings_array as $key => $value) {
-				?>
-				<tr>
-					<td><?php $this->mwb_rma_generate_label($value); ?></td>
-					<?php if(isset($value['desc_tip']) && !empty($value['desc_tip']) && $value['type'] != 'checkbox'){ ?>
-						<td><?php $this->mwb_rma_generate_tool_tip($value);?></td>
-						<?php
-					}else{
-						?>
-						<td></td>
-						<?php
-					}
-					?>
-					<?php
-					if($value['type'] == 'checkbox'){
-						?>
-						<td><?php $this->mwb_rma_generate_checkbox_html($value,$mwb_setting_values);?></td>
-						<?php
-					}elseif($value['type'] == 'number'){
-						?>
-						<td><?php $this->mwb_rma_generate_number_html($value,$mwb_setting_values);?></td>
-						<?php
-					}elseif($value['type'] == 'multiselect'){
-						?>
-						<td><?php $this->mwb_rma_generate_searchSelect_html($value,$mwb_setting_values);?></td><?php
-					}elseif($value['type'] == 'wp_editor'){
-							?>
-						<td><?php $this->mwb_rma_generate_wp_editor($value,$mwb_setting_values);?></td><?php
-					}elseif($value['type'] == 'text'){
-							?>
-						<td><?php $this->mwb_rma_generate_text_html($value,$mwb_setting_values);?></td><?php
-					}elseif($value['type'] == 'add_more_button'){
-							?>
-						<td><?php $this->mwb_rma_add_more_button_html($value,$mwb_setting_values);?></td><?php
-					}elseif($value['type'] == 'display_text'){
-							?>
-						<td><?php $this->mwb_rma_display_text_html($value);?></td><?php
-					}elseif($value['type'] == 'add_more_text'){
-							?>
-						<td><?php $this->mwb_rma_add_more_text_html($value,$mwb_setting_values);?></td><?php
-					}elseif($value['type'] == 'textarea'){
-							?>
-						<td><?php $this->mwb_rma_generate_textarea_html($value,$mwb_setting_values);?></td><?php
-					}
-					?>
-				</tr>
-				<?php
-			}
-		}
-	}
-
-	public function mwb_rma_save_tab_settings($post,$setting_array){
-		$mwb_settings_array = isset($setting_array) ? $setting_array : array();
-		$mwb_setting_post = isset($post) ? $post : array();
-		$mwb_setting_update_arr = [];
-		foreach( $mwb_settings_array as $arr_key => $ref_val ){
-			foreach ($ref_val['data'] as $key1 => $ref_val) {
-				foreach($mwb_setting_post as $pd_key => $pd_val){
-					// if($ref_val['id'] == $pd_key){
-					if( $ref_val['type'] != 'display_text' ){
-						$text_type = array_key_exists('val_type', $ref_val);
-						if( $ref_val['type'] == 'text'  ){
-							$mwb_setting_update_arr[$pd_key] = isset($pd_val) ? stripcslashes(sanitize_text_field($pd_val)):'';
-						}else{
-							$mwb_setting_update_arr[$pd_key] = isset($pd_val)? $pd_val:'';
-						}
-					}
-				//}
-				}
-			}
-		}
-		return $mwb_setting_update_arr;
-	}
-
 	
 	public function mwb_rma_add_more_button_html($value,$general_settings){
 		$mwb_signup_value = isset($general_settings[$value['id']]) ? ($general_settings[$value['id']]) : '';
@@ -437,6 +327,13 @@ class mwb_rma_admin_settings {
 
 	}
 
+	/**
+	*This function is to create text html for simple text
+	*@name mwb_rma_display_text_html
+	*@param $value
+	*@since 1.0.0 
+	*/
+
 	public function mwb_rma_display_text_html($value){
 	?>
 		<div>
@@ -446,6 +343,13 @@ class mwb_rma_admin_settings {
 		</div>
 	<?php
 	}
+
+	/**
+	*This function is to create text html for add more button
+	*@name mwb_rma_add_more_text_html
+	*@param $value
+	*@since 1.0.0 
+	*/
 
 	public function mwb_rma_add_more_text_html($value,$general_settings){
 		$mwb_signup_value = isset($general_settings[$value['id']]) ? ($general_settings[$value['id']]) : array();
@@ -519,8 +423,5 @@ class mwb_rma_admin_settings {
 		<?php
 		}
 	}
-
-
-
 
 }

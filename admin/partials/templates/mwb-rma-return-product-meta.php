@@ -40,18 +40,18 @@ if(isset($return_datas) && !empty($return_datas))
 			<table>
 				<thead>
 					<tr>
-						<th><?php _e( 'Item', 'woocommerce-refund-and-exchange-lite' ); ?></th>
-						<th><?php _e( 'Name', 'woocommerce-refund-and-exchange-lite' ); ?></th>
-						<th><?php _e( 'Cost', 'woocommerce-refund-and-exchange-lite' ); ?></th>
-						<th><?php _e( 'Qty', 'woocommerce-refund-and-exchange-lite' ); ?></th>
-						<th><?php _e( 'Total', 'woocommerce-refund-and-exchange-lite' ); ?></th>
+						<th><?php _e( 'Item', 'mwb-rma' ); ?></th>
+						<th><?php _e( 'Name', 'mwb-rma' ); ?></th>
+						<th><?php _e( 'Cost', 'mwb-rma' ); ?></th>
+						<th><?php _e( 'Qty', 'mwb-rma' ); ?></th>
+						<th><?php _e( 'Total', 'mwb-rma' ); ?></th>
 					</tr>
 				</thead>
 				<tbody>
 				<?php 
 					$total = 0;
 					$return_products = $return_data['products'];
-					
+					$pro_id=[];
 					foreach ( $line_items as $item_id => $item ) 
 					{
 						foreach($return_products as $returnkey => $return_product)
@@ -69,6 +69,18 @@ if(isset($return_datas) && !empty($return_datas))
 												
 												$refund_product_id=$rpv1_value['product_id'];
 												$refund_product_var_id=$rpv1_value['variation_id'];
+												if($rpv1_value['variation_id'] > 0){
+													if(!in_array($rpv1_value['variation_id'], $pro_id)){
+
+														$pro_id[]=$rpv1_value['variation_id'];
+													}
+												}else{
+													if(!in_array($rpv1_value['product_id'], $pro_id)){
+
+															$pro_id[]=$rpv1_value['product_id'];
+													}
+												
+												}
 												$get_return_product = wc_get_product($refund_product_id);
 												$new_refund_image = wp_get_attachment_image_src( get_post_thumbnail_id( $refund_product_id ), 'single-post-thumbnail' );
 												$refund_product_new[] = array(
@@ -106,6 +118,8 @@ if(isset($return_datas) && !empty($return_datas))
 											}
 											echo '</div>';
 										}
+										$item_meta      = new WC_Order_Item_Product( $item );
+										wc_display_item_meta($item_meta);
 										?>
 									</td>
 									<td><?php echo wc_price($return_product['price']);?></td>
@@ -184,7 +198,6 @@ if(isset($return_datas) && !empty($return_datas))
 			<img src="<?php echo MWB_RMA_URL?>admin/images/loader.gif" ">
 		</div>
 		<?php
-
 		if($return_data['status'] == 'complete')
 		{?>
 			<input type="hidden" name="mwb_rma_total_amount_for_refund" class="mwb_rma_total_amount_for_refund" value="<?php echo mwb_rma_currency_seprator($return_data['amount']); ?>">
@@ -202,14 +215,18 @@ if(isset($return_datas) && !empty($return_datas))
 				<input type="button" name="mwb_rma_left_amount" class="button button-primary" data-orderid="<?php echo $order_id; ?>" id="mwb_rma_left_amount" Value="Refund Amount" > <?php
 			}
 
-			$mwb_rma_manage_stock_for_return = get_post_meta($order_id,'mwb_rma_manage_stock_for_return',true);
-			if($mwb_rma_manage_stock_for_return == '')
-			{
-				$mwb_rma_manage_stock_for_return = 'yes';
-			}
+			
 			$mwb_rma_refund_settings = get_option( 'mwb_rma_refund_settings' ,array());
 			$manage_stock = isset($mwb_rma_refund_settings['mwb_rma_return_request_manage_stock'])? $mwb_rma_refund_settings['mwb_rma_return_request_manage_stock']:'';
-			if($manage_stock == "on" && $mwb_rma_manage_stock_for_return == 'yes')
+			foreach ($pro_id as $pi_key => $pi_value) {
+				$mwb_rma_manage_stock_for_return = get_post_meta($order_id,$pi_value.'mwb_rma_manage_stock_for_return',true);
+				if($mwb_rma_manage_stock_for_return == '')
+				{
+					$mwb_rma_manage_stock_for_return = 'no';
+					break;
+				}
+			}
+			if($manage_stock == "on" && $mwb_rma_manage_stock_for_return == 'no')
 			{
 				?> <p id="mwb_rma_stock_button_wrapper"><?php _e( 'When Product Back in stock then for stock management click on ', 'mwb-rma' ); ?> <input type="button" name="mwb_rma_stock_back" class="button button-primary" id="mwb_rma_stock_back" data-type="mwb_rma_return" data-orderid="<?php echo $order_id; ?>" Value="Manage Stock" ></p> <?php
 			}
