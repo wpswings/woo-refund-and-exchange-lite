@@ -54,7 +54,7 @@
 	 				$(".ced_rnx_return_loader").hide();
 	 				$(".refund-actions .cancel-action").hide();
 
-	 				window.location.reload();
+	 				window.location.reload(true);
 
 	 			}
 	 		});
@@ -110,7 +110,7 @@
 	 			success: function(response) 
 	 			{
 	 				$(".ced_rnx_return_loader").hide();
-	 				location.reload();
+	 				location.reload(true);
 	 			}
 	 		});
 	 	});	

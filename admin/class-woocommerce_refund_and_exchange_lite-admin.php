@@ -121,7 +121,10 @@ class woocommerce_refund_and_exchange_lite_Admin {
 	 * @since    1.0.0
 	 */
 	public function admin_menus(){
+
 		require_once 'settings/class-woocommerce_refund_and_exchange_lite-settings.php';
+		$admin_obj = new MwbBasicframeworkAdminSettings();
+		$admin_obj->ced_rnx_setting_save();
 	}
 
 	public function ced_rnx_register_custom_order_status()
@@ -222,52 +225,6 @@ class woocommerce_refund_and_exchange_lite_Admin {
 
 				//Update the status
 				update_post_meta($orderid, 'ced_rnx_return_attachment', $request_files);
-
-				$order = wc_get_order($orderid);
-
-				//Return the ordered product qty
-
-				foreach( $order->get_items() as $item_id => $item )
-				{
-					foreach($product_datas as $k=>$product_data)
-					{
-						if($item['product_id'] == $product_data['product_id'] && $item['variation_id'] == $product_data['variation_id'])
-						{
-							$product = apply_filters( 'woocommerce_order_item_product', $order->get_product_from_item( $item ), $item );
-
-							$item['qty'] = $item['qty'] - $product_data['qty'];
-							$args['qty'] = $item['qty'];
-							if( WC()->version < '3.0.0' ){
-								$order->update_product( $item_id, $product, $args );
-							}
-							else{
-								wc_update_order_item_meta( $item_id, '_qty' , $item['qty'] );
-
-								$product = wc_get_product($product->get_id());
-
-								if ( $product->backorders_require_notification() && $product->is_on_backorder( $args['qty'] ) ) {
-									$item->add_meta_data( apply_filters( 'woocommerce_backordered_item_meta_name', __( 'Backordered', 'woocommerce' ) ), $args['qty'] - max( 0, $product->get_stock_quantity() ), true );
-								}
-
-
-								$item_data = $item->get_data();
-								
-								$price_excluded_tax = wc_get_price_excluding_tax($product, array( 'qty' => 1 ));
-								$price_tax_excluded = $item_data['total']/$item_data['quantity'];
-
-								$args['subtotal'] =$price_excluded_tax*$args['qty'];
-								$args['total']	= $price_tax_excluded*$args['qty'];
-
-								$item->set_order_id( $orderid );
-								$item->set_props( $args );
-								$item->save();
-							}	
-							break;
-						}
-					}
-				}
-
-
 
 				$order = new WC_Order($orderid);
 				$fname = get_option('ced_rnx_notification_from_name');
@@ -622,7 +579,7 @@ class woocommerce_refund_and_exchange_lite_Admin {
 				$new_fee_old->tax_data  = array();
 				$item_id = $order->add_fee( $new_fee_old );
 
-				$order->update_status('wc-refund-approved', __('User Request of Refund Product is approevd','woocommerce-refund-and-exchange-lite'));
+				$order->update_status('wc-refund-approved', __('User Request of Refund Product is approved','woocommerce-refund-and-exchange-lite'));
 				$order->calculate_totals();
 				$response['response'] = 'success';
 				echo json_encode($response);

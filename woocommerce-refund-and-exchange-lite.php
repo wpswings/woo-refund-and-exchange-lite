@@ -16,11 +16,11 @@
  * Plugin Name:       WooCommerce Refund and Exchange Lite
  * Plugin URI:        http://makewebbetter.com/woocommerce-refund-and-exchange-lite
  * Description:       WooCommerce Refund and Exchange lite allows users to submit product refund. The plugin provides a dedicated mailing system that would help to communicate better between store owner and customers.This is lite version of Woocommerce Refund And Exchnage.
- * Version:           1.0.4
+ * Version:           1.0.6
  * Author:            MakeWebBetter
  * Author URI:        http://makewebbetter.com/
- * WC tested up to:   3.6.1
- * Tested up to: 	  5.1.1
+ * WC tested up to:   3.7.0
+ * Tested up to: 	  5.2.2
  * License:           GPL-3.0+
  * License URI:       http://www.gnu.org/licenses/gpl-3.0.txt
  * Text Domain:       woocommerce-refund-and-exchange-lite
@@ -155,11 +155,26 @@ if ($activated)
 		if ($plugin == $plugin_file) {
 			$settings = array (
 					'settings' => '<a href="' . admin_url ( 'admin.php?page=wc-settings&tab=ced_rnx_setting' ) . '">' . __ ( 'Settings', 'woocommerce-refund-and-exchange-lite' ) . '</a>',
-					'get_full_version' => '<a href="https://makewebbetter.com/product/woocommerce-rma-return-refund-exchange/" target="_blank">' . __ ( 'Get Premium version', 'woocommerce-refund-and-exchange-lite' ) . '</a>',
 			);
 			$actions = array_merge ( $settings, $actions );
 		}
 		return $actions;
+	}
+	add_filter( 'plugin_row_meta', 'mwb_upsell_lite_add_doc_and_premium_link', 10, 2 );
+
+	function mwb_upsell_lite_add_doc_and_premium_link( $links, $file ) {
+
+		if ( strpos( $file, 'woocommerce-refund-and-exchange-lite.php' ) !== false ) {
+
+			$row_meta = array(
+				'docs'    => '<a target="_blank" style="color:#FFF;background:linear-gradient(to right,#7a28ff 0,#00a1ff 100%);padding:5px;border-radius:6px;" href="https://docs.makewebbetter.com/woocommerce-refund-and-exchange-lite">'.esc_html__("Go to Docs", 'woocommerce-refund-and-exchange-lite' ).'</a>',
+				'goPro' => '<a target="_blank" style="color:#FFF;background:linear-gradient(to right,#7a28ff 0,#00a1ff 100%);padding:5px;border-radius:6px;" href="https://makewebbetter.com/product/woocommerce-rma-return-refund-exchange/"><strong>'.esc_html__("Go Premium", 'woocommerce-refund-and-exchange-lite' ).'</strong></a>',
+			);
+
+			return array_merge( $links, $row_meta );
+		}
+
+		return (array) $links;
 	}
 	
 	//add link for settings

@@ -19,7 +19,7 @@ if(!class_exists('MwbBasicframeworkAdminSettings')){
 			add_filter( 'woocommerce_settings_tabs_array', array($this,'ced_rnx_add_settings_tab'), 50 );
 			add_action( 'woocommerce_sections_' . $this->id, array( $this, 'ced_rnx_output_sections' ) );
 			add_action( 'woocommerce_settings_tabs_' . $this->id, array($this,'ced_rnx_settings_tab') );
-			add_action( 'woocommerce_settings_save_' . $this->id, array( $this, 'ced_rnx_setting_save' ) );
+			//add_action( 'woocommerce_settings_save_' . $this->id, array( $this, 'ced_rnx_setting_save' ) );
 		}
 
 	 	/**
@@ -283,4 +283,4 @@ if(!class_exists('MwbBasicframeworkAdminSettings')){
 		}
 	}
 }
-new MwbBasicframeworkAdminSettings;
+//new MwbBasicframeworkAdminSettings;

@@ -290,7 +290,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 					}
 				}
 			}
-		die();
+			die();
 		}
 	}
 	/**
@@ -309,6 +309,101 @@ class woocommerce_refund_and_exchange_lite_Public {
 				$user_email = $current_user->user_email;
 				$user_name = $current_user->display_name;
 				$order_id = sanitize_text_field($_POST['orderid']);
+
+				//custom code
+				$order = wc_get_order( $order_id );
+				$items = $order->get_items(); 
+				$gift_card_product=false;
+				$item_id='';
+    			//$refund_request = true;
+
+				foreach ( $items as $key=>$item ) {
+
+					$product_id = $item['product_id'];
+
+					$product_types = wp_get_object_terms( $product_id, 'product_type' );
+					if(isset($product_types[0])){
+						$product_type = $product_types[0]->slug;
+						if($product_type == 'wgm_gift_card' || $product_type == 'gw_gift_card')
+						{
+							$gift_card_product = true;
+							$item_id=$key;
+						}
+					}
+				}
+				if($gift_card_product && $item_id != ''){
+
+					$coupon = get_post_meta($order_id, $order_id.'#'.$item_id, true);
+					
+					$couponcode = $coupon[0];				
+
+
+					//global $woocommerce;
+					$coupons = new WC_Coupon($couponcode);
+
+					$usage_count = $coupons->usage_count;
+
+					$exp_date = $coupons->get_data();
+
+					$expiry_date = $exp_date['date_expires']->date('d M Y H:i:s');
+					
+					$now_date = date("d M Y H:i:s");
+
+					$todaydatetime = strtotime($now_date);
+
+					$expdatetime = strtotime($expiry_date);
+
+
+					$diff = $expdatetime - $todaydatetime;
+					
+
+					if($diff < 0  ){
+						$response['msg'] = __('Your  Giftcard have been expired so we you can not proceed for refund . Thanks', 'woocommerce-refund-and-exchange-lite');
+						
+						update_post_meta($order_id, "ced_rnx_request_made", true);
+						
+						update_post_meta($order_id, "gift_card_hide_refund_button", 'true');
+						
+						echo json_encode($response);
+						wp_die();
+					}
+					if($usage_count != 0  ){
+						$response['msg'] = __('Your  Giftcard have been used so we you can not proceed for refund . Thanks', 'woocommerce-refund-and-exchange-lite');
+						
+						update_post_meta($order_id, "ced_rnx_request_made", true);
+
+						update_post_meta($order_id, "gift_card_hide_refund_button", 'true');
+						
+						echo json_encode($response);
+						wp_die();
+					}
+
+					$woo_ver = WC()->version;
+
+					if($woo_ver < "3.0.0") {
+						$coupon_id = $coupons->id;
+					}
+					else{
+						$coupon_id = $coupons->get_id();
+					}
+
+					if( isset($coupon_id) & !empty($coupon_id)) {
+
+						$todaydate = date_i18n("Y-m-d");
+						$expirydate = date_i18n( "Y-m-d", strtotime( "$todaydate -1 day" ) );
+						
+						if($woo_ver < '3.6.0') {
+
+							update_post_meta( $coupon_id, 'expiry_date', $expirydate );
+						}
+						else {
+							$expirydate = strtotime($expirydate);
+							update_post_meta( $coupon_id, 'date_expires', $expirydate );
+						}
+						
+					}	
+				}
+				
 				$subject = sanitize_text_field($_POST['subject']);
 				$reason = sanitize_text_field($_POST['reason']);
 				$ced_post = $_POST;
@@ -695,6 +790,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 					$date=date_create($key);
 					$date_format = get_option('date_format');
 					$date=date_format($date,$date_format);
+		
 					?>
 					<p><?php _e( 'Following product Refund request made on', 'woocommerce-refund-and-exchange-lite' ); ?> <b><?php echo $date?>.</b></p>
 					<table class="shop_table order_details">
@@ -705,9 +801,16 @@ class woocommerce_refund_and_exchange_lite_Public {
 							</tr>
 						</thead>
 						<tbody>
-							<?php 
+							<?php
+							$line_items  = $order->get_items();
+							if(is_array($line_items) && !empty($line_items)){
+								update_post_meta($order_id,'ced_rnx_refund_new_line_items',$line_items);
+							}
+							$line_items=get_post_meta($order_id,'ced_rnx_refund_new_line_items',true);
+							
 							$return_products = $product_data['products'];
-							foreach( $order->get_items() as $item_id => $item ) 
+							
+							foreach($line_items as $item_id => $item ) 
 							{
 								foreach($return_products as $return_product)
 								{
@@ -719,10 +822,11 @@ class woocommerce_refund_and_exchange_lite_Public {
 											<td class="product-name">
 												<?php 
 												$product = apply_filters( 'woocommerce_order_item_product', $order->get_product_from_item( $item ), $item );
+
 												$is_visible        = $product && $product->is_visible();
 												$product_permalink = apply_filters( 'woocommerce_order_item_permalink', $is_visible ? $product->get_permalink( $item ) : '', $item, $order );
 
-												echo $product_permalink ? sprintf( '<a href="%s">%s</a>', $product_permalink, $item['name'] ) : $item['name'];
+												echo $product_permalink ? sprintf( '<a href="%s">%s</a>', $product_permalink,$product->get_name() ) : $product->get_name();
 												echo '<strong class="product-quantity">' . sprintf( '&times; %s', $return_product['qty'] ) . '</strong>';
 
 												do_action( 'woocommerce_order_item_meta_start', $item_id, $item, $order );
@@ -887,74 +991,74 @@ class woocommerce_refund_and_exchange_lite_Public {
 								$day_allowed = get_option('mwb_wrma_return_days', false);
 								
 
-							if($day_allowed >= $day_diff && $day_allowed != 0)
-							{
-								$page_id = $ced_rnx_return_request_form_page_id;
-								$return_url = get_permalink($page_id);
-
-								if($ced_rnx_next_return)
+								if($day_allowed >= $day_diff && $day_allowed != 0)
 								{
-									if($ced_rnx_return_button_show)
+									$page_id = $ced_rnx_return_request_form_page_id;
+									$return_url = get_permalink($page_id);
+
+									if($ced_rnx_next_return)
 									{
-										
-										$ced_rnx_return_button_show = false;
-										$return_url = add_query_arg('order_id',$order_id,$return_url);
-										$return_url = wp_nonce_url($return_url,'ced-rnx-nonce','ced-rnx-nonce');
-										?>
-										<form action="<?php echo $return_url ?>" method="post">
-											<input type="hidden" value="<?php echo $order_id?>" name="order_id">
-											<p><input type="submit" class="btn button" value="<?php _e('Refund Request','woocommerce-refund-and-exchange-lite');?>" name="ced_new_return_request"></p>
-										</form>
-										<?php 
+										if($ced_rnx_return_button_show)
+										{
+
+											$ced_rnx_return_button_show = false;
+											$return_url = add_query_arg('order_id',$order_id,$return_url);
+											$return_url = wp_nonce_url($return_url,'ced-rnx-nonce','ced-rnx-nonce');
+											?>
+											<form action="<?php echo $return_url ?>" method="post">
+												<input type="hidden" value="<?php echo $order_id?>" name="order_id">
+												<p><input type="submit" class="btn button" value="<?php _e('Refund Request','woocommerce-refund-and-exchange-lite');?>" name="ced_new_return_request"></p>
+											</form>
+											<?php 
+										}	
 									}	
-								}	
+								}
+							}
+						}	
+					}
+				} 
+				if(in_array($order_status, $statuses))
+				{
+					if( WC()->version < "3.0.0" )
+					{
+						$order_id = $order->id;
+						$order_date = date_i18n( get_option( 'date_format' ), strtotime( $order->order_date  ) );
+					}
+					else
+					{
+						$order_id = $order->get_id();
+						$order_date = date_i18n( get_option( 'date_format' ), strtotime( $order->get_date_created()  ) );
+					}
+					$today_date = date_i18n( get_option( 'date_format' ) );
+					$order_date = strtotime($order_date);
+					$today_date = strtotime($today_date);
+
+					$days = $today_date - $order_date;
+					$day_diff = floor($days/(60*60*24));
+					$day_allowed = get_option('mwb_wrma_return_days', false);
+					if($day_allowed >= $day_diff && $day_allowed != 0)	
+					{
+						$page_id = $ced_rnx_return_request_form_page_id;
+						$return_url = get_permalink($page_id);
+
+						if($ced_rnx_next_return)
+						{
+							if($ced_rnx_return_button_show)
+							{
+								$ced_rnx_return_button_show = false;
+								$return_url = add_query_arg('order_id',$order_id,$return_url);
+								$return_url = wp_nonce_url($return_url,'ced-rnx-nonce','ced-rnx-nonce');
+								?>
+								<form action="<?php echo $return_url ?>" method="post">
+									<input type="hidden" value="<?php echo $order_id?>" name="order_id">
+									<p><input type="submit" class="btn button" value="<?php _e('Refund Request','woocommerce-refund-and-exchange-lite');?>" name="ced_new_return_request"></p>
+								</form>
+								<?php 
 							}
 						}
-					}	
-				}
-			} 
-			if(in_array($order_status, $statuses))
-			{
-				if( WC()->version < "3.0.0" )
-				{
-					$order_id = $order->id;
-					$order_date = date_i18n( get_option( 'date_format' ), strtotime( $order->order_date  ) );
-				}
-				else
-				{
-					$order_id = $order->get_id();
-					$order_date = date_i18n( get_option( 'date_format' ), strtotime( $order->get_date_created()  ) );
-				}
-				$today_date = date_i18n( get_option( 'date_format' ) );
-				$order_date = strtotime($order_date);
-				$today_date = strtotime($today_date);
-				
-				$days = $today_date - $order_date;
-				$day_diff = floor($days/(60*60*24));
-				$day_allowed = get_option('mwb_wrma_return_days', false);
-				if($day_allowed >= $day_diff && $day_allowed != 0)	
-				{
-					$page_id = $ced_rnx_return_request_form_page_id;
-					$return_url = get_permalink($page_id);
-					
-					if($ced_rnx_next_return)
-					{
-						if($ced_rnx_return_button_show)
-						{
-							$ced_rnx_return_button_show = false;
-							$return_url = add_query_arg('order_id',$order_id,$return_url);
-							$return_url = wp_nonce_url($return_url,'ced-rnx-nonce','ced-rnx-nonce');
-							?>
-							<form action="<?php echo $return_url ?>" method="post">
-								<input type="hidden" value="<?php echo $order_id?>" name="order_id">
-								<p><input type="submit" class="btn button" value="<?php _e('Refund Request','woocommerce-refund-and-exchange-lite');?>" name="ced_new_return_request"></p>
-							</form>
-							<?php 
-						}
-					}
 
-				}		
-			} 
+					}		
+				} 
+			}
 		}
 	}
-}
