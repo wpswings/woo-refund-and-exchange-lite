@@ -27,6 +27,10 @@ else
 }
 $return_datas = get_post_meta($order_id, 'ced_rnx_return_product', true);
 $line_items  = $order->get_items( apply_filters( 'woocommerce_admin_order_item_types', 'line_item' ) );
+if(is_array($line_items) && !empty($line_items)){
+	update_post_meta($order_id,'ced_rnx_new_refund_line_items',$line_items);
+}
+$line_items = get_post_meta($order_id,'ced_rnx_new_refund_line_items',true);
 
 if(isset($return_datas) && !empty($return_datas))
 {
@@ -55,10 +59,30 @@ if(isset($return_datas) && !empty($return_datas))
 				$return_products = $return_data['products'];
 				foreach ( $line_items as $item_id => $item ) 
 				{
-					foreach($return_products as $return_product)
+					foreach($return_products as $returnkey =>$return_product)
 					{
 						if($item_id == $return_product['item_id'])
 						{
+							$refund_product_detail=$order->get_meta_data();
+							foreach ($refund_product_detail as $rpd_value) {
+								$refund_product_data=$rpd_value->get_data();
+								if($refund_product_data['key'] == 'ced_rnx_return_product'){
+									$refund_product_values=$refund_product_data['value'];
+									foreach ($refund_product_values as $rpv_value) {
+										$refund_product_values1=$rpv_value['products'];
+										foreach ($refund_product_values1 as $rpv1_value) {
+											$refund_product_id=$rpv1_value['product_id'];
+											$get_return_product = wc_get_product($refund_product_id);
+											$new_refund_image = wp_get_attachment_image_src( get_post_thumbnail_id( $refund_product_id ), 'single-post-thumbnail' );
+											$refund_product_new[] = array(
+												'name'  => $get_return_product->get_name(),
+												'sku'   => $get_return_product->get_sku(),
+												'image' => $new_refund_image[0]
+											);
+										}
+									}
+								}
+							}
 							$_product  = $order->get_product_from_item( $item );
 							$item_meta =wc_get_order_item_meta( $item_id,$key );
 							$thumbnail     = $_product ? apply_filters( 'woocommerce_admin_order_item_thumbnail', $_product->get_image( 'thumbnail', array( 'title' => '' ), false ), $item_id, $item ) : '';
@@ -66,14 +90,18 @@ if(isset($return_datas) && !empty($return_datas))
 							<tr>
 								<td class="thumb">
 								<?php
-									echo '<div class="wc-order-item-thumbnail">' . wp_kses_post( $thumbnail ) . '</div>';
+								if(isset($refund_product_new[$returnkey]['image']) && !empty($refund_product_new[$returnkey]['image'])){
+									echo '<div class="wc-order-item-thumbnail"><img src ="'.$refund_product_new[$returnkey]['image'].'"></div>';
+								}
 								?>
 								</td>
 								<td class="name">
 								<?php
-									echo esc_html( $item['name'] );
-									if ( $_product && $_product->get_sku() ) {
-										echo '<div class="wc-order-item-sku"><strong>' . __( 'SKU:', 'woocommerce-refund-and-exchange-lite' ) . '</strong> ' . esc_html( $_product->get_sku() ) . '</div>';
+									if(isset($refund_product_new[$returnkey]['name']) && !empty($refund_product_new[$returnkey]['name'])){
+										echo esc_html( $refund_product_new[$returnkey]['name'] );
+									}
+									if (isset($refund_product_new[$returnkey]['sku']) && !empty($refund_product_new[$returnkey] )) {
+										echo '<div class="wc-order-item-sku"><strong>' . __( 'SKU:', 'woocommerce-refund-and-exchange-lite' ) . '</strong> ' . esc_html(  $refund_product_new[$returnkey]['sku'] ) . '</div>';
 									}
 									if ( ! empty( $item['variation_id'] ) ) {
 										echo '<div class="wc-order-item-variation"><strong>' . __( 'Variation ID:', 'woocommerce-refund-and-exchange-lite' ) . '</strong> ';

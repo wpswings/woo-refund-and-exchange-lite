@@ -3,9 +3,9 @@ Contributors: makewebbetter
 Donate link:  https://makewebbetter.com/
 Tags: 	ecommerce,return,refund, woocommerce, woocommerce exchange, woocommerce online exchange, woocommerce product change, woocommerce purchase refund, woocommerce refund, woocommerce refund policy, woocommerce refund status, wordpress
 Requires at least: 4.0
-Tested up to: 5.1.1
+Tested up to: 5.2.2
 WC requires at least: 3.0.0
-WC tested up to: 3.6.1
+WC tested up to: 3.7.0
 Stable tag: 1.0.1
 Requires PHP: 5.6
 License: GPLv3 or later 
@@ -179,6 +179,21 @@ It's a very easy way, go to the Woocommerce -> Settings ->RAE setting ->Refund  
 
 == Changelog ==
 
+= 1.0.5 =
+* Compatibility  With Latest WordPress(5.2.2) And Woocommerce(3.6.5)
+* Updated in plugin core and updtaded language.
+* Fix: Line items deletion at customer order section at refund approved.
+
+= 1.0.4 =
+*Compatibility  With Latest WordPress(5.1.1) And Woocommerce(3.6.1)
+*New:Admin can show refund policy rules on the Refund Form
+
+= 1.0.3 =
+* Fix: Blank field validation For pred-defined reasons.
+
+= 1.0.2 =
+* Fix: Tweak in pre-defined reason save field
+
 = 1.0.1 =
 * Fix: Tweak in pre-defined reason save field
 
@@ -188,23 +203,16 @@ It's a very easy way, go to the Woocommerce -> Settings ->RAE setting ->Refund  
 
 == Upgrade Notice ==
 
-= 1.0.2 =
-* Fix: Tweak in pre-defined reason save field
-
-== 1.0.3 ==
-* Fix: Blank field validation For pred-defined reasons.
-
-== 1.0.4 ==
-
-*Compatibility  With Latest WordPress(5.1.1) And Woocommerce(3.6.1)
-*New:Admin can show refund policy rules on the Refund Form
-
 == 1.0.5 ==
 
 * Compatibility  With Latest WordPress(5.2.2) And Woocommerce(3.6.5)
 * Updated in plugin core and updtaded language.
 * Fix: Line items deletion at customer order section at refund approved.
 
+
+== 1.0.6 ==
+* Updated in plugin core and updtaded language.
+* Fix: Refund Setting save issue  with Woo3.7.0
 	
 == Screenshots ==
 
