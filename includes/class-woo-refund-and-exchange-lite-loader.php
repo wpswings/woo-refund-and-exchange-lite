@@ -6,8 +6,8 @@
  * @link       www.makewebbetter.com
  * @since      1.0.0
  *
- * @package    Mwb_Rma
- * @subpackage Mwb_Rma/includes
+ * @package    Woo_Refund_And_Exchange_Lite
+ * @subpackage Woo_Refund_And_Exchange_Lite/includes
  */
 
 /**
@@ -17,11 +17,11 @@
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  *
- * @package    Mwb_Rma
- * @subpackage Mwb_Rma/includes
+ * @package    Woo_Refund_And_Exchange_Lite
+ * @subpackage Woo_Refund_And_Exchange_Lite/includes
  * @author     makewebbetter <webmaster@makewebbetter.com>
  */
-class Mwb_Rma_Loader {
+class Woo_Refund_And_Exchange_Lite_Loader {
 
 	/**
 	 * The array of actions registered with WordPress.

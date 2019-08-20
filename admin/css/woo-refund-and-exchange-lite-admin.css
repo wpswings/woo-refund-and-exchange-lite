@@ -1,0 +1,261 @@
+/**
+ * All of the CSS for your admin-specific functionality should be
+ * included in this file.
+ */
+
+ 
+ /*=============================================
+=           RMA Setting            =
+=============================================*/
+/**
+ * All of the CSS for your admin-specific functionality should be
+ * included in this file.
+ */
+
+   /* ======== Admin settings display page CSS =======*/
+
+ @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700,900');
+ @import url('https://use.fontawesome.com/releases/v5.6.3/css/all.css');
+ * {
+    box-sizing: border-box;
+}
+#mwb_rma_setting_wrapper{
+    font-family: 'Lato', sans-serif;
+}
+
+.mwb_rma_header {
+    display: flex;
+    background-color: #374585;
+    color: #ffffff;
+    align-items: center;
+    flex-wrap: wrap;
+    border-bottom: 10px solid #73B9F0;
+}
+
+.mwb_rma_header_content_left {
+    align-items: center;
+    display: flex;
+    flex: 0 0 60%;
+    padding: 20px 15px;
+}
+
+.mwb_rma_header_content_right {
+    flex: 0 0 40%;
+    padding: 20px 15px;
+}
+
+.mwb_rma_header_content_left .mwb_rma_setting_title {
+    padding: 0;
+    color: #ffffff;
+    font-size: 20px;
+}
+
+.mwb_rma_header_content_left .notice.notice-success.is-dismissible {
+    color: #000;
+    margin: 0 0 0 10px;
+}
+
+.mwb_rma_header_content_right {
+    flex: 0 0 40%;
+    padding: 20px 15px;
+}
+
+.mwb_rma_header_content_right ul {
+    margin: 0;
+    text-align: right;
+}
+.mwb_rma_header_content_right ul li {
+    display: inline-block;
+    margin: 0 10px;
+}
+.mwb_rma_header_content_right ul li a {
+    color: #cccccc;
+    text-decoration: none;
+}
+.mwb_rma_header_content_right ul li.mwb_rma_header_menu_button a {
+    display: inline-block;
+    background-color: #73B9F0;
+    font-weight: 600;
+    padding: 7px 20px;
+    border-radius: 4px;
+    color: #ffffff !important;
+}
+
+.mwb_rma_main_template, .mwb_rma_main_template p, .mwb_rma_main_template li {
+  font-size: 16px;
+}
+
+.mwb_rma_body_template {
+  background: #ffffff;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.mwb_rma_mobile_nav {
+  background: #214460;
+  color: #fff;
+  display: none;
+  text-align: center;
+  padding: 15px;
+  width: 100%;
+}
+.mwb_rma_mobile_nav .dashicons {
+  cursor: pointer;
+  display: inline-block;
+  font-size: 30px;
+  height: 30px;
+  width: 30px;
+}
+
+.mwb_rma_navigator_template {
+  display: block;
+  flex: 0 0 20%;
+}
+
+.mwb_rma_content_template {
+  box-shadow: -1px -5px 4px 2px rgba(0,0,0,.05);
+  color: #555d66;
+  font-size: 16px;  
+  flex: 0 0 80%;
+  padding: 10px 30px 10px 40px;
+  position: relative;
+  line-height: 28px;
+}
+
+@media only screen and (max-width: 782px){
+  .mwb_rma_mobile_nav {
+    display: block;
+    background-color: #4F3154;
+  }
+  .mwb_rma_navigator_template, .mwb_rma_content_template{
+      flex: 0 0 100%;
+  }
+  .mwb_rma_content_template {
+    box-shadow: none;
+    margin-top: 5px;
+    padding: 10px 15px 40px;
+  }
+  .mwb_rma_header_content_left div {
+    margin: 0 auto;
+  }
+  .mwb_rma_navigator_template {
+    display: none;
+  }
+}
+
+.mwb_rma_header_content_right ul li:first-child .dashicons.dashicons-phone {
+  transform: rotate(90deg);
+}
+
+@media screen and (max-width: 675px) {
+  .mwb_rma_header_content_left,
+  .mwb_rma_header_content_right{
+    flex: 0 0 100%;
+}
+.mwb_rma_header_content_left {
+    padding-bottom: 0;
+}
+.mwb_rma_header_content_right ul,.mwb_rma_header_content_left .mwb_rma_setting_title {
+    text-align: center;
+} 
+.mwb_rma_header_content_left .mwb_rma_setting_title{
+    width: 100%;
+}
+}
+
+@media only screen and (max-width: 650px){
+  .mwb_rma_header_content_left,.mwb_rma_header_content_right{
+    flex: 0 0 100%;
+    justify-content: center;
+  }
+  .mwb_rma_header_content_left {
+    padding-bottom: 0;
+  }
+  .mwb_rma_header_content_right ul{
+    text-align: center !important;
+  }
+  .mwb_rma_header_content_right ul li:first-child{
+    width: 100%;
+    margin: 0 0 15px 0;
+  }
+  .mwb_rma_header_content_right ul li{
+    margin: 0 3px;
+  }
+}
+
+.mwb_rma_nav_tab {
+  background-color: #fff;
+  color: #2b5d89;
+  display: block;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 1.2px;
+  line-height: 22px;
+  padding: 20px 10px;
+  text-decoration: none;
+  text-transform: uppercase;
+  margin-left: 0;
+  float:none;
+}
+
+.mwb_rma_nav_tab:hover {
+  color: #2b5d89;
+}
+.mwb_rma_nav_tab:focus, .mwb_rma_nav_tab:hover {
+  box-shadow: none;
+}
+
+.nav-tab {
+  border:1px solid transparent;
+}
+.mwb_rma_tabs .nav-tab-active, .mwb_rma_tabs .nav-tab-active:focus, .mwb_rma_tabs .nav-tab-active:focus:active, .mwb_rma_tabs .nav-tab-active:hover {
+    background: #73B9F0;
+    color: #fff !important;
+    display: block;
+}
+
+.mwb_rma_tabs .nav-tab-active:after {
+    right: 0;
+    border: 8px solid transparent;
+    content: "";
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-right-color: #fff;
+    top: 50%;
+    margin-top: -8px;
+    z-index: 2;
+}
+
+ /*=============================================
+=           order edit page        =
+=============================================*/
+.mwb_rma_return_loader{
+  display: none;
+}
+
+#mwb_rma_return_meta_wrapper img {
+    width: 80px;
+    height: 80px;
+}
+  /* ======== LOADER CSS =======*/
+  #mwb_rma_loader {
+    background-color: rgba(255, 255, 255, 0.6);
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 99999;
+  }
+  #mwb_rma_loader img {
+    display: block;
+    left: 0;
+    margin: 0 auto;
+    position: absolute;
+    right: 0;
+    top: 40%;
+  }

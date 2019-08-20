@@ -8,31 +8,30 @@
  * @link       www.makewebbetter.com
  * @since      1.0.0
  *
- * @package    Mwb_Rma
- * @subpackage Mwb_Rma/admin/partials
+ * @package    Woo_Refund_And_Exchange_Lite
+ * @subpackage Woo_Refund_And_Exchange_Lite/admin/partials
  */
 ?>
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
 <?php  
-	//include_once MWB_RMA_DIR_PATH.'admin/partials/templates/settings/setting-tab-array.php';
 
 $mwb_rma_setting_tabs = array(
 	array(
 		'refund'        	=> array(
-			'title' 			=> 	__( 'Refund', 'mwb-rma' ),
+			'title' 			=> 	__( 'Refund', 'woo-refund-and-exchange-lite' ),
 			'file_path'			=> 	MWB_RMA_DIR_PATH.'admin/partials/templates/mwb-rma-refund.php',
 		),
 	),
 	array(
 		'mail_configuration' => array(
-			'title'				=>  __( 'Mail Configuration' ,'mwb-rma'),
+			'title'				=>  __( 'Mail Configuration' ,'woo-refund-and-exchange-lite'),
 			'file_path' 		=> 	MWB_RMA_DIR_PATH.'admin/partials/templates/mwb-rma-mail-configuration.php',
 		),
 	),
 	array(
 		'overview' 			=> array(
-			'title'				=>  __( 'Overview' , 'mwb-rma'),
+			'title'				=>  __( 'Overview' , 'woo-refund-and-exchange-lite'),
 			'file_path' 		=> 	MWB_RMA_DIR_PATH.'admin/partials/templates/mwb-rma-overview.php',
 		),
 	),
@@ -49,7 +48,7 @@ $mwb_rma_setting_tabs = apply_filters('mwb_rma_setting_tabs' ,$mwb_rma_setting_t
 		<div class="mwb_rma_header">
 			<div class="mwb_rma_header_content_left">
 				<div>
-					<h3 class="mwb_rma_setting_title"><?php  _e('RMA SETTING' , 'mwb-rma'); ?></h3>
+					<h3 class="mwb_rma_setting_title"><?php  _e('RMA SETTING' , 'woo-refund-and-exchange-lite'); ?></h3>
 				</div>
 			</div>
 			<div class="mwb_rma_header_content_right">
@@ -81,7 +80,7 @@ $mwb_rma_setting_tabs = apply_filters('mwb_rma_setting_tabs' ,$mwb_rma_setting_t
 							if (isset($_GET['tab']) &&  $_GET['tab'] == $tab_arr_key ) { 
 								?>
 								<div class="mwb_rma_tabs">
-									<a class="mwb_rma_nav_tab nav-tab nav-tab-active " href="?page=mwb-rma-setting&tab=<?php echo $tab_arr_key; ?>"><?php _e($tab_data['title'], 'mwb-rma');?></a>
+									<a class="mwb_rma_nav_tab nav-tab nav-tab-active " href="?page=mwb-rma-setting&tab=<?php echo $tab_arr_key; ?>"><?php _e($tab_data['title'], 'woo-refund-and-exchange-lite');?></a>
 								</div>
 								<?php 
 							}
@@ -89,14 +88,14 @@ $mwb_rma_setting_tabs = apply_filters('mwb_rma_setting_tabs' ,$mwb_rma_setting_t
 								if(empty($_GET['tab']) && $tab_arr_key =='refund'){  
 									?>
 									<div class="mwb_rma_tabs">
-										<a class="mwb_rma_nav_tab nav-tab nav-tab-active " href="?page=mwb-rma-setting&tab=<?php echo $tab_arr_key; ?>"><?php _e($tab_data['title'], 'mwb-rma');?></a>
+										<a class="mwb_rma_nav_tab nav-tab nav-tab-active " href="?page=mwb-rma-setting&tab=<?php echo $tab_arr_key; ?>"><?php _e($tab_data['title'], 'woo-refund-and-exchange-lite');?></a>
 									</div>
 									<?php	
 								}
 								else{ 
 									?>			
 									<div class="mwb_rma_tabs">
-										<a class="mwb_rma_nav_tab nav-tab" href="?page=mwb-rma-setting&tab=<?php echo $tab_arr_key; ?>"><?php _e($tab_data['title'], 'mwb-rma');?></a>
+										<a class="mwb_rma_nav_tab nav-tab" href="?page=mwb-rma-setting&tab=<?php echo $tab_arr_key; ?>"><?php _e($tab_data['title'], 'woo-refund-and-exchange-lite');?></a>
 									</div>
 									<?php
 								}

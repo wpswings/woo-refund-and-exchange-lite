@@ -5,8 +5,8 @@
  * @link       https://makewebbetter.com/
  * @since      1.0.0
  *
- * @package    mwb-rma
- * @subpackage mwb-rma/admin/partials
+ * @package    woo-refund-and-exchange-lite
+ * @subpackage woo-refund-and-exchange-lite/admin/partials
  */
 
 /**This class is for generating the html for the settings.
@@ -14,8 +14,8 @@
  * 
  * This file use to display the function for the html
  *
- * @package    mwb-rma
- * @subpackage mwb-rma/admin/partials
+ * @package    woo-refund-and-exchange-lite
+ * @subpackage woo-refund-and-exchange-lite/admin/partials
  * @author     makewebbetter <webmaster@makewebbetter.com>
  */
 class mwb_rma_admin_settings {
@@ -95,7 +95,7 @@ class mwb_rma_admin_settings {
 		foreach( $mwb_settings_array as $arr_key => $ref_val ){
 			foreach ($ref_val['data'] as $key1 => $ref_val) {
 				foreach($mwb_setting_post as $pd_key => $pd_val){
-					if( $ref_val['type'] != 'display_text' ){
+					if( $ref_val['type'] != 'display_text'){
 						$text_type = array_key_exists('val_type', $ref_val);
 						if( $ref_val['type'] == 'text'  ){
 							$mwb_setting_update_arr[$pd_key] = isset($pd_val) ? stripcslashes(sanitize_text_field($pd_val)):'';
@@ -165,7 +165,7 @@ class mwb_rma_admin_settings {
 			$selectedvalue = '';
 		}
 		?>
-		<select name="<?php echo (array_key_exists('id', $value))?$value['id']:''; ?>[]" id="<?php echo (array_key_exists('id', $value))?$value['id']:''; ?>" multiple = "<?php echo (array_key_exists('multiple', $value))? $value['multiple']:''; ?>"
+		<select name="<?php echo (array_key_exists('id', $value))?$value['id']:''; ?>[]" id="<?php echo (array_key_exists('id', $value))?$value['id']:''; ?>" <?php echo (array_key_exists('multiple', $value))? $value['multiple']:''; ?>
 			<?php
 			if (array_key_exists('custom_attribute', $value)) {
 				foreach ($value['custom_attribute'] as $attribute_name => $attribute_val) {
@@ -274,7 +274,7 @@ class mwb_rma_admin_settings {
 				}?> 
 				style ="<?php echo (array_key_exists('style', $value))?$value['style']:''; ?>"
 				value="<?php echo $mwb_signup_value;?>" name="<?php echo (array_key_exists('id', $value))?$value['id']:''; ?><?php echo (array_key_exists('val_type', $value))?'[]':''; ?>" id="<?php echo (array_key_exists('id', $value))?$value['id']:''; ?>"
-				class="<?php echo (array_key_exists('class', $value))?$value['class']:'';?>"><?php echo (array_key_exists('desc', $value))?$value['desc']:'';?>
+				placeholder ="<?php echo (array_key_exists('placeholder', $value))?$value['placeholder']:''; ?>" class="<?php echo (array_key_exists('class', $value))?$value['class']:'';?>"><?php echo (array_key_exists('desc', $value))?$value['desc']:'';?>
 		</label>
 			<?php
 	}
@@ -289,7 +289,7 @@ class mwb_rma_admin_settings {
 	public function mwb_rma_save_button_html($name){
 		?>
 		<p class="submit">
-			<input type="submit" value="<?php _e('Save changes', 'mwb-rma'); ?>" class="button-primary woocommerce-save-button" name="<?php echo $name;?>" id="<?php echo $name;?>" >
+			<input type="submit" value="<?php _e('Save changes', 'woo-refund-and-exchange-lite'); ?>" class="button-primary woocommerce-save-button" name="<?php echo $name;?>" id="<?php echo $name;?>" >
 		</p><?php
 	}
 
@@ -302,9 +302,9 @@ class mwb_rma_admin_settings {
 	public function mwb_rma_settings_saved() {
 		?>
 		<div class="notice notice-success is-dismissible">
-			<p><strong><?php _e('Settings saved.','mwb-rma'); ?></strong></p>
+			<p><strong><?php _e('Settings saved.','woo-refund-and-exchange-lite'); ?></strong></p>
 			<button type="button" class="notice-dismiss">
-				<span class="screen-reader-text"><?php _e('Dismiss this notices.','mwb-rma'); ?></span>
+				<span class="screen-reader-text"><?php _e('Dismiss this notices.','woo-refund-and-exchange-lite'); ?></span>
 			</button>
 		</div>
 		<?php 
@@ -321,7 +321,7 @@ class mwb_rma_admin_settings {
 		$mwb_signup_value = isset($general_settings[$value['id']]) ? ($general_settings[$value['id']]) : '';
 		?>
 		<p>
-			<input type="button" value="<?php _e($value['label'], 'mwb-rma' ); ?>" class="button <?php _e($value['class'], 'mwb-rma' ); ?>" id="<?php echo (array_key_exists('id', $value))?$value['id']:''; ?>">
+			<input type="button" value="<?php echo (array_key_exists('label', $value))?$value['label']:'';  ?>" class="button <?php echo (array_key_exists('class', $value))?$value['class']:'';  ?>" id="<?php echo (array_key_exists('id', $value))?$value['id']:''; ?>">
 		</p>
 		<?php
 
@@ -337,9 +337,16 @@ class mwb_rma_admin_settings {
 	public function mwb_rma_display_text_html($value){
 	?>
 		<div>
-			<p><b><?php echo (array_key_exists('str', $value))?$value['str']:''; ?></b></p>
-			<p><?php  echo sprintf(((array_key_exists('ss_both', $value))?$value['ss_both']:''),'<b>','</b>','<b>','</b>','<b>','</b>','<b>','</b>'); ?></p>
-			<p><b><?php echo (array_key_exists('shortcode', $value))?$value['shortcode']:''; ?></b></p>
+			<?php 
+			if(array_key_exists('str', $value)){ ?>
+				<?php echo (array_key_exists('str', $value))?$value['str']:''; ?><br>
+			 <?php } ?>
+			<?php if(array_key_exists('ss_both', $value)){
+				echo sprintf(((array_key_exists('ss_both', $value))?$value['ss_both']:''),'<b>','</b>','<b>','</b>','<b>','</b>','<b>','</b>');
+		 	}
+		 	if(array_key_exists('shortcode', $value)){ ?>
+				<br><b><?php echo (array_key_exists('shortcode', $value))?$value['shortcode']:''; ?></b>
+			<?php } ?>
 		</div>
 	<?php
 	}
@@ -375,32 +382,32 @@ class mwb_rma_admin_settings {
 								class="<?php echo (array_key_exists('class', $value))?$value['class']:'';?>"><?php echo (array_key_exists('desc', $value))?$value['desc']:'';?>
 						</label>
 						<?php if($key1 != 0){ ?>
-						<a href="#" class="mwb_rma_remove_button"><?php _e( 'Remove' ,'mwb-rma')?></a>
+						<a href="#" class="mwb_rma_remove_button"><?php _e( 'Remove' ,'woo-refund-and-exchange-lite')?></a>
 					<?php }?>
 					</div>
 				<?php
 				}else{
-				if($key1 == 0){
-				?>
-					<div id="<?php echo (array_key_exists('id', $value))?$value['id']:''; ?>_wrapper">
+					if($key1 == 0){
+					?>
+						<div id="<?php echo (array_key_exists('id', $value))?$value['id']:''; ?>_wrapper">
 
-						<label for="
-							<?php echo (array_key_exists('id', $value))?$value['id']:''; ?>">
-							<input type="text" <?php 
-							if (array_key_exists('custom_attributes', $value)) {
-									foreach ($value['custom_attributes'] as $attribute_name => $attribute_val) {
-										echo  $attribute_name ;
-										echo  "=$attribute_val"; 
-									}
-								}?> 
-								style ="<?php echo (array_key_exists('style', $value))?$value['style']:''; ?>"
-								value="" name="<?php echo (array_key_exists('id', $value))?$value['id'].'[]':''; ?>" id="<?php echo (array_key_exists('id', $value))?$value['id']:''; ?>"
-								class="<?php echo (array_key_exists('class', $value))?$value['class']:'';?>"><?php echo (array_key_exists('desc', $value))?$value['desc']:'';?>
-						</label>
-					</div>
-					<?php
+							<label for="
+								<?php echo (array_key_exists('id', $value))?$value['id']:''; ?>">
+								<input type="text" <?php 
+								if (array_key_exists('custom_attributes', $value)) {
+										foreach ($value['custom_attributes'] as $attribute_name => $attribute_val) {
+											echo  $attribute_name ;
+											echo  "=$attribute_val"; 
+										}
+									}?> 
+									style ="<?php echo (array_key_exists('style', $value))?$value['style']:''; ?>"
+									value="" name="<?php echo (array_key_exists('id', $value))?$value['id'].'[]':''; ?>" id="<?php echo (array_key_exists('id', $value))?$value['id']:''; ?>"
+									class="<?php echo (array_key_exists('class', $value))?$value['class']:'';?>"><?php echo (array_key_exists('desc', $value))?$value['desc']:'';?>
+							</label>
+						</div>
+						<?php
+					}
 				}
-			}
 			}
 		}else{
 			?>

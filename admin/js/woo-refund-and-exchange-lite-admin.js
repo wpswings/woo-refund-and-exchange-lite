@@ -29,10 +29,12 @@
 	 * practising this, we should strive to set a better example in our own work.
 	 */
 
-	jQuery(document).ready(function(){
+	 	jQuery(document).ready(function(){
 
+		//to add select2 to select order status setting in refund
 		jQuery(document).find('#mwb_rma_return_order_status').select2();
 
+		//to add input type text on click of add more button
 	 	jQuery(".add_more_button").click(function(){
 	 		var id = jQuery(this).closest('table').find("tr:first").find("input:text").attr('id');
 	 		var td = jQuery(this).closest('table').find("tr:first").find("input:text").closest('td');
@@ -42,11 +44,13 @@
 			clone.appendTo(td);
 	 	});
 
+	 	//to remove parent on click of remove button
 	 	jQuery(document).on('click','.mwb_rma_remove_button', function(e){
 	 		e.preventDefault();
 	 		jQuery(this).parent().remove();
 	 	});
 
+	 	//to accept return request on order edit page
 	 	jQuery("#mwb_rma_accept_return").click(function(){
 	 		jQuery(".mwb_rma_return_loader").show();
 	 		var orderid = jQuery(this).data('orderid');
@@ -66,15 +70,13 @@
 	 			success: function(response) 
 	 			{
 	 				jQuery(".mwb_rma_return_loader").hide();
-	 				window.location.reload();
-
+	 				location.reload(true);
 	 			}
 	 		});
 
 	 	});
 
-
-
+	 	//to cancel return request on order edit page
 	 	jQuery("#mwb_rma_cancel_return").click(function(){
 	 		jQuery(".mwb_rma_return_loader").show();
 	 		var orderid = jQuery(this).data('orderid');
@@ -93,11 +95,12 @@
 	 			success: function(response) 
 	 			{
 	 				jQuery(".mwb_rma_return_loader").hide();
-	 				location.reload();
+	 				location.reload(true);
 	 			}
 	 		});
 	 	});	
 
+	 	//when refund amount button is clicked it slides up to open woocommerce refund panel 
 	 	jQuery("#mwb_rma_left_amount").click(function(){
 	 		jQuery(this).attr('disabled','disabled');
 
@@ -132,7 +135,7 @@
 
 	 	});	
 
-
+	 	//to return order back in stock and display mange stock message
 	 	jQuery(document).on('click','#mwb_rma_stock_back',function(){
 	 		jQuery(this).attr('disabled','disabled');
 	 		var order_id = jQuery(this).data('orderid');
@@ -177,6 +180,5 @@
 	 	});
 
 	});
-
 
 })( jQuery );

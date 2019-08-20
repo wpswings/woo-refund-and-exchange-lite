@@ -9,13 +9,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 $mail_config_tabs = array(
 	array(
 		'basic'	=>  array(
-			'title' =>  __('Basic' , 'mwb-rma'),
+			'title' =>  __('Basic' , 'woo-refund-and-exchange-lite'),
 			'file_path' => MWB_RMA_DIR_PATH.'admin/partials/templates/mwb-rma-basic.php',
 		),
 	),
 	array(
 		'refund_mail'	=>  array(
-			'title' =>  __('Refund' , 'mwb-rma'),
+			'title' =>  __('Refund' , 'woo-refund-and-exchange-lite'),
 			'file_path' => MWB_RMA_DIR_PATH.'admin/partials/templates/mwb-rma-refund-mail.php',
 		),
 	),
@@ -35,7 +35,7 @@ $mail_config_tabs = apply_filters( 'mail_config_tabs' ,$mail_config_tabs);
 					if (isset($_GET['section']) &&  $_GET['section'] == $mc_arr_key ) { 
 								?>
 								<div class="mwb_rma_section">
-									<a class=" " href="?page=mwb-rma-setting&tab=<?php echo $_GET['tab']; ?>&section=<?php echo $mc_arr_key; ?> "><?php _e($mc_data['title'], 'mwb-rma');?></a>
+									<a class=" " href="?page=mwb-rma-setting&tab=<?php echo $_GET['tab']; ?>&section=<?php echo $mc_arr_key; ?> "><?php _e($mc_data['title'], 'woo-refund-and-exchange-lite');?></a>
 								</div>
 								<?php 
 							}
@@ -43,14 +43,14 @@ $mail_config_tabs = apply_filters( 'mail_config_tabs' ,$mail_config_tabs);
 								if(empty($_GET['section']) && $mc_arr_key =='basic'){  
 									?>
 									<div class="mwb_rma_section">
-										<a class=" " href="?page=mwb-rma-setting&tab=<?php echo $_GET['tab']; ?>&section=<?php echo $mc_arr_key; ?>"><?php _e($mc_data['title'], 'mwb-rma');?></a>
+										<a class=" " href="?page=mwb-rma-setting&tab=<?php echo $_GET['tab']; ?>&section=<?php echo $mc_arr_key; ?>"><?php _e($mc_data['title'], 'woo-refund-and-exchange-lite');?></a>
 									</div>
 									<?php	
 								}
 								else{ 
 									?>			
 									<div class="mwb_rma_section">
-										<a class="" href="?page=mwb-rma-setting&tab=<?php echo $_GET['tab']; ?>&section=<?php echo $mc_arr_key; ?>"><?php _e($mc_data['title'], 'mwb-rma');?></a>
+										<a class="" href="?page=mwb-rma-setting&tab=<?php echo $_GET['tab']; ?>&section=<?php echo $mc_arr_key; ?>"><?php _e($mc_data['title'], 'woo-refund-and-exchange-lite');?></a>
 									</div>
 									<?php
 								}

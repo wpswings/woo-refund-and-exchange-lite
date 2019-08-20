@@ -6,8 +6,8 @@
  * @link       www.makewebbetter.com
  * @since      1.0.0
  *
- * @package    Mwb_Rma
- * @subpackage Mwb_Rma/public
+ * @package    Woo_Refund_And_Exchange_Lite
+ * @subpackage Woo_Refund_And_Exchange_Lite/public
  */
 
 /**
@@ -16,11 +16,11 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the public-facing stylesheet and JavaScript.
  *
- * @package    Mwb_Rma
- * @subpackage Mwb_Rma/public
+ * @package    Woo_Refund_And_Exchange_Lite
+ * @subpackage Woo_Refund_And_Exchange_Lite/public
  * @author     makewebbetter <webmaster@makewebbetter.com>
  */
-class Mwb_Rma_Public {
+class Woo_Refund_And_Exchange_Lite_Public {
 
 	/**
 	 * The ID of this plugin.
@@ -65,15 +65,15 @@ class Mwb_Rma_Public {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Mwb_Rma_Loader as all of the hooks are defined
+		 * defined in Woo_Refund_And_Exchange_Lite_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Mwb_Rma_Loader will then create the relationship
+		 * The Woo_Refund_And_Exchange_Lite_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/mwb-rma-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/woo-refund-and-exchange-lite-public.css', array(), $this->version, 'all' );
 
 	}
 
@@ -88,15 +88,15 @@ class Mwb_Rma_Public {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Mwb_Rma_Loader as all of the hooks are defined
+		 * defined in Woo_Refund_And_Exchange_Lite_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Mwb_Rma_Loader will then create the relationship
+		 * The Woo_Refund_And_Exchange_Lite_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-		
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/mwb-rma-public.js', array( 'jquery' ), $this->version, false );
+
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/woo-refund-and-exchange-lite-public.js', array( 'jquery' ), $this->version, false );
 		$ajax_nonce = wp_create_nonce( "mwb-rma-ajax-security-string" );
 		$user_id = get_current_user_id();
 
@@ -111,9 +111,9 @@ class Mwb_Rma_Public {
 			$myaccount_page_url=apply_filters('myaccount_page_url',$myaccount_page_url);
 		}
 		$translation_array = array(
-			'attachment_msg'		=> __( 'File should be of .png , .jpg, or .jpeg extension' , 'mwb-rma'),
-			'return_subject_msg' 	=> __( 'Please enter refund subject.', 'mwb-rma' ),
-			'return_reason_msg'		=> __( 'Please enter refund reason.', 'mwb-rma' ),
+			'attachment_msg'		=> __( 'File should be of .png , .jpg, or .jpeg extension' , 'woo-refund-and-exchange-lite'),
+			'return_subject_msg' 	=> __( 'Please enter refund subject.', 'woo-refund-and-exchange-lite' ),
+			'return_reason_msg'		=> __( 'Please enter refund reason.', 'woo-refund-and-exchange-lite' ),
 			'mwb_rma_nonce'			=> $ajax_nonce,
 			'ajaxurl' 				=> admin_url('admin-ajax.php'),
 			'myaccount_url' 		=> $myaccount_page_url,
@@ -137,10 +137,10 @@ class Mwb_Rma_Public {
 		if(is_page($page_id))
 		{
 
-			$located = locate_template('mwb-rma/public/partials/mwb-rma-refund-request-form.php');
+			$located = locate_template('woo-refund-and-exchange-lite/public/partials/mwb-rma-refund-request-form.php');
 			if ( !empty( $located ) ) {
 
-				$new_template =wc_get_template('mwb-rma/public/partials/mwb-rma-refund-request-form.php');
+				$new_template =wc_get_template('woo-refund-and-exchange-lite/public/partials/mwb-rma-refund-request-form.php');
 			}
 			else
 			{
@@ -153,7 +153,7 @@ class Mwb_Rma_Public {
 
 	/**
 	 * This function is to add Return button on thankyou page after order details and show Return Product details
-	 * 
+	 * @param $order
 	 * @author makewebbetter<webmaster@makewebbetter.com>
 	 * @link http://www.makewebbetter.com/
 	 */
@@ -187,7 +187,7 @@ class Mwb_Rma_Public {
 				if(isset($product_datas) && !empty($product_datas))
 				{
 					?>
-					<h2><?php _e( 'Refund Requested Product', 'mwb-rma' ); ?></h2>
+					<h2><?php _e( 'Refund Requested Product', 'woo-refund-and-exchange-lite' ); ?></h2>
 					<?php 
 					foreach($product_datas as $key=>$product_data)
 					{
@@ -199,8 +199,8 @@ class Mwb_Rma_Public {
 						<table class="shop_table order_details">
 							<thead>
 								<tr>
-									<th class="product-name"><?php _e( 'Product', 'mwb-rma' ); ?></th>
-									<th class="product-total"><?php _e( 'Total', 'mwb-rma' ); ?></th>
+									<th class="product-name"><?php _e( 'Product', 'woo-refund-and-exchange-lite' ); ?></th>
+									<th class="product-total"><?php _e( 'Total', 'woo-refund-and-exchange-lite' ); ?></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -244,7 +244,7 @@ class Mwb_Rma_Public {
 								}
 								?>
 								<tr>
-									<th scope="row"><?php _e('Refund Amount', 'mwb-rma') ?></th>
+									<th scope="row"><?php _e('Refund Amount', 'woo-refund-and-exchange-lite') ?></th>
 									<th><?php echo wc_price($product_data['amount']); ?></th>
 								</tr>
 							</tbody>
@@ -256,7 +256,7 @@ class Mwb_Rma_Public {
 							$format = get_option('date_format');
 							$appdate=date_format($appdate,$format);
 							?>
-							<p><?php _e('Above product Refund request is approved on','mwb-rma');?> <b><?php echo $appdate?>.</b></p>
+							<p><?php _e('Above product Refund request is approved on','woo-refund-and-exchange-lite');?> <b><?php echo $appdate?>.</b></p>
 							<?php 
 						}
 
@@ -266,7 +266,7 @@ class Mwb_Rma_Public {
 							$format = get_option('date_format');
 							$appdate=date_format($appdate,$format);
 							?>
-							<p><?php _e('Above product Refund request is cancelled on','mwb-rma');?> <b><?php echo $appdate?>.</b></p>
+							<p><?php _e('Above product Refund request is cancelled on','woo-refund-and-exchange-lite');?> <b><?php echo $appdate?>.</b></p>
 							<?php 
 						}
 					}
@@ -279,7 +279,7 @@ class Mwb_Rma_Public {
 							?>
 							<form action="<?php echo $return_url ?>" method="post">
 								<input type="hidden" value="<?php echo $order_id?>" name="order_id">
-								<p><input type="submit" class="btn button" value="<?php _e('Refund Request','mwb-rma');?>" name="mwb_rma_new_return_request"></p>
+								<p><input type="submit" class="btn button" value="<?php _e('Refund Request','woo-refund-and-exchange-lite');?>" name="mwb_rma_new_return_request"></p>
 							</form>
 							<?php 
 						}
@@ -297,7 +297,7 @@ class Mwb_Rma_Public {
 						?>
 						<form action="<?php echo $return_url ?>" method="post">
 							<input type="hidden" value="<?php echo $order_id?>" name="order_id">
-							<p><input type="submit" class="btn button" value="<?php _e('Refund Request','mwb-rma');?>" name="mwb_rma_new_return_request"></p>
+							<p><input type="submit" class="btn button" value="<?php _e('Refund Request','woo-refund-and-exchange-lite');?>" name="mwb_rma_new_return_request"></p>
 						</form>
 						<?php 
 					}
@@ -308,7 +308,7 @@ class Mwb_Rma_Public {
 
 	/**
 	 * Add refund button on my-account order section.
-	 *
+	 * @param $actions ,$order
 	 * @since    1.0.0
 	 */
 	public function mwb_rma_refund_exchange_button($actions, $order)
@@ -348,7 +348,7 @@ class Mwb_Rma_Public {
 
 					$day_allowed = $mwb_rma_refund_max_days;
 
-					$return_button_text = __('Refund','mwb-rma');
+					$return_button_text = __('Refund','woo-refund-and-exchange-lite');
 					
 					if($day_allowed >= $day_diff && $day_allowed != 0)
 					{
@@ -445,6 +445,13 @@ class Mwb_Rma_Public {
 		}
 	}
 
+	/**
+	 * This function is to save return request products details when refund request is submit
+	 * 
+	 * @author makewebbetter<webmaster@makewebbetter.com>
+	 * @link http://www.makewebbetter.com/
+	 */
+
 	public function mwb_rma_return_product_info_callback(){
 		$check_ajax = check_ajax_referer( 'mwb-rma-ajax-security-string', 'security_check' );
 		if ( $check_ajax ) 
@@ -498,7 +505,7 @@ class Mwb_Rma_Public {
 						<div class="content">
 
 							<div class="reason">
-								<h4>'.__('Reason of Refund', 'mwb-rma').'</h4>
+								<h4>'.__('Reason of Refund', 'woo-refund-and-exchange-lite').'</h4>
 								<p>'.$reason.'</p>
 							</div>
 							<div class="Order">
@@ -506,9 +513,9 @@ class Mwb_Rma_Public {
 								<table>
 									<tbody>
 										<tr>
-											<th>'.__('Product', 'mwb-rma').'</th>
-											<th>'.__('Quantity', 'mwb-rma').'</th>
-											<th>'.__('Price', 'mwb-rma').'</th>
+											<th>'.__('Product', 'woo-refund-and-exchange-lite').'</th>
+											<th>'.__('Quantity', 'woo-refund-and-exchange-lite').'</th>
+											<th>'.__('Price', 'woo-refund-and-exchange-lite').'</th>
 										</tr>';
 						
 										$order = new WC_Order($order_id);
@@ -553,7 +560,7 @@ class Mwb_Rma_Public {
 										}
 
 										$message_details .= '<tr>
-										<th colspan="2">'.__('Refund Total', 'mwb-rma').':</th>
+										<th colspan="2">'.__('Refund Total', 'woo-refund-and-exchange-lite').':</th>
 										<td>'.wc_price($total).'</td>
 									</tr>
 								</tbody>
@@ -568,8 +575,8 @@ class Mwb_Rma_Public {
 				$subject = isset($mwb_rma_mail_refund_settings['mwb_rma_mail_merchant_return_subject'])? $mwb_rma_mail_refund_settings['mwb_rma_mail_merchant_return_subject']:'';
 				$subject = str_replace('[order]', "#".$order_id, $subject);	
 				
-				wc_mail( $to, $subject, $message, $headers );	
 				//Send mail to User that we recieved your request
+				wc_mail( $to, $subject, $message, $headers );	
 		
 				$fmail =  isset($mwb_rma_mail_basic_settings['mwb_rma_mail_from_email'])? $mwb_rma_mail_basic_settings['mwb_rma_mail_from_email']:'';
 				$fname =  isset($mwb_rma_mail_basic_settings['mwb_rma_mail_from_name'])? $mwb_rma_mail_basic_settings['mwb_rma_mail_from_name']:'';
@@ -642,7 +649,7 @@ class Mwb_Rma_Public {
 				wc_mail($to, $subject, $html_content, $headers );
 
 				$order->update_status('wc-refund-requested', 'User Request to Refund Product');
-				$response['msg'] = __('Message send successfully.You have received a notification mail regarding this, Please check your mail. Soon You redirect to My Account Page. Thanks', 'mwb-rma');
+				$response['msg'] = __('Message send successfully.You have received a notification mail regarding this, Please check your mail. Soon You redirect to My Account Page. Thanks', 'woo-refund-and-exchange-lite');
 				$auto_accept_day_allowed = false;
 				$auto_accept_day_allowed = apply_filters( 'auto_accept_day_allowed',$auto_accept_day_allowed,$order);
 			
@@ -655,6 +662,13 @@ class Mwb_Rma_Public {
 			}
 		}
 	}
+
+	/**
+	 * This function is for checking whether mwb-rma-pro plugin is active or not
+	 * 
+	 * @author makewebbetter<webmaster@makewebbetter.com>
+	 * @link http://www.makewebbetter.com/
+	 */
 
 	public function mwb_rma_pro_active(){
 		global $rma_pro_activated;
@@ -675,4 +689,5 @@ class Mwb_Rma_Public {
 		}
 
 	}
+
 }

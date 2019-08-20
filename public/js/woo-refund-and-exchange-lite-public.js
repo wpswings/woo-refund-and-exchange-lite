@@ -29,7 +29,7 @@
 	 * practising this, we should strive to set a better example in our own work.
 	 */
 
-	 jQuery(document).ready(function(){
+	jQuery(document).ready(function(){
 
 		//Add return reason text
 	 	var mwb_rma_return_request_subject = jQuery("#mwb_rma_return_request_subject").val();

@@ -5,61 +5,61 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-include_once MWB_RMA_DIR_PATH.'admin/partials/class-mwb-rma-settings.php';
+include_once MWB_RMA_DIR_PATH.'admin/partials/class-woo-refund-and-exchange-lite-settings.php';
 
 $mwb_rma_admin_settings = new mwb_rma_admin_settings();
 
 $mail_config_basic = array(
 	array(
-		'label' => __( 'Mail Setting' , 'mwb-rma'),
+		'label' => __( 'Mail Setting' , 'woo-refund-and-exchange-lite'),
 		'data'	=> array(
 			array(
-				'title'         => __( 'From Name', 'mwb-rma' ),
+				'title'         => __( 'From Name', 'woo-refund-and-exchange-lite' ),
 				'type'          => 'text',
 				'id' 			=> 'mwb_rma_mail_from_name',
-				'desc_tip'		=> __( "Site title which will be shown when the mail is send to the user.", 'mwb-rma' ),
+				'desc_tip'		=> __( "Site title which will be shown when the mail is send to the user.", 'woo-refund-and-exchange-lite' ),
 				'class' 		=> 'input-text ',
 				'style' 		=> 'width:160px',
 			),
 			array(
-				'title'         => __( 'From Email', 'mwb-rma' ),
+				'title'         => __( 'From Email', 'woo-refund-and-exchange-lite' ),
 				'type'          => 'text',
 				'id' 			=> 'mwb_rma_mail_from_email',
-				'desc_tip'		=> __( "Site e-mail which will be shown when the mail is send to the user.", 'mwb-rma' ),
+				'desc_tip'		=> __( "Site e-mail which will be shown when the mail is send to the user.", 'woo-refund-and-exchange-lite' ),
 				'class'			=> 'input-text ',
 				'style' 		=> 'width:160px',
 			),
 			array(
-				'title'         => __( 'Mail Header', 'mwb-rma' ),
+				'title'         => __( 'Mail Header', 'woo-refund-and-exchange-lite' ),
 				'type'          => 'wp_editor',
 				'id' 			=> 'mwb_rma_mail_header',
-				'desc_tip'		=> __( "Custom mail header that will be header shown on the mails.", 'mwb-rma' ),
+				'desc_tip'		=> __( "Custom mail header that will be shown on the mails as mail header.", 'woo-refund-and-exchange-lite' ),
 			),
 			array(
-				'title'         => __( 'Mail Footer', 'mwb-rma' ),
+				'title'         => __( 'Mail Footer', 'woo-refund-and-exchange-lite' ),
 				'type'          => 'wp_editor',
 				'id' 			=> 'mwb_rma_mail_footer',
-				'desc_tip'		=> __( "Custom mail header that will be header shown on the mails.", 'mwb-rma' ),
+				'desc_tip'		=> __( "Custom mail footer that will be shown on the mails as mail footer.", 'woo-refund-and-exchange-lite' ),
 			),
 		),
 	), 
 	array(
-		'label' => __( 'Predefined Refund Reason' , 'mwb-rma'),
+		'label' => __( 'Predefined Refund Reason' , 'woo-refund-and-exchange-lite'),
 		'data'	=> array(
 			array(
-				'title'         => __( '', 'mwb-rma' ),
+				'title'         => '',
 				'type'          => 'add_more_text',
 				'id' 			=> 'mwb_rma_return_predefined_reason',
 				'class' 		=> 'input-text ',
 				'style' 		=> 'width:160px',
 			),
 			array(
-				'title'         => __( '', 'mwb-rma' ),
+				'title'         => '',
 				'type'          => 'add_more_button',
-				'label'			=> 'ADD MORE',
+				'label'			=> __('ADD MORE' , 'woo-refund-and-exchange-lite'),
 				'class'			=> 'add_more_button',
 				'id' 			=> 'mwb_rma_rpr_add_more_button',
-				'desc_tip'		=> __( "Add text boxes to enter Predefine Return reason which will be displayed on the Return Request Form", 'mwb-rma' ),
+				'desc_tip'		=> __( "Add text boxes to enter Predefine Return reason which will be displayed on the Return Request Form", 'woo-refund-and-exchange-lite' ),
 			),
 
 		),
@@ -109,7 +109,6 @@ $mail_basic_settings_values = get_option('mwb_rma_mail_basic_settings',array());
 				}
 			} ?>
 			</div>
-		<?php 	do_action( 'after_refund_setting_array'); ?>
 		<?php  	$mwb_rma_admin_settings->mwb_rma_save_button_html('mwb_rma_mail_basic_save');  ?>
 		<input 	type="hidden" name="mwb-rma-mail-basic-nonce" value="<?php echo wp_create_nonce('mwb-rma-mail-basic-nonce'); ?>"> 
 	</form>

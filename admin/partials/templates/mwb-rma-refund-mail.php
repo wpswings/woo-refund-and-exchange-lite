@@ -6,89 +6,89 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-include_once MWB_RMA_DIR_PATH.'admin/partials/class-mwb-rma-settings.php';
+include_once MWB_RMA_DIR_PATH.'admin/partials/class-woo-refund-and-exchange-lite-settings.php';
 
 $mwb_rma_admin_settings = new mwb_rma_admin_settings();
 
 $mail_config_refund = array(
 	array(
-		'label' => __( 'Merchant Setting' , 'mwb-rma'),
+		'label' => __( 'Short-Codes' , 'woo-refund-and-exchange-lite'),
 		'data'	=> array(
 			array(
-				'title'         => __( 'Merchant Refund Request Subject', 'mwb-rma' ),
+				'title'         => '',
+				'type'          => 'display_text',
+				'str'			=> __( "These are order shortcode that you can use in EMAIL MESSESGES. It will be changed with order's dynamic values.", 'woo-refund-and-exchange-lite' ),
+				'ss_both'		=> __('%s Note :%s Use %s [order] %s for Order Number, %s [siteurl] %s for home page url and %s [username] %s for user name.','woo-refund-and-exchange-lite'),
+			),
+		),
+	), 
+	array(
+		'label' => __( 'Merchant Setting' , 'woo-refund-and-exchange-lite'),
+		'data'	=> array(
+			array(
+				'title'         => __( 'Merchant Refund Request Subject', 'woo-refund-and-exchange-lite' ),
 				'type'          => 'text',
 				'id' 			=> 'mwb_rma_mail_merchant_return_subject',
-				'desc_tip'		=> __( "Site title which will be shown when the mail is send to the user.", 'mwb-rma' ),
+				'desc_tip'		=> __( "Refund Request Subject which will be shown on mail send to the admin when the user initiate refund request.", 'woo-refund-and-exchange-lite' ),
 				'class' 		=> 'input-text ',
 				'style' 		=> 'width:400px',
 			),
 		),
 	), 
 	array(
-		'label' => __( 'Short-Codes' , 'mwb-rma'),
+		'label' => __( 'Refund Request' , 'woo-refund-and-exchange-lite'),
 		'data'	=> array(
 			array(
-				'title'         => __( '', 'mwb-rma' ),
-				'type'          => 'display_text',
-				'str'			=> __( "These are order shortcode that you can use in EMAIL MESSESGES. It will be changed with order's dynamic values.", 'mwb-rma' ),
-				'ss_both'		=> __('%s Note :%s Use %s [order] %s for Order Number, %s [siteurl] %s for home page url and %s [username] %s for user name.','mwb-woocommerce-rma'),
-			),
-		),
-	), 
-	array(
-		'label' => __( 'Refund Request' , 'mwb-rma'),
-		'data'	=> array(
-			array(
-				'title'         => __( 'Refund Request Subject', 'mwb-rma' ),
+				'title'         => __( 'Refund Request Subject', 'woo-refund-and-exchange-lite' ),
 				'type'          => 'text',
 				'id' 			=> 'mwb_rma_mail_return_subject',
-				'desc_tip'		=> __( "Site title which will be shown when the mail is send to the user.", 'mwb-rma' ),
+				'desc_tip'		=> __( "Refund Request Subject which will be shown on mail send to the user by admin when the user initiate refund request", 'woo-refund-and-exchange-lite' ),
 				'class' 		=> 'input-text ',
 				'style' 		=> 'width:400px',
 			),
 			array(
-				'title'         => __( 'Recieved Refund Request Message', 'mwb-rma' ),
+				'title'         => __( 'Recieved Refund Request Message', 'woo-refund-and-exchange-lite' ),
 				'type'          => 'wp_editor',
 				'id' 			=> 'mwb_rma_mail_return_message',
-				'desc_tip'		=> __( "Site title which will be shown when the mail is send to the user.", 'mwb-rma' ),
+				'desc_tip'		=> __( "Custom message send to the user by admin when the user initiate refund request.", 'woo-refund-and-exchange-lite' ),
 			),
 		),
 	), 
 	array(
-		'label' => __( 'Refund Approved' , 'mwb-rma'),
+		'label' => __( 'Refund Approved' , 'woo-refund-and-exchange-lite'),
 		'data'	=> array(
 			array(
-				'title'         => __( 'Approved Refund Request Subject', 'mwb-rma' ),
+				'title'         => __( 'Approved Refund Request Subject', 'woo-refund-and-exchange-lite' ),
 				'type'          => 'text',
 				'id' 			=> 'mwb_rma_mail_return_approve_subject',
-				'desc_tip'		=> __( "Site title which will be shown when the mail is send to the user.", 'mwb-rma' ),
+				'desc_tip'		=> __( "Refund Approved Subject which will be shown on mail send to the user by admin when admin approve refund request.", 'woo-refund-and-exchange-lite' ),
 				'class' 		=> 'input-text ',
 				'style' 		=> 'width:400px',
 			),
 			array(
-				'title'         => __( 'Approved Refund Request Message', 'mwb-rma' ),
+				'title'         => __( 'Approved Refund Request Message', 'woo-refund-and-exchange-lite' ),
 				'type'          => 'wp_editor',
 				'id' 			=> 'mwb_rma_mail_return_approve_message',
-				'desc_tip'		=> __( "Site title which will be shown when the mail is send to the user.", 'mwb-rma' ),
+				'desc_tip'		=> __( "Custom message send to the user when the admin approve refund request.", 'woo-refund-and-exchange-lite' ),
 			),
 		),
 	), 
 	array(
-		'label' => __( 'Refund Cancel' , 'mwb-rma'),
+		'label' => __( 'Refund Cancel' , 'woo-refund-and-exchange-lite'),
 		'data'	=> array(
 			array(
-				'title'         => __( 'Cancelled Refund Request Subject', 'mwb-rma' ),
+				'title'         => __( 'Cancelled Refund Request Subject', 'woo-refund-and-exchange-lite' ),
 				'type'          => 'text',
 				'id' 			=> 'mwb_rma_mail_return_cancel_subject',
-				'desc_tip'		=> __( "Site title which will be shown when the mail is send to the user.", 'mwb-rma' ),
+				'desc_tip'		=> __( "Refund Cancel Subject which will be shown on mail send to the user by admin when admin cancel refund request.", 'woo-refund-and-exchange-lite' ),
 				'class' 		=> 'input-text ',
 				'style' 		=> 'width:400px',
 			),
 			array(
-				'title'         => __( 'Cancelled Refund Request Message', 'mwb-rma' ),
+				'title'         => __( 'Cancelled Refund Request Message', 'woo-refund-and-exchange-lite' ),
 				'type'          => 'wp_editor',
 				'id' 			=> 'mwb_rma_mail_return_cancel_message',
-				'desc_tip'		=> __( "Site title which will be shown when the mail is send to the user.", 'mwb-rma' ),
+				'desc_tip'		=> __( "Custom message send to the user when the admin cancel refund request.", 'woo-refund-and-exchange-lite' ),
 			),
 		),
 	), 
@@ -115,7 +115,6 @@ if($flag){
 }
 $mail_refund_settings_values = get_option('mwb_rma_mail_refund_settings',array());
 
-
 ?>
 <div>
 	<form enctype="multipart/form-data" action="" method="post">
@@ -134,8 +133,7 @@ $mail_refund_settings_values = get_option('mwb_rma_mail_refund_settings',array()
 					} 
 				}
 			} ?>
-			</div>
-		<?php 	do_action( 'after_refund_setting_array'); ?>
+		</div>
 		<?php  	$mwb_rma_admin_settings->mwb_rma_save_button_html('mwb_rma_mail_refund_save');  ?>
 		<input 	type="hidden" name="mwb-rma-mail-refund-nonce" value="<?php echo wp_create_nonce('mwb-rma-mail-refund-nonce'); ?>"> 
 	</form>

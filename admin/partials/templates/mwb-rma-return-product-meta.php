@@ -35,16 +35,16 @@ if(isset($return_datas) && !empty($return_datas))
 		$date_format = get_option('date_format');
 		$date = date_format($date,$date_format);
 		?>
-		<p><?php _e( 'Following product refund request made on', 'mwb-rma' ); ?> <b><?php echo $date?>.</b></p>
+		<p><?php _e( 'Following product refund request made on', 'woo-refund-and-exchange-lite' ); ?> <b><?php echo $date?>.</b></p>
 		<div id="mwb_rma_return_meta_wrapper">
 			<table>
 				<thead>
 					<tr>
-						<th><?php _e( 'Item', 'mwb-rma' ); ?></th>
-						<th><?php _e( 'Name', 'mwb-rma' ); ?></th>
-						<th><?php _e( 'Cost', 'mwb-rma' ); ?></th>
-						<th><?php _e( 'Qty', 'mwb-rma' ); ?></th>
-						<th><?php _e( 'Total', 'mwb-rma' ); ?></th>
+						<th><?php _e( 'Item', 'woo-refund-and-exchange-lite' ); ?></th>
+						<th><?php _e( 'Name', 'woo-refund-and-exchange-lite' ); ?></th>
+						<th><?php _e( 'Cost', 'woo-refund-and-exchange-lite' ); ?></th>
+						<th><?php _e( 'Qty', 'woo-refund-and-exchange-lite' ); ?></th>
+						<th><?php _e( 'Total', 'woo-refund-and-exchange-lite' ); ?></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -108,11 +108,11 @@ if(isset($return_datas) && !empty($return_datas))
 										echo esc_html( $refund_product_new[$returnkey]['name'] );
 										}
 										if (isset($refund_product_new[$returnkey]['sku']) && !empty($refund_product_new[$returnkey] )) {
-											echo '<div class="wc-order-item-sku"><strong>' . __( 'SKU:', 'mwb-rma' ) . '</strong> ' . esc_html(  $refund_product_new[$returnkey]['sku'] ) . '</div>';
+											echo '<div class="wc-order-item-sku"><strong>' . __( 'SKU:', 'woo-refund-and-exchange-lite' ) . '</strong> ' . esc_html(  $refund_product_new[$returnkey]['sku'] ) . '</div>';
 										}
 										$var_id = $refund_product_new[$returnkey]['variation_id'];
 										if ( isset($var_id) && ! empty( $var_id ) ) {
-											echo '<div class="wc-order-item-variation"><strong>' . __( 'Variation ID:', 'mwb-rma' ) . '</strong> ';
+											echo '<div class="wc-order-item-variation"><strong>' . __( 'Variation ID:', 'woo-refund-and-exchange-lite' ) . '</strong> ';
 											if ( $var_id != 0 ) {
 												echo esc_html( $var_id );
 											}
@@ -133,7 +133,7 @@ if(isset($return_datas) && !empty($return_datas))
 					}
 					?>
 					<tr>
-						<th colspan="4"><?php _e('Total Amount', 'mwb-rma');?></th>
+						<th colspan="4"><?php _e('Total Amount', 'woo-refund-and-exchange-lite');?></th>
 						<th><?php echo wc_price($total);?></th>
 					</tr>
 
@@ -142,12 +142,12 @@ if(isset($return_datas) && !empty($return_datas))
 		</div>
 		<div class="mwb_rma_extra_reason">
 			<p>
-				<strong><?php _e('Refund Amount', 'mwb-rma');?> :</strong> <?php echo wc_price($return_data['amount'])?>
+				<strong><?php _e('Refund Amount', 'woo-refund-and-exchange-lite');?> :</strong> <?php echo wc_price($return_data['amount'])?>
 			</p>
 		</div>
 		<div class="mwb_rma_reason">	
-			<p><strong><?php _e('Subject', 'mwb-rma');?> :</strong><i> <?php echo $return_data['subject']?></i></p></p>
-			<p><b><?php _e('Reason', 'mwb-rma');?> :</b></p>
+			<p><strong><?php _e('Subject', 'woo-refund-and-exchange-lite');?> :</strong><i> <?php echo $return_data['subject']?></i></p></p>
+			<p><b><?php _e('Reason', 'woo-refund-and-exchange-lite');?> :</b></p>
 			<p><?php echo $return_data['reason']?></p>
 			<?php 
 			$req_attachments = get_post_meta($order_id, 'mwb_rma_return_attachment', true);
@@ -155,7 +155,7 @@ if(isset($return_datas) && !empty($return_datas))
 			if(isset($req_attachments) && !empty($req_attachments))
 			{	
 				?>
-				<p><b><?php _e('Attachment', 'mwb-rma');?> :</b></p>
+				<p><b><?php _e('Attachment', 'woo-refund-and-exchange-lite');?> :</b></p>
 				<?php
 				if(is_array($req_attachments))
 				{
@@ -169,12 +169,12 @@ if(isset($return_datas) && !empty($return_datas))
 								if($attachment != $order_id.'-')
 								{
 									?>
-									<a href="<?php echo content_url()?>/attachment/<?php echo $attachment?>" target="_blank"><?php _e('Attachment','mwb-rma');?>-<?php echo $count;?></a>
+									<a href="<?php echo content_url()?>/attachment/<?php echo $attachment?>" target="_blank"><?php _e('Attachment','woo-refund-and-exchange-lite');?>-<?php echo $count;?></a>
 									<?php 
 									$count++;
 								}else{
 									?>
-										<p><?php _e('No attachment from customer', 'mwb-rma');?></p>
+										<p><?php _e('No attachment from customer', 'woo-refund-and-exchange-lite');?></p>
 									<?php
 								}
 							}	
@@ -187,8 +187,8 @@ if(isset($return_datas) && !empty($return_datas))
 			{	
 				?>
 				<p id="mwb_rma_return_package">
-				<input type="button" value="<?php _e('Accept Request','mwb-rma');?>" class="button" id="mwb_rma_accept_return" data-orderid="<?php echo $order_id;?>" data-date="<?php echo $key;?>">
-				<input type="button" value="<?php _e('Cancel Request','mwb-rma');?>" class="button" id="mwb_rma_cancel_return" data-orderid="<?php echo $order_id;?>" data-date="<?php echo $key;?>">
+				<input type="button" value="<?php _e('Accept Request','woo-refund-and-exchange-lite');?>" class="button" id="mwb_rma_accept_return" data-orderid="<?php echo $order_id;?>" data-date="<?php echo $key;?>">
+				<input type="button" value="<?php _e('Cancel Request','woo-refund-and-exchange-lite');?>" class="button" id="mwb_rma_cancel_return" data-orderid="<?php echo $order_id;?>" data-date="<?php echo $key;?>">
 				</p>
 				<?php 
 			}
@@ -209,13 +209,13 @@ if(isset($return_datas) && !empty($return_datas))
 			$approve_date=date_format($approve_date,$date_format);
 			$mwb_rma_refund_amount = get_post_meta($order_id,'mwb_rma_refund_amount',true);
 
-			_e( 'Following product refund request is approved on', 'mwb-rma' ); ?> <b><?php echo $approve_date?>.</b><?php
+			_e( 'Following product refund request is approved on', 'woo-refund-and-exchange-lite' ); ?> <b><?php echo $approve_date?>.</b><?php
 
 			if($mwb_rma_refund_amount !='yes'){?>
 				<input type="button" name="mwb_rma_left_amount" class="button button-primary" data-orderid="<?php echo $order_id; ?>" id="mwb_rma_left_amount" Value="Refund Amount" > <?php
 			}
 
-			
+			// to show manage stock button when refund request is approved
 			$mwb_rma_refund_settings = get_option( 'mwb_rma_refund_settings' ,array());
 			$manage_stock = isset($mwb_rma_refund_settings['mwb_rma_return_request_manage_stock'])? $mwb_rma_refund_settings['mwb_rma_return_request_manage_stock']:'';
 			foreach ($pro_id as $pi_key => $pi_value) {
@@ -228,18 +228,19 @@ if(isset($return_datas) && !empty($return_datas))
 			}
 			if($manage_stock == "on" && $mwb_rma_manage_stock_for_return == 'no')
 			{
-				?> <p id="mwb_rma_stock_button_wrapper"><?php _e( 'When Product Back in stock then for stock management click on ', 'mwb-rma' ); ?> <input type="button" name="mwb_rma_stock_back" class="button button-primary" id="mwb_rma_stock_back" data-type="mwb_rma_return" data-orderid="<?php echo $order_id; ?>" Value="Manage Stock" ></p> <?php
+				?> <p id="mwb_rma_stock_button_wrapper"><?php _e( 'When Product Back in stock then for stock management click on ', 'woo-refund-and-exchange-lite' ); ?> <input type="button" name="mwb_rma_stock_back" class="button button-primary" id="mwb_rma_stock_back" data-type="mwb_rma_return" data-orderid="<?php echo $order_id; ?>" Value="Manage Stock" ></p> <?php
 			}
 		}
 		?>
 		<p>
 		<?php
+			// to show when refund request is cancelled
 			if($return_data['status'] == 'cancel')
 			{
 				$approve_date=date_create($return_data['cancel_date']);
 				$approve_date=date_format($approve_date,"F d, Y");
 					
-				_e( 'Following product refund request is cancelled on', 'mwb-rma' ); ?> <b><?php echo $approve_date?>.</b>
+				_e( 'Following product refund request is cancelled on', 'woo-refund-and-exchange-lite' ); ?> <b><?php echo $approve_date?>.</b>
 				<?php
 			}
 		?>
@@ -247,18 +248,17 @@ if(isset($return_datas) && !empty($return_datas))
 		<?php
 	}
 
-
 }else{
 
 	$mwb_rma_return_form_url='';	
 	$mwb_rma_return_form_url = apply_filters( 'mwb_rma_return_form_url' ,$mwb_rma_return_form_url);
 	
 	?>
-	<p><?php _e('No request from customer', 'mwb-rma');?></p>
+	<p><?php _e('No request from customer', 'woo-refund-and-exchange-lite');?></p>
 	<?php
 	if(isset($return_form_url) && !empty($return_form_url)){
 		?>
-		<a target="_blank" href="<?php echo $mwb_rma_return_form_url; ?>" class="button-primary button"><b><?php _e('Initiate Refund Request','mwb-rma'); ?></b></a>
+		<a target="_blank" href="<?php echo $mwb_rma_return_form_url; ?>" class="button-primary button"><b><?php _e('Initiate Refund Request','woo-refund-and-exchange-lite'); ?></b></a>
 		<?php
 	}
 }

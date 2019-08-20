@@ -6,8 +6,8 @@
  * @link       www.makewebbetter.com
  * @since      1.0.0
  *
- * @package    Mwb_Rma
- * @subpackage Mwb_Rma/admin
+ * @package    Woo_Refund_And_Exchange_Lite
+ * @subpackage Woo_Refund_And_Exchange_Lite/admin
  */
 
 /**
@@ -16,11 +16,11 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    Mwb_Rma
- * @subpackage Mwb_Rma/admin
+ * @package    Woo_Refund_And_Exchange_Lite
+ * @subpackage Woo_Refund_And_Exchange_Lite/admin
  * @author     makewebbetter <webmaster@makewebbetter.com>
  */
-class Mwb_Rma_Admin {
+class Woo_Refund_And_Exchange_Lite_Admin {
 
 	/**
 	 * The ID of this plugin.
@@ -65,15 +65,15 @@ class Mwb_Rma_Admin {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Mwb_Rma_Loader as all of the hooks are defined
+		 * defined in Woo_Refund_And_Exchange_Lite_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Mwb_Rma_Loader will then create the relationship
+		 * The Woo_Refund_And_Exchange_Lite_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/mwb-rma-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/woo-refund-and-exchange-lite-admin.css', array(), $this->version, 'all' );
 		wp_enqueue_style( 'mwb-rma-select2-css', plugin_dir_url( __FILE__ ) . 'css/mwb_ps-select2.min.css', array(), $this->version, 'all' );
 		wp_register_style( 'woocommerce_admin_styles', WC()->plugin_url() . '/assets/css/admin.css', array(), WC_VERSION );
 		wp_enqueue_style( 'woocommerce_admin_menu_styles' );
@@ -92,50 +92,52 @@ class Mwb_Rma_Admin {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Mwb_Rma_Loader as all of the hooks are defined
+		 * defined in Woo_Refund_And_Exchange_Lite_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Mwb_Rma_Loader will then create the relationship
+		 * The Woo_Refund_And_Exchange_Lite_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-		
+
 
 		wp_register_script( 'woocommerce_admin', WC()->plugin_url() . '/assets/js/admin/woocommerce_admin.js', array( 'jquery', 'jquery-blockui', 'jquery-ui-sortable', 'jquery-ui-widget', 'jquery-ui-core', 'jquery-tiptip' ), WC_VERSION );
 		$locale = localeconv();
 		$decimal = isset( $locale['decimal_point'] ) ? $locale['decimal_point'] : '.';
 
 		$params = array(
-		/* translators: %s: decimal */
-		'i18n_decimal_error' => sprintf( __( 'Please enter in decimal (%s) format without thousand separators.', 'woocommerce' ), $decimal ),
-		/* translators: %s: price decimal separator */
-		'i18n_mon_decimal_error' => sprintf( __( 'Please enter in monetary decimal (%s) format without thousand separators and currency symbols.', 'woocommerce' ), wc_get_price_decimal_separator() ),
-		'i18n_country_iso_error' => __( 'Please enter in country code with two capital letters.', 'woocommerce' ),
-		'i18_sale_less_than_regular_error' => __( 'Please enter in a value less than the regular price.', 'woocommerce' ),
-		'decimal_point' => $decimal,
-		'mon_decimal_point' => wc_get_price_decimal_separator(),
-		'strings' => array(
-		'import_products' => __( 'Import', 'woocommerce' ),
-		'export_products' => __( 'Export', 'woocommerce' ),
-		),
-		'urls' => array(
-		'import_products' => esc_url_raw( admin_url( 'edit.php?post_type=product&page=product_importer' ) ),
-		'export_products' => esc_url_raw( admin_url( 'edit.php?post_type=product&page=product_exporter' ) ),
-		),
+			/* translators: %s: decimal */
+			'i18n_decimal_error' => sprintf( __( 'Please enter in decimal (%s) format without thousand separators.', 'woocommerce' ), $decimal ),
+			/* translators: %s: price decimal separator */
+			'i18n_mon_decimal_error' => sprintf( __( 'Please enter in monetary decimal (%s) format without thousand separators and currency symbols.', 'woocommerce' ), wc_get_price_decimal_separator() ),
+			'i18n_country_iso_error' => __( 'Please enter in country code with two capital letters.', 'woocommerce' ),
+			'i18_sale_less_than_regular_error' => __( 'Please enter in a value less than the regular price.', 'woocommerce' ),
+			'decimal_point' => $decimal,
+			'mon_decimal_point' => wc_get_price_decimal_separator(),
+			'strings' => array(
+				'import_products' => __( 'Import', 'woocommerce' ),
+				'export_products' => __( 'Export', 'woocommerce' ),
+			),
+			'urls' => array(
+				'import_products' => esc_url_raw( admin_url( 'edit.php?post_type=product&page=product_importer' ) ),
+				'export_products' => esc_url_raw( admin_url( 'edit.php?post_type=product&page=product_exporter' ) ),
+			),
 		);
 
 		wp_localize_script( 'woocommerce_admin', 'woocommerce_admin', $params );
 		wp_enqueue_script( 'woocommerce_admin' );
-		
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/mwb-rma-admin.js', array( 'jquery' ), $this->version, false );
+
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/woo-refund-and-exchange-lite-admin.js', array( 'jquery' ), $this->version, false );
+
 		$ajax_nonce = wp_create_nonce( "mwb-rma-ajax-security-string" );
 		$translation_array = array(
-			'remove'	=>	__( 'Remove' , 'mwb-rma'),
+			'remove'	=>	__( 'Remove' , 'woo-refund-and-exchange-lite'),
 			'mwb_rma_nonce' => $ajax_nonce,
 			'ajaxurl' => admin_url('admin-ajax.php'),
 		);
 		wp_localize_script(  $this->plugin_name, 'global_mwb_rma', $translation_array );
 		wp_enqueue_script( "mwb-rma-select2-js", plugin_dir_url( __FILE__ ) . 'js/mwb_ps-select2.min.js', array( 'jquery' ), $this->version, false );
+
 	}
 
 	/**
@@ -146,10 +148,10 @@ class Mwb_Rma_Admin {
 	 */
 	public static function mwb_add_admin_menu( $array ) {
 		add_submenu_page( 'woocommerce',
-			__( 'RMA Setting' , 'mwb-rma'), 
-			__( 'RMA Setting' , 'mwb-rma'),
+			__( 'RMA Setting' , 'woo-refund-and-exchange-lite'), 
+			__( 'RMA Setting' , 'woo-refund-and-exchange-lite'),
 			'manage_options',
-			__( 'mwb-rma-setting','mwb-rma'),
+			__( 'mwb-rma-setting','woo-refund-and-exchange-lite'),
 			array( $this , 'mwb_rma_setting_page_callback')
 		);
 
@@ -162,7 +164,7 @@ class Mwb_Rma_Admin {
 	 * @link http://www.makewebbetter.com/
 	 */
 	public function mwb_rma_setting_page_callback(){
-		include_once MWB_RMA_DIR_PATH.'admin/partials/mwb-rma-admin-display.php';
+		include_once MWB_RMA_DIR_PATH.'admin/partials/woo-refund-and-exchange-lite-admin-display.php';
 	}
 
 	/**
@@ -173,10 +175,10 @@ class Mwb_Rma_Admin {
 	public function mwb_rma_add_order_edit_meta_box(){
 		$mwb_rma_refund_settings = get_option( 'mwb_rma_refund_settings', array() );
 		if(isset($mwb_rma_refund_settings) && !empty($mwb_rma_refund_settings) && is_array($mwb_rma_refund_settings)){
-			$mwb_rma_return_enable = $mwb_rma_refund_settings['mwb_rma_return_enable'];
+			$mwb_rma_return_enable = isset($mwb_rma_refund_settings['mwb_rma_return_enable'])?$mwb_rma_refund_settings['mwb_rma_return_enable']:'';
 			if(isset($mwb_rma_return_enable) && $mwb_rma_return_enable == 'on'){
 				add_meta_box('mwb_rma_order_refund', 
-					__('Refund Requested Products','mwb-rma'),
+					__('Refund Requested Products','woo-refund-and-exchange-lite'),
 					array($this, 'mwb_rma_order_return'),
 					'shop_order');
 				
@@ -249,13 +251,20 @@ class Mwb_Rma_Admin {
 			$mwb_rma_new_order_statuses[ $mwb_rma_key ] = $mwb_rma_status;
 
 			if ( 'wc-completed' === $mwb_rma_key ) {
-				$mwb_rma_new_order_statuses['wc-refund-requested'] = __('Refund Requested','mwb-rma');
-				$mwb_rma_new_order_statuses['wc-refund-approved']  = __('Refund Approved','mwb-rma');
-				$mwb_rma_new_order_statuses['wc-refund-cancelled'] = __('Refund Cancelled','mwb-rma');
+				$mwb_rma_new_order_statuses['wc-refund-requested'] = __('Refund Requested','woo-refund-and-exchange-lite');
+				$mwb_rma_new_order_statuses['wc-refund-approved']  = __('Refund Approved','woo-refund-and-exchange-lite');
+				$mwb_rma_new_order_statuses['wc-refund-cancelled'] = __('Refund Cancelled','woo-refund-and-exchange-lite');
 			}
 		}
 		return $mwb_rma_new_order_statuses;	
 	}
+
+	/**
+	 * This function is to process approve return request
+	 * 
+	 * @author makewebbetter<webmaster@makewebbetter.com>
+	 * @link http://www.makewebbetter.com/
+	 */
 
 	public function mwb_rma_return_req_approve_callback(){
 
@@ -332,7 +341,7 @@ class Mwb_Rma_Admin {
 			
 			$message_details='';
 			$message_details='<div class="header">
-						<h2>'.__('Your Refund Request is Approved', 'mwb-rma').'</h2>
+						<h2>'.__('Your Refund Request is Approved', 'woo-refund-and-exchange-lite').'</h2>
 					</div>
 					<div class="content">
 						<div class="reason">
@@ -343,9 +352,9 @@ class Mwb_Rma_Admin {
 							<table>
 								<tbody>
 									<tr>
-										<th>'.__('Product', 'mwb-rma').'</th>
-										<th>'.__('Quantity', 'mwb-rma').'</th>
-										<th>'.__('Price', 'mwb-rma').'</th>
+										<th>'.__('Product', 'woo-refund-and-exchange-lite').'</th>
+										<th>'.__('Quantity', 'woo-refund-and-exchange-lite').'</th>
+										<th>'.__('Price', 'woo-refund-and-exchange-lite').'</th>
 									</tr>';
 									$order = wc_get_order($orderid);
 									$final_stotal=0;
@@ -404,7 +413,7 @@ class Mwb_Rma_Admin {
 									</tr>';
 								}
 			$message_details.= ' <tr>
-										<th colspan="2">'.__('Refund Total', 'mwb-rma').':</th>
+										<th colspan="2">'.__('Refund Total', 'woo-refund-and-exchange-lite').':</th>
 										<td>'.wc_price($total_price).'</td>
 									</tr>
 								</tbody>
@@ -422,7 +431,7 @@ class Mwb_Rma_Admin {
 
 			wc_mail($to, $subject, $html_content, $headers);
 
-			$order->update_status('wc-refund-approved', __('User Request of Refund Product is approved','mwb-rma'));
+			$order->update_status('wc-refund-approved', __('User Request of Refund Product is approved','woo-refund-and-exchange-lite'));
 			$order->calculate_totals();
 			$response['response'] = 'success';
 			echo json_encode($response);
@@ -433,7 +442,7 @@ class Mwb_Rma_Admin {
 	}
 
 	/**
-	 * This function is process cancel Refund request
+	 * This function is to process cancel Refund request
 	 * 
 	 * @author makewebbetter<webmaster@makewebbetter.com>
 	 * @link http://www.makewebbetter.com/
@@ -550,7 +559,7 @@ class Mwb_Rma_Admin {
 				
 				wc_mail($to, $subject, $html_content, $headers);
 			
-				$order->update_status('wc-refund-cancelled', __('User Request of Refund Product is approevd','mwb-rma'));
+				$order->update_status('wc-refund-cancelled', __('User Request of Refund Product is approevd','woo-refund-and-exchange-lite'));
 				$response['response'] = 'success';
 				echo json_encode($response);
 				die;
@@ -559,24 +568,26 @@ class Mwb_Rma_Admin {
 	}
 
 	/**
-	 * update left amount because amount is refunded.
+	 * Update left amount because amount is refunded.
 	 * 
-	 * @name mwb_rma_action_woocommerce_order_refunded
+	 * @param $order_get_id , $refund_get_id
 	 * @author makewebbetter<webmaster@makewebbetter.com>
 	 * @link http://www.makewebbetter.com/
 	 */
+
 	public function mwb_rma_action_woocommerce_order_refunded( $order_get_id, $refund_get_id )
 	{
 		update_post_meta($refund_get_id['order_id'],'mwb_rma_refund_amount','yes');
 	}
 
-		/**
+	/**
 	 * Manage stock when product is actually back in stock.
 	 * 
 	 * @name mwb_rma_manage_stock
 	 * @author makewebbetter<webmaster@makewebbetter.com>
 	 * @link http://www.makewebbetter.com/
 	 */
+
 	public function mwb_rma_manage_stock()
 	{ 
 		$check_ajax = check_ajax_referer( 'mwb-rma-ajax-security-string', 'security_check' );
@@ -656,16 +667,15 @@ class Mwb_Rma_Admin {
 				}
 				if($ms_flag){
 					$response['result'] = 'success';
-					$response['msg'] = __('Product Stock is updated Succesfully.','mwb-rma');
+					$response['msg'] = __('Product Stock is updated Succesfully.','woo-refund-and-exchange-lite');
 				}else{
 					$response['result'] = false;
-					$response['msg'] = __('Product Stock is not updated as manage stock setting of product is disable.','mwb-rma');
+					$response['msg'] = __('Product Stock is not updated as manage stock setting of product is disable.','woo-refund-and-exchange-lite');
 				}
 				echo json_encode($response);
 				wp_die();
 			}
 		}
 	}
-
 
 }

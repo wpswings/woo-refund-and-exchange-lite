@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The plugin bootstrap file
  *
@@ -9,18 +10,18 @@
  *
  * @link              www.makewebbetter.com
  * @since             1.0.0
- * @package           Mwb_Rma
+ * @package           Woo_Refund_And_Exchange_Lite
  *
  * @wordpress-plugin
- * Plugin Name:       WooCommerce RMA-Return-Refund-Exchange Lite
+ * Plugin Name:       WooCommerce RMA Return Refund Exchange Lite
  * Plugin URI:        www.makewebbetter.com
  * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
- * Version:           1.0.0
+ * Version:           2.0.0
  * Author:            makewebbetter
  * Author URI:        www.makewebbetter.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       mwb-rma
+ * Text Domain:       woo-refund-and-exchange-lite
  * Domain Path:       /languages
  */
 
@@ -34,38 +35,36 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'MWB_RMA_VERSION', '1.0.0' );
+define( 'WOO_REFUND_AND_EXCHANGE_LITE_VERSION', '2.0.0' );
 define( 'MWB_RMA_DIR_PATH', plugin_dir_path( __FILE__ ) );
 define('MWB_RMA_URL', plugin_dir_url( __FILE__ ));
+
 /**
  * The code that runs during plugin activation.
- * This action is documented in includes/class-mwb-rma-activator.php
+ * This action is documented in includes/class-woo-refund-and-exchange-lite-activator.php
  */
-function activate_mwb_rma() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-mwb-rma-activator.php';
-	Mwb_Rma_Activator::activate();
-	
+function activate_woo_refund_and_exchange_lite() {
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-woo-refund-and-exchange-lite-activator.php';
+	Woo_Refund_And_Exchange_Lite_Activator::activate();
 }
 
 /**
  * The code that runs during plugin deactivation.
- * This action is documented in includes/class-mwb-rma-deactivator.php
+ * This action is documented in includes/class-woo-refund-and-exchange-lite-deactivator.php
  */
-function deactivate_mwb_rma() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-mwb-rma-deactivator.php';
-	Mwb_Rma_Deactivator::deactivate();
+function deactivate_woo_refund_and_exchange_lite() {
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-woo-refund-and-exchange-lite-deactivator.php';
+	Woo_Refund_And_Exchange_Lite_Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'activate_mwb_rma' );
-register_deactivation_hook( __FILE__, 'deactivate_mwb_rma' );
+register_activation_hook( __FILE__, 'activate_woo_refund_and_exchange_lite' );
+register_deactivation_hook( __FILE__, 'deactivate_woo_refund_and_exchange_lite' );
 
 /**
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path( __FILE__ ) . 'includes/class-mwb-rma.php';
-
-
+require plugin_dir_path( __FILE__ ) . 'includes/class-woo-refund-and-exchange-lite.php';
 
 $activated = true;
 if (function_exists('is_multisite') && is_multisite())
@@ -84,6 +83,7 @@ if (function_exists('is_multisite') && is_multisite())
 	}
 
 }
+
 
 if($activated){
 
@@ -131,6 +131,7 @@ if($activated){
 	/**
 	 * Add settings link on plugin page
 	 * @name mwb_rma_admin_settings()
+	  *@param $actions, $plugin_file
 	 * @author makewebbetter<webmaster@makewebbetter.com>
 	 * @link http://www.makewebbetter.com/
 	 */
@@ -143,7 +144,7 @@ if($activated){
 		}
 		if ($plugin == $plugin_file) {
 			$settings = array (
-					'settings' => '<a href="' . admin_url ( 'admin.php?page=mwb-rma-setting' ) . '">' . __ ( 'Settings', 'mwb-rma' ) . '</a>',
+					'settings' => '<a href="' . admin_url ( 'admin.php?page=mwb-rma-setting' ) . '">' . __ ( 'Settings', 'woo-refund-and-exchange-lite' ) . '</a>',
 			);
 			$actions = array_merge ( $settings, $actions );
 		}
@@ -159,15 +160,14 @@ if($activated){
 	 * @author makewebbetter<webmaster@makewebbetter.com>
 	 * @link http://www.makewebbetter.com/
 	 */
-	
 
 	function mwb_rma_add_doc_and_premium_link( $links, $file ) {
 
-		if ( strpos( $file, 'mwb-rma.php' ) !== false ) {
+		if ( strpos( $file, 'woo-refund-and-exchange-lite.php' ) !== false ) {
 
 			$row_meta = array(
-				'docs'    => '<a target="_blank" style="color:#FFF;background:linear-gradient(to right,#7a28ff 0,#00a1ff 100%);padding:5px;border-radius:6px;" href="https://docs.makewebbetter.com/woocommerce-refund-and-exchange-lite">'.esc_html__("Go to Docs", 'mwb-rma' ).'</a>',
-				'goPro' => '<a target="_blank" style="color:#FFF;background:linear-gradient(to right,#7a28ff 0,#00a1ff 100%);padding:5px;border-radius:6px;" href="https://makewebbetter.com/product/woocommerce-rma-return-refund-exchange/"><strong>'.esc_html__("Go Premium", 'mwb-rma' ).'</strong></a>',
+				'docs'    => '<a target="_blank" style="color:#FFF;background:linear-gradient(to right,#7a28ff 0,#00a1ff 100%);padding:5px;border-radius:6px;" href="https://docs.makewebbetter.com/woocommerce-refund-and-exchange-lite">'.esc_html__("Go to Docs", 'woo-refund-and-exchange-lite' ).'</a>',
+				'goPro' => '<a target="_blank" style="color:#FFF;background:linear-gradient(to right,#7a28ff 0,#00a1ff 100%);padding:5px;border-radius:6px;" href="https://makewebbetter.com/product/woocommerce-rma-return-refund-exchange/"><strong>'.esc_html__("Go Premium", 'woo-refund-and-exchange-lite' ).'</strong></a>',
 			);
 
 			return array_merge( $links, $row_meta );
@@ -229,11 +229,11 @@ if($activated){
 	// add capabilities, priority must be after the initial role   
 	add_action('init', 'mwb_rma_role_capability', 11);
 
-		/**
+	/**
 	 * This function is used for the common parts of mail
 	 * @author makewebbetter<webmaster@makewebbetter.com>
 	 * @link http://www.makewebbetter.com/
-	 * @param $order_id,$message_detail
+	 * @param unknown $order_id,$message_detail
 	 * @return message
 	 */
  	function create_mail_html($order_id,$message_detail){
@@ -336,25 +336,27 @@ if($activated){
 					<div style="text-align: center; padding: 10px;" class="header">
 						'.$mail_header.'
 					</div>';
+
 		$message .= $message_detail;
+
 		$message .='<div class="Customer-detail">
-							<h4>'.__('Customer details', 'mwb-rma').'</h4>
+							<h4>'.__('Customer details', 'woo-refund-and-exchange-lite').'</h4>
 							<ul>
 								<li><p class="info">
-									<span class="bold">'.__('Email', 'mwb-rma').': </span>'.get_post_meta($order_id, '_billing_email', true).'
+									<span class="bold">'.__('Email', 'woo-refund-and-exchange-lite').': </span>'.get_post_meta($order_id, '_billing_email', true).'
 								</p></li>
 								<li><p class="info">
-									<span class="bold">'.__('Tel', 'mwb-rma').': </span>'.get_post_meta($order_id, '_billing_phone', true).'
+									<span class="bold">'.__('Tel', 'woo-refund-and-exchange-lite').': </span>'.get_post_meta($order_id, '_billing_phone', true).'
 								</p></li>
 							</ul>
 						</div>
 						<div class="details">
 							<div class="Shipping-detail">
-								<h4>'.__('Shipping Address', 'mwb-rma').'</h4>
+								<h4>'.__('Shipping Address', 'woo-refund-and-exchange-lite').'</h4>
 								'.$order->get_formatted_shipping_address().'
 							</div>
 							<div class="Billing-detail">
-								<h4>'.__('Billing Address', 'mwb-rma').'</h4>
+								<h4>'.__('Billing Address', 'woo-refund-and-exchange-lite').'</h4>
 								'.$order->get_formatted_billing_address().'
 							</div>
 							<div class="clear"></div>
@@ -367,14 +369,21 @@ if($activated){
 
 				</body>
 				</html>';
-			return $message;
+
+		return $message;
 				
 	}
 
+	/**
+ 	 * load plugin textdomain
+ 	 * @name mwb_rma_load_plugin_textdomain()
+ 	 * @author makewebbetter<webmaster@makewebbetter.com>
+ 	 * @link http://www.makewebbetter.com/
+ 	 */
 
 	function mwb_rma_load_plugin_textdomain()
 	{
-		$domain = "mwb-rma";
+		$domain = "woo-refund-and-exchange-lite";
 		$locale = apply_filters( 'plugin_locale', get_locale(), $domain );
 		load_textdomain( $domain, MWB_RMA_DIR_PATH .'languages/'.$domain.'-' . $locale . '.mo' );
 		$var=load_plugin_textdomain( $domain, false, plugin_basename( dirname(__FILE__) ) . '/languages' );
@@ -390,16 +399,18 @@ if($activated){
 	 *
 	 * @since    1.0.0
 	 */
-	function run_mwb_rma() {
+	function run_woo_refund_and_exchange_lite() {
 
-		$plugin = new Mwb_Rma();
+		$plugin = new Woo_Refund_And_Exchange_Lite();
 		$plugin->run();
 
 	}
-	run_mwb_rma();
+	run_woo_refund_and_exchange_lite();
+
 
 }else{
 
+	// to deactivate plugin if woocommerce is not installed
 	add_action( 'admin_init', 'mwb_rma_plugin_deactivate' ); 
 
 	/**
@@ -428,7 +439,7 @@ if($activated){
  		
 		?>
 		 <div class="error notice is-dismissible">
-			<p><?php _e( 'Woocommerce is not activated, Please activate Woocommerce first to install WooCommerce Refund and Exchange Lite.', 'mwb-rma' ); ?></p>
+			<p><?php _e( 'Woocommerce is not activated, Please activate Woocommerce first to install WooCommerce Refund and Exchange Lite.', 'woo-refund-and-exchange-lite' ); ?></p>
 		</div>
    		<style>
    		#message{display:none;}
@@ -437,3 +448,4 @@ if($activated){
  	} 
 
 }
+

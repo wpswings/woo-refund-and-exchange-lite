@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Fired when the plugin is uninstalled.
  *
@@ -21,7 +22,7 @@
  * @link       www.makewebbetter.com
  * @since      1.0.0
  *
- * @package    Mwb_Rma
+ * @package    Woo_Refund_And_Exchange_Lite
  */
 
 // If uninstall not called from WordPress, then exit.

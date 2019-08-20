@@ -6,8 +6,8 @@
  * @link       www.makewebbetter.com
  * @since      1.0.0
  *
- * @package    Mwb_Rma
- * @subpackage Mwb_Rma/includes
+ * @package    Woo_Refund_And_Exchange_Lite
+ * @subpackage Woo_Refund_And_Exchange_Lite/includes
  */
 
 /**
@@ -16,11 +16,11 @@
  * This class defines all code necessary to run during the plugin's activation.
  *
  * @since      1.0.0
- * @package    Mwb_Rma
- * @subpackage Mwb_Rma/includes
+ * @package    Woo_Refund_And_Exchange_Lite
+ * @subpackage Woo_Refund_And_Exchange_Lite/includes
  * @author     makewebbetter <webmaster@makewebbetter.com>
  */
-class Mwb_Rma_Activator {
+class Woo_Refund_And_Exchange_Lite_Activator {
 
 	/**
 	 * Short Description. (use period)
@@ -31,7 +31,6 @@ class Mwb_Rma_Activator {
 	 */
 	public static function activate() {
 
-		
 	}
 
 }
