@@ -567,7 +567,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 							</table>
 						</div>';
 					
-				$message = create_mail_html($order_id,$message_details);		
+				$message = Woo_Refund_And_Exchange_Lite_Common_Functions::create_mail_html($order_id,$message_details);		
 			
 				$headers = array();
 				$headers[] = "Content-Type: text/html; charset=UTF-8";
@@ -611,39 +611,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 				if($mwb_rma_refund_template){
 					$html_content = $message;
 				}else{
-					$html_content = '<html>
-										<head>
-											<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-											<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-										</head>
-										<body style="margin: 1% 0 0; padding: 0;">
-											<table cellpadding="0" cellspacing="0" width="100%">
-												<tr>
-													<td style="text-align: center; margin-top: 30px; padding: 10px; color: #99B1D8; font-size: 12px;">
-														'.$mail_header.'
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<table align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse; font-family:Open Sans; max-width: 600px; width: 100%;">
-															<tr>
-																<td style="padding: 36px 48px; width: 100%; background-color:#557DA1;color: #fff; font-size: 30px; font-weight: 300; font-family:helvetica;">'.$subject.'</td>
-															</tr>
-															<tr>
-																<td style="width:100%; padding: 36px 48px 10px; background-color:#fdfdfd; font-size: 14px; color: #737373;">'.$message.'</td>
-															</tr>
-														</table>
-													</td>
-												</tr>
-												<tr>
-													<td style="text-align: center; margin-top: 30px; color: #99B1D8; font-size: 12px;">
-														'.$mail_footer.'
-													</td>
-												</tr>				
-											</table>
-
-										</body>
-										</html>';
+				 	$html_content= Woo_Refund_And_Exchange_Lite_Common_Functions::mwb_rma_mail_template_html($mail_header,$subject,$message,$$mail_footer);
 				}
 
 				wc_mail($to, $subject, $html_content, $headers );

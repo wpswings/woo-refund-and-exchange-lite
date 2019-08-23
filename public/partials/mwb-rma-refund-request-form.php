@@ -407,5 +407,11 @@ if($allowed){
  */
 do_action( 'woocommerce_after_main_content' );
 
-//do_action( 'woocommerce_sidebar' );
+/**
+ * woocommerce_sidebar hook.
+ *
+ * @hooked woocommerce_get_sidebar - 10
+ */
+do_action( 'woocommerce_sidebar' );
+
 get_footer( 'shop' );

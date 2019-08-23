@@ -46,7 +46,10 @@ define('MWB_RMA_URL', plugin_dir_url( __FILE__ ));
 function activate_woo_refund_and_exchange_lite() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-woo-refund-and-exchange-lite-activator.php';
 	Woo_Refund_And_Exchange_Lite_Activator::activate();
+	mwb_rma_create_pages();
+	
 }
+
 
 /**
  * The code that runs during plugin deactivation.
@@ -55,10 +58,10 @@ function activate_woo_refund_and_exchange_lite() {
 function deactivate_woo_refund_and_exchange_lite() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-woo-refund-and-exchange-lite-deactivator.php';
 	Woo_Refund_And_Exchange_Lite_Deactivator::deactivate();
+	mwb_rma_delete_pages();
 }
 
-register_activation_hook( __FILE__, 'activate_woo_refund_and_exchange_lite' );
-register_deactivation_hook( __FILE__, 'deactivate_woo_refund_and_exchange_lite' );
+
 
 /**
  * The core plugin class that is used to define internationalization,
@@ -113,7 +116,6 @@ if($activated){
 		}
 		update_option('mwb_rma_pages',$mwb_rma_pages);
 	} 
-	register_activation_hook( __FILE__, 'mwb_rma_create_pages' );
 
 	/**
 	 * The code that runs during plugin deactivation to delete Refund Request Form Post.
@@ -126,7 +128,6 @@ if($activated){
 		wp_delete_post($page_id);	
 		delete_option('mwb_rma_pages');
 	}
-	register_deactivation_hook( __FILE__, 'mwb_rma_delete_pages' );
 
 	/**
 	 * Add settings link on plugin page
@@ -230,151 +231,6 @@ if($activated){
 	add_action('init', 'mwb_rma_role_capability', 11);
 
 	/**
-	 * This function is used for the common parts of mail
-	 * @author makewebbetter<webmaster@makewebbetter.com>
-	 * @link http://www.makewebbetter.com/
-	 * @param unknown $order_id,$message_detail
-	 * @return message
-	 */
- 	function create_mail_html($order_id,$message_detail){
- 		
-	$mwb_rma_mail_basic_settings = get_option('mwb_rma_mail_basic_settings',array());
-	$mail_header = stripslashes(isset($mwb_rma_mail_basic_settings['mwb_rma_mail_header'])? $mwb_rma_mail_basic_settings['mwb_rma_mail_header']:'');
-	$mail_footer = stripslashes(isset($mwb_rma_mail_basic_settings['mwb_rma_mail_footer'])? $mwb_rma_mail_basic_settings['mwb_rma_mail_footer']:'');
-
-	$order = new WC_Order($order_id);
-	$message = '<html>
-				<body>
-					<style>
-						body {
-							box-shadow: 2px 2px 10px #ccc;
-							color: #767676;
-							font-family: Arial,sans-serif;
-							margin: 80px auto;
-							max-width: 700px;
-							padding-bottom: 30px;
-							width: 100%;
-						}
-
-						h2 {
-							font-size: 30px;
-							margin-top: 0;
-							color: #fff;
-							padding: 40px;
-							background-color: #557da1;
-						}
-
-						h4 {
-							color: #557da1;
-							font-size: 20px;
-							margin-bottom: 10px;
-						}
-
-						.content {
-							padding: 0 40px;
-						}
-
-						.Customer-detail ul li p {
-							margin: 0;
-						}
-
-						.details .Shipping-detail {
-							width: 40%;
-							float: right;
-						}
-
-						.details .Billing-detail {
-							width: 60%;
-							float: left;
-						}
-
-						.details .Shipping-detail ul li,.details .Billing-detail ul li {
-							list-style-type: none;
-							margin: 0;
-						}
-
-						.details .Billing-detail ul,.details .Shipping-detail ul {
-							margin: 0;
-							padding: 0;
-						}
-
-						.clear {
-							clear: both;
-						}
-
-						table,td,th {
-							border: 2px solid #ccc;
-							padding: 15px;
-							text-align: left;
-						}
-
-						table {
-							border-collapse: collapse;
-							width: 100%;
-						}
-
-						.info {
-							display: inline-block;
-						}
-
-						.bold {
-							font-weight: bold;
-						}
-
-						.footer {
-							margin-top: 30px;
-							text-align: center;
-							color: #99B1D8;
-							font-size: 12px;
-						}
-						dl.variation dd {
-							font-size: 12px;
-							margin: 0;
-						}
-					</style>
-
-					<div style="text-align: center; padding: 10px;" class="header">
-						'.$mail_header.'
-					</div>';
-
-		$message .= $message_detail;
-
-		$message .='<div class="Customer-detail">
-							<h4>'.__('Customer details', 'woo-refund-and-exchange-lite').'</h4>
-							<ul>
-								<li><p class="info">
-									<span class="bold">'.__('Email', 'woo-refund-and-exchange-lite').': </span>'.get_post_meta($order_id, '_billing_email', true).'
-								</p></li>
-								<li><p class="info">
-									<span class="bold">'.__('Tel', 'woo-refund-and-exchange-lite').': </span>'.get_post_meta($order_id, '_billing_phone', true).'
-								</p></li>
-							</ul>
-						</div>
-						<div class="details">
-							<div class="Shipping-detail">
-								<h4>'.__('Shipping Address', 'woo-refund-and-exchange-lite').'</h4>
-								'.$order->get_formatted_shipping_address().'
-							</div>
-							<div class="Billing-detail">
-								<h4>'.__('Billing Address', 'woo-refund-and-exchange-lite').'</h4>
-								'.$order->get_formatted_billing_address().'
-							</div>
-							<div class="clear"></div>
-						</div>
-						
-					</div>
-					<div class="footer" style="text-align:center;padding: 10px;">
-						'.$mail_footer.'
-					</div>
-
-				</body>
-				</html>';
-
-		return $message;
-				
-	}
-
-	/**
  	 * load plugin textdomain
  	 * @name mwb_rma_load_plugin_textdomain()
  	 * @author makewebbetter<webmaster@makewebbetter.com>
@@ -406,7 +262,10 @@ if($activated){
 
 	}
 	run_woo_refund_and_exchange_lite();
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-woo-refund-and-exchange-lite-common-functions.php';
 
+	register_activation_hook( __FILE__, 'activate_woo_refund_and_exchange_lite' );
+	register_deactivation_hook( __FILE__, 'deactivate_woo_refund_and_exchange_lite' );
 
 }else{
 

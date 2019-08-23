@@ -233,6 +233,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			'show_in_admin_status_list' => true,
 			'label_count'               => _n_noop( 'Refund Cancelled <span class="count">(%s)</span>', 'Refund Cancelled <span class="count">(%s)</span>' )
 			) );
+		do_action('mwb_rma_register_custom_order_status');
 	}
 
 	/**
@@ -254,6 +255,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				$mwb_rma_new_order_statuses['wc-refund-requested'] = __('Refund Requested','woo-refund-and-exchange-lite');
 				$mwb_rma_new_order_statuses['wc-refund-approved']  = __('Refund Approved','woo-refund-and-exchange-lite');
 				$mwb_rma_new_order_statuses['wc-refund-cancelled'] = __('Refund Cancelled','woo-refund-and-exchange-lite');
+				$mwb_rma_new_order_statuses = apply_filters('mwb_rma_add_custom_order_status',$mwb_rma_new_order_statuses);
 			}
 		}
 		return $mwb_rma_new_order_statuses;	
@@ -420,7 +422,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 							</table>
 						</div>';
 
-			$message = create_mail_html($orderid,$message_details);
+			$message = Woo_Refund_And_Exchange_Lite_Common_Functions::create_mail_html($orderid,$message_details);
 			$html_content = $message;
 
 			$to = get_post_meta($orderid, '_billing_email', true);
@@ -520,38 +522,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				$mail_footer = stripslashes(isset($mwb_rma_mail_basic_settings['mwb_rma_mail_footer'])? $mwb_rma_mail_basic_settings['mwb_rma_mail_footer']:'');
 				$subject = isset($mwb_rma_mail_refund_settings['mwb_rma_mail_return_cancel_subject'])? $mwb_rma_mail_refund_settings['mwb_rma_mail_return_cancel_subject']:'';
 
-				$html_content = '<html>
-				<head>
-					<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-					<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-				</head>
-				<body>
-					<table cellpadding="0" cellspacing="0" width="100%">
-						<tr>
-							<td style="text-align: center; margin-top: 30px; padding: 10px; color: #99B1D8; font-size: 12px;">
-								'.$mail_header.'
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<table align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse; font-family:Open Sans; max-width: 600px; width: 100%;">
-									<tr>
-										<td style="padding: 36px 48px; width: 100%; background-color:#557DA1;color: #fff; font-size: 30px; font-weight: 300; font-family:helvetica;">'.$subject.'</td>
-									</tr>
-									<tr>
-										<td style="width:100%; padding: 36px 48px 10px; background-color:#fdfdfd; font-size: 14px; color: #737373;">'.$message.'</td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-						<tr>
-							<td style="text-align: center; margin-top: 30px; color: #99B1D8; font-size: 12px;">
-								'.$mail_footer.'
-							</td>
-						</tr>
-					</table>
-				</body>
-				</html>';
+				$html_content= Woo_Refund_And_Exchange_Lite_Common_Functions::mwb_rma_mail_template_html($mail_header,$subject,$message,$$mail_footer);
 
 				$to = get_post_meta($orderid, '_billing_email', true);
 				$headers[] = "From: $fname <$fmail>";

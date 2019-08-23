@@ -98,8 +98,7 @@ $flag = false;
 if( isset( $_POST['mwb_rma_refund_settings_save'] ) )
 {
 	if( wp_verify_nonce( $_REQUEST['mwb-rma-refund-nonce'] ,'mwb-rma-refund-nonce') ){
-		unset($_POST['mwb_rma_refund_settings_save']);
-
+		 
 		$postdata = $_POST;
 		$refund_setting_arr = $mwb_rma_admin_settings->mwb_rma_save_tab_settings($postdata,$refund_setting_array);
 		if (is_array($refund_setting_arr) && !empty($refund_setting_arr)) {	
