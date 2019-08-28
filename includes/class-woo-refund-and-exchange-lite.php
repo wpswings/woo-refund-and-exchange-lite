@@ -187,6 +187,8 @@ class Woo_Refund_And_Exchange_Lite {
 		$this->loader->add_action( 'wp_ajax_nopriv_mwb_rma_return_upload_files',$plugin_public, 'mwb_rma_order_return_attach_files');
 		$this->loader->add_action( 'wp_ajax_mwb_rma_return_product_info',$plugin_public, 'mwb_rma_return_product_info_callback');
 		$this->loader->add_action( 'wp_ajax_nopriv_mwb_rma_return_product_info',$plugin_public, 'mwb_rma_return_product_info_callback');
+		$this->loader->add_action( 'wp_ajax_mwb_rma_get_product_price', $plugin_public, 'mwb_rma_get_product_price' );
+		$this->loader->add_action( 'wp_ajax_nopriv_mwb_rma_get_product_price', $plugin_public, 'mwb_rma_get_product_price' );
 
 	}
 

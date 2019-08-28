@@ -110,6 +110,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 			$myaccount_page_url='';
 			$myaccount_page_url=apply_filters('myaccount_page_url',$myaccount_page_url);
 		}
+		$pro_active = Woo_Refund_And_Exchange_Lite_Common_Functions::mwb_rma_pro_active();
 		$translation_array = array(
 			'attachment_msg'		=> __( 'File should be of .png , .jpg, or .jpeg extension' , 'woo-refund-and-exchange-lite'),
 			'return_subject_msg' 	=> __( 'Please enter refund subject.', 'woo-refund-and-exchange-lite' ),
@@ -117,6 +118,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 			'mwb_rma_nonce'			=> $ajax_nonce,
 			'ajaxurl' 				=> admin_url('admin-ajax.php'),
 			'myaccount_url' 		=> $myaccount_page_url,
+			'pro_active'			=> $pro_active,
 		);
 		wp_localize_script(  $this->plugin_name, 'global_mwb_rma', $translation_array );
 
@@ -174,12 +176,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 
 			if($mwb_rma_refund_enable == 'on'){
 
-				$order_date = date_i18n( 'd-m-Y', strtotime( $order->get_date_created()  ) );
-				$today_date = date_i18n( 'd-m-Y' );
-				$order_date = strtotime($order_date);
-				$today_date = strtotime($today_date);
-				$days = $today_date - $order_date;
-				$day_diff = floor($days/(60*60*24));
+				$day_diff = Woo_Refund_And_Exchange_Lite_Common_Functions::mwb_rma_find_order_day_diff($order);
 				$order_status ="wc-".$order->get_status();
 
 				$order_id=$order->get_id();
@@ -337,15 +334,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 
 				if(in_array($order_status, $statuses))
 				{
-					
-					$order_date = date_i18n( 'd-m-Y', strtotime( $order->get_date_created() ) );
-
-					$today_date = date_i18n( 'd-m-Y' );
-					$order_date = strtotime($order_date);
-					$today_date = strtotime($today_date);
-					$days = $today_date - $order_date;
-					$day_diff = floor($days/(60*60*24));
-
+					$day_diff = Woo_Refund_And_Exchange_Lite_Common_Functions::mwb_rma_find_order_day_diff($order);
 					$day_allowed = $mwb_rma_refund_max_days;
 
 					$return_button_text = __('Refund','woo-refund-and-exchange-lite');
@@ -631,31 +620,40 @@ class Woo_Refund_And_Exchange_Lite_Public {
 		}
 	}
 
-	/**
-	 * This function is for checking whether mwb-rma-pro plugin is active or not
-	 * 
-	 * @author makewebbetter<webmaster@makewebbetter.com>
-	 * @link http://www.makewebbetter.com/
-	 */
+	public function mwb_rma_get_product_price(){
+     	$product_id = isset( $_POST['product_id'] ) ? $_POST['product_id'] : ' ';
+     	if( $product_id !==' '  && is_array( $product_id) && !empty( $product_id ) ){
 
-	public function mwb_rma_pro_active(){
-		global $rma_pro_activated;
-		$rma_pro_activated=false;
-		if (function_exists('is_multisite') && is_multisite())
-		{
-			include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-			if ( is_plugin_active( 'mwb-rma-pro/mwb-rma-pro.php' ) )
-			{
-				$rma_pro_activated = true;
-			}
+     		foreach ($product_id as $key => $value) {
+     			foreach ($value as $key1 => $id) {
+     				
+     				$product = wc_get_product( $value['productid'] );
+     				if( $product->is_type( 'simple' ) ){
+     					if( $product->is_on_sale() ){
 
-		}else{
-			if (in_array('mwb-rma-pro/mwb-rma-pro.php', apply_filters('active_plugins', get_option('active_plugins'))))
-			{
-				$rma_pro_activated = true;
-			}
-		}
+     						$product_id[ $key ]['price'] = $product->get_sale_price();
+     					}else{
+     						$product_id[ $key ]['price'] = $product->get_price();
+     					}
 
-	}
+     				} elseif( $product->is_type( 'variable' ) ){
+     					$variations = $product->get_available_variations();
+     					foreach ($variations as $variation){
+     						if( $variation['variation_id'] == $value['variationid'] ){
+     							$product_id[ $key ]['price']= $variation['display_price'];
+
+     						}
+     					}
+     				}
+     			}
+     		}
+     		$productid = json_encode( $product_id );
+     		echo $productid;
+     	}else{
+     		echo "fail";
+     	}
+     	wp_die();
+     }
+
 
 }

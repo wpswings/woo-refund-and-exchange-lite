@@ -62,7 +62,7 @@
 	 			security_check	: global_mwb_rma.mwb_rma_nonce	
 	 		};
 
-	 		$.ajax({
+	 		jQuery.ajax({
 	 			url: global_mwb_rma.ajaxurl, 
 	 			type: "POST",  
 	 			data: data,
@@ -87,7 +87,7 @@
 	 			date:date,
 	 			security_check	:	global_mwb_rma.mwb_rma_nonce	
 	 		};
-	 		$.ajax({
+	 		jQuery.ajax({
 	 			url: global_mwb_rma.ajaxurl, 
 	 			type: "POST",  
 	 			data: data,
