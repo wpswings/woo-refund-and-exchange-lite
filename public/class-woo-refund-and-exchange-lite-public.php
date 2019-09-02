@@ -517,6 +517,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 											{
 												foreach($requested_products as $requested_product)
 												{
+
 													if(isset($requested_product['item_id']))
 													{	
 														if($item_id == $requested_product['item_id'])
@@ -530,8 +531,9 @@ class Woo_Refund_And_Exchange_Lite_Public {
 															{
 																$prod = wc_get_product($requested_product['product_id']);
 															}
-
-															$subtotal = $requested_product['price']*$item['qty'];
+															$mwb_rma_actual_price = $order->get_item_total( $item );
+															$subtotal = $mwb_rma_actual_price*$requested_product['qty'];
+															$subtotal = apply_filters( 'mwb_rma_refund_policy_price_deduction' ,$subtotal,$order_id);
 															$item_meta      = new WC_Order_Item_Product( $item);
 															$item_meta_html = wc_display_item_meta($item_meta,array('echo'=> false));
 
@@ -539,8 +541,8 @@ class Woo_Refund_And_Exchange_Lite_Public {
 															$message_details .= '<tr>
 															<td>'.$item['name'].'<br>';
 																$message_details .= '<small>'.$item_meta_html.'</small>
-																<td>'.$item['qty'].'</td>
-																<td>'.wc_price($requested_product['price']*$item['qty']).'</td>
+																<td>'.$requested_product['qty'].'</td>
+																<td>'.wc_price($subtotal).'</td>
 															</tr>';
 														}
 													}
@@ -566,7 +568,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 				
 				//Send mail to User that we recieved your request
 				wc_mail( $to, $subject, $message, $headers );	
-		
+
 				$fmail =  isset($mwb_rma_mail_basic_settings['mwb_rma_mail_from_email'])? $mwb_rma_mail_basic_settings['mwb_rma_mail_from_email']:'';
 				$fname =  isset($mwb_rma_mail_basic_settings['mwb_rma_mail_from_name'])? $mwb_rma_mail_basic_settings['mwb_rma_mail_from_name']:'';
 
@@ -589,10 +591,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 				
 				$mwb_rma_shortcode='';
 				$mwb_rma_shortcode = $message;
-
-			
-				$mwb_rma_shortcode = apply_filters( 'mwb_rma_add_shortcode_refund_mail' , $mwb_rma_shortcode,$order_id);
-				
+				$mwb_rma_shortcode = apply_filters( 'mwb_rma_add_shortcode_refund_mail' , $mwb_rma_shortcode , $order_id);
 				$message = $mwb_rma_shortcode;
 				$mwb_rma_refund_template = false;
 				$mwb_rma_refund_template = apply_filters('mwb_rma_refund_template',$mwb_rma_refund_template );
@@ -604,12 +603,11 @@ class Woo_Refund_And_Exchange_Lite_Public {
 				}
 
 				wc_mail($to, $subject, $html_content, $headers );
-
+				
 				$order->update_status('wc-refund-requested', 'User Request to Refund Product');
 				$response['msg'] = __('Message send successfully.You have received a notification mail regarding this, Please check your mail. Soon You redirect to My Account Page. Thanks', 'woo-refund-and-exchange-lite');
 				$auto_accept_day_allowed = false;
 				$auto_accept_day_allowed = apply_filters( 'auto_accept_day_allowed',$auto_accept_day_allowed,$order);
-			
 				if($auto_accept_day_allowed){
 					$response['auto_accept'] = true;
 				}

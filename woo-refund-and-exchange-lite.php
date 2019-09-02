@@ -46,6 +46,7 @@ define('MWB_RMA_URL', plugin_dir_url( __FILE__ ));
 function activate_woo_refund_and_exchange_lite() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-woo-refund-and-exchange-lite-activator.php';
 	Woo_Refund_And_Exchange_Lite_Activator::activate();
+	Woo_Refund_And_Exchange_Lite_Activator::mwb_rma_update_data_values();
 	mwb_rma_create_pages();
 	
 }

@@ -28,7 +28,7 @@
 	 * Although scripts in the WordPress core, Plugins and Themes may be
 	 * practising this, we should strive to set a better example in our own work.
 	 */
-	 var proid_price =[];
+	window.proid_price =[];
 	jQuery(document).ready(function(){
 
 		var productids = [];
@@ -50,7 +50,9 @@
 	 		data: { action : 'mwb_rma_get_product_price' , product_id : productids , security_check	:	global_mwb_rma.mwb_rma_nonce },
 	 		success: function(respond)   
 	 		{
-	 			proid_price = JSON.parse( respond );
+	 			if( respond !=="fail" ){
+	 				proid_price = JSON.parse( respond );
+	 			}
 
 	 		}
 	 	});
@@ -165,6 +167,7 @@
 					var return_data = mwb_rma_total();
 					selected_product=return_data['selected_product'];
 					refund_amount=return_data['amount'];
+					//console.log(selected_product);
 				}
 			}else{
 				jQuery(".mwb_rma_return_column").each(function(){
@@ -190,57 +193,57 @@
 				});
 			}
 			
-			//refund_amount = refund_amount.toFixed(2);
-			// var data = {	
-			// 	action	:'mwb_rma_return_product_info',
-			// 	products: selected_product,
-			// 	amount	: refund_amount,
-			// 	subject	: rr_subject,
-			// 	reason	: rr_reason,
-			// 	orderid : orderid,
-			// 	security_check	:	global_mwb_rma.mwb_rma_nonce	
-			// }
+			refund_amount = refund_amount;
+			var data = {	
+				action	:'mwb_rma_return_product_info',
+				products: selected_product,
+				amount	: refund_amount,
+				subject	: rr_subject,
+				reason	: rr_reason,
+				orderid : orderid,
+				security_check	:	global_mwb_rma.mwb_rma_nonce	
+			}
 			
-			// jQuery(".mwb_rma_return_notification").show();
+			jQuery(".mwb_rma_return_notification").show();
 
-			// var formData = new FormData(this);
-			// formData.append('action', 'mwb_rma_return_upload_files');
-			// formData.append('security_check', global_mwb_rma.mwb_rma_nonce);
-			// jQuery.ajax({
-			// 	url: global_mwb_rma.ajaxurl, 
-			// 	type: "POST",             
-			// 	data: formData, 
-			// 	contentType: false,       
-			// 	cache: false,             
-			// 	processData:false,
-			// 	success: function(respond)   
-			// 	{
-			// 		//Send return request
+			var formData = new FormData(this);
+			formData.append('action', 'mwb_rma_return_upload_files');
+			formData.append('security_check', global_mwb_rma.mwb_rma_nonce);
+			jQuery.ajax({
+				url: global_mwb_rma.ajaxurl, 
+				type: "POST",             
+				data: formData, 
+				contentType: false,       
+				cache: false,             
+				processData:false,
+				success: function(respond)   
+				{
+					//Send return request
 					
-			// 		jQuery.ajax({
-			// 			url: global_mwb_rma.ajaxurl, 
-			// 			type: "POST",  
-			// 			data: data,
-			// 			dataType :'json',	
-			// 			success: function(response) 
-			// 			{
-			// 				jQuery(".mwb_rma_return_notification").hide();
-			// 				jQuery("#mwb_rma_return_alert").html(response.msg);
-			// 				jQuery("#mwb_rma_return_alert").removeClass('woocommerce-error');
-			// 				jQuery("#mwb_rma_return_alert").addClass("woocommerce-message");
-			// 				jQuery("#mwb_rma_return_alert").css("color", "#8FAE1B");
-			// 				jQuery("#mwb_rma_return_alert").show();
-			// 				jQuery('html, body').animate({
-			// 					scrollTop: jQuery("#mwb_rma_return_request_container").offset().top
-			// 				}, 800);
-			// 				window.setTimeout(function() {
-			// 						window.location.href = global_mwb_rma.myaccount_url;
-			// 				}, 1000);
-			// 			}
-			// 		});
+					jQuery.ajax({
+						url: global_mwb_rma.ajaxurl, 
+						type: "POST",  
+						data: data,
+						dataType :'json',	
+						success: function(response) 
+						{
+							jQuery(".mwb_rma_return_notification").hide();
+							jQuery("#mwb_rma_return_alert").html(response.msg);
+							jQuery("#mwb_rma_return_alert").removeClass('woocommerce-error');
+							jQuery("#mwb_rma_return_alert").addClass("woocommerce-message");
+							jQuery("#mwb_rma_return_alert").css("color", "#8FAE1B");
+							jQuery("#mwb_rma_return_alert").show();
+							jQuery('html, body').animate({
+								scrollTop: jQuery("#mwb_rma_return_request_container").offset().top
+							}, 800);
+							window.setTimeout(function() {
+									window.location.href = global_mwb_rma.myaccount_url;
+							}, 1000);
+						}
+					});
 
-			// 	}
-			// });
+				}
+			});
 			
 		});
 	 	

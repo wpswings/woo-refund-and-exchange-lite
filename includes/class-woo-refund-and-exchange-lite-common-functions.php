@@ -209,8 +209,8 @@ class Woo_Refund_And_Exchange_Lite_Common_Functions {
 				
 	}
 
-	public static function mwb_rma_find_order_day_diff($order){
-		$order_date = date_i18n( 'd-m-Y', strtotime( $order->get_date_created()  ) );
+	public static function mwb_rma_find_order_day_diff($order) {
+		$order_date = date_i18n( 'd-m-Y', strtotime( $order->get_date_created() ) );
 		$today_date = date_i18n( 'd-m-Y' );
 		$order_date = strtotime($order_date);
 		$today_date = strtotime($today_date);
@@ -219,10 +219,10 @@ class Woo_Refund_And_Exchange_Lite_Common_Functions {
 		return $day_diff;
 	}
 
-	public static function mwb_rma_pro_active(){
+	public static function mwb_rma_pro_active() {
 		global $pro_active;
-		$pro_active=false;
-		$pro_active=apply_filters('mwb_rma_check_pro_active',$pro_active);
+		$pro_active = false;
+		$pro_active = apply_filters( 'mwb_rma_check_pro_active' , $pro_active );
 		return $pro_active;
 	}
 

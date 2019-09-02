@@ -229,7 +229,7 @@ if($allowed){
 										
 									</td>
 									<td class="product-total">
-										<?php echo wc_price( $mwb_rma_total_price_of_product ); 
+										<span class="mwb_rma_product_total_amu"><?php echo ($pro_active)?wc_price($mwb_rma_actual_price):wc_price( $mwb_rma_total_price_of_product );?> </span><?php
 										if($in_tax == true)
 										{	
 											?>
