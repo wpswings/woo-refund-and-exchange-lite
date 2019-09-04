@@ -50,6 +50,7 @@ if(isset($return_datas) && !empty($return_datas))
 				<tbody>
 				<?php 
 					$total = 0;
+					$reduced_total=0;
 					$return_products = $return_data['products'];
 					$pro_id=[];
 					foreach ( $line_items as $item_id => $item ) 
@@ -77,7 +78,7 @@ if(isset($return_datas) && !empty($return_datas))
 												}else{
 													if(!in_array($rpv1_value['product_id'], $pro_id)){
 
-															$pro_id[]=$rpv1_value['product_id'];
+														$pro_id[]=$rpv1_value['product_id'];
 													}
 												
 												}
@@ -92,6 +93,18 @@ if(isset($return_datas) && !empty($return_datas))
 											}
 										}
 									}
+								}
+								$mwb_rma_refund_settings = get_option( 'mwb_rma_refund_settings' ,array());
+								$mwb_rma_in_tax = isset($mwb_rma_refund_settings['mwb_rma_return_tax_enable'])? $mwb_rma_refund_settings['mwb_rma_return_tax_enable']: 'no';
+								$in_tax = false;
+								if($mwb_rma_in_tax == 'on')
+								{
+									$in_tax = true;	
+								}
+								$prod_price = $order->get_item_total( $item ,$in_tax );
+								$total_pro_price = $prod_price*$return_product['qty'];
+								if(class_exists('Mwb_Rma_Pro_Functions')){
+									$total_pro_price_reduced = Mwb_Rma_Pro_Functions::mwb_rma_refund_policy_price_deduction($total_pro_price,$order_id);
 								}
 								?>
 								<tr>
@@ -122,19 +135,20 @@ if(isset($return_datas) && !empty($return_datas))
 										wc_display_item_meta($item_meta);
 										?>
 									</td>
-									<td><?php echo wc_price($return_product['price']);?></td>
+									<td><?php echo wc_price($prod_price);?></td>
 									<td><?php echo $return_product['qty'];?></td>
-									<td><?php echo wc_price($return_product['price']*$return_product['qty']);?>
+									<td><strike><?php echo wc_price($total_pro_price); ?></strike> <?php echo wc_price($total_pro_price_reduced);?>
 								</tr>
 								<?php
-								$total += $return_product['price']*$return_product['qty'];
+								$total += $total_pro_price;
+								$reduced_total += $total_pro_price_reduced;
 							}
 						}
 					}
 					?>
 					<tr>
 						<th colspan="4"><?php _e('Total Amount', 'woo-refund-and-exchange-lite');?></th>
-						<th><?php echo wc_price($total);?></th>
+						<th><strike><?php echo wc_price($total);?></strike><?php  echo wc_price($reduced_total);?></th>
 					</tr>
 
 				</tbody>
@@ -184,7 +198,8 @@ if(isset($return_datas) && !empty($return_datas))
 				}	
 			}
 			if($return_data['status'] == 'pending')
-			{	
+			{
+				do_action( 'mwb_rma_return_ship_attach_upload_html',$order_id);	
 				?>
 				<p id="mwb_rma_return_package">
 				<input type="button" value="<?php _e('Accept Request','woo-refund-and-exchange-lite');?>" class="button" id="mwb_rma_accept_return" data-orderid="<?php echo $order_id;?>" data-date="<?php echo $key;?>">
@@ -204,7 +219,7 @@ if(isset($return_datas) && !empty($return_datas))
 			<input type="hidden" value="<?php echo $return_data['subject']?>" id="mwb_rma_refund_reason">
 
 			<?php
-			$approve_date=date_create($return_data['approve_date']);
+			$approve_date = date_create($return_data['approve_date']);
 			$date_format = get_option('date_format');
 			$approve_date=date_format($approve_date,$date_format);
 			$mwb_rma_refund_amount = get_post_meta($order_id,'mwb_rma_refund_amount',true);

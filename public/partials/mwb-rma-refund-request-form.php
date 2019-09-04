@@ -163,25 +163,19 @@ if($allowed){
 									$product_id = $item['product_id'];
 									
 								}
-
 								$product = apply_filters( 'woocommerce_order_item_product', $order->get_product_from_item( $item ), $item );
 								$thumbnail = wp_get_attachment_image($product->get_image_id(),'thumbnail');
 								$productdata = wc_get_product($product_id);
-								$mwb_rma_product_total = $order->get_line_subtotal( $item, $in_tax );
 								$mwb_rma_product_qty = $item['qty'];
-								$mwb_rma_per_product_price = 0;
-								if($mwb_rma_product_qty > 0)
-								{
-									$mwb_rma_per_product_price = $mwb_rma_product_total / $mwb_rma_product_qty;
-								}
 								$purchase_note = get_post_meta( $product_id, '_purchase_note', true );
 								$set_qty = ($pro_active)?1:$item['qty'];
 								do_action( 'mwb_rma_refund_form_after_purchase_note',$item,$product);
 								?>
 								<tr class="mwb_rma_return_column" data-productid="<?php echo $product_id?>" data-variationid="<?php echo $item['variation_id']?>" data-itemid="<?php echo $item_id?>">
 									<?php 
+									$mwb_rma_pro_price = $order->get_item_subtotal( $item, $in_tax );
 									$mwb_rma_actual_price = $order->get_item_total( $item, $in_tax );
-									$mwb_rma_total_price_of_product = $item['qty']*$mwb_rma_actual_price;
+									$mwb_rma_total_price_of_product = $set_qty*$mwb_rma_actual_price;
 									$mwb_rma_total_actual_price += $mwb_rma_total_price_of_product;
 									?>
 									<?php do_action( 'mwb_rma_refund_form_product_select_checkbox',$product_id,$order_id); ?>
@@ -213,7 +207,7 @@ if($allowed){
 											?>
 											<p>
 												<b><?php _e( 'Price', 'woo-refund-and-exchange-lite' ); ?> :</b> <?php 
-												echo wc_price( $mwb_rma_actual_price ); 
+												echo wc_price( $mwb_rma_pro_price ); 
 												if($in_tax == true)
 												{	
 													?>
@@ -229,7 +223,7 @@ if($allowed){
 										
 									</td>
 									<td class="product-total">
-										<span class="mwb_rma_product_total_amu"><?php echo ($pro_active)?wc_price($mwb_rma_actual_price):wc_price( $mwb_rma_total_price_of_product );?> </span><?php
+										<span class="mwb_rma_product_total_amu"><?php echo wc_price($mwb_rma_total_price_of_product);?> </span><?php
 										if($in_tax == true)
 										{	
 											?>

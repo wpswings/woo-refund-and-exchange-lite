@@ -450,6 +450,10 @@ class Woo_Refund_And_Exchange_Lite_Public {
 				$order_id = sanitize_text_field($_POST['orderid']);
 				$subject = sanitize_text_field($_POST['subject']);
 				$reason = sanitize_text_field($_POST['reason']);
+				$refund_method = isset($_POST['refund_method'])?$_POST['refund_method']:'';
+				if($refund_method != ''){
+					do_action( 'mwb_rma_update_refund_method',$order_id,$refund_method);
+				}
 				$mwb_rnx_products = array();
 				$pending = true;
 				$post_data=$_POST;
@@ -531,9 +535,18 @@ class Woo_Refund_And_Exchange_Lite_Public {
 															{
 																$prod = wc_get_product($requested_product['product_id']);
 															}
-															$mwb_rma_actual_price = $order->get_item_total( $item );
+															$mwb_rma_refund_settings = get_option( 'mwb_rma_refund_settings' ,array());
+															$mwb_rma_in_tax = isset($mwb_rma_refund_settings['mwb_rma_return_tax_enable'])? $mwb_rma_refund_settings['mwb_rma_return_tax_enable']: 'no';
+															$in_tax = false;
+															if($mwb_rma_in_tax == 'on')
+															{
+																$in_tax = true;	
+															}
+															$mwb_rma_actual_price = $order->get_item_total( $item ,$in_tax);
 															$subtotal = $mwb_rma_actual_price*$requested_product['qty'];
-															$subtotal = apply_filters( 'mwb_rma_refund_policy_price_deduction' ,$subtotal,$order_id);
+															if(class_exists('Mwb_Rma_Pro_Functions')){
+																$subtotal = Mwb_Rma_Pro_Functions::mwb_rma_refund_policy_price_deduction($subtotal,$order_id);
+															}
 															$item_meta      = new WC_Order_Item_Product( $item);
 															$item_meta_html = wc_display_item_meta($item_meta,array('echo'=> false));
 
@@ -589,7 +602,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 				$message = str_replace('[siteurl]', home_url(), $message);
 				$message = str_replace('[username]', $fullname, $message);
 				
-				$mwb_rma_shortcode='';
+				$mwb_rma_shortcode = '';
 				$mwb_rma_shortcode = $message;
 				$mwb_rma_shortcode = apply_filters( 'mwb_rma_add_shortcode_refund_mail' , $mwb_rma_shortcode , $order_id);
 				$message = $mwb_rma_shortcode;
