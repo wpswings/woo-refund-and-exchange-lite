@@ -348,24 +348,32 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 
 				
 				$message = stripslashes(isset($mwb_rma_mail_refund_settings['mwb_rma_mail_return_cancel_message'])? $mwb_rma_mail_refund_settings['mwb_rma_mail_return_cancel_message']:'');
-				$firstname = get_post_meta($orderid, '_billing_first_name', true);
-				$lname = get_post_meta($orderid, '_billing_last_name', true);
+				// $firstname = get_post_meta($orderid, '_billing_first_name', true);
+				// $lname = get_post_meta($orderid, '_billing_last_name', true);
 
-				$fullname = $firstname." ".$lname;
-				$message = str_replace('[username]', $fullname, $message);
-				$message = str_replace('[order]', "#".$orderid, $message);
-				$message = str_replace('[siteurl]', home_url(), $message);
+				// $fullname = $firstname." ".$lname;
+				// $message = str_replace('[username]', $fullname, $message);
+				// $message = str_replace('[order]', "#".$orderid, $message);
+				// $message = str_replace('[siteurl]', home_url(), $message);
 
-				$mwb_rma_shortcode='';
-				$mwb_rma_shortcode = $message;
-				$mwb_rma_shortcode = apply_filters( 'mwb_rma_add_shortcode_refund_cancel_mail' , $mwb_rma_shortcode,$orderid);
-				$message = $mwb_rma_shortcode;
-
+				// $mwb_rma_shortcode='';
+				// $mwb_rma_shortcode = $message;
+				// $mwb_rma_shortcode = apply_filters( 'mwb_rma_add_shortcode_refund_cancel_mail' , $mwb_rma_shortcode,$orderid);
+				// $message = $mwb_rma_shortcode;
+				$message = Woo_Refund_And_Exchange_Lite_Common_Functions::mwb_rma_mail_shortcode($message,$orderid);
+				if(class_exists('Mwb_Rma_Pro_Functions')){
+					$message = Mwb_Rma_Pro_Functions::mwb_rma_add_shortcodeto_mail($message,$orderid);	
+				}
+				$cancel_template = false;
+				$cancel_template=apply_filters( 'mwb_rma_cancel_template', $cancel_template);
 				$mail_header = stripslashes(isset($mwb_rma_mail_basic_settings['mwb_rma_mail_header'])? $mwb_rma_mail_basic_settings['mwb_rma_mail_header']:'');
 				$mail_footer = stripslashes(isset($mwb_rma_mail_basic_settings['mwb_rma_mail_footer'])? $mwb_rma_mail_basic_settings['mwb_rma_mail_footer']:'');
 				$subject = isset($mwb_rma_mail_refund_settings['mwb_rma_mail_return_cancel_subject'])? $mwb_rma_mail_refund_settings['mwb_rma_mail_return_cancel_subject']:'';
-
-				$html_content= Woo_Refund_And_Exchange_Lite_Common_Functions::mwb_rma_mail_template_html($mail_header,$subject,$message,$$mail_footer);
+				if($cancel_template){
+					$html_content = $message;
+				}else{
+					$html_content= Woo_Refund_And_Exchange_Lite_Common_Functions::mwb_rma_mail_template_html($mail_header,$subject,$message,$mail_footer);
+				}
 
 				$to = get_post_meta($orderid, '_billing_email', true);
 				$headers[] = "From: $fname <$fmail>";

@@ -111,6 +111,13 @@ class Woo_Refund_And_Exchange_Lite_Public {
 			$myaccount_page_url=apply_filters('myaccount_page_url',$myaccount_page_url);
 		}
 		$pro_active = Woo_Refund_And_Exchange_Lite_Common_Functions::mwb_rma_pro_active();
+		if(isset($_POST['order_id'])){
+			$order_id = sanitize_text_field($_POST['order_id']);
+		} elseif (isset($_GET['order_id'])) {
+			$order_id = sanitize_text_field($_GET['order_id']);
+		}else{
+			$order_id = '';
+		}
 		$translation_array = array(
 			'attachment_msg'		=> __( 'File should be of .png , .jpg, or .jpeg extension' , 'woo-refund-and-exchange-lite'),
 			'return_subject_msg' 	=> __( 'Please enter refund subject.', 'woo-refund-and-exchange-lite' ),
@@ -119,6 +126,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 			'ajaxurl' 				=> admin_url('admin-ajax.php'),
 			'myaccount_url' 		=> $myaccount_page_url,
 			'pro_active'			=> $pro_active,
+			'order_id'				=> $order_id,
 		);
 		wp_localize_script(  $this->plugin_name, 'global_mwb_rma', $translation_array );
 
@@ -545,7 +553,8 @@ class Woo_Refund_And_Exchange_Lite_Public {
 															$mwb_rma_actual_price = $order->get_item_total( $item ,$in_tax);
 															$subtotal = $mwb_rma_actual_price*$requested_product['qty'];
 															if(class_exists('Mwb_Rma_Pro_Functions')){
-																$subtotal = Mwb_Rma_Pro_Functions::mwb_rma_refund_policy_price_deduction($subtotal,$order_id);
+																$pro_subtotal = Mwb_Rma_Pro_Functions::mwb_rma_refund_policy_price_deduction($subtotal,$order_id);
+																$subtotal=$pro_subtotal['product_total'];
 															}
 															$item_meta      = new WC_Order_Item_Product( $item);
 															$item_meta_html = wc_display_item_meta($item_meta,array('echo'=> false));
@@ -632,39 +641,38 @@ class Woo_Refund_And_Exchange_Lite_Public {
 	}
 
 	public function mwb_rma_get_product_price(){
-     	$product_id = isset( $_POST['product_id'] ) ? $_POST['product_id'] : ' ';
-     	if( $product_id !==' '  && is_array( $product_id) && !empty( $product_id ) ){
+		$product_id = isset( $_POST['product_id'] ) ? $_POST['product_id'] : ' ';
+		$order_id = isset(  $_POST['order_id'] ) ? $_POST['order_id'] : '';
+		$order = wc_get_order($order_id);
 
-     		foreach ($product_id as $key => $value) {
-     			foreach ($value as $key1 => $id) {
-     				
-     				$product = wc_get_product( $value['productid'] );
-     				if( $product->is_type( 'simple' ) ){
-     					if( $product->is_on_sale() ){
-
-     						$product_id[ $key ]['price'] = $product->get_sale_price();
-     					}else{
-     						$product_id[ $key ]['price'] = $product->get_price();
-     					}
-
-     				} elseif( $product->is_type( 'variable' ) ){
-     					$variations = $product->get_available_variations();
-     					foreach ($variations as $variation){
-     						if( $variation['variation_id'] == $value['variationid'] ){
-     							$product_id[ $key ]['price']= $variation['display_price'];
-
-     						}
-     					}
-     				}
-     			}
-     		}
-     		$productid = json_encode( $product_id );
-     		echo $productid;
-     	}else{
-     		echo "fail";
-     	}
-     	wp_die();
-     }
-
+		if( $product_id !==' '  && is_array( $product_id) && !empty( $product_id ) ){
+			if($order_id != ''){
+				$order = wc_get_order($order_id);
+				foreach( $order->get_items() as $item_id => $item ){ 
+					$prod_id = $item->get_product_id();
+					$prod_variation_id = $item->get_variation_id();
+					foreach ($product_id as $key => $value) {
+						foreach ($value as $key1 => $id) {
+							if($prod_id == $value['productid'] && $value['variationid'] == $prod_variation_id){
+								$mwb_rma_refund_settings = get_option( 'mwb_rma_refund_settings' ,array());
+								$mwb_rma_in_tax = isset($mwb_rma_refund_settings['mwb_rma_return_tax_enable'])? $mwb_rma_refund_settings['mwb_rma_return_tax_enable']: 'no';
+								$in_tax = false;
+								if($mwb_rma_in_tax == 'on')
+								{
+									$in_tax = true;	
+								}
+								$product_id[ $key ]['price'] = $order->get_item_total( $item ,$in_tax );
+							}
+						}
+					}
+				}
+				$productid = json_encode( $product_id );
+				echo $productid;
+			}
+		}else{
+			echo "fail";
+		}
+		wp_die();
+	}
 
 }

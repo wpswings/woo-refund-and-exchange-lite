@@ -307,24 +307,11 @@ class Woo_Refund_And_Exchange_Lite_Common_Functions {
 		<th>'.__('Price', 'woo-refund-and-exchange-lite').'</th>
 		</tr>';
 		$order = wc_get_order($orderid);
-		$final_stotal=0;
 		$requested_products = $products[$date]['products'];
 
 		if(isset($requested_products) && !empty($requested_products))
 		{
 			$total = 0;
-			$mwb_get_refnd = get_post_meta( $orderid, 'mwb_rma_return_request_product',true );
-			if( !empty( $mwb_get_refnd ) )
-			{
-				foreach ($mwb_get_refnd as $key => $value) 
-				{
-					if( isset( $value['amount'] ) )
-					{
-						$total_price = $value['amount'];
-						break;
-					}
-				}
-			}
 			foreach( $order->get_items() as $item_id => $item )
 			{
 				foreach($requested_products as $requested_product)
@@ -350,14 +337,21 @@ class Woo_Refund_And_Exchange_Lite_Common_Functions {
 						$prod_price = $order->get_item_total( $item ,$in_tax );
 						
 						$subtotal = $prod_price*$requested_product['qty'];
+						if(class_exists('Mwb_Rma_Pro_Functions')){
+							$pro_subtotal = Mwb_Rma_Pro_Functions::mwb_rma_refund_policy_price_deduction($subtotal,$orderid);
+							$subtotal=$pro_subtotal['product_total'];
+						}
 						$total += $subtotal;
+						if(class_exists('Mwb_Rma_Pro_Functions')){
+							$total=Mwb_Rma_Pro_Functions::mwb_rma_reduce_global_ship_fee($orderid,$total);
+						}
 						$item_meta      = new WC_Order_Item_Product( $item );
 						$item_meta_html = wc_display_item_meta($item_meta,array('echo'=> false));
 						$message_details.= '<tr>
 						<td>'.$item['name'].'<br>';
 						$message_details.= '<small>'.$item_meta_html.'</small>
 						<td>'.$requested_product['qty'].'</td>
-						<td>'.wc_price($prod_price*$requested_product['qty']).'</td>
+						<td>'.wc_price($subtotal).'</td>
 						</tr>';
 
 					}
@@ -365,12 +359,12 @@ class Woo_Refund_And_Exchange_Lite_Common_Functions {
 			}			
 			$message_details.= '<tr>
 			<th colspan="2">Total:</th>
-			<td>'.wc_price($total_price).'</td>
+			<td>'.wc_price($total).'</td>
 			</tr>';
 		}
 		$message_details.= ' <tr>
 		<th colspan="2">'.__('Refund Total', 'woo-refund-and-exchange-lite').':</th>
-		<td>'.wc_price($total_price).'</td>
+		<td>'.wc_price($total).'</td>
 		</tr>
 		</tbody>
 		</table>

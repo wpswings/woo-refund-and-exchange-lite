@@ -47,7 +47,7 @@
 	 	jQuery.ajax({
 	 		url: global_mwb_rma.ajaxurl, 
 	 		type: "POST",             
-	 		data: { action : 'mwb_rma_get_product_price' , product_id : productids , security_check	:	global_mwb_rma.mwb_rma_nonce },
+	 		data: { action : 'mwb_rma_get_product_price' , product_id : productids ,order_id : global_mwb_rma.order_id , security_check	:	global_mwb_rma.mwb_rma_nonce },
 	 		success: function(respond)   
 	 		{
 	 			if( respond !=="fail" ){

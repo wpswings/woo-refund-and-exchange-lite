@@ -53,6 +53,8 @@ if(isset($return_datas) && !empty($return_datas))
 					$reduced_total=0;
 					$return_products = $return_data['products'];
 					$pro_id=[];
+					$price_reduce_flag=false;
+					$total_refund_amu=0;
 					foreach ( $line_items as $item_id => $item ) 
 					{
 						foreach($return_products as $returnkey => $return_product)
@@ -104,7 +106,9 @@ if(isset($return_datas) && !empty($return_datas))
 								$prod_price = $order->get_item_total( $item ,$in_tax );
 								$total_pro_price = $prod_price*$return_product['qty'];
 								if(class_exists('Mwb_Rma_Pro_Functions')){
-									$total_pro_price_reduced = Mwb_Rma_Pro_Functions::mwb_rma_refund_policy_price_deduction($total_pro_price,$order_id);
+									$reduced_price_data = Mwb_Rma_Pro_Functions::mwb_rma_refund_policy_price_deduction($total_pro_price,$order_id);
+									$total_pro_price_reduced = $reduced_price_data['product_total'];
+									$price_reduce_flag =  $reduced_price_data['price_flag'];
 								}
 								?>
 								<tr>
@@ -137,7 +141,7 @@ if(isset($return_datas) && !empty($return_datas))
 									</td>
 									<td><?php echo wc_price($prod_price);?></td>
 									<td><?php echo $return_product['qty'];?></td>
-									<td><strike><?php echo wc_price($total_pro_price); ?></strike> <?php echo wc_price($total_pro_price_reduced);?>
+									<td><?php if($price_reduce_flag){?><strike><?php }?><?php echo wc_price($total_pro_price); ?><?php if($price_reduce_flag){?></strike><?php } ?><?php if($price_reduce_flag){ echo wc_price($total_pro_price_reduced); }?></td>
 								</tr>
 								<?php
 								$total += $total_pro_price;
@@ -145,18 +149,28 @@ if(isset($return_datas) && !empty($return_datas))
 							}
 						}
 					}
+					$total_refund_amu = ($price_reduce_flag)?$reduced_total:$total;
+					if(class_exists('Mwb_Rma_Pro_Functions')){
+						$total_refund_amu=Mwb_Rma_Pro_Functions::mwb_rma_reduce_global_ship_fee($order_id,$total_refund_amu);
+					}
 					?>
 					<tr>
 						<th colspan="4"><?php _e('Total Amount', 'woo-refund-and-exchange-lite');?></th>
-						<th><strike><?php echo wc_price($total);?></strike><?php  echo wc_price($reduced_total);?></th>
+						<th><?php if($price_reduce_flag){?><strike><?php }?><?php echo wc_price($total);?><?php if($price_reduce_flag){?></strike><?php } ?><?php if($price_reduce_flag){ echo wc_price($reduced_total); }?></th>
 					</tr>
 
 				</tbody>
 			</table>
 		</div>
+		<?php 
+		if(class_exists('Mwb_Rma_Pro_Functions')){
+			$ref='refund';
+			Mwb_Rma_Pro_Functions::mwb_rma_add_global_shipping($order_id,$ref,$return_data['status']);
+		}
+		?>
 		<div class="mwb_rma_extra_reason">
 			<p>
-				<strong><?php _e('Refund Amount', 'woo-refund-and-exchange-lite');?> :</strong> <?php echo wc_price($return_data['amount'])?>
+				<strong><?php _e('Refund Amount', 'woo-refund-and-exchange-lite');?> :</strong> <?php echo wc_price($total_refund_amu); ?>
 			</p>
 		</div>
 		<div class="mwb_rma_reason">	
@@ -215,13 +229,13 @@ if(isset($return_datas) && !empty($return_datas))
 		<?php
 		if($return_data['status'] == 'complete')
 		{?>
-			<input type="hidden" name="mwb_rma_total_amount_for_refund" class="mwb_rma_total_amount_for_refund" value="<?php echo mwb_rma_currency_seprator($return_data['amount']); ?>">
+			<input type="hidden" name="mwb_rma_total_amount_for_refund" class="mwb_rma_total_amount_for_refund" value="<?php echo mwb_rma_currency_seprator($total_refund_amu); ?>">
 			<input type="hidden" value="<?php echo $return_data['subject']?>" id="mwb_rma_refund_reason">
 
 			<?php
 			$approve_date = date_create($return_data['approve_date']);
 			$date_format = get_option('date_format');
-			$approve_date=date_format($approve_date,$date_format);
+			$approve_date = date_format($approve_date,$date_format);
 			$mwb_rma_refund_amount = get_post_meta($order_id,'mwb_rma_refund_amount',true);
 
 			_e( 'Following product refund request is approved on', 'woo-refund-and-exchange-lite' ); ?> <b><?php echo $approve_date?>.</b><?php
