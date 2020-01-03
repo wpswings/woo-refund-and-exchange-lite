@@ -3,9 +3,9 @@ Contributors: makewebbetter
 Donate link:  https://makewebbetter.com/
 Tags: 	ecommerce,return,refund, woocommerce, woocommerce exchange, woocommerce online exchange, woocommerce product change, woocommerce purchase refund, woocommerce refund, woocommerce refund policy, woocommerce refund status, wordpress
 Requires at least: 4.0
-Tested up to: 5.2.2
+Tested up to: 5.3.1
 WC requires at least: 3.0.0
-WC tested up to: 3.7.0
+WC tested up to: 3.8.0
 Stable tag: 1.0.1
 Requires PHP: 5.6
 License: GPLv3 or later 
