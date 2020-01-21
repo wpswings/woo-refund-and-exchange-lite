@@ -7,7 +7,7 @@
   display:none;
   color: #ffffff;
 }
-.ced_rnx_return_column img, .ced_rnx_return_note img, .ced_rnx_exchange_column img, .ced_rnx_exchange_note img{ 
+.ced_rnx_return_column img, .ced_rnx_return_note img, .ced_rnx_exchange_column img, .ced_rnx_exchange_note img{
   width:75px !important;
   height:75px !important;
 }
@@ -60,7 +60,7 @@
   width: 25px !important;
 }
 
-///
+//
 
 
 @CHARSET "UTF-8";
@@ -72,7 +72,7 @@
   display:none;
   color: #ffffff;
 }
-.ced_rnx_return_column img, .ced_rnx_return_note img, .ced_rnx_exchange_column img, .ced_rnx_exchange_note img{ 
+.ced_rnx_return_column img, .ced_rnx_return_note img, .ced_rnx_exchange_column img, .ced_rnx_exchange_note img{
   width:75px !important;
   height:75px !important;
 }
@@ -130,7 +130,7 @@ display: block !important;
 .ced_rnx_exchange_notification_choose_product{
   display: none;
 }
-#ced_rnx_variation_list a 
+#ced_rnx_variation_list a
 {
   margin-left: 1%;
 }
@@ -151,13 +151,13 @@ display: block !important;
   .shop_table.order_details.ced_rnx_product_table td,
   .ced_rnx_exchanged_products.ced_rnx_product_table th,
   .ced_rnx_exchanged_products.ced_rnx_product_table td{
-    padding: 4px;
+	padding: 4px;
   }
   #ced_rnx_exchange_request_subject + .select2.select2-container{
-    width: 100%!important;
+	width: 100%!important;
   }
   .ced-rnx_customer_detail table th, .ced-rnx_customer_detail table td {
-    padding: 16px;
+	padding: 16px;
   }
 }
 .ced_rnx_product_table_wrapper {
@@ -259,7 +259,8 @@ display: block !important;
 }
 #ced_rnx_return_request_subject ~ .select2.select2-container,
 #ced_rnx_exchange_request_subject ~ .select2.select2-container,
-.ced_rnx_exchange_request_reason {
+.ced_rnx_exchange_request_reason ,
+#ced_rnx_return_request_subject{
   width: 100%!important;
 }
 #ced_rnx_return_request_form_wrapper label,
@@ -279,6 +280,6 @@ display: block !important;
 }
 @media screen and (max-width: 650px) {
   .ced_rnx_product_table thead th{
-    min-width: 160px;
+	min-width: 160px;
   }
 }
