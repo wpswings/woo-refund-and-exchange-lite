@@ -557,7 +557,6 @@ class woocommerce_refund_and_exchange_lite_Admin {
 				$item_id = $order->add_fee( $new_fee_old );
 
 				$order->update_status( 'wc-refund-approved', __( 'User Request of Refund Product is approved', 'woocommerce-refund-and-exchange-lite' ) );
-				// $order->calculate_totals();
 				$response['response'] = 'success';
 				echo wp_json_encode( $response );
 				die;

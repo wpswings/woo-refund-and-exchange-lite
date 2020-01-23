@@ -293,7 +293,6 @@ class woocommerce_refund_and_exchange_lite_Public {
 				$gift_card_product = false;
 				$item_id = '';
 				$exp_flag = false;
-				// $refund_request = true;
 
 				foreach ( $items as $key => $item ) {
 
@@ -314,7 +313,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 
 					$couponcode = $coupon[0];
 
-					// global $woocommerce;
+					
 					$coupons = new WC_Coupon( $couponcode );
 
 					$usage_count = $coupons->usage_count;

@@ -12,7 +12,6 @@ $allowed = true;
 $current_user_id = '';
 // Product Return request form.
 $current_user_id = get_current_user_id();   // check user is logged in or not.
-// print( wp_unslash( wp_verify_nonce( $_REQUEST['ced-rnx-nonce'], 'ced-rnx-nonce' ) ) );die;
 if ( isset( $_REQUEST['ced-rnx-nonce'] ) ) {
 	if ( ! wp_verify_nonce( sanitize_key( $_REQUEST['ced-rnx-nonce'] ), 'ced-rnx-nonce' ) || ! current_user_can( 'ced-rnx-refund-request' ) ) {
 		$allowed = false;

@@ -5,8 +5,8 @@ Tags: 	ecommerce,return,refund, woocommerce,exchange,online exchange for woocomm
 Requires at least: 4.0
 Tested up to: 5.3.0
 WC requires at least: 3.0.0
-WC tested up to: 3.8.0
-Stable tag: 1.0.8
+WC tested up to: 3.9.0
+Stable tag: 2.0.0
 Requires PHP: 5.6
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -57,6 +57,9 @@ Ultimately leads to easy returns for your customers with increased conversions.
 * Refund exchange feature for guest users.
 * Minimum order amount feature.
 * Product category disable feature.
+* Integration for return ship label with ShipStation .
+* Compatibility with Ultimate WooCommerce Gift Cards .
+* Shortcode of product table and the refundable amount for Refund Mails. 
 
 * For **Premium Plugin** you can [visit here](https://makewebbetter.com/product/woocommerce-rma-return-refund-exchange/?utm_source=MWB-RMA-org&utm_medium=MWB-ORG-Page&utm_campaign=MWB-premium_plugin)
 
@@ -127,6 +130,12 @@ It's a very easy way, go to the Woocommerce -> Settings ->RAE setting ->Refund  
 2) RAE Configuration Setting -> Mail configuration ->Refund ->and then fill  all details.
 
 == Changelog ==
+
+= 2.0.0 =
+* New: Compatibility with Latest WC and WP.
+* Updated in plugin core and updated language
+* Fix:Image save issue in Mail Configuration setting.
+* Fix: Expiry date issue with gift card  for refund process.
 
 = 1.0.8 =
 * New: Compatibility with Latest WC and WP
