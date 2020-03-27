@@ -7,7 +7,7 @@
   display:none;
   color: #ffffff;
 }
-.ced_rnx_return_column img, .ced_rnx_return_note img, .ced_rnx_exchange_column img, .ced_rnx_exchange_note img{ 
+.ced_rnx_return_column img, .ced_rnx_return_note img, .ced_rnx_exchange_column img, .ced_rnx_exchange_note img{
   width:75px !important;
   height:75px !important;
 }
@@ -60,7 +60,7 @@
   width: 25px !important;
 }
 
-///
+//
 
 
 @CHARSET "UTF-8";
@@ -72,7 +72,7 @@
   display:none;
   color: #ffffff;
 }
-.ced_rnx_return_column img, .ced_rnx_return_note img, .ced_rnx_exchange_column img, .ced_rnx_exchange_note img{ 
+.ced_rnx_return_column img, .ced_rnx_return_note img, .ced_rnx_exchange_column img, .ced_rnx_exchange_note img{
   width:75px !important;
   height:75px !important;
 }
@@ -124,13 +124,10 @@
   height: 25px !important;
   width: 25px !important;
 }
-/*.ced_rnx_product_table .ced_rnx_return_product {
-display: block !important;
-}*/
 .ced_rnx_exchange_notification_choose_product{
   display: none;
 }
-#ced_rnx_variation_list a 
+#ced_rnx_variation_list a
 {
   margin-left: 1%;
 }
@@ -151,13 +148,13 @@ display: block !important;
   .shop_table.order_details.ced_rnx_product_table td,
   .ced_rnx_exchanged_products.ced_rnx_product_table th,
   .ced_rnx_exchanged_products.ced_rnx_product_table td{
-    padding: 4px;
+	padding: 4px;
   }
   #ced_rnx_exchange_request_subject + .select2.select2-container{
-    width: 100%!important;
+	width: 100%!important;
   }
   .ced-rnx_customer_detail table th, .ced-rnx_customer_detail table td {
-    padding: 16px;
+	padding: 16px;
   }
 }
 .ced_rnx_product_table_wrapper {
@@ -205,7 +202,6 @@ display: block !important;
   letter-spacing: 1px;
 }
 .ced_rnx_product_title > p {
-  /*background-color: #D6D6D6;*/
   color:#000;
   font-weight: bold;
   margin-top: 10px;
@@ -259,7 +255,8 @@ display: block !important;
 }
 #ced_rnx_return_request_subject ~ .select2.select2-container,
 #ced_rnx_exchange_request_subject ~ .select2.select2-container,
-.ced_rnx_exchange_request_reason {
+.ced_rnx_exchange_request_reason ,
+#ced_rnx_return_request_subject{
   width: 100%!important;
 }
 #ced_rnx_return_request_form_wrapper label,
@@ -279,6 +276,92 @@ display: block !important;
 }
 @media screen and (max-width: 650px) {
   .ced_rnx_product_table thead th{
-    min-width: 160px;
+	min-width: 160px;
   }
+}
+
+/*View order messages css*/
+
+.mwb_order_messages {
+  margin-left: 30px;
+  background-color: white;
+}
+
+.mwb_order_msg_main_container {
+  margin-bottom: 30px;
+  border-color: #dddddd;
+  border-width: 1px;
+  border-style: solid;
+  padding-top: 27px;
+  padding-right: 27px;
+  padding-left: 0;
+  padding-bottom: 27px;
+  width: auto;
+  word-wrap: break-word;
+}
+
+.mwb_order_messages .mwb_order_msg_sender {
+  background-color: #374585;
+  color: white;
+  padding-right: 15px;
+  padding-left: 25px;
+  margin-left: -1px;
+}
+
+.mwb_order_msg_sender {
+  display: inline-block;
+  font-size: 12pt;
+  font-weight: 600;
+}
+
+.mwb_order_msg_date {
+  font-size: 8pt;
+  float: right;
+}
+.mwb_order_messages .mwb_order_msg_detail_container, .mwb_order_messages .mwb_order_msg_attach_container {
+  margin-left: 27px;
+}
+.mwb_order_msg_detail_container {
+  font-size: 10pt;
+  margin: 20px 0;
+}
+
+.mwb_order_msg_single_attachment {
+    display: inline-block;
+    width: 130px;
+    height: auto;
+    margin-right: 5px;
+    margin-top: 12px;
+    font-size: 9px;
+}
+
+.mwb_order_msg_main_container.mwb_order_messages hr {
+
+    width: 97%;
+    background-color: #ccc;
+    border: 0;
+    height: 1px;
+    margin: 15px auto;
+
+}
+
+div.mwb_order_msg_single_attachment a .mwb_order_msg_attachment_thumbnail {
+    border: 1px solid black;
+    border-radius: 3px;
+    max-width: 115px;
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px;
+}
+
+.mwb_order_msg_sub_container {
+    padding: 30px;
+    border: solid darkgrey 1px;
+    overflow-y: auto;
+    max-height: 400px;
+}
+
+#mwb_order_new_msg {
+  width: 100%;
 }

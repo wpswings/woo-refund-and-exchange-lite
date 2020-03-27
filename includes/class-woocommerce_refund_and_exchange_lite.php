@@ -155,14 +155,15 @@ class woocommerce_refund_and_exchange_lite {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'admin_menus' );
 		$this->loader->add_action( 'init', $plugin_admin, 'ced_rnx_register_custom_order_status' );
-		$this->loader->add_filter( 'wc_order_statuses', $plugin_admin, 'ced_rnx_add_custom_order_status');
-		$this->loader->add_action( 'wp_ajax_ced_return_req_approve', $plugin_admin, 'ced_rnx_return_req_approve_callback');
-		$this->loader->add_action( 'wp_ajax_nopriv_ced_return_req_approve', $plugin_admin, 'ced_rnx_return_req_approve_callback');
-		$this->loader->add_action( 'wp_ajax_ced_return_req_cancel',$plugin_admin, 'ced_rnx_return_req_cancel_callback');
-		$this->loader->add_action( 'wp_ajax_nopriv_ced_return_req_cancel', $plugin_admin, 'ced_rnx_return_req_cancel_callback');
-		$this->loader->add_action('wp_ajax_ced_rnx_manage_stock' , $plugin_admin , 'ced_rnx_manage_stock' );
-		$this->loader->add_action('wp_ajax_nopriv_ced_rnx_manage_stock' , $plugin_admin , 'ced_rnx_manage_stock' );
+		$this->loader->add_filter( 'wc_order_statuses', $plugin_admin, 'ced_rnx_add_custom_order_status' );
+		$this->loader->add_action( 'wp_ajax_ced_return_req_approve', $plugin_admin, 'ced_rnx_return_req_approve_callback' );
+		$this->loader->add_action( 'wp_ajax_nopriv_ced_return_req_approve', $plugin_admin, 'ced_rnx_return_req_approve_callback' );
+		$this->loader->add_action( 'wp_ajax_ced_return_req_cancel', $plugin_admin, 'ced_rnx_return_req_cancel_callback' );
+		$this->loader->add_action( 'wp_ajax_nopriv_ced_return_req_cancel', $plugin_admin, 'ced_rnx_return_req_cancel_callback' );
+		$this->loader->add_action( 'wp_ajax_ced_rnx_manage_stock', $plugin_admin, 'ced_rnx_manage_stock' );
+		$this->loader->add_action( 'wp_ajax_nopriv_ced_rnx_manage_stock', $plugin_admin, 'ced_rnx_manage_stock' );
 		$this->loader->add_action( 'woocommerce_refund_created', $plugin_admin, 'ced_rnx_action_woocommerce_order_refunded', 10, 2 );
+		$this->loader->add_action( 'wp_ajax_mwb_wrma_order_messages_save', $plugin_admin, 'mwb_wrma_order_messages_save' );
 
 	}
 
@@ -179,13 +180,13 @@ class woocommerce_refund_and_exchange_lite {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-		$this->loader->add_filter( 'template_include',  $plugin_public, 'ced_rnx_product_return_template');
-		$this->loader->add_filter( 'woocommerce_my_account_my_orders_actions',$plugin_public, 'ced_rnx_refund_exchange_button',10, 2 );
-		$this->loader->add_action( 'wp_ajax_ced_rnx_return_upload_files',$plugin_public, 'ced_rnx_order_return_attach_files');
-		$this->loader->add_action( 'wp_ajax_nopriv_ced_rnx_return_upload_files',$plugin_public, 'ced_rnx_order_return_attach_files');
-		$this->loader->add_action( 'wp_ajax_ced_rnx_return_product_info', $plugin_public, 'ced_rnx_return_product_info_callback');
-		$this->loader->add_action( 'wp_ajax_nopriv_ced_rnx_return_product_info',$plugin_public, 'ced_rnx_return_product_info_callback');
-		$this->loader->add_action( 'woocommerce_order_details_after_order_table',$plugin_public, 'ced_rnx_order_return_button');
+		$this->loader->add_filter( 'template_include', $plugin_public, 'ced_rnx_product_return_template' );
+		$this->loader->add_filter( 'woocommerce_my_account_my_orders_actions', $plugin_public, 'ced_rnx_refund_exchange_button', 10, 2 );
+		$this->loader->add_action( 'wp_ajax_ced_rnx_return_upload_files', $plugin_public, 'ced_rnx_order_return_attach_files' );
+		$this->loader->add_action( 'wp_ajax_nopriv_ced_rnx_return_upload_files', $plugin_public, 'ced_rnx_order_return_attach_files' );
+		$this->loader->add_action( 'wp_ajax_ced_rnx_return_product_info', $plugin_public, 'ced_rnx_return_product_info_callback' );
+		$this->loader->add_action( 'wp_ajax_nopriv_ced_rnx_return_product_info', $plugin_public, 'ced_rnx_return_product_info_callback' );
+		$this->loader->add_action( 'woocommerce_order_details_after_order_table', $plugin_public, 'ced_rnx_order_return_button' );
 
 	}
 
