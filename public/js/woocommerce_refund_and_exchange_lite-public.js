@@ -254,6 +254,11 @@ $(document).on('click','.mwb_order_send_msg_dismiss',function(e) {
 	e.preventDefault();
 	$('.mwb_order_msg_notice_wrapper').hide();
 });
+
+$(document).on('click','.mwb_reload_messages',function(e) {
+	e.preventDefault();
+	$('.mwb_order_msg_main_container').load(document.URL +  ' .mwb_order_msg_main_container');
+});
 }
 );
 })( jQuery );

@@ -28,6 +28,7 @@ if( WC()->version < "3.0.0" ) {
 			<h4>
 				<?php esc_html_e( 'Message History', 'woocommerce-refund-and-exchange-lite' ); ?>
 			</h4>
+			<a href="" class="mwb_wrma_reload_messages">Reload</a>
 		</div>
 		<div  class="mwb_admin_order_msg_sub_container">
 			<?php 

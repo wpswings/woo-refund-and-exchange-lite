@@ -963,7 +963,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 		$page_id = get_option( 'ced_rnx_view_order_msg_page_id', true );
 		$view_order_msg_url = get_permalink( $page_id );
 		$view_msg = get_option( 'mwb_wrma_order_message_view', 'no' );
-		if( isset( $view_msg ) && 'yes' == $view_msg ) {
+		if ( isset( $view_msg ) && 'yes' == $view_msg  && isset( $ced_rnx_return ) && 'yes' == $ced_rnx_return ) {
 			?>
 			<form action="<?php echo add_query_arg('order_id',$order_id, $view_order_msg_url ); ?>" method="post">
 				<input type="hidden" value="<?php echo $order_id?>" name="order_id">

@@ -58,7 +58,7 @@ $upload_attach = get_option( 'mwb_wrma_order_message_attachment', 'no' );
 		<?php } ?>
 	</div>
 	<div class="mwb_order_msg_history_container">
-		<div class="mwb_order_msg_history_title"><h4><?php esc_html_e( 'Message History', 'woocommerce-refund-and-exchange-lite' ); ?></h4></div>
+		<div class="mwb_order_msg_history_title"><h4><?php esc_html_e( 'Message History', 'woocommerce-refund-and-exchange-lite' ); ?></h4><a href="" class="mwb_reload_messages">X</a></div>
 		<div class="mwb_order_msg_sub_container">
 			<?php 
 			$mwb_order_messages = get_option( $order_id.'-mwb_cutomer_order_msg', array() );

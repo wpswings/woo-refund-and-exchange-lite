@@ -294,18 +294,24 @@
 		   	processData: false,
 		   	success: function ( response ) {
 		   		if( response ) {
-			   		var html = 	'<p class="mwb_order_msg_sent_notice">'+  global_rnx.message_sent +'</p>';
+			   		var html = 	'<p class="mwb_order_msg_sent_notice">'+  global_rnx.message_sent +'</p><a href="" class="mwb_remove_notice_msg">X</a>';
 			   		$('.mwb_order_msg_notice_wrapper').html( html );
 			   		$('.mwb_order_msg_notice_wrapper').show();
-			   		$('html, body').animate({
-			   			scrollTop: $(".mwb_admin_order_msg_history_container").offset().top
-			   		}, 2000);
-			   		window.setTimeout(function() {
-			   			window.location.reload();
-					}, 1000 ); 
+			   		$('.mwb_admin_order_msg_sub_container').load(document.URL +  ' .mwb_admin_order_msg_sub_container');
+		   			$('#mwb_order_new_msg').val("");
 		   		}
 		   	}
 		});
+	});
+
+	$(document).on('click','.mwb_remove_notice_msg',function(e) {
+		e.preventDefault();
+		$('.mwb_order_msg_notice_wrapper').hide();
+	});
+
+	$(document).on('click','.mwb_wrma_reload_messages',function(e) {
+		e.preventDefault();
+		$('.mwb_admin_order_msg_sub_container').load(document.URL +  ' .mwb_admin_order_msg_sub_container');
 	});
 
 		}
