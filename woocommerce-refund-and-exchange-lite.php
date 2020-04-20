@@ -19,7 +19,7 @@
  * Author:            MakeWebBetter
  * Author URI:        http://makewebbetter.com/
  * WC tested up to:   4.0.1
- * Tested up to:      5.3.2
+ * Tested up to:      5.4
  * License:           GPL-3.0+
  * License URI:       http://www.gnu.org/licenses/gpl-3.0.txt
  * Text Domain:       woocommerce-refund-and-exchange-lite
@@ -100,9 +100,9 @@ if ( $activated ) {
 			'post_status'    => 'publish',
 
 		);
-	
+
 		$page_id = wp_insert_post( $mwb_view_order_msg );
-		
+
 		if ( $page_id ) {
 			$ced_rnx_view_order_msg_page_id = $page_id;
 		}
@@ -169,19 +169,19 @@ if ( $activated ) {
 		}
 		return $actions;
 	}
-	add_filter( 'plugin_row_meta', 'mwb_upsell_lite_add_doc_and_premium_link', 10, 2 );
+	add_filter( 'plugin_row_meta', 'mwb_rma_lite_add_doc_and_premium_link', 10, 2 );
 
 	/**
 	 * Add settings link on plugin page
 	 *
-	 * @name mwb_upsell_lite_add_doc_and_premium_link()
+	 * @name mwb_rma_lite_add_doc_and_premium_link()
 	 *
 	 * @param unknown $links links.
 	 * @param unknown $file file.
 	 * @author makewebbetter<webmaster@makewebbetter.com>
 	 * @link http://www.makewebbetter.com/
 	 */
-	function mwb_upsell_lite_add_doc_and_premium_link( $links, $file ) {
+	function mwb_rma_lite_add_doc_and_premium_link( $links, $file ) {
 
 		if ( strpos( $file, 'woocommerce-refund-and-exchange-lite.php' ) !== false ) {
 
@@ -236,42 +236,54 @@ if ( $activated ) {
 	// add capabilities, priority must be after the initial role.
 	add_action( 'init', 'ced_rnx_role_capability', 11 );
 
+	/**
+	 * Function to send messages.
+	 *
+	 * @name admin_setced_rnx_lite_send_order_msg_callback
+	 * @param string $order_id order id.
+	 * @param string $msg message.
+	 * @param string $sender sender.
+	 * @link http://www.makewebbetter.com/
+	 */
 	function ced_rnx_lite_send_order_msg_callback( $order_id, $msg, $sender ) {
 		$flag = false;
 		$filename = [];
-		$count = sizeof( $_FILES['mwb_order_msg_attachment']['tmp_name'] );
-		$file_uploaded = false;
-		if ( isset( $_FILES['mwb_order_msg_attachment']['tmp_name'][0] ) && ! empty( $_FILES['mwb_order_msg_attachment']['tmp_name'][0] ) ) {
-			$file_uploaded = true;
-		}
-		if ( $file_uploaded ) {
-			for ( $i = 0; $i < $count; $i++ ) {
-				if ( isset( $_FILES['mwb_order_msg_attachment']['tmp_name'][$i] ) ) {	
-					$directory = ABSPATH.'wp-content/attachment';
-					if ( ! file_exists( $directory ) ) {
-						mkdir( $directory, 0755, true );
-					}
+		if ( isset( $_FILES['mwb_order_msg_attachment']['tmp_name'] ) && ! empty( $_FILES['mwb_order_msg_attachment']['tmp_name'] ) ) {
+			$count = count( $_FILES['mwb_order_msg_attachment']['tmp_name'] );
+			$file_uploaded = false;
+			if ( isset( $_FILES['mwb_order_msg_attachment']['tmp_name'][0] ) && ! empty( $_FILES['mwb_order_msg_attachment']['tmp_name'][0] ) ) {
+				$file_uploaded = true;
+			}
+			if ( $file_uploaded ) {
+				for ( $i = 0; $i < $count; $i++ ) {
+					if ( isset( $_FILES['mwb_order_msg_attachment']['tmp_name'][ $i ] ) ) {
+						$directory = ABSPATH . 'wp-content/attachment';
+						if ( ! file_exists( $directory ) ) {
+							mkdir( $directory, 0755, true );
+						}
 
-					$sourcePath = $_FILES['mwb_order_msg_attachment']['tmp_name'][$i];
-					$targetPath = $directory.'/'.$order_id.'-'.$_FILES['mwb_order_msg_attachment']['name'][$i];
+						$sourcepath = sanitize_text_field( wp_unslash( $_FILES['mwb_order_msg_attachment']['tmp_name'][ $i ] ) );
+						$f_name = isset( $_FILES['mwb_order_msg_attachment']['name'][ $i ] ) ? sanitize_text_field( wp_unslash( $_FILES['mwb_order_msg_attachment']['name'][ $i ] ) ) : '';
+						$targetpath = $directory . '/' . $order_id . '-' . $f_name;
 
-					$filename[$i]['name'] = $_FILES['mwb_order_msg_attachment']['name'][$i];
-					$file_type = $_FILES['mwb_order_msg_attachment']['type'][$i];
-                    if ( 'image/png' == $file_type || 'image/jpeg' == $file_type || 'image/jpg' == $file_type ) {
-						$filename[$i]['img']  = true ;
-					} else {
-						$filename[$i]['img']  = false;
+						$filename[ $i ]['name'] = isset( $_FILES['mwb_order_msg_attachment']['name'][ $i ] ) ? sanitize_text_field( wp_unslash( $_FILES['mwb_order_msg_attachment']['name'][ $i ] ) ) : '';
+						$file_type = isset( $_FILES['mwb_order_msg_attachment']['type'][ $i ] ) ? sanitize_text_field( wp_unslash( $_FILES['mwb_order_msg_attachment']['type'][ $i ] ) ) : '';
+						if ( 'image/png' == $file_type || 'image/jpeg' == $file_type || 'image/jpg' == $file_type ) {
+							$filename[ $i ] ['img']  = true;
+						} else {
+							$filename[ $i ]['img']  = false;
+						}
+						move_uploaded_file( $sourcepath, $targetpath );
 					}
-					move_uploaded_file( $sourcePath, $targetPath );
 				}
 			}
 		}
-		$date = date( 'd-m-Y H:i:s' );
-		$order_msg[$date]['sender'] = $sender;
-		$order_msg[$date]['msg']    = $msg;
-		$order_msg[$date]['files']  = $filename;
-	
-		$get_msg = get_option( $order_id.'-mwb_cutomer_order_msg', array() );
+		$date = strtotime( date( 'Y-m-d H:i:s' ) );
+		$order_msg[ $date ]['sender'] = $sender;
+		$order_msg[ $date ]['msg']    = $msg;
+		$order_msg[ $date ]['files']  = $filename;
+
+		$get_msg   = get_option( $order_id . '-mwb_cutomer_order_msg', array() );
 		$msg_count = get_post_meta( $order_id, 'mwb_order_msg_count', 0 );
 		if ( isset( $get_msg ) && ! empty( $get_msg ) ) {
 			array_push( $get_msg, $order_msg );
@@ -279,7 +291,7 @@ if ( $activated ) {
 			$get_msg = array();
 			array_push( $get_msg, $order_msg );
 		}
-		update_option( $order_id.'-mwb_cutomer_order_msg', $get_msg );
+		update_option( $order_id . '-mwb_cutomer_order_msg', $get_msg );
 		$flag = true;
 		return $flag;
 	}

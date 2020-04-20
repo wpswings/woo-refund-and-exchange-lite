@@ -15,7 +15,7 @@ if ( ! is_object( $theorder ) ) {
 }
 
 $order = $theorder;
-if( WC()->version < "3.0.0" ) {
+if ( WC()->version < '3.0.0' ) {
 	$order_id = $order->id;
 } else {
 	$order_id = $order->get_id();
@@ -23,16 +23,21 @@ if( WC()->version < "3.0.0" ) {
 
 ?>
 <div class="mwb_admin_order_msg_wrapper">
+	<div class="mwb_order_msg_reload_notice_wrapper">
+		<p class="mwb_order_msg_sent_notice"><strong><?php esc_html_e( 'Messages Refreshed Succesfully.', 'woocommerce-refund-and-exchange-lite' ); ?></strong></p>
+	</div>
 	<div class="mwb_admin_order_msg_history_container">
 		<div class="mwb_order_msg_history_title">
-			<h4>
+			<h4 class="mwb-order-heading">
 				<?php esc_html_e( 'Message History', 'woocommerce-refund-and-exchange-lite' ); ?>
+			<a href="" class="mwb_wrma_reload_messages">
+				<img src="<?php echo esc_url( get_home_url() ) . '/wp-content/plugins/woo-refund-and-exchange-lite/public/images/reload-icon.png'; ?>" class="reload-icon">
+			</a>
 			</h4>
-			<a href="" class="mwb_wrma_reload_messages">Reload</a>
 		</div>
 		<div  class="mwb_admin_order_msg_sub_container">
-			<?php 
-			$mwb_order_messages = get_option( $order_id.'-mwb_cutomer_order_msg', array() );
+			<?php
+			$mwb_order_messages = get_option( $order_id . '-mwb_cutomer_order_msg', array() );
 			if ( isset( $mwb_order_messages ) && is_array( $mwb_order_messages ) && ! empty( $mwb_order_messages ) ) {
 				foreach ( array_reverse( $mwb_order_messages ) as $o_key => $o_val ) {
 					foreach ( $o_val as $om_key => $om_val ) {
@@ -40,7 +45,7 @@ if( WC()->version < "3.0.0" ) {
 						<div class="mwb_order_msg_main_container mwb_order_messages">
 							<div>
 								<div class="mwb_order_msg_sender"><?php echo esc_html__( $om_val['sender'], 'woocommerce-refund-and-exchange-lite' ); ?></div>
-								<span class="mwb_order_msg_date"><?php echo $om_key;?></span>
+								<span class="mwb_order_msg_date"><?php echo esc_html( get_date_from_gmt( date( 'Y-m-d h:i a', $om_key ), 'Y-m-d h:i a' ) ); ?></span>
 							</div>
 							<div class="mwb_order_msg_detail_container">
 								<span><?php echo esc_html__( $om_val['msg'], 'woocommerce-refund-and-exchange-lite' ); ?></span>
@@ -49,14 +54,15 @@ if( WC()->version < "3.0.0" ) {
 								<hr>
 								<div class="mwb_order_msg_attach_container">
 									<div class="mwb_order_msg_attachments_title"><?php esc_html_e( 'Message attachments:', 'woocommerce-refund-and-exchange-lite' ); ?></div>
-									<?php foreach( $om_val['files'] as $fkey => $fval ) { 
-										if ( ! empty( $fval['name'] ) ) { 
+									<?php
+									foreach ( $om_val['files'] as $fkey => $fval ) {
+										if ( ! empty( $fval['name'] ) ) {
 											$is_image = $fval['img'];
 											?>
 											<div class="mwb_order_msg_single_attachment">
-												<a target="_blank" href="<?php echo get_home_url().'/wp-content/attachment/'.$order_id.'-'.$fval['name']; ?>">
-													<img class="mwb_order_msg_attachment_thumbnail" src="<?php echo $is_image ? get_home_url().'/wp-content/attachment/'.$order_id.'-'.$fval['name'] : get_home_url() . '/wp-content/plugins/woo-refund-and-exchange-lite/admin/images/attachment.png'; ?>">
-													<span class="mwb_order_msg_attachment_file_name"><?php echo esc_html__( $fval['name'], 'woocommerce-refund-and-exchange-lite' ); ?></span>
+												<a target="_blank" href="<?php echo esc_url( get_home_url() ) . '/wp-content/attachment/' . esc_html( $order_id ) . '-' . esc_html( $fval['name'] ); ?>">
+													<img class="mwb_order_msg_attachment_thumbnail" src="<?php echo $is_image ? esc_url( get_home_url() ) . '/wp-content/attachment/' . esc_html( $order_id ) . '-' . esc_html( $fval['name'] ) : esc_url( get_home_url() ) . '/wp-content/plugins/woo-refund-and-exchange-lite/admin/images/attachment.png'; ?>">
+													<span class="mwb_order_msg_attachment_file_name"><?php echo esc_html( $fval['name'] ); ?></span>
 												</a>
 											</div>
 										<?php } ?>
@@ -75,13 +81,17 @@ if( WC()->version < "3.0.0" ) {
 	</div>
 	<div class="mwb_admin_order_msg_container">
 		<form id="mwb_order_new_msg_form" method="post" enctype="multipart/form-data" action="">
-			<div class="mwb_order_msg_title"><h4><?php esc_html_e( 'Add a message', 'woocommerce-refund-and-exchange-lite' ); ?></h4></div>
-			<textarea id="mwb_order_new_msg" name="mwb_order_new_msg" title="<?php esc_html_e( 'Write a message you want to sent to the Shop Manager.', 'woocommerce-refund-and-exchange-lite' ); ?>" rows="5"></textarea>
+			<div class="mwb_order_msg_title"><h4 class="mwb-order-heading"><?php esc_html_e( 'Add a message', 'woocommerce-refund-and-exchange-lite' ); ?></h4></div>
+			<textarea id="mwb_order_new_msg" name="mwb_order_new_msg" placeholder="<?php esc_html_e( 'Write a message you want to sent to the Customer.', 'woocommerce-refund-and-exchange-lite' ); ?>" rows="5"></textarea>
 			<div>
-	            <label for="mwb_order_msg_attachment"> <?php esc_html_e( 'Attach files ', 'woocommerce-refund-and-exchange-lite' ); ?></label>
-	        </div>
-	        <p><input type="file" id="mwb_order_msg_attachment" name="mwb_order_msg_attachment[]" multiple ></p>
-			<input type="button" class="button button-primary" id="mwb_admin_order_msg_submit" name="mwb_admin_order_msg_submit" value="<?php esc_html_e( 'Send', 'woocommerce-refund-and-exchange-lite' ); ?>" data-id="<?php echo esc_attr( $order_id ); ?>">
+				<label for="mwb_order_msg_attachment"> <?php esc_html_e( 'Attach files ', 'woocommerce-refund-and-exchange-lite' ); ?></label>
+			</div>
+			<div class="mwb-order-msg-attachment-wrapper">
+				<input type="file" id="mwb_order_msg_attachment" name="mwb_order_msg_attachment[]" multiple >
+				<div class="mwb-order-msg-btn">
+					<button type="submit" class="button button-primary" id="mwb_order_msg_submit" name="mwb_order_msg_submit" data-id="<?php echo esc_attr( $order_id ); ?>"><?php esc_html_e( 'Send', 'woocommerce-refund-and-exchange-lite' ); ?> </button>
+				</div>
+			</div>	
 		</form>
 	</div>
 </div>

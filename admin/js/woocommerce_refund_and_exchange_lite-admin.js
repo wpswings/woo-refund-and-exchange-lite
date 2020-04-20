@@ -264,12 +264,21 @@
 
 					}
 				);
-
+	$('.mwb_order_msg_notice_wrapper').hide();
 	/* Send order messages from admin */
-    $( "#mwb_admin_order_msg_submit").click(function (e) {
+    $( "#mwb_order_msg_submit").click(function (e) {
     	e.preventDefault();
     	var up_files = $('#mwb_order_msg_attachment');
     	var msg = $('#mwb_order_new_msg').val();
+    	var alerthtml = '';
+    	if ( msg == '' ) {
+    		alerthtml = '<p class="mwb_order_msg_sent_notice">'+  global_rnx.message_empty +'</p><a href="" class="mwb_remove_notice_msg">X</a>';
+            $(".mwb_order_msg_notice_wrapper").addClass('mwb_msg_error');
+            $('.mwb_order_msg_notice_wrapper').removeClass('mwb_msg_succuss_notice');
+    		$(".mwb_order_msg_notice_wrapper").css('display', 'flex');
+			$(".mwb_order_msg_notice_wrapper").html(alerthtml);
+    		return false;
+    	}
     	var order_id = $(this).data("id");
 
     	var form_data = new FormData();
@@ -295,10 +304,13 @@
 		   	success: function ( response ) {
 		   		if( response ) {
 			   		var html = 	'<p class="mwb_order_msg_sent_notice">'+  global_rnx.message_sent +'</p><a href="" class="mwb_remove_notice_msg">X</a>';
+                    $('.mwb_order_msg_notice_wrapper').addClass('mwb_msg_succuss_notice');
+$('.mwb_order_msg_notice_wrapper').removeClass('mwb_msg_error');
 			   		$('.mwb_order_msg_notice_wrapper').html( html );
-			   		$('.mwb_order_msg_notice_wrapper').show();
-			   		$('.mwb_admin_order_msg_sub_container').load(document.URL +  ' .mwb_admin_order_msg_sub_container');
+			   		$('.mwb_order_msg_notice_wrapper').css('display', 'flex');
+			   		$('.mwb_admin_order_msg_sub_container').load(document.URL +  ' .mwb_order_msg_main_container');
 		   			$('#mwb_order_new_msg').val("");
+		   			$('#mwb_order_msg_attachment').val('');
 		   		}
 		   	}
 		});
@@ -311,7 +323,15 @@
 
 	$(document).on('click','.mwb_wrma_reload_messages',function(e) {
 		e.preventDefault();
-		$('.mwb_admin_order_msg_sub_container').load(document.URL +  ' .mwb_admin_order_msg_sub_container');
+		$(this).addClass('mwb-loader-icon');
+		$('.mwb_admin_order_msg_sub_container').load(document.URL +  ' .mwb_order_msg_main_container');
+		setTimeout(function() {
+			$('.mwb_wrma_reload_messages').removeClass('mwb-loader-icon');
+            $('.mwb_order_msg_reload_notice_wrapper').show();
+		}, 2000);
+         setTimeout(function() {
+			 $('.mwb_order_msg_reload_notice_wrapper').hide();
+		}, 3000);
 	});
 
 		}

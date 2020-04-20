@@ -107,7 +107,8 @@ class woocommerce_refund_and_exchange_lite_Admin {
 		$translation_array = array(
 			'ajaxurl' => admin_url( 'admin-ajax.php' ),
 			'ced_rnx_nonce' => $ajax_nonce,
-			'message_sent' => __( 'Message has been sent succesfully','woocommerce-refund-and-exchange-lite' ),
+			'message_sent' => __( 'Message has been sent succesfully', 'woocommerce-refund-and-exchange-lite' ),
+			'message_empty' => __( 'Please enter a message.', 'woocommerce-refund-and-exchange-lite' ),
 		);
 		wp_localize_script( $this->woocommerce_refund_and_exchange_lite, 'global_rnx', $translation_array );
 		wp_enqueue_script( $this->woocommerce_refund_and_exchange_lite );
@@ -797,14 +798,14 @@ class woocommerce_refund_and_exchange_lite_Admin {
 		}
 	}
 
-	public  function mwb_wrma_order_messages_save() {
+	public function mwb_wrma_order_messages_save() {
 		$check_ajax = check_ajax_referer( 'ced-rnx-ajax-seurity-string', 'security_check' );
 		if ( $check_ajax ) {
 			$msg = isset( $_POST['msg'] ) ? filter_input( INPUT_POST, 'msg' ) : '';
 			$order_id = isset( $_POST['order_id'] ) ? filter_input( INPUT_POST, 'order_id' ) : '';
-			$sender = "Shop Manager";
+			$sender = 'Shop Manager';
 			$flag = ced_rnx_lite_send_order_msg_callback( $order_id, $msg, $sender );
-			echo $flag;
+			echo esc_html( $flag );
 			wp_die();
 		}
 	}

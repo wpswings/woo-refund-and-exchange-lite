@@ -246,12 +246,13 @@ if ( $allowed ) {
 											<b><?php esc_html_e( 'Price', 'woocommerce-refund-and-exchange-lite' ); ?> :</b> 
 											<?php
 												echo wc_price( $mwb_actual_price );/*phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped*/
-												if ( $in_tax == true ) {
-											?>
+											if ( $in_tax == true ) {
+												?>
 											<small class="tax_label"><?php esc_html_e( '(incl. tax)', 'woocommerce-refund-and-exchange-lite' ); ?></small>
 												<?php
 											}
-											?>	
+											?>
+												
 										</p>
 										</div>
 									</td>

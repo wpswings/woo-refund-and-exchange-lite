@@ -356,12 +356,237 @@ div.mwb_order_msg_single_attachment a .mwb_order_msg_attachment_thumbnail {
 }
 
 .mwb_order_msg_sub_container {
-    padding: 30px;
-    border: solid darkgrey 1px;
+    padding: 15px;
+    border: solid #ccc 1px;
     overflow-y: auto;
+    min-height: 200px;
     max-height: 400px;
 }
 
 #mwb_order_new_msg {
   width: 100%;
+}
+
+
+
+/*===============================
+=            New-CSS            =
+===============================*/
+.mwb_order_msg_title h4 {
+    font-size: 20px;
+    font-weight: 500 !important;
+}
+textarea#mwb_order_new_msg {
+    border: 1px solid #ccc;
+    box-shadow: none;
+    height: 150px;
+    background: #fff;
+}
+#mwb_order_new_msg_form label {
+    margin-top: 15px !important;
+    display: block;
+    color: #000;
+    margin-bottom: 7px;
+    font-size: 16px !important;
+    text-transform: capitalize;
+}
+.mwb_order_msg_notice_wrapper {
+    color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    background: #64CD83;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+}
+p.mwb_order_msg_sent_notice {
+    font-size: 16px !important;
+    margin-bottom: 0;
+}
+a.mwb_order_send_msg_dismiss {
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+#mwb_order_msg_submit {
+    background: #374585;
+    border: 1px solid #374585;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 0;
+    padding: 6px 30px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+.mwb_order_msg_history_title h4 {
+    color: #000;
+    font-size: 18px;
+    font-weight: 400;
+}
+.mwb_order_messages .mwb_order_msg_sender {
+    padding: 8px 40px 8px 30px;
+    position: relative;
+}
+.mwb_order_msg_sender:before {
+    content: '';
+    position: absolute;
+    right: -10px;
+    top: 10px;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #ffffff;
+    clear: both;
+    transform: rotate(90deg);
+}
+
+
+.mwb_order_add_msg_form .mwb_order_msg_notice_wrapper{
+padding: 5px 15px;
+}
+.mwb_order_add_msg_form a.mwb_order_send_msg_dismiss{
+text-decoration: none;
+}
+.mwb_order_add_msg_form .mwb_order_msg_history_container {
+margin-top: 40px;
+}
+.mwb_order_messages .mwb_order_msg_sender{
+background-color: #4f62b9;
+}
+.mwb_order_messages .mwb_order_msg_date{
+font-size: 11pt;
+}
+.mwb_order_messages .mwb_order_msg_single_attachment {
+font-size: 12px;
+}
+div.mwb_order_msg_single_attachment a .mwb_order_msg_attachment_thumbnail{
+margin-left: 0 !important;
+margin-right: 0 !important;
+}
+.mwb_order_messages .mwb_order_msg_single_attachment{
+padding-left: 10px;
+}
+.mwb_order_messages .mwb_order_msg_attachment_file_name {
+	padding-top: 5px !important;
+    display: inline-block;
+    text-decoration: underline;
+    color: #6b6b6b;
+    font-size: 16px;
+}
+#mwb_order_msg_submit{
+background-color: #4f62b9;
+}
+.mwb_order_msg_history_title .reload{
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
+margin-bottom: 6px !important;
+}
+.mwb_order_msg_history_container .mwb_reload_messages .reload-icon {
+    width: 30px; 
+}
+
+/*=====  End of New-CSS  ======*/
+
+.mwb_admin_order_msg_wrapper .mwb_order_msg_date{
+    font-size: 11pt;
+}
+.mwb_order_msg_single_attachment{
+    font-size: 13px;
+}
+.mwb_admin_order_msg_wrapper .mwb_order_msg_notice_wrapper{
+    color: #fff;
+    border-radius: 5px;
+    background: #64CD83;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 5px 15px;
+    font-weight: 600;
+    margin-top: 30px;
+}
+.mwb_admin_order_msg_wrapper .mwb_order_msg_notice_wrapper p{
+    margin: 0px;
+    font-size: 16px;
+}
+.mwb_admin_order_msg_wrapper .mwb_order_msg_notice_wrapper a{
+    color: #ffffff;
+    text-decoration: none;
+}
+.mwb_order_msg_attachment_file_name {
+    padding-top: 10px !important;
+    display: inline-block;
+    text-decoration: underline;
+}
+.mwb_order_msg_attach_container .mwb_order_msg_attachments_title{
+    padding-bottom: 10px;
+}
+.mwb_order_msg_attach_container .mwb_order_msg_attachments_title {
+    font-size: 20px;
+}
+.mwb_order_msg_attach_container .mwb_order_msg_single_attachment{
+    padding-left: 10px;
+    text-align: center;
+}
+/* 09-APR-2020 */
+
+.mwb-order-msg-attachment-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.mwb_order_add_msg_form .mwb-order-heading {
+    background-color: #dadada;
+    padding: 7px 15px;
+    font-weight: 600 !important;
+    color: #1f1f1f !important;
+}
+.mwb_order_msg_history_title .mwb-order-heading {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.mwb_order_msg_history_title .mwb-order-heading .mwb_reload_messages {
+    margin-left: 20px;
+    width: 18px;
+    margin-top: 3px;
+}
+@keyframes spin {
+	0% {
+		transform: rotateZ(0);
+	}
+	100% {
+		transform: rotateZ(360deg);
+	}
+}
+.mwb-loader-icon {
+    animation: spin 1s infinite linear;
+    transition: all .3s;
+    transition-timing-function: ease-in;
+}
+.mwb-order-msg-btn {
+    margin-top: 15px;
+    text-align: right;
+    width: 100%;
+}
+#mwb_order_msg_attachment {
+    width: 50%;
+}
+.mwb_notice_main_container {
+    margin-bottom: 15px;
+}
+.mwb_order_msg_reload_notice_wrapper{
+	display: none;
+}
+.mwb_order_msg_reload_notice_wrapper {
+    color: #fff;
+    padding: 5px 15px;
+    border-radius: 5px;
+    background: #64CD83;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
 }

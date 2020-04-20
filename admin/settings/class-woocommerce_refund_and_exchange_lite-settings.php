@@ -14,7 +14,7 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 			add_submenu_page( 'woocommerce', __( 'RAE Configuration', 'woocommerce-refund-and-exchange-lite' ), __( 'RAE Configuration', 'woocommerce-refund-and-exchange-lite' ), 'manage_options', 'ced-rnx-notification', array( $this, 'ced_rnx_notification_callback' ) );
 			add_meta_box( 'ced_rnx_order_refund', __( 'Refund Requested Products', 'woocommerce-refund-and-exchange-lite' ), array( $this, 'ced_rnx_order_return' ), 'shop_order' );
 			// Add order msg history.
-            add_meta_box( 'ced_rnx_order_msg_history', __( 'Order Message History','woocommerce-refund-and-exchange-lite' ), array( $this, 'ced_rnx_order_msg_history' ), 'shop_order' );
+			add_meta_box( 'ced_rnx_order_msg_history', __( 'Order Message History', 'woocommerce-refund-and-exchange-lite' ), array( $this, 'ced_rnx_order_msg_history' ), 'shop_order' );
 
 			$this->id = 'ced_rnx_setting';
 
@@ -233,14 +233,14 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 						'desc'          => __( 'Enable this if you want to allow your customers to message their order related query.', 'woocommerce-refund-and-exchange-lite' ),
 						'default'       => 'no',
 						'type'          => 'checkbox',
-						'id' 			=> 'mwb_wrma_order_message_view'
+						'id'            => 'mwb_wrma_order_message_view',
 					),
 					array(
 						'title'         => __( 'Enable attachment upload for order messages', 'woocommerce-refund-and-exchange-lite' ),
 						'desc'          => __( 'Enable this if you want to allow your customers to upload attachment along with their order related messages.', 'woocommerce-refund-and-exchange-lite' ),
 						'default'       => 'no',
 						'type'          => 'checkbox',
-						'id' 			=> 'mwb_wrma_order_message_attachment'
+						'id'            => 'mwb_wrma_order_message_attachment',
 					),
 
 					array(
@@ -304,7 +304,7 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 		 */
 		public function ced_rnx_order_msg_history() {
 			global $post, $thepostid, $theorder;
-            include_once MWB_REFUND_N_EXCHANGE_LITE_DIRPATH . 'admin/partials/mwb-rnx-lite-order-msg-history-meta.php';
+			include_once MWB_REFUND_N_EXCHANGE_LITE_DIRPATH . 'admin/partials/mwb-rnx-lite-order-msg-history-meta.php';
 		}
 	}
 }

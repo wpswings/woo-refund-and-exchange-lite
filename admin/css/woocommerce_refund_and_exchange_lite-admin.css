@@ -1154,7 +1154,7 @@
 /*View order messages css*/
 
 .mwb_order_messages {
-  margin-left: 30px;
+  /* margin-left: 30px; */
   background-color: white;
 }
 
@@ -1227,16 +1227,161 @@ div.mwb_order_msg_single_attachment a .mwb_order_msg_attachment_thumbnail {
 }
 
 .mwb_admin_order_msg_sub_container {
-    padding: 30px;
+    padding: 15px;
     border: solid darkgrey 1px;
     overflow-y: auto;
     max-height: 400px;
+    min-height: 110px;
 }
 
 #mwb_order_new_msg {
   width: 100%;
+  margin-bottom: 15px;
 }
 
 .mwb_order_msg_notice_wrapper{
   display: none;
+}
+
+.mwb_admin_order_msg_wrapper .mwb_order_msg_date{
+font-size: 11pt;
+}
+.mwb_order_msg_single_attachment{
+font-size: 13px;
+}
+
+.mwb_admin_order_msg_wrapper .mwb_order_msg_notice_wrapper{
+    color: #fff;
+    border-radius: 5px;
+    display: none;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 5px 15px;
+    font-weight: 600;
+    margin-top: 30px;
+}
+.mwb_admin_order_msg_wrapper .mwb_order_msg_notice_wrapper p{
+    margin: 0px;
+    font-size: 16px;
+}
+.mwb_admin_order_msg_wrapper .mwb_order_msg_notice_wrapper a{
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/*.mwb_order_add_msg_form .mwb_order_msg_notice_wrapper{
+    padding: 5px 15px;
+}*/
+.mwb_order_add_msg_form .mwb_order_msg_history_container {
+    margin-top: 40px;
+}
+.mwb_order_messages .mwb_order_msg_sender{
+   background-color: #4f62b9;
+}
+.mwb_order_messages .mwb_order_msg_date{
+    font-size: 11pt;
+}
+.mwb_order_messages .mwb_order_msg_single_attachment {
+    font-size: 14px;
+    padding-left: 10px;
+    
+    text-align: center;
+}
+div.mwb_order_msg_single_attachment a .mwb_order_msg_attachment_thumbnail{
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+.mwb_order_messages .mwb_order_msg_attachment_file_name {
+    padding-top: 5px !important;
+    display: inline-block;
+    text-decoration: underline;
+}
+.mwb_order_msg_history_title .reload{
+    overflow: hidden;
+}
+.mwb_order_msg_history_title .reload-icon{
+    float: right;
+}
+.mwb_order_msg_sender:before {
+    content: '';
+    position: absolute;
+    right: -10px;
+    top: 10px;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #ffffff;
+    clear: both;
+    transform: rotate(90deg);
+}
+
+.mwb_order_messages .mwb_order_msg_sender {
+    padding: 8px 40px;
+    position: relative;
+}
+/* 09-04-2020 */
+.mwb_order_msg_history_title {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.mwb_order_msg_history_title .mwb-order-heading {
+    display: block;
+    margin: 0;
+    margin-bottom: 15px;
+    padding: 8px 0px;
+}
+.mwb_order_msg_history_title .mwb_wrma_reload_messages {
+    display: inline-block;
+    width: 16px;
+    margin-left: 10px;
+    position: relative;
+    top: 4px;
+}
+.mwb_order_msg_history_title .mwb_wrma_reload_messages img {
+    width: 100%;
+}
+.mwb-order-msg-attachment-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.mwb-order-msg-btn #mwb_admin_order_msg_submit {
+    padding: 3px 20px;
+    border: 0;
+}
+@keyframes spin {
+	0% {
+		transform: rotateZ(0);
+	}
+	100% {
+		transform: rotateZ(360deg);
+	}
+}
+.mwb-loader-icon {
+    animation: spin 1s infinite linear;
+    transition: all .3s;
+    transition-timing-function: ease-in;
+}
+.mwb_order_msg_reload_notice_wrapper{
+	display: none;
+}
+.mwb_order_msg_reload_notice_wrapper {
+    color: #fff;
+    padding: 5px 15px;
+    border-radius: 5px;
+    background: #64CD83;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.mwb_order_msg_reload_notice_wrapper .mwb_order_msg_sent_notice {
+	margin :0;
+}
+.mwb_msg_error {
+    background: #E2401C;
+}
+.mwb_msg_succuss_notice {
+	background: #64CD83;
 }

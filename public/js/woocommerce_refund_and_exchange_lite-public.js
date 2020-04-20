@@ -257,7 +257,15 @@ $(document).on('click','.mwb_order_send_msg_dismiss',function(e) {
 
 $(document).on('click','.mwb_reload_messages',function(e) {
 	e.preventDefault();
-	$('.mwb_order_msg_main_container').load(document.URL +  ' .mwb_order_msg_main_container');
+	$(this).addClass('mwb-loader-icon');
+	$('.mwb_order_msg_sub_container').load(document.URL +  ' .mwb_order_msg_main_container');
+		setTimeout(function() {
+			$('.mwb_reload_messages').removeClass('mwb-loader-icon');
+            $('.mwb_order_msg_reload_notice_wrapper').show();
+		}, 2000);
+        setTimeout(function() {
+			 $('.mwb_order_msg_reload_notice_wrapper').hide();
+		}, 3000);
 });
 }
 );

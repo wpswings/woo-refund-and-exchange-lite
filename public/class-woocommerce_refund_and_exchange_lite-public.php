@@ -82,7 +82,6 @@ class woocommerce_refund_and_exchange_lite_Public {
 	 * @since    1.0.0
 	 */
 	public function enqueue_scripts() {
-		// print_r(wp_get_current_user()->caps);die;
 		/**
 		 * This function is provided for demonstration purposes only.
 		 *
@@ -163,6 +162,18 @@ class woocommerce_refund_and_exchange_lite_Public {
 		$order = new WC_Order( $order );
 		$ced_rnx_next_return = true;
 		$order_id = $order->get_id();
+
+		$page_id = get_option( 'ced_rnx_view_order_msg_page_id', true );
+		$view_order_msg_url = get_permalink( $page_id );
+		$view_msg = get_option( 'mwb_wrma_order_message_view', 'no' );
+		$ced_rnx_return = get_option( 'mwb_wrma_return_enable', false );
+		if ( isset( $view_msg ) && 'yes' == $view_msg && isset( $ced_rnx_return ) && 'yes' == $ced_rnx_return ) {
+			$view_order_msg_url = add_query_arg( 'order_id', $order_id, $view_order_msg_url );
+			$view_order_msg_url = wp_nonce_url( $view_order_msg_url, 'ced-rnx-nonce', 'ced-rnx-nonce' );
+			$actions['view_msg']['url'] = $view_order_msg_url;
+			$actions['view_msg']['name'] = __( 'View Order Messages', 'woocommerce-refund-and-exchange-lite' );
+		}
+
 		$ced_rnx_made = get_post_meta( $order_id, 'ced_rnx_request_made', true );
 		if ( isset( $ced_rnx_made ) && ! empty( $ced_rnx_made ) ) {
 			$ced_rnx_next_return = false;
@@ -326,7 +337,6 @@ class woocommerce_refund_and_exchange_lite_Public {
 
 					$couponcode = $coupon[0];
 
-					
 					$coupons = new WC_Coupon( $couponcode );
 
 					$usage_count = $coupons->usage_count;
@@ -693,6 +703,23 @@ class woocommerce_refund_and_exchange_lite_Public {
 		$ced_rnx_return_button_show = true;
 		$ced_rnx_next_return = true;
 
+		$order_id = $order->get_id();
+		$page_id = get_option( 'ced_rnx_view_order_msg_page_id', true );
+		$view_order_msg_url = get_permalink( $page_id );
+		$ced_rnx_return = get_option( 'mwb_wrma_return_enable', false );
+		$view_msg = get_option( 'mwb_wrma_order_message_view', 'no' );
+		$redirect_uri = $_SERVER['REQUEST_URI'];
+		if ( isset( $view_msg ) && 'yes' == $view_msg && isset( $ced_rnx_return ) && 'yes' == $ced_rnx_return && strpos( $redirect_uri, 'order-received' ) === false ) {
+			?>
+			<form action="<?php echo add_query_arg( 'order_id', $order_id, $view_order_msg_url ); ?>" method="post">
+				<input type="hidden" value="<?php echo $order_id; ?>" name="order_id">
+				<p>
+					<input type="submit" class="btn button" value="<?php _e( 'View Order Messages', 'woocommerce-refund-and-exchange-lite' ); ?>"></p>
+				</p>
+			</form>
+			<?php
+		}
+
 		$ced_rnx_enable = get_option( 'ced_rnx_return_exchange_enable', false );
 		if ( $ced_rnx_enable == 'yes' ) {
 			$order_id = $order->get_id();
@@ -959,20 +986,6 @@ class woocommerce_refund_and_exchange_lite_Public {
 			}
 		}
 
-		$order_id = $order->get_id();
-		$page_id = get_option( 'ced_rnx_view_order_msg_page_id', true );
-		$view_order_msg_url = get_permalink( $page_id );
-		$view_msg = get_option( 'mwb_wrma_order_message_view', 'no' );
-		if ( isset( $view_msg ) && 'yes' == $view_msg  && isset( $ced_rnx_return ) && 'yes' == $ced_rnx_return ) {
-			?>
-			<form action="<?php echo add_query_arg('order_id',$order_id, $view_order_msg_url ); ?>" method="post">
-				<input type="hidden" value="<?php echo $order_id?>" name="order_id">
-				<p>
-					<input type="submit" class="btn button" value="<?php _e('View Order Messages','woocommerce-refund-and-exchange-lite')?>"></p>
-				</p>
-			</form>
-			<?php
-		}
 	}
 
 
