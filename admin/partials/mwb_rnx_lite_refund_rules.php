@@ -2,7 +2,7 @@
 	<table>
 		<tr>
 			<td>
-				<label for="return_form_editor"><?php _e('Enable', 'woocommerce-refund-and-exchange-lite' ); ?></label>
+				<label for="return_form_editor"><?php esc_html_e( 'Enable', 'woo-refund-and-exchange-lite' ); ?></label>
 			</td>
 			<td>
 				<input type="checkbox" name="mwb__refund_rules_editor_enable" id="mwb_wrma_refund_rules_editor_enable">
@@ -10,7 +10,7 @@
 		</tr>
 		<tr>
 			<div id="mwb_rnx_return_form_editor'">
-			<td><label for="return_form_editor"><?php _e('Custom Rules ', 'woocommerce-refund-and-exchange-lite' ); ?></label></td>
+			<td><label for="return_form_editor"><?php esc_html_e( 'Custom Rules ', 'woo-refund-and-exchange-lite' ); ?></label></td>
 			<td>
 				<?
 

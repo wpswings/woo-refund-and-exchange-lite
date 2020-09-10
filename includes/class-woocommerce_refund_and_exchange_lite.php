@@ -75,6 +75,7 @@ class woocommerce_refund_and_exchange_lite {
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
+		$this->init();
 
 	}
 
@@ -121,6 +122,14 @@ class woocommerce_refund_and_exchange_lite {
 
 		$this->loader = new woocommerce_refund_and_exchange_lite_Loader();
 
+		/**
+		 * The class responsible for defining all actions that occur in the onboarding the site data
+		 * in the admin side of the site.
+		 */
+		! class_exists( 'Makewebbetter_Onboarding_Helper' ) && require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-makewebbetter-onboarding-helper.php';
+
+		$this->onboard = new Makewebbetter_Onboarding_Helper();
+
 	}
 
 	/**
@@ -141,6 +150,15 @@ class woocommerce_refund_and_exchange_lite {
 	}
 
 	/**
+	 * Add woocommerce custom emails
+	 *
+	 * @since    1.0.0
+	 */
+	public function init() {
+		add_filter( 'woocommerce_email_classes', array( $this, 'add_mwb_wrma_woocommerce_emails' ) );
+	}
+
+	/**
 	 * Register all of the hooks related to the admin area functionality
 	 * of the plugin.
 	 *
@@ -155,14 +173,20 @@ class woocommerce_refund_and_exchange_lite {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'admin_menus' );
 		$this->loader->add_action( 'init', $plugin_admin, 'ced_rnx_register_custom_order_status' );
-		$this->loader->add_filter( 'wc_order_statuses', $plugin_admin, 'ced_rnx_add_custom_order_status');
-		$this->loader->add_action( 'wp_ajax_ced_return_req_approve', $plugin_admin, 'ced_rnx_return_req_approve_callback');
-		$this->loader->add_action( 'wp_ajax_nopriv_ced_return_req_approve', $plugin_admin, 'ced_rnx_return_req_approve_callback');
-		$this->loader->add_action( 'wp_ajax_ced_return_req_cancel',$plugin_admin, 'ced_rnx_return_req_cancel_callback');
-		$this->loader->add_action( 'wp_ajax_nopriv_ced_return_req_cancel', $plugin_admin, 'ced_rnx_return_req_cancel_callback');
-		$this->loader->add_action('wp_ajax_ced_rnx_manage_stock' , $plugin_admin , 'ced_rnx_manage_stock' );
-		$this->loader->add_action('wp_ajax_nopriv_ced_rnx_manage_stock' , $plugin_admin , 'ced_rnx_manage_stock' );
+		$this->loader->add_filter( 'wc_order_statuses', $plugin_admin, 'ced_rnx_add_custom_order_status' );
+		$this->loader->add_action( 'wp_ajax_ced_return_req_approve', $plugin_admin, 'ced_rnx_return_req_approve_callback' );
+		$this->loader->add_action( 'wp_ajax_nopriv_ced_return_req_approve', $plugin_admin, 'ced_rnx_return_req_approve_callback' );
+		$this->loader->add_action( 'wp_ajax_ced_return_req_cancel', $plugin_admin, 'ced_rnx_return_req_cancel_callback' );
+		$this->loader->add_action( 'wp_ajax_nopriv_ced_return_req_cancel', $plugin_admin, 'ced_rnx_return_req_cancel_callback' );
+		$this->loader->add_action( 'wp_ajax_ced_rnx_manage_stock', $plugin_admin, 'ced_rnx_manage_stock' );
+		$this->loader->add_action( 'wp_ajax_nopriv_ced_rnx_manage_stock', $plugin_admin, 'ced_rnx_manage_stock' );
 		$this->loader->add_action( 'woocommerce_refund_created', $plugin_admin, 'ced_rnx_action_woocommerce_order_refunded', 10, 2 );
+		$this->loader->add_action( 'wp_ajax_mwb_wrma_order_messages_save', $plugin_admin, 'mwb_wrma_order_messages_save' );
+		$this->loader->add_action( 'in_plugin_update_message-woo-refund-and-exchange-lite/woocommerce-refund-and-exchange-lite.php', $plugin_admin, 'in_plugin_update_message_callback', 10, 2 );
+		// Add your screen.
+		$this->loader->add_filter( 'mwb_helper_valid_frontend_screens', $plugin_admin, 'add_mwb_frontend_screens' );
+		// Add Deactivation screen.
+		$this->loader->add_filter( 'mwb_deactivation_supported_slug', $plugin_admin, 'add_mwb_deactivation_screens' );
 
 	}
 
@@ -179,14 +203,29 @@ class woocommerce_refund_and_exchange_lite {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-		$this->loader->add_filter( 'template_include',  $plugin_public, 'ced_rnx_product_return_template');
-		$this->loader->add_filter( 'woocommerce_my_account_my_orders_actions',$plugin_public, 'ced_rnx_refund_exchange_button',10, 2 );
-		$this->loader->add_action( 'wp_ajax_ced_rnx_return_upload_files',$plugin_public, 'ced_rnx_order_return_attach_files');
-		$this->loader->add_action( 'wp_ajax_nopriv_ced_rnx_return_upload_files',$plugin_public, 'ced_rnx_order_return_attach_files');
-		$this->loader->add_action( 'wp_ajax_ced_rnx_return_product_info', $plugin_public, 'ced_rnx_return_product_info_callback');
-		$this->loader->add_action( 'wp_ajax_nopriv_ced_rnx_return_product_info',$plugin_public, 'ced_rnx_return_product_info_callback');
-		$this->loader->add_action( 'woocommerce_order_details_after_order_table',$plugin_public, 'ced_rnx_order_return_button');
+		$this->loader->add_filter( 'template_include', $plugin_public, 'ced_rnx_product_return_template' );
+		$this->loader->add_filter( 'woocommerce_my_account_my_orders_actions', $plugin_public, 'ced_rnx_refund_exchange_button', 10, 2 );
+		$this->loader->add_action( 'wp_ajax_ced_rnx_return_upload_files', $plugin_public, 'ced_rnx_order_return_attach_files' );
+		$this->loader->add_action( 'wp_ajax_nopriv_ced_rnx_return_upload_files', $plugin_public, 'ced_rnx_order_return_attach_files' );
+		$this->loader->add_action( 'wp_ajax_ced_rnx_return_product_info', $plugin_public, 'ced_rnx_return_product_info_callback' );
+		$this->loader->add_action( 'wp_ajax_nopriv_ced_rnx_return_product_info', $plugin_public, 'ced_rnx_return_product_info_callback' );
+		$this->loader->add_action( 'woocommerce_order_details_after_order_table', $plugin_public, 'ced_rnx_order_return_button' );
 
+	}
+
+	/**
+	 * Add the email classes.
+	 *
+	 * @param array $email_classes email classes.
+	 */
+	public function add_mwb_wrma_woocommerce_emails( $email_classes ) {
+
+		// include our custom email class.
+		require_once MWB_REFUND_N_EXCHANGE_LITE_DIRPATH . 'emails/class-wc-rma-messages-email.php';
+
+		// add the email class to the list of email classes that WooCommerce loads.
+		$email_classes['wc_rma_messages_email'] = new WC_Rma_Order_Messages_Email();
+		return $email_classes;
 	}
 
 	/**

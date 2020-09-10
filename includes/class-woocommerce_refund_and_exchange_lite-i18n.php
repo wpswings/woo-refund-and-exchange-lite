@@ -35,7 +35,7 @@ class woocommerce_refund_and_exchange_lite_i18n {
 	public function load_plugin_textdomain() {
 
 		load_plugin_textdomain(
-			'woocommerce-refund-and-exchange-lite',
+			'woo-refund-and-exchange-lite',
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);
