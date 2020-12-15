@@ -22,7 +22,7 @@
   margin-top: 20px !important;
 }
 	.ced_rnx_return_loader, .ced_rnx_exchange_loader {
-	  background: #ffffff none repeat scroll 0 0;ss
+	  background: #ffffff none repeat scroll 0 0;
 	  display: none;
 	  height: 100%;
 	  left: 0;
@@ -962,13 +962,10 @@
 .mwb_wrma_table_wrapper.mwb_wrma_overview-wrapper {
     width: 100%;
     margin: 0 auto;
-    max-width: 962px;
+    max-width: 1100px;
     text-align: center;
 }
-.mwb_wrma_table_wrapper.mwb_wrma_overview-wrapper iframe, img {
-    border: 0;
-    width: 100%;
-}
+
 /* end video css */
 
 
@@ -1087,17 +1084,23 @@
   }
 }
 
-@media only screen and (max-width: 735px) {
-.mwb_wrma_table_wrapper.mwb_wrma_overview-wrapper iframe, img {
-    border: 0;
-    width: 90%;
+
+@media only screen and (max-width: 1075px) {
+.mwb_wrma_table_wrapper .mwb_wrma_video_wrapper {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    padding-top: 55.5%;
 }
-}
-@media only screen and (max-width: 615px) {
-.mwb_wrma_table_wrapper.mwb_wrma_overview-wrapper iframe, img {
-    border: 0;
-    width: 531px;
-}
+.mwb_wrma_table_wrapper.mwb_wrma_overview-wrapper iframe {
+    position: absolute;
+    width: 100% !important;
+    height: 100%;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+ }
 }
 
 /*=====  End of sidebar media query  ======*/

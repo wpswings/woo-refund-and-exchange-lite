@@ -146,6 +146,14 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 			echo '</div>';
 			echo '</ul><br class="clear ced_rnx_clear"/>';
 			echo '</div>';
+
+			if ( ! defined( 'ONBOARD_PLUGIN_NAME' ) && ( ! empty( $_GET['tab'] ) && 'ced_rnx_setting' === $_GET['tab'] ) ) {
+				define( 'ONBOARD_PLUGIN_NAME', 'Return Refund and Exchange for Woocommerce' );
+			}
+
+			if ( class_exists( 'Makewebbetter_Onboarding_Helper' ) ) {
+				$this->onboard = new Makewebbetter_Onboarding_Helper();
+			}
 		}
 
 		/**
