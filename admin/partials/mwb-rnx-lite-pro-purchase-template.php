@@ -5,7 +5,6 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
 $image_src = '';
 $mwb_rnx_section = '';
 $mwb_rnx_tab = '';

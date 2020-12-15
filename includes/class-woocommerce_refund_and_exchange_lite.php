@@ -128,13 +128,7 @@ class woocommerce_refund_and_exchange_lite {
 		 */
 		! class_exists( 'Makewebbetter_Onboarding_Helper' ) && require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-makewebbetter-onboarding-helper.php';
 
-		if ( ! defined( 'ONBOARD_PLUGIN_NAME' ) && ( ! empty( $_GET['tab'] ) && 'ced_rnx_setting' === $_GET['tab'] ) ) {
-			define( 'ONBOARD_PLUGIN_NAME', 'Return Refund and Exchange for Woocommerce' );
-		}
-
-		if ( class_exists( 'Makewebbetter_Onboarding_Helper' ) ) {
-			$this->onboard = new Makewebbetter_Onboarding_Helper();
-		}
+		$this->onboard = new Makewebbetter_Onboarding_Helper();
 
 	}
 
