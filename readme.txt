@@ -3,10 +3,10 @@ Contributors: makewebbetter
 Donate link:  https://makewebbetter.com/
 Tags: return,refund, woocommerce,exchange,RMA
 Requires at least: 4.0
-Tested up to: 5.5.1
+Tested up to: 5.5.3
 WC requires at least: 3.0.0
 WC tested up to: 4.7.0
-Stable tag: 3.0.1
+Stable tag: 3.0.2
 Requires PHP: 5.6
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -149,6 +149,11 @@ When a customer clicks on the refund button then on the refund request form cust
 
 == Changelog ==
 
+= 3.0.2 - RELEASED ON 10 NOVEMBER 2020 =
+
+* Fix: Compatibility with latest WP(5.5.3) and WC(4.7.0)
+* Fix: Update in Plugin Core
+
 = 3.0.1 - RELEASED ON 30 OCTOBER 2020 =
 
 * Fix: Some CSS issue with WP images
@@ -208,8 +213,8 @@ When a customer clicks on the refund button then on the refund request form cust
 
 == Upgrade Notice ==
 
-= 3.0.1 - RELEASED ON 30 OCTOBER 2020 =
+= 3.0.2 - RELEASED ON 10 NOVEMBER 2020 =
 
-* Fix: Some CSS issue with WP images
-* Fix: Compatibility with Latest WP and WC(4.7.0)
+* Fix: Compatibility with latest WP(5.5.3) and WC(4.7.0)
+* Fix: Update in plugin core
 
