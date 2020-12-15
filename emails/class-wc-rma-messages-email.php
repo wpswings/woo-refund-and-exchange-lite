@@ -43,6 +43,7 @@ class WC_Rma_Order_Messages_Email extends WC_Email {
 		$this->placeholders   = array(
 			'{site_title}'       => $this->get_blogname(),
 			'{message_date}' => '',
+			'{order_id}' => '',
 		);
 
 		// Call parent constructor to load any other defaults not explicity defined here.
@@ -57,12 +58,13 @@ class WC_Rma_Order_Messages_Email extends WC_Email {
 	 * @param array  $filename.
 	 * @param string $to.
 	 */
-	public function trigger( $msg, $attachment, $to ) {
+	public function trigger( $msg, $attachment, $to, $order_id ) {
 		if ( $to ) {
 			$this->setup_locale();
 			$this->receicer   = $to;
 			$this->msg        = $msg;
 			$this->placeholders['{message_date}'] = date( 'M d, Y' );
+			$this->placeholders['{order_id}'] = '#' . $order_id;
 			$this->send( $this->receicer, $this->get_subject(), $this->get_content(), $this->get_headers(), $attachment );
 		}
 		$this->restore_locale();
@@ -78,6 +80,7 @@ class WC_Rma_Order_Messages_Email extends WC_Email {
 		wc_get_template(
 			$this->template_html,
 			array(
+				'order_id' => $this->order_id,
 				'msg' => $this->msg,
 				'email_heading'  => $this->get_heading(),
 				'sent_to_admin'  => false,
@@ -95,7 +98,7 @@ class WC_Rma_Order_Messages_Email extends WC_Email {
 	 * Get email subject.
 	 */
 	public function get_default_subject() {
-		return esc_html__( 'Your {site_title} order message from {message_date}', 'woo-refund-and-exchange-lite' );
+		return esc_html__( 'Your {site_title} order {order_id} message from {message_date}', 'woo-refund-and-exchange-lite' );
 	}
 
 	/**

@@ -293,7 +293,7 @@ if ( $activated ) {
 		}
 		update_option( $order_id . '-mwb_cutomer_order_msg', $get_msg );
 		$customer_email = WC()->mailer()->emails['wc_rma_messages_email'];
-		$email_status   = $customer_email->trigger( $msg, $attachment, $to );
+		$email_status   = $customer_email->trigger( $msg, $attachment, $to, $order_id );
 		$flag           = true;
 		return $flag;
 	}

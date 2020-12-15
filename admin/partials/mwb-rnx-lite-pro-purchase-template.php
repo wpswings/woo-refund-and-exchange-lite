@@ -42,7 +42,7 @@ if ( 'overview' == $mwb_rnx_section && 'ced_rnx_setting' == $mwb_rnx_tab || '' =
 			<p><?php esc_html_e( 'Refund and Exchange plugin for WooCommerce gives your customers an easy and simple Refund Management system stuffed with organized Exchange, and Cancel features with a dedicated and streamlined mailing system.', 'woo-refund-and-exchange-lite' ); ?></p>
 		</div>
 		<div class="mwb_wrma_video_wrapper">
-			<iframe width="80%" height="411" src="https://www.youtube.com/embed/cUhLwWvZbJU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			<iframe width="80%" height="411" src="https://www.youtube.com/embed/z0kG75E60TI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 		</div>
 	</div>
 	<?php
