@@ -3,10 +3,10 @@ Contributors: makewebbetter
 Donate link:  https://makewebbetter.com/
 Tags: return,refund, woocommerce,exchange,RMA
 Requires at least: 4.0
-Tested up to: 5.5.3
+Tested up to: 5.6
 WC requires at least: 3.0.0
-WC tested up to: 4.7.0
-Stable tag: 3.0.3
+WC tested up to: 4.8.0
+Stable tag: 3.0.4
 Requires PHP: 5.6
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -20,7 +20,7 @@ Provide an easy refund service and increase customer satisfaction with this Retu
 
 Return Refund and Exchange for WooCommerce lets you create a simple refund management system stuffed with an organized exchange, wallet, cancel features. It saves time on complaints, calls disputes, and the hurdles of managing stock. Customers can request full or partial refunds from their accounts with a justification statement. The whole process goes under a dedicated and streamlined mailing system that keeps both parties on the same note. Ultimately leads to easy returns & increased customer satisfaction.
 
-[youtube https://www.youtube.com/watch?v=cUhLwWvZbJU]
+[youtube https://www.youtube.com/watch?v=z0kG75E60TI]
 
 
 == WITH THE RETURN REFUND AND EXCHANGE FOR WOOCOMMERCE PLUGIN YOU CAN: ==
@@ -37,6 +37,7 @@ Return Refund and Exchange for WooCommerce lets you create a simple refund manag
 * Create a dedicated mailing system for refund management
 * Add predefined elements in email content with shortcodes
 * Communicate with customers through messages and Emails
+* Admin can add shortcode for order_id in the emails to track down the customer from whom refund and exchange request is made
 
 
 == WHAT’S INCLUDED IN OUR FREE RETURN REFUND AND EXCHANGE FOR WOOCOMMERCE PLUGIN ==
@@ -149,6 +150,12 @@ When a customer clicks on the refund button then on the refund request form cust
 
 == Changelog ==
 
+= 3.0.4 - RELEASED ON 17 DECEMBER 2020 =
+
+* NEW: order_id shortcode for view order msg mails
+* NEW: Video link on Overview tab
+* FIX: Compatibility with Latest WP (5.6)
+
 = 3.0.3 - RELEASED ON 13 NOVEMBER 2020 =
 
 * Fix: Minor Bug Fixes
@@ -218,8 +225,8 @@ When a customer clicks on the refund button then on the refund request form cust
 
 == Upgrade Notice ==
 
-= 3.0.3 - RELEASED ON 13 NOVEMBER 2020 =
+= 3.0.4 - RELEASED ON 17 DECEMBER 2020 =
 
-* Fix: Minor Bug Fixes
-* Fix: Update in Plugin Co
-
+* NEW: Order Id shortcode for view order msg mails
+* NEW: Video link on Overview tab
+* FIX: Compatibility with Latest WP (5.6)

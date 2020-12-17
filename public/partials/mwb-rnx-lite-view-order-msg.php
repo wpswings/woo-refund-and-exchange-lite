@@ -68,7 +68,7 @@ $upload_attach = get_option( 'mwb_wrma_order_message_attachment', 'no' );
 	</div>
 	<div class="mwb_order_msg_history_container">
 		<div class="mwb_order_msg_history_title"><h4 class="mwb-order-heading"><?php esc_html_e( 'Message History', 'woo-refund-and-exchange-lite' ); ?>
-			<a href="" class="mwb_reload_messages"><img src="<?php echo esc_url( get_home_url() ) . '/wp-content/plugins/woo-refund-and-exchange-lite/public/images/reload-icon.png'; ?>" class="reload-icon"></a>
+			<a href="" class="mwb_reload_messages"><img src="<?php echo esc_url( MWB_REFUND_N_EXCHANGE_LITE_URL ) . '/public/images/reload-icon.png'; ?>" class="reload-icon"></a>
 		</h4>
 		</div>
 		<div class="mwb_order_msg_sub_container">
@@ -97,7 +97,7 @@ $upload_attach = get_option( 'mwb_wrma_order_message_attachment', 'no' );
 											?>
 											<div class="mwb_order_msg_single_attachment">
 												<a target="_blank" href="<?php echo esc_url( get_home_url() ) . '/wp-content/attachment/' . esc_html( $order_id ) . '-' . esc_html( $fval['name'] ); ?>">
-													<img class="mwb_order_msg_attachment_thumbnail" src="<?php echo $is_image ? esc_url( get_home_url() ) . '/wp-content/attachment/' . esc_html( $order_id ) . '-' . esc_html( $fval['name'] ) : esc_url( get_home_url() ) . '/wp-content/plugins/woo-refund-and-exchange-lite/public/images/attachment.png'; ?>">
+													<img class="mwb_order_msg_attachment_thumbnail" src="<?php echo $is_image ? esc_url( get_home_url() ) . '/wp-content/attachment/' . esc_html( $order_id ) . '-' . esc_html( $fval['name'] ) : esc_url( MWB_REFUND_N_EXCHANGE_LITE_URL ) . '/public/images/attachment.png'; ?>">
 													<span class="mwb_order_msg_attachment_file_name"><?php echo esc_html( $fval['name'] ); ?></span>
 												</a>
 											</div>
