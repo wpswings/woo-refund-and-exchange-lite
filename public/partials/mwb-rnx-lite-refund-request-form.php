@@ -100,7 +100,7 @@ if ( $allowed ) {
 
 			$days = $today_date - $order_date;
 			$day_diff = floor( $days / ( 60 * 60 * 24 ) );
-			$day_allowed = floor( get_option( 'mwb_wrma_return_days', false ) );  // Check allowed days
+			$day_allowed = get_option( 'mwb_wrma_return_days', false );  // Check allowed days
 
 
 			if ( $day_allowed >= $day_diff && 0 != $day_allowed ) {

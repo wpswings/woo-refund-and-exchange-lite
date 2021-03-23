@@ -205,7 +205,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 					$days = $today_date - $order_date;
 					$day_diff = floor( $days / ( 60 * 60 * 24 ) );
 
-					$day_allowed = floor( get_option( 'mwb_wrma_return_days', false ) );
+					$day_allowed = get_option( 'mwb_wrma_return_days', false );
 
 					$return_button_text = get_option( 'mwb_wrma_return_button_text', false );
 					if ( isset( $return_button_text ) && ! empty( $return_button_text ) ) {
@@ -890,7 +890,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 								$order_date = strtotime( $order_date );
 								$days = $today_date - $order_date;
 								$day_diff = floor( $days / ( 60 * 60 * 24 ) );
-								$day_allowed = floor( get_option( 'mwb_wrma_return_days', false ) );
+								$day_allowed = get_option( 'mwb_wrma_return_days', false );
 
 							if ( $day_allowed >= $day_diff && 0 != $day_allowed ) {
 								if ( $ced_rnx_return_button_show ) {
@@ -945,7 +945,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 							$order_date = strtotime( $order_date );
 							$days = $today_date - $order_date;
 							$day_diff = floor( $days / ( 60 * 60 * 24 ) );
-							$day_allowed = floor( get_option( 'mwb_wrma_return_days', false ) );
+							$day_allowed = get_option( 'mwb_wrma_return_days', false );
 
 							if ( $day_allowed >= $day_diff && 0 != $day_allowed ) {
 								$page_id = $ced_rnx_return_request_form_page_id;
@@ -984,7 +984,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 
 				$days = $today_date - $order_date;
 				$day_diff = floor( $days / ( 60 * 60 * 24 ) );
-				$day_allowed = floor( get_option( 'mwb_wrma_return_days', false ) );
+				$day_allowed = get_option( 'mwb_wrma_return_days', false );
 				if ( $day_allowed >= $day_diff && 0 != $day_allowed ) {
 					$page_id = $ced_rnx_return_request_form_page_id;
 					$return_url = get_permalink( $page_id );
