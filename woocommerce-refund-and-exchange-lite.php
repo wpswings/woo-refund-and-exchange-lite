@@ -15,7 +15,7 @@
  * Plugin Name:       Return Refund and Exchange for Woocommerce
  * Plugin URI:        https://wordpress.org/plugins/woo-refund-and-exchange-lite/
  * Description:       WooCommerce Refund and Exchange lite allows users to submit product refund. The plugin provides a dedicated mailing system that would help to communicate better between store owner and customers.This is lite version of Woocommerce Refund And Exchange.
- * Version:           3.0.4
+ * Version:           3.1.0
  * Author:            MakeWebBetter
  * Author URI:        http://makewebbetter.com/
  * WC tested up to:   4.8.0
@@ -30,6 +30,7 @@
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
+
 $activated                 = true;
 $ced_rnx_activated_main    = false;
 $ced_rnx_activated_main_cc = false;
@@ -89,6 +90,7 @@ if ( $activated ) {
 
 		if ( $page_id ) {
 			$ced_rnx_return_request_form_page_id = $page_id;
+			ced_rnx_wpml_translate_post( $page_id ); // Insert Translated Pages.
 		}
 		update_option( 'ced_rnx_return_request_form_page_id', $ced_rnx_return_request_form_page_id );
 
@@ -105,6 +107,7 @@ if ( $activated ) {
 
 		if ( $page_id ) {
 			$ced_rnx_view_order_msg_page_id = $page_id;
+			ced_rnx_wpml_translate_post( $page_id ); // Insert Translated Pages.
 		}
 		update_option( 'ced_rnx_view_order_msg_page_id', $ced_rnx_view_order_msg_page_id );
 	}
@@ -115,9 +118,12 @@ if ( $activated ) {
 	function deactivate_woocommerce_refund_and_exchange_lite() {
 
 		$page_id = get_option( 'ced_rnx_return_request_form_page_id' );
+		ced_rnx_delete_wpml_translate_post( $page_id );  // Delete tranlated pages.
 		wp_delete_post( $page_id );
 		delete_option( 'ced_rnx_return_request_form_page_id' );
 		$page_id1 = get_option( 'ced_rnx_view_order_msg_page_id' );
+
+		ced_rnx_delete_wpml_translate_post( $page_id1 ); // Delete tranlated pages.
 		wp_delete_post( $page_id1 );
 		delete_option( 'ced_rnx_view_order_msg_page_id' );
 	}
@@ -313,6 +319,61 @@ if ( $activated ) {
 		$plugin->run();
 	}
 	run_woocommerce_refund_and_exchange_lite();
+
+	/**
+	 * Creates a translation of a post (to be used with WPML)
+	 *
+	 * @param int $post_id The ID of the post to be translated.
+	 *
+	 * @return the none
+	 *  */
+	function ced_rnx_wpml_translate_post( $page_id ) {
+		if ( function_exists('icl_object_id') ) {
+			//$lang The language of the translated post (ie 'fr', 'de', etc.).
+			$langs = wpml_get_active_languages();
+			foreach ( $langs as $lang ) {
+				// If the translated page doesn't exist, now create it
+				if (icl_object_id($page_id, 'page', false, $lang['code']) == null) {
+					// Found at: http://wordpress.stackexchange.com/questions/20143/plugin-wpml-how-to-create-a-translation-of-a-post-using-the-wpml-api
+					$page_translated_name = get_post($page_id)->post_name . ' (-' . $lang['code'] . ')';
+					$page_translated_title = get_post($page_id)->post_title;
+					// All page stuff.
+					$my_page = array();
+					$my_page['post_name']  = $page_translated_name;
+					$my_page['post_title'] = $page_translated_title;
+					$my_page['post_author'] = 1;
+					$my_page['post_type'] = 'page';
+					$my_page['post_status'] = 'publish';
+					// Insert translated post.
+					$post_translated_id = wp_insert_post( $my_page );
+
+					// Get trid of original post.
+					$trid = wpml_get_content_trid('post_' . 'page', $page_id);
+					// Get default language
+					$default_lang = wpml_get_default_language();
+					// Associate original post and translated post.
+					global $wpdb;
+					$wpdb->update( $wpdb->prefix . 'icl_translations', array('trid' => $trid, 'language_code' => $lang['code'], 'source_language_code' => $default_lang), array( 'element_id' => $post_translated_id ) );
+
+				}
+			}
+		}
+
+	}
+
+	// Function to delete translated pages.
+	function ced_rnx_delete_wpml_translate_post( $page_id ) {
+		if ( function_exists( 'icl_object_id' ) ) {
+			$langs = wpml_get_active_languages();
+			foreach ( $langs as $lang ) {
+				if ( icl_object_id( $page_id, 'page', false, $lang['code'] ) ) {
+					$pageid = icl_object_id( $page_id, 'page', false, $lang['code'] );
+					wp_delete_post( $pageid );
+
+				}
+			}
+		}
+	}
 } else {
 
 	/**
@@ -390,3 +451,4 @@ if ( $activated ) {
 		add_action( 'admin_notices', 'ced_rnx_plugin_error_notice_when_pro_activated' );
 	}
 }
+

@@ -44,7 +44,7 @@ if ( WC()->version < '3.0.0' ) {
 						?>
 						<div class="mwb_order_msg_main_container mwb_order_messages">
 							<div>
-								<div class="mwb_order_msg_sender"><?php echo esc_html__( $om_val['sender'], 'woo-refund-and-exchange-lite' ); ?></div>
+								<div class="mwb_order_msg_sender"><?php echo ( $om_val['sender'] == 'Customer' ) ? __('Customer', 'woo-refund-and-exchange-lite'): __('Shop Manager', 'woo-refund-and-exchange-lite'); ?></div>
 								<span class="mwb_order_msg_date"><?php echo esc_html( get_date_from_gmt( date( 'Y-m-d h:i a', $om_key ), 'Y-m-d h:i a' ) ); ?></span>
 							</div>
 							<div class="mwb_order_msg_detail_container">
@@ -82,7 +82,7 @@ if ( WC()->version < '3.0.0' ) {
 	<div class="mwb_admin_order_msg_container">
 		<form id="mwb_order_new_msg_form" method="post" enctype="multipart/form-data" action="">
 			<div class="mwb_order_msg_title"><h4 class="mwb-order-heading"><?php esc_html_e( 'Add a message', 'woo-refund-and-exchange-lite' ); ?></h4></div>
-			<textarea id="mwb_order_new_msg" name="mwb_order_new_msg" placeholder="<?php esc_html_e( 'Write a message you want to sent to the Customer.', 'woo-refund-and-exchange-lite' ); ?>" rows="5"></textarea>
+			<textarea id="mwb_order_new_msg" name="mwb_order_new_msg" placeholder="<?php esc_html_e( 'Write a message you want to sent to the Customer.', 'woo-refund-and-exchange-lite' ); ?>" maxlength="10000" rows="5"></textarea>
 			<div>
 				<label for="mwb_order_msg_attachment"> <?php esc_html_e( 'Attach files ', 'woo-refund-and-exchange-lite' ); ?></label>
 			</div>

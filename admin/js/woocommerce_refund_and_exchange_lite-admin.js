@@ -187,12 +187,15 @@
 						);
 					}
 				);
-
+				
 				$( "#ced_rnx_return_predefined_reason_add" ).click(
 					function(){
-						var html = '';
-						html += '<input type="text" name="ced_rnx_return_predefined_reason[]" value="" class="input-text">';
-						$( "#ced_rnx_return_predefined_reason_wrapper" ).append( html );
+							var html = '';
+							html += '<input type="text" class="ced_rnx_return_predefined_reason" name="ced_rnx_return_predefined_reason[]" value="" class="input-text">';
+							$( "#ced_rnx_return_predefined_reason_wrapper" ).append( html );
+						
+						
+						
 					}
 				);
 				$( '#ced_rnx_accordion h2' ).on(

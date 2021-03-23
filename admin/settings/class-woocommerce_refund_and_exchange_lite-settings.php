@@ -213,7 +213,7 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 
 					array(
 						'title'         => __( 'Enable', 'woo-refund-and-exchange-lite' ),
-						'desc'          => __( 'Enable Refund Request', 'woo-refund-and-exchange-lite' ),
+						'desc'          => __( 'Enable Refund Request.', 'woo-refund-and-exchange-lite' ),
 						'default'       => 'no',
 						'type'          => 'checkbox',
 						'id'        => 'mwb_wrma_return_enable',
@@ -233,6 +233,7 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 						'type'          => 'number',
 						'custom_attributes'   => array( 'min' => '0' ),
 						'id'        => 'mwb_wrma_return_days',
+						'desc_tip' => true,
 					),
 					array(
 						'title'         => __( 'Enable Attachment on Request Form', 'woo-refund-and-exchange-lite' ),
@@ -240,6 +241,12 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 						'default'       => 'no',
 						'type'          => 'checkbox',
 						'id'        => 'mwb_wrma_return_attach_enable',
+					),
+					array(
+						'title'         => __( 'Enter number Of Attachment to be send', 'woo-refund-and-exchange-lite' ),
+						'type'          => 'number',
+						'id'            => 'mwb_wrma_refund_attachment_limit',
+						'default'       => __( 'Please Enter Number of Attachment', 'woo-refund-and-exchange-lite' ),
 					),
 					array(
 						'title'         => __( 'Enable Refund Reason Description', 'woo-refund-and-exchange-lite' ),
@@ -289,6 +296,7 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 						'id'            => 'mwb_wrma_return_button_text',
 						'default'       => __( 'Refund', 'woo-refund-and-exchange-lite' ),
 						'desc'          => __( 'Change Refund button text on frontend', 'woo-refund-and-exchange-lite' ),
+						'desc_tip' => true,
 					),
 					array(
 						'title'         => __( 'Enable Order Messages', 'woo-refund-and-exchange-lite' ),
@@ -304,12 +312,14 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 						'type'          => 'checkbox',
 						'id'            => 'mwb_wrma_order_message_attachment',
 					),
+
 					array(
 						'title'         => __( 'View Order Messages Button text', 'woo-refund-and-exchange-lite' ),
 						'type'          => 'text',
 						'id'            => 'mwb_wrma_order_msg_text',
 						'default'       => __( 'View Order Messages', 'woo-refund-and-exchange-lite' ),
 						'desc'          => __( 'Change View Order Messages Button text on frontend', 'woo-refund-and-exchange-lite' ),
+						'desc_tip' => true,
 					),
 
 					array(

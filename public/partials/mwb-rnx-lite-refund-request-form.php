@@ -100,7 +100,7 @@ if ( $allowed ) {
 
 			$days = $today_date - $order_date;
 			$day_diff = floor( $days / ( 60 * 60 * 24 ) );
-			$day_allowed = get_option( 'mwb_wrma_return_days', false );  // Check allowed days
+			$day_allowed = floor( get_option( 'mwb_wrma_return_days', false ) );  // Check allowed days
 
 
 			if ( $day_allowed >= $day_diff && 0 != $day_allowed ) {
@@ -348,7 +348,7 @@ if ( $allowed ) {
 				?>
 			</p>
 			<p class="form-row form-row form-row-wide">
-				<input type="text" name="ced_rnx_return_request_subject" class="input-text ced_rnx_return_request_subject" id="ced_rnx_return_request_subject_text" placeholder="<?php esc_html_e( 'Write your reason subject', 'woo-refund-and-exchange-lite' ); ?>">
+				<input type="text" name="ced_rnx_return_request_subject" class="input-text ced_rnx_return_request_subject" id="ced_rnx_return_request_subject_text" maxlength="5000" placeholder="<?php esc_html_e( 'Write your reason subject', 'woo-refund-and-exchange-lite' ); ?>">
 			</p>
 
 			<?php
@@ -360,19 +360,19 @@ if ( $allowed ) {
 						<label>
 							<b>
 								<?php
-									$reason_return_request = __( 'Reason of Refund Request', 'woo-refund-and-exchange-lite' );
+									$reason_return_request = __( 'Reason of Refund Request:', 'woo-refund-and-exchange-lite' );
 									echo esc_html( apply_filters( 'ced_rnx_return_request_reason', $reason_return_request ) );
 								?>
 							</b>
 						</label>
 						<br/>
 						<?php
-						$placeholder = get_option( 'ced_rnx_return_placeholder_text', 'Reason for Return Request' );
+						$placeholder = get_option( 'ced_rnx_return_placeholder_text', 'Reason for Retund Request' );
 						if ( $placeholder == '' ) {
 							$placeholder = esc_html__( 'Reason for the Refund Request', 'woo-refund-and-exchange-lite' );
 						}
 						?>
-						<textarea name="ced_rnx_return_request_reason" cols="40" style="height: 222px;" class="ced_rnx_return_request_reason form-control" placeholder="<?php esc_html_e( $placeholder ); ?>"><?php esc_html_e( $reason ); ?></textarea>
+						<textarea name="ced_rnx_return_request_reason" cols="40" style="height: 222px;" class="ced_rnx_return_request_reason form-control" maxlength='10000' placeholder="<?php esc_html_e( $placeholder ); ?>"><?php esc_html_e( $reason ); ?></textarea>
 					</p>
 					<?php
 				} else {
@@ -390,16 +390,20 @@ if ( $allowed ) {
 			<form action="" method="post" id="ced_rnx_return_request_form" data-orderid="<?php esc_html_e( $order_id ); ?>" enctype="multipart/form-data">
 				<?php
 				$return_attachment = get_option( 'mwb_wrma_return_attach_enable', false );
+				$attach_limit = get_option( 'mwb_wrma_refund_attachment_limit', '15' );
+				if( empty( $attach_limit ) ) {
+					$attach_limit = 5;
+				}
 				if ( isset( $return_attachment ) && ! empty( $return_attachment ) ) {
 					if ( $return_attachment == 'yes' ) {
 						?>
-						<label><b><?php esc_html_e( 'Attach Files', 'woo-refund-and-exchange-lite' ); ?></b></label>
+						<label><b><?php esc_html_e( 'Attach Files:', 'woo-refund-and-exchange-lite' ); ?></b></label>
 						<p class="form-row form-row form-row-wide">
 							<span id="ced_rnx_return_request_files">
 							<input type="hidden" name="ced_rnx_return_request_order" value="<?php esc_html_e( $order_id ); ?>">
 							<input type="hidden" name="action" value="<?php esc_html_e( 'ced_rnx_refund_upload_files', 'woo-refund-and-exchange-lite' ); ?>">
 							<input type="file" name="ced_rnx_return_request_files[]" class="input-text ced_rnx_return_request_files"></span>
-							<input type="button" value="<?php esc_html_e( 'Add More', 'woo-refund-and-exchange-lite' ); ?>" class="btn button ced_rnx_return_request_morefiles">
+							<input type="button" value="<?php esc_html_e( 'Add More', 'woo-refund-and-exchange-lite' ); ?>" class="btn button ced_rnx_return_request_morefiles" data-count="1" data-max="<?php echo $attach_limit; ?>">
 							<i><?php esc_html_e( 'Only .png, .jpeg extension file is approved.', 'woo-refund-and-exchange-lite' ); ?></i>
 						</p>
 						<?php

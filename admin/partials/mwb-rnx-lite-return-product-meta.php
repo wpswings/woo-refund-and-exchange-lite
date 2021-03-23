@@ -218,7 +218,7 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 			$manage_stock = get_option( 'mwb_wrma_return_request_manage_stock' );
 			if ( 'yes' == $manage_stock && 'yes' == $ced_rnx_manage_stock_for_return ) {
 				?>
-				 <div id="ced_rnx_stock_button_wrapper"><?php esc_html_e( 'When Product Bacck in stock then for stock management click on ', 'woo-refund-and-exchange-lite' ); ?> <input type="button" name="ced_rnx_stock_back" class="button button-primary" id="ced_rnx_stock_back" data-type="ced_rnx_return" data-orderid="<?php esc_html_e( $order_id ); ?>" Value="Manage Stock" ></div> 
+				 <div id="ced_rnx_stock_button_wrapper"><?php esc_html_e( 'When Product Back in stock then for stock management click on ', 'woo-refund-and-exchange-lite' ); ?> <input type="button" name="ced_rnx_stock_back" class="button button-primary" id="ced_rnx_stock_back" data-type="ced_rnx_return" data-orderid="<?php esc_html_e( $order_id ); ?>" Value="Manage Stock" ></div> 
 				<?php
 			}
 		}
