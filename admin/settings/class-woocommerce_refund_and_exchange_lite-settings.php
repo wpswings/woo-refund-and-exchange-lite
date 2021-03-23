@@ -205,7 +205,7 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 
 					array(
 						'title'         => __( 'Enable', 'woo-refund-and-exchange-lite' ),
-						'desc'          => __( 'Enable Refund Request', 'woo-refund-and-exchange-lite' ),
+						'desc'          => __( 'Enable Refund Request.', 'woo-refund-and-exchange-lite' ),
 						'default'       => 'no',
 						'type'          => 'checkbox',
 						'id'        => 'mwb_wrma_return_enable',
