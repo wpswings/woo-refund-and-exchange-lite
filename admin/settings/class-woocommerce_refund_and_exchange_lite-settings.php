@@ -297,6 +297,12 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 						'id'            => 'mwb_wrma_order_message_attachment',
 					),
 					array(
+						'title'         => __( 'Enter number Of Attachment to be send', 'woo-refund-and-exchange-lite' ),
+						'type'          => 'number',
+						'id'            => 'ced_rnx_refund_attachment_limit',
+						'default'       => __( 'Please Enter Number of Attachment', 'woo-refund-and-exchange-lite' ),
+					),
+					array(
 						'title'         => __( 'View Order Messages Button text', 'woo-refund-and-exchange-lite' ),
 						'type'          => 'text',
 						'id'            => 'mwb_wrma_order_msg_text',

@@ -34,10 +34,18 @@
 		// Add more files to attachment
 		$( ".ced_rnx_return_request_morefiles" ).click(
 			function(){
+				
+				var count = jQuery(this).data('count');
+				var max   = jQuery(this).data('max');
 				var html = '<br/><input type="file" class="input-text ced_rnx_return_request_files" name="ced_rnx_return_request_files[]">';
-				$( "#ced_rnx_return_request_files" ).append( html );
+	
+				if(count < max ){
+					$( "#ced_rnx_return_request_files" ).append( html );
+					$(document).find(".ced_rnx_return_request_morefiles").data('count', count+1);
+				}
+				
 			}
-			);
+		);
 
 			// Pick all attached files
 			$( "#ced_rnx_return_request_files" ).on('change',".ced_rnx_return_request_files",function(e) {
