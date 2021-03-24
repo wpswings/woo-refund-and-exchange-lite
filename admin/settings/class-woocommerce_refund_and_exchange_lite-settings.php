@@ -202,6 +202,8 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 			$status = $statuses;
 			$emaiUrl = admin_url() . 'admin.php?page=wc-settings&tab=email&section=wc_rma_messages_email';
 
+			$button_view = array( 'order-page'=>__('Order Page','mwb-woocommerce-rma'),'My account'=>__('Order View Page','mwb-woocommerce-rma'),'thank-you-page'=>__('Thank You Page','mwb-woocommerce-rma'));
+
 			if ( 'refund' == $current_section ) {
 
 				$settings = array(
@@ -320,6 +322,17 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 						'default'       => __( 'View Order Messages', 'woo-refund-and-exchange-lite' ),
 						'desc'          => __( 'Change View Order Messages Button text on frontend', 'woo-refund-and-exchange-lite' ),
 						'desc_tip' => true,
+					),
+					array(
+						'title'    => __( 'Select to show refund button on pages', 'woo-refund-and-exchange-lite' ),
+						'desc'     => __( 'Select the options to show the refund button on which page you want to show the button.', 'woo-refund-and-exchange-lite' ),
+						'class'    => 'wc-enhanced-select ',
+						'css'      => 'min-width:300px;',
+						'default'  => '',
+						'type'     => 'multiselect',
+						'options'  => $button_view,
+						'desc_tip' =>  true,
+						'id' 		=> 'mwb_wrma_refund_button_view'
 					),
 
 					array(

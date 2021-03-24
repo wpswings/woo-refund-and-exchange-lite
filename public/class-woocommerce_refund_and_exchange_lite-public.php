@@ -169,6 +169,8 @@ class woocommerce_refund_and_exchange_lite_Public {
 		$view_msg = get_option( 'mwb_wrma_order_message_view', 'no' );
 		$ced_rnx_return = get_option( 'mwb_wrma_return_enable', false );
 		$view_order_msg_text = get_option( 'mwb_wrma_order_msg_text', false );
+		$refund_button_view = get_option( 'mwb_wrma_refund_button_view', false);
+		
 		if ( isset( $view_msg ) && 'yes' == $view_msg && isset( $ced_rnx_return ) && 'yes' == $ced_rnx_return ) {
 			$view_order_msg_url = add_query_arg( 'order_id', $order_id, $view_order_msg_url );
 			$view_order_msg_url = wp_nonce_url( $view_order_msg_url, 'ced-rnx-nonce', 'ced-rnx-nonce' );
@@ -185,7 +187,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 			$ced_rnx_next_return = false;
 		}
 
-		if ( $ced_rnx_next_return ) {
+		if ( $ced_rnx_next_return && in_array('order-page',$refund_button_view)  ) {
 			// Return Request at order detail page.
 			$ced_rnx_return = get_option( 'mwb_wrma_return_enable', false );
 			if ( $ced_rnx_return == 'yes' ) {
@@ -710,14 +712,17 @@ class woocommerce_refund_and_exchange_lite_Public {
 	 * @link http://www.makewebbetter.com/
 	 */
 	function ced_rnx_order_return_button( $order ) {
+		global $wp;
 		$ced_rnx_return_request_form_page_id = get_option( 'ced_rnx_return_request_form_page_id', true );
 		$ced_rnx_return_button_show = true;
 		$ced_rnx_next_return = true;
+		
 		if ( ! is_user_logged_in() ) {
 			$ced_rnx_next_return = false;
 		}
 
 		$return_button_text = get_option( 'mwb_wrma_return_button_text', false );
+		$refund_button_view = get_option('mwb_wrma_refund_button_view',false);
 		if ( isset( $return_button_text ) && ! empty( $return_button_text ) ) {
 			$return_button_text = $return_button_text;
 		} else {
@@ -734,7 +739,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 			<form action="<?php echo add_query_arg( 'order_id', $order_id, $view_order_msg_url ); ?>" method="post">
 				<input type="hidden" value="<?php echo $order_id; ?>" name="order_id">
 				<p>
-					<input type="submit" class="btn button" value="<?php _e( 'View Order Messages', 'woo-refund-and-exchange-lite' ); ?>"></p>
+					<input type="submit" class="btn button" value="<?php _e( 'View Order Messages', 'woo-refund-and-exchange-lite' ); ?>">
 				</p>
 			</form>
 			<?php
@@ -957,12 +962,24 @@ class woocommerce_refund_and_exchange_lite_Public {
 										$ced_rnx_return_button_show = false;
 										$return_url = add_query_arg( 'order_id', $order_id, $return_url );
 										$return_url = wp_nonce_url( $return_url, 'ced-rnx-nonce', 'ced-rnx-nonce' );
-										?>
-											<form action="<?php esc_html_e( $return_url ); ?>" method="post">
-												<input type="hidden" value="<?php esc_html_e( $order_id ); ?>" name="order_id">
-												<p><input type="submit" class="btn button" value="<?php esc_html_e( $return_button_text ); ?>" name="ced_new_return_request"></p>
-											</form>
+										if( isset($refund_button_view) && in_array('thank-you-page',$refund_button_view)){
+											if ( is_checkout() && !empty( $wp->query_vars['order-received'] ) ) {
+												?>
+												<form action="<?php esc_html_e( $return_url ); ?>" method="post">
+													<input type="hidden" value="<?php esc_html_e( $order_id ); ?>" name="order_id">
+													<p><input type="submit" class="btn button" value="<?php esc_html_e( $return_button_text ); ?>" name="ced_new_return_request"></p>
+												</form>
 											<?php
+											}
+											else if ( isset($refund_button_view) && in_array( get_the_title(),$refund_button_view ) ) {
+												?>
+												<form action="<?php esc_html_e( $return_url ); ?>" method="post">
+													<input type="hidden" value="<?php esc_html_e( $order_id ); ?>" name="order_id">
+													<p><input type="submit" class="btn button" value="<?php esc_html_e( $return_button_text ); ?>" name="ced_new_return_request"></p>
+												</form>
+											<?php
+											}
+										}
 									}
 								}
 							}
@@ -994,12 +1011,24 @@ class woocommerce_refund_and_exchange_lite_Public {
 							$ced_rnx_return_button_show = false;
 							$return_url = add_query_arg( 'order_id', $order_id, $return_url );
 							$return_url = wp_nonce_url( $return_url, 'ced-rnx-nonce', 'ced-rnx-nonce' );
-							?>
-								<form action="<?php esc_html_e( $return_url ); ?>" method="post">
-									<input type="hidden" value="<?php esc_html_e( $order_id ); ?>" name="order_id">
-									<p><input type="submit" class="btn button" value="<?php esc_html_e( $return_button_text ); ?>" name="ced_new_return_request"></p>
-								</form>
+							if( isset($refund_button_view) && in_array('thank-you-page',$refund_button_view)){
+								if ( is_checkout() && !empty( $wp->query_vars['order-received'] ) ) {
+									?>
+									<form action="<?php esc_html_e( $return_url ); ?>" method="post">
+										<input type="hidden" value="<?php esc_html_e( $order_id ); ?>" name="order_id">
+										<p><input type="submit" class="btn button" value="<?php esc_html_e( $return_button_text ); ?>" name="ced_new_return_request"></p>
+									</form>
 								<?php
+								}
+								else if ( isset($refund_button_view) && in_array( get_the_title(),$refund_button_view ) ) {
+									?>
+									<form action="<?php esc_html_e( $return_url ); ?>" method="post">
+										<input type="hidden" value="<?php esc_html_e( $order_id ); ?>" name="order_id">
+										<p><input type="submit" class="btn button" value="<?php esc_html_e( $return_button_text ); ?>" name="ced_new_return_request"></p>
+									</form>
+								<?php
+								}
+							}
 						}
 					}
 				}
