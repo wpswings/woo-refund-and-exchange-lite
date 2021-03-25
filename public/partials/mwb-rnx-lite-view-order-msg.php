@@ -57,7 +57,7 @@ if (isset($order_id)){
 				<?php } ?>
 				<div class="mwb-order-msg-attachment-wrapper">
 					<?php if ( isset( $upload_attach ) && 'yes' == $upload_attach ) { ?>
-						<input type="file" id="mwb_order_msg_attachment" name="mwb_order_msg_attachment[]" multiple >
+					<input type="file" class="input-text" id="mwb_order_msg_attachment" name="mwb_order_msg_attachment[]" multiple >
 					<?php } ?>
 					<div class="mwb-order-msg-btn">
 						<input type="submit" class="button button-primary" id="mwb_order_msg_submit" name="mwb_order_msg_submit" value="<?php esc_html_e( 'Send', 'woo-refund-and-exchange-lite' ); ?>">

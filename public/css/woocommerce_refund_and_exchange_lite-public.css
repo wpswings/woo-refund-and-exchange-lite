@@ -569,12 +569,12 @@ margin-bottom: 6px !important;
     transition-timing-function: ease-in;
 }
 .mwb-order-msg-btn {
-    margin-top: 15px;
-    text-align: right;
-    width: 100%;
+    margin-top: 0px;
+    text-align: left;
+    
 }
 #mwb_order_msg_attachment {
-    width: 50%;
+    width: 90%;
 }
 .mwb_notice_main_container {
     margin-bottom: 15px;

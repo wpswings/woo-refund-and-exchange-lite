@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Return Refund and Exchange for Woocommerce 3.1.0\n"
-"POT-Creation-Date: 2021-03-24 15:57+0530\n"
-"PO-Revision-Date: 2021-03-24 15:57+0530\n"
+"POT-Creation-Date: 2021-03-25 17:48+0530\n"
+"PO-Revision-Date: 2021-03-25 17:48+0530\n"
 "Last-Translator: \n"
 "Language-Team: MakeWebBetter\n"
 "Language: en_US\n"
@@ -134,7 +134,7 @@ msgid "Basic"
 msgstr ""
 
 #: admin/partials/mwb-rnx-lite-notification.php:88
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:299
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:302
 #: public/class-woocommerce_refund_and_exchange_lite-public.php:216
 #: public/class-woocommerce_refund_and_exchange_lite-public.php:729
 msgid "Refund"
@@ -515,102 +515,106 @@ msgstr ""
 msgid "Enter number Of Attachment to be send"
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:251
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:249
+msgid "Enter the number of attachment cusomter can add one time during refund."
+msgstr ""
+
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:252
 msgid "Please Enter Number of Attachment"
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:254
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:257
 msgid "Enable Refund Reason Description"
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:255
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:258
 msgid "Enable this for user to send the detail description of Refund request."
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:261
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:264
 msgid "Enable Manage Stock"
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:262
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:265
 msgid "Enable this to increase product stock when Refund request is accepted."
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:268
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:271
 msgid "Select the orderstatus in which the order can be Refunded"
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:269
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:272
 msgid "Select Order status on which you want Refund request user can submit."
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:279
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:282
 msgid "Enable Refund Rules"
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:280
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:283
 msgid ""
 "Enable, if you want to show custom Refund Policy Rules on Refund Request "
 "Form."
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:287
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:290
 msgid "Refund Rules Editor "
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:288
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:291
 msgid ""
 "Custom Refund Rules Editor (HTML and CSS allowed).Put your custom Refund "
 "rules here."
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:296
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:299
 msgid "Refund Button Text"
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:300
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:303
 msgid "Change Refund button text on frontend"
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:304
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:307
 msgid "Enable Order Messages"
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:305
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:308
 #, php-format
 msgid ""
 "Enable this if you want to allow your customers to message their order "
 "related query. To configure order message mails. %s"
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:311
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:314
 msgid "Enable attachment upload for order messages"
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:312
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:315
 msgid ""
 "Enable this if you want to allow your customers to upload attachment along "
 "with their order related messages."
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:319
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:322
 msgid "View Order Messages Button text"
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:322
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:325
 #: public/class-woocommerce_refund_and_exchange_lite-public.php:181
 #: public/class-woocommerce_refund_and_exchange_lite-public.php:742
 msgid "View Order Messages"
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:323
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:326
 msgid "Change View Order Messages Button text on frontend"
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:327
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:330
 msgid "Select to show refund button on pages"
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:328
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:331
 msgid ""
 "Select the options to show the refund button on which page you want to show "
 "the button."

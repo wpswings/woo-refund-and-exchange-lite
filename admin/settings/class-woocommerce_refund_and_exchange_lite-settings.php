@@ -200,6 +200,11 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 
 			$statuses = wc_get_order_statuses();
 			$status = $statuses;
+			unset($status['wc-refund-approved']);
+			unset($status['wc-refund-cancelled']);
+			unset($status['wc-refund-requested']);
+			unset($status['wc-refunded']);
+
 			$emaiUrl = admin_url() . 'admin.php?page=wc-settings&tab=email&section=wc_rma_messages_email';
 
 			$button_view = array( 'order-page'=>__('Order Page','mwb-woocommerce-rma'),'My account'=>__('Order View Page','mwb-woocommerce-rma'),'thank-you-page'=>__('Thank You Page','mwb-woocommerce-rma'));
@@ -246,9 +251,12 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 					),
 					array(
 						'title'         => __( 'Enter number Of Attachment to be send', 'woo-refund-and-exchange-lite' ),
+						'desc'          => __( 'Enter the number of attachment cusomter can add one time during refund.', 'woo-refund-and-exchange-lite' ),
 						'type'          => 'number',
 						'id'            => 'mwb_wrma_refund_attachment_limit',
 						'default'       => __( 'Please Enter Number of Attachment', 'woo-refund-and-exchange-lite' ),
+						'custom_attributes'   => array( 'min' => '0' ),
+						'desc_tip' => true,
 					),
 					array(
 						'title'         => __( 'Enable Refund Reason Description', 'woo-refund-and-exchange-lite' ),
