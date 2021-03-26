@@ -1175,14 +1175,22 @@
 @media screen and (max-width: 675px) {
   .mwb_lite_header_content_left,
   .mwb_lite_header_content_right{
-	flex: 0 0 100%;
-	justify-content: center;
+    flex: 0 0 100%;
+    justify-content: center;
+    max-width: 100%;
   }
   .mwb_lite_header_content_right ul{
-	text-align: center;
+	  text-align: center;
   }
   .mwb_lite_header_content_left {
-	padding-bottom: 0;
+	  padding-bottom: 0;
+  }
+  .mwb_lite_setting_title {
+    text-align: center;
+  }
+
+  .mwb_lite_header_content_right ul li:first-child {
+    margin-bottom: 15px;
   }
 }
 
