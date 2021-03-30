@@ -334,7 +334,6 @@ if ( $activated ) {
 			foreach ( $langs as $lang ) {
 				// If the translated page doesn't exist, now create it
 				if (icl_object_id($page_id, 'page', false, $lang['code']) == null) {
-					// Found at: http://wordpress.stackexchange.com/questions/20143/plugin-wpml-how-to-create-a-translation-of-a-post-using-the-wpml-api
 					$page_translated_name = get_post($page_id)->post_name . ' (-' . $lang['code'] . ')';
 					$page_translated_title = get_post($page_id)->post_title;
 					// All page stuff.
