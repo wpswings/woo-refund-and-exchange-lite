@@ -106,7 +106,7 @@ class woocommerce_refund_and_exchange_lite_Admin {
 		$translation_array = array(
 			'ajaxurl' => admin_url( 'admin-ajax.php' ),
 			'ced_rnx_nonce' => $ajax_nonce,
-			'message_sent' => __( 'Message has been sent succesfully', 'woo-refund-and-exchange-lite' ),
+			'message_sent' => __( 'The message has been sent successfully.', 'woo-refund-and-exchange-lite' ),
 			'message_empty' => __( 'Please enter a message.', 'woo-refund-and-exchange-lite' ),
 		);
 		wp_localize_script( $this->woocommerce_refund_and_exchange_lite, 'global_rnx', $translation_array );
@@ -672,7 +672,7 @@ class woocommerce_refund_and_exchange_lite_Admin {
 
 				wc_mail( $to, $subject, $html_content, $headers );
 
-				$order->update_status( 'wc-refund-cancelled', __( 'User Request of Refund Product is approevd', 'woo-refund-and-exchange-lite' ) );
+				$order->update_status( 'wc-refund-cancelled', __( 'User Request of Refund Product is approved', 'woo-refund-and-exchange-lite' ) );
 				$response['response'] = 'success';
 				echo wp_json_encode( $response );
 				die;
@@ -728,7 +728,7 @@ class woocommerce_refund_and_exchange_lite_Admin {
 													}
 													update_post_meta( $order_id, 'ced_rnx_manage_stock_for_return', 'no' );
 													$response['result'] = 'success';
-													$response['msg'] = __( 'Product Stock is updated Succesfully.', 'woo-refund-and-exchange-lite' );
+													$response['msg'] = __( 'Product Stock is updated Successfully.', 'woo-refund-and-exchange-lite' );
 												} else {
 													$response['result'] = false;
 													$response['msg'] = __( 'Product Stock is not updated as manage stock setting of product is disable.', 'woo-refund-and-exchange-lite' );

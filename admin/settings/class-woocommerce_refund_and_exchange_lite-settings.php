@@ -236,7 +236,7 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 
 					array(
 						'title'         => __( 'Maximum Number of Days', 'woo-refund-and-exchange-lite' ),
-						'desc'          => __( 'If days exceeds from the day of order placed then Refund Request will not be send. If value is 0 or blank then Refund button will not visible at order detail page.', 'woo-refund-and-exchange-lite' ),
+						'desc'          => __( 'If days exceed the day of order placed then a Refund Request will not be sent. If the value is 0 or blank then the Refund button will not visible on the order detail page.', 'woo-refund-and-exchange-lite' ),
 						'type'          => 'number',
 						'custom_attributes'   => array( 'min' => '0' ),
 						'id'        => 'mwb_wrma_return_days',
@@ -251,29 +251,29 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 					),
 					array(
 						'title'         => __( 'Enter number Of Attachment to be send', 'woo-refund-and-exchange-lite' ),
-						'desc'          => __( 'Enter the number of attachment cusomter can add one time during refund.', 'woo-refund-and-exchange-lite' ),
+						'desc'          => __( 'Enter the number of attachments the customer can add one time during refund.', 'woo-refund-and-exchange-lite' ),
 						'type'          => 'number',
 						'id'            => 'mwb_wrma_refund_attachment_limit',
-						'default'       => __( 'Please Enter Number of Attachment', 'woo-refund-and-exchange-lite' ),
+						'default'       => __( 'Enter number Of Attachment to send', 'woo-refund-and-exchange-lite' ),
 						'custom_attributes'   => array( 'min' => '0' ),
 						'desc_tip' => true,
 					),
 					array(
 						'title'         => __( 'Enable Refund Reason Description', 'woo-refund-and-exchange-lite' ),
-						'desc'          => __( 'Enable this for user to send the detail description of Refund request.', 'woo-refund-and-exchange-lite' ),
+						'desc'          => __( 'Enable this for the user to send the detail description of Refund request.', 'woo-refund-and-exchange-lite' ),
 						'default'       => 'no',
 						'type'          => 'checkbox',
 						'id'        => 'mwb_wrma_return_request_description',
 					),
 					array(
 						'title'         => __( 'Enable Manage Stock', 'woo-refund-and-exchange-lite' ),
-						'desc'          => __( 'Enable this to increase product stock when Refund request is accepted.', 'woo-refund-and-exchange-lite' ),
+						'desc'          => __( 'Enable this to increase product stock when the Refund request is accepted.', 'woo-refund-and-exchange-lite' ),
 						'default'       => 'no',
 						'type'          => 'checkbox',
 						'id'        => 'mwb_wrma_return_request_manage_stock',
 					),
 					array(
-						'title'    => __( 'Select the orderstatus in which the order can be Refunded', 'woo-refund-and-exchange-lite' ),
+						'title'    => __( 'Select the order status in which the order can be Refunded', 'woo-refund-and-exchange-lite' ),
 						'desc'     => __( 'Select Order status on which you want Refund request user can submit.', 'woo-refund-and-exchange-lite' ),
 						'class'    => 'wc-enhanced-select ',
 						'css'      => 'min-width:300px;',
@@ -293,7 +293,7 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 					array(
 
 						'title'         => __( 'Refund Rules Editor ', 'woo-refund-and-exchange-lite' ),
-						'desc'          => __( 'Custom Refund Rules Editor (HTML and CSS allowed).Put your custom Refund rules here.', 'woo-refund-and-exchange-lite' ),
+						'desc'          => __( 'Custom Refund Rules Editor (HTML and CSS allowed). Put your custom Refund rules here.', 'woo-refund-and-exchange-lite' ),
 						'default'       => '',
 						'type'          => 'textarea',
 						'desc_tip'      => true,
@@ -317,7 +317,7 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 					),
 					array(
 						'title'         => __( 'Enable attachment upload for order messages', 'woo-refund-and-exchange-lite' ),
-						'desc'          => __( 'Enable this if you want to allow your customers to upload attachment along with their order related messages.', 'woo-refund-and-exchange-lite' ),
+						'desc'          => __( 'Enable this if you want to allow your customers to upload attachment along with their order-related messages.', 'woo-refund-and-exchange-lite' ),
 						'default'       => 'no',
 						'type'          => 'checkbox',
 						'id'            => 'mwb_wrma_order_message_attachment',

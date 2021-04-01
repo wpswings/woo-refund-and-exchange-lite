@@ -226,7 +226,7 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 			$approve_date = date_create( $return_data['cancel_date'] );
 			$approve_date = date_format( $approve_date, 'F d, Y' );
 
-			esc_html_e( 'Following product refund request is cancelled on', 'woo-refund-and-exchange-lite' );
+			esc_html_e( 'Following product refund request is canceled on', 'woo-refund-and-exchange-lite' );
 			?>
 			 <b><?php esc_html_e( $approve_date ); ?>.</b>
 			<?php

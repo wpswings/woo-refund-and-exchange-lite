@@ -368,7 +368,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 
 					if ( $exp_flag ) {
 						$response['flag'] = false;
-						$response['msg'] = __( 'Your Giftcard have been expired so we you can not proceed for refund . Thanks', 'woo-refund-and-exchange-lite' );
+						$response['msg'] = __( 'Your Giftcard have been expired so we you can not proceed with the refund. Thanks', 'woo-refund-and-exchange-lite' );
 						update_post_meta( $order_id, 'gift_card_hide_refund_button', 'true' );
 
 						echo wp_json_encode( $response );
@@ -377,7 +377,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 
 					if ( 0 != $usage_count ) {
 						$response['flag'] = false;
-						$response['msg'] = __( 'Your  Giftcard have been used so we you can not proceed for refund . Thanks', 'woo-refund-and-exchange-lite' );
+						$response['msg'] = __( 'Your Giftcard have been used so we you can not proceed with the refund. Thanks', 'woo-refund-and-exchange-lite' );
 						update_post_meta( $order_id, 'gift_card_hide_refund_button', 'true' );
 
 						echo wp_json_encode( $response );
@@ -697,7 +697,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 				$order = wc_get_order( $order_id );
 				$order->update_status( 'wc-refund-requested', 'User Request to Refund Product' );
 				$response['flag'] = true;
-				$response['msg'] = __( 'Message send successfully.You have received a notification mail regarding this, Please check your mail. Soon You redirect to My Account Page. Thanks', 'woo-refund-and-exchange-lite' );
+				$response['msg'] = __( 'Message send successfully. You have received a notification mail regarding this, Please check your mail. Soon You redirect to the My Account Page. Thanks', 'woo-refund-and-exchange-lite' );
 
 				echo wp_json_encode( $response );
 				die;
@@ -930,7 +930,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 							$format = get_option( 'date_format' );
 							$appdate = date_format( $appdate, $format );
 							?>
-								<p><?php esc_html_e( 'Above product Refund request is cancelled on', 'woo-refund-and-exchange-lite' ); ?> <b><?php esc_html_e( $appdate ); ?>.</b></p>
+								<p><?php esc_html_e( 'Above product Refund request is canceled on', 'woo-refund-and-exchange-lite' ); ?> <b><?php esc_html_e( $appdate ); ?>.</b></p>
 								<?php
 						}
 					}

@@ -405,7 +405,7 @@ if ( $activated ) {
 	function ced_rnx_plugin_error_notice_when_pro_activated() {
 		?>
 		<div class="error notice is-dismissible">
-			<p><?php esc_html_e( 'WooCommerce RMA | Return-Refund-Exchange is activated so you did not need to install WooCommerce Refund and Exchange Lite because Main version is contains all the feature of our lite extention .', 'woo-refund-and-exchange-lite' ); ?></p>
+			<p><?php esc_html_e( 'WooCommerce RMA | Return-Refund-Exchange is activated so you did not need to install WooCommerce Refund and Exchange Lite because the Main version contains all the features of our lite extension.', 'woo-refund-and-exchange-lite' ); ?></p>
 		</div>
 		<style>
 		#message{display:none;}

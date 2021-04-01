@@ -245,7 +245,7 @@ if ( isset( $_POST['ced_rnx_noti_save_return'] ) ) {
 						<div class="ced_rnx_accord_sec_wrap">
 							<h2><?php esc_html_e( 'Short-Codes ', 'woo-refund-and-exchange-lite' ); ?></h2>
 							<div class="ced_rnx_content_sec ced_rnx_notification_section">
-								<p><h3><?php esc_html_e( 'These are some shortcodes that you can use in EMAIL MESSESGES. It will be changed with its dynamic values.', 'woo-refund-and-exchange-lite' ); ?></h3></p>
+								<p><h3><?php esc_html_e( 'These are some shortcodes that you can use in EMAIL MESSAGES. It will be changed with its dynamic values.', 'woo-refund-and-exchange-lite' ); ?></h3></p>
 								<p>
 								<b> <?php esc_html_e( 'Note :', 'woo-refund-and-exchange-lite' ); ?></b><?php esc_html_e( 'Use', 'woo-refund-and-exchange-lite' ); ?><b> [order] </b> <?php esc_html_e( 'for Order Number', 'woo-refund-and-exchange-lite' ); ?><b> [siteurl] </b> <?php esc_html_e( 'for home page url and', 'woo-refund-and-exchange-lite' ); ?> <b> [username] </b> <?php esc_html_e( 'for user name.', 'woo-refund-and-exchange-lite' ); ?>
 								</p>
@@ -270,7 +270,7 @@ if ( isset( $_POST['ced_rnx_noti_save_return'] ) ) {
 									</tr>
 									<tr valign="top">
 										<th class="titledesc" scope="row">
-											<label for="ced_rnx_notification_return_rcv"><?php esc_html_e( 'Recieved Refund Request Message', 'woo-refund-and-exchange-lite' ); ?></label>
+											<label for="ced_rnx_notification_return_rcv"><?php esc_html_e( 'Received Refund Request Message', 'woo-refund-and-exchange-lite' ); ?></label>
 										</th>
 										<td class="forminp forminp-textarea">
 											<?php

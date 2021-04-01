@@ -401,7 +401,7 @@ if ( $allowed ) {
 						<p class="form-row form-row form-row-wide">
 							<span id="ced_rnx_return_request_files">
 							<input type="hidden" name="ced_rnx_return_request_order" value="<?php esc_html_e( $order_id ); ?>">
-							<input type="hidden" name="action" value="<?php esc_html_e( 'ced_rnx_refund_upload_files', 'woo-refund-and-exchange-lite' ); ?>">
+							<input type="hidden" name="action" value="ced_rnx_refund_upload_files">
 							<input type="file" name="ced_rnx_return_request_files[]" class="input-text ced_rnx_return_request_files"></span>
 							<input type="button" value="<?php esc_html_e( 'Add More', 'woo-refund-and-exchange-lite' ); ?>" class="btn button ced_rnx_return_request_morefiles" data-count="1" data-max="<?php echo $attach_limit; ?>">
 							<i><?php esc_html_e( 'Only .png, .jpeg extension file is approved.', 'woo-refund-and-exchange-lite' ); ?></i>
