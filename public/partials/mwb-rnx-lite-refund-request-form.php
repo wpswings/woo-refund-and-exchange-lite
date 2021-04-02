@@ -391,7 +391,7 @@ if ( $allowed ) {
 				<?php
 				$return_attachment = get_option( 'mwb_wrma_return_attach_enable', false );
 				$attach_limit = get_option( 'mwb_wrma_refund_attachment_limit', '15' );
-				if( empty( $attach_limit ) ) {
+				if ( empty( $attach_limit ) ) {
 					$attach_limit = 5;
 				}
 				if ( isset( $return_attachment ) && ! empty( $return_attachment ) ) {

@@ -12,14 +12,14 @@
  * @subpackage Makewebbetter_Onboarding/admin/onboarding
  */
 ?>
-<?php 
+<?php
 
 	global $pagenow;
 if ( empty( $pagenow ) || 'plugins.php' != $pagenow ) {
 	return false;
 }
 
-	$form_fields = apply_filters( 'mwb_deactivation_form_fields', array() ); 
+	$form_fields = apply_filters( 'mwb_deactivation_form_fields', array() );
 ?>
 <?php if ( ! empty( $form_fields ) ) : ?>
 	<div style="display: none;" class="loading-style-bg" id="mwb_wgm_loader">
@@ -34,10 +34,10 @@ if ( empty( $pagenow ) || 'plugins.php' != $pagenow ) {
 				</a>
 			</div>
 			<h3 class="mwb-on-boarding-heading"></h3>
-			<p class="mwb-on-boarding-desc"><?php esc_html_e( 'May we have a little info about why you are deactivating?' , 'woo-gift-cards-lite' ); ?></p>
+			<p class="mwb-on-boarding-desc"><?php esc_html_e( 'May we have a little info about why you are deactivating?', 'woo-gift-cards-lite' ); ?></p>
 			<form action="#" method="post" class="mwb-on-boarding-form">
 				<?php foreach ( $form_fields as $key => $field_attr ) : ?>
-					<?php $this->render_field_html( $field_attr , 'deactivating' ); ?>
+					<?php $this->render_field_html( $field_attr, 'deactivating' ); ?>
 				<?php endforeach; ?>
 				<div class="mwb-on-boarding-form-btn__wrapper">
 					<div class="mwb-on-boarding-form-submit mwb-on-boarding-form-verify ">

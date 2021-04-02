@@ -15,7 +15,7 @@ if ( isset( $_POST['order_id'] ) ) {
 
 $flag = false;
 $get_nonce = isset( $_REQUEST['mwb-order-msg-nonce'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['mwb-order-msg-nonce'] ) ) : '';
-if ( isset( $_POST['mwb_order_msg_submit'] ) && ! empty( $_POST['mwb_order_msg_submit'] ) && isset($order_id) ) {
+if ( isset( $_POST['mwb_order_msg_submit'] ) && ! empty( $_POST['mwb_order_msg_submit'] ) && isset( $order_id ) ) {
 	if ( wp_verify_nonce( $get_nonce, 'mwb-order-msg-nonce' ) ) {
 		$msg    = isset( $_POST['mwb_order_new_msg'] ) ? filter_input( INPUT_POST, 'mwb_order_new_msg' ) : '';
 		$to     = get_option( 'ced_rnx_notification_from_mail', false );
@@ -34,8 +34,8 @@ get_header( 'shop' );
 */
 do_action( 'woocommerce_before_main_content' );
 $upload_attach = get_option( 'mwb_wrma_order_message_attachment', 'no' );
-if (isset($order_id)){
-?>
+if ( isset( $order_id ) ) {
+	?>
 
 <div class="mwb_order_add_msg_form">
 	<div class="mwb_notice_main_container">
@@ -83,7 +83,7 @@ if (isset($order_id)){
 						?>
 						<div class="mwb_order_msg_main_container mwb_order_messages">
 							<div>
-								<div class="mwb_order_msg_sender"><?php echo ( $om_val['sender'] == 'Customer' ) ? __('Customer', 'woo-refund-and-exchange-lite'): __('Shop Manager', 'woo-refund-and-exchange-lite'); ?></div>
+								<div class="mwb_order_msg_sender"><?php echo ( $om_val['sender'] == 'Customer' ) ? __( 'Customer', 'woo-refund-and-exchange-lite' ) : __( 'Shop Manager', 'woo-refund-and-exchange-lite' ); ?></div>
 								<span class="mwb_order_msg_date"><?php echo esc_html( get_date_from_gmt( date( 'Y-m-d h:i a', $om_key ), 'Y-m-d h:i a' ) ); ?></span>
 							</div>
 							<div class="mwb_order_msg_detail_container">

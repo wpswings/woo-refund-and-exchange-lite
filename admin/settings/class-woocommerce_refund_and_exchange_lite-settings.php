@@ -81,7 +81,7 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 					</style>
 					<?php
 				}
-			} 
+			}
 
 			if ( $get_tab == 'ced_rnx_setting' && $get_section == '' ) {
 				include_once MWB_REFUND_N_EXCHANGE_LITE_DIRPATH . 'admin/partials/mwb-rnx-lite-pro-purchase-template.php';
@@ -200,14 +200,18 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 
 			$statuses = wc_get_order_statuses();
 			$status = $statuses;
-			unset($status['wc-refund-approved']);
-			unset($status['wc-refund-cancelled']);
-			unset($status['wc-refund-requested']);
-			unset($status['wc-refunded']);
+			unset( $status['wc-refund-approved'] );
+			unset( $status['wc-refund-cancelled'] );
+			unset( $status['wc-refund-requested'] );
+			unset( $status['wc-refunded'] );
 
 			$emaiUrl = admin_url() . 'admin.php?page=wc-settings&tab=email&section=wc_rma_messages_email';
 
-			$button_view = array( 'order-page'=>__('Order Page','mwb-woocommerce-rma'),'My account'=>__('Order View Page','mwb-woocommerce-rma'),'thank-you-page'=>__('Thank You Page','mwb-woocommerce-rma'));
+			$button_view = array(
+				'order-page' => __( 'Order Page', 'mwb-woocommerce-rma' ),
+				'My account' => __( 'Order View Page', 'mwb-woocommerce-rma' ),
+				'thank-you-page' => __( 'Thank You Page', 'mwb-woocommerce-rma' ),
+			);
 
 			if ( 'refund' == $current_section ) {
 
@@ -339,8 +343,8 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 						'default'  => '',
 						'type'     => 'multiselect',
 						'options'  => $button_view,
-						'desc_tip' =>  true,
-						'id' 		=> 'mwb_wrma_refund_button_view'
+						'desc_tip' => true,
+						'id'        => 'mwb_wrma_refund_button_view',
 					),
 
 					array(

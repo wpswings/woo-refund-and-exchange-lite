@@ -252,8 +252,8 @@ if ( $activated ) {
 	 */
 	function ced_rnx_lite_send_order_msg_callback( $order_id, $msg, $sender, $to ) {
 		$flag       = false;
-		$filename   = [];
-		$attachment = [];
+		$filename   = array();
+		$attachment = array();
 		if ( isset( $_FILES['mwb_order_msg_attachment']['tmp_name'] ) && ! empty( $_FILES['mwb_order_msg_attachment']['tmp_name'] ) ) {
 			$count         = count( $_FILES['mwb_order_msg_attachment']['tmp_name'] );
 			$file_uploaded = false;
@@ -328,14 +328,14 @@ if ( $activated ) {
 	 * @return the none
 	 *  */
 	function ced_rnx_wpml_translate_post( $page_id ) {
-		if ( function_exists('icl_object_id') ) {
-			//$lang The language of the translated post (ie 'fr', 'de', etc.).
+		if ( function_exists( 'icl_object_id' ) ) {
+			// $lang The language of the translated post (ie 'fr', 'de', etc.).
 			$langs = wpml_get_active_languages();
 			foreach ( $langs as $lang ) {
 				// If the translated page doesn't exist, now create it
-				if (icl_object_id($page_id, 'page', false, $lang['code']) == null) {
-					$page_translated_name = get_post($page_id)->post_name . ' (-' . $lang['code'] . ')';
-					$page_translated_title = get_post($page_id)->post_title;
+				if ( icl_object_id( $page_id, 'page', false, $lang['code'] ) == null ) {
+					$page_translated_name = get_post( $page_id )->post_name . ' (-' . $lang['code'] . ')';
+					$page_translated_title = get_post( $page_id )->post_title;
 					// All page stuff.
 					$my_page = array();
 					$my_page['post_name']  = $page_translated_name;
@@ -347,12 +347,20 @@ if ( $activated ) {
 					$post_translated_id = wp_insert_post( $my_page );
 
 					// Get trid of original post.
-					$trid = wpml_get_content_trid('post_' . 'page', $page_id);
+					$trid = wpml_get_content_trid( 'post_' . 'page', $page_id );
 					// Get default language
 					$default_lang = wpml_get_default_language();
 					// Associate original post and translated post.
 					global $wpdb;
-					$wpdb->update( $wpdb->prefix . 'icl_translations', array('trid' => $trid, 'language_code' => $lang['code'], 'source_language_code' => $default_lang), array( 'element_id' => $post_translated_id ) );
+					$wpdb->update(
+						$wpdb->prefix . 'icl_translations',
+						array(
+							'trid' => $trid,
+							'language_code' => $lang['code'],
+							'source_language_code' => $default_lang,
+						),
+						array( 'element_id' => $post_translated_id )
+					);
 
 				}
 			}

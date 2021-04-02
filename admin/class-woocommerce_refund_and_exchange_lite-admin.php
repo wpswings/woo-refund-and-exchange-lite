@@ -130,14 +130,14 @@ class woocommerce_refund_and_exchange_lite_Admin {
 				$admin_obj->ced_rnx_setting_save();
 			}
 		}
-		
+
 		global $submenu;
 		$permalink = admin_url( 'admin.php?page=wc-settings&tab=ced_rnx_setting' );
-		$submenu['woocommerce'][] = array( 
+		$submenu['woocommerce'][] = array(
 			'<div id="mwb_wrma_config_menu">' . __( 'Refund-Exchange Lite', 'woo-refund-and-exchange-lite' ) . '</div>',
 			'manage_options',
 			$permalink,
-		); 
+		);
 	}
 
 	/**
@@ -871,9 +871,8 @@ class woocommerce_refund_and_exchange_lite_Admin {
 
 			// Check the latest stable version and ignore trunk.
 
-
 			if ( version_compare( $current_version, $notice_version, '<' ) ) {
-				
+
 				$upgrade_notice .= '</p><p class="ced-rnx-plugin-upgrade-notice" style="padding: 14px 10px !important;background: #1a4251 !important;color: #fff !important;">';
 
 				foreach ( $notices as $index => $line ) {
@@ -893,7 +892,7 @@ class woocommerce_refund_and_exchange_lite_Admin {
 	public function add_mwb_frontend_screens( $valid_screens = array() ) {
 
 		if ( is_array( $valid_screens ) ) {
-			
+
 			// Push your screen here.
 			array_push( $valid_screens, 'woocommerce_page_wc-settings' );
 		}
@@ -908,7 +907,7 @@ class woocommerce_refund_and_exchange_lite_Admin {
 	public function add_mwb_deactivation_screens( $valid_screens = array() ) {
 
 		if ( is_array( $valid_screens ) ) {
-			
+
 			// Push your screen here.
 			array_push( $valid_screens, 'woo-refund-and-exchange-lite' );
 		}

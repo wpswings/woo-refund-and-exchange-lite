@@ -30,7 +30,7 @@ if ( 'refund' == $mwb_rnx_tab ) {
 	$basic_active = 'nav-tab-active';
 }
 if ( isset( $_POST['ced_rnx_noti_save_basic'] ) ) {
-		
+
 	$ced_nonce = isset( $_REQUEST['ced-rnx-nonce'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['ced-rnx-nonce'] ) ) : '';
 	if ( wp_verify_nonce( $ced_nonce, 'ced-rnx-nonce' ) ) {
 		?>
@@ -41,7 +41,7 @@ if ( isset( $_POST['ced_rnx_noti_save_basic'] ) ) {
 			</button>
 		</div>
 		<?php
-	
+
 		unset( $_POST['ced_rnx_noti_save_basic'] );
 		$mwb_post = $_POST;
 		foreach ( $mwb_post as $k => $val ) {
