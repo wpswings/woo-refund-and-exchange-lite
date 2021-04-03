@@ -1,7 +1,8 @@
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Return Refund and Exchange for Woocommerce 3.1.0\n"
-"POT-Creation-Date: 2021-04-02 10:47+0530\n"
+"POT-Creation-Date: 2021-04-03 14:39+0530\n"
 "PO-Revision-Date: 2021-04-02 10:47+0530\n"
 "Last-Translator: \n"
 "Language-Team: MakeWebBetter\n"
@@ -29,271 +30,271 @@ msgstr ""
 msgid "Refund-Exchange Lite"
 msgstr ""
 
-#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:158
+#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:157
 #, php-format
 msgid "Refund Requested <span class=\"count\">(%s)</span>"
 msgstr ""
 
-#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:171
+#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:169
 #, php-format
 msgid "Refund Approved <span class=\"count\">(%s)</span>"
 msgstr ""
 
-#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:184
+#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:181
 #, php-format
 msgid "Refund Cancelled <span class=\"count\">(%s)</span>"
 msgstr ""
 
-#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:196
+#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:194
 msgid "Refund Requested"
 msgstr ""
 
-#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:197
-#: admin/partials/mwb-rnx-lite-notification.php:297
+#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:195
+#: admin/partials/mwb-rnx-lite-notification.php:300
 msgid "Refund Approved"
 msgstr ""
 
-#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:198
+#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:196
 msgid "Refund Cancelled"
 msgstr ""
 
-#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:369
+#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:374
 msgid "Your Refund Request is Approved"
 msgstr ""
 
-#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:380
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:550
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:787
-#: public/partials/mwb-rnx-lite-refund-request-form.php:162
+#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:385
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:562
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:801
+#: public/partials/mwb-rnx-lite-refund-request-form.php:163
 msgid "Product"
 msgstr ""
 
-#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:381
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:551
-#: public/partials/mwb-rnx-lite-refund-request-form.php:163
+#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:386
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:563
+#: public/partials/mwb-rnx-lite-refund-request-form.php:164
 msgid "Quantity"
 msgstr ""
 
-#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:382
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:552
-#: public/partials/mwb-rnx-lite-refund-request-form.php:246
+#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:387
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:564
+#: public/partials/mwb-rnx-lite-refund-request-form.php:247
 msgid "Price"
 msgstr ""
 
-#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:464
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:593
+#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:469
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:605
 msgid "Refund Total"
 msgstr ""
 
-#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:471
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:600
+#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:476
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:612
 msgid "Customer details"
 msgstr ""
 
-#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:475
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:603
+#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:480
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:615
 msgid "Email"
 msgstr ""
 
-#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:480
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:606
+#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:485
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:618
 msgid "Tel"
 msgstr ""
 
-#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:487
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:612
+#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:492
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:624
 msgid "Shipping Address"
 msgstr ""
 
-#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:491
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:616
+#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:496
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:628
 msgid "Billing Address"
 msgstr ""
 
-#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:568
-#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:675
+#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:573
+#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:679
 msgid "User Request of Refund Product is approved"
 msgstr ""
 
-#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:731
+#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:735
 msgid "Product Stock is updated Successfully."
 msgstr ""
 
-#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:734
+#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:738
 msgid ""
 "Product Stock is not updated as manage stock setting of product is disable."
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-notification.php:38
-#: admin/partials/mwb-rnx-lite-notification.php:67
+#: admin/partials/mwb-rnx-lite-notification.php:41
+#: admin/partials/mwb-rnx-lite-notification.php:70
 msgid "Settings saved."
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-notification.php:40
-#: admin/partials/mwb-rnx-lite-notification.php:69
+#: admin/partials/mwb-rnx-lite-notification.php:43
+#: admin/partials/mwb-rnx-lite-notification.php:72
 msgid "Dismiss this notices."
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-notification.php:85
+#: admin/partials/mwb-rnx-lite-notification.php:88
 msgid "Notification Setting"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-notification.php:87
+#: admin/partials/mwb-rnx-lite-notification.php:90
 msgid "Basic"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-notification.php:88
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:307
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:216
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:729
+#: admin/partials/mwb-rnx-lite-notification.php:91
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:311
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:219
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:742
 msgid "Refund"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-notification.php:90
+#: admin/partials/mwb-rnx-lite-notification.php:93
 msgid "Exchange"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-notification.php:91
+#: admin/partials/mwb-rnx-lite-notification.php:94
 msgid "Return Ship Label"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-notification.php:93
+#: admin/partials/mwb-rnx-lite-notification.php:96
 msgid "GO TO SETTING"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-notification.php:102
+#: admin/partials/mwb-rnx-lite-notification.php:105
 msgid "Mail Setting"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-notification.php:109
+#: admin/partials/mwb-rnx-lite-notification.php:112
 msgid "From Name"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-notification.php:124
+#: admin/partials/mwb-rnx-lite-notification.php:127
 msgid "From Email"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-notification.php:139
+#: admin/partials/mwb-rnx-lite-notification.php:142
 msgid "Mail Header"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-notification.php:160
+#: admin/partials/mwb-rnx-lite-notification.php:163
 msgid "Mail Footer"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-notification.php:182
+#: admin/partials/mwb-rnx-lite-notification.php:185
 msgid "Predefined Refund Reason"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-notification.php:205
+#: admin/partials/mwb-rnx-lite-notification.php:208
 msgid "ADD MORE"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-notification.php:213
+#: admin/partials/mwb-rnx-lite-notification.php:216
 msgid "Save changes"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-notification.php:224
+#: admin/partials/mwb-rnx-lite-notification.php:227
 msgid "Merchant Setting"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-notification.php:231
+#: admin/partials/mwb-rnx-lite-notification.php:234
 msgid "Merchant Refund Request Subject"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-notification.php:246
+#: admin/partials/mwb-rnx-lite-notification.php:249
 msgid "Short-Codes "
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-notification.php:248
+#: admin/partials/mwb-rnx-lite-notification.php:251
 msgid ""
 "These are some shortcodes that you can use in EMAIL MESSAGES. It will be "
 "changed with its dynamic values."
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-notification.php:250
+#: admin/partials/mwb-rnx-lite-notification.php:253
 msgid "Note :"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-notification.php:250
+#: admin/partials/mwb-rnx-lite-notification.php:253
 msgid "Use"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-notification.php:250
+#: admin/partials/mwb-rnx-lite-notification.php:253
 msgid "for Order Number"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-notification.php:250
+#: admin/partials/mwb-rnx-lite-notification.php:253
 msgid "for home page url and"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-notification.php:250
+#: admin/partials/mwb-rnx-lite-notification.php:253
 msgid "for user name."
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-notification.php:256
+#: admin/partials/mwb-rnx-lite-notification.php:259
 msgid "Refund Request"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-notification.php:262
+#: admin/partials/mwb-rnx-lite-notification.php:265
 msgid "Refund Request Subject"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-notification.php:273
+#: admin/partials/mwb-rnx-lite-notification.php:276
 msgid "Received Refund Request Message"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-notification.php:303
+#: admin/partials/mwb-rnx-lite-notification.php:306
 msgid "Approved Refund Request Subject"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-notification.php:314
+#: admin/partials/mwb-rnx-lite-notification.php:317
 msgid "Approved Refund Request Message"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-notification.php:338
+#: admin/partials/mwb-rnx-lite-notification.php:341
 msgid "Refund Cancel"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-notification.php:344
+#: admin/partials/mwb-rnx-lite-notification.php:347
 msgid "Cancelled Refund Request Subject"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-notification.php:356
+#: admin/partials/mwb-rnx-lite-notification.php:359
 msgid "Cancelled Refund Request Message"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-notification.php:381
+#: admin/partials/mwb-rnx-lite-notification.php:384
 msgid "Save Settings"
 msgstr ""
 
 #: admin/partials/mwb-rnx-lite-order-msg-history-meta.php:27
-#: public/partials/mwb-rnx-lite-view-order-msg.php:70
-msgid "Messages Refreshed Succesfully."
+#: public/partials/mwb-rnx-lite-view-order-msg.php:73
+msgid "Messages Refreshed Successfully."
 msgstr ""
 
 #: admin/partials/mwb-rnx-lite-order-msg-history-meta.php:32
-#: public/partials/mwb-rnx-lite-view-order-msg.php:73
+#: public/partials/mwb-rnx-lite-view-order-msg.php:76
 msgid "Message History"
 msgstr ""
 
 #: admin/partials/mwb-rnx-lite-order-msg-history-meta.php:47
-#: public/partials/mwb-rnx-lite-view-order-msg.php:86
+#: public/partials/mwb-rnx-lite-view-order-msg.php:89
 msgid "Customer"
 msgstr ""
 
 #: admin/partials/mwb-rnx-lite-order-msg-history-meta.php:47
-#: public/partials/mwb-rnx-lite-view-order-msg.php:86
+#: public/partials/mwb-rnx-lite-view-order-msg.php:89
 msgid "Shop Manager"
 msgstr ""
 
 #: admin/partials/mwb-rnx-lite-order-msg-history-meta.php:56
-#: public/partials/mwb-rnx-lite-view-order-msg.php:95
+#: public/partials/mwb-rnx-lite-view-order-msg.php:98
 msgid "Message attachments:"
 msgstr ""
 
 #: admin/partials/mwb-rnx-lite-order-msg-history-meta.php:84
-#: public/partials/mwb-rnx-lite-view-order-msg.php:51
+#: public/partials/mwb-rnx-lite-view-order-msg.php:54
 msgid "Add a message"
 msgstr ""
 
@@ -306,120 +307,119 @@ msgid "Attach files "
 msgstr ""
 
 #: admin/partials/mwb-rnx-lite-order-msg-history-meta.php:92
-#: public/partials/mwb-rnx-lite-view-order-msg.php:63
+#: public/partials/mwb-rnx-lite-view-order-msg.php:66
 msgid "Send"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-pro-purchase-template.php:41
+#: admin/partials/mwb-rnx-lite-pro-purchase-template.php:44
 msgid ""
 "Connect With Us and Explore More About Return Refund and Exchange for "
 "Woocommerce"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-pro-purchase-template.php:42
+#: admin/partials/mwb-rnx-lite-pro-purchase-template.php:45
 msgid ""
 "Refund and Exchange plugin for WooCommerce gives your customers an easy and "
 "simple Refund Management system stuffed with organized Exchange, and Cancel "
 "features with a dedicated and streamlined mailing system."
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-pro-purchase-template.php:60
+#: admin/partials/mwb-rnx-lite-pro-purchase-template.php:63
 msgid ""
 "Please Purchase Our Premium version for this feature and also for some more "
 "exciting feature."
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-pro-purchase-template.php:62
+#: admin/partials/mwb-rnx-lite-pro-purchase-template.php:65
 msgid "Get it now"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-return-product-meta.php:38
+#: admin/partials/mwb-rnx-lite-return-product-meta.php:40
 msgid "Following product refund request made on"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-return-product-meta.php:44
+#: admin/partials/mwb-rnx-lite-return-product-meta.php:46
 msgid "Item"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-return-product-meta.php:45
+#: admin/partials/mwb-rnx-lite-return-product-meta.php:47
 msgid "Name"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-return-product-meta.php:46
+#: admin/partials/mwb-rnx-lite-return-product-meta.php:48
 msgid "Cost"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-return-product-meta.php:47
+#: admin/partials/mwb-rnx-lite-return-product-meta.php:49
 msgid "Qty"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-return-product-meta.php:48
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:788
-#: public/partials/mwb-rnx-lite-refund-request-form.php:164
+#: admin/partials/mwb-rnx-lite-return-product-meta.php:50
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:802
+#: public/partials/mwb-rnx-lite-refund-request-form.php:165
 msgid "Total"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-return-product-meta.php:99
+#: admin/partials/mwb-rnx-lite-return-product-meta.php:101
 msgid "SKU:"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-return-product-meta.php:102
+#: admin/partials/mwb-rnx-lite-return-product-meta.php:104
 msgid "Variation ID:"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-return-product-meta.php:106
+#: admin/partials/mwb-rnx-lite-return-product-meta.php:108
 msgid "No longer exists"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-return-product-meta.php:130
+#: admin/partials/mwb-rnx-lite-return-product-meta.php:132
 msgid "Total Amount"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-return-product-meta.php:149
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:843
+#: admin/partials/mwb-rnx-lite-return-product-meta.php:150
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:857
 msgid "Refund Amount"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-return-product-meta.php:151
+#: admin/partials/mwb-rnx-lite-return-product-meta.php:152
 #: emails/class-wc-rma-messages-email.php:147
 msgid "Subject"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-return-product-meta.php:152
+#: admin/partials/mwb-rnx-lite-return-product-meta.php:153
 msgid "Reason"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-return-product-meta.php:159
-#: admin/partials/mwb-rnx-lite-return-product-meta.php:168
+#: admin/partials/mwb-rnx-lite-return-product-meta.php:160
 msgid "Attachment"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-return-product-meta.php:181
+#: admin/partials/mwb-rnx-lite-return-product-meta.php:182
 msgid "Accept Request"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-return-product-meta.php:182
+#: admin/partials/mwb-rnx-lite-return-product-meta.php:183
 msgid "Cancel Request"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-return-product-meta.php:206
+#: admin/partials/mwb-rnx-lite-return-product-meta.php:207
 msgid "Following product refund request is approved on"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-return-product-meta.php:221
+#: admin/partials/mwb-rnx-lite-return-product-meta.php:222
 msgid "When Product Back in stock then for stock management click on "
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-return-product-meta.php:229
+#: admin/partials/mwb-rnx-lite-return-product-meta.php:230
 msgid "Following product refund request is canceled on"
 msgstr ""
 
-#: admin/partials/mwb-rnx-lite-return-product-meta.php:241
+#: admin/partials/mwb-rnx-lite-return-product-meta.php:242
 msgid "No request from customer"
 msgstr ""
 
 #: admin/partials/mwb_rnx_lite_refund_rules.php:5
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:222
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:226
 msgid "Enable"
 msgstr ""
 
@@ -479,162 +479,159 @@ msgstr ""
 msgid "Catalog Settings"
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:210
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:211
 msgid "Order Page"
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:210
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:212
 msgid "Order View Page"
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:210
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:213
 msgid "Thank You Page"
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:217
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:221
 msgid "Refund Products Setting"
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:223
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:227
 msgid "Enable Refund Request."
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:230
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:234
 msgid "Include Tax"
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:231
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:235
 msgid "Include Tax with Product Refund Request."
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:238
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:242
 msgid "Maximum Number of Days"
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:239
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:243
 msgid ""
 "If days exceed the day of order placed then a Refund Request will not be "
 "sent. If the value is 0 or blank then the Refund button will not visible on "
 "the order detail page."
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:246
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:250
 msgid "Enable Attachment on Request Form"
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:247
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:251
 msgid ""
 "Enable this for user to send the attachment. User can attach <i>.png, .jpg, ."
 "jpeg</i> type files."
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:253
-msgid "Enter number Of Attachment to be send"
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:257
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:261
+msgid "Enter number Of Attachment to send"
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:254
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:258
 msgid ""
 "Enter the number of attachments the customer can add one time during refund."
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:257
-msgid "Enter number Of Attachment to send"
-msgstr ""
-
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:262
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:266
 msgid "Enable Refund Reason Description"
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:263
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:267
 msgid ""
 "Enable this for the user to send the detail description of Refund request."
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:269
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:273
 msgid "Enable Manage Stock"
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:270
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:274
 msgid ""
 "Enable this to increase product stock when the Refund request is accepted."
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:276
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:280
 msgid "Select the order status in which the order can be Refunded"
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:277
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:281
 msgid "Select Order status on which you want Refund request user can submit."
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:287
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:291
 msgid "Enable Refund Rules"
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:288
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:292
 msgid ""
 "Enable, if you want to show custom Refund Policy Rules on Refund Request "
 "Form."
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:295
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:299
 msgid "Refund Rules Editor "
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:296
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:300
 msgid ""
 "Custom Refund Rules Editor (HTML and CSS allowed). Put your custom Refund "
 "rules here."
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:304
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:308
 msgid "Refund Button Text"
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:308
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:312
 msgid "Change Refund button text on frontend"
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:312
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:316
 msgid "Enable Order Messages"
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:313
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:317
 #, php-format
 msgid ""
 "Enable this if you want to allow your customers to message their order "
 "related query. To configure order message mails. %s"
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:319
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:323
 msgid "Enable attachment upload for order messages"
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:320
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:324
 msgid ""
 "Enable this if you want to allow your customers to upload attachment along "
 "with their order-related messages."
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:327
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:331
 msgid "View Order Messages Button text"
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:330
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:181
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:742
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:334
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:184
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:756
 msgid "View Order Messages"
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:331
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:335
 msgid "Change View Order Messages Button text on frontend"
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:335
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:339
 msgid "Select to show refund button on pages"
 msgstr ""
 
-#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:336
+#: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:340
 msgid ""
 "Select the options to show the refund button on which page you want to show "
 "the button."
@@ -669,19 +666,19 @@ msgstr ""
 msgid "Multipart"
 msgstr ""
 
-#: includes/class-makewebbetter-onboarding-helper.php:308
+#: includes/class-makewebbetter-onboarding-helper.php:306
 msgid "What is your monthly revenue?"
 msgstr ""
 
-#: includes/class-makewebbetter-onboarding-helper.php:325
+#: includes/class-makewebbetter-onboarding-helper.php:323
 msgid "What industry defines your business?"
 msgstr ""
 
-#: includes/class-makewebbetter-onboarding-helper.php:360
+#: includes/class-makewebbetter-onboarding-helper.php:358
 msgid "What is the best email address to contact you?"
 msgstr ""
 
-#: includes/class-makewebbetter-onboarding-helper.php:370
+#: includes/class-makewebbetter-onboarding-helper.php:368
 msgid "What is your contact number?"
 msgstr ""
 
@@ -716,84 +713,82 @@ msgstr ""
 msgid "Please enter refund reason."
 msgstr ""
 
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:371
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:374
 msgid ""
-"Your Giftcard have been expired so we you can not proceed with the refund. "
-"Thanks"
+"Your Giftcard has been expired so you can not proceed with the refund. Thanks"
 msgstr ""
 
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:380
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:383
 msgid ""
-"Your Giftcard have been used so we you can not proceed with the refund. "
-"Thanks"
+"Your Giftcard has been used so you can not proceed with the refund. Thanks"
 msgstr ""
 
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:542
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:554
 msgid "Reason of Refund"
 msgstr ""
 
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:700
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:712
 msgid ""
 "Message send successfully. You have received a notification mail regarding "
 "this, Please check your mail. Soon You redirect to the My Account Page. "
 "Thanks"
 msgstr ""
 
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:773
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:787
 msgid "Refund Requested Product"
 msgstr ""
 
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:783
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:797
 msgid "Following product Refund request made on"
 msgstr ""
 
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:855
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:869
 msgid "Extra Cost"
 msgstr ""
 
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:872
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:886
 #: public/partials/mwb-rnx-lite-refund-request-form.php:285
 msgid "Total Refund Amount"
 msgstr ""
 
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:912
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:926
 msgid "Update Request"
 msgstr ""
 
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:924
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:938
 msgid "Above product Refund request is approved on"
 msgstr ""
 
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:933
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:947
 msgid "Above product Refund request is canceled on"
 msgstr ""
 
-#: public/partials/mwb-rnx-lite-refund-request-form.php:43
+#: public/partials/mwb-rnx-lite-refund-request-form.php:44
 msgid "Please choose an Order."
 msgstr ""
 
-#: public/partials/mwb-rnx-lite-refund-request-form.php:43
+#: public/partials/mwb-rnx-lite-refund-request-form.php:44
 msgid "Click Here"
 msgstr ""
 
-#: public/partials/mwb-rnx-lite-refund-request-form.php:70
-#: public/partials/mwb-rnx-lite-refund-request-form.php:75
+#: public/partials/mwb-rnx-lite-refund-request-form.php:71
+#: public/partials/mwb-rnx-lite-refund-request-form.php:76
 msgid "Refund request is disabled."
 msgstr ""
 
-#: public/partials/mwb-rnx-lite-refund-request-form.php:110
+#: public/partials/mwb-rnx-lite-refund-request-form.php:111
 msgid "Days exceed."
 msgstr ""
 
-#: public/partials/mwb-rnx-lite-refund-request-form.php:124
+#: public/partials/mwb-rnx-lite-refund-request-form.php:125
 msgid "Update Refund request is disabled."
 msgstr ""
 
-#: public/partials/mwb-rnx-lite-refund-request-form.php:152
+#: public/partials/mwb-rnx-lite-refund-request-form.php:153
 msgid "Order Refund Request Form"
 msgstr ""
 
-#: public/partials/mwb-rnx-lite-refund-request-form.php:251
+#: public/partials/mwb-rnx-lite-refund-request-form.php:252
 #: public/partials/mwb-rnx-lite-refund-request-form.php:268
 #: public/partials/mwb-rnx-lite-refund-request-form.php:291
 msgid "(incl. tax)"
@@ -828,10 +823,6 @@ msgstr ""
 msgid "Attach Files:"
 msgstr ""
 
-#: public/partials/mwb-rnx-lite-refund-request-form.php:406
-msgid "Add More"
-msgstr ""
-
 #: public/partials/mwb-rnx-lite-refund-request-form.php:407
 msgid "Only .png, .jpeg extension file is approved."
 msgstr ""
@@ -844,37 +835,37 @@ msgstr ""
 msgid "Refund Request can't be sent. "
 msgstr ""
 
-#: public/partials/mwb-rnx-lite-view-order-msg.php:44
+#: public/partials/mwb-rnx-lite-view-order-msg.php:47
 msgid "Message has been sent."
 msgstr ""
 
-#: public/partials/mwb-rnx-lite-view-order-msg.php:52
+#: public/partials/mwb-rnx-lite-view-order-msg.php:55
 msgid "Write a message you want to sent to the Shop Manager."
 msgstr ""
 
-#: public/partials/mwb-rnx-lite-view-order-msg.php:55
+#: public/partials/mwb-rnx-lite-view-order-msg.php:58
 msgid "Attach files: "
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:172
+#: woocommerce-refund-and-exchange-lite.php:163
 msgid "Settings"
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:195
+#: woocommerce-refund-and-exchange-lite.php:186
 msgid "Go to Docs"
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:196
+#: woocommerce-refund-and-exchange-lite.php:187
 msgid "Go Premium"
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:389
+#: woocommerce-refund-and-exchange-lite.php:388
 msgid ""
 "Woocommerce is not activated, Please activate Woocommerce first to install "
 "WooCommerce Refund and Exchange Lite."
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:408
+#: woocommerce-refund-and-exchange-lite.php:407
 msgid ""
 "WooCommerce RMA | Return-Refund-Exchange is activated so you did not need to "
 "install WooCommerce Refund and Exchange Lite because the Main version "

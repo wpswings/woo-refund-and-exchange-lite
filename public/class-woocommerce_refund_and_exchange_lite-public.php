@@ -371,7 +371,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 
 					if ( $exp_flag ) {
 						$response['flag'] = false;
-						$response['msg'] = __( 'Your Giftcard have been expired so we you can not proceed with the refund. Thanks', 'woo-refund-and-exchange-lite' );
+						$response['msg'] = __( 'Your Giftcard has been expired so you can not proceed with the refund. Thanks', 'woo-refund-and-exchange-lite' );
 						update_post_meta( $order_id, 'gift_card_hide_refund_button', 'true' );
 
 						echo wp_json_encode( $response );
@@ -380,7 +380,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 
 					if ( 0 != $usage_count ) {
 						$response['flag'] = false;
-						$response['msg'] = __( 'Your Giftcard have been used so we you can not proceed with the refund. Thanks', 'woo-refund-and-exchange-lite' );
+						$response['msg'] = __( 'Your Giftcard has been used so you can not proceed with the refund. Thanks', 'woo-refund-and-exchange-lite' );
 						update_post_meta( $order_id, 'gift_card_hide_refund_button', 'true' );
 
 						echo wp_json_encode( $response );

@@ -227,7 +227,7 @@ class woocommerce_refund_and_exchange_lite_Admin {
 					}
 				}
 
-				// Update the statu.	
+				// Update the status.
 				update_post_meta( $orderid, 'ced_rnx_return_product', $products );
 
 				$request_files = get_post_meta( $orderid, 'ced_rnx_return_attachment', true );
