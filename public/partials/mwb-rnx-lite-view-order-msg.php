@@ -1,7 +1,10 @@
 <?php
 /**
  * Exit if accessed directly
+ *
+ * @package woocommerce_refund_and_exchange_lite
  */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -83,11 +86,11 @@ if ( isset( $order_id ) ) {
 						?>
 						<div class="mwb_order_msg_main_container mwb_order_messages">
 							<div>
-								<div class="mwb_order_msg_sender"><?php echo ( $om_val['sender'] == 'Customer' ) ? __( 'Customer', 'woo-refund-and-exchange-lite' ) : __( 'Shop Manager', 'woo-refund-and-exchange-lite' ); ?></div>
+								<div class="mwb_order_msg_sender"><?php echo esc_html( ( 'Customer' === $om_val['sender'] ) ? __( 'Customer', 'woo-refund-and-exchange-lite' ) : __( 'Shop Manager', 'woo-refund-and-exchange-lite' ) ); ?></div>
 								<span class="mwb_order_msg_date"><?php echo esc_html( get_date_from_gmt( date( 'Y-m-d h:i a', $om_key ), 'Y-m-d h:i a' ) ); ?></span>
 							</div>
 							<div class="mwb_order_msg_detail_container">
-								<span><?php echo esc_html__( $om_val['msg'], 'woo-refund-and-exchange-lite' ); ?></span>
+								<span><?php echo esc_html( $om_val['msg'], 'woo-refund-and-exchange-lite' ); ?></span>
 							</div>
 							<?php if ( isset( $om_val['files'] ) && ! empty( $om_val['files'] ) ) { ?>
 								<hr>

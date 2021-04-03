@@ -17,7 +17,7 @@
  *
  * @package    woocommerce_refund_and_exchange_lite
  * @subpackage woocommerce_refund_and_exchange_lite/admin
- * @author     makewebbetter <webmaster@makewebbetter.com>
+ * @author     MakeWebBetter <webmaster@makewebbetter.com>
  */
 class woocommerce_refund_and_exchange_lite_Admin {
 
@@ -154,7 +154,6 @@ class woocommerce_refund_and_exchange_lite_Admin {
 				'exclude_from_search'       => false,
 				'show_in_admin_all_list'    => true,
 				'show_in_admin_status_list' => true,
-				/* translators: 1: seconds  2: time */
 				'label_count'               => _n_noop( 'Refund Requested <span class="count">(%s)</span>', 'Refund Requested <span class="count">(%s)</span>' ),
 			)
 		);
@@ -167,7 +166,6 @@ class woocommerce_refund_and_exchange_lite_Admin {
 				'exclude_from_search'       => false,
 				'show_in_admin_all_list'    => true,
 				'show_in_admin_status_list' => true,
-				/* translators: 1: seconds  2: time */
 				'label_count'               => _n_noop( 'Refund Approved <span class="count">(%s)</span>', 'Refund Approved <span class="count">(%s)</span>' ),
 			)
 		);
@@ -180,12 +178,12 @@ class woocommerce_refund_and_exchange_lite_Admin {
 				'exclude_from_search'       => false,
 				'show_in_admin_all_list'    => true,
 				'show_in_admin_status_list' => true,
-				/* translators: 1: seconds  2: time */
 				'label_count'               => _n_noop( 'Refund Cancelled <span class="count">(%s)</span>', 'Refund Cancelled <span class="count">(%s)</span>' ),
 			)
 		);
 	}
 
+	// Show the order statuses.
 	public function ced_rnx_add_custom_order_status( $ced_rnx_order_statuses ) {
 		$ced_rnx_new_order_statuses = array();
 		foreach ( $ced_rnx_order_statuses as $ced_rnx_key => $ced_rnx_status ) {
@@ -204,10 +202,10 @@ class woocommerce_refund_and_exchange_lite_Admin {
 	/**
 	 * This function is approve return request and decrease product quantity from order
 	 *
-	 * @author makewebbetter<webmaster@makewebbetter.com>
+	 * @author MakeWebBetter<webmaster@makewebbetter.com>
 	 * @link http://www.makewebbetter.com/
 	 */
-	function ced_rnx_return_req_approve_callback() {
+	public function ced_rnx_return_req_approve_callback() {
 		$check_ajax = check_ajax_referer( 'ced-rnx-ajax-seurity-string', 'security_check' );
 
 		if ( $check_ajax ) {
@@ -216,7 +214,7 @@ class woocommerce_refund_and_exchange_lite_Admin {
 				$date = isset( $_POST['date'] ) ? sanitize_text_field( wp_unslash( $_POST['date'] ) ) : '';
 				$products = get_post_meta( $orderid, 'ced_rnx_return_product', true );
 
-				// Fetch the return request product
+				// Fetch the return request product.
 				if ( isset( $products ) && ! empty( $products ) ) {
 					foreach ( $products as $date => $product ) {
 						if ( 'pending' == $product['status'] ) {
@@ -229,21 +227,21 @@ class woocommerce_refund_and_exchange_lite_Admin {
 					}
 				}
 
-				// Update the status
+				// Update the statu.	
 				update_post_meta( $orderid, 'ced_rnx_return_product', $products );
 
 				$request_files = get_post_meta( $orderid, 'ced_rnx_return_attachment', true );
 
 				if ( isset( $request_files ) && ! empty( $request_files ) ) {
 					foreach ( $request_files as $date => $request_file ) {
-						if ( $request_file['status'] == 'pending' ) {
+						if ( 'pending' === $request_file['status'] ) {
 							$request_files[ $date ]['status'] = 'complete';
 							break;
 						}
 					}
 				}
 
-				// Update the status
+				// Update the status.
 				update_post_meta( $orderid, 'ced_rnx_return_attachment', $request_files );
 
 				$order = new WC_Order( $orderid );
@@ -297,7 +295,10 @@ class woocommerce_refund_and_exchange_lite_Admin {
 							font-size: 20px;
 							margin-bottom: 10px;
 						}
-
+						.approved-mail-header{
+							text-align: center;
+							padding: 10px;
+						}
 						.content {
 							padding: 0 40px;
 						}
@@ -359,9 +360,13 @@ class woocommerce_refund_and_exchange_lite_Admin {
 							font-size: 12px;
 							margin: 0;
 						}
+						.approved-mail-footer{
+							text-align: center;
+							padding: 10px;
+						}
 					</style>
 
-					<div style="text-align: center; padding: 10px;" class="header">
+					<div class="approved-mail-header">
 						' . $mail_header . '
 					</div>		
 					
@@ -494,7 +499,7 @@ class woocommerce_refund_and_exchange_lite_Admin {
 							<div class="clear"></div>
 						</div>
 					</div>
-					<div style="text-align: center; padding: 10px;" class="footer">
+					<div class="approved-mail-footer footer">
 						' . $mail_footer . '
 					</div>
 				</body>
@@ -511,9 +516,9 @@ class woocommerce_refund_and_exchange_lite_Admin {
 				wc_mail( $to, $subject, $html_content, $headers );
 
 				$final_stotal = 0;
-				$lastElement = end( $order->get_items() );
+				$last_element = end( $order->get_items() );
 				foreach ( $order->get_items() as $item_id => $item ) {
-					if ( $item != $lastElement ) {
+					if ( $item !== $last_element ) {
 						$final_stotal += $item['subtotal'];
 					}
 				}
@@ -542,7 +547,7 @@ class woocommerce_refund_and_exchange_lite_Admin {
 
 						$coupons_amount = $coupons_obj->get_amount();
 						$coupons_type = $coupons_obj->get_discount_type();
-						if ( $coupons_type == 'percent' ) {
+						if ( 'percent' === $coupons_type ) {
 							$finaldiscount = $orderval * $coupons_amount / 100;
 						}
 					}
@@ -568,7 +573,7 @@ class woocommerce_refund_and_exchange_lite_Admin {
 				$order->update_status( 'wc-refund-approved', __( 'User Request of Refund Product is approved', 'woo-refund-and-exchange-lite' ) );
 				$response['response'] = 'success';
 				echo wp_json_encode( $response );
-				die;
+				wp_die();
 			}
 		}
 	}
@@ -576,12 +581,11 @@ class woocommerce_refund_and_exchange_lite_Admin {
 	/**
 	 * This function is process cancel Refund request.
 	 *
-	 * @author makewebbetter<webmaster@makewebbetter.com>
+	 * @author MakeWebBetter<webmaster@makewebbetter.com>
 	 * @link http://www.makewebbetter.com/
 	 */
-
-	function ced_rnx_return_req_cancel_callback() {
-		 $check_ajax = check_ajax_referer( 'ced-rnx-ajax-seurity-string', 'security_check' );
+	public function ced_rnx_return_req_cancel_callback() {
+		$check_ajax = check_ajax_referer( 'ced-rnx-ajax-seurity-string', 'security_check' );
 		if ( $check_ajax ) {
 			if ( current_user_can( 'ced-rnx-refund-cancel' ) ) {
 				$orderid = isset( $_POST['orderid'] ) ? sanitize_text_field( wp_unslash( $_POST['orderid'] ) ) : '';
@@ -629,9 +633,9 @@ class woocommerce_refund_and_exchange_lite_Admin {
 				$order_id = $orderid;
 				$fname = get_post_meta( $orderid, '_billing_first_name', true );
 				$lname = get_post_meta( $orderid, '_billing_last_name', true );
-
 				$fullname = $fname . ' ' . $lname;
 				$message = str_replace( '[username]', $fullname, $message );
+
 				$message = str_replace( '[order]', '#' . $order_id, $message );
 				$message = str_replace( '[siteurl]', home_url(), $message );
 
@@ -675,7 +679,7 @@ class woocommerce_refund_and_exchange_lite_Admin {
 				$order->update_status( 'wc-refund-cancelled', __( 'User Request of Refund Product is approved', 'woo-refund-and-exchange-lite' ) );
 				$response['response'] = 'success';
 				echo wp_json_encode( $response );
-				die;
+				wp_die();
 			}
 		}
 	}
@@ -684,7 +688,7 @@ class woocommerce_refund_and_exchange_lite_Admin {
 	 * Manage stock when product is actually back in stock.
 	 *
 	 * @name ced_rnx_manage_stock
-	 * @author makewebbetter<webmaster@makewebbetter.com>
+	 * @author MakeWebBetter<webmaster@makewebbetter.com>
 	 * @link http://www.makewebbetter.com/
 	 */
 	public function ced_rnx_manage_stock() {
@@ -742,7 +746,7 @@ class woocommerce_refund_and_exchange_lite_Admin {
 					}
 				}
 				echo wp_json_encode( $response );
-				die();
+				wp_die();
 			}
 		}
 	}
@@ -754,7 +758,7 @@ class woocommerce_refund_and_exchange_lite_Admin {
 	 *
 	 * @param int $order_get_id order id.
 	 * @param int $refund_get_id refund order id.
-	 * @author makewebbetter<webmaster@makewebbetter.com>
+	 * @author MakeWebBetter<webmaster@makewebbetter.com>
 	 * @link http://www.makewebbetter.com/
 	 */
 	public function ced_rnx_action_woocommerce_order_refunded( $order_get_id, $refund_get_id ) {
@@ -805,6 +809,7 @@ class woocommerce_refund_and_exchange_lite_Admin {
 		}
 	}
 
+	// Save order message.
 	public function mwb_wrma_order_messages_save() {
 		$check_ajax = check_ajax_referer( 'ced-rnx-ajax-seurity-string', 'security_check' );
 		if ( $check_ajax ) {
@@ -887,6 +892,7 @@ class woocommerce_refund_and_exchange_lite_Admin {
 	/**
 	 * Get all valid screens to add scripts and templates.
 	 *
+	 * @param array $valid_screens .
 	 * @since    1.0.0
 	 */
 	public function add_mwb_frontend_screens( $valid_screens = array() ) {
@@ -902,6 +908,7 @@ class woocommerce_refund_and_exchange_lite_Admin {
 	/**
 	 * Get all valid slugs to add deactivate popup.
 	 *
+	 * @param array() $valid_screens .
 	 * @since    1.0.0
 	 */
 	public function add_mwb_deactivation_screens( $valid_screens = array() ) {

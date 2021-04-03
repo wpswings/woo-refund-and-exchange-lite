@@ -949,7 +949,6 @@
   background-color: #ffffff;
   border: 1px solid #cccccc;
   padding: 10px;
-  /*height: 350px;*/
   overflow: auto;
 }
 .ced-rnx-sidebar-inner img {
@@ -1202,7 +1201,6 @@
 /*View order messages css*/
 
 .mwb_order_messages {
-  /* margin-left: 30px; */
   background-color: white;
 }
 
@@ -1318,9 +1316,6 @@ font-size: 13px;
     text-decoration: none;
 }
 
-/*.mwb_order_add_msg_form .mwb_order_msg_notice_wrapper{
-    padding: 5px 15px;
-}*/
 .mwb_order_add_msg_form .mwb_order_msg_history_container {
     margin-top: 40px;
 }
@@ -1368,7 +1363,6 @@ div.mwb_order_msg_single_attachment a .mwb_order_msg_attachment_thumbnail{
     padding: 8px 40px;
     position: relative;
 }
-/* 09-04-2020 */
 .mwb_order_msg_history_title {
     display: flex;
     align-items: center;

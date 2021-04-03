@@ -61,16 +61,12 @@ if ( function_exists( 'is_multisite' ) && is_multisite() ) {
 	}
 }
 
-/**
- * Check if WooCommerce is active
- */
+// Check if WooCommerce is active.
 if ( $activated ) {
 	define( 'MWB_REFUND_N_EXCHANGE_LITE_DIRPATH', plugin_dir_path( __FILE__ ) );
 	define( 'MWB_REFUND_N_EXCHANGE_LITE_URL', plugin_dir_url( __FILE__ ) );
 
-	/**
-	 * The code that runs during plugin activation.
-	 */
+	// The code that runs during plugin activation.
 	function activate_woocommerce_refund_and_exchange_lite() {
 		$email                               = get_option( 'admin_email', false );
 		$admin                               = get_user_by( 'email', $email );
@@ -112,9 +108,7 @@ if ( $activated ) {
 		update_option( 'ced_rnx_view_order_msg_page_id', $ced_rnx_view_order_msg_page_id );
 	}
 
-	/**
-	 * The code that runs during plugin deactivation.
-	 */
+	// The code that runs during plugin deactivation.
 	function deactivate_woocommerce_refund_and_exchange_lite() {
 
 		$page_id = get_option( 'ced_rnx_return_request_form_page_id' );
@@ -131,16 +125,13 @@ if ( $activated ) {
 	register_activation_hook( __FILE__, 'activate_woocommerce_refund_and_exchange_lite' );
 	register_deactivation_hook( __FILE__, 'deactivate_woocommerce_refund_and_exchange_lite' );
 
-	/**
-	 * The core plugin class that is used to define internationalization,
-	 * admin-specific hooks, and public-facing site hooks.
-	 */
+	// The core plugin class that is used to define internationalization, admin-specific hooks, and public-facing site hooks.
 	require plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce_refund_and_exchange_lite.php';
 
 	/**
 	 * This function is used for formatting the price seprator
 	 *
-	 * @author makewebbetter<webmaster@makewebbetter.com>
+	 * @author MakeWebBetter<webmaster@makewebbetter.com>
 	 * @link http://www.makewebbetter.com/
 	 * @param unknown $price price.
 	 * @return price
@@ -158,7 +149,7 @@ if ( $activated ) {
 	 *
 	 * @param unknown $actions     action.
 	 * @param unknown $plugin_file plugin file.
-	 * @author makewebbetter<webmaster@makewebbetter.com>
+	 * @author MakeWebBetter<webmaster@makewebbetter.com>
 	 * @link http://www.makewebbetter.com/
 	 */
 	function ced_rnx_lite_admin_settings( $actions, $plugin_file ) {
@@ -184,7 +175,7 @@ if ( $activated ) {
 	 *
 	 * @param unknown $links links.
 	 * @param unknown $file file.
-	 * @author makewebbetter<webmaster@makewebbetter.com>
+	 * @author MakeWebBetter<webmaster@makewebbetter.com>
 	 * @link http://www.makewebbetter.com/
 	 */
 	function mwb_rma_lite_add_doc_and_premium_link( $links, $file ) {
@@ -209,7 +200,7 @@ if ( $activated ) {
 	 * Add capabilities, priority must be after the initial role
 	 *
 	 * @name admin_settings_for_pmr()
-	 * @author makewebbetter<webmaster@makewebbetter.com>
+	 * @author MakeWebBetter<webmaster@makewebbetter.com>
 	 * @link http://www.makewebbetter.com/
 	 */
 	function ced_rnx_role_capability() {
@@ -387,7 +378,7 @@ if ( $activated ) {
 	 * Show warning message if woocommerce is not install
 	 *
 	 * @name ced_rnx_plugin_error_notice()
-	 * @author makewebbetter<webmaster@makewebbetter.com>
+	 * @author MakeWebBetter<webmaster@makewebbetter.com>
 	 * @link http://www.makewebbetter.com/
 	 */
 	function ced_rnx_plugin_error_notice_lite() {
@@ -407,7 +398,7 @@ if ( $activated ) {
 	 * Show warning message if woocommerce is not install
 	 *
 	 * @name ced_rnx_plugin_error_notice()
-	 * @author makewebbetter<webmaster@makewebbetter.com>
+	 * @author MakeWebBetter<webmaster@makewebbetter.com>
 	 * @link http://www.makewebbetter.com/
 	 */
 	function ced_rnx_plugin_error_notice_when_pro_activated() {
@@ -436,7 +427,7 @@ if ( $activated ) {
 	 * Call Admin notices
 	 *
 	 * @name ced_rnx_plugin_deactivate_lite()
-	 * @author makewebbetter<webmaster@makewebbetter.com>
+	 * @author MakeWebBetter<webmaster@makewebbetter.com>
 	 * @link http://www.makewebbetter.com/
 	 */
 	function ced_rnx_plugin_deactivate_lite() {
@@ -449,7 +440,7 @@ if ( $activated ) {
 	 * Call Admin notices
 	 *
 	 * @name ced_rnx_plugin_deactivate()
-	 * @author makewebbetter<webmaster@makewebbetter.com>
+	 * @author MakeWebBetter<webmaster@makewebbetter.com>
 	 * @link http://www.makewebbetter.com/
 	 */
 	function ced_rnx_plugin_deactivate_when_pro_is_activated() {

@@ -32,7 +32,9 @@
 	 var files = {};
 	 $( document ).ready(function(){
 		// Add more files to attachment
-		$( ".ced_rnx_return_request_morefiles" ).click(
+		$( document ).on(
+			'click',
+			'.ced_rnx_return_request_morefiles',
 			function(){
 				
 				var count = jQuery(this).data('count');

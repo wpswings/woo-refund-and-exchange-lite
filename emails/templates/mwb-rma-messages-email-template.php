@@ -4,7 +4,7 @@
  *
  * This template can be overridden by copying it to yourtheme/woocommerce/emails/mwb-rma-messages-emial-template.php.
  *
- * @package    woo-refund-and-exchange-lite
+ * @package    woocommerce_refund_and_exchange_lite
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

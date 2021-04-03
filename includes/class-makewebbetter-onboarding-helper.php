@@ -17,7 +17,7 @@
  *
  * @package    Makewebbetter_Onboarding_Helper
  * @subpackage Makewebbetter_Onboarding_Helper/admin
- * @author     Make Web Better <dev@mwb.com>
+ * @author     MakeWebBetter<dev@mwb.com>
  */
 if ( class_exists( 'Makewebbetter_Onboarding_Helper' ) ) {
 	return;
@@ -285,9 +285,7 @@ class Makewebbetter_Onboarding_Helper {
 		$store_name = get_bloginfo( 'name ' );
 		$store_url = get_home_url();
 
-		/**
-		 * Do not repeat id index.
-		 */
+		// Do not repeat id index.
 
 		$fields = array(
 
@@ -435,9 +433,7 @@ class Makewebbetter_Onboarding_Helper {
 		$store_name = get_bloginfo( 'name ' );
 		$store_url = get_home_url();
 
-		/**
-		 * Do not repeat id index.
-		 */
+		// Do not repeat id index.
 
 		$fields = array(
 
@@ -583,10 +579,8 @@ class Makewebbetter_Onboarding_Helper {
 					?>
 
 					<label class="on-boarding-label" for="<?php echo esc_attr( $id ); ?>'"><?php echo esc_attr( $label ); ?></label>
-					
 					<?php foreach ( $options as $option_id => $option_label ) : ?>
-						
-						   <div class="mwb-<?php echo esc_html( $base_class ); ?>-checkbox-wrapper">
+						<div class="mwb-<?php echo esc_html( $base_class ); ?>-checkbox-wrapper">
 						<input type="<?php echo esc_html( $type ); ?>" class="on-boarding-<?php echo esc_html( $type ); ?>-field <?php echo esc_html( $class ); ?>" value="<?php echo esc_html( $value ); ?>" id="<?php echo esc_html( $option_id ); ?>">
 						<label class="on-boarding-field-label" for="<?php echo esc_html( $option_id ); ?>"><?php echo esc_html( $option_label ); ?></label>
 						</div>
@@ -614,7 +608,7 @@ class Makewebbetter_Onboarding_Helper {
 						<?php endif; ?>
 
 						<?php foreach ( $options as $option_value => $option_label ) : ?>	
-						
+
 							<option class="on-boarding-options" value="<?php echo esc_attr( $option_value ); ?>"><?php echo esc_html( $option_label ); ?></option>
 
 						<?php endforeach; ?>
@@ -626,18 +620,14 @@ class Makewebbetter_Onboarding_Helper {
 				break;
 
 			case 'label':
-				/**
-				 * Only a text in label.
-				 */
+				// Only a text in label.
 				?>
 				<label class="on-boarding-label <?php echo( esc_html( $class ) ); ?>" for="<?php echo( esc_attr( $id ) ); ?>"><?php echo( esc_html( $label ) ); ?></label>
 				<?php
 				break;
 
 			case 'textarea':
-				/**
-				 * Text Area Field.
-				 */
+				// Text Area Field.
 				?>
 				<textarea rows="3" cols="50" class="<?php echo( esc_html( $base_class ) ); ?>-textarea-field <?php echo( esc_html( $class ) ); ?>" placeholder="<?php echo( esc_attr( $label ) ); ?>" id="<?php echo( esc_attr( $id ) ); ?>" name="<?php echo( esc_attr( $name ) ); ?>"><?php echo( esc_attr( $value ) ); ?></textarea>
 
@@ -645,9 +635,7 @@ class Makewebbetter_Onboarding_Helper {
 				break;
 
 			default:
-				/**
-				 * Text/ Password/ Email.
-				 */
+				// Text/ Password/ Email.
 				?>
 				<label class="on-boarding-label" for="<?php echo( esc_attr( $id ) ); ?>"><?php echo( esc_html( $label ) ); ?></label>
 				<input type="<?php echo( esc_attr( $type ) ); ?>" class="on-boarding-<?php echo( esc_attr( $type ) ); ?>-field <?php echo( esc_attr( $class ) ); ?>" value="<?php echo( esc_attr( $value ) ); ?>"  name="<?php echo( esc_attr( $name ) ); ?>" id="<?php echo( esc_attr( $id ) ); ?>" <?php echo( esc_html( $required ) ); ?>>

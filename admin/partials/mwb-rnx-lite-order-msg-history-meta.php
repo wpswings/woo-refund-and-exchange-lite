@@ -24,7 +24,7 @@ if ( WC()->version < '3.0.0' ) {
 ?>
 <div class="mwb_admin_order_msg_wrapper">
 	<div class="mwb_order_msg_reload_notice_wrapper">
-		<p class="mwb_order_msg_sent_notice"><strong><?php esc_html_e( 'Messages Refreshed Succesfully.', 'woo-refund-and-exchange-lite' ); ?></strong></p>
+		<p class="mwb_order_msg_sent_notice"><strong><?php esc_html_e( 'Messages Refreshed Successfully.', 'woo-refund-and-exchange-lite' ); ?></strong></p>
 	</div>
 	<div class="mwb_admin_order_msg_history_container">
 		<div class="mwb_order_msg_history_title">

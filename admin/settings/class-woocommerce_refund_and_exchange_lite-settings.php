@@ -52,7 +52,7 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 		/**
 		 * Add new tab to woocommerce setting
 		 *
-		 * @author makewebbetter<webmaster@makewebbetter.com>
+		 * @author MakeWebBetter<webmaster@makewebbetter.com>
 		 * @link http://www.makewebbetter.com/
 		 */
 		public static function ced_rnx_add_settings_tab( $settings_tabs ) {
@@ -103,7 +103,7 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 		/**
 		 * Output of section setting
 		 *
-		 * @author makewebbetter<webmaster@makewebbetter.com>
+		 * @author MakeWebBetter<webmaster@makewebbetter.com>
 		 * @link http://www.makewebbetter.com/
 		 */
 		public function ced_rnx_output_sections() {
@@ -159,7 +159,7 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 		/**
 		 * Create section setting
 		 *
-		 * @author makewebbetter<webmaster@makewebbetter.com>
+		 * @author MakeWebBetter<webmaster@makewebbetter.com>
 		 * @link http://www.makewebbetter.com/
 		 */
 		public function ced_rnx_get_sections() {
@@ -181,12 +181,12 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 		/**
 		 * Section setting
 		 *
-		 * @author makewebbetter<webmaster@makewebbetter.com>
+		 * @author MakeWebBetter<webmaster@makewebbetter.com>
 		 * @link http://www.makewebbetter.com/
 		 */
 		public function ced_rnx_get_settings( $current_section ) {
 
-			/* get woocommerce categories */
+			// get woocommerce categories.
 
 			$all_cat = get_terms( 'product_cat', array( 'hide_empty' => 0 ) );
 			$cat_name = array();
@@ -254,7 +254,7 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 						'id'        => 'mwb_wrma_return_attach_enable',
 					),
 					array(
-						'title'         => __( 'Enter number Of Attachment to be send', 'woo-refund-and-exchange-lite' ),
+						'title'         => __( 'Enter number Of Attachment to send', 'woo-refund-and-exchange-lite' ),
 						'desc'          => __( 'Enter the number of attachments the customer can add one time during refund.', 'woo-refund-and-exchange-lite' ),
 						'type'          => 'number',
 						'id'            => 'mwb_wrma_refund_attachment_limit',
@@ -369,7 +369,7 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 		 /**
 		  * Save setting
 		  *
-		  * @author makewebbetter<webmaster@makewebbetter.com>
+		  * @author MakeWebBetter<webmaster@makewebbetter.com>
 		  * @link http://www.makewebbetter.com/
 		  */
 		public function ced_rnx_setting_save() {
@@ -381,7 +381,7 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 		/**
 		 * Add notification submenu in woocommerce
 		 *
-		 * @author makewebbetter<webmaster@makewebbetter.com>
+		 * @author MakeWebBetter<webmaster@makewebbetter.com>
 		 * @link http://www.makewebbetter.com/
 		 */
 		public function ced_rnx_notification_callback() {
@@ -392,7 +392,7 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 		/**
 		 * This function is metabox template for Refund order product
 		 *
-		 * @author makewebbetter<webmaster@makewebbetter.com>
+		 * @author MakeWebBetter<webmaster@makewebbetter.com>
 		 * @link http://www.makewebbetter.com/
 		 * @param unknown $order
 		 */

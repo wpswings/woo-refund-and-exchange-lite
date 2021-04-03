@@ -134,7 +134,7 @@ class WC_Rma_Order_Messages_Email extends WC_Email {
 	 * Initialize Settings Form Fields
 	 */
 	public function init_form_fields() {
-		/* translators: %s: list of placeholders */
+		// translators: %s: list of placeholders.
 		$placeholder_text  = sprintf( __( 'Available placeholders: %s', 'woo-refund-and-exchange-lite' ), '<code>' . esc_html( implode( '</code>, <code>', array_keys( $this->placeholders ) ) ) . '</code>' );
 		$this->form_fields = array(
 			'enabled'    => array(

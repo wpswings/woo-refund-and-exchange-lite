@@ -1,7 +1,10 @@
 <?php
 /**
  * Exit if accessed directly
+ *
+ * @package run_woocommerce_refund_and_exchange_lite
  */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -51,9 +54,9 @@ if ( 'overview' == $mwb_rnx_section && 'ced_rnx_setting' == $mwb_rnx_tab || '' =
 	<div class="ced_rnx_help_wrapper">
 		<div class="ced-purchase-main-plugin-wrap">
 				<?php
-				if ( '' != $image_src ) {
+				if ( '' !== $image_src ) {
 					?>
-				<img src="<?php esc_html_e( esc_url( $image_src ) ); ?>">
+				<img src="<?php echo esc_html( esc_url( $image_src ) ); ?>">
 					<?php
 				}
 				?>

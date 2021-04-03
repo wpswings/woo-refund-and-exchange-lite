@@ -19,7 +19,7 @@
  *
  * @package    woocommerce_refund_and_exchange_lite
  * @subpackage woocommerce_refund_and_exchange_lite/includes
- * @author     makewebbetter <webmaster@makewebbetter.com>
+ * @author     MakeWebBetter <webmaster@makewebbetter.com>
  */
 class woocommerce_refund_and_exchange_lite_Loader {
 

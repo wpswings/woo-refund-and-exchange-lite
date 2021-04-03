@@ -25,7 +25,7 @@
  * @since      1.0.0
  * @package    woocommerce_refund_and_exchange_lite
  * @subpackage woocommerce_refund_and_exchange_lite/includes
- * @author     makewebbetter <webmaster@makewebbetter.com>
+ * @author     MakeWebBetter <webmaster@makewebbetter.com>
  */
 class woocommerce_refund_and_exchange_lite {
 
@@ -97,35 +97,21 @@ class woocommerce_refund_and_exchange_lite {
 	 */
 	private function load_dependencies() {
 
-		/**
-		 * The class responsible for orchestrating the actions and filters of the
-		 * core plugin.
-		 */
+		// The class responsible for orchestrating the actions and filters of the core plugin.
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-woocommerce_refund_and_exchange_lite-loader.php';
 
-		/**
-		 * The class responsible for defining internationalization functionality
-		 * of the plugin.
-		 */
+		// The class responsible for defining internationalization functionality of the plugin.
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-woocommerce_refund_and_exchange_lite-i18n.php';
 
-		/**
-		 * The class responsible for defining all actions that occur in the admin area.
-		 */
+		// The class responsible for defining all actions that occur in the admin area.
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-woocommerce_refund_and_exchange_lite-admin.php';
 
-		/**
-		 * The class responsible for defining all actions that occur in the public-facing
-		 * side of the site.
-		 */
+		// The class responsible for defining all actions that occur in the public-facing side of the site.
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-woocommerce_refund_and_exchange_lite-public.php';
 
 		$this->loader = new woocommerce_refund_and_exchange_lite_Loader();
 
-		/**
-		 * The class responsible for defining all actions that occur in the onboarding the site data
-		 * in the admin side of the site.
-		 */
+		// The class responsible for defining all actions that occur in the onboarding the site data in the admin side of the site.
 		! class_exists( 'Makewebbetter_Onboarding_Helper' ) && require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-makewebbetter-onboarding-helper.php';
 
 		if ( ! defined( 'ONBOARD_PLUGIN_NAME' ) && ( ! empty( $_GET['tab'] ) && 'ced_rnx_setting' === $_GET['tab'] ) ) {

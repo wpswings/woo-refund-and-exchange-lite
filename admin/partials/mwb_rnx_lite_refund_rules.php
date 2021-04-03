@@ -12,7 +12,7 @@
 			<div id="mwb_rnx_return_form_editor'">
 			<td><label for="return_form_editor"><?php esc_html_e( 'Custom Rules ', 'woo-refund-and-exchange-lite' ); ?></label></td>
 			<td>
-				<?
+			<?
 
 				$content = stripslashes(get_option('ced_rnx_return_editor', false));
 				$editor_id = 'ced_rnx_return_editor';
