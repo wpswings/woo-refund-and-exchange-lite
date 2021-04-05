@@ -183,7 +183,12 @@ class woocommerce_refund_and_exchange_lite_Admin {
 		);
 	}
 
-	// Show the order statuses.
+	/**
+	 * Show the order statuses.
+	 *
+	 * @param array() $ced_rnx_order_statuses is regsiter order statuses.
+	 * @return statuses
+	 */
 	public function ced_rnx_add_custom_order_status( $ced_rnx_order_statuses ) {
 		$ced_rnx_new_order_statuses = array();
 		foreach ( $ced_rnx_order_statuses as $ced_rnx_key => $ced_rnx_status ) {
@@ -809,7 +814,9 @@ class woocommerce_refund_and_exchange_lite_Admin {
 		}
 	}
 
-	// Save order message.
+	/**
+	 * Save order message.
+	 */
 	public function mwb_wrma_order_messages_save() {
 		$check_ajax = check_ajax_referer( 'ced-rnx-ajax-seurity-string', 'security_check' );
 		if ( $check_ajax ) {

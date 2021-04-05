@@ -66,7 +66,11 @@ if ( $activated ) {
 	define( 'MWB_REFUND_N_EXCHANGE_LITE_DIRPATH', plugin_dir_path( __FILE__ ) );
 	define( 'MWB_REFUND_N_EXCHANGE_LITE_URL', plugin_dir_url( __FILE__ ) );
 
-	// The code that runs during plugin activation.
+	/**
+	 * The code that runs during plugin activation.
+	 *
+	 * @return void
+	 */
 	function activate_woocommerce_refund_and_exchange_lite() {
 		$email                               = get_option( 'admin_email', false );
 		$admin                               = get_user_by( 'email', $email );
@@ -108,7 +112,11 @@ if ( $activated ) {
 		update_option( 'ced_rnx_view_order_msg_page_id', $ced_rnx_view_order_msg_page_id );
 	}
 
-	// The code that runs during plugin deactivation.
+	/**
+	 * The code that runs during plugin deactivation.
+	 *
+	 * @return void
+	 */
 	function deactivate_woocommerce_refund_and_exchange_lite() {
 
 		$page_id = get_option( 'ced_rnx_return_request_form_page_id' );
@@ -239,6 +247,7 @@ if ( $activated ) {
 	 * @param string $order_id order id.
 	 * @param string $msg message.
 	 * @param string $sender sender.
+	 * @param string $to message to sent.
 	 * @link http://www.makewebbetter.com/
 	 */
 	function ced_rnx_lite_send_order_msg_callback( $order_id, $msg, $sender, $to ) {
@@ -314,16 +323,14 @@ if ( $activated ) {
 	/**
 	 * Creates a translation of a post (to be used with WPML)
 	 *
-	 * @param int $post_id The ID of the post to be translated.
-	 *
-	 * @return the none
-	 *  */
+	 * @param int $page_id The ID of the post to be translated.
+	 **/
 	function ced_rnx_wpml_translate_post( $page_id ) {
 		if ( function_exists( 'icl_object_id' ) ) {
 			// $lang The language of the translated post (ie 'fr', 'de', etc.).
 			$langs = wpml_get_active_languages();
 			foreach ( $langs as $lang ) {
-				// If the translated page doesn't exist, now create it
+				// If the translated page doesn't exist, now create it.
 				if ( icl_object_id( $page_id, 'page', false, $lang['code'] ) == null ) {
 					$page_translated_name = get_post( $page_id )->post_name . ' (-' . $lang['code'] . ')';
 					$page_translated_title = get_post( $page_id )->post_title;
@@ -339,7 +346,7 @@ if ( $activated ) {
 
 					// Get trid of original post.
 					$trid = wpml_get_content_trid( 'post_' . 'page', $page_id );
-					// Get default language
+					// Get default language.
 					$default_lang = wpml_get_default_language();
 					// Associate original post and translated post.
 					global $wpdb;
@@ -359,7 +366,11 @@ if ( $activated ) {
 
 	}
 
-	// Function to delete translated pages.
+	/**
+	 * Function to delete translated pages.
+	 *
+	 * @param int $page_id The ID of the post to be deleted.
+	 */
 	function ced_rnx_delete_wpml_translate_post( $page_id ) {
 		if ( function_exists( 'icl_object_id' ) ) {
 			$langs = wpml_get_active_languages();

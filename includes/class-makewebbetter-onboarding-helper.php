@@ -32,6 +32,7 @@ class Makewebbetter_Onboarding_Helper {
 	 * The single instance of the class.
 	 *
 	 * @since   1.0.0
+	 * @var string instance
 	 */
 	protected static $_instance = null;
 
@@ -57,7 +58,7 @@ class Makewebbetter_Onboarding_Helper {
 	 * @since 1.0.0
 	 * @var string Form id.
 	 */
-	private static $onboarding_form_id = 'd94dcb10-c9c1-4155-a9ad-35354f2c3b52';
+	private static $onboarding_form_id   = 'd94dcb10-c9c1-4155-a9ad-35354f2c3b52';
 	private static $deactivation_form_id = '329ffc7a-0e8c-4e11-8b41-960815c31f8d';
 
 
@@ -141,7 +142,7 @@ class Makewebbetter_Onboarding_Helper {
 
 			wp_enqueue_style( 'makewebbetter-onboarding-style', MWB_REFUND_N_EXCHANGE_LITE_URL . 'admin/css/makewebbetter-onboarding-admin.css', array(), '1.0.0', 'all' );
 
-			// Uncomment Only when your plugin doesn't uses the Select2
+			// Uncomment Only when your plugin doesn't uses the Select2.
 			wp_enqueue_style( 'makewebbetter-onboarding-select2-style', MWB_REFUND_N_EXCHANGE_LITE_URL . 'admin/css/select2.min.css', array(), '1.0.0', 'all' );
 		}
 	}
@@ -181,7 +182,7 @@ class Makewebbetter_Onboarding_Helper {
 				)
 			);
 
-			// Uncomment Only when your plugin doesn't uses the Select2
+			// Uncomment Only when your plugin doesn't uses the Select2.
 			wp_enqueue_script( 'makewebbetter-onboarding-select2-script', MWB_REFUND_N_EXCHANGE_LITE_URL . 'admin/js/select2.min.js', array( 'jquery' ), '1.0.0', false );
 		}
 	}
@@ -920,7 +921,7 @@ class Makewebbetter_Onboarding_Helper {
 
 		$response = $this->hic_post( $url, $form_data, $headers );
 
-		if ( $response['status_code'] == 200 ) {
+		if ( 200 === $response['status_code'] ) {
 			$result = json_decode( $response['response'], true );
 			$result['success'] = true;
 		} else {
@@ -932,8 +933,12 @@ class Makewebbetter_Onboarding_Helper {
 	}
 
 
-	// Function to get the client IP address
-	function get_client_ip() {
+	/**
+	 * Function to get the client IP address.
+	 *
+	 * @return $ipaddress
+	 */
+	public function get_client_ip() {
 		$ipaddress = '';
 		if ( getenv( 'HTTP_CLIENT_IP' ) ) {
 			$ipaddress = getenv( 'HTTP_CLIENT_IP' );

@@ -794,7 +794,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 					$date = date_format( $date, $date_format );
 
 					?>
-					<p><?php esc_html_e( 'Following product Refund request made on', 'woo-refund-and-exchange-lite' ); ?> <b><?php esc_html_e( "$date" ); ?>.</b></p>
+					<p><?php esc_html_e( 'Following product Refund request made on', 'woo-refund-and-exchange-lite' ); ?> <b><?php echo esc_html( $date ); ?>.</b></p>
 					<table class="shop_table order_details">
 						<thead>
 							<tr>
@@ -935,7 +935,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 							$format = get_option( 'date_format' );
 							$appdate = date_format( $appdate, $format );
 							?>
-								<p><?php esc_html_e( 'Above product Refund request is approved on', 'woo-refund-and-exchange-lite' ); ?> <b><?php esc_html_e( "$appdate" ); ?>.</b></p>
+								<p><?php esc_html_e( 'Above product Refund request is approved on', 'woo-refund-and-exchange-lite' ); ?> <b><?php echo esc_html( $appdate ); ?>.</b></p>
 								<?php
 						}
 
@@ -979,7 +979,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 										if ( isset( $refund_button_view ) && in_array( 'thank-you-page', $refund_button_view ) ) {
 											if ( is_checkout() && ! empty( $wp->query_vars['order-received'] ) ) {
 												?>
-												<form action="<?php esc_html_e( "$return_url" ); ?>" method="post">
+												<form action="<?php echo esc_html( $return_url ); ?>" method="post">
 													<input type="hidden" value="<?php echo esc_html( $order_id ); ?>" name="order_id">
 													<p><input type="submit" class="btn button" value="<?php echo esc_html( $return_button_text ); ?>" name="ced_new_return_request" ></p>
 												</form>
@@ -1027,7 +1027,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 							if ( isset( $refund_button_view ) && in_array( 'thank-you-page', $refund_button_view ) ) {
 								if ( is_checkout() && ! empty( $wp->query_vars['order-received'] ) ) {
 									?>
-									<form action="<?php esc_html_e( $return_url ); ?>" method="post">
+									<form action="<?php echo esc_html( $return_url ); ?>" method="post">
 										<input type="hidden" value="<?php echo esc_html( $order_id ); ?>" name="order_id">
 										<p><input type="submit" class="btn button" value="<?php echo esc_html( $return_button_text ); ?>" name="ced_new_return_request"></p>
 									</form>

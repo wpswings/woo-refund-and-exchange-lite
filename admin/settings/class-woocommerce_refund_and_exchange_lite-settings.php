@@ -1,4 +1,10 @@
 <?php
+/**
+ * This file is for setting
+ *
+ * @package woocommerce_refund_and_exchange_lite
+ */
+
 if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 	class MwbBasicframeworkAdminSettings {
 
@@ -24,10 +30,15 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 			add_action( 'woocommerce_settings_tabs_' . $this->id, array( $this, 'ced_rnx_settings_tab' ) );
 		}
 
-		function add_current_class_on_rma_menu() {
+		/**
+		 * Active current tab.
+		 *
+		 * @return void
+		 */
+		public function add_current_class_on_rma_menu() {
 			$get_tab = isset( $_GET['tab'] ) ? $_GET['tab'] : '';
 			$get_section = isset( $_GET['section'] ) ? $_GET['section'] : '';
-			if ( 'ced_rnx_setting' == $get_tab ) {
+			if ( 'ced_rnx_setting' === $get_tab ) {
 				?>
 				<script type="text/javascript">
 					jQuery(document).ready( function($) { 
@@ -38,7 +49,7 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 				</script>
 				<?php
 			}
-			if ( 'ced_rnx_setting' == $get_tab && '' == $get_section ) {
+			if ( 'ced_rnx_setting' === $get_tab && '' === $get_section ) {
 				?>
 				<script type="text/javascript">
 					jQuery(document).ready( function($) {   
@@ -52,6 +63,7 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 		/**
 		 * Add new tab to woocommerce setting
 		 *
+		 * @param array() $settings_tabs is settings.
 		 * @author MakeWebBetter<webmaster@makewebbetter.com>
 		 * @link http://www.makewebbetter.com/
 		 */
@@ -67,7 +79,7 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 			$get_section = '';           if ( isset( $_GET['section'] ) ) {
 				$get_section = isset( $_GET['section'] ) ? sanitize_text_field( wp_unslash( $_GET['section'] ) ) : '';
 				$get_section = sanitize_text_field( $get_section );
-				if ( $get_section != 'refund' ) {
+				if ( 'refund' !== $get_section ) {
 					include_once MWB_REFUND_N_EXCHANGE_LITE_DIRPATH . 'admin/partials/mwb-rnx-lite-pro-purchase-template.php';
 					?>
 					<style type="text/css">
@@ -83,7 +95,7 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 				}
 			}
 
-			if ( $get_tab == 'ced_rnx_setting' && $get_section == '' ) {
+			if ( 'ced_rnx_setting' === $get_tab && '' === $get_section ) {
 				include_once MWB_REFUND_N_EXCHANGE_LITE_DIRPATH . 'admin/partials/mwb-rnx-lite-pro-purchase-template.php';
 				?>
 					<style type="text/css">
@@ -205,7 +217,7 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 			unset( $status['wc-refund-requested'] );
 			unset( $status['wc-refunded'] );
 
-			$emaiUrl = admin_url() . 'admin.php?page=wc-settings&tab=email&section=wc_rma_messages_email';
+			$emai_url = admin_url() . 'admin.php?page=wc-settings&tab=email&section=wc_rma_messages_email';
 
 			$button_view = array(
 				'order-page' => __( 'Order Page', 'mwb-woocommerce-rma' ),
@@ -314,7 +326,7 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 					),
 					array(
 						'title'         => __( 'Enable Order Messages', 'woo-refund-and-exchange-lite' ),
-						'desc'          => sprintf( __( 'Enable this if you want to allow your customers to message their order related query. To configure order message mails. %s', 'woo-refund-and-exchange-lite' ), '<a href="' . $emaiUrl . '">Click Here</a>' ),
+						'desc'          => sprintf( __( 'Enable this if you want to allow your customers to message their order related query. To configure order message mails. %s', 'woo-refund-and-exchange-lite' ), '<a href="' . $emai_url . '">Click Here</a>' ),
 						'default'       => 'no',
 						'type'          => 'checkbox',
 						'id'            => 'mwb_wrma_order_message_view',
@@ -386,7 +398,6 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 		 */
 		public function ced_rnx_notification_callback() {
 			include_once MWB_REFUND_N_EXCHANGE_LITE_DIRPATH . 'admin/partials/mwb-rnx-lite-notification.php';
-			;
 		}
 
 		/**
@@ -394,7 +405,6 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 		 *
 		 * @author MakeWebBetter<webmaster@makewebbetter.com>
 		 * @link http://www.makewebbetter.com/
-		 * @param unknown $order
 		 */
 		public function ced_rnx_order_return() {
 			global $post, $thepostid, $theorder;

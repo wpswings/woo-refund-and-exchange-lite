@@ -54,9 +54,10 @@ class WC_Rma_Order_Messages_Email extends WC_Email {
 	/**
 	 * Determine if the email should actually be sent and setup email merge variables
 	 *
-	 * @param string $msg.
-	 * @param array  $filename.
-	 * @param string $to.
+	 * @param string $msg is message.
+	 * @param array  $attachment is media attachment.
+	 * @param string $to send to mail.
+	 * @param array  $order_id is order.
 	 */
 	public function trigger( $msg, $attachment, $to, $order_id ) {
 		if ( $to ) {

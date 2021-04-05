@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 $image_src = '';
 $mwb_rnx_section = '';
 $mwb_rnx_tab = '';
-if ( isset( $_GET['section'] ) ) {
+if ( isset( $_GET['section'] ) || isset( $_GET['section'] ) ) {
 	$mwb_rnx_section = sanitize_text_field( wp_unslash( $_GET['section'] ) );
 	$mwb_rnx_tab = sanitize_text_field( wp_unslash( $_GET['tab'] ) );
 	if ( 'exchange' == $mwb_rnx_section ) {
