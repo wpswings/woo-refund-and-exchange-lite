@@ -12,7 +12,7 @@
  * @package           woocommerce_refund_and_exchange_lite
  *
  * @wordpress-plugin
- * Plugin Name:       Return Refund and Exchange for Woocommerce
+ * Plugin Name:       Return Refund and Exchange for Woocommerce test-mwb
  * Plugin URI:        https://wordpress.org/plugins/woo-refund-and-exchange-lite/
  * Description:       WooCommerce Refund and Exchange lite allows users to submit product refund. The plugin provides a dedicated mailing system that would help to communicate better between store owner and customers.This is lite version of Woocommerce Refund And Exchange.
  * Version:           3.0.4
