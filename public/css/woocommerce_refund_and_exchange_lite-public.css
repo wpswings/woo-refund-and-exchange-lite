@@ -258,6 +258,7 @@
 .ced_rnx_exchange_request_reason ,
 #ced_rnx_return_request_subject{
   width: 100%!important;
+  margin:auto;
 }
 #ced_rnx_return_request_form_wrapper label,
 .ced_rnx_note_tag_wrapper p label{
@@ -531,8 +532,6 @@ margin-bottom: 6px !important;
     padding-left: 10px;
     text-align: center;
 }
-/* 09-APR-2020 */
-
 .mwb-order-msg-attachment-wrapper {
     display: flex;
     align-items: center;
@@ -568,12 +567,12 @@ margin-bottom: 6px !important;
     transition-timing-function: ease-in;
 }
 .mwb-order-msg-btn {
-    margin-top: 15px;
-    text-align: right;
-    width: 100%;
+    margin-top: 0px;
+    text-align: left;
+    
 }
 #mwb_order_msg_attachment {
-    width: 50%;
+    width: 90%;
 }
 .mwb_notice_main_container {
     margin-bottom: 15px;

@@ -17,7 +17,7 @@
  *
  * @package    woocommerce_refund_and_exchange_lite
  * @subpackage woocommerce_refund_and_exchange_lite/public
- * @author     makewebbetter <webmaster@makewebbetter.com>
+ * @author     MakeWebBetter <webmaster@makewebbetter.com>
  */
 class woocommerce_refund_and_exchange_lite_Public {
 
@@ -116,11 +116,16 @@ class woocommerce_refund_and_exchange_lite_Public {
 	/**
 	 * Add template for refund request form.
 	 *
+	 * @param array $template is a current template.
 	 * @since    1.0.0
 	 */
 	public function ced_rnx_product_return_template( $template ) {
 		$ced_rnx_return_request_form_page_id = get_option( 'ced_rnx_return_request_form_page_id' );
-		if ( is_page( $ced_rnx_return_request_form_page_id ) ) {
+
+		if ( function_exists( 'icl_object_id' ) ) {
+			$ro_pageid = icl_object_id( $ced_rnx_return_request_form_page_id, 'page', false, ICL_LANGUAGE_CODE );
+		}
+		if ( ( ( '' !== $ced_rnx_return_request_form_page_id ) && is_page( $ced_rnx_return_request_form_page_id ) ) || ( isset( $ro_pageid ) && is_page( $ro_pageid ) ) ) {
 			$located = locate_template( 'woo-refund-and-exchange-lite/public/partials/mwb-rnx-lite-refund-request-form.php' );
 			if ( ! empty( $located ) ) {
 
@@ -132,7 +137,10 @@ class woocommerce_refund_and_exchange_lite_Public {
 		}
 
 		$ced_rnx_view_order_msg_page_id = get_option( 'ced_rnx_view_order_msg_page_id' );
-		if ( is_page( $ced_rnx_view_order_msg_page_id ) ) {
+		if ( function_exists( 'icl_object_id' ) ) {
+			$ro_pageid1 = icl_object_id( $ced_rnx_view_order_msg_page_id, 'page', false, ICL_LANGUAGE_CODE );
+		}
+		if ( ( '' !== $ced_rnx_view_order_msg_page_id ) && ( is_page( $ced_rnx_view_order_msg_page_id ) ) || ( isset( $ro_pageid1 ) && is_page( $ro_pageid1 ) ) ) {
 			$located = locate_template( 'woo-refund-and-exchange-lite/public/partials/mwb-rnx-lite-view-order-msg.php' );
 			if ( ! empty( $located ) ) {
 
@@ -150,6 +158,8 @@ class woocommerce_refund_and_exchange_lite_Public {
 	/**
 	 * Add refund button on my-account order section.
 	 *
+	 * @param array $actions is current order action.
+	 * @param array $order is a current order.
 	 * @since    1.0.0
 	 */
 	public function ced_rnx_refund_exchange_button( $actions, $order ) {
@@ -162,6 +172,8 @@ class woocommerce_refund_and_exchange_lite_Public {
 		$view_msg = get_option( 'mwb_wrma_order_message_view', 'no' );
 		$ced_rnx_return = get_option( 'mwb_wrma_return_enable', false );
 		$view_order_msg_text = get_option( 'mwb_wrma_order_msg_text', false );
+		$refund_button_view = get_option( 'mwb_wrma_refund_button_view', false );
+
 		if ( isset( $view_msg ) && 'yes' == $view_msg && isset( $ced_rnx_return ) && 'yes' == $ced_rnx_return ) {
 			$view_order_msg_url = add_query_arg( 'order_id', $order_id, $view_order_msg_url );
 			$view_order_msg_url = wp_nonce_url( $view_order_msg_url, 'ced-rnx-nonce', 'ced-rnx-nonce' );
@@ -178,10 +190,10 @@ class woocommerce_refund_and_exchange_lite_Public {
 			$ced_rnx_next_return = false;
 		}
 
-		if ( $ced_rnx_next_return ) {
+		if ( $ced_rnx_next_return && in_array( 'order-page', $refund_button_view ) ) {
 			// Return Request at order detail page.
 			$ced_rnx_return = get_option( 'mwb_wrma_return_enable', false );
-			if ( $ced_rnx_return == 'yes' ) {
+			if ( 'yes' === $ced_rnx_return ) {
 
 				$statuses = get_option( 'mwb_wrma_return_order_status', array() );
 				$order_status = 'wc-' . $order->get_status();
@@ -207,7 +219,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 						$return_button_text = __( 'Refund', 'woo-refund-and-exchange-lite' );
 					}
 
-					if ( $day_allowed >= $day_diff && $day_allowed != 0 ) {
+					if ( $day_allowed >= $day_diff && 0 !== $day_allowed ) {
 
 						$ced_rnx_return_request_form_page_id = get_option( 'ced_rnx_return_request_form_page_id' );
 						$return_url = get_permalink( $ced_rnx_return_request_form_page_id );
@@ -231,7 +243,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 	/**
 	 * This function is to save return request Attachment
 	 *
-	 * @author makewebbetter<webmaster@makewebbetter.com>
+	 * @author MakeWebBetter<webmaster@makewebbetter.com>
 	 * @link http://www.makewebbetter.com/
 	 */
 	public function ced_rnx_order_return_attach_files() {
@@ -247,7 +259,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 							$order_id = sanitize_text_field( wp_unslash( $_POST['ced_rnx_return_request_order'] ) );
 						}
 						// phpcs:disable WordPress.Security.NonceVerification.NoNonceVerification -- Nonce already verified in 
-						$count = sizeof( $_FILES['ced_rnx_return_request_files']['tmp_name'] );
+						$count = count( $_FILES['ced_rnx_return_request_files']['tmp_name'] );
 						for ( $i = 0;$i < $count;$i++ ) {
 							if ( isset( $_FILES['ced_rnx_return_request_files']['tmp_name'][ $i ] ) ) {
 								$directory = ABSPATH . 'wp-content/attachment';
@@ -256,12 +268,12 @@ class woocommerce_refund_and_exchange_lite_Public {
 								}
 								if ( isset( $_FILES['ced_rnx_return_request_files']['tmp_name'][ $i ] ) ) {
 
-									$sourcePath = wc_clean( sanitize_text_field( wp_unslash( $_FILES['ced_rnx_return_request_files']['tmp_name'][ $i ] ) ) );
+									$source_path = wc_clean( sanitize_text_field( wp_unslash( $_FILES['ced_rnx_return_request_files']['tmp_name'][ $i ] ) ) );
 									if ( isset( $_FILES['ced_rnx_return_request_files']['name'][ $i ] ) ) {
-										$targetPath = $directory . '/' . $order_id . '-' . sanitize_text_field( wp_unslash( $_FILES['ced_rnx_return_request_files']['name'][ $i ] ) );
+										$target_path = $directory . '/' . $order_id . '-' . sanitize_text_field( wp_unslash( $_FILES['ced_rnx_return_request_files']['name'][ $i ] ) );
 
 										$filename[] = $order_id . '-' . sanitize_text_field( wp_unslash( $_FILES['ced_rnx_return_request_files']['name'][ $i ] ) );
-										move_uploaded_file( $sourcePath, $targetPath );
+										move_uploaded_file( $source_path, $target_path );
 
 									}
 								}
@@ -273,7 +285,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 						$pending = true;
 						if ( isset( $request_files ) && ! empty( $request_files ) ) {
 							foreach ( $request_files as $date => $request_file ) {
-								if ( $request_file['status'] == 'pending' ) {
+								if ( 'pending' === $request_file['status'] ) {
 									unset( $request_files[ $date ][0] );
 									$request_files[ $date ]['files'] = $filename;
 									$request_files[ $date ]['status'] = 'pending';
@@ -295,16 +307,16 @@ class woocommerce_refund_and_exchange_lite_Public {
 					}
 				}
 			}
-			die();
+			wp_die();
 		}
 	}
 	/**
 	 * This function is to save return request
 	 *
-	 * @author makewebbetter<webmaster@makewebbetter.com>
+	 * @author MakeWebBetter<webmaster@makewebbetter.com>
 	 * @link http://www.makewebbetter.com/
 	 */
-	function ced_rnx_return_product_info_callback() {
+	public function ced_rnx_return_product_info_callback() {
 		$check_ajax = check_ajax_referer( 'ced-rnx-ajax-seurity-string', 'security_check' );
 		if ( $check_ajax ) {
 
@@ -359,7 +371,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 
 					if ( $exp_flag ) {
 						$response['flag'] = false;
-						$response['msg'] = __( 'Your Giftcard have been expired so we you can not proceed for refund . Thanks', 'woo-refund-and-exchange-lite' );
+						$response['msg'] = __( 'Your Giftcard has been expired so you can not proceed with the refund. Thanks', 'woo-refund-and-exchange-lite' );
 						update_post_meta( $order_id, 'gift_card_hide_refund_button', 'true' );
 
 						echo wp_json_encode( $response );
@@ -368,7 +380,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 
 					if ( 0 != $usage_count ) {
 						$response['flag'] = false;
-						$response['msg'] = __( 'Your  Giftcard have been used so we you can not proceed for refund . Thanks', 'woo-refund-and-exchange-lite' );
+						$response['msg'] = __( 'Your Giftcard has been used so you can not proceed with the refund. Thanks', 'woo-refund-and-exchange-lite' );
 						update_post_meta( $order_id, 'gift_card_hide_refund_button', 'true' );
 
 						echo wp_json_encode( $response );
@@ -520,8 +532,17 @@ class woocommerce_refund_and_exchange_lite_Public {
 								font-size: 12px;
 								margin: 0;
 							}
+							.return-request-mail-header{
+								text-align:center;
+								padding: 10px;
+							}
+							.return-request-mail-footer{
+								text-align:center;
+								padding: 10px;
+							}
+							
 						</style>
-						<div class="header" style="text-align:center;padding: 10px;">
+						<div class="return-request-mail-header header">
 							' . $mail_header . '
 						</div>	
 						<div class="header">
@@ -548,7 +569,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 				if ( isset( $requested_products ) && ! empty( $requested_products ) ) {
 					$total = 0;
 					foreach ( $order->get_items() as $item_id => $item ) {
-						$product = apply_filters( 'woocommerce_order_item_product', $item->get_product() , $item );
+						$product = apply_filters( 'woocommerce_order_item_product', $item->get_product(), $item );
 						foreach ( $requested_products as $requested_product ) {
 							if ( isset( $requested_product['item_id'] ) ) {
 								if ( $item_id == $requested_product['item_id'] ) {
@@ -611,7 +632,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 						</div>
 						
 					</div>
-					<div class="footer" style="text-align:center;padding: 10px;">
+					<div class="return-request-mail-footer footer" style="text-align:center;padding: 10px;">
 						' . $mail_footer . '
 					</div>
 
@@ -688,10 +709,10 @@ class woocommerce_refund_and_exchange_lite_Public {
 				$order = wc_get_order( $order_id );
 				$order->update_status( 'wc-refund-requested', 'User Request to Refund Product' );
 				$response['flag'] = true;
-				$response['msg'] = __( 'Message send successfully.You have received a notification mail regarding this, Please check your mail. Soon You redirect to My Account Page. Thanks', 'woo-refund-and-exchange-lite' );
+				$response['msg'] = __( 'Message send successfully. You have received a notification mail regarding this, Please check your mail. Soon You redirect to the My Account Page. Thanks', 'woo-refund-and-exchange-lite' );
 
 				echo wp_json_encode( $response );
-				die;
+				wp_die();
 			}
 		}
 	}
@@ -699,18 +720,22 @@ class woocommerce_refund_and_exchange_lite_Public {
 	/**
 	 * This function is to add Return button and Show return products
 	 *
-	 * @author makewebbetter<webmaster@makewebbetter.com>
+	 * @param array $order is current order.
+	 * @author MakeWebBetter<webmaster@makewebbetter.com>
 	 * @link http://www.makewebbetter.com/
 	 */
-	function ced_rnx_order_return_button( $order ) {
+	public function ced_rnx_order_return_button( $order ) {
+		global $wp;
 		$ced_rnx_return_request_form_page_id = get_option( 'ced_rnx_return_request_form_page_id', true );
 		$ced_rnx_return_button_show = true;
 		$ced_rnx_next_return = true;
+
 		if ( ! is_user_logged_in() ) {
 			$ced_rnx_next_return = false;
 		}
 
 		$return_button_text = get_option( 'mwb_wrma_return_button_text', false );
+		$refund_button_view = get_option( 'mwb_wrma_refund_button_view', false );
 		if ( isset( $return_button_text ) && ! empty( $return_button_text ) ) {
 			$return_button_text = $return_button_text;
 		} else {
@@ -721,18 +746,19 @@ class woocommerce_refund_and_exchange_lite_Public {
 		$view_order_msg_url = get_permalink( $page_id );
 		$ced_rnx_return = get_option( 'mwb_wrma_return_enable', false );
 		$view_msg = get_option( 'mwb_wrma_order_message_view', 'no' );
-		$redirect_uri = $_SERVER['REQUEST_URI'];
-		if ( isset( $view_msg ) && 'yes' == $view_msg && isset( $ced_rnx_return ) && 'yes' == $ced_rnx_return && strpos( $redirect_uri, 'order-received' ) === false ) {
-			?>
-			<form action="<?php echo add_query_arg( 'order_id', $order_id, $view_order_msg_url ); ?>" method="post">
-				<input type="hidden" value="<?php echo $order_id; ?>" name="order_id">
-				<p>
-					<input type="submit" class="btn button" value="<?php _e( 'View Order Messages', 'woo-refund-and-exchange-lite' ); ?>"></p>
-				</p>
-			</form>
-			<?php
+		$redirect_uri = wp_unslash( $_SERVER['REQUEST_URI'] );
+		if ( isset( $redirect_uri )){
+			if ( isset( $view_msg ) && 'yes' == $view_msg && isset( $ced_rnx_return ) && 'yes' == $ced_rnx_return && strpos( $redirect_uri, 'order-received' ) === false ) {
+				?>
+				<form action="<?php echo esc_html( add_query_arg( 'order_id', $order_id, $view_order_msg_url ) ); ?>" method="post">
+					<input type="hidden" value="<?php echo esc_html( $order_id ); ?>" name="order_id">
+					<p>
+						<input type="submit" class="btn button" value="<?php esc_html_e( 'View Order Messages', 'woo-refund-and-exchange-lite' ); ?>">
+					</p>
+				</form>
+				<?php
+			}
 		}
-
 		$ced_rnx_enable = get_option( 'ced_rnx_return_exchange_enable', false );
 		if ( 'yes' == $ced_rnx_enable ) {
 			$order_id = $order->get_id();
@@ -745,9 +771,9 @@ class woocommerce_refund_and_exchange_lite_Public {
 		$order_total = $order->get_total();
 		$return_min_amount = get_option( 'ced_rnx_return_minimum_amount', false );
 
-				// Return Request at order detail page
+		// Return Request at order detail page.
 		$ced_rnx_return = get_option( 'mwb_wrma_return_enable', false );
-		if ( $ced_rnx_return == 'yes' ) {
+		if ( 'yes' === $ced_rnx_return ) {
 			if ( WC()->version < '3.0.0' ) {
 				$order_id = $order->id;
 			} else {
@@ -768,7 +794,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 					$date = date_format( $date, $date_format );
 
 					?>
-					<p><?php esc_html_e( 'Following product Refund request made on', 'woo-refund-and-exchange-lite' ); ?> <b><?php esc_html_e( $date ); ?>.</b></p>
+					<p><?php esc_html_e( 'Following product Refund request made on', 'woo-refund-and-exchange-lite' ); ?> <b><?php echo esc_html( $date ); ?>.</b></p>
 					<table class="shop_table order_details">
 						<thead>
 							<tr>
@@ -817,7 +843,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 											</td>
 											<td class="product-total">
 											<?php
-												echo wc_price( $return_product['price'] * $return_product['qty'] ) //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped;
+												echo wc_price( $return_product['price'] * $return_product['qty'] ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped;
 											?>
 												</td>
 											</tr>
@@ -846,8 +872,8 @@ class woocommerce_refund_and_exchange_lite_Public {
 												foreach ( $added_fee as $fee ) {
 													?>
 													<tr>
-														<th><?php esc_html_e( $fee['text'] ); ?></th>
-														<td><?php echo wc_price( $fee['val'] );//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped; ?></td>
+														<th><?php echo esc_html( $fee['text'] ); ?></th>
+														<td><?php echo esc_html( wc_price( $fee['val'] ) );//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped; ?></td>
 													</tr>
 													<?php
 													$product_data['amount'] -= $fee['val'];
@@ -858,7 +884,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 									?>
 									<tr>
 										<th scope="row"><?php esc_html_e( 'Total Refund Amount', 'woo-refund-and-exchange-lite' ); ?></th>
-										<th><?php echo wc_price( $product_data['amount'] ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></th>
+										<th><?php echo esc_html( wc_price( $product_data['amount'] ) ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></th>
 									</tr>
 									<?php
 								}
@@ -879,7 +905,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 								$order_id = $order->get_id();
 								$order_date = date_i18n( get_option( 'date_format' ), strtotime( $order->get_date_created() ) );
 							}
-								$today_date = time(); // or your date as well
+								$today_date = time(); // or your date as well.
 								$order_date = strtotime( $order_date );
 								$days = $today_date - $order_date;
 								$day_diff = floor( $days / ( 60 * 60 * 24 ) );
@@ -894,8 +920,8 @@ class woocommerce_refund_and_exchange_lite_Public {
 									$return_url = add_query_arg( 'order_id', $order_id, $return_url );
 									$return_url = wp_nonce_url( $return_url, 'ced-rnx-nonce', 'ced-rnx-nonce' );
 									?>
-										<form action="<?php esc_html_e( $return_url ); ?>" method="post">
-											<input type="hidden" value="<?php esc_html_e( $order_id ); ?>" name="order_id">
+										<form action="<?php echo esc_html( $return_url ); ?>" method="post">
+											<input type="hidden" value="<?php echo esc_html( $order_id ); ?>" name="order_id">
 											<p>
 												<input type="submit" class="btn button" value="<?php esc_html_e( 'Update Request', 'woo-refund-and-exchange-lite' ); ?>" name="ced_update_return_request">
 											</p>
@@ -904,12 +930,12 @@ class woocommerce_refund_and_exchange_lite_Public {
 								}
 							}
 						}
-						if ( 'complete' == $product_data['status'] ) {
+						if ( 'complete' === $product_data['status'] ) {
 							$appdate = date_create( $product_data['approve_date'] );
 							$format = get_option( 'date_format' );
 							$appdate = date_format( $appdate, $format );
 							?>
-								<p><?php esc_html_e( 'Above product Refund request is approved on', 'woo-refund-and-exchange-lite' ); ?> <b><?php esc_html_e( $appdate ); ?>.</b></p>
+								<p><?php esc_html_e( 'Above product Refund request is approved on', 'woo-refund-and-exchange-lite' ); ?> <b><?php echo esc_html( $appdate ); ?>.</b></p>
 								<?php
 						}
 
@@ -918,7 +944,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 							$format = get_option( 'date_format' );
 							$appdate = date_format( $appdate, $format );
 							?>
-								<p><?php esc_html_e( 'Above product Refund request is cancelled on', 'woo-refund-and-exchange-lite' ); ?> <b><?php esc_html_e( $appdate ); ?>.</b></p>
+								<p><?php esc_html_e( 'Above product Refund request is canceled on', 'woo-refund-and-exchange-lite' ); ?> <b><?php esc_html_e( "$appdate" ); ?>.</b></p>
 								<?php
 						}
 					}
@@ -934,7 +960,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 								$order_id = $order->get_id();
 								$order_date = date_i18n( get_option( 'date_format' ), strtotime( $order->get_date_created() ) );
 							}
-							$today_date = time(); // or your date as well
+							$today_date = time(); // or your date as well.
 							$order_date = strtotime( $order_date );
 							$days = $today_date - $order_date;
 							$day_diff = floor( $days / ( 60 * 60 * 24 ) );
@@ -950,12 +976,23 @@ class woocommerce_refund_and_exchange_lite_Public {
 										$ced_rnx_return_button_show = false;
 										$return_url = add_query_arg( 'order_id', $order_id, $return_url );
 										$return_url = wp_nonce_url( $return_url, 'ced-rnx-nonce', 'ced-rnx-nonce' );
-										?>
-											<form action="<?php esc_html_e( $return_url ); ?>" method="post">
-												<input type="hidden" value="<?php esc_html_e( $order_id ); ?>" name="order_id">
-												<p><input type="submit" class="btn button" value="<?php esc_html_e( $return_button_text ); ?>" name="ced_new_return_request"></p>
-											</form>
-											<?php
+										if ( isset( $refund_button_view ) && in_array( 'thank-you-page', $refund_button_view ) ) {
+											if ( is_checkout() && ! empty( $wp->query_vars['order-received'] ) ) {
+												?>
+												<form action="<?php echo esc_html( $return_url ); ?>" method="post">
+													<input type="hidden" value="<?php echo esc_html( $order_id ); ?>" name="order_id">
+													<p><input type="submit" class="btn button" value="<?php echo esc_html( $return_button_text ); ?>" name="ced_new_return_request" ></p>
+												</form>
+												<?php
+											} else if ( isset( $refund_button_view ) && in_array( get_the_title(), $refund_button_view ) ) {
+												?>
+												<form action="<?php echo esc_html( $return_url ); ?>" method="post">
+													<input type="hidden" value="<?php echo esc_html( $order_id ); ?>" name="order_id">
+													<p><input type="submit" class="btn button" value="<?php echo esc_html( $return_button_text ); ?>" name="ced_new_return_request" ></p>
+												</form>
+												<?php
+											}
+										}
 									}
 								}
 							}
@@ -987,12 +1024,23 @@ class woocommerce_refund_and_exchange_lite_Public {
 							$ced_rnx_return_button_show = false;
 							$return_url = add_query_arg( 'order_id', $order_id, $return_url );
 							$return_url = wp_nonce_url( $return_url, 'ced-rnx-nonce', 'ced-rnx-nonce' );
-							?>
-								<form action="<?php esc_html_e( $return_url ); ?>" method="post">
-									<input type="hidden" value="<?php esc_html_e( $order_id ); ?>" name="order_id">
-									<p><input type="submit" class="btn button" value="<?php esc_html_e( $return_button_text ); ?>" name="ced_new_return_request"></p>
-								</form>
-								<?php
+							if ( isset( $refund_button_view ) && in_array( 'thank-you-page', $refund_button_view ) ) {
+								if ( is_checkout() && ! empty( $wp->query_vars['order-received'] ) ) {
+									?>
+									<form action="<?php echo esc_html( $return_url ); ?>" method="post">
+										<input type="hidden" value="<?php echo esc_html( $order_id ); ?>" name="order_id">
+										<p><input type="submit" class="btn button" value="<?php echo esc_html( $return_button_text ); ?>" name="ced_new_return_request"></p>
+									</form>
+									<?php
+								} else if ( isset( $refund_button_view ) && in_array( get_the_title(), $refund_button_view ) ) {
+									?>
+									<form action="<?php echo esc_html( $return_url ); ?>" method="post">
+										<input type="hidden" value="<?php echo esc_html( $order_id ); ?>" name="order_id">
+										<p><input type="submit" class="btn button" value="<?php echo esc_html( $return_button_text ); ?>" name="ced_new_return_request"></p>
+									</form>
+									<?php
+								}
+							}
 						}
 					}
 				}

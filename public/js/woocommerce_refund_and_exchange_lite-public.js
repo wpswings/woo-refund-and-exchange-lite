@@ -32,10 +32,20 @@
 	 var files = {};
 	 $( document ).ready(function(){
 		// Add more files to attachment
-		$( ".ced_rnx_return_request_morefiles" ).click(
+		$( document ).on(
+			'click',
+			'.ced_rnx_return_request_morefiles',
 			function(){
+				
+				var count = jQuery(this).data('count');
+				var max   = jQuery(this).data('max');
 				var html = '<br/><input type="file" class="input-text ced_rnx_return_request_files" name="ced_rnx_return_request_files[]">';
-				$( "#ced_rnx_return_request_files" ).append( html );
+	
+				if(count < max ){
+					$( "#ced_rnx_return_request_files" ).append( html );
+					$(document).find(".ced_rnx_return_request_morefiles").data('count', count+1);
+				}
+				
 			}
 			);
 
@@ -60,7 +70,7 @@
 					);
 
 			});
-
+			
 			// Submit Retun Request form
 			$( "#ced_rnx_return_request_form" ).on('submit',function(e){
 				e.preventDefault();
@@ -71,13 +81,14 @@
 				var count = 0;
 
 				var rr_subject = $( "#ced_rnx_return_request_subject" ).val();
-
+				
 				if (rr_subject == '' || rr_subject == null) {
 					rr_subject = $( "#ced_rnx_return_request_subject_text" ).val();
 					if (rr_subject == '' || rr_subject == null) {
 						alerthtml += '<li>' + global_rnx.return_subject_msg + '</li>';
 					}
 				}
+				
 				var rr_reason = $( ".ced_rnx_return_request_reason" ).val();
 
 				if (rr_reason == '' || rr_reason == null) {

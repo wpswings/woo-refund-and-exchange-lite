@@ -12,14 +12,14 @@
  * @package           woocommerce_refund_and_exchange_lite
  *
  * @wordpress-plugin
- * Plugin Name:       Return Refund and Exchange for Woocommerce
+ * Plugin Name:       Return Refund and Exchange for WooCommerce
  * Plugin URI:        https://wordpress.org/plugins/woo-refund-and-exchange-lite/
  * Description:       WooCommerce Refund and Exchange lite allows users to submit product refund. The plugin provides a dedicated mailing system that would help to communicate better between store owner and customers.This is lite version of Woocommerce Refund And Exchange.
- * Version:           3.0.4
+ * Version:           3.1.0
  * Author:            MakeWebBetter
  * Author URI:        http://makewebbetter.com/
- * WC tested up to:   4.8.0
- * Tested up to:      5.6
+ * WC tested up to:   5.1.0
+ * Tested up to:      5.7
  * License:           GPL-3.0+
  * License URI:       http://www.gnu.org/licenses/gpl-3.0.txt
  * Text Domain:       woo-refund-and-exchange-lite
@@ -30,6 +30,7 @@
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
+
 $activated                 = true;
 $ced_rnx_activated_main    = false;
 $ced_rnx_activated_main_cc = false;
@@ -60,15 +61,15 @@ if ( function_exists( 'is_multisite' ) && is_multisite() ) {
 	}
 }
 
-/**
- * Check if WooCommerce is active
- */
+// Check if WooCommerce is active.
 if ( $activated ) {
 	define( 'MWB_REFUND_N_EXCHANGE_LITE_DIRPATH', plugin_dir_path( __FILE__ ) );
 	define( 'MWB_REFUND_N_EXCHANGE_LITE_URL', plugin_dir_url( __FILE__ ) );
 
 	/**
 	 * The code that runs during plugin activation.
+	 *
+	 * @return void
 	 */
 	function activate_woocommerce_refund_and_exchange_lite() {
 		$email                               = get_option( 'admin_email', false );
@@ -89,6 +90,7 @@ if ( $activated ) {
 
 		if ( $page_id ) {
 			$ced_rnx_return_request_form_page_id = $page_id;
+			ced_rnx_wpml_translate_post( $page_id ); // Insert Translated Pages.
 		}
 		update_option( 'ced_rnx_return_request_form_page_id', $ced_rnx_return_request_form_page_id );
 
@@ -105,19 +107,25 @@ if ( $activated ) {
 
 		if ( $page_id ) {
 			$ced_rnx_view_order_msg_page_id = $page_id;
+			ced_rnx_wpml_translate_post( $page_id ); // Insert Translated Pages.
 		}
 		update_option( 'ced_rnx_view_order_msg_page_id', $ced_rnx_view_order_msg_page_id );
 	}
 
 	/**
 	 * The code that runs during plugin deactivation.
+	 *
+	 * @return void
 	 */
 	function deactivate_woocommerce_refund_and_exchange_lite() {
 
 		$page_id = get_option( 'ced_rnx_return_request_form_page_id' );
+		ced_rnx_delete_wpml_translate_post( $page_id );  // Delete tranlated pages.
 		wp_delete_post( $page_id );
 		delete_option( 'ced_rnx_return_request_form_page_id' );
 		$page_id1 = get_option( 'ced_rnx_view_order_msg_page_id' );
+
+		ced_rnx_delete_wpml_translate_post( $page_id1 ); // Delete tranlated pages.
 		wp_delete_post( $page_id1 );
 		delete_option( 'ced_rnx_view_order_msg_page_id' );
 	}
@@ -125,16 +133,13 @@ if ( $activated ) {
 	register_activation_hook( __FILE__, 'activate_woocommerce_refund_and_exchange_lite' );
 	register_deactivation_hook( __FILE__, 'deactivate_woocommerce_refund_and_exchange_lite' );
 
-	/**
-	 * The core plugin class that is used to define internationalization,
-	 * admin-specific hooks, and public-facing site hooks.
-	 */
+	// The core plugin class that is used to define internationalization, admin-specific hooks, and public-facing site hooks.
 	require plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce_refund_and_exchange_lite.php';
 
 	/**
 	 * This function is used for formatting the price seprator
 	 *
-	 * @author makewebbetter<webmaster@makewebbetter.com>
+	 * @author MakeWebBetter<webmaster@makewebbetter.com>
 	 * @link http://www.makewebbetter.com/
 	 * @param unknown $price price.
 	 * @return price
@@ -152,7 +157,7 @@ if ( $activated ) {
 	 *
 	 * @param unknown $actions     action.
 	 * @param unknown $plugin_file plugin file.
-	 * @author makewebbetter<webmaster@makewebbetter.com>
+	 * @author MakeWebBetter<webmaster@makewebbetter.com>
 	 * @link http://www.makewebbetter.com/
 	 */
 	function ced_rnx_lite_admin_settings( $actions, $plugin_file ) {
@@ -178,7 +183,7 @@ if ( $activated ) {
 	 *
 	 * @param unknown $links links.
 	 * @param unknown $file file.
-	 * @author makewebbetter<webmaster@makewebbetter.com>
+	 * @author MakeWebBetter<webmaster@makewebbetter.com>
 	 * @link http://www.makewebbetter.com/
 	 */
 	function mwb_rma_lite_add_doc_and_premium_link( $links, $file ) {
@@ -203,7 +208,7 @@ if ( $activated ) {
 	 * Add capabilities, priority must be after the initial role
 	 *
 	 * @name admin_settings_for_pmr()
-	 * @author makewebbetter<webmaster@makewebbetter.com>
+	 * @author MakeWebBetter<webmaster@makewebbetter.com>
 	 * @link http://www.makewebbetter.com/
 	 */
 	function ced_rnx_role_capability() {
@@ -242,12 +247,13 @@ if ( $activated ) {
 	 * @param string $order_id order id.
 	 * @param string $msg message.
 	 * @param string $sender sender.
+	 * @param string $to message to sent.
 	 * @link http://www.makewebbetter.com/
 	 */
 	function ced_rnx_lite_send_order_msg_callback( $order_id, $msg, $sender, $to ) {
 		$flag       = false;
-		$filename   = [];
-		$attachment = [];
+		$filename   = array();
+		$attachment = array();
 		if ( isset( $_FILES['mwb_order_msg_attachment']['tmp_name'] ) && ! empty( $_FILES['mwb_order_msg_attachment']['tmp_name'] ) ) {
 			$count         = count( $_FILES['mwb_order_msg_attachment']['tmp_name'] );
 			$file_uploaded = false;
@@ -313,13 +319,77 @@ if ( $activated ) {
 		$plugin->run();
 	}
 	run_woocommerce_refund_and_exchange_lite();
+
+	/**
+	 * Creates a translation of a post (to be used with WPML)
+	 *
+	 * @param int $page_id The ID of the post to be translated.
+	 **/
+	function ced_rnx_wpml_translate_post( $page_id ) {
+		if ( function_exists( 'icl_object_id' ) ) {
+			// $lang The language of the translated post (ie 'fr', 'de', etc.).
+			$langs = wpml_get_active_languages();
+			foreach ( $langs as $lang ) {
+				// If the translated page doesn't exist, now create it.
+				if ( icl_object_id( $page_id, 'page', false, $lang['code'] ) == null ) {
+					$page_translated_name = get_post( $page_id )->post_name . ' (-' . $lang['code'] . ')';
+					$page_translated_title = get_post( $page_id )->post_title;
+					// All page stuff.
+					$my_page = array();
+					$my_page['post_name']  = $page_translated_name;
+					$my_page['post_title'] = $page_translated_title;
+					$my_page['post_author'] = 1;
+					$my_page['post_type'] = 'page';
+					$my_page['post_status'] = 'publish';
+					// Insert translated post.
+					$post_translated_id = wp_insert_post( $my_page );
+
+					// Get trid of original post.
+					$trid = wpml_get_content_trid( 'post_' . 'page', $page_id );
+					// Get default language.
+					$default_lang = wpml_get_default_language();
+					// Associate original post and translated post.
+					global $wpdb;
+					$wpdb->update(
+						$wpdb->prefix . 'icl_translations',
+						array(
+							'trid' => $trid,
+							'language_code' => $lang['code'],
+							'source_language_code' => $default_lang,
+						),
+						array( 'element_id' => $post_translated_id )
+					);
+
+				}
+			}
+		}
+
+	}
+
+	/**
+	 * Function to delete translated pages.
+	 *
+	 * @param int $page_id The ID of the post to be deleted.
+	 */
+	function ced_rnx_delete_wpml_translate_post( $page_id ) {
+		if ( function_exists( 'icl_object_id' ) ) {
+			$langs = wpml_get_active_languages();
+			foreach ( $langs as $lang ) {
+				if ( icl_object_id( $page_id, 'page', false, $lang['code'] ) ) {
+					$pageid = icl_object_id( $page_id, 'page', false, $lang['code'] );
+					wp_delete_post( $pageid );
+
+				}
+			}
+		}
+	}
 } else {
 
 	/**
 	 * Show warning message if woocommerce is not install
 	 *
 	 * @name ced_rnx_plugin_error_notice()
-	 * @author makewebbetter<webmaster@makewebbetter.com>
+	 * @author MakeWebBetter<webmaster@makewebbetter.com>
 	 * @link http://www.makewebbetter.com/
 	 */
 	function ced_rnx_plugin_error_notice_lite() {
@@ -339,13 +409,13 @@ if ( $activated ) {
 	 * Show warning message if woocommerce is not install
 	 *
 	 * @name ced_rnx_plugin_error_notice()
-	 * @author makewebbetter<webmaster@makewebbetter.com>
+	 * @author MakeWebBetter<webmaster@makewebbetter.com>
 	 * @link http://www.makewebbetter.com/
 	 */
 	function ced_rnx_plugin_error_notice_when_pro_activated() {
 		?>
 		<div class="error notice is-dismissible">
-			<p><?php esc_html_e( 'WooCommerce RMA | Return-Refund-Exchange is activated so you did not need to install WooCommerce Refund and Exchange Lite because Main version is contains all the feature of our lite extention .', 'woo-refund-and-exchange-lite' ); ?></p>
+			<p><?php esc_html_e( 'WooCommerce RMA | Return-Refund-Exchange is activated so you did not need to install WooCommerce Refund and Exchange Lite because the Main version contains all the features of our lite extension.', 'woo-refund-and-exchange-lite' ); ?></p>
 		</div>
 		<style>
 		#message{display:none;}
@@ -368,7 +438,7 @@ if ( $activated ) {
 	 * Call Admin notices
 	 *
 	 * @name ced_rnx_plugin_deactivate_lite()
-	 * @author makewebbetter<webmaster@makewebbetter.com>
+	 * @author MakeWebBetter<webmaster@makewebbetter.com>
 	 * @link http://www.makewebbetter.com/
 	 */
 	function ced_rnx_plugin_deactivate_lite() {
@@ -381,7 +451,7 @@ if ( $activated ) {
 	 * Call Admin notices
 	 *
 	 * @name ced_rnx_plugin_deactivate()
-	 * @author makewebbetter<webmaster@makewebbetter.com>
+	 * @author MakeWebBetter<webmaster@makewebbetter.com>
 	 * @link http://www.makewebbetter.com/
 	 */
 	function ced_rnx_plugin_deactivate_when_pro_is_activated() {
@@ -390,3 +460,4 @@ if ( $activated ) {
 		add_action( 'admin_notices', 'ced_rnx_plugin_error_notice_when_pro_activated' );
 	}
 }
+

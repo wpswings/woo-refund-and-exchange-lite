@@ -1,6 +1,8 @@
 <?php
 /**
  * Exit if accessed directly
+ *
+ * @package woocommerce_refund_and_exchange_lite
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -35,7 +37,7 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 		$date_format = get_option( 'date_format' );
 		$date = date_format( $date, $date_format );
 		?>
-		<p><?php esc_html_e( 'Following product refund request made on', 'woo-refund-and-exchange-lite' ); ?> <b><?php esc_html__( $date ); ?>.</b></p>
+		<p><?php esc_html_e( 'Following product refund request made on', 'woo-refund-and-exchange-lite' ); ?> <b><?php echo esc_html( $date ); ?>.</b></p>
 		<div>
 		<div id="ced_rnx_return_wrapper">
 			<table>
@@ -85,7 +87,7 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 								<?php
 								if ( isset( $refund_product_new[ $returnkey ]['image'] ) && ! empty( $refund_product_new[ $returnkey ]['image'] ) ) {
 									?>
-									<div class="wc-order-item-thumbnail"><img src ="<?php echo esc_attr_e( $refund_product_new[ $returnkey ]['image'] ); ?>"></div>
+									<div class="wc-order-item-thumbnail"><img src ="<?php echo esc_attr( $refund_product_new[ $returnkey ]['image'] ); ?>"></div>
 									<?php
 								}
 								?>
@@ -144,8 +146,7 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 			<?php
 		}
 		?>
-		<p><strong>
-		
+		<p><strong>	
 		<?php esc_html_e( 'Refund Amount', 'woo-refund-and-exchange-lite' ); ?> :</strong> <?php echo wc_price( $return_data['amount'] );/*phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped*/ ?> <input type="hidden" name="ced_rnx_total_amount_for_refund" class="ced_rnx_total_amount_for_refund" value="<?php echo esc_attr( ced_rnx_lite_currency_seprator( $return_data['amount'] ) ); ?>"></p>
 		<div class="ced_rnx_reason">	
 			<p><strong><?php esc_html_e( 'Subject', 'woo-refund-and-exchange-lite' ); ?> :</strong><i> <?php echo esc_html( $return_data['subject'] ); ?></i></p></p>
@@ -165,7 +166,7 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 							foreach ( $attachments['files'] as $attachment ) {
 								if ( $attachment != $order_id . '-' ) {
 									?>
-									<a href="<?php echo esc_url( content_url() ); ?>/attachment/<?php esc_html_e( $attachment ); ?>" target="_blank"><?php esc_html_e( 'Attachment', 'woo-refund-and-exchange-lite' ); ?>-<?php esc_html__( $count ); ?></a>
+									<a href="<?php echo esc_url( content_url() ); ?>/attachment/<?php echo esc_html( $attachment ); ?>" target="_blank"><?php echo esc_html( 'Attachment', 'woo-refund-and-exchange-lite' ); ?>-<?php echo esc_html( $count ); ?></a>
 									<?php
 									$count++;
 								}
@@ -178,8 +179,8 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 			if ( 'pending' == $return_data['status'] ) {
 				?>
 				<p id="ced_rnx_return_package">
-				<input type="button" value="<?php esc_attr_e( 'Accept Request', 'woo-refund-and-exchange-lite' ); ?>" class="button" id="ced_rnx_accept_return" data-orderid="<?php esc_html_e( $order_id ); ?>" data-date="<?php esc_html_e( $key ); ?>">
-				<input type="button" value="<?php esc_attr_e( 'Cancel Request', 'woo-refund-and-exchange-lite' ); ?>" class="button" id="ced_rnx_cancel_return" data-orderid="<?php esc_html_e( $order_id ); ?>" data-date="<?php echo esc_attr( $key ); ?>">
+				<input type="button" value="<?php esc_attr_e( 'Accept Request', 'woo-refund-and-exchange-lite' ); ?>" class="button" id="ced_rnx_accept_return" data-orderid="<?php echo esc_html( $order_id ); ?>" data-date="<?php echo esc_html( $key ); ?>">
+				<input type="button" value="<?php esc_attr_e( 'Cancel Request', 'woo-refund-and-exchange-lite' ); ?>" class="button" id="ced_rnx_cancel_return" data-orderid="<?php echo esc_html( $order_id ); ?>" data-date="<?php echo esc_attr( $key ); ?>">
 				</p>
 				<?php
 			}
@@ -194,8 +195,8 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 		<?php
 		if ( 'complete' == $return_data['status'] ) {
 			?>
-			<input type="hidden" value="<?php esc_html_e( ced_rnx_lite_currency_seprator( $return_data['amount'] ) ); ?>" id="ced_rnx_refund_amount">
-			<input type="hidden" value="<?php esc_html_e( $return_data['subject'] ); ?>" id="ced_rnx_refund_reason">
+			<input type="hidden" value="<?php echo esc_html( ced_rnx_lite_currency_seprator( $return_data['amount'] ) ); ?>" id="ced_rnx_refund_amount">
+			<input type="hidden" value="<?php echo esc_html( $return_data['subject'] ); ?>" id="ced_rnx_refund_reason">
 			<?php
 
 			$approve_date = date_create( $return_data['approve_date'] );
@@ -205,9 +206,9 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 
 				esc_html_e( 'Following product refund request is approved on', 'woo-refund-and-exchange-lite' );
 			?>
-				 <b><?php esc_html_e( $approve_date ); ?>.</b>
+				<b><?php echo esc_html( $approve_date ); ?>.</b>
 			<?php if ( 'yes' != $ced_rnx_left_amount_done ) { ?>
-				<input type="button" name="ced_rnx_left_amount" class="button button-primary" data-orderid="<?php esc_html_e( $order_id ); ?>" id="ced_rnx_left_amount" Value="Refund Amount" > 
+				<input type="button" name="ced_rnx_left_amount" class="button button-primary" data-orderid="<?php echo esc_html( $order_id ); ?>" id="ced_rnx_left_amount" Value="Refund Amount" > 
 				<?php
 			}
 
@@ -218,7 +219,7 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 			$manage_stock = get_option( 'mwb_wrma_return_request_manage_stock' );
 			if ( 'yes' == $manage_stock && 'yes' == $ced_rnx_manage_stock_for_return ) {
 				?>
-				 <div id="ced_rnx_stock_button_wrapper"><?php esc_html_e( 'When Product Bacck in stock then for stock management click on ', 'woo-refund-and-exchange-lite' ); ?> <input type="button" name="ced_rnx_stock_back" class="button button-primary" id="ced_rnx_stock_back" data-type="ced_rnx_return" data-orderid="<?php esc_html_e( $order_id ); ?>" Value="Manage Stock" ></div> 
+				<div id="ced_rnx_stock_button_wrapper"><?php esc_html_e( 'When Product Back in stock then for stock management click on ', 'woo-refund-and-exchange-lite' ); ?> <input type="button" name="ced_rnx_stock_back" class="button button-primary" id="ced_rnx_stock_back" data-type="ced_rnx_return" data-orderid="<?php echo esc_html( $order_id ); ?>" Value="Manage Stock" ></div> 
 				<?php
 			}
 		}
@@ -226,9 +227,9 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 			$approve_date = date_create( $return_data['cancel_date'] );
 			$approve_date = date_format( $approve_date, 'F d, Y' );
 
-			esc_html_e( 'Following product refund request is cancelled on', 'woo-refund-and-exchange-lite' );
+			esc_html_e( 'Following product refund request is canceled on', 'woo-refund-and-exchange-lite' );
 			?>
-			 <b><?php esc_html_e( $approve_date ); ?>.</b>
+			<b><?php echo esc_html( $approve_date ); ?>.</b>
 			<?php
 		}
 		?>

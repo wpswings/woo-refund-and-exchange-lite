@@ -1,19 +1,24 @@
 <?php
 /**
  * Exit if accessed directly
+ *
+ * @package woocommerce_refund_and_exchange_lite
  */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
 
 if ( isset( $_POST['order_id'] ) ) {
 	$order_id = sanitize_text_field( wp_unslash( $_POST['order_id'] ) );
 } elseif ( isset( $_GET['order_id'] ) ) {
 	$order_id = sanitize_text_field( wp_unslash( $_GET['order_id'] ) );
 }
+
 $flag = false;
 $get_nonce = isset( $_REQUEST['mwb-order-msg-nonce'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['mwb-order-msg-nonce'] ) ) : '';
-if ( isset( $_POST['mwb_order_msg_submit'] ) && ! empty( $_POST['mwb_order_msg_submit'] ) ) {
+if ( isset( $_POST['mwb_order_msg_submit'] ) && ! empty( $_POST['mwb_order_msg_submit'] ) && isset( $order_id ) ) {
 	if ( wp_verify_nonce( $get_nonce, 'mwb-order-msg-nonce' ) ) {
 		$msg    = isset( $_POST['mwb_order_new_msg'] ) ? filter_input( INPUT_POST, 'mwb_order_new_msg' ) : '';
 		$to     = get_option( 'ced_rnx_notification_from_mail', false );
@@ -32,7 +37,8 @@ get_header( 'shop' );
 */
 do_action( 'woocommerce_before_main_content' );
 $upload_attach = get_option( 'mwb_wrma_order_message_attachment', 'no' );
-?>
+if ( isset( $order_id ) ) {
+	?>
 
 <div class="mwb_order_add_msg_form">
 	<div class="mwb_notice_main_container">
@@ -46,15 +52,15 @@ $upload_attach = get_option( 'mwb_wrma_order_message_attachment', 'no' );
 	<div class="mwb_order_msg_container">
 		<form id="mwb_order_new_msg_form" method="post" enctype="multipart/form-data">
 			<div class="mwb_order_msg_title"><h4 class="mwb-order-heading"><?php esc_html_e( 'Add a message', 'woo-refund-and-exchange-lite' ); ?></h4></div>
-			<textarea id="mwb_order_new_msg" name="mwb_order_new_msg" placeholder="<?php esc_html_e( 'Write a message you want to sent to the Shop Manager.', 'woo-refund-and-exchange-lite' ); ?>" rows="5" required ></textarea>
+			<textarea id="mwb_order_new_msg" name="mwb_order_new_msg" placeholder="<?php esc_html_e( 'Write a message you want to sent to the Shop Manager.', 'woo-refund-and-exchange-lite' ); ?>" rows="5" maxlength='10000' required ></textarea>
 			<?php if ( isset( $upload_attach ) && 'yes' == $upload_attach ) { ?>
 				<div>
-				<label for="mwb_order_msg_attachment"> <?php esc_html_e( 'Attach files ', 'woo-refund-and-exchange-lite' ); ?></label>
+				<label for="mwb_order_msg_attachment"> <?php esc_html_e( 'Attach files: ', 'woo-refund-and-exchange-lite' ); ?></label>
 				</div>
 				<?php } ?>
 				<div class="mwb-order-msg-attachment-wrapper">
 					<?php if ( isset( $upload_attach ) && 'yes' == $upload_attach ) { ?>
-						<input type="file" id="mwb_order_msg_attachment" name="mwb_order_msg_attachment[]" multiple >
+					<input type="file" class="input-text" id="mwb_order_msg_attachment" name="mwb_order_msg_attachment[]" multiple >
 					<?php } ?>
 					<div class="mwb-order-msg-btn">
 						<input type="submit" class="button button-primary" id="mwb_order_msg_submit" name="mwb_order_msg_submit" value="<?php esc_html_e( 'Send', 'woo-refund-and-exchange-lite' ); ?>">
@@ -64,7 +70,7 @@ $upload_attach = get_option( 'mwb_wrma_order_message_attachment', 'no' );
 		</form>
 	</div>
 	<div class="mwb_order_msg_reload_notice_wrapper">
-		<p class="mwb_order_msg_sent_notice"><strong><?php esc_html_e( 'Messages Refreshed Succesfully.', 'woo-refund-and-exchange-lite' ); ?></strong></p>
+		<p class="mwb_order_msg_sent_notice"><strong><?php esc_html_e( 'Messages Refreshed Successfully.', 'woo-refund-and-exchange-lite' ); ?></strong></p>
 	</div>
 	<div class="mwb_order_msg_history_container">
 		<div class="mwb_order_msg_history_title"><h4 class="mwb-order-heading"><?php esc_html_e( 'Message History', 'woo-refund-and-exchange-lite' ); ?>
@@ -80,11 +86,11 @@ $upload_attach = get_option( 'mwb_wrma_order_message_attachment', 'no' );
 						?>
 						<div class="mwb_order_msg_main_container mwb_order_messages">
 							<div>
-								<div class="mwb_order_msg_sender"><?php echo esc_html__( $om_val['sender'], 'woo-refund-and-exchange-lite' ); ?></div>
+								<div class="mwb_order_msg_sender"><?php echo esc_html( ( 'Customer' === $om_val['sender'] ) ? __( 'Customer', 'woo-refund-and-exchange-lite' ) : __( 'Shop Manager', 'woo-refund-and-exchange-lite' ) ); ?></div>
 								<span class="mwb_order_msg_date"><?php echo esc_html( get_date_from_gmt( date( 'Y-m-d h:i a', $om_key ), 'Y-m-d h:i a' ) ); ?></span>
 							</div>
 							<div class="mwb_order_msg_detail_container">
-								<span><?php echo esc_html__( $om_val['msg'], 'woo-refund-and-exchange-lite' ); ?></span>
+								<span><?php echo esc_html( $om_val['msg'], 'woo-refund-and-exchange-lite' ); ?></span>
 							</div>
 							<?php if ( isset( $om_val['files'] ) && ! empty( $om_val['files'] ) ) { ?>
 								<hr>
@@ -114,7 +120,7 @@ $upload_attach = get_option( 'mwb_wrma_order_message_attachment', 'no' );
 		</div>
 	</div>
 </div>
-<?php
+<?php }
 
 do_action( 'woocommerce_after_main_content' );
 

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Provide a admin area view for the plugin
  *
@@ -11,19 +10,20 @@
  * @package    Makewebbetter_Onboarding
  * @subpackage Makewebbetter_Onboarding/admin/onboarding
  */
+
 ?>
-<?php 
+<?php
 
 	global $pagenow;
 if ( empty( $pagenow ) || 'plugins.php' != $pagenow ) {
 	return false;
 }
 
-	$form_fields = apply_filters( 'mwb_deactivation_form_fields', array() ); 
+	$form_fields = apply_filters( 'mwb_deactivation_form_fields', array() );
 ?>
 <?php if ( ! empty( $form_fields ) ) : ?>
 	<div style="display: none;" class="loading-style-bg" id="mwb_wgm_loader">
-		<img src="<?php echo esc_url( MWB_REFUND_N_EXCHANGE_LITE_URL . 'assets/images/loading.gif' ); ?>">
+		<img src="<?php echo esc_url( MWB_REFUND_N_EXCHANGE_LITE_URL . 'admin/images/loading.gif' ); ?>">
 	</div>
 	<div class="mwb-onboarding-section">
 		<div class="mwb-on-boarding-wrapper-background">
@@ -34,10 +34,10 @@ if ( empty( $pagenow ) || 'plugins.php' != $pagenow ) {
 				</a>
 			</div>
 			<h3 class="mwb-on-boarding-heading"></h3>
-			<p class="mwb-on-boarding-desc"><?php esc_html_e( 'May we have a little info about why you are deactivating?' , 'woo-gift-cards-lite' ); ?></p>
+			<p class="mwb-on-boarding-desc"><?php esc_html_e( 'May we have a little info about why you are deactivating?', 'woo-gift-cards-lite' ); ?></p>
 			<form action="#" method="post" class="mwb-on-boarding-form">
 				<?php foreach ( $form_fields as $key => $field_attr ) : ?>
-					<?php $this->render_field_html( $field_attr , 'deactivating' ); ?>
+					<?php $this->render_field_html( $field_attr, 'deactivating' ); ?>
 				<?php endforeach; ?>
 				<div class="mwb-on-boarding-form-btn__wrapper">
 					<div class="mwb-on-boarding-form-submit mwb-on-boarding-form-verify ">

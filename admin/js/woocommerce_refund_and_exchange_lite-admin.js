@@ -31,10 +31,11 @@
 
 	$( document ).ready(
 		function(){
-
-				$( "#ced_rnx_accept_return" ).click(
+				
+				$( document ).on(
+					'click',
+					'#ced_rnx_accept_return',
 					function(){
-
 						$( "#ced_rnx_return_package" ).hide();
 						$( ".ced_rnx_return_loader" ).show();
 						var orderid = $( this ).data( 'orderid' );
@@ -56,7 +57,7 @@
 									$( ".ced_rnx_return_loader" ).hide();
 									$( ".refund-actions .cancel-action" ).hide();
 
-									window.location.reload( true );
+									window.location.reload();
 
 								}
 							}
@@ -64,7 +65,9 @@
 					}
 				);
 
-				$( "#ced_rnx_left_amount" ).click(
+				$( document ).on(
+					'click',
+					'#ced_rnx_left_amount',
 					function(){
 						$( this ).attr( 'disabled','disabled' );
 
@@ -105,7 +108,9 @@
 					}
 				);
 
-				$( "#ced_rnx_cancel_return" ).click(
+				$( document ).on(
+					'click',
+					'#ced_rnx_cancel_return',
 					function(){
 						$( ".ced_rnx_return_loader" ).show();
 						var orderid = $( this ).data( 'orderid' );
@@ -124,8 +129,9 @@
 								dataType :'json',
 								success: function(response)
 							{
+								console.log(response);
 									$( ".ced_rnx_return_loader" ).hide();
-									location.reload( true );
+									window.location.reload();
 								}
 							}
 						);
@@ -187,12 +193,17 @@
 						);
 					}
 				);
-
-				$( "#ced_rnx_return_predefined_reason_add" ).click(
+				
+				$( document ).on(
+					'click',
+					'#ced_rnx_return_predefined_reason_add',
 					function(){
-						var html = '';
-						html += '<input type="text" name="ced_rnx_return_predefined_reason[]" value="" class="input-text">';
-						$( "#ced_rnx_return_predefined_reason_wrapper" ).append( html );
+							var html = '';
+							html += '<input type="text" class="ced_rnx_return_predefined_reason" name="ced_rnx_return_predefined_reason[]" value="" class="input-text">';
+							$( "#ced_rnx_return_predefined_reason_wrapper" ).append( html );
+						
+						
+						
 					}
 				);
 				$( '#ced_rnx_accordion h2' ).on(
@@ -207,7 +218,9 @@
 
 					}
 				);
-				$( "#rnx_mail_setting" ).click(
+				$( document ).on(
+					'click',
+					'#rnx_mail_setting',
 					function(){
 						if ($( "#rnx_mail_setting_wrapper" ).is( ":visible" )) {
 							  $( this ).removeClass( 'ced_rnx_slide_active' );
@@ -217,7 +230,9 @@
 						$( "#rnx_mail_setting_wrapper" ).slideToggle( 'slow' );
 					}
 				);
-				$( "#rnx_return_reason" ).click(
+				$( document ).on(
+					'click',
+					'#rnx_return_reason',
 					function(){
 						if ($( "#rnx_return_reason_wrapper" ).is( ":visible" )) {
 							  $( this ).removeClass( 'ced_rnx_slide_active' );
@@ -227,7 +242,9 @@
 						$( "#rnx_return_reason_wrapper" ).slideToggle( 'slow' );
 					}
 				);
-				$( "#rnx_exchange_reason" ).click(
+				$( document ).on(
+					'click',
+					'#rnx_exchange_reason',
 					function(){
 						if ($( "#rnx_exchange_reason_wrapper" ).is( ":visible" )) {
 							  $( this ).removeClass( 'ced_rnx_slide_active' );
@@ -237,7 +254,9 @@
 						$( "#rnx_exchange_reason_wrapper" ).slideToggle( 'slow' );
 					}
 				);
-				$( "#rnx_refund_rules" ).click(
+				$( "#rnx_refund_rules" ).on(
+					'click',
+					'#rnx_refund_rules',
 					function(){
 						if ($( "#rnx_refund_rules_wrapper" ).is( ":visible" )) {
 							  $( this ).removeClass( 'ced_rnx_slide_active' );
@@ -265,8 +284,9 @@
 					}
 				);
 	$('.mwb_order_msg_notice_wrapper').hide();
-	/* Send order messages from admin */
-    $( "#mwb_order_msg_submit").click(function (e) {
+	
+	// Send order messages from admin.
+    $( document ).on( 'click', '#mwb_order_msg_submit', function (e) {
     	e.preventDefault();
     	var up_files = $('#mwb_order_msg_attachment');
     	var msg = $('#mwb_order_new_msg').val();
@@ -283,7 +303,7 @@
 
     	var form_data = new FormData();
 
-		   // Read selected files
+		// Read selected files
 		var totalfiles = up_files[0].files.length;
 		for (var index = 0; index < totalfiles; index++) {
 		   	form_data.append("mwb_order_msg_attachment[]", up_files[0].files[index]);

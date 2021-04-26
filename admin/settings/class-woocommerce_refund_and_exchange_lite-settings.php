@@ -1,4 +1,10 @@
 <?php
+/**
+ * This file is for setting
+ *
+ * @package woocommerce_refund_and_exchange_lite
+ */
+
 if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 	class MwbBasicframeworkAdminSettings {
 
@@ -24,10 +30,15 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 			add_action( 'woocommerce_settings_tabs_' . $this->id, array( $this, 'ced_rnx_settings_tab' ) );
 		}
 
-		function add_current_class_on_rma_menu() {
+		/**
+		 * Active current tab.
+		 *
+		 * @return void
+		 */
+		public function add_current_class_on_rma_menu() {
 			$get_tab = isset( $_GET['tab'] ) ? $_GET['tab'] : '';
 			$get_section = isset( $_GET['section'] ) ? $_GET['section'] : '';
-			if ( 'ced_rnx_setting' == $get_tab ) {
+			if ( 'ced_rnx_setting' === $get_tab ) {
 				?>
 				<script type="text/javascript">
 					jQuery(document).ready( function($) { 
@@ -38,7 +49,7 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 				</script>
 				<?php
 			}
-			if ( 'ced_rnx_setting' == $get_tab && '' == $get_section ) {
+			if ( 'ced_rnx_setting' === $get_tab && '' === $get_section ) {
 				?>
 				<script type="text/javascript">
 					jQuery(document).ready( function($) {   
@@ -52,7 +63,8 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 		/**
 		 * Add new tab to woocommerce setting
 		 *
-		 * @author makewebbetter<webmaster@makewebbetter.com>
+		 * @param array() $settings_tabs is settings.
+		 * @author MakeWebBetter<webmaster@makewebbetter.com>
 		 * @link http://www.makewebbetter.com/
 		 */
 		public static function ced_rnx_add_settings_tab( $settings_tabs ) {
@@ -67,7 +79,7 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 			$get_section = '';           if ( isset( $_GET['section'] ) ) {
 				$get_section = isset( $_GET['section'] ) ? sanitize_text_field( wp_unslash( $_GET['section'] ) ) : '';
 				$get_section = sanitize_text_field( $get_section );
-				if ( $get_section != 'refund' ) {
+				if ( 'refund' !== $get_section ) {
 					include_once MWB_REFUND_N_EXCHANGE_LITE_DIRPATH . 'admin/partials/mwb-rnx-lite-pro-purchase-template.php';
 					?>
 					<style type="text/css">
@@ -81,9 +93,9 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 					</style>
 					<?php
 				}
-			} 
+			}
 
-			if ( $get_tab == 'ced_rnx_setting' && $get_section == '' ) {
+			if ( 'ced_rnx_setting' === $get_tab && '' === $get_section ) {
 				include_once MWB_REFUND_N_EXCHANGE_LITE_DIRPATH . 'admin/partials/mwb-rnx-lite-pro-purchase-template.php';
 				?>
 					<style type="text/css">
@@ -103,7 +115,7 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 		/**
 		 * Output of section setting
 		 *
-		 * @author makewebbetter<webmaster@makewebbetter.com>
+		 * @author MakeWebBetter<webmaster@makewebbetter.com>
 		 * @link http://www.makewebbetter.com/
 		 */
 		public function ced_rnx_output_sections() {
@@ -159,7 +171,7 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 		/**
 		 * Create section setting
 		 *
-		 * @author makewebbetter<webmaster@makewebbetter.com>
+		 * @author MakeWebBetter<webmaster@makewebbetter.com>
 		 * @link http://www.makewebbetter.com/
 		 */
 		public function ced_rnx_get_sections() {
@@ -181,12 +193,12 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 		/**
 		 * Section setting
 		 *
-		 * @author makewebbetter<webmaster@makewebbetter.com>
+		 * @author MakeWebBetter<webmaster@makewebbetter.com>
 		 * @link http://www.makewebbetter.com/
 		 */
 		public function ced_rnx_get_settings( $current_section ) {
 
-			/* get woocommerce categories */
+			// get woocommerce categories.
 
 			$all_cat = get_terms( 'product_cat', array( 'hide_empty' => 0 ) );
 			$cat_name = array();
@@ -200,7 +212,18 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 
 			$statuses = wc_get_order_statuses();
 			$status = $statuses;
-			$emaiUrl = admin_url() . 'admin.php?page=wc-settings&tab=email&section=wc_rma_messages_email';
+			unset( $status['wc-refund-approved'] );
+			unset( $status['wc-refund-cancelled'] );
+			unset( $status['wc-refund-requested'] );
+			unset( $status['wc-refunded'] );
+
+			$emai_url = admin_url() . 'admin.php?page=wc-settings&tab=email&section=wc_rma_messages_email';
+
+			$button_view = array(
+				'order-page' => __( 'Order Page', 'mwb-woocommerce-rma' ),
+				'My account' => __( 'Order View Page', 'mwb-woocommerce-rma' ),
+				'thank-you-page' => __( 'Thank You Page', 'mwb-woocommerce-rma' ),
+			);
 
 			if ( 'refund' == $current_section ) {
 
@@ -213,7 +236,7 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 
 					array(
 						'title'         => __( 'Enable', 'woo-refund-and-exchange-lite' ),
-						'desc'          => __( 'Enable Refund Request', 'woo-refund-and-exchange-lite' ),
+						'desc'          => __( 'Enable Refund Request.', 'woo-refund-and-exchange-lite' ),
 						'default'       => 'no',
 						'type'          => 'checkbox',
 						'id'        => 'mwb_wrma_return_enable',
@@ -229,10 +252,11 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 
 					array(
 						'title'         => __( 'Maximum Number of Days', 'woo-refund-and-exchange-lite' ),
-						'desc'          => __( 'If days exceeds from the day of order placed then Refund Request will not be send. If value is 0 or blank then Refund button will not visible at order detail page.', 'woo-refund-and-exchange-lite' ),
+						'desc'          => __( 'If days exceed the day of order placed then a Refund Request will not be sent. If the value is 0 or blank then the Refund button will not visible on the order detail page.', 'woo-refund-and-exchange-lite' ),
 						'type'          => 'number',
 						'custom_attributes'   => array( 'min' => '0' ),
 						'id'        => 'mwb_wrma_return_days',
+						'desc_tip' => true,
 					),
 					array(
 						'title'         => __( 'Enable Attachment on Request Form', 'woo-refund-and-exchange-lite' ),
@@ -242,21 +266,30 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 						'id'        => 'mwb_wrma_return_attach_enable',
 					),
 					array(
+						'title'         => __( 'Enter number Of Attachment to send', 'woo-refund-and-exchange-lite' ),
+						'desc'          => __( 'Enter the number of attachments the customer can add one time during refund.', 'woo-refund-and-exchange-lite' ),
+						'type'          => 'number',
+						'id'            => 'mwb_wrma_refund_attachment_limit',
+						'default'       => __( 'Enter number Of Attachment to send', 'woo-refund-and-exchange-lite' ),
+						'custom_attributes'   => array( 'min' => '0' ),
+						'desc_tip' => true,
+					),
+					array(
 						'title'         => __( 'Enable Refund Reason Description', 'woo-refund-and-exchange-lite' ),
-						'desc'          => __( 'Enable this for user to send the detail description of Refund request.', 'woo-refund-and-exchange-lite' ),
+						'desc'          => __( 'Enable this for the user to send the detail description of Refund request.', 'woo-refund-and-exchange-lite' ),
 						'default'       => 'no',
 						'type'          => 'checkbox',
 						'id'        => 'mwb_wrma_return_request_description',
 					),
 					array(
 						'title'         => __( 'Enable Manage Stock', 'woo-refund-and-exchange-lite' ),
-						'desc'          => __( 'Enable this to increase product stock when Refund request is accepted.', 'woo-refund-and-exchange-lite' ),
+						'desc'          => __( 'Enable this to increase product stock when the Refund request is accepted.', 'woo-refund-and-exchange-lite' ),
 						'default'       => 'no',
 						'type'          => 'checkbox',
 						'id'        => 'mwb_wrma_return_request_manage_stock',
 					),
 					array(
-						'title'    => __( 'Select the orderstatus in which the order can be Refunded', 'woo-refund-and-exchange-lite' ),
+						'title'    => __( 'Select the order status in which the order can be Refunded', 'woo-refund-and-exchange-lite' ),
 						'desc'     => __( 'Select Order status on which you want Refund request user can submit.', 'woo-refund-and-exchange-lite' ),
 						'class'    => 'wc-enhanced-select ',
 						'css'      => 'min-width:300px;',
@@ -276,7 +309,7 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 					array(
 
 						'title'         => __( 'Refund Rules Editor ', 'woo-refund-and-exchange-lite' ),
-						'desc'          => __( 'Custom Refund Rules Editor (HTML and CSS allowed).Put your custom Refund rules here.', 'woo-refund-and-exchange-lite' ),
+						'desc'          => __( 'Custom Refund Rules Editor (HTML and CSS allowed). Put your custom Refund rules here.', 'woo-refund-and-exchange-lite' ),
 						'default'       => '',
 						'type'          => 'textarea',
 						'desc_tip'      => true,
@@ -289,27 +322,41 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 						'id'            => 'mwb_wrma_return_button_text',
 						'default'       => __( 'Refund', 'woo-refund-and-exchange-lite' ),
 						'desc'          => __( 'Change Refund button text on frontend', 'woo-refund-and-exchange-lite' ),
+						'desc_tip' => true,
 					),
 					array(
 						'title'         => __( 'Enable Order Messages', 'woo-refund-and-exchange-lite' ),
-						'desc'          => sprintf( __( 'Enable this if you want to allow your customers to message their order related query. To configure order message mails. %s', 'woo-refund-and-exchange-lite' ), '<a href="' . $emaiUrl . '">Click Here</a>' ),
+						'desc'          => sprintf( __( 'Enable this if you want to allow your customers to message their order related query. To configure order message mails. %s', 'woo-refund-and-exchange-lite' ), '<a href="' . $emai_url . '">Click Here</a>' ),
 						'default'       => 'no',
 						'type'          => 'checkbox',
 						'id'            => 'mwb_wrma_order_message_view',
 					),
 					array(
 						'title'         => __( 'Enable attachment upload for order messages', 'woo-refund-and-exchange-lite' ),
-						'desc'          => __( 'Enable this if you want to allow your customers to upload attachment along with their order related messages.', 'woo-refund-and-exchange-lite' ),
+						'desc'          => __( 'Enable this if you want to allow your customers to upload attachment along with their order-related messages.', 'woo-refund-and-exchange-lite' ),
 						'default'       => 'no',
 						'type'          => 'checkbox',
 						'id'            => 'mwb_wrma_order_message_attachment',
 					),
+
 					array(
 						'title'         => __( 'View Order Messages Button text', 'woo-refund-and-exchange-lite' ),
 						'type'          => 'text',
 						'id'            => 'mwb_wrma_order_msg_text',
 						'default'       => __( 'View Order Messages', 'woo-refund-and-exchange-lite' ),
 						'desc'          => __( 'Change View Order Messages Button text on frontend', 'woo-refund-and-exchange-lite' ),
+						'desc_tip' => true,
+					),
+					array(
+						'title'    => __( 'Select to show refund button on pages', 'woo-refund-and-exchange-lite' ),
+						'desc'     => __( 'Select the options to show the refund button on which page you want to show the button.', 'woo-refund-and-exchange-lite' ),
+						'class'    => 'wc-enhanced-select ',
+						'css'      => 'min-width:300px;',
+						'default'  => '',
+						'type'     => 'multiselect',
+						'options'  => $button_view,
+						'desc_tip' => true,
+						'id'        => 'mwb_wrma_refund_button_view',
 					),
 
 					array(
@@ -334,7 +381,7 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 		 /**
 		  * Save setting
 		  *
-		  * @author makewebbetter<webmaster@makewebbetter.com>
+		  * @author MakeWebBetter<webmaster@makewebbetter.com>
 		  * @link http://www.makewebbetter.com/
 		  */
 		public function ced_rnx_setting_save() {
@@ -346,20 +393,18 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 		/**
 		 * Add notification submenu in woocommerce
 		 *
-		 * @author makewebbetter<webmaster@makewebbetter.com>
+		 * @author MakeWebBetter<webmaster@makewebbetter.com>
 		 * @link http://www.makewebbetter.com/
 		 */
 		public function ced_rnx_notification_callback() {
 			include_once MWB_REFUND_N_EXCHANGE_LITE_DIRPATH . 'admin/partials/mwb-rnx-lite-notification.php';
-			;
 		}
 
 		/**
 		 * This function is metabox template for Refund order product
 		 *
-		 * @author makewebbetter<webmaster@makewebbetter.com>
+		 * @author MakeWebBetter<webmaster@makewebbetter.com>
 		 * @link http://www.makewebbetter.com/
-		 * @param unknown $order
 		 */
 		public function ced_rnx_order_return() {
 			global $post, $thepostid, $theorder;

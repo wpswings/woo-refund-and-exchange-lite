@@ -54,9 +54,10 @@ class WC_Rma_Order_Messages_Email extends WC_Email {
 	/**
 	 * Determine if the email should actually be sent and setup email merge variables
 	 *
-	 * @param string $msg.
-	 * @param array  $filename.
-	 * @param string $to.
+	 * @param string $msg is message.
+	 * @param array  $attachment is media attachment.
+	 * @param string $to send to mail.
+	 * @param array  $order_id is order.
 	 */
 	public function trigger( $msg, $attachment, $to, $order_id ) {
 		if ( $to ) {
@@ -134,7 +135,7 @@ class WC_Rma_Order_Messages_Email extends WC_Email {
 	 * Initialize Settings Form Fields
 	 */
 	public function init_form_fields() {
-		/* translators: %s: list of placeholders */
+		// translators: %s: list of placeholders.
 		$placeholder_text  = sprintf( __( 'Available placeholders: %s', 'woo-refund-and-exchange-lite' ), '<code>' . esc_html( implode( '</code>, <code>', array_keys( $this->placeholders ) ) ) . '</code>' );
 		$this->form_fields = array(
 			'enabled'    => array(

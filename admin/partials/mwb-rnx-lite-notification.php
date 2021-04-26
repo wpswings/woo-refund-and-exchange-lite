@@ -1,7 +1,10 @@
 <?php
 /**
  * Exit if accessed directly.
+ *
+ * @package woocommerce_refund_and_exchange_lite
  */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -30,6 +33,7 @@ if ( 'refund' == $mwb_rnx_tab ) {
 	$basic_active = 'nav-tab-active';
 }
 if ( isset( $_POST['ced_rnx_noti_save_basic'] ) ) {
+
 	$ced_nonce = isset( $_REQUEST['ced-rnx-nonce'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['ced-rnx-nonce'] ) ) : '';
 	if ( wp_verify_nonce( $ced_nonce, 'ced-rnx-nonce' ) ) {
 		?>
@@ -40,6 +44,7 @@ if ( isset( $_POST['ced_rnx_noti_save_basic'] ) ) {
 			</button>
 		</div>
 		<?php
+
 		unset( $_POST['ced_rnx_noti_save_basic'] );
 		$mwb_post = $_POST;
 		foreach ( $mwb_post as $k => $val ) {
@@ -83,12 +88,12 @@ if ( isset( $_POST['ced_rnx_noti_save_return'] ) ) {
 	<h2><?php esc_html_e( 'Notification Setting', 'woo-refund-and-exchange-lite' ); ?></h2>
 	<nav class="nav-tab-wrapper woo-nav-tab-wrapper">
 		<a class="nav-tab <?php echo esc_attr( $basic_active ); ?>" href="<?php esc_url( admin_url() ); ?>admin.php?page=ced-rnx-notification&amp;tab=basic"><?php esc_html_e( 'Basic', 'woo-refund-and-exchange-lite' ); ?></a>
-		<a class="nav-tab <?php esc_html_e( $refund_active ); ?>" href="<?php esc_url( admin_url() ); ?>admin.php?page=ced-rnx-notification&amp;tab=refund"><?php esc_html_e( 'Refund', 'woo-refund-and-exchange-lite' ); ?></a>
-		<a class="nav-tab <?php esc_html_e( $exchange_active ); ?>" href="<?php esc_url( admin_url() ); ?>
+		<a class="nav-tab <?php echo esc_html( $refund_active ); ?>" href="<?php esc_url( admin_url() ); ?>admin.php?page=ced-rnx-notification&amp;tab=refund"><?php esc_html_e( 'Refund', 'woo-refund-and-exchange-lite' ); ?></a>
+		<a class="nav-tab <?php echo esc_html( $exchange_active ); ?>" href="<?php esc_url( admin_url() ); ?>
 		admin.php?page=ced-rnx-notification&amp;tab=exchange"><?php esc_html_e( 'Exchange', 'woo-refund-and-exchange-lite' ); ?></a>
-		<a class="nav-tab <?php esc_html_e( $return_ship_label_setting_active ); ?>" href="<?php esc_url( admin_url() ); ?>admin.php?page=ced-rnx-notification&amp;tab=return_ship_label_setting"><?php esc_html_e( 'Return Ship Label', 'woo-refund-and-exchange-lite' ); ?></a>
+		<a class="nav-tab <?php echo esc_html( $return_ship_label_setting_active ); ?>" href="<?php esc_url( admin_url() ); ?>admin.php?page=ced-rnx-notification&amp;tab=return_ship_label_setting"><?php esc_html_e( 'Return Ship Label', 'woo-refund-and-exchange-lite' ); ?></a>
 	</nav>
-	<a href="<?php esc_html_e( admin_url( 'admin.php?page=wc-settings&tab=ced_rnx_setting' ) ); ?>"><input type="button" value="<?php esc_html_e( 'GO TO SETTING', 'woo-refund-and-exchange-lite' ); ?>" class="ced-rnx-save-button button button-primary" style="float:right;"></a></div>
+	<a href="<?php echo esc_html( admin_url( 'admin.php?page=wc-settings&tab=ced_rnx_setting' ) ); ?>"><input type="button" value="<?php esc_html_e( 'GO TO SETTING', 'woo-refund-and-exchange-lite' ); ?>" class="ced-rnx-save-button button button-primary" style="float:right;"></a></div>
 	<div class="clear ced-rnx-main-section">
 		<?php
 		// Basic Tab of Notification setting.
@@ -98,7 +103,7 @@ if ( isset( $_POST['ced_rnx_noti_save_return'] ) ) {
 			?>
 			<form enctype="multipart/form-data" action="" class="ced-main-form" id="mainform" method="post">
 				<h2 id="rnx_mail_setting" class="ced_rnx_basic_setting ced_rnx_slide_active"><?php esc_html_e( 'Mail Setting', 'woo-refund-and-exchange-lite' ); ?></h2>
-				<input type="hidden" name="ced-rnx-nonce" name="ced-rnx-nonce" value="<?php esc_html_e( wp_create_nonce( 'ced-rnx-nonce' ) ); ?>">
+				<input type="hidden" name="ced-rnx-nonce" name="ced-rnx-nonce" value="<?php echo esc_html( wp_create_nonce( 'ced-rnx-nonce' ) ); ?>">
 				<div id="rnx_mail_setting_wrapper">
 					<table class="form-table ced_rnx_notification_section">
 						<tbody>
@@ -114,7 +119,7 @@ if ( isset( $_POST['ced_rnx_noti_save_return'] ) ) {
 										$fname = $admin_name;
 									}
 									?>
-									<input type="text" placeholder="" class="input-text" value="<?php esc_html_e( $fname ); ?>" style="" id="ced_rnx_notification_from_name" name="ced_rnx_notification_from_name">
+									<input type="text" placeholder="" class="input-text" value="<?php echo esc_html( $fname ); ?>" style="" id="ced_rnx_notification_from_name" name="ced_rnx_notification_from_name">
 								</td>
 							</tr>
 							<tr valign="top">
@@ -129,7 +134,7 @@ if ( isset( $_POST['ced_rnx_noti_save_return'] ) ) {
 										$email = $admin_email;
 									}
 									?>
-									<input type="email" placeholder="" class="input-text" value="<?php esc_html_e( $email ); ?>" id="ced_rnx_notification_from_mail" name="ced_rnx_notification_from_mail">
+									<input type="email" placeholder="" class="input-text" value="<?php echo esc_html( $email ); ?>" id="ced_rnx_notification_from_mail" name="ced_rnx_notification_from_mail">
 								</td>
 							</tr>
 							<tr valign="top">
@@ -189,13 +194,13 @@ if ( isset( $_POST['ced_rnx_noti_save_return'] ) ) {
 											foreach ( $predefined_return_reason as $predefine_reason ) {
 												if ( ! empty( $predefine_reason ) ) {
 													?>
-													<input type="text" class="input-text" value="<?php esc_html_e( $predefine_reason ); ?>" class="ced_rnx_return_predefined_reason" name="ced_rnx_return_predefined_reason[]">
+													<input type="text" class="input-text" value="<?php echo esc_html( $predefine_reason ); ?>" class="ced_rnx_return_predefined_reason" name="ced_rnx_return_predefined_reason[]">
 													<?php
 												}
 											}
 										} else {
 											?>
-											<input type="text" class="input-text" class="ced_rnx_return_predefined_reason" name="ced_rnx_return_predefined_reason[]">
+											<input type="text" class="input-text" name="ced_rnx_return_predefined_reason[]">
 											<?php
 										}
 										?>
@@ -220,7 +225,7 @@ if ( isset( $_POST['ced_rnx_noti_save_return'] ) ) {
 				<div id="ced_rnx_accordion">
 					<div class="ced_rnx_accord_sec_wrap">
 						<h2 class="ced_rnx_slide_active"><?php esc_html_e( 'Merchant Setting', 'woo-refund-and-exchange-lite' ); ?></h2>
-						<input type="hidden" name="ced-rnx-nonce" name="ced-rnx-nonce" value="<?php esc_html_e( wp_create_nonce( 'ced-rnx-nonce' ) ); ?>">
+						<input type="hidden" name="ced-rnx-nonce" name="ced-rnx-nonce" value="<?php echo esc_html( wp_create_nonce( 'ced-rnx-nonce' ) ); ?>">
 						<div class="ced_rnx_content_sec ced_rnx_notification_sec_active">
 							<table class="form-table ced_rnx_notification_section">
 								<tbody>
@@ -232,7 +237,7 @@ if ( isset( $_POST['ced_rnx_noti_save_return'] ) ) {
 											<?php
 											$merchant_subject = get_option( 'ced_rnx_notification_merchant_return_subject', false );
 											?>
-											<input type="text" placeholder="" class="input-text" value="<?php esc_html_e( $merchant_subject ); ?>" style="" id="ced_rnx_notification_merchant_return_subject" name="ced_rnx_notification_merchant_return_subject">
+											<input type="text" placeholder="" class="input-text" value="<?php echo esc_html( $merchant_subject ); ?>" style="" id="ced_rnx_notification_merchant_return_subject" name="ced_rnx_notification_merchant_return_subject">
 										</td>
 									</tr>
 								</tbody>
@@ -243,7 +248,7 @@ if ( isset( $_POST['ced_rnx_noti_save_return'] ) ) {
 						<div class="ced_rnx_accord_sec_wrap">
 							<h2><?php esc_html_e( 'Short-Codes ', 'woo-refund-and-exchange-lite' ); ?></h2>
 							<div class="ced_rnx_content_sec ced_rnx_notification_section">
-								<p><h3><?php esc_html_e( 'These are some shortcodes that you can use in EMAIL MESSESGES. It will be changed with its dynamic values.', 'woo-refund-and-exchange-lite' ); ?></h3></p>
+								<p><h3><?php esc_html_e( 'These are some shortcodes that you can use in EMAIL MESSAGES. It will be changed with its dynamic values.', 'woo-refund-and-exchange-lite' ); ?></h3></p>
 								<p>
 								<b> <?php esc_html_e( 'Note :', 'woo-refund-and-exchange-lite' ); ?></b><?php esc_html_e( 'Use', 'woo-refund-and-exchange-lite' ); ?><b> [order] </b> <?php esc_html_e( 'for Order Number', 'woo-refund-and-exchange-lite' ); ?><b> [siteurl] </b> <?php esc_html_e( 'for home page url and', 'woo-refund-and-exchange-lite' ); ?> <b> [username] </b> <?php esc_html_e( 'for user name.', 'woo-refund-and-exchange-lite' ); ?>
 								</p>
@@ -263,12 +268,12 @@ if ( isset( $_POST['ced_rnx_noti_save_return'] ) ) {
 											<?php
 											$return_cancel_subject = get_option( 'ced_rnx_notification_return_subject', false );
 											?>
-											<input type="text" placeholder="" class="input-text" value="<?php esc_html_e( $return_cancel_subject ); ?>" style="" id="ced_rnx_notification_return_subject" name="ced_rnx_notification_return_subject">
+											<input type="text" placeholder="" class="input-text" value="<?php echo esc_html( $return_cancel_subject ); ?>" style="" id="ced_rnx_notification_return_subject" name="ced_rnx_notification_return_subject">
 										</td>
 									</tr>
 									<tr valign="top">
 										<th class="titledesc" scope="row">
-											<label for="ced_rnx_notification_return_rcv"><?php esc_html_e( 'Recieved Refund Request Message', 'woo-refund-and-exchange-lite' ); ?></label>
+											<label for="ced_rnx_notification_return_rcv"><?php esc_html_e( 'Received Refund Request Message', 'woo-refund-and-exchange-lite' ); ?></label>
 										</th>
 										<td class="forminp forminp-textarea">
 											<?php
@@ -345,7 +350,7 @@ if ( isset( $_POST['ced_rnx_noti_save_return'] ) ) {
 											<?php
 											$return_subject = get_option( 'ced_rnx_notification_return_cancel_subject', false );
 											?>
-											<input type="text" placeholder="" class="input-text" value="<?php esc_html_e( $return_subject ); ?>" style="" id="ced_rnx_notification_return_cancel_subject" name="ced_rnx_notification_return_cancel_subject">
+											<input type="text" placeholder="" class="input-text" value="<?php echo esc_html( $return_subject ); ?>" style="" id="ced_rnx_notification_return_cancel_subject" name="ced_rnx_notification_return_cancel_subject">
 										</td>
 									</tr>
 								</tr>

@@ -12,10 +12,10 @@
  * @subpackage Makewebbetter_Onboarding/admin/onboarding
  */
 ?>
-<?php 
+<?php
 
 	$screen = get_current_screen();
-	$is_valid = in_array( $screen->id, apply_filters( 'mwb_helper_valid_frontend_screens' , array() ) );
+	$is_valid = in_array( $screen->id, apply_filters( 'mwb_helper_valid_frontend_screens', array() ) );
 if ( ! $is_valid ) {
 
 	return false;
@@ -27,7 +27,7 @@ if ( ! $is_valid ) {
 
 <?php if ( ! empty( $form_fields ) ) : ?>
 	<div style="display: none;" class="loading-style-bg" id="mwb_wgm_loader">
-		<img src="<?php echo esc_url( MWB_REFUND_N_EXCHANGE_LITE_URL . 'assets/images/loading.gif' ); ?>">
+		<img src="<?php echo esc_url( MWB_REFUND_N_EXCHANGE_LITE_URL . 'admin/images/loading.gif' ); ?>">
 	</div>
 	<div class="mwb-onboarding-section">
 		<div class="mwb-on-boarding-wrapper-background">

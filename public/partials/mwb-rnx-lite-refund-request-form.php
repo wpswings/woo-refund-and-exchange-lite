@@ -1,7 +1,8 @@
 <?php
 /**
- * @package  woocommerce_refund_and_exchange_lite
  * Exit if accessed directly
+ *
+ * @package  woocommerce_refund_and_exchange_lite
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -28,7 +29,7 @@ if ( $allowed ) {
 	} else {
 		$order_id = 0;
 	}
-	// check order id is valid
+	// check order id is valid.
 	if ( 0 == $order_id || 0 == $current_user_id ) {
 		$allowed = false;
 	}
@@ -50,7 +51,7 @@ if ( $allowed ) {
 				$myaccount_page = get_option( 'woocommerce_myaccount_page_id' );
 				$myaccount_page_url = get_permalink( $myaccount_page );
 				$allowed = false;
-				$reason = __( "This order #$order_id is not associated to your account. <a href='$myaccount_page_url'>Click Here</a>", 'woo-refund-and-exchange-lite' );
+				$reason = __( "This order # $order_id is not associated to your account. <a href='$myaccount_page_url'>Click Here</a>", 'woo-refund-and-exchange-lite' );
 				$reason = apply_filters( 'ced_rnx_return_choose_order', $reason );
 			}
 		}
@@ -59,7 +60,7 @@ if ( $allowed ) {
 	if ( $allowed ) {
 		if ( $allowed ) {
 			$order = wc_get_order( $order_id );
-			// Check enable return
+			// Check enable return.
 			$return_enable = get_option( 'mwb_wrma_return_enable', false );
 
 			if ( isset( $return_enable ) && ! empty( $return_enable ) ) {
@@ -77,7 +78,7 @@ if ( $allowed ) {
 			}
 
 			$products = get_post_meta( $order_id, 'ced_rnx_return_product', true );
-			// Get pending return request
+			// Get pending return request.
 			if ( isset( $products ) && ! empty( $products ) ) {
 				foreach ( $products as $date => $product ) {
 					if ( 'pending' == $product['status'] ) {
@@ -100,7 +101,7 @@ if ( $allowed ) {
 
 			$days = $today_date - $order_date;
 			$day_diff = floor( $days / ( 60 * 60 * 24 ) );
-			$day_allowed = get_option( 'mwb_wrma_return_days', false );  // Check allowed days
+			$day_allowed = get_option( 'mwb_wrma_return_days', false );  // Check allowed days.
 
 
 			if ( $day_allowed >= $day_diff && 0 != $day_allowed ) {
@@ -132,7 +133,7 @@ if ( $allowed ) {
 get_header( 'shop' );
 
 /**
- * woocommerce_before_main_content hook.
+ * Woocommerce_before_main_content hook.
  *
  * @hooked woocommerce_output_content_wrapper - 10 (outputs opening divs for the content)
  * @hooked woocommerce_breadcrumb - 20
@@ -168,7 +169,7 @@ if ( $allowed ) {
 						<?php
 						$ced_rnx_in_tax = get_option( 'mwb_wrma_return_tax_enable', false );
 						$in_tax = false;
-						if ( 'yes' == $ced_rnx_in_tax ) {
+						if ( 'yes' === $ced_rnx_in_tax ) {
 							$in_tax = true;
 						}
 						$mwb_total_actual_price = 0;
@@ -202,7 +203,7 @@ if ( $allowed ) {
 								$purchase_note = get_post_meta( $product_id, '_purchase_note', true );
 
 								?>
-								<tr class="ced_rnx_return_column" data-productid="<?php esc_html_e( $product_id ); ?>" data-variationid="<?php esc_html_e( $item['variation_id'] ); ?>" data-itemid="<?php esc_html_e( $item_id ); ?>">
+								<tr class="ced_rnx_return_column" data-productid="<?php echo esc_html( $product_id ); ?>" data-variationid="<?php echo esc_html( $item['variation_id'] ); ?>" data-itemid="<?php echo esc_html( $item_id ); ?>">
 									<?php
 									if ( $show ) {
 
@@ -220,7 +221,7 @@ if ( $allowed ) {
 										echo wp_kses_post( $thumbnail );
 									} else {
 										?>
-											<img alt="Placeholder" width="150" height="150" class="attachment-thumbnail size-thumbnail wp-post-image" src="<?php esc_html_e( plugins_url() ); ?>/woocommerce/assets/images/placeholder.png">
+											<img alt="Placeholder" width="150" height="150" class="attachment-thumbnail size-thumbnail wp-post-image" src="<?php echo esc_html( plugins_url() ); ?>/woocommerce/assets/images/placeholder.png">
 											<?php
 									}
 
@@ -242,17 +243,16 @@ if ( $allowed ) {
 										do_action( 'woocommerce_order_item_meta_end', $item_id, $item, $order );
 										?>
 										<p>
-											<input type="hidden" name="ced_rnx_product_amount" class="ced_rnx_product_amount" value="<?php esc_html_e( $mwb_actual_price ); ?>">
+											<input type="hidden" name="ced_rnx_product_amount" class="ced_rnx_product_amount" value="<?php echo esc_html( $mwb_actual_price ); ?>">
 											<b><?php esc_html_e( 'Price', 'woo-refund-and-exchange-lite' ); ?> :</b> 
 											<?php
-												echo wc_price( $mwb_actual_price );/*phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped*/
-											if ( $in_tax == true ) {
+												echo wc_price( $mwb_actual_price ); // phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped
+											if ( true === $in_tax ) {
 												?>
 											<small class="tax_label"><?php esc_html_e( '(incl. tax)', 'woo-refund-and-exchange-lite' ); ?></small>
 												<?php
 											}
 											?>
-												
 										</p>
 										</div>
 									</td>
@@ -263,13 +263,13 @@ if ( $allowed ) {
 										<?php
 										echo wc_price( $mwb_total_price_of_product );
 
-										if ( $in_tax == true ) {
+										if ( true === $in_tax ) {
 											?>
 												<small class="tax_label"><?php esc_html_e( '(incl. tax)', 'woo-refund-and-exchange-lite' ); ?></small>
 											<?php
 										}
 										?>
-									<input type="hidden" id="quanty" value="<?php esc_html_e( $item['qty'] ); ?>"> 
+									<input type="hidden" id="quanty" value="<?php echo esc_html( $item['qty'] ); ?>"> 
 									</td>
 								</tr>
 								<?php if ( $show_purchase_note && $purchase_note ) : ?>
@@ -284,9 +284,9 @@ if ( $allowed ) {
 							<tr>
 								<th scope="row" colspan="2"><?php esc_html_e( 'Total Refund Amount', 'woo-refund-and-exchange-lite' ); ?></th>
 								<td class="ced_rnx_total_amount_wrap"><span id="ced_rnx_total_refund_amount"><?php echo wc_price( $mwb_total_actual_price );/*phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped*/ ?></span>
-								<input type="hidden" name="ced_rnx_total_refund_price" class="ced_rnx_total_refund_price" value="<?php esc_html_e( $mwb_total_actual_price ); ?>">
+								<input type="hidden" name="ced_rnx_total_refund_price" class="ced_rnx_total_refund_price" value="<?php echo esc_html( $mwb_total_actual_price ); ?>">
 									<?php
-									if ( $in_tax == true ) {
+									if ( true === $in_tax ) {
 										?>
 										<small class="tax_label"><?php esc_html_e( '(incl. tax)', 'woo-refund-and-exchange-lite' ); ?></small>
 										<?php
@@ -296,7 +296,7 @@ if ( $allowed ) {
 							</tr>
 					</tbody>
 				</table>
-				<div class="ced_rnx_return_notification_checkbox"><img src="<?php esc_html_e( esc_url( MWB_REFUND_N_EXCHANGE_LITE_URL ) ); ?>public/images/loading.gif" width="40px"></div>
+				<div class="ced_rnx_return_notification_checkbox"><img src="<?php echo esc_html( esc_url( MWB_REFUND_N_EXCHANGE_LITE_URL ) ); ?>public/images/loading.gif" width="40px"></div>
 			</div>
 			<hr/>
 			<?php
@@ -306,7 +306,7 @@ if ( $allowed ) {
 			?>
 			<div class="ced_rnx_note_tag_wrapper" 
 			<?php
-			if ( isset( $refund_rules_enable ) && $refund_rules_enable == 'yes' ) {
+			if ( isset( $refund_rules_enable ) && 'yes' === $refund_rules_enable ) {
 				if ( isset( $refund_rules ) && ! empty( $refund_rules ) ) {
 					?>
 					style="float: left;width: 60%;" 
@@ -335,7 +335,7 @@ if ( $allowed ) {
 						foreach ( $predefined_return_reason as $predefine_reason ) {
 							if ( ! empty( $predefine_reason ) ) {
 								?>
-							<option value="<?php esc_html_e( $predefine_reason ); ?>"><?php esc_html_e( $predefine_reason ); ?></option>
+							<option value="<?php echo esc_html( $predefine_reason ); ?>"><?php echo esc_html( $predefine_reason ); ?></option>
 								<?php
 							}
 						}
@@ -348,31 +348,31 @@ if ( $allowed ) {
 				?>
 			</p>
 			<p class="form-row form-row form-row-wide">
-				<input type="text" name="ced_rnx_return_request_subject" class="input-text ced_rnx_return_request_subject" id="ced_rnx_return_request_subject_text" placeholder="<?php esc_html_e( 'Write your reason subject', 'woo-refund-and-exchange-lite' ); ?>">
+				<input type="text" name="ced_rnx_return_request_subject" class="input-text ced_rnx_return_request_subject" id="ced_rnx_return_request_subject_text" maxlength="5000" placeholder="<?php esc_html_e( 'Write your reason subject', 'woo-refund-and-exchange-lite' ); ?>">
 			</p>
 
 			<?php
 			$predefined_return_desc = get_option( 'mwb_wrma_return_request_description', false );
 			if ( isset( $predefined_return_desc ) ) {
-				if ( $predefined_return_desc == 'yes' ) {
+				if ( 'yes' === $predefined_return_desc ) {
 					?>
 					<p class="form-row form-row form-row-wide">
 						<label>
 							<b>
 								<?php
-									$reason_return_request = __( 'Reason of Refund Request', 'woo-refund-and-exchange-lite' );
+									$reason_return_request = __( 'Reason of Refund Request:', 'woo-refund-and-exchange-lite' );
 									echo esc_html( apply_filters( 'ced_rnx_return_request_reason', $reason_return_request ) );
 								?>
 							</b>
 						</label>
 						<br/>
 						<?php
-						$placeholder = get_option( 'ced_rnx_return_placeholder_text', 'Reason for Return Request' );
-						if ( $placeholder == '' ) {
+						$placeholder = get_option( 'ced_rnx_return_placeholder_text', 'Reason for Retund Request' );
+						if ( '' === $placeholder ) {
 							$placeholder = esc_html__( 'Reason for the Refund Request', 'woo-refund-and-exchange-lite' );
 						}
 						?>
-						<textarea name="ced_rnx_return_request_reason" cols="40" style="height: 222px;" class="ced_rnx_return_request_reason form-control" placeholder="<?php esc_html_e( $placeholder ); ?>"><?php esc_html_e( $reason ); ?></textarea>
+						<textarea name="ced_rnx_return_request_reason" cols="40" style="height: 222px;" class="ced_rnx_return_request_reason form-control" maxlength='10000' placeholder="<?php echo esc_html( $placeholder ); ?>"><?php echo esc_html( $reason ); ?></textarea>
 					</p>
 					<?php
 				} else {
@@ -387,19 +387,23 @@ if ( $allowed ) {
 			}
 			?>
 
-			<form action="" method="post" id="ced_rnx_return_request_form" data-orderid="<?php esc_html_e( $order_id ); ?>" enctype="multipart/form-data">
+			<form action="" method="post" id="ced_rnx_return_request_form" data-orderid="<?php echo esc_html( $order_id ); ?>" enctype="multipart/form-data">
 				<?php
 				$return_attachment = get_option( 'mwb_wrma_return_attach_enable', false );
+				$attach_limit = get_option( 'mwb_wrma_refund_attachment_limit', '15' );
+				if ( empty( $attach_limit ) ) {
+					$attach_limit = 5;
+				}
 				if ( isset( $return_attachment ) && ! empty( $return_attachment ) ) {
-					if ( $return_attachment == 'yes' ) {
+					if ( 'yes' === $return_attachment ) {
 						?>
-						<label><b><?php esc_html_e( 'Attach Files', 'woo-refund-and-exchange-lite' ); ?></b></label>
+						<label><b><?php esc_html_e( 'Attach Files:', 'woo-refund-and-exchange-lite' ); ?></b></label>
 						<p class="form-row form-row form-row-wide">
 							<span id="ced_rnx_return_request_files">
-							<input type="hidden" name="ced_rnx_return_request_order" value="<?php esc_html_e( $order_id ); ?>">
-							<input type="hidden" name="action" value="<?php esc_html_e( 'ced_rnx_refund_upload_files', 'woo-refund-and-exchange-lite' ); ?>">
+							<input type="hidden" name="ced_rnx_return_request_order" value="<?php echo esc_html( $order_id ); ?>">
+							<input type="hidden" name="action" value="ced_rnx_refund_upload_files">
 							<input type="file" name="ced_rnx_return_request_files[]" class="input-text ced_rnx_return_request_files"></span>
-							<input type="button" value="<?php esc_html_e( 'Add More', 'woo-refund-and-exchange-lite' ); ?>" class="btn button ced_rnx_return_request_morefiles">
+							<input type="button" value="<?php echo esc_html( 'Add More', 'woo-refund-and-exchange-lite' ); ?>" class="btn button ced_rnx_return_request_morefiles" data-count="1" data-max="<?php echo esc_html( $attach_limit ); ?>">
 							<i><?php esc_html_e( 'Only .png, .jpeg extension file is approved.', 'woo-refund-and-exchange-lite' ); ?></i>
 						</p>
 						<?php
@@ -408,7 +412,7 @@ if ( $allowed ) {
 				?>
 				<p class="form-row form-row form-row-wide">
 					<input type="submit" name="ced_rnx_return_request_submit" value="<?php esc_html_e( 'Submit Request', 'woo-refund-and-exchange-lite' ); ?>" class="button btn">
-					<div class="ced_rnx_return_notification"><img src="<?php esc_html_e( esc_url( MWB_REFUND_N_EXCHANGE_LITE_URL ) ); ?>public/images/loading.gif" width="40px"></div>
+					<div class="ced_rnx_return_notification"><img src="<?php echo esc_html( esc_url( MWB_REFUND_N_EXCHANGE_LITE_URL ) ); ?>public/images/loading.gif" width="40px"></div>
 				</p>
 			</form>
 			<br/>
@@ -416,14 +420,14 @@ if ( $allowed ) {
 
 			<div 
 			<?php
-			if ( isset( $refund_rules_enable ) && $refund_rules_enable == 'yes' ) {
+			if ( isset( $refund_rules_enable ) && 'yes' === $refund_rules_enable ) {
 				?>
 				style="float: left;width: 37%;margin-left: 3%;" <?php } ?> class="ced_rnx_refund_rules_display"  >
 			<?php
 
-			if ( isset( $refund_rules_enable ) && $refund_rules_enable == 'yes' ) {
+			if ( isset( $refund_rules_enable ) && 'yes' === $refund_rules_enable ) {
 				if ( isset( $refund_rules ) && ! empty( $refund_rules ) ) {
-					echo $refund_rules;
+					echo $refund_rules; // phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped
 				}
 			}
 			?>
@@ -439,17 +443,17 @@ if ( $allowed ) {
 } else {
 	$return_request_not_send = __( 'Refund Request can\'t be sent. ', 'woo-refund-and-exchange-lite' );
 	$reason = apply_filters( 'ced_rnx_return_request_not_send', $return_request_not_send );
-	esc_html_e( $reason );
+	echo esc_html( $reason );
 }
 /**
- * woocommerce_after_main_content hook.
+ * Woocommerce_after_main_content hook.
  *
  * @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
  */
 do_action( 'woocommerce_after_main_content' );
 
 /**
- * woocommerce_sidebar hook.
+ * Woocommerce_sidebar hook.
  *
  * @hooked woocommerce_get_sidebar - 10
  */
