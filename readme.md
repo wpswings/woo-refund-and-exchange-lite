@@ -1,15 +1,15 @@
-[![Build Status](https://img.shields.io/travis/twbs/bootstrap/v4-dev.svg)](https://travis-ci.org/twbs/bootstrap) ![Active installs](https://img.shields.io/badge/Active-3000%2B-brightgreen) ![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen) ![WP tested](https://img.shields.io/badge/WP%20tested-5.6-brightgreen) ![WC tested](https://img.shields.io/badge/WC%20tested-4.8.0-brightgreen) ![Requires PHP](https://img.shields.io/badge/Requires%20PHP-5.6-blue)
+[![Build Status](https://img.shields.io/travis/twbs/bootstrap/v4-dev.svg)](https://travis-ci.org/twbs/bootstrap) ![Active installs](https://img.shields.io/badge/Active-3000%2B-brightgreen) ![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen) ![WP tested](https://img.shields.io/badge/WP%20tested-5.7.0-brightgreen) ![WC tested](https://img.shields.io/badge/WC%20tested-5.2-brightgreen) ![Requires PHP](https://img.shields.io/badge/Requires%20PHP-5.6-blue)
 # Return Refund and Exchange For WooCommerce
 ![Return Refund and Exchange For WooCommerce](https://ps.w.org/woo-refund-and-exchange-lite/assets/banner-772x250.png?rev=2409881)
-* Contributor:MakeWebBetter
+* Contributors: MakeWebBetter
 * Author URI: https://makewebbetter.com/
-* Tags: return, refund, woocommerce, exchange,RMA, woocommerce RMA, RMA for return refund and exchange
+* Tags: return, refund, woocommerce, exchange, RMA, woocommerce RMA, RMA for return refund and exchange
 * License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 # Description
 _HIGHEST-RATED REFUND AND EXCHANGE MANAGEMENT PLUGIN THAT LIFTS CUSTOMER SATISFACTION._
 
-**Return Refund and Exchange for WooCommerce** lets you create a simple refund management system stuffed with an organized exchange, wallet, cancel features. It saves time on complaints, calls disputes, and the hurdles of managing stock. Customers can request full or partial refunds from their accounts with a justification statement. The whole process goes under a dedicated and streamlined mailing system that keeps both parties on the same note. Ultimately leads to easy returns & increased customer satisfaction.
+**Return Refund and Exchange for WooCommerce** lets you create a simple refund management system stuffed with the organized refund, exchange, wallet, and cancel order features. It eliminates on-call complaints and helps in managing returned stock. Customers can request full or partial refunds (based on return policy). The whole process goes under a dedicated and streamlined mailing system that keeps both parties on the same note. Ultimately, it leads to high customer satisfaction.
 
 [Return Refund and Exchange for WooCommerce Free Version Demo Video 2020](https://youtu.be/z0kG75E60TI)
 
@@ -27,6 +27,8 @@ _HIGHEST-RATED REFUND AND EXCHANGE MANAGEMENT PLUGIN THAT LIFTS CUSTOMER SATISFA
 - Add predefined elements in email content with shortcodes
 - Communicate with customers through messages and Emails
 - Admin can add the shortcode for order_id in the emails to track down the customer from whom refund and exchange request is made
+- Serve the full RMA features to multilingual buyers (internationally) with WPML translation.
+- Manage return and refund features for Cash on delivery(COD) buyers.
 
 ## WHAT’S INCLUDED IN OUR FREE RETURN REFUND AND EXCHANGE FOR WOOCOMMERCE PLUGIN
 
@@ -51,8 +53,11 @@ You can select the order status on which a customer can submit a refund request.
 ### 7) Order Related Messages and Email notifications
 You can allow your customers to send you the order related queries. Furthermore, you can also enable/disable the settings to let your customers add the attachments along with their messages.
 
+### 8)  WPML Compatible
+Translate the RMA solution into 40+ languages with the WordPress Multilingual (WPML).
+
 **PLUGIN MEETS YOUR REQUIREMENT, SO**
-[**Download Now**](https://downloads.wordpress.org/plugin/woo-refund-and-exchange-lite.3.0.4.zip)
+[**Download Now**](https://downloads.wordpress.org/plugin/woo-refund-and-exchange-lite.3.1.0.zip)
 
 Visit [**Return Refund and Exchange For WooCommerce Documentation**](http://docs.makewebbetter.com/woocommerce-refund-and-exchange-lite/?utm_source=MWB-RMA-git&utm_medium=MWB-git-Page&utm_campaign=MWB-doc) and learn more about the features and working of the plugin.
 
@@ -62,7 +67,7 @@ Visit [**Return Refund and Exchange For WooCommerce Documentation**](http://docs
 - Exchange feature
 - Cancel feature
 - Wallet feature
-- Return slip label feature
+- Return ship label feature
 - Full RMA support
 - Partial refund feature
 - Auto accept refund request feature
@@ -72,6 +77,7 @@ Visit [**Return Refund and Exchange For WooCommerce Documentation**](http://docs
 - Integration for return ship label with ShipStation
 - Compatibility with Ultimate WooCommerce Gift Cards
 - Shortcode of product table and the refundable amount for Refund Mails
+- Compatibility with WordPress Multilingual (WPML)
 
 _Make a smart move with [**Premium Version of Refund and Exchange**](https://makewebbetter.com/product/woocommerce-rma-return-refund-exchange/?utm_source=MWB-RMA-git&utm_medium=MWB-git-Page&utm_campaign=MWB-RMA1)_
 
@@ -91,4 +97,3 @@ If you need support or have any question then kindly use our online chat window 
 - [**Visit our LinkedIn Account**](https://www.linkedin.com/company/makewebbetter)
 - [**Subscribe To Our YouTube Channel**](https://www.youtube.com/channel/UC7nYNf0JETOwW3GOD_EW2Ag)
 - [**Follow Our SlideShare**](https://www.slideshare.net/MakeWebBetter)
-
