@@ -1,0 +1,16 @@
+/**
+ * All of the CSS for your public-facing functionality should be
+ * included in this file.
+ */
+
+.mwb_order_msg_history_container .mwb_reload_messages .reload-icon {
+    width: 30px; 
+}
+
+.mwb_order_msg_sub_container {
+    padding: 15px;
+    border: solid #ccc 1px;
+    overflow-y: auto;
+    min-height: 200px;
+    max-height: 400px;
+}
