@@ -355,7 +355,6 @@ do_action( 'woocommerce_after_main_content' );
 
 $mwb_wrma_show_sidebar_on_form = apply_filters( 'mwb_rma_refund_form_sidebar', true );
 if ( $mwb_wrma_show_sidebar_on_form ) {
-	echo 'fff';
 	do_action( 'woocommerce_sidebar' );
 }
 
