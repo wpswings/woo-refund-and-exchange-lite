@@ -90,7 +90,6 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		$pro_active = mwb_rma_pro_active();
 		if ( isset( $screen->id ) && 'makewebbetter_page_woo_refund_and_exchange_lite_menu' === $screen->id || 'shop_order' === $screen->id ) {
 			wp_enqueue_script( 'mwb-wrael-select2', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/select-2/woo-refund-and-exchange-lite-select2.js', array( 'jquery' ), time(), false );
-
 			wp_enqueue_script( 'mwb-wrael-metarial-js', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/material-design/material-components-web.min.js', array(), time(), false );
 			wp_enqueue_script( 'mwb-wrael-metarial-js2', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/material-design/material-components-v5.0-web.min.js', array(), time(), false );
 			wp_enqueue_script( 'mwb-wrael-metarial-lite', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/material-design/material-lite.min.js', array(), time(), false );

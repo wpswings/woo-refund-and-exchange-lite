@@ -85,7 +85,7 @@ if ( 'yes' === $allowed ) {
 					<tr>
 						<?php
 						// Add extra field in the thead of the table.
-						do_action( 'mwb_rma_add_extra_column_refund_form' );
+						do_action( 'mwb_rma_add_extra_column_refund_form', $order_id );
 						?>
 						<th><?php esc_html_e( 'Product', 'woo-refund-and-exchange-lite' ); ?></th>
 						<th><?php esc_html_e( 'Quantity', 'woo-refund-and-exchange-lite' ); ?></th>
@@ -136,7 +136,7 @@ if ( 'yes' === $allowed ) {
 						<tr class="mwb_rma_return_column" data-productid="<?php echo esc_html( $product_id ); ?>" data-variationid="<?php echo esc_html( $item['variation_id'] ); ?>" data-itemid="<?php echo esc_html( $item_id ); ?>">
 							<?php
 							// To show extra column field value in the tbody.
-							do_action( 'mwb_rma_add_extra_column_field__value' );
+							do_action( 'mwb_rma_add_extra_column_field_value', $item_id );
 							?>
 							<td class="product-name">
 							<input type="hidden" name="mwb_rma_product_amount" class="mwb_rma_product_amount" value="<?php echo esc_html( $mwb_actual_price ); ?>">
@@ -353,7 +353,10 @@ if ( 'yes' === $allowed ) {
 
 do_action( 'woocommerce_after_main_content' );
 
-
-do_action( 'woocommerce_sidebar' );
+$mwb_wrma_show_sidebar_on_form = apply_filters( 'mwb_rma_refund_form_sidebar', true );
+if ( $mwb_wrma_show_sidebar_on_form ) {
+	echo 'fff';
+	do_action( 'woocommerce_sidebar' );
+}
 
 get_footer( 'shop' );
