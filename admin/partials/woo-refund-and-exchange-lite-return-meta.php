@@ -155,6 +155,7 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 				</tbody>
 			</table>
 		</div>
+		<div><?php do_action( 'mwb_rma_global_shipping_fee', $order_id ); ?></div>
 		<div class="mwb_rma_extra_reason">
 			<p>
 				<strong><?php esc_html_e( 'Refund Amount', 'woo-refund-and-exchange-lite' ); ?> : </strong> <?php echo wp_kses_post( mwb_wrma_format_price( $total_refund_amu, $get_order_currency ) ); ?>
