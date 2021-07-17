@@ -57,10 +57,12 @@
 
 			if(pro_act){
 				if (typeof mwb_rma_return_alert_condition_addon == 'function') {
-					alerthtml = mwb_rma_return_alert_condition_addon(alerthtml);
+					var alerthtml1 = mwb_rma_return_alert_condition_addon();
+					if( alerthtml1 ) {
+						alerthtml += alerthtml1;
+					}
 				}
 			}
-
 			if (alerthtml != '') {
 				$( "#mwb_rma_return_alert" ).html( alerthtml );
 				$( 'html, body' ).animate(

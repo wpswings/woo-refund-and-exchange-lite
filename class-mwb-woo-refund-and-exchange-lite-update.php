@@ -210,7 +210,7 @@ if ( ! class_exists( 'Mwb_Woo_Refund_And_Exchange_Lite_Update' ) ) {
 		 */
 		public function mwb_check_update() {
 			global $wp_version;
-			$update_check_wrael = 'https://makewebbetter.com/pluginupdates/woo-refund-and-exchange-lite/update.php';
+			$update_check_wrael = 'https://makewebbetter.com/pluginupdates/woo-refund-and-exchange-lite/class-mwb-woo-refund-and-exchange-lite-update.php';
 			$plugin_folder      = plugin_basename( dirname( WOO_REFUND_AND_EXCHANGE_LITE_BASE_FILE ) );
 			$plugin_file        = basename( ( WOO_REFUND_AND_EXCHANGE_LITE_BASE_FILE ) );
 			if ( defined( 'WP_INSTALLING' ) ) {
