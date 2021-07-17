@@ -74,7 +74,6 @@
 				$( "#mwb_rma_return_alert" ).hide();
 				$( "#mwb_rma_return_alert" ).html( alerthtml );
 			}
-
 			if( pro_act ){
 				if (typeof mwb_rma_refund_total == 'function') {
 					var return_data = mwb_rma_refund_total();
@@ -83,7 +82,7 @@
 				}
 			}else{
 				$(".mwb_rma_return_column").each(function(){
-					if(jQuery(this).find("td:eq(0)").children('.mwb_rma_return_product')){
+					if($(this).find("td:eq(0)").children('.mwb_rma_return_product')){
 						var product_info = {};
 						var variation_id = $(this).data("variationid");
 						var product_id = $(this).data("productid");

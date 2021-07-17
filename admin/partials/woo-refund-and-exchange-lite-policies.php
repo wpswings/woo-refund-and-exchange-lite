@@ -40,7 +40,7 @@ if ( empty( $a ) ) {
 		?>
 	</select> 
 
-	<label class="mwb_rma_settings_label"><?php esc_html_e( 'If', 'woo-refund-and-exchange-lite' ); ?></label>
+	<label class="mwb_rma_settings_label"><?php esc_html_e( 'InCase: If', 'woo-refund-and-exchange-lite' ); ?></label>
 	<select name="mwb_rma_setting[1][row_policy]" class="mwb_rma_settings">
 		<option value=""><?php esc_html_e( 'Choose Option', 'woo-refund-and-exchange-lite' ); ?></option>
 		<option value="mwb_rma_maximum_days"><?php esc_html_e( 'Maximum Days', 'woo-refund-and-exchange-lite' ); ?></option>
@@ -97,7 +97,7 @@ if ( empty( $a ) ) {
 					?>
 				</select>
 				<input type="hidden" value="<?php echo esc_html( $count ); ?>" class="mwb_rma_get_current_i">
-				<label  class="mwb_rma_settings_label" ><?php esc_html_e( 'If', 'woo-refund-and-exchange-lite' ); ?></label>
+				<label  class="mwb_rma_settings_label" ><?php esc_html_e( 'InCase: If', 'woo-refund-and-exchange-lite' ); ?></label>
 				<select name="mwb_rma_setting[<?php echo esc_html( $count ); ?>][row_policy]" class="mwb_rma_settings">
 					<option value=""><?php esc_html_e( 'Choose Option', 'woo-refund-and-exchange-lite' ); ?></option>	
 					<option value="mwb_rma_maximum_days" <?php selected( 'mwb_rma_maximum_days', $value['row_policy'] ); ?>><?php esc_html_e( 'Maximum Days', 'woo-refund-and-exchange-lite' ); ?></option>

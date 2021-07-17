@@ -117,9 +117,9 @@
 					$( this ).parent( '.add_more_rma_policies' ).children( '.mwb_rma_order_statues' ).next().hide();
 					$( this ).parent( '.add_more_rma_policies' ).children( '.mwb_rma_max_number_days' ).hide();
 					$( this ).parent( '.add_more_rma_policies' ).children( '.mwb_rma_conditions1' ).hide();
-					$( this ).parent( '.add_more_rma_policies' ).children( '.mwb_rma_conditions_label' ).hide();
-					$( this ).parent( '.add_more_rma_policies' ).children( '.mwb_rma_settings_label' ).hide();
-					$( this ).parent( '.add_more_rma_policies' ).children( '.mwb_rma_conditions2' ).hide();
+					$( this ).parent( '.add_more_rma_policies' ).children( '.mwb_rma_conditions_label' ).show();
+					$( this ).parent( '.add_more_rma_policies' ).children( '.mwb_rma_settings_label' ).show();
+					$( this ).parent( '.add_more_rma_policies' ).children( '.mwb_rma_conditions2' ).show();
 				}
 			});
 		}
@@ -164,9 +164,9 @@
 				$( this ).parent( '.add_more_rma_policies' ).children( '.mwb_rma_order_statues' ).next().hide();
 				$( this ).parent( '.add_more_rma_policies' ).children( '.mwb_rma_max_number_days' ).hide();
 				$( this ).parent( '.add_more_rma_policies' ).children( '.mwb_rma_conditions1' ).hide();
-				$( this ).parent( '.add_more_rma_policies' ).children( '.mwb_rma_conditions2' ).hide();
-				$( this ).parent( '.add_more_rma_policies' ).children( '.mwb_rma_conditions_label' ).hide();
-				$( this ).parent( '.add_more_rma_policies' ).children( '.mwb_rma_settings_label' ).hide();
+				$( this ).parent( '.add_more_rma_policies' ).children( '.mwb_rma_conditions2' ).show();
+				$( this ).parent( '.add_more_rma_policies' ).children( '.mwb_rma_conditions_label' ).show();
+				$( this ).parent( '.add_more_rma_policies' ).children( '.mwb_rma_settings_label' ).show();
 			}
 			output_setting = [];
 			make_register_setting_obj();
