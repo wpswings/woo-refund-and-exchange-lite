@@ -864,34 +864,34 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			$count1 = 0;
 			$count2 = 0;
 			$count3 = 0;
-			foreach ( $_POST as $key => $value ) {
-				foreach ( $value as $key => $value ) {
-					if ( 'refund' === $value['row_functionality'] && 'mwb_rma_maximum_days' === $value['row_policy'] ) {
-						$count1++;
-						if ( empty( $value['row_value'] ) ) {
-							unset( $_POST['mwb_rma_setting'][ $key ] );
-						}
-						if ( 2 <= $count1 ) {
-							unset( $_POST['mwb_rma_setting'][ $key ] );
-						}
-					}
-					if ( 'refund' === $value['row_functionality'] && 'mwb_rma_order_status' === $value['row_policy'] ) {
-						$count2++;
-						if ( 2 <= $count2 ) {
-							unset( $_POST['mwb_rma_setting'][ $key ] );
-						}
-						if ( empty( $value['row_statuses'] ) ) {
-							unset( $_POST['mwb_rma_setting'][ $key ] );
-						}
-					}
-					if ( 'refund' === $value['row_functionality'] && 'mwb_rma_tax_handling' === $value['row_policy'] ) {
-						$count3++;
-						if ( 2 <= $count3 ) {
-							unset( $_POST['mwb_rma_setting'][ $key ] );
-						}
-					}
-				}
-			}
+			// foreach ( $_POST as $key => $value ) {
+			// 	foreach ( $value as $key => $value ) {
+			// 		if ( 'refund' === $value['row_functionality'] && 'mwb_rma_maximum_days' === $value['row_policy'] ) {
+			// 			$count1++;
+			// 			if ( empty( $value['row_value'] ) ) {
+			// 				unset( $_POST['mwb_rma_setting'][ $key ] );
+			// 			}
+			// 			if ( 2 <= $count1 ) {
+			// 				unset( $_POST['mwb_rma_setting'][ $key ] );
+			// 			}
+			// 		}
+			// 		if ( 'refund' === $value['row_functionality'] && 'mwb_rma_order_status' === $value['row_policy'] ) {
+			// 			$count2++;
+			// 			if ( 2 <= $count2 ) {
+			// 				unset( $_POST['mwb_rma_setting'][ $key ] );
+			// 			}
+			// 			if ( empty( $value['row_statuses'] ) ) {
+			// 				unset( $_POST['mwb_rma_setting'][ $key ] );
+			// 			}
+			// 		}
+			// 		if ( 'refund' === $value['row_functionality'] && 'mwb_rma_tax_handling' === $value['row_policy'] ) {
+			// 			$count3++;
+			// 			if ( 2 <= $count3 ) {
+			// 				unset( $_POST['mwb_rma_setting'][ $key ] );
+			// 			}
+			// 		}
+			// 	}
+			// }
 			update_option( 'policies_setting_option', $_POST );
 			$url = isset( $_SERVER['HTTP_REFERER'] ) ? sanitize_text_field( wp_unslash( $_SERVER['HTTP_REFERER'] ) ) : sanitize_text_field( wp_unslash( $_SERVER['HTTP_REFERER'] ) );
 			update_option( 'mwb_rma_save_policiies_setting', true );

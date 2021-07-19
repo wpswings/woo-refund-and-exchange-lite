@@ -187,14 +187,21 @@
 				return str.replace(new RegExp(escapeRegExp(term), 'g'), replacement);
 		}
 		$(document).on( 'click', '#mwb_rma_add_more', function() {
+			var pro_act = wrael_admin_param.check_pro_active;
 			var mwb_rma_get_current_i = $('.add_more_rma_policies').last().children( '.mwb_rma_get_current_i' ).val();
 			mwb_rma_get_current_i = parseInt( mwb_rma_get_current_i ) + 1;
 			var append_html = $( '#add_more_rma_policies_clone' ).html();
 			append_html = replaceAll( append_html, 'mwb_rma_setting[1]', 'mwb_rma_setting['+ mwb_rma_get_current_i +']' );
 			append_html = replaceAll( append_html, 'mwb_rma_order_statues1', 'mwb_rma_order_statues' );
+			if( pro_act ) {
+				append_html = show_correct_field_pro( append_html );
+			}
 			$('#div_add_more_rma_policies').append( '<div class="add_more_rma_policies">' +append_html + '<input type="button" value="X" class="rma_policy_delete"></div>' );
 			$('.add_more_rma_policies').last().children( '.mwb_rma_get_current_i' ).val( mwb_rma_get_current_i );
 			$('.mwb_rma_order_statues').select2();
+			if( pro_act ) {
+				mwb_rma_do_something();
+			}
 			show_correct_field();
 			make_register_setting_obj();
 		});

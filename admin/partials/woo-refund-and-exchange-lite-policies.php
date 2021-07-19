@@ -80,6 +80,7 @@ if ( empty( $a ) ) {
 		<option value="mwb_rma_inlcude_tax"><?php esc_html_e( 'Include Tax', 'woo-refund-and-exchange-lite' ); ?></option>
 		<option value="mwb_rma_exclude_tax"><?php esc_html_e( 'Exclude Tax', 'woo-refund-and-exchange-lite' ); ?></option>
 	</select>
+	<?php do_action( 'add_more_setting_value1' ); ?>
 </div>
 <form action="" method="post" id="save_policies_setting_form">
 	<input type="hidden" name="get_nonce" value="<?php echo esc_html( wp_create_nonce( 'create_form_nonce' ) ); ?>">
@@ -121,6 +122,7 @@ if ( empty( $a ) ) {
 					<option value="mwb_rma_not_equal_to" <?php selected( 'mwb_rma_not_equal_to', $value['row_conditions2'] ); ?>><?php esc_html_e( 'Not Equal to', 'woo-refund-and-exchange-lite' ); ?></option>
 				</select>
 				<input type="number" name="mwb_rma_setting[<?php echo esc_html( $count ); ?>][row_value]" class="mwb_rma_max_number_days" placeholder="<?php esc_html_e( 'Enter the max number of days for refund', 'woo-refund-and-exchange-lite' ); ?>" value="<?php echo isset( $value['row_value'] ) ? esc_html( $value['row_value'] ) : ''; ?>">
+				<?php do_action( 'add_more_setting_value2', $value, $count ); ?>
 				<select name="mwb_rma_setting[<?php echo esc_html( $count ); ?>][row_statuses][]" class="mwb_rma_order_statues" multiple>
 					<?php
 					$statuss = wc_get_order_statuses();
