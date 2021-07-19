@@ -307,9 +307,7 @@ class Woo_Refund_And_Exchange_Lite {
 	 * @since 1.0.0
 	 */
 	private function woo_refund_and_exchange_lite_api_hooks() {
-
 		$wrael_plugin_api = new Woo_Refund_And_Exchange_Lite_Rest_Api( $this->wrael_get_plugin_name(), $this->wrael_get_version() );
-
 		$this->loader->add_action( 'rest_api_init', $wrael_plugin_api, 'mwb_rma_add_endpoint' );
 
 	}
