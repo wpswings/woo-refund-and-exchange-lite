@@ -129,14 +129,16 @@ if ( 'yes' === $allowed ) {
 							$mwb_actual_price = $tax_exc;
 						}
 						$mwb_total_price_of_product = $item['qty'] * $mwb_actual_price;
-						$mwb_total_actual_price    += $mwb_total_price_of_product;
+						if ( apply_filters( 'mwb_rma_revoke_product_refund', $product_id ) ) {
+							$mwb_total_actual_price += $mwb_total_price_of_product;
+						}
 
 						$purchase_note = get_post_meta( $product_id, '_purchase_note', true );
 						?>
 						<tr class="mwb_rma_return_column" data-productid="<?php echo esc_html( $product_id ); ?>" data-variationid="<?php echo esc_html( $item['variation_id'] ); ?>" data-itemid="<?php echo esc_html( $item_id ); ?>">
 							<?php
 							// To show extra column field value in the tbody.
-							do_action( 'mwb_rma_add_extra_column_field_value', $item_id );
+							do_action( 'mwb_rma_add_extra_column_field_value', $item_id, $product_id );
 							?>
 							<td class="product-name">
 							<input type="hidden" name="mwb_rma_product_amount" class="mwb_rma_product_amount" value="<?php echo esc_html( $mwb_actual_price ); ?>">
@@ -237,7 +239,7 @@ if ( 'yes' === $allowed ) {
 		</div>
 		<?php
 		// Add someting after table on the refund request form.
-		do_action( 'mwb_rma_after_table' );
+		do_action( 'mwb_rma_after_table', $order_id );
 		?>
 		<?php
 		$predefined_return_reason = get_option( 'mwb_rma_refund_reasons', array() );
