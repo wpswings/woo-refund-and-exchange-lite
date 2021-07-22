@@ -325,7 +325,6 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	 */
 	public function wrael_admin_save_tab_settings() {
 		global $wrael_mwb_rma_obj;
-
 		if ( ( isset( $_POST['mwb_rma_save_general_setting'] ) || isset( $_POST['mwb_rma_save_refund_setting'] ) || isset( $_POST['mwb_rma_save_text_setting'] ) || isset( $_POST['mwb_rma_save_policies_setting'] ) )
 			&& ( ! empty( $_POST['mwb_tabs_nonce'] )
 			&& wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['mwb_tabs_nonce'] ) ), 'admin_save_data' ) )

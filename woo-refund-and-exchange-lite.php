@@ -309,7 +309,7 @@ if ( $activated ) {
 		} else {
 			$show_button = ucfirst( $func ) . __( ' request is disabled.', 'woo-refund-and-exchange-lite' );
 		}
-		return apply_filters( 'mwb_rma_functionality_reason', $func, $show_button, $order, $get_specific_setting );
+		return apply_filters( 'mwb_rma_functionality_reason', $show_button, $func, $order, $get_specific_setting );
 	}
 
 	/**
