@@ -172,8 +172,9 @@ class Woo_Refund_And_Exchange_Lite_Common {
 		if ( $check_ajax && current_user_can( 'mwb-rma-refund-request' ) ) {
 			$order_id      = isset( $_POST['orderid'] ) ? sanitize_text_field( wp_unslash( $_POST['orderid'] ) ) : '';
 			$refund_method = isset( $_POST['refund_method'] ) ? sanitize_text_field( wp_unslash( $_POST['refund_method'] ) ) : '';
+			$refund_method = apply_filters( 'mwb_rma_refund_method_wallet', $refund_method );
 			$products      = isset( $_POST['products'] ) ? sanitize_text_field( wp_unslash( $_POST['products'] ) ) : '';
-			update_option( $order_id, 'mwb_rma_refund_method', $refund_method );
+			update_option( $order_id . 'mwb_rma_refund_method', $refund_method );
 			$order   = wc_get_order( $order_id );
 			$item_id = array();
 			array_push( $item_id, 'pending' );
@@ -182,10 +183,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 					if ( is_array( $post_value ) && ! empty( $post_value ) ) {
 						foreach ( $post_value as $post_val_key => $post_val_value ) {
 							array_push( $item_id, $post_val_value['item_id'] );
-							//sanitize_text_field( wp_unslash( $_POST[ $post_key ][ $post_val_value ] ) );
 						}
-					} else {
-						//sanitize_text_field( wp_unslash( $_POST[ $post_key ] ) );
 					}
 				}
 			}
@@ -211,7 +209,6 @@ class Woo_Refund_And_Exchange_Lite_Common {
 				$products[ $date ]['status'] = 'pending';
 
 			}
-
 			update_post_meta( $order_id, 'mwb_rma_request_made', $item_id );
 
 			update_post_meta( $order_id, 'mwb_rma_return_product', $products );
@@ -222,7 +219,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			if ( ! $restrict_mail ) {
 				do_action( 'mwb_rma_refund_req_email', $order_id );
 			}
-
+			do_action( 'mwb_rma_do_something_on_refund', $order_id );
 			$order->update_status( 'wc-refund-requested', 'User Request to Refund Product' );
 			$response['auto_accept'] = apply_filters( 'mwb_rma_auto_accept_refund', false );
 			$response['flag']        = true;
@@ -321,18 +318,6 @@ class Woo_Refund_And_Exchange_Lite_Common {
 		$mwb_rma_customer_role->add_cap( 'mwb-rma-refund-cancel', true );
 		$mwb_rma_customer_role->add_cap( 'mwb-rma-refund-manage-stock', true );
 		$mwb_rma_customer_role->add_cap( 'mwb-rma-refund-amount', true );
-	}
-
-	/**
-	 * To unset the order staus from policies setting.
-	 *
-	 * @param array $statuss .
-	 */
-	public function mwb_rma_unset_unsed_statuses( $statuss ) {
-		unset( $statuss['wc-refund-approved'] );
-		unset( $statuss['wc-refund-requested'] );
-		unset( $statuss['wc-refunded'] );
-		return $statuss;
 	}
 
 	/**

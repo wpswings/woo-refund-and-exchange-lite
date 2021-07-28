@@ -272,9 +272,6 @@ class Woo_Refund_And_Exchange_Lite {
 		// add capabilities, priority must be after the initial role.
 		$this->loader->add_action( 'init', $wrael_plugin_common, 'mwb_rma_role_capability', 11 );
 
-		// Unset unused status.
-		$this->loader->add_filter( 'mwb_rma_unset_unsed_statuses', $wrael_plugin_common, 'mwb_rma_unset_unsed_statuses', 10 );
-
 		// Send Emails.
 		$this->loader->add_action( 'mwb_rma_refund_req_email', $wrael_plugin_common, 'mwb_rma_refund_req_email', 10 );
 	}

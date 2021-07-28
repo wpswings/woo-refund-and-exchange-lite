@@ -28,7 +28,8 @@ class Mwb_Rma_Refund_Request_Email extends WC_Email {
 		// this is the title in WooCommerce Email settings.
 		$this->title = 'RMA Refund Request Email';
 		// this is the description in WooCommerce email settings.
-		$this->description = 'Customer to Admin Side Refund Request Emails<h1>These are shorcodes available for the custom email</h1><br><span>{site_title}, {site_address}, {site_url}, {message_date}, {order_id}</span></b>';
+		$shortcodes        = '{site_title}, {site_address}, {site_url}, {message_date}, {order_id}';
+		$this->description = 'Customer to Admin Side Refund Request Emails<h1>These are shorcodes available for the custom email</h1><br><span>'. apply_filters( 'mwb_rma_refund_shortcode', $shortcodes ) . '</span></b>';
 		// these are the default heading and subject lines that can be overridden using the settings.
 		$this->heading = 'RMA Refund Request Email';
 		$this->subject = 'New message has been received';
@@ -66,6 +67,8 @@ class Mwb_Rma_Refund_Request_Email extends WC_Email {
 			$this->order_id                       = $order_id;
 			$this->placeholders['{message_date}'] = gmdate( 'M d, Y' );
 			$this->placeholders['{order_id}']     = '#' . $order_id;
+			$placeholder                          = $this->placeholders;
+			$this->placeholders = apply_filters( 'mwb_rma_shortcode_extend', $placeholder, $order_id );
 			$this->send( $this->receicer, $this->get_subject(), $this->get_content(), $this->get_headers(), $attachment );
 		}
 		$this->restore_locale();

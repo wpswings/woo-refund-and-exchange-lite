@@ -72,9 +72,10 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 
 			wp_enqueue_style( 'mwb-admin-min-css', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/css/mwb-admin.min.css', array(), $this->version, 'all' );
 			wp_enqueue_style( 'mwb-datatable-css', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/datatables/media/css/jquery.dataTables.min.css', array(), $this->version, 'all' );
+			wp_enqueue_style( $this->plugin_name, WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/css/woo-refund-and-exchange-lite-admin.scss', array(), $this->version, 'all' );
 		}
 		if ( isset( $screen->id ) && 'shop_order' === $screen->id ) {
-			wp_enqueue_style( $this->plugin_name, WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/css/woo-refund-and-exchange-lite-admin.scss', array(), $this->version, 'all' );
+			wp_enqueue_style( $this->plugin_name, WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/css/mwb-order-edit-page.css', array(), $this->version, 'all' );
 		}
 
 	}
@@ -678,13 +679,6 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			update_post_meta( $orderid, 'mwb_rma_return_attachment', $request_files );
 
 			$order_obj    = wc_get_order( $orderid );
-			$final_stotal = 0;
-			$last_element = end( $order_obj->get_items() );
-			foreach ( $order_obj->get_items() as $item_id => $item ) {
-				if ( $item !== $last_element ) {
-					$final_stotal += $item['subtotal'];
-				}
-			}
 
 			$update_item_status    = get_post_meta( $orderid, 'mwb_rma_request_made', true );
 			$update_item_status[0] = 'completed';
@@ -698,7 +692,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				// To Send Refund Request Accept Email.
 				do_action( 'mwb_rma_refund_req_accept_email', $orderid );
 			}
-
+			do_action( 'mwb_rma_refund_partial_stock_product', $orderid );
 			$order_obj->update_status( 'wc-refund-approved', __( 'User Request of Refund Product is approved', 'woo-refund-and-exchange-lite' ) );
 			$response['response'] = 'success';
 			echo wp_json_encode( $response );

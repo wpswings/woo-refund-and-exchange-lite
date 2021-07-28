@@ -27,7 +27,7 @@ if ( isset( $_POST['mwb_order_msg_submit'] ) && ! empty( $_POST['mwb_order_msg_s
 		$sender = 'Customer';
 		$flag   = mwb_rma_lite_send_order_msg_callback( $order_id, $msg, $sender, $to );
 	}
-}
+}      
 // Send Order messages code end.
 $upload_attach = get_option( 'mwb_rma_general_enable_om_attachment', 'no' );
 get_header( 'shop' );
@@ -48,15 +48,17 @@ if ( isset( $order_id ) ) {
 				<h4><?php esc_html_e( 'Add a message', 'woo-refund-and-exchange-lite' ); ?></h4>
 			</div>
 			<textarea id="mwb_order_new_msg" name="mwb_order_new_msg" placeholder="<?php esc_html_e( 'Write a message you want to sent to the Shop Manager.', 'woo-refund-and-exchange-lite' ); ?>" rows="6" maxlength='10000' required ></textarea>
-			<?php if ( isset( $upload_attach ) && 'on' === $upload_attach ) : ?>
-				<div class="mwb-order-msg-attachment-wrapper">
+			<div class="mwb-order-msg-attachment-wrapper mwb_rma_flex">
+				<div class="mwb-order-attachment">
 					<div><label for="mwb_order_msg_attachment"> <?php esc_html_e( 'Attach files: ', 'woo-refund-and-exchange-lite' ); ?></label></div>
-					<div><input type="file" id="mwb_order_msg_attachment" name="mwb_order_msg_attachment[]" multiple ></div>
+					<?php if ( isset( $upload_attach ) && 'on' === $upload_attach ) : ?>
+						<div><input type="file" id="mwb_order_msg_attachment" name="mwb_order_msg_attachment[]" multiple ></div>
+					<?php endif; ?>
 				</div>
-			<?php endif; ?>
-			<div class="mwb-order-msg-btn">
-				<input type="submit" id="mwb_order_msg_submit" name="mwb_order_msg_submit" value="<?php esc_html_e( 'Send', 'woo-refund-and-exchange-lite' ); ?>">
-				<input 	type="hidden" name="mwb_order_msg_nonce" value="<?php echo esc_attr( wp_create_nonce( 'mwb_order_msg_nonce' ) ); ?>"> 
+				<div class="mwb-order-msg-btn">
+					<input type="submit" id="mwb_order_msg_submit" name="mwb_order_msg_submit" value="<?php esc_html_e( 'Send', 'woo-refund-and-exchange-lite' ); ?>">
+					<input 	type="hidden" name="mwb_order_msg_nonce" value="<?php echo esc_attr( wp_create_nonce( 'mwb_order_msg_nonce' ) ); ?>"> 
+				</div>       
 			</div>
 		</form>
 		<div class="mwb_order_msg_reload_notice_wrapper">
@@ -64,7 +66,7 @@ if ( isset( $order_id ) ) {
 		</div>
 		<div class="mwb_order_msg_history_container">
 			<div class="mwb_order_msg_history_title">
-			<h4 class="mwb-order-heading"><?php esc_html_e( 'Message History', 'woo-refund-and-exchange-lite' ); ?>
+			<h4 class="mwb-order-heading mwb_rma_flex"><?php esc_html_e( 'Message History', 'woo-refund-and-exchange-lite' ); ?>
 				<a href="" class="mwb_reload_messages"><img src="<?php echo esc_url( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL ) . 'public/images/reload-icon.png'; ?>" class="reload-icon"></a>
 			</h4>
 			</div>
@@ -76,8 +78,8 @@ if ( isset( $order_id ) ) {
 						foreach ( $o_val as $om_key => $om_val ) {
 							?>
 							<div class="mwb_order_msg_main_container mwb_order_messages">
-								<div>
-									<div class="mwb_order_msg_sender"><?php echo esc_html( ( 'Customer' === $om_val['sender'] ) ? __( 'Customer', 'woo-refund-and-exchange-lite' ) : __( 'Shop Manager', 'woo-refund-and-exchange-lite' ) ); ?></div>
+								<div class="mwb_order_msg_sender_details mwb_rma_flex">
+									<span class="mwb_order_msg_sender"><?php echo esc_html( ( 'Customer' === $om_val['sender'] ) ? __( 'Customer', 'woo-refund-and-exchange-lite' ) : __( 'Shop Manager', 'woo-refund-and-exchange-lite' ) ); ?></span>
 									<span class="mwb_order_msg_date"><?php echo esc_html( get_date_from_gmt( gmdate( 'Y-m-d h:i a', $om_key ), 'Y-m-d h:i a' ) ); ?></span>
 								</div>
 								<div class="mwb_order_msg_detail_container">
@@ -86,7 +88,7 @@ if ( isset( $order_id ) ) {
 								<?php if ( isset( $om_val['files'] ) && ! empty( $om_val['files'] ) ) { ?>
 
 									<div class="mwb_order_msg_attach_container">
-										<div class="mwb_order_msg_attachments_title"><?php esc_html_e( 'Message attachments:', 'woo-refund-and-exchange-lite' ); ?></div>
+										<div class="mwb_order_msg_attachments_title"><span><?php esc_html_e( 'Message attachments:', 'woo-refund-and-exchange-lite' ); ?></span></div>
 										<?php
 										foreach ( $om_val['files'] as $fkey => $fval ) {
 											if ( ! empty( $fval['name'] ) ) {

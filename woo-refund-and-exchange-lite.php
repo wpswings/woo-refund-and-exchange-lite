@@ -219,8 +219,8 @@ if ( $activated ) {
 		$show_button = 'no';
 		$condition   = get_option( 'policies_setting_option', array() );
 		$check       = get_option( 'mwb_rma_' . $func . '_enable', false );
+		$get_specific_setting = array();
 		if ( 'on' === $check ) {
-			$get_specific_setting = array();
 			if ( isset( $condition['mwb_rma_setting'] ) && ! empty( $condition['mwb_rma_setting'] ) ) {
 				foreach ( $condition['mwb_rma_setting'] as $key => $value ) {
 					if ( $func === $value['row_functionality'] ) {
@@ -230,7 +230,7 @@ if ( $activated ) {
 			}
 			$order_date = date_i18n( 'F d Y', strtotime( $order->get_date_created() ) );
 			$today_date = date_i18n( 'F d Y' );
-			$order_date = strtotime( $order_date );
+			$order_date = apply_filters( 'mwb_order_status_start_date', strtotime( $order_date ), $order );
 			$today_date = strtotime( $today_date );
 			$days       = $today_date - $order_date;
 			$day_diff   = floor( $days / ( 60 * 60 * 24 ) );

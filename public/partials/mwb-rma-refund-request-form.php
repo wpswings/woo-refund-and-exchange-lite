@@ -13,7 +13,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( isset( $_GET['mwb_rma_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['mwb_rma_nonce'] ) ), 'mwb_rma_nonce' ) && isset( $_GET['order_id'] ) && current_user_can( 'mwb-rma-refund-request' ) ) {
+if ( ! is_user_logged_in() ) {
+	$guest_user = true;
+} else {
+	$guest_user = false;
+}
+if ( isset( $_GET['mwb_rma_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['mwb_rma_nonce'] ) ), 'mwb_rma_nonce' ) && isset( $_GET['order_id'] ) && ( $guest_user || current_user_can( 'mwb-rma-refund-request' ) ) ) {
 	$order_id = sanitize_text_field( wp_unslash( $_GET['order_id'] ) );
 } else {
 	$order_id = '';
@@ -103,7 +108,7 @@ if ( 'yes' === $allowed ) {
 						$item_refund_already = get_post_meta( $order_id, 'mwb_rma_request_made', true );
 						$item_allowed        = apply_filters( 'mwb_rma_remove_item_from_refund', false );
 						if ( $item_allowed ) {
-							if ( ! empty( $item_refund_already ) && in_array( $item_id, $item_refund_already, true ) ) {
+							if ( ! empty( $item_refund_already ) && in_array( $item_id, $item_refund_already ) && 'pending' !== $item_refund_already[0] ) {
 								continue;
 							}
 						}
@@ -118,11 +123,20 @@ if ( 'yes' === $allowed ) {
 						$product   = apply_filters( 'woocommerce_order_item_product', $item->get_product(), $item );
 						$thumbnail = wp_get_attachment_image( $product->get_image_id(), 'thumbnail' );
 
-						$tax_inc = $item->get_total() + $item->get_subtotal_tax();
-						$tax_exc = $item->get_total() - $item->get_subtotal_tax();
-
+						$coupon_discount = get_option( 'mwb_rma_refund_deduct_coupon', 'no' );
+						if ( 'on' === $coupon_discount ) {
+							$tax_inc = $item->get_total() + $item->get_subtotal_tax();
+							$tax_exc = $item->get_total() - $item->get_subtotal_tax();
+						} else {
+							$tax_inc = $item->get_subtotal() + $item->get_subtotal_tax();
+							$tax_exc = $item->get_subtotal() - $item->get_subtotal_tax();                                     
+						}
 						if ( empty( $mwb_rma_check_tax ) ) {
-							$mwb_actual_price = $item->get_total();
+							if ( 'on' === $coupon_discount ) {
+								$mwb_actual_price = $item->get_total();
+							} else {
+								$mwb_actual_price = $item->get_subtotal();
+							}
 						} elseif ( 'mwb_rma_inlcude_tax' === $mwb_rma_check_tax ) {
 							$mwb_actual_price = $tax_inc;
 						} elseif ( 'mwb_rma_exclude_tax' === $mwb_rma_check_tax ) {
@@ -132,7 +146,6 @@ if ( 'yes' === $allowed ) {
 						if ( apply_filters( 'mwb_rma_revoke_product_refund', $product_id ) ) {
 							$mwb_total_actual_price += $mwb_total_price_of_product;
 						}
-
 						$purchase_note = get_post_meta( $product_id, '_purchase_note', true );
 						?>
 						<tr class="mwb_rma_return_column" data-productid="<?php echo esc_html( $product_id ); ?>" data-variationid="<?php echo esc_html( $item['variation_id'] ); ?>" data-itemid="<?php echo esc_html( $item_id ); ?>">
@@ -141,20 +154,20 @@ if ( 'yes' === $allowed ) {
 							do_action( 'mwb_rma_add_extra_column_field_value', $item_id, $product_id );
 							?>
 							<td class="product-name">
-							<input type="hidden" name="mwb_rma_product_amount" class="mwb_rma_product_amount" value="<?php echo esc_html( $mwb_actual_price ); ?>">
-								<?php
-									$is_visible        = $product && $product->is_visible();
-									$product_permalink = apply_filters( 'woocommerce_order_item_permalink', $is_visible ? $product->get_permalink( $item ) : '', $item, $order_obj );
-
-								if ( isset( $thumbnail ) && ! empty( $thumbnail ) ) {
-									echo wp_kses_post( $thumbnail );
-								} else {
-									?>
-									<img alt="Placeholder" width="150" height="150" class="attachment-thumbnail size-thumbnail wp-post-image" src="<?php echo esc_html( plugins_url() ); ?>/woocommerce/assets/images/placeholder.png">
+								<input type="hidden" name="mwb_rma_product_amount" class="mwb_rma_product_amount" value="<?php echo esc_html( $mwb_actual_price ); ?>">
 									<?php
-								}
-								?>
-								<div class="mwb_rma_product_title">
+										$is_visible        = $product && $product->is_visible();
+										$product_permalink = apply_filters( 'woocommerce_order_item_permalink', $is_visible ? $product->get_permalink( $item ) : '', $item, $order_obj );
+
+									if ( isset( $thumbnail ) && ! empty( $thumbnail ) ) {
+										echo wp_kses_post( $thumbnail );
+									} else {
+										?>
+										<img alt="Placeholder" width="150" height="150" class="attachment-thumbnail size-thumbnail wp-post-image" src="<?php echo esc_html( plugins_url() ); ?>/woocommerce/assets/images/placeholder.png">
+										<?php
+									}
+									?>
+								    <div class="mwb_rma_product_title">
 									<?php
 									echo wp_kses_post( apply_filters( 'woocommerce_order_item_name', $product_permalink ? sprintf( '<a href="%s">%s</a>', $product_permalink, $item['name'] ) : $item['name'], $item, $is_visible ) );
 									echo wp_kses_post( apply_filters( 'woocommerce_order_item_quantity_html', ' <strong class="product-quantity">' . sprintf( '&times; %s', $item['qty'] ) . '</strong>', $item ) );
@@ -169,7 +182,7 @@ if ( 'yes' === $allowed ) {
 									}
 									do_action( 'woocommerce_order_item_meta_end', $item_id, $item, $order_obj, true );
 									?>
-									<p>
+ 									<p>
 										<b><?php esc_html_e( 'Price', 'woo-refund-and-exchange-lite' ); ?> :</b> 
 										<?php
 											echo wp_kses_post( mwb_wrma_format_price( $mwb_actual_price, $get_order_currency ) );

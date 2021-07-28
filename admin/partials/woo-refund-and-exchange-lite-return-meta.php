@@ -28,12 +28,13 @@ if ( is_array( $line_items ) && ! empty( $line_items ) ) {
 $line_items = get_post_meta( $order_id, 'mwb_rma_new_refund_line_items', true );
 
 if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
-	$refund_method = '';
+	$ref_meth = get_option( $order_id .'mwb_rma_refund_method' );
 	foreach ( $return_datas as $key => $return_data ) {
 		$date          = date_create( $key );
 		$date_format   = get_option( 'date_format' );
 		$date          = date_format( $date, $date_format );
-		$refund_method = $return_data['refund_method'];
+		$refund_method = isset( $ref_meth ) ? $ref_meth : '';
+		$refund_method = isset( $return_data['refund_method'] ) ? $return_data['refund_method'] : $refund_method;
 		?>
 		<p><?php esc_html_e( 'Following product refund request made on', 'woo-refund-and-exchange-lite' ); ?> <b><?php echo esc_html( $date ); ?>.</b></p>
 		<div id="mwb_rma_return_meta_wrapper">
@@ -145,7 +146,7 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 					}
 					$total_refund_amu =
 					// Change refund total amount on product meta.
-					apply_filters( 'mwb_rma_refund_total_amount', $total );
+					apply_filters( 'mwb_rma_refund_total_amount', $total, $order_id );
 
 					?>
 					<tr>

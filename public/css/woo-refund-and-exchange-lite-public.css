@@ -3,14 +3,238 @@
  * included in this file.
  */
 
-.mwb_order_msg_history_container .mwb_reload_messages .reload-icon {
+ .mwb_order_msg_history_container .mwb_reload_messages .reload-icon {
     width: 30px; 
 }
 
 .mwb_order_msg_sub_container {
-    padding: 15px;
+    padding: 30px;
     border: solid #ccc 1px;
-    overflow-y: auto;
+/*    overflow-y: auto;
     min-height: 200px;
-    max-height: 400px;
+    max-height: 400px;*/
+}
+
+/* Order Refund Request Form */
+textarea, input[type=text], 
+input[type=number], 
+input[type=email], input[type=tel], 
+input[type=url], input[type=password], 
+input[type=search], .input-text{
+	background-color: transparent !important;
+	border: 1px solid #ccc !important;
+	box-shadow: none !important;
+}
+input[type=text]:focus, 
+input[type=number]:focus, 
+input[type=email]:focus, 
+input[type=tel]:focus, 
+input[type=url]:focus, 
+.mwb_order_msg_sub_containerinput[type=password]:focus, 
+input[type=search]:focus, 
+textarea:focus, 
+a:focus, 
+.input-text:focus {
+    outline: none !important;
+}
+label{
+	margin-bottom: 8px;
+	display: inline-block;
+	line-height: 1.2;
+}
+h4{
+    font-size: 18px !important;
+}
+.mwb_rma_flex{
+	display: flex;
+	flex-wrap: wrap;
+}
+.mwb_rma_refund_form_wrapper input[type=text]:focus, 
+.mwb_rma_refund_form_wrapper input[type=number]:focus, 
+.mwb_rma_refund_form_wrapper input[type=email]:focus, 
+.mwb_rma_refund_form_wrapper input[type=tel]:focus, 
+.mwb_rma_refund_form_wrapper input[type=url]:focus, 
+.mwb_rma_refund_form_wrapper input[type=password]:focus, 
+.mwb_rma_refund_form_wrapper input[type=search]:focus, 
+.mwb_rma_refund_form_wrapper textarea:focus, 
+.mwb_rma_refund_form_wrapper .input-text:focus {
+    background-color: transparent;
+}
+.mwb_rma_refund_form_wrapper select#mwb_rma_return_request_subject {
+    padding: 5px 105px 5px 5px;
+    border-radius: 0;
+}
+.mwb_rma_refund_form_wrapper > div {
+    margin-bottom: 20px;
+}
+.mwb_rma_refund_form_wrapper img{
+	width: 100%;
+	max-width: 80px;
+    min-width: 60px;
+}
+.mwb_rma_refund_form_wrapper h2.woocommerce-column__title {
+    font-weight: 600;
+}
+.mwb_rma_refund_form_wrapper select#mwb_rma_return_request_subject:focus-visible{
+	outline: none;
+}
+.mwb_rma_refund_form_wrapper select#mwb_rma_return_request_subject option{
+	box-shadow: none;
+}
+.mwb_rma_product_table_wrapper{
+    overflow-x: auto;
+}
+.mwb_rma_refund_form_wrapper .mwb_rma_product_title,
+.mwb_rma_refund_form_wrapper .mwb_rma_product_title p{
+    margin-top: 8px;
+}
+
+/* View Order Messages */
+.mwb-order-msg-attachment-wrapper {
+    margin-top: 20px;
+    justify-content: space-between;
+    align-items: center;
+}
+.mwb-order-attachment input#mwb_order_msg_attachment{
+    max-width: 230px;
+}
+#mwb_order_msg_submit {
+    background: #374585;
+    border: 1px solid #374585;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 0;
+    padding: 6px 30px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+form#mwb_order_new_msg_form{
+    margin-bottom: 40px;
+}
+.mwb_rma_order_msg_wrapper .mwb-order-msg-attachment-wrapper label{
+	color: #000000;
+}
+.mwb_rma_order_msg_wrapper h4.mwb-order-heading.mwb_rma_flex{
+    align-items: center;
+}
+.mwb_rma_order_msg_wrapper h4.mwb-order-heading.mwb_rma_flex a{
+    margin-left: 20px;
+    width: 18px;
+}
+.mwb_order_msg_main_container{
+    padding: 30px 30px 30px 0;
+    margin-bottom: 30px;
+    border: 1px solid #dddddd;
+    width: auto;
+    word-wrap: break-word;
+}
+.mwb_order_msg_sender{
+    font-weight: 600;
+    font-size: 18px;
+    background-color: #4f62b9;
+    color: #fff;
+    padding: 8px 52px 8px 30px;
+    position: relative;
+}
+span.mwb_order_msg_sender:after {
+    position: absolute;
+    content: "";
+    top: -11px;
+    right: 11px;
+    height: 100%;
+    background-color: transparent;
+    border-top: 22px solid #ffffff;
+    border-left: 22px solid transparent;
+    border-right: 22px solid transparent;
+    transform: rotate(90deg);
+}
+.mwb_order_msg_attach_container {
+    padding-left: 30px;
+}
+.mwb_order_msg_detail_container{
+    padding: 20px 0 20px 30px;
+}
+img.mwb_order_msg_attachment_thumbnail {
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+.mwb_rma_order_msg_wrapper h4{
+    background-color: #dadada;
+    padding: 7px 15px;
+    font-weight: 600 !important;
+    color: #1f1f1f !important;
+    line-height: 1.6;
+}
+.mwb-order-attachment input:focus{
+    outline: none;
+}
+.mwb_order_msg_main_container{
+    border-color: #dddddd;
+} 
+.mwb_order_msg_main_container:last-child{
+    margin-bottom: 0;
+}
+.mwb_order_msg_sender_details.mwb_rma_flex{
+    justify-content: space-between;
+    align-items: center;
+}
+.mwb_order_msg_notice_wrapper{
+    padding: 8px 15px;
+    border-radius: 5px;
+    background: #64CD83;
+    margin-bottom: 20px;
+}
+.mwb_order_msg_notice_wrapper p{
+    margin-bottom: 0;
+    color: #fff;
+}
+a.mwb_order_send_msg_dismiss{
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+}
+.mwb_order_msg_sent_notice{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+}
+/*media-query*/
+@media only screen and (max-width: 480px){
+    .mwb_order_msg_sub_container{
+        padding: 15px;
+    }
+    .mwb_order_msg_main_container{
+        padding: 15px 15px 15px 0;
+    }
+    .mwb_order_msg_attach_container{
+        padding-left: 15px;
+    }
+    .mwb_order_msg_detail_container{
+        padding: 15px 0 15px 15px;
+    }
+    .mwb_order_msg_attach_container{
+        padding-left: 15px;
+    }
+    .mwb_order_msg_sender {
+        padding: 8px 37px 8px 15px;
+    }
+}
+@media only screen and (max-width: 375px){
+    .mwb-order-msg-attachment-wrapper.mwb_rma_flex, 
+    .mwb_order_msg_sender_details.mwb_rma_flex,
+    .mwb_order_msg_date{
+        display: block;
+    }
+    span.mwb_order_msg_sender:after{
+        right: 8px;
+    }
+    .mwb-order-msg-btn{
+        margin-top: 30px;
+    }
+    .mwb_order_msg_date {
+        margin-top: 15px;
+        padding-left: 15px;
+    }
 }

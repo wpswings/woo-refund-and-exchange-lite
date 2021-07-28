@@ -129,7 +129,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 
 		$refund_will_made =
 		// Refund Will made or not bool.
-		apply_filters( 'mwb_rma_refund_will_made', $refund_will_made );
+		apply_filters( 'mwb_rma_refund_will_made', $refund_will_made, $order->get_id() );
 		$show_on_pages = true;
 		if ( ! empty( $refund_hide ) && in_array( 'order-page', $refund_hide, true ) ) {
 			$show_on_pages = false;
@@ -204,7 +204,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 			$refund_will_made = true;
 		}
 		// Refund Will made or not bool.
-		$refund_will_made                    = apply_filters( 'mwb_rma_refund_will_made', $refund_will_made );
+		$refund_will_made                    = apply_filters( 'mwb_rma_refund_will_made', $refund_will_made, $order->get_id() );
 		$mwb_rma_return_request_form_page_id = get_option( 'mwb_rma_return_request_form_page_id', true );
 		if ( $refund_will_made && 'yes' === $condition ) {
 			$return_button_text = get_option( 'mwb_rma_refund_button_text', false );
@@ -359,18 +359,12 @@ class Woo_Refund_And_Exchange_Lite_Public {
 	 */
 	public function mwb_rma_product_return_template( $template ) {
 		$mwb_rma_return_request_form_page_id = get_option( 'mwb_rma_return_request_form_page_id' );
-		if ( function_exists( 'icl_object_id' ) ) {
+		if ( has_filter( 'wpml_object_id' ) ) {
 			$ro_pageid = apply_filters( 'wpml_object_id', $mwb_rma_return_request_form_page_id, 'page', false, ICL_LANGUAGE_CODE );
 		}
 		if ( ( ( '' !== $mwb_rma_return_request_form_page_id ) && is_page( $mwb_rma_return_request_form_page_id ) ) || ( isset( $ro_pageid ) && is_page( $ro_pageid ) ) ) {
-			$located = locate_template( 'woo-refund-and-exchange-lite/public/partials/mwb-rma-refund-request-form.php' );
-			if ( ! empty( $located ) ) {
-
-				$new_template = wc_get_template( 'woo-refund-and-exchange-lite/public/partials/mwb-rma-refund-request-form.php' );
-			} else {
-				$new_template = WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'public/partials/mwb-rma-refund-request-form.php';
-			}
-			$template = $new_template;
+			$new_template = WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'public/partials/mwb-rma-refund-request-form.php';
+			$template     = $new_template;
 		}
 
 		$mwb_rma_view_order_msg_page_id = get_option( 'mwb_rma_view_order_msg_page_id' );
@@ -378,13 +372,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 			$ro_pageid1 = apply_filters( 'wpml_object_id', $mwb_rma_view_order_msg_page_id, 'page', false, ICL_LANGUAGE_CODE );
 		}
 		if ( ( '' !== $mwb_rma_view_order_msg_page_id ) && ( is_page( $mwb_rma_view_order_msg_page_id ) ) || ( isset( $ro_pageid1 ) && is_page( $ro_pageid1 ) ) ) {
-			$located = locate_template( 'woo-refund-and-exchange-lite/public/partials/mwb-rma-view-order-msg.php' );
-			if ( ! empty( $located ) ) {
-
-				$new_template = wc_get_template( 'woo-refund-and-exchange-lite/public/partials/mwb-rma-view-order-msg.php' );
-			} else {
-				$new_template = WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'public/partials/mwb-rma-view-order-msg.php';
-			}
+			$new_template = WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'public/partials/mwb-rma-view-order-msg.php';
 			$template = $new_template;
 		}
 
