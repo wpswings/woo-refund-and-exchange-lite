@@ -233,6 +233,7 @@ class Woo_Refund_And_Exchange_Lite {
 		$this->loader->add_action( 'mwb_rma_refund_req_cancel_email', $wrael_plugin_admin, 'mwb_rma_refund_req_cancel_email', 10 );
 
 		// Save policies setting.
+		//$this->loader->add_action( 'init', $wrael_plugin_admin, '' );
 		$this->loader->add_action( 'init', $wrael_plugin_admin, 'show_notices' );
 		$this->loader->add_action( 'init', $wrael_plugin_admin, 'mwb_rma_save_policies_setting' );
 	}
@@ -448,6 +449,9 @@ class Woo_Refund_And_Exchange_Lite {
 
 			case 'success':
 				$wrael_classes .= 'notice-success is-dismissible';
+				break;
+			case 'success2':
+				$wrael_classes .= 'notice-success policies-success is-dismissible';
 				break;
 
 			default:

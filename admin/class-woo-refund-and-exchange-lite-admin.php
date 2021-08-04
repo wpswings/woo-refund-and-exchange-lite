@@ -874,7 +874,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		global $wrael_mwb_rma_obj;
 		if( get_option( 'mwb_rma_save_policiies_setting' ) ) {
 			$mwb_rma_error_text = esc_html__( 'Settings saved !', 'woo-refund-and-exchange-lite' );
-			$wrael_mwb_rma_obj->mwb_rma_plug_admin_notice( $mwb_rma_error_text, 'success' );
+			$wrael_mwb_rma_obj->mwb_rma_plug_admin_notice( $mwb_rma_error_text, 'success2' );
 			update_option( 'mwb_rma_save_policiies_setting', false );
 
 		}
