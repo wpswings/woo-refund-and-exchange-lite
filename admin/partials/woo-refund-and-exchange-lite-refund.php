@@ -28,9 +28,9 @@ $woo_email_url       = admin_url() . 'admin.php?page=wc-settings&tab=email';
 		?>
 	</div>
 </form>
-<h6>
+<h6><b>
 <?php
 /* translators: %s: search term */
 echo sprintf( esc_html__( 'To configure refund related emails %s.', 'woo-refund-and-exchange-lite' ), '<a href="' . esc_html( $woo_email_url ) . '">Click Here</a>' );
 ?>
-</h6>
+</b></h6>

@@ -678,10 +678,16 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			// Update the status.
 			update_post_meta( $orderid, 'mwb_rma_return_attachment', $request_files );
 
-			$order_obj    = wc_get_order( $orderid );
+			$order_obj = wc_get_order( $orderid );
 
-			$update_item_status    = get_post_meta( $orderid, 'mwb_rma_request_made', true );
-			$update_item_status[0] = 'completed';
+			$update_item_status = get_post_meta( $orderid, 'mwb_rma_request_made', true );
+			foreach ( get_post_meta( $orderid, 'mwb_rma_return_product', true ) as $key => $value ) {
+				foreach ( $value['products'] as $key => $value ) {
+					if ( isset( $update_item_status[ $value['item_id'] ] ) ) {
+						$update_item_status[ $value['item_id'] ] = 'completed';
+					}
+				}
+			}
 			update_post_meta( $orderid, 'mwb_rma_request_made', $update_item_status );
 			// Send refund request accept email to customer.
 
@@ -809,12 +815,12 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 												$response['result'] = 'success';
 												$response['msg']    = __( 'Product Stock is updated Successfully.', 'woo-refund-and-exchange-lite' );
 												/* translators: %s: search term */
-												wc_get_order( $order_id )->add_order_note( sprintf( __( '%s Product Stock is updated Successfully.', 'mwb-woocommerce-rma' ), $product->get_name() ), false, true );
+												wc_get_order( $order_id )->add_order_note( sprintf( __( '%s Product Stock is updated Successfully.', 'woo-refund-and-exchange-lite' ), $product->get_name() ), false, true );
 											} else {
 												$response['result'] = false;
 												$response['msg']    = __( 'Product Stock is not updated as manage stock setting of product is disable.', 'woo-refund-and-exchange-lite' );
 												/* translators: %s: search term */
-												wc_get_order( $order_id )->add_order_note( sprintf( __( '%s Product Stock is not updated as manage stock setting of product is disable.', 'mwb-woocommerce-rma' ), $product->get_name() ), false, true );
+												wc_get_order( $order_id )->add_order_note( sprintf( __( '%s Product Stock is not updated as manage stock setting of product is disable.', 'woo-refund-and-exchange-lite' ), $product->get_name() ), false, true );
 											}
 										}
 									}
@@ -854,37 +860,6 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		if ( isset( $_POST['save_policies_setting'] ) && isset( $_POST['get_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['get_nonce'] ) ), 'create_form_nonce' ) ) {
 			unset( $_POST['save_policies_setting'] );
 			unset( $_POST['get_nonce'] );
-			$count1 = 0;
-			$count2 = 0;
-			$count3 = 0;
-			// foreach ( $_POST as $key => $value ) {
-			// 	foreach ( $value as $key => $value ) {
-			// 		if ( 'refund' === $value['row_functionality'] && 'mwb_rma_maximum_days' === $value['row_policy'] ) {
-			// 			$count1++;
-			// 			if ( empty( $value['row_value'] ) ) {
-			// 				unset( $_POST['mwb_rma_setting'][ $key ] );
-			// 			}
-			// 			if ( 2 <= $count1 ) {
-			// 				unset( $_POST['mwb_rma_setting'][ $key ] );
-			// 			}
-			// 		}
-			// 		if ( 'refund' === $value['row_functionality'] && 'mwb_rma_order_status' === $value['row_policy'] ) {
-			// 			$count2++;
-			// 			if ( 2 <= $count2 ) {
-			// 				unset( $_POST['mwb_rma_setting'][ $key ] );
-			// 			}
-			// 			if ( empty( $value['row_statuses'] ) ) {
-			// 				unset( $_POST['mwb_rma_setting'][ $key ] );
-			// 			}
-			// 		}
-			// 		if ( 'refund' === $value['row_functionality'] && 'mwb_rma_tax_handling' === $value['row_policy'] ) {
-			// 			$count3++;
-			// 			if ( 2 <= $count3 ) {
-			// 				unset( $_POST['mwb_rma_setting'][ $key ] );
-			// 			}
-			// 		}
-			// 	}
-			// }
 			update_option( 'policies_setting_option', $_POST );
 			$url = isset( $_SERVER['HTTP_REFERER'] ) ? sanitize_text_field( wp_unslash( $_SERVER['HTTP_REFERER'] ) ) : sanitize_text_field( wp_unslash( $_SERVER['HTTP_REFERER'] ) );
 			update_option( 'mwb_rma_save_policiies_setting', true );

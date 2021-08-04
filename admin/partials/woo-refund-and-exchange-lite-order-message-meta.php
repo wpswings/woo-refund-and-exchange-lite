@@ -84,7 +84,7 @@ $order_id  = $order_obj->get_id();
 			<div class="mwb-order-msg-attachment-wrapper">
 				<input type="file" id="mwb_order_msg_attachment" name="mwb_order_msg_attachment[]" multiple >
 				<div class="mwb-order-msg-btn">
-					<button type="submit" id="mwb_order_msg_submit" name="mwb_order_msg_submit" data-id="<?php echo esc_attr( $order_id ); ?>"><?php esc_html_e( 'Send', 'woo-refund-and-exchange-lite' ); ?> </button>
+					<button type="submit" class="button button-primary" id="mwb_order_msg_submit" name="mwb_order_msg_submit" data-id="<?php echo esc_attr( $order_id ); ?>"><?php esc_html_e( 'Send', 'woo-refund-and-exchange-lite' ); ?> </button>
 				</div>
 			</div>	
 		</form>

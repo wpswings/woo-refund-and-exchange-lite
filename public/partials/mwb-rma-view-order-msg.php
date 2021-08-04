@@ -27,7 +27,7 @@ if ( isset( $_POST['mwb_order_msg_submit'] ) && ! empty( $_POST['mwb_order_msg_s
 		$sender = 'Customer';
 		$flag   = mwb_rma_lite_send_order_msg_callback( $order_id, $msg, $sender, $to );
 	}
-}      
+}
 // Send Order messages code end.
 $upload_attach = get_option( 'mwb_rma_general_enable_om_attachment', 'no' );
 get_header( 'shop' );
@@ -50,8 +50,8 @@ if ( isset( $order_id ) ) {
 			<textarea id="mwb_order_new_msg" name="mwb_order_new_msg" placeholder="<?php esc_html_e( 'Write a message you want to sent to the Shop Manager.', 'woo-refund-and-exchange-lite' ); ?>" rows="6" maxlength='10000' required ></textarea>
 			<div class="mwb-order-msg-attachment-wrapper mwb_rma_flex">
 				<div class="mwb-order-attachment">
-					<div><label for="mwb_order_msg_attachment"> <?php esc_html_e( 'Attach files: ', 'woo-refund-and-exchange-lite' ); ?></label></div>
 					<?php if ( isset( $upload_attach ) && 'on' === $upload_attach ) : ?>
+						<div><label for="mwb_order_msg_attachment"> <?php esc_html_e( 'Attach files: ', 'woo-refund-and-exchange-lite' ); ?></label></div>
 						<div><input type="file" id="mwb_order_msg_attachment" name="mwb_order_msg_attachment[]" multiple ></div>
 					<?php endif; ?>
 				</div>

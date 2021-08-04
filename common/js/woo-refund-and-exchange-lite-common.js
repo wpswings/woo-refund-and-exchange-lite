@@ -65,6 +65,9 @@
 			}
 			if (alerthtml != '') {
 				$( "#mwb_rma_return_alert" ).html( alerthtml );
+				$( "#mwb_rma_return_alert" ).addClass('woocommerce-error');
+				$( "#mwb_rma_return_alert" ).removeClass("woocommerce-message");
+				$( "#mwb_rma_return_alert" ).css("background-color", "red");
 				$( 'html, body' ).animate(
 				{
 					scrollTop: $( "#mwb_rma_return_request_container" ).offset().top
@@ -149,6 +152,9 @@
 								}, 1000);
 							}
 							// Start redirect page countdown on refund request form
+							$("#mwb_rma_return_alert").removeClass('woocommerce-error');
+							$("#mwb_rma_return_alert").addClass("woocommerce-message");
+							$("#mwb_rma_return_alert").css("background-color", "#8FAE1B");
 							$("#mwb_rma_return_alert" ).show();
 							$("#mwb_rma_return_alert").html( response.msg + ' in ' + '<b><span id="countdownTimer"></span>' + ' seconds</b>' );
 							$(".mwb_rma_return_notification").hide();

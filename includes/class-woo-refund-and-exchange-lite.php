@@ -916,11 +916,11 @@ class Woo_Refund_And_Exchange_Lite {
 							break;
 						case 'breaker':
 							?>
-							<hr>
+						<!-- 	<hr> -->
 							<div class="mwb-form-group__breaker">
 							<span><b><?php echo ( isset( $wrael_component['name'] ) ? esc_html( $wrael_component['name'] ) : esc_html( $wrael_component['id'] ) ); ?></span></b>
 							</div>
-							<hr>
+							<!-- <hr> -->
 							<?php
 							break;
 						default:

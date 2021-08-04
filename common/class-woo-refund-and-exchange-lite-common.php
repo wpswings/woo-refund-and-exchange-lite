@@ -175,18 +175,23 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			$refund_method = apply_filters( 'mwb_rma_refund_method_wallet', $refund_method );
 			$products      = isset( $_POST['products'] ) ? sanitize_text_field( wp_unslash( $_POST['products'] ) ) : '';
 			update_option( $order_id . 'mwb_rma_refund_method', $refund_method );
-			$order   = wc_get_order( $order_id );
-			$item_id = array();
-			array_push( $item_id, 'pending' );
+			$order = wc_get_order( $order_id );
+
+			if( empty( get_post_meta( $order_id, 'mwb_rma_request_made', true ) ) ) {
+				$item_id = array();
+			} else {
+				$item_id = get_post_meta( $order_id, 'mwb_rma_request_made', true );
+			}
 			if ( isset( $_POST ) && ! empty( $_POST ) && is_array( $_POST ) ) {
 				foreach ( $_POST as $post_key => $post_value ) {
 					if ( is_array( $post_value ) && ! empty( $post_value ) ) {
 						foreach ( $post_value as $post_val_key => $post_val_value ) {
-							array_push( $item_id, $post_val_value['item_id'] );
+							$item_id[ $post_val_value['item_id'] ] = 'pending';
 						}
 					}
 				}
 			}
+			update_post_meta( $order_id, 'mwb_rma_request_made', $item_id );
 			$products = get_post_meta( $order_id, 'mwb_rma_return_product', true );
 			$pending  = true;
 			if ( isset( $products ) && ! empty( $products ) ) {
@@ -209,7 +214,6 @@ class Woo_Refund_And_Exchange_Lite_Common {
 				$products[ $date ]['status'] = 'pending';
 
 			}
-			update_post_meta( $order_id, 'mwb_rma_request_made', $item_id );
 
 			update_post_meta( $order_id, 'mwb_rma_return_product', $products );
 

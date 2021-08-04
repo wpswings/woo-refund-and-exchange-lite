@@ -251,107 +251,113 @@ if ( 'yes' === $allowed ) {
 			<div class="mwb_rma_return_notification_checkbox" style="display:none"><img src="<?php echo esc_html( esc_url( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL ) ); ?>public/images/loading.gif" width="40px"></div>
 		</div>
 		<?php
-		// Add someting after table on the refund request form.
-		do_action( 'mwb_rma_after_table', $order_id );
-		?>
-		<?php
 		$predefined_return_reason = get_option( 'mwb_rma_refund_reasons', array() );
 		$predefined_return_reason = explode( ',', $predefined_return_reason );
 		?>
-		<div class="mwb_rma_subject_dropdown">
-				<div>
-					<label>
-						<b>
-							<?php
-								echo esc_html__( 'Subject of Refund Request :', 'woo-refund-and-exchange-lite' );
-							?>
-						</b>
-					</label>
-				</div>
-			<select name="mwb_rma_return_request_subject" id="mwb_rma_return_request_subject">
+		<div class="mwb_rma_refund_request__row mwb_rma_flex">
+			<div class="mwb_rma__column mwb_rma__column-left">
 				<?php
-				foreach ( $predefined_return_reason as $predefine_reason ) {
-					?>
-					<option value="<?php echo esc_html( $predefine_reason ); ?>"  <?php selected( $predefine_reason, $rr_subject ); ?>><?php echo esc_html( $predefine_reason ); ?></option>
-					<?php
-				}
+				// Add someting after table on the refund request form.
+				do_action( 'mwb_rma_after_table', $order_id );
 				?>
-				<option value=""><?php esc_html_e( 'Other', 'woo-refund-and-exchange-lite' ); ?></option>
-			</select>
-		</div>
-		<div class="mwb_rma_other_subject">
-			<input type="text" name="ced_rnx_return_request_subject" class="mwb_rma_return_request_subject_text" id="mwb_rma_return_request_subject_text" maxlength="5000" placeholder="<?php esc_html_e( 'Write your reason subject', 'woo-refund-and-exchange-lite' ); ?>">
-		</div>
-		<?php
-		$predefined_return_desc = get_option( 'mwb_rma_refund_description', false );
-		$predefined_return_reason_placeholder = get_option( 'mwb_rma_refund_reason_placeholder', false );
-		if ( isset( $predefined_return_desc ) && 'on' === $predefined_return_desc ) {
-			?>
-			<div class="mwb_rma_reason_description">
-				<div>	
-					<label>
-						<b>
+				<div class="mwb_rma_subject_dropdown">
+					<div>
+						<label>
+							<b>
+								<?php
+									echo esc_html__( 'Subject of Refund Request :', 'woo-refund-and-exchange-lite' );
+								?>
+							</b>
+						</label>
+					</div>
+					<select name="mwb_rma_return_request_subject" id="mwb_rma_return_request_subject">
 						<?php
-						if ( $predefined_return_reason_placeholder ) {
-								echo esc_html( $predefined_return_reason_placeholder );
-						} else {
-								echo esc_html__( 'Reason of Refund Request:', 'woo-refund-and-exchange-lite' );
+						foreach ( $predefined_return_reason as $predefine_reason ) {
+							?>
+							<option value="<?php echo esc_html( $predefine_reason ); ?>"  <?php selected( $predefine_reason, $rr_subject ); ?>><?php echo esc_html( $predefine_reason ); ?></option>
+							<?php
 						}
 						?>
-						</b>
-					</label>
+						<option value=""><?php esc_html_e( 'Other', 'woo-refund-and-exchange-lite' ); ?></option>
+					</select>
+				</div>
+				<div class="mwb_rma_other_subject">
+					<input type="text" name="ced_rnx_return_request_subject" class="mwb_rma_return_request_subject_text" id="mwb_rma_return_request_subject_text" maxlength="5000" placeholder="<?php esc_html_e( 'Write your reason subject', 'woo-refund-and-exchange-lite' ); ?>">
 				</div>
 				<?php
-				$placeholder = __( 'Reason for Retund Request', 'woo-refund-and-exchange-lite' );
-				?>
-				<textarea name="mwb_rma_return_request_reason" cols="40" style="height: 222px;" class="mwb_rma_return_request_reason" maxlength='10000' placeholder="<?php echo esc_html( $placeholder ); ?>"><?php echo ! empty( $rr_reason ) ? esc_html( $rr_reason ) : ''; ?></textarea>
-			</div>
-			<?php
-		}
-		?>
-		<?php
-		// Add something above attachment on the refund request form.
-		do_action( 'mwb_rma_above_the_attachment' );
-		?>
-		<form action="" method="post" id="mwb_rma_return_request_form" data-orderid="<?php echo esc_html( $order_id ); ?>" enctype="multipart/form-data">
-			<?php
-			$return_attachment = get_option( 'mwb_rma_refund_attachment', false );
-			$attach_limit      = get_option( 'mwb_rma_attachment_limit', '15' );
-			if ( empty( $attach_limit ) ) {
-				$attach_limit = 5;
-			}
-			if ( isset( $return_attachment ) && ! empty( $return_attachment ) ) {
-				if ( 'on' === $return_attachment ) {
+				$predefined_return_desc = get_option( 'mwb_rma_refund_description', false );
+				$predefined_return_reason_placeholder = get_option( 'mwb_rma_refund_reason_placeholder', false );
+				if ( isset( $predefined_return_desc ) && 'on' === $predefined_return_desc ) {
 					?>
-					<div class="mwb_rma_attach_files">
-						<label><b><?php esc_html_e( 'Attach Files:', 'woo-refund-and-exchange-lite' ); ?></b></label>
-						<p>
-							<span id="mwb_rma_return_request_files">
-							<input type="hidden" name="mwb_rma_return_request_order" value="<?php echo esc_html( $order_id ); ?>">
-							<input type="hidden" name="action" value="mwb_rma_refund_upload_files">
-							<input type="file" name="mwb_rma_return_request_files[]" class="mwb_rma_return_request_files">
-							</span>
-							<div><input type="button" value="<?php esc_html_e( 'Add More', 'woo-refund-and-exchange-lite' ); ?>" class="mwb_rma_return_request_morefiles" data-count="1" data-max="<?php echo esc_html( $attach_limit ); ?>"></div>
-							<i><?php esc_html_e( 'Only .png, .jpeg extension file is approved.', 'woo-refund-and-exchange-lite' ); ?></i>
-						</p>
+					<div class="mwb_rma_reason_description">
+						<div>	
+							<label>
+								<b>
+								<?php
+								if ( $predefined_return_reason_placeholder ) {
+										echo esc_html( $predefined_return_reason_placeholder );
+								} else {
+										echo esc_html__( 'Reason of Refund Request:', 'woo-refund-and-exchange-lite' );
+								}
+								?>
+								</b>
+							</label>
+						</div>
+						<?php
+						$placeholder = __( 'Reason for Retund Request', 'woo-refund-and-exchange-lite' );
+						?>
+						<textarea name="mwb_rma_return_request_reason" cols="40" style="height: 222px;" class="mwb_rma_return_request_reason" maxlength='10000' placeholder="<?php echo esc_html( $placeholder ); ?>"><?php echo ! empty( $rr_reason ) ? esc_html( $rr_reason ) : ''; ?></textarea>
 					</div>
 					<?php
 				}
-			}
-			?>
-			<div >
-				<input type="submit" name="mwb_rma_return_request_submit" value="<?php esc_html_e( 'Submit Request', 'woo-refund-and-exchange-lite' ); ?>" class="button btn">
-				<div class="mwb_rma_return_notification"><img src="<?php echo esc_html( esc_url( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL ) ); ?>public/images/loading.gif" width="40px"></div>
+				?>
+				<?php
+				// Add something above attachment on the refund request form.
+				do_action( 'mwb_rma_above_the_attachment' );
+				?>
+				<form action="" method="post" id="mwb_rma_return_request_form" data-orderid="<?php echo esc_html( $order_id ); ?>" enctype="multipart/form-data">
+					<?php
+					$return_attachment = get_option( 'mwb_rma_refund_attachment', false );
+					$attach_limit      = get_option( 'mwb_rma_attachment_limit', '15' );
+					if ( empty( $attach_limit ) ) {
+						$attach_limit = 5;
+					}
+					if ( isset( $return_attachment ) && ! empty( $return_attachment ) ) {
+						if ( 'on' === $return_attachment ) {
+							?>
+							<div class="mwb_rma_attach_files">
+								<label><b><?php esc_html_e( 'Attach Files:', 'woo-refund-and-exchange-lite' ); ?></b></label>
+								<p>
+									<span id="mwb_rma_return_request_files">
+									<input type="hidden" name="mwb_rma_return_request_order" value="<?php echo esc_html( $order_id ); ?>">
+									<input type="hidden" name="action" value="mwb_rma_refund_upload_files">
+									<input type="file" name="mwb_rma_return_request_files[]" class="mwb_rma_return_request_files">
+									</span>
+									<div><input type="button" value="<?php esc_html_e( 'Add More', 'woo-refund-and-exchange-lite' ); ?>" class="mwb_rma_return_request_morefiles" data-count="1" data-max="<?php echo esc_html( $attach_limit ); ?>"></div>
+									<i><?php esc_html_e( 'Only .png, .jpeg extension file is approved.', 'woo-refund-and-exchange-lite' ); ?></i>
+								</p>
+							</div>
+							<?php
+						}
+					}
+					?>
+					<div>
+						<input type="submit" name="mwb_rma_return_request_submit" value="<?php esc_html_e( 'Submit Request', 'woo-refund-and-exchange-lite' ); ?>" class="button btn">
+						<div class="mwb_rma_return_notification"><img src="<?php echo esc_html( esc_url( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL ) ); ?>public/images/loading.gif" width="40px"></div>
+					</div>
+				</form>
 			</div>
-		</form>
-		<div class="mwb_rma_refund_rule">
-		<?php
-		$refund_rules_enable = get_option( 'mwb_rma_refund_rules', 'no' );
-		$refund_rules        = get_option( 'mwb_rma_refund_rules_editor', '' );
-		if ( isset( $refund_rules_enable ) && 'on' === $refund_rules_enable && ! empty( $refund_rules ) ) {
-			echo wp_kses_post( $refund_rules );
-		}
-		?>
+			<div class="mwb_rma__column mwb_rma__column-right mwb_rma_flex">        
+				<div class="mwb_rma_refund_rule">
+				<?php
+				$refund_rules_enable = get_option( 'mwb_rma_refund_rules', 'no' );
+				$refund_rules        = get_option( 'mwb_rma_refund_rules_editor', '' );
+				if ( isset( $refund_rules_enable ) && 'on' === $refund_rules_enable && ! empty( $refund_rules ) ) {
+					echo wp_kses_post( $refund_rules );
+				}
+				?>
+				</div>
+			</div>
 		</div>
 		<div class="mwb_rma_customer_detail">
 				<?php

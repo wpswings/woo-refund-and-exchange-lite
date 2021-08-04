@@ -384,7 +384,7 @@ if ( $activated ) {
 			$customer_email = WC()->mailer()->emails['mwb_rma_order_messages_email'];
 			$email_status   = $customer_email->trigger( $msg, $attachment, $to, $order_id );
 		}
-		$flag           = true;
+		$flag = true;
 		return $flag;
 	}
 

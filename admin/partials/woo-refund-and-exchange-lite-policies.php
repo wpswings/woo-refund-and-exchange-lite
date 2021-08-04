@@ -98,6 +98,7 @@ if ( empty( $a ) ) {
 					?>
 				</select>
 				<input type="hidden" value="<?php echo esc_html( $count ); ?>" class="mwb_rma_get_current_i">
+
 				<label  class="mwb_rma_settings_label" ><?php esc_html_e( 'InCase: If', 'woo-refund-and-exchange-lite' ); ?></label>
 				<select name="mwb_rma_setting[<?php echo esc_html( $count ); ?>][row_policy]" class="mwb_rma_settings">
 					<option value=""><?php esc_html_e( 'Choose Option', 'woo-refund-and-exchange-lite' ); ?></option>	
@@ -108,16 +109,16 @@ if ( empty( $a ) ) {
 					// To extend the setting on policies tab.
 					do_action( 'mwb_rma_setting_extend2', $value['row_policy'] );
 					?>
-				</select> 
+				</select>
 
 				<label class="mwb_rma_conditions_label" ><?php esc_html_e( 'is', 'woo-refund-and-exchange-lite' ); ?></label>
-				<select name="mwb_rma_setting[<?php echo esc_html( $count ); ?>][row_conditions1]" class="mwb_rma_conditions1">
+				<select name="mwb_rma_setting[<?php echo esc_html( $count ); ?>][row_conditions1]" class="mwb_rma_conditions1 mwb_rma_policy_condition">
 					<option value="mwb_rma_less_than" <?php selected( 'mwb_rma_less_than', $value['row_conditions1'] ); ?>><?php esc_html_e( 'Less than', 'woo-refund-and-exchange-lite' ); ?></option>
 					<option value="mwb_rma_greater_than" <?php selected( 'mwb_rma_greater_than', $value['row_conditions1'] ); ?>><?php esc_html_e( 'Greater than', 'woo-refund-and-exchange-lite' ); ?></option>
 					<option value="mwb_rma_less_than_equal" <?php selected( 'mwb_rma_less_than_equal', $value['row_conditions1'] ); ?>><?php esc_html_e( 'Less than equal to', 'woo-refund-and-exchange-lite' ); ?></option>
 					<option value="mwb_rma_greater_than_equal" <?php selected( 'mwb_rma_greater_than_equal', $value['row_conditions1'] ); ?>><?php esc_html_e( 'Greater than equal to', 'woo-refund-and-exchange-lite' ); ?></option>
 				</select>
-				<select name="mwb_rma_setting[<?php echo esc_html( $count ); ?>][row_conditions2]" class="mwb_rma_conditions2">
+				<select name="mwb_rma_setting[<?php echo esc_html( $count ); ?>][row_conditions2]" class="mwb_rma_conditions2 mwb_rma_policy_condition">
 					<option value="mwb_rma_equal_to" <?php selected( 'mwb_rma_equal_to', $value['row_conditions2'] ); ?>><?php esc_html_e( 'Equal to', 'woo-refund-and-exchange-lite' ); ?></option>
 					<option value="mwb_rma_not_equal_to" <?php selected( 'mwb_rma_not_equal_to', $value['row_conditions2'] ); ?>><?php esc_html_e( 'Not Equal to', 'woo-refund-and-exchange-lite' ); ?></option>
 				</select>
@@ -146,6 +147,6 @@ if ( empty( $a ) ) {
 	</div>
 <br><br>
 <input type="button" value="Add More" id="mwb_rma_add_more">
-<input type="submit" name="save_policies_setting" value="Save Setting">
+<input type="submit" name="save_policies_setting" value="Save Setting" class="mwb_rma_save_settings">
 </form>
 

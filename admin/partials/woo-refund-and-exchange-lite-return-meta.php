@@ -203,8 +203,8 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 				do_action( 'mwb_rma_return_ship_attach_upload_html', $order_id );
 				?>
 				<p id="mwb_rma_return_package">
-				<input type="button" value="<?php esc_html_e( 'Accept Request', 'woo-refund-and-exchange-lite' ); ?>" id="mwb_rma_accept_return" data-orderid="<?php echo esc_html( $order_id ); ?>" data-date="<?php echo esc_html( $key ); ?>">
-				<input type="button" value="<?php esc_html_e( 'Cancel Request', 'woo-refund-and-exchange-lite' ); ?>" id="mwb_rma_cancel_return" data-orderid="<?php echo esc_html( $order_id ); ?>" data-date="<?php echo esc_html( $key ); ?>">
+				<input type="button" value="<?php esc_html_e( 'Accept Request', 'woo-refund-and-exchange-lite' ); ?>" class="button button-primary" id="mwb_rma_accept_return" data-orderid="<?php echo esc_html( $order_id ); ?>" data-date="<?php echo esc_html( $key ); ?>">
+				<input type="button" value="<?php esc_html_e( 'Cancel Request', 'woo-refund-and-exchange-lite' ); ?>" class="button button-primary" id="mwb_rma_cancel_return" data-orderid="<?php echo esc_html( $order_id ); ?>" data-date="<?php echo esc_html( $key ); ?>">
 				</p>
 				<?php
 			}
@@ -232,7 +232,7 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 			<?php
 			if ( 'yes' !== $mwb_rma_refund_amount ) {
 				?>
-				<input type="button" name="mwb_rma_left_amount" data-refund_method="<?php echo esc_html( $refund_method ); ?>" data-orderid="<?php echo esc_html( $order_id ); ?>" id="mwb_rma_left_amount" Value="<?php esc_html_e( 'Refund Amount', 'woo-refund-and-exchange-lite' ); ?>" >
+				<input type="button" name="mwb_rma_left_amount" data-refund_method="<?php echo esc_html( $refund_method ); ?>" class="button button-primary" data-orderid="<?php echo esc_html( $order_id ); ?>" id="mwb_rma_left_amount" Value="<?php esc_html_e( 'Refund Amount', 'woo-refund-and-exchange-lite' ); ?>" >
 				<?php
 			}
 			$manage_stock = get_option( 'mwb_rma_refund_manage_stock', 'no' );
@@ -243,7 +243,7 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 			}
 			if ( 'on' === $manage_stock && 'yes' === $mwb_rma_manage_stock_for_return ) {
 				?>
-				<div id="mwb_rma_stock_button_wrapper"><?php esc_html_e( 'When Product Back in stock then for stock management click on ', 'woo-refund-and-exchange-lite' ); ?> <input type="button" name="mwb_rma_stock_back" id="mwb_rma_stock_back" data-type="mwb_rma_return" data-orderid="<?php echo esc_html( $order_id ); ?>" Value="<?php esc_html_e( 'Manage Stock', 'woo-refund-and-exchange-lite' ); ?>" ></div> 
+				<div id="mwb_rma_stock_button_wrapper"><?php esc_html_e( 'When Product Back in stock then for stock management click on ', 'woo-refund-and-exchange-lite' ); ?> <input type="button" name="mwb_rma_stock_back" class="button button-primary" id="mwb_rma_stock_back" data-type="mwb_rma_return" data-orderid="<?php echo esc_html( $order_id ); ?>" Value="<?php esc_html_e( 'Manage Stock', 'woo-refund-and-exchange-lite' ); ?>" ></div> 
 				<?php
 			}
 		}
@@ -273,7 +273,7 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 		$return_url                          = wp_nonce_url( $return_url, 'mwb_rma_nonce', 'mwb_rma_nonce' );
 		?>
 		<p><?php esc_html_e( 'No request from customer', 'woo-refund-and-exchange-lite' ); ?></p>
-		<a target="_blank" href="<?php echo esc_html( $return_url ); ?>"><b><?php esc_html_e( 'Initiate Refund Request', 'mwb-woocommerce-rma' ); ?></b></a>
+		<a target="_blank" class="button button-primary" href="<?php echo esc_html( $return_url ); ?>"><b><?php esc_html_e( 'Initiate Refund Request', 'woo-refund-and-exchange-lite' ); ?></b></a>
 		<?php
 	}
 }

@@ -1,0 +1,57 @@
+/*mwb form group breaker css*/
+.mwb-form-group__breaker {
+    padding: 15px 0 15px 30px;
+    background-color: #e5f4fe;
+    margin-left: -32px;
+    margin-right: -32px;
+    color: #2196f3;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+/*save_policies_setting_form*/
+#save_policies_setting_form .add_more_rma_policies {
+    padding-bottom: 20px;
+}
+#save_policies_setting_form .add_more_rma_policies:last-child {
+    padding-bottom: 0;
+}
+.add_more_rma_policies select,
+.add_more_rma_policies label, 
+.add_more_rma_policies input{
+    margin-right: 30px;
+}
+.admin-bar #save_policies_setting_form #mwb_rma_add_more,
+.admin-bar #save_policies_setting_form .mwb_rma_save_settings{
+	font-size: 14px;
+	padding: 16px 25px;
+	display: inline-block;
+	border-radius: 100px;
+	background: #2196F3;
+	color: #ffffff;
+	border: none;
+	text-transform: uppercase;
+	letter-spacing: 0.25px;
+	line-height: 16px;
+}
+.admin-bar #save_policies_setting_form input.mwb_rma_save_settings {
+    margin-left: 10px;
+}
+.admin-bar #save_policies_setting_form .mwb_rma_policy_condition{
+	min-width: 180px;
+}
+.admin-bar #save_policies_setting_form input.rma_policy_delete{
+	background-color: transparent;
+	border: 1px solid;
+	border-color: rgba(0,0,0,.38);
+	border-radius: 3px;
+}
+@media only screen and (max-width: 1140px){
+	.add_more_rma_policies select,
+	.add_more_rma_policies label, 
+	.add_more_rma_policies input{
+	    margin-top: 8px;
+	}
+	span.select2.select2-container.select2-container--default {
+	    margin-top: 8px;
+	}	
+}

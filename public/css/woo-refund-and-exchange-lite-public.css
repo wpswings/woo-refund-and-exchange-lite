@@ -64,7 +64,8 @@ h4{
     padding: 5px 105px 5px 5px;
     border-radius: 0;
 }
-.mwb_rma_refund_form_wrapper > div {
+.mwb_rma_refund_form_wrapper > div,
+.mwb_rma_refund_form_wrapper .mwb_rma__column > div {
     margin-bottom: 20px;
 }
 .mwb_rma_refund_form_wrapper img{
@@ -87,6 +88,12 @@ h4{
 .mwb_rma_refund_form_wrapper .mwb_rma_product_title,
 .mwb_rma_refund_form_wrapper .mwb_rma_product_title p{
     margin-top: 8px;
+}
+.mwb_rma_refund_form_wrapper .mwb_rma_refund_request__row {
+    justify-content: space-between;
+}
+.mwb_rma_refund_form_wrapper .mwb_rma__column{
+    width: 100%;
 }
 
 /* View Order Messages */
@@ -201,6 +208,16 @@ a.mwb_order_send_msg_dismiss{
     align-items: center;
 }
 /*media-query*/
+@media only screen and (min-width: 520px){
+    .mwb_rma_refund_form_wrapper .mwb_rma__column-left {
+        max-width: 70%;
+    }
+    .mwb_rma_refund_form_wrapper .mwb_rma__column-right {
+        margin-left: 30px;
+        max-width: calc(30% - 30px);
+        justify-content: flex-end;
+    }
+}
 @media only screen and (max-width: 480px){
     .mwb_order_msg_sub_container{
         padding: 15px;
