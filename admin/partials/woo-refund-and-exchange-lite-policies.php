@@ -88,6 +88,11 @@ if ( empty( $a ) ) {
 		<?php
 		$count = 1;
 		foreach ( $a['mwb_rma_setting'] as $key => $value ) :
+			if ( ! mwb_rma_pro_active() ) {
+				if ( 'refund' !== $value['row_functionality'] ) {
+					continue;
+				}
+			}
 			?>
 			<div class="add_more_rma_policies">
 				<select name="mwb_rma_setting[<?php echo esc_html( $count ); ?>][row_functionality]" class="mwb_rma_on_functionality">

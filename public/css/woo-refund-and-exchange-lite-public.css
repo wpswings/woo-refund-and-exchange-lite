@@ -210,11 +210,11 @@ a.mwb_order_send_msg_dismiss{
 /*media-query*/
 @media only screen and (min-width: 520px){
     .mwb_rma_refund_form_wrapper .mwb_rma__column-left {
-        max-width: 70%;
+        max-width: 60%;
     }
     .mwb_rma_refund_form_wrapper .mwb_rma__column-right {
-        margin-left: 30px;
-        max-width: calc(30% - 30px);
+        margin-left: 40px;
+        max-width: calc(40% - 40px);
         justify-content: flex-end;
     }
 }
