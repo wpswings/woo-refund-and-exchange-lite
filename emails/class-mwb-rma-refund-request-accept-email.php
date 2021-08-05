@@ -31,7 +31,7 @@ class Mwb_Rma_Refund_Request_Accept_Email extends WC_Email {
 
 		// this is the description in WooCommerce email settings.
 		$shortcodes        = '{site_title}, {site_address}, {site_url}, {message_date}, {order_id}';
-		$this->description = 'Admin to Customer Refund Request Accept Emails<h1>These are shorcodes available for the custom email</h1><br><span>'. apply_filters( 'mwb_rma_refund_shortcode', $shortcodes ) . '</span></b>';
+		$this->description = 'Admin to Customer Refund Request Accept Emails<h1>These are shorcodes available for the custom email</h1><br><span>' . apply_filters( 'mwb_rma_refund_shortcode', $shortcodes ) . '</span></b>';
 
 		// these are the default heading and subject lines that can be overridden using the settings.
 		$this->heading = 'RMA Refund Request Accept Email';

@@ -129,7 +129,7 @@ if ( 'yes' === $allowed ) {
 							$tax_exc = $item->get_total() - $item->get_subtotal_tax();
 						} else {
 							$tax_inc = $item->get_subtotal() + $item->get_subtotal_tax();
-							$tax_exc = $item->get_subtotal() - $item->get_subtotal_tax();                                     
+							$tax_exc = $item->get_subtotal() - $item->get_subtotal_tax();
 						}
 						if ( empty( $mwb_rma_check_tax ) ) {
 							if ( 'on' === $coupon_discount ) {
@@ -167,7 +167,7 @@ if ( 'yes' === $allowed ) {
 										<?php
 									}
 									?>
-								    <div class="mwb_rma_product_title">
+									<div class="mwb_rma_product_title">
 									<?php
 									echo wp_kses_post( apply_filters( 'woocommerce_order_item_name', $product_permalink ? sprintf( '<a href="%s">%s</a>', $product_permalink, $item['name'] ) : $item['name'], $item, $is_visible ) );
 									echo wp_kses_post( apply_filters( 'woocommerce_order_item_quantity_html', ' <strong class="product-quantity">' . sprintf( '&times; %s', $item['qty'] ) . '</strong>', $item ) );
@@ -182,7 +182,7 @@ if ( 'yes' === $allowed ) {
 									}
 									do_action( 'woocommerce_order_item_meta_end', $item_id, $item, $order_obj, true );
 									?>
- 									<p>
+									 <p>
 										<b><?php esc_html_e( 'Price', 'woo-refund-and-exchange-lite' ); ?> :</b> 
 										<?php
 											echo wp_kses_post( mwb_wrma_format_price( $mwb_actual_price, $get_order_currency ) );

@@ -177,7 +177,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			update_option( $order_id . 'mwb_rma_refund_method', $refund_method );
 			$order = wc_get_order( $order_id );
 
-			if( empty( get_post_meta( $order_id, 'mwb_rma_request_made', true ) ) ) {
+			if ( empty( get_post_meta( $order_id, 'mwb_rma_request_made', true ) ) ) {
 				$item_id = array();
 			} else {
 				$item_id = get_post_meta( $order_id, 'mwb_rma_request_made', true );

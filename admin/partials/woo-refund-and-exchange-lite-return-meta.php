@@ -28,7 +28,7 @@ if ( is_array( $line_items ) && ! empty( $line_items ) ) {
 $line_items = get_post_meta( $order_id, 'mwb_rma_new_refund_line_items', true );
 
 if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
-	$ref_meth = get_option( $order_id .'mwb_rma_refund_method' );
+	$ref_meth = get_option( $order_id . 'mwb_rma_refund_method' );
 	foreach ( $return_datas as $key => $return_data ) {
 		$date          = date_create( $key );
 		$date_format   = get_option( 'date_format' );

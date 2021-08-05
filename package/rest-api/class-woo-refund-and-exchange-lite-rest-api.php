@@ -88,7 +88,7 @@ class Woo_Refund_And_Exchange_Lite_Rest_Api {
 			'/mwb-rma-refund-request/',
 			array(
 				'methods'  => 'POST',
-				//'methods'  => WP_REST_Server::CREATABLE,
+				// 'methods'  => WP_REST_Server::CREATABLE,
 				'callback' => array( $this, 'mwb_rma_default_callback', 'req' ),
 				'permission_callback' => array( $this, 'mwb_rma_default_permission_check' ),
 			)
@@ -98,7 +98,7 @@ class Woo_Refund_And_Exchange_Lite_Rest_Api {
 			'/mwb-rma-refund-request-accept/',
 			array(
 				'methods'  => 'POST',
-				//'methods'  => WP_REST_Server::CREATABLE,
+				// 'methods'  => WP_REST_Server::CREATABLE,
 				'callback' => array( $this, 'mwb_rma_default_callback', 'req-accept' ),
 				'permission_callback' => array( $this, 'mwb_rma_default_permission_check' ),
 			)
@@ -108,7 +108,7 @@ class Woo_Refund_And_Exchange_Lite_Rest_Api {
 			'/mwb-rma-refund-request-cancel/',
 			array(
 				'methods'  => 'POST',
-				//'methods'  => WP_REST_Server::CREATABLE,
+				// 'methods'  => WP_REST_Server::CREATABLE,
 				'callback' => array( $this, 'mwb_rma_default_callback', 'req-cancel' ),
 				'permission_callback' => array( $this, 'mwb_rma_default_permission_check' ),
 			)

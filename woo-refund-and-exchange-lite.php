@@ -395,7 +395,6 @@ if ( $activated ) {
 	 */
 	function mwb_wrma_format_price( $price, $currency_symbol ) {
 		$price           = apply_filters( 'mwb_rma_price_change_everywhere', $price );
-		//$currency_symbol = get_woocommerce_currency_symbol();
 		$currency_pos    = get_option( 'woocommerce_currency_pos' );
 		switch ( $currency_pos ) {
 			case 'left':
@@ -432,10 +431,6 @@ if ( $activated ) {
 
 	/**
 	 * Show warning message if woocommerce is not install
-	 *
-	 * @name ced_rnx_plugin_error_notice()
-	 * @author MakeWebBetter<webmaster@makewebbetter.com>
-	 * @link http://www.makewebbetter.com/
 	 */
 	function mwb_rma_plugin_error_notice_when_pro_activated() {
 		?>
