@@ -850,12 +850,11 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				sanitize_text_field( wp_unslash( $key ) );
 				map_deep( wp_unslash( $value ), 'sanitize_text_field' );
 			}
+			do_action( 'mwb_rma_policies_setting', $_POST );
 			update_option( 'policies_setting_option', $_POST );
-			$url = isset( $_SERVER['HTTP_REFERER'] ) ? sanitize_text_field( wp_unslash( $_SERVER['HTTP_REFERER'] ) ) : sanitize_text_field( wp_unslash( $_SERVER['HTTP_REFERER'] ) );
 			update_option( 'mwb_rma_save_policiies_setting', true );
 			$mwb_rma_error_text = esc_html__( 'Settings saved !', 'woo-refund-and-exchange-lite' );
 			$wrael_mwb_rma_obj->mwb_rma_plug_admin_notice( $mwb_rma_error_text, 'success2' );
-			//wp_safe_redirect( $url );
 		}
 	}
 }
