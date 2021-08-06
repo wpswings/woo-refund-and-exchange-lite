@@ -87,7 +87,6 @@ class woocommerce_refund_and_exchange_lite_Admin {
 	 * @since    1.0.0
 	 */
 	public function enqueue_scripts() {
-
 		/**
 		 * This function is provided for demonstration purposes only.
 		 *

@@ -359,7 +359,6 @@ if ( $activated ) {
 						),
 						array( 'element_id' => $post_translated_id )
 					);
-
 				}
 			}
 		}
@@ -383,6 +382,31 @@ if ( $activated ) {
 			}
 		}
 	}
+
+	/**
+	 * This function runs when WordPress completes its upgrade process
+	 * It iterates through each plugin updated to see if ours is included
+	 *
+	 * @param object $upgrader_object .
+	 * @param array  $options .
+	 */
+	function rma_lite_reno_plugin_upgrade_completed( $upgrader_object, $options ) {
+		// The path to our plugin's main file.
+		$our_plugin = plugin_basename( __FILE__ );
+		// If an update has taken place and the updated type is plugins and the plugins element exists.
+		if ( $options['action'] == 'update' && $options['type'] == 'plugin' && isset( $options['plugins'] ) ) {
+			// Iterate through the plugins being updated and check if ours is there.
+			foreach ( $options['plugins'] as $plugin ) {
+				if ( $plugin == $our_plugin ) {
+					// Set a transient to record that our plugin has just been updated.
+					require_once plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-rma-lite-restore-settings-updation.php';
+					$restore_data = new Woocommerce_Rma_Lite_Restore_Settings_Updation();
+					$restore_data->mwb_rma_migrate_re_settings();
+				}
+			}
+		}
+	}
+	add_action( 'upgrader_process_complete', 'rma_lite_reno_plugin_upgrade_completed', 10, 2 );
 } else {
 
 	/**

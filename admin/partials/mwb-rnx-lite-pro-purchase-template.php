@@ -2,7 +2,7 @@
 /**
  * Exit if accessed directly
  *
- * @package run_woocommerce_refund_and_exchange_lite
+ * @package woocommerce_refund_and_exchange_lite
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

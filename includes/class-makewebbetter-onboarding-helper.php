@@ -5,7 +5,7 @@
  * @link       https://makewebbetter.com
  * @since      1.0.0
  *
- * @package    Makewebbetter_Onboarding_Helper
+ * @package    woocommerce_refund_and_exchange_lite
  * @subpackage Makewebbetter_Onboarding_Helper/includes/
  */
 
@@ -15,8 +15,8 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    Makewebbetter_Onboarding_Helper
- * @subpackage Makewebbetter_Onboarding_Helper/admin
+ * @package    woocommerce_refund_and_exchange_lite
+ * @subpackage woocommerce_refund_and_exchange_liteMakewebbetter_Onboarding_Helper/admin
  * @author     MakeWebBetter<dev@mwb.com>
  */
 if ( class_exists( 'Makewebbetter_Onboarding_Helper' ) ) {
@@ -831,35 +831,6 @@ class Makewebbetter_Onboarding_Helper {
 
 
 	/**
-	 * Handle Hubspot GET api calls.
-	 *
-	 * @since    1.0.0
-	 */
-	private function hic_get( $endpoint, $headers ) {
-
-		$url = $this->base_url . $endpoint;
-
-		$ch = @curl_init();
-		@curl_setopt( $ch, CURLOPT_POST, false );
-		@curl_setopt( $ch, CURLOPT_URL, $url );
-		@curl_setopt( $ch, CURLOPT_HTTPHEADER, $headers );
-		@curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-		@curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
-		@curl_setopt( $ch, CURLOPT_SSL_VERIFYHOST, false );
-		$response = @curl_exec( $ch );
-		$status_code = @curl_getinfo( $ch, CURLINFO_HTTP_CODE );
-		$curl_errors = curl_error( $ch );
-		@curl_close( $ch );
-
-		return array(
-			'status_code' => $status_code,
-			'response' => $response,
-			'errors' => $curl_errors,
-		);
-	}
-
-
-	/**
 	 * Handle Hubspot POST api calls.
 	 *
 	 * @since    1.0.0
@@ -868,18 +839,27 @@ class Makewebbetter_Onboarding_Helper {
 
 		$url = $this->base_url . $endpoint;
 
-		$ch = @curl_init();
-		@curl_setopt( $ch, CURLOPT_POST, true );
-		@curl_setopt( $ch, CURLOPT_URL, $url );
-		@curl_setopt( $ch, CURLOPT_POSTFIELDS, $post_params );
-		@curl_setopt( $ch, CURLOPT_HTTPHEADER, $headers );
-		@curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-		@curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
-		@curl_setopt( $ch, CURLOPT_SSL_VERIFYHOST, false );
-		$response = @curl_exec( $ch );
-		$status_code = @curl_getinfo( $ch, CURLINFO_HTTP_CODE );
-		$curl_errors = curl_error( $ch );
-		@curl_close( $ch );
+		$request  = array(
+			'method'      => 'POST',
+			'timeout'     => 45,
+			'redirection' => 5,
+			'httpversion' => '1.0',
+			'blocking'    => true,
+			'headers'     => $headers,
+			'body'        => $post_params,
+			'cookies'     => array(),
+		);
+		$response = wp_remote_post( $url, $request );
+
+		if ( is_wp_error( $response ) ) {
+			$status_code = 500;
+			$response    = esc_html__( 'Unexpected Error Occured', 'invoice-system-for-woocommerce' );
+			$curl_errors = $response;
+		} else {
+			$status_code = wp_remote_retrieve_response_code( $response );
+			$response    = wp_remote_retrieve_body( $response );
+			$curl_errors = $response;
+		}
 
 		return array(
 			'status_code' => $status_code,
@@ -920,7 +900,7 @@ class Makewebbetter_Onboarding_Helper {
 		);
 
 		$response = $this->hic_post( $url, $form_data, $headers );
-
+		$response = map_deep( wp_unslash( $response ), 'sanitize_text_field' );
 		if ( 200 === $response['status_code'] ) {
 			$result = json_decode( $response['response'], true );
 			$result['success'] = true;

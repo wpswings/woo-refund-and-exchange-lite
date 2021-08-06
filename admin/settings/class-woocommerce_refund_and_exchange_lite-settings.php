@@ -211,7 +211,7 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 			}
 
 			$statuses = wc_get_order_statuses();
-			$status = $statuses;
+			$status   = $statuses;
 			unset( $status['wc-refund-approved'] );
 			unset( $status['wc-refund-cancelled'] );
 			unset( $status['wc-refund-requested'] );
@@ -220,9 +220,9 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 			$emai_url = admin_url() . 'admin.php?page=wc-settings&tab=email&section=wc_rma_messages_email';
 
 			$button_view = array(
-				'order-page' => __( 'Order Page', 'mwb-woocommerce-rma' ),
-				'My account' => __( 'Order View Page', 'mwb-woocommerce-rma' ),
-				'thank-you-page' => __( 'Thank You Page', 'mwb-woocommerce-rma' ),
+				'order-page' => __( 'Order Page', 'woo-refund-and-exchange-lite' ),
+				'My account' => __( 'Order View Page', 'woo-refund-and-exchange-lite' ),
+				'thank-you-page' => __( 'Thank You Page', 'woo-refund-and-exchange-lite' ),
 			);
 
 			if ( 'refund' == $current_section ) {

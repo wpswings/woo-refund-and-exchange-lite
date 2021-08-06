@@ -129,7 +129,6 @@
 								dataType :'json',
 								success: function(response)
 							{
-								console.log(response);
 									$( ".ced_rnx_return_loader" ).hide();
 									window.location.reload();
 								}

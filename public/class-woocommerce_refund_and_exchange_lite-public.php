@@ -42,12 +42,11 @@ class woocommerce_refund_and_exchange_lite_Public {
 	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @since    1.0.0
+	 * @since    5.0.0
 	 * @param      string $woocommerce_refund_and_exchange_lite       The name of the plugin.
 	 * @param      string $version    The version of this plugin.
 	 */
 	public function __construct( $woocommerce_refund_and_exchange_lite, $version ) {
-
 		$this->woocommerce_refund_and_exchange_lite = $woocommerce_refund_and_exchange_lite;
 		$this->version = $version;
 
@@ -59,7 +58,6 @@ class woocommerce_refund_and_exchange_lite_Public {
 	 * @since    1.0.0
 	 */
 	public function enqueue_styles() {
-
 		/**
 		 * This function is provided for demonstration purposes only.
 		 *
