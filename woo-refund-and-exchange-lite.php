@@ -86,7 +86,6 @@ if ( $activated ) {
 			define( 'WOO_REFUND_AND_EXCHANGE_LITE_ITEM_REFERENCE', 'Woo Refund And Exchange Lite' );
 		}
 		woo_refund_and_exchange_lite_constants( 'WOO_REFUND_AND_EXCHANGE_LITE_BASE_FILE', __FILE__ );
-		include_once 'class-mwb-woo-refund-and-exchange-lite-update.php';
 	}
 
 	/**

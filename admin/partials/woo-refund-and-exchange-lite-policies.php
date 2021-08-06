@@ -19,16 +19,18 @@ if ( empty( $a ) ) {
 	$a = array(
 		'mwb_rma_setting' => array(
 			0 => array(
-				'row_policy'        => 'mwb_rma_maximum_days',
-				'row_functionality' => 'refund',
-				'row_conditions1'   => 'mwb_rma_less_than',
-				'row_conditions2'   => 'mwb_rma_equal_to',
-				'row_value'         => '',
-				'row_tax'           => 'mwb_rma_inlcude_tax',
+				'row_policy'           => 'mwb_rma_maximum_days',
+				'row_functionality'    => 'refund',
+				'row_conditions1'      => 'mwb_rma_less_than',
+				'row_conditions2'      => 'mwb_rma_equal_to',
+				'row_value'            => '',
+				'row_tax'              => 'mwb_rma_inlcude_tax',
+				'incase_functionality' => 'incase',
 			),
 		),
 	);
 }
+
 ?>
 <div id="add_more_rma_policies_clone" style="display:none">
 	<input type="hidden" value="1" class="mwb_rma_get_current_i">
@@ -40,7 +42,14 @@ if ( empty( $a ) ) {
 		?>
 	</select> 
 
-	<label class="mwb_rma_settings_label"><?php esc_html_e( 'InCase: If', 'woo-refund-and-exchange-lite' ); ?></label>
+	<select name="mwb_rma_setting[1][incase_functionality]" class="mwb_rma_settings_label">
+		<option value="incase"><?php esc_html_e( 'InCase: If', 'woo-refund-and-exchange-lite' ); ?></option>
+		<?php
+		// To extend the functionality setting on the policies tab.
+		do_action( 'mwb_rma_setting_functionality_incase_extend1' );
+		?>
+	</select> 
+	<!-- <label class="mwb_rma_settings_label"><?php esc_html_e( 'InCase: If', 'woo-refund-and-exchange-lite' ); ?></label> -->
 	<select name="mwb_rma_setting[1][row_policy]" class="mwb_rma_settings">
 		<option value=""><?php esc_html_e( 'Choose Option', 'woo-refund-and-exchange-lite' ); ?></option>
 		<option value="mwb_rma_maximum_days"><?php esc_html_e( 'Maximum Days', 'woo-refund-and-exchange-lite' ); ?></option>
@@ -104,7 +113,14 @@ if ( empty( $a ) ) {
 				</select>
 				<input type="hidden" value="<?php echo esc_html( $count ); ?>" class="mwb_rma_get_current_i">
 
-				<label  class="mwb_rma_settings_label" ><?php esc_html_e( 'InCase: If', 'woo-refund-and-exchange-lite' ); ?></label>
+				<select name="mwb_rma_setting[<?php echo esc_html( $count ); ?>][incase_functionality]" class="mwb_rma_settings_label">
+					<option value="incase" <?php selected( 'incase', $value['incase_functionality'] ); ?>><?php esc_html_e( 'InCase: If', 'woo-refund-and-exchange-lite' ); ?></option>
+					<?php
+					// To extend the functionality setting on the policies tab.
+					do_action( 'mwb_rma_setting_functionality_incase_extend2', $value['incase_functionality'] );
+					?>
+				</select> 
+				<!-- <label  class="mwb_rma_settings_label" ><?php esc_html_e( 'InCase: If', 'woo-refund-and-exchange-lite' ); ?></label> -->
 				<select name="mwb_rma_setting[<?php echo esc_html( $count ); ?>][row_policy]" class="mwb_rma_settings">
 					<option value=""><?php esc_html_e( 'Choose Option', 'woo-refund-and-exchange-lite' ); ?></option>	
 					<option value="mwb_rma_maximum_days" <?php selected( 'mwb_rma_maximum_days', $value['row_policy'] ); ?>><?php esc_html_e( 'Maximum Days', 'woo-refund-and-exchange-lite' ); ?></option>
