@@ -180,7 +180,6 @@ class woocommerce_refund_and_exchange_lite {
 		// Add Deactivation screen.
 		$this->loader->add_filter( 'mwb_deactivation_supported_slug', $plugin_admin, 'add_mwb_deactivation_screens' );
 
-		$this->loader->add_filter( 'mwb_deactivation_supported_slug', $plugin_admin, 'add_mwb_deactivation_screens' );
 	}
 
 	/**

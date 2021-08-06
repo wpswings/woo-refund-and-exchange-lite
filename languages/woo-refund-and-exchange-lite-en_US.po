@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Return Refund and Exchange for Woocommerce 3.1.0\n"
-"POT-Creation-Date: 2021-04-05 09:50+0530\n"
-"PO-Revision-Date: 2021-04-05 09:50+0530\n"
+"POT-Creation-Date: 2021-08-06 15:08+0530\n"
+"PO-Revision-Date: 2021-08-06 15:08+0530\n"
 "Last-Translator: \n"
 "Language-Team: MakeWebBetter\n"
 "Language: en_US\n"
@@ -17,109 +17,109 @@ msgstr ""
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:109
+#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:108
 msgid "The message has been sent successfully."
 msgstr ""
 
-#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:110
+#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:109
 msgid "Please enter a message."
 msgstr ""
 
-#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:137
+#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:136
 msgid "Refund-Exchange Lite"
 msgstr ""
 
-#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:157
+#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:156
 #, php-format
 msgid "Refund Requested <span class=\"count\">(%s)</span>"
 msgstr ""
 
-#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:169
+#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:168
 #, php-format
 msgid "Refund Approved <span class=\"count\">(%s)</span>"
 msgstr ""
 
-#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:181
+#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:180
 #, php-format
 msgid "Refund Cancelled <span class=\"count\">(%s)</span>"
 msgstr ""
 
-#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:199
+#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:198
 msgid "Refund Requested"
 msgstr ""
 
-#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:200
+#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:199
 #: admin/partials/mwb-rnx-lite-notification.php:300
 msgid "Refund Approved"
 msgstr ""
 
-#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:201
+#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:200
 msgid "Refund Cancelled"
 msgstr ""
 
-#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:379
+#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:378
 msgid "Your Refund Request is Approved"
 msgstr ""
 
-#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:390
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:562
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:801
+#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:389
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:560
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:799
 #: public/partials/mwb-rnx-lite-refund-request-form.php:163
 msgid "Product"
 msgstr ""
 
-#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:391
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:563
+#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:390
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:561
 #: public/partials/mwb-rnx-lite-refund-request-form.php:164
 msgid "Quantity"
 msgstr ""
 
-#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:392
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:564
+#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:391
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:562
 #: public/partials/mwb-rnx-lite-refund-request-form.php:247
 msgid "Price"
 msgstr ""
 
-#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:474
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:605
+#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:473
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:603
 msgid "Refund Total"
 msgstr ""
 
-#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:481
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:612
+#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:480
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:610
 msgid "Customer details"
 msgstr ""
 
-#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:485
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:615
+#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:484
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:613
 msgid "Email"
 msgstr ""
 
-#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:490
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:618
+#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:489
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:616
 msgid "Tel"
 msgstr ""
 
-#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:497
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:624
+#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:496
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:622
 msgid "Shipping Address"
 msgstr ""
 
-#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:501
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:628
+#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:500
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:626
 msgid "Billing Address"
 msgstr ""
 
-#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:578
-#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:684
+#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:577
+#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:683
 msgid "User Request of Refund Product is approved"
 msgstr ""
 
-#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:740
+#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:739
 msgid "Product Stock is updated Successfully."
 msgstr ""
 
-#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:743
+#: admin/class-woocommerce_refund_and_exchange_lite-admin.php:742
 msgid ""
 "Product Stock is not updated as manage stock setting of product is disable."
 msgstr ""
@@ -144,8 +144,8 @@ msgstr ""
 
 #: admin/partials/mwb-rnx-lite-notification.php:91
 #: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:323
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:219
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:742
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:217
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:740
 msgid "Refund"
 msgstr ""
 
@@ -354,7 +354,7 @@ msgid "Qty"
 msgstr ""
 
 #: admin/partials/mwb-rnx-lite-return-product-meta.php:50
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:802
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:800
 #: public/partials/mwb-rnx-lite-refund-request-form.php:165
 msgid "Total"
 msgstr ""
@@ -376,7 +376,7 @@ msgid "Total Amount"
 msgstr ""
 
 #: admin/partials/mwb-rnx-lite-return-product-meta.php:150
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:857
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:855
 msgid "Refund Amount"
 msgstr ""
 
@@ -617,8 +617,8 @@ msgid "View Order Messages Button text"
 msgstr ""
 
 #: admin/settings/class-woocommerce_refund_and_exchange_lite-settings.php:346
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:184
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:756
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:182
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:754
 msgid "View Order Messages"
 msgstr ""
 
@@ -681,6 +681,10 @@ msgstr ""
 msgid "What is your contact number?"
 msgstr ""
 
+#: includes/class-makewebbetter-onboarding-helper.php:856
+msgid "Unexpected Error Occured"
+msgstr ""
+
 #: includes/extra-templates/makewebbetter-deactivation-template-display.php:37
 msgid "May we have a little info about why you are deactivating?"
 msgstr ""
@@ -704,61 +708,61 @@ msgstr ""
 msgid "Skip For Now"
 msgstr ""
 
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:108
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:106
 msgid "Please enter refund subject."
 msgstr ""
 
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:109
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:107
 msgid "Please enter refund reason."
 msgstr ""
 
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:374
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:372
 msgid ""
 "Your Giftcard has been expired so you can not proceed with the refund. Thanks"
 msgstr ""
 
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:383
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:381
 msgid ""
 "Your Giftcard has been used so you can not proceed with the refund. Thanks"
 msgstr ""
 
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:554
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:552
 msgid "Reason of Refund"
 msgstr ""
 
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:712
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:710
 msgid ""
 "Message send successfully. You have received a notification mail regarding "
 "this, Please check your mail. Soon You redirect to the My Account Page. "
 "Thanks"
 msgstr ""
 
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:787
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:785
 msgid "Refund Requested Product"
 msgstr ""
 
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:797
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:795
 msgid "Following product Refund request made on"
 msgstr ""
 
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:869
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:867
 msgid "Extra Cost"
 msgstr ""
 
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:886
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:884
 #: public/partials/mwb-rnx-lite-refund-request-form.php:285
 msgid "Total Refund Amount"
 msgstr ""
 
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:926
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:924
 msgid "Update Request"
 msgstr ""
 
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:938
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:936
 msgid "Above product Refund request is approved on"
 msgstr ""
 
-#: public/class-woocommerce_refund_and_exchange_lite-public.php:947
+#: public/class-woocommerce_refund_and_exchange_lite-public.php:945
 msgid "Above product Refund request is canceled on"
 msgstr ""
 
@@ -858,13 +862,13 @@ msgstr ""
 msgid "Go Premium"
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:399
+#: woocommerce-refund-and-exchange-lite.php:423
 msgid ""
 "Woocommerce is not activated, Please activate Woocommerce first to install "
 "WooCommerce Refund and Exchange Lite."
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:418
+#: woocommerce-refund-and-exchange-lite.php:442
 msgid ""
 "WooCommerce RMA | Return-Refund-Exchange is activated so you did not need to "
 "install WooCommerce Refund and Exchange Lite because the Main version "

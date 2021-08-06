@@ -42,7 +42,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @since    5.0.0
+	 * @since    1.0.0
 	 * @param      string $woocommerce_refund_and_exchange_lite       The name of the plugin.
 	 * @param      string $version    The version of this plugin.
 	 */
