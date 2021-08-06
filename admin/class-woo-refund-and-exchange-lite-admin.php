@@ -326,7 +326,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	 */
 	public function wrael_admin_save_tab_settings() {
 		global $wrael_mwb_rma_obj;
-		if ( ( isset( $_POST['mwb_rma_save_general_setting'] ) || isset( $_POST['mwb_rma_save_refund_setting'] ) || isset( $_POST['mwb_rma_save_text_setting'] ) || isset( $_POST['mwb_rma_save_policies_setting'] ) )
+		if ( ( isset( $_POST['mwb_rma_save_general_setting'] ) || isset( $_POST['mwb_rma_save_refund_setting'] ) || isset( $_POST['mwb_rma_save_text_setting'] ) )
 			&& ( ! empty( $_POST['mwb_tabs_nonce'] )
 			&& wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['mwb_tabs_nonce'] ) ), 'admin_save_data' ) )
 		) {
@@ -517,21 +517,6 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			'class'       => 'wrael-button-class',
 		);
 		return $mwb_rma_settings_refund;
-	}
-
-	/**
-	 * Register Policies section setting.
-	 *
-	 * @param array $mwb_rma_settings_policies .
-	 */
-	public function mwb_rma_policies_settings_page( $mwb_rma_settings_policies ) {
-		$mwb_rma_settings_policies[] = array(
-			'type'        => 'button',
-			'id'          => 'mwb_rma_save_policies_setting',
-			'button_text' => __( 'Save Setting', 'woo-refund-and-exchange-lite' ),
-			'class'       => 'wrael-button-class',
-		);
-		return $mwb_rma_settings_policies;
 	}
 
 	/**
@@ -857,25 +842,20 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	 * Save policies setting.
 	 */
 	public function mwb_rma_save_policies_setting() {
+		global $wrael_mwb_rma_obj;
 		if ( isset( $_POST['save_policies_setting'] ) && isset( $_POST['get_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['get_nonce'] ) ), 'create_form_nonce' ) ) {
 			unset( $_POST['save_policies_setting'] );
 			unset( $_POST['get_nonce'] );
+			foreach ( $_POST as $key => $value ) {
+				sanitize_text_field( wp_unslash( $key ) );
+				map_deep( wp_unslash( $value ), 'sanitize_text_field' );
+			}
 			update_option( 'policies_setting_option', $_POST );
 			$url = isset( $_SERVER['HTTP_REFERER'] ) ? sanitize_text_field( wp_unslash( $_SERVER['HTTP_REFERER'] ) ) : sanitize_text_field( wp_unslash( $_SERVER['HTTP_REFERER'] ) );
 			update_option( 'mwb_rma_save_policiies_setting', true );
-			wp_safe_redirect( $url );
-		}
-	}
-
-	/**
-	 * Show notices after rma policies setting saved.
-	 */
-	public function show_notices() {
-		global $wrael_mwb_rma_obj;
-		if ( get_option( 'mwb_rma_save_policiies_setting' ) ) {
 			$mwb_rma_error_text = esc_html__( 'Settings saved !', 'woo-refund-and-exchange-lite' );
 			$wrael_mwb_rma_obj->mwb_rma_plug_admin_notice( $mwb_rma_error_text, 'success2' );
-			update_option( 'mwb_rma_save_policiies_setting', false );
+			//wp_safe_redirect( $url );
 		}
 	}
 }

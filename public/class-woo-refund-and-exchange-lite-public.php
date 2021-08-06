@@ -68,7 +68,6 @@ class Woo_Refund_And_Exchange_Lite_Public {
 	 * @since    1.0.0
 	 */
 	public function wrael_public_enqueue_scripts() {
-
 		$pro_active = mwb_rma_pro_active();
 		wp_register_script( $this->plugin_name, WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'public/js/woo-refund-and-exchange-lite-public.js', array( 'jquery' ), $this->version, false );
 		wp_localize_script(

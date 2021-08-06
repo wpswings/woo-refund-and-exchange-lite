@@ -152,7 +152,7 @@ class Mwb_Rma_Refund_Request_Email extends WC_Email {
 				'label'   => 'Enable this email notification',
 				'default' => 'yes',
 			),
-			'subject'    => array(
+			'subject'   => array (
 				'title'       => esc_html__( 'Subject', 'woo-refund-and-exchange-lite' ),
 				'type'        => 'text',
 				'desc_tip'    => true,

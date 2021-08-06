@@ -213,7 +213,6 @@ class Woo_Refund_And_Exchange_Lite {
 
 		// Register settings.
 		$this->loader->add_filter( 'mwb_rma_refund_settings_array', $wrael_plugin_admin, 'mwb_rma_refund_settings_page', 10 );
-		$this->loader->add_filter( 'mwb_rma_policies_settings_array', $wrael_plugin_admin, 'mwb_rma_policies_settings_page', 10 );
 		$this->loader->add_filter( 'mwb_rma_order_message_settings_array', $wrael_plugin_admin, 'mwb_rma_order_message_settings_page', 10 );
 
 		// Add metaboxes.
@@ -233,9 +232,7 @@ class Woo_Refund_And_Exchange_Lite {
 		$this->loader->add_action( 'mwb_rma_refund_req_cancel_email', $wrael_plugin_admin, 'mwb_rma_refund_req_cancel_email', 10 );
 
 		// Save policies setting.
-		// $this->loader->add_action( 'init', $wrael_plugin_admin, '' );
-		$this->loader->add_action( 'init', $wrael_plugin_admin, 'show_notices' );
-		$this->loader->add_action( 'init', $wrael_plugin_admin, 'mwb_rma_save_policies_setting' );
+		$this->loader->add_action( 'mwb_rma_settings_saved_notice', $wrael_plugin_admin, 'mwb_rma_save_policies_setting' );
 	}
 
 	/**
