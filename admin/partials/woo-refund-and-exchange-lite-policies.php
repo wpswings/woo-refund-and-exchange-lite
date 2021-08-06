@@ -24,7 +24,7 @@ if ( empty( $a ) ) {
 				'row_conditions1'   => 'mwb_rma_less_than',
 				'row_conditions2'   => 'mwb_rma_equal_to',
 				'row_value'         => '',
-				'row_tax'           => 'includue_tax',
+				'row_tax'           => 'mwb_rma_inlcude_tax',
 			),
 		),
 	);
