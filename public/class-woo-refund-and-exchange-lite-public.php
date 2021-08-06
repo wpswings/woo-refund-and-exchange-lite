@@ -112,23 +112,9 @@ class Woo_Refund_And_Exchange_Lite_Public {
 			$actions['view_msg']['name']    = $order_msg_button_text;
 		}
 
-		$item_refund_already = get_post_meta( $order->get_id(), 'mwb_rma_request_made', true );
-		$item_refund_already =
-		// change refund made bool.
-		apply_filters( 'mwb_rma_refund_made', $item_refund_already );
-		if ( ! empty( $item_refund_already ) ) {
-			if ( isset( $item_refund_already[0] ) && ( 'pending' === $item_refund_already[0] || 'cancel' === $item_refund_already[0] ) ) {
-				$refund_will_made = true;
-			} else {
-				$refund_will_made = false;
-			}
-		} else {
-			$refund_will_made = true;
-		}
-
 		$refund_will_made =
 		// Refund Will made or not bool.
-		apply_filters( 'mwb_rma_refund_will_made', $refund_will_made, $order->get_id() );
+		apply_filters( 'mwb_rma_refund_will_made', true, $order->get_id() );
 		$show_on_pages = true;
 		if ( ! empty( $refund_hide ) && in_array( 'order-page', $refund_hide, true ) ) {
 			$show_on_pages = false;
@@ -188,22 +174,9 @@ class Woo_Refund_And_Exchange_Lite_Public {
 		// View order message code end.
 
 		// Show Refund button functionality start.
-		$item_refund_already = get_post_meta( $order->get_id(), 'mwb_rma_request_made', true );
 
-		$item_refund_already =
-		// change refund made bool.
-		apply_filters( 'mwb_rma_refund_made', $item_refund_already );
-		if ( ! empty( $item_refund_already ) ) {
-			if ( isset( $item_refund_already[0] ) && ( 'pending' === $item_refund_already[0] || 'cancel' === $item_refund_already[0] ) ) {
-				$refund_will_made = true;
-			} else {
-				$refund_will_made = false;
-			}
-		} else {
-			$refund_will_made = true;
-		}
 		// Refund Will made or not bool.
-		$refund_will_made                    = apply_filters( 'mwb_rma_refund_will_made', $refund_will_made, $order->get_id() );
+		$refund_will_made                    = apply_filters( 'mwb_rma_refund_will_made', true, $order->get_id() );
 		$mwb_rma_return_request_form_page_id = get_option( 'mwb_rma_return_request_form_page_id', true );
 		if ( $refund_will_made && 'yes' === $condition ) {
 			$return_button_text = get_option( 'mwb_rma_refund_button_text', false );
