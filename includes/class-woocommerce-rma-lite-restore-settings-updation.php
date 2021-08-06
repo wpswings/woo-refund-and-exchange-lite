@@ -84,6 +84,7 @@ class Woocommerce_Rma_Lite_Restore_Settings_Updation {
 		$tax_enable          = get_option( 'mwb_wrma_return_tax_enable', false );
 		$refund_order_status = get_option( 'mwb_wrma_return_order_status', false );
 		$return_days         = get_option( 'mwb_wrma_return_days', false );
+		$refund_order_status = ! empty( $refund_order_status ) ? $refund_order_status : array();
 		$set_policies_arr = array(
 			'mwb_rma_setting' =>
 			array(
@@ -91,28 +92,14 @@ class Woocommerce_Rma_Lite_Restore_Settings_Updation {
 					'row_policy'           => 'mwb_rma_maximum_days',
 					'row_functionality'    => 'refund',
 					'row_conditions1'      => 'mwb_rma_less_than',
-					'row_conditions2'      => 'mwb_rma_equal_to',
 					'row_value'            => $return_days,
-					'row_tax'              => 'mwb_rma_inlcude_tax',
 					'incase_functionality' => 'incase',
 				),
 				1 => array(
 					'row_functionality'    => 'refund',
 					'row_policy'           => 'mwb_rma_order_status',
-					'row_conditions1'      => 'mwb_rma_less_than',
 					'row_conditions2'      => 'mwb_rma_equal_to',
-					'row_tax'              => 'mwb_rma_inlcude_tax',
-					'row_value'            => '',
 					'row_statuses'         => $refund_order_status,
-					'incase_functionality' => 'incase',
-				),
-				2 => array(
-					'row_functionality'    => 'refund',
-					'row_policy'           => 'mwb_rma_tax_handling',
-					'row_conditions1'      => 'mwb_rma_less_than',
-					'row_conditions2'      => 'mwb_rma_equal_to',
-					'row_value'            => '',
-					'row_tax'              => 'mwb_rma_inlcude_tax',
 					'incase_functionality' => 'incase',
 				),
 			),
