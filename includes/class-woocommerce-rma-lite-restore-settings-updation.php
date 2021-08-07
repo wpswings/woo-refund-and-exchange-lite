@@ -81,7 +81,6 @@ class Woocommerce_Rma_Lite_Restore_Settings_Updation {
 		}
 
 		// RMA Policies Setting Save.
-		$tax_enable          = get_option( 'mwb_wrma_return_tax_enable', false );
 		$refund_order_status = get_option( 'mwb_wrma_return_order_status', false );
 		$return_days         = get_option( 'mwb_wrma_return_days', false );
 		$refund_order_status = ! empty( $refund_order_status ) ? $refund_order_status : array();
@@ -104,10 +103,6 @@ class Woocommerce_Rma_Lite_Restore_Settings_Updation {
 				),
 			),
 		);
-
-		if ( 'yes' !== $tax_enable ) {
-			unset( $set_policies_arr['mwb_rma_setting'][2] );
-		}
 		update_option( 'policies_setting_option', $set_policies_arr );
 
 		// Refund Request Subject And Content Updation.
