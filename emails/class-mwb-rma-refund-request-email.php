@@ -104,7 +104,7 @@ class Mwb_Rma_Refund_Request_Email extends WC_Email {
 	 * Get email subject.
 	 */
 	public function get_default_subject() {
-		return esc_html__( 'Refund Reuqest for order {order_id} message from {message_date}', 'woo-refund-and-exchange-lite' );
+		return esc_html__( 'Refund Request for order {order_id} message from {message_date}', 'woo-refund-and-exchange-lite' );
 	}
 
 	/**

@@ -45,7 +45,9 @@ $requested_products = $products[ $date ]['products'];
 if ( isset( $requested_products ) && ! empty( $requested_products ) ) {
 	$total = 0;
 	foreach ( $order_obj->get_items() as $item_id => $item ) {
-		$product = apply_filters( 'woocommerce_order_item_product', $item->get_product(), $item );
+		$product =
+		// Get Product.
+		apply_filters( 'woocommerce_order_item_product', $item->get_product(), $item );
 		foreach ( $requested_products as $requested_product ) {
 			if ( isset( $requested_product['item_id'] ) ) {
 				if ( $item_id == $requested_product['item_id'] ) {
@@ -74,8 +76,10 @@ if ( isset( $requested_products ) && ! empty( $requested_products ) ) {
 		}
 	}
 }
+
+$message =
 // Add some extra <tr> in the table for refund approve mail.
-$message        = apply_filters( 'mwb_rma_extend_extra_field_table_approve_email', $message );
+apply_filters( 'mwb_rma_extend_extra_field_table_approve_email', $message );
 $message       .= '<tr>
 					<th colspan="2">' . __( 'Refund Total', 'woo-refund-and-exchange-lite' ) . ':</th>
 					<td>' . mwb_wrma_format_price( $total, $get_order_currency ) . '</td>

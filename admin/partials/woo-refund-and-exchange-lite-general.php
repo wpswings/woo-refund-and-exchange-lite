@@ -15,7 +15,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 global $wrael_mwb_rma_obj;
-$wrael_genaral_settings = apply_filters( 'wrael_general_settings_array', array() );
+$wrael_genaral_settings =
+// The General Settings.
+apply_filters( 'wrael_general_settings_array', array() );
 ?>
 <!--  template file for admin settings. -->
 <form action="" method="POST" class="mwb-wrael-gen-section-form">

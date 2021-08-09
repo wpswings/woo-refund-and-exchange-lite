@@ -410,7 +410,6 @@
 			type     : type,
 			security_check : wrael_admin_param.mwb_rma_nonce
 		};
-		console.log( data );
 		$.ajax({
 			url: wrael_admin_param.ajaxurl,
 			type: "POST",

@@ -675,7 +675,7 @@ class Woo_Refund_And_Exchange_Lite {
 										<span class="mdc-notched-outline__trailing"></span>
 									</span>
 									<span class="mdc-text-field__resizer">
-										<textarea rows=<?php echo esc_attr( $wrael_component['rows'] ); ?> cols=<?php echo esc_attr( $wrael_component['cols'] ); ?> class="mdc-text-field__input <?php echo ( isset( $wrael_component['class'] ) ? esc_attr( $wrael_component['class'] ) : '' ); ?>" rows="2" cols="25" aria-label="Label" name="<?php echo ( isset( $wrael_component['name'] ) ? esc_html( $wrael_component['name'] ) : esc_html( $wrael_component['id'] ) ); ?>" id="<?php echo esc_attr( $wrael_component['id'] ); ?>" placeholder="<?php echo ( isset( $wrael_component['placeholder'] ) ? esc_attr( $wrael_component['placeholder'] ) : '' ); ?>"><?php echo ( isset( $wrael_component['value'] ) ? esc_textarea( $wrael_component['value'] ) : '' ); ?></textarea>
+										<textarea rows=<?php echo ( isset( $wrael_component['rows'] ) ) ? esc_attr( $wrael_component['rows'] ) : ''; ?> cols=<?php echo ( isset( $wrael_component['cols'] ) ) ? esc_attr( $wrael_component['cols'] ) : ''; ?> class="mdc-text-field__input <?php echo ( isset( $wrael_component['class'] ) ? esc_attr( $wrael_component['class'] ) : '' ); ?>" rows="2" cols="25" aria-label="Label" name="<?php echo ( isset( $wrael_component['name'] ) ? esc_html( $wrael_component['name'] ) : esc_html( $wrael_component['id'] ) ); ?>" id="<?php echo esc_attr( $wrael_component['id'] ); ?>" placeholder="<?php echo ( isset( $wrael_component['placeholder'] ) ? esc_attr( $wrael_component['placeholder'] ) : '' ); ?>"><?php echo ( isset( $wrael_component['value'] ) ? esc_textarea( $wrael_component['value'] ) : '' ); ?></textarea>
 									</span>
 								</label>
 							</div>
@@ -918,11 +918,9 @@ class Woo_Refund_And_Exchange_Lite {
 							break;
 						case 'breaker':
 							?>
-						<!-- 	<hr> -->
 							<div class="mwb-form-group__breaker">
 							<span><b><?php echo ( isset( $wrael_component['name'] ) ? esc_html( $wrael_component['name'] ) : esc_html( $wrael_component['id'] ) ); ?></span></b>
 							</div>
-							<!-- <hr> -->
 							<?php
 							break;
 						default:

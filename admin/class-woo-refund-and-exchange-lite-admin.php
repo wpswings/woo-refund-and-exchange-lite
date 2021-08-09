@@ -683,6 +683,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				// To Send Refund Request Accept Email.
 				do_action( 'mwb_rma_refund_req_accept_email', $orderid );
 			}
+			// Partial Stock Manage.
 			do_action( 'mwb_rma_refund_partial_stock_product', $orderid );
 			$order_obj->update_status( 'wc-refund-approved', __( 'User Request of Refund Product is approved', 'woo-refund-and-exchange-lite' ) );
 			$response['response'] = 'success';
@@ -850,6 +851,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				sanitize_text_field( wp_unslash( $key ) );
 				map_deep( wp_unslash( $value ), 'sanitize_text_field' );
 			}
+			// Policies Setting Saving.
 			do_action( 'mwb_rma_policies_setting', $_POST );
 			update_option( 'policies_setting_option', $_POST );
 			update_option( 'mwb_rma_save_policiies_setting', true );

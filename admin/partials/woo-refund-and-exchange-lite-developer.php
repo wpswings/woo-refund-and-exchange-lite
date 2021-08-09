@@ -15,10 +15,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 global $wrael_mwb_rma_obj;
-$wrael_developer_admin_hooks  = apply_filters( 'wrael_developer_admin_hooks_array', array() );
+$wrael_developer_admin_hooks =
+// Admin Hooks.
+apply_filters( 'wrael_developer_admin_hooks_array', array() );
 $count_admin                  = filtered_array( $wrael_developer_admin_hooks );
-$wrael_developer_public_hooks = apply_filters( 'wrael_developer_public_hooks_array', array() );
-$count_public                 = filtered_array( $wrael_developer_public_hooks );
+$wrael_developer_public_hooks =
+// Admin Hooks.
+apply_filters( 'wrael_developer_public_hooks_array', array() );
+$count_public = filtered_array( $wrael_developer_public_hooks );
 ?>
 <!--  template file for admin settings. -->
 <div class="wrael-section-wrap">
@@ -106,15 +110,13 @@ function filtered_array( $argu ) {
 	foreach ( $argu as $key => $value ) {
 		foreach ( $value as $k => $originvalue ) {
 			if ( isset( $originvalue['action_hook'] ) ) {
-				$val                              = str_replace( ' ', '', $originvalue['action_hook'] );
-				$val                              = str_replace( "do_action('", '', $val );
-				$val                              = str_replace( "');", '', $val );
+				$val                              = explode( "'", $originvalue['action_hook'] );
+				$val                              = $val[1];
 				$count_admin[ $k ]['action_hook'] = $val;
 			}
 			if ( isset( $originvalue['filter_hook'] ) ) {
-				$val                              = str_replace( ' ', '', $originvalue['filter_hook'] );
-				$val                              = str_replace( "apply_filters('", '', $val );
-				$val                              = str_replace( "',array());", '', $val );
+				$val                              = explode( "'", $originvalue['filter_hook'] );
+				$val                              = $val[1];
 				$count_admin[ $k ]['filter_hook'] = $val;
 			}
 			$vale                      = str_replace( '//desc - ', '', $originvalue['desc'] );
@@ -122,4 +124,4 @@ function filtered_array( $argu ) {
 		}
 	}
 	return $count_admin;
-}
+}	

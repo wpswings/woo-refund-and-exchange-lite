@@ -15,7 +15,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 global $wrael_mwb_rma_obj;
-$mwb_rma_refund_html = apply_filters( 'mwb_rma_refund_settings_array', array() );
+$mwb_rma_refund_html = 
+// Refund Setting Array.
+apply_filters( 'mwb_rma_refund_settings_array', array() );
 $woo_email_url       = admin_url() . 'admin.php?page=wc-settings&tab=email';
 ?>
 <!--  template file for admin settings. -->
@@ -31,6 +33,6 @@ $woo_email_url       = admin_url() . 'admin.php?page=wc-settings&tab=email';
 <h6><b>
 <?php
 /* translators: %s: search term */
-echo sprintf( esc_html__( 'To configure refund related emails %s.', 'woo-refund-and-exchange-lite' ), '<a href="' . esc_html( $woo_email_url ) . '">Click Here</a>' );
+echo sprintf( esc_html__( 'To Configure Refund Related Emails %s.', 'woo-refund-and-exchange-lite' ), '<a href="' . esc_html( $woo_email_url ) . '">Click Here</a>' );
 ?>
 </b></h6>

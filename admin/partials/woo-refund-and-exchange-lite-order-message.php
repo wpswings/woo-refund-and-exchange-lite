@@ -15,7 +15,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 global $wrael_mwb_rma_obj;
-$wrael_order_message_settings = apply_filters( 'mwb_rma_order_message_settings_array', array() );
+$wrael_order_message_settings =
+// Order Message Setting Array
+apply_filters( 'mwb_rma_order_message_settings_array', array() );
 $woo_email_url                = admin_url() . 'admin.php?page=wc-settings&tab=email';
 ?>
 <!--  template file for admin settings. -->
@@ -29,9 +31,9 @@ $woo_email_url                = admin_url() . 'admin.php?page=wc-settings&tab=em
 	</div>
 </form>
 
-<h6>
+<h6><b>
 <?php
 /* translators: %s: search term */
-echo sprintf( esc_html__( 'To configure order message emails %s.', 'woo-refund-and-exchange-lite' ), '<a href="' . esc_html( $woo_email_url ) . '">Click Here</a>' );
+echo sprintf( esc_html__( 'To Configure Order Message Email %s.', 'woo-refund-and-exchange-lite' ), '<a href="' . esc_html( $woo_email_url ) . '">Click Here</a>' );
 ?>
-</h6>
+</b></h6>

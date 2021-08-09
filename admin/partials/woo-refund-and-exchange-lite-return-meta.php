@@ -16,10 +16,13 @@ if ( ! is_object( $theorder ) ) {
 	$theorder = wc_get_order( $thepostid );
 }
 
-$order_obj          = $theorder;
-$order_id           = $order_obj->get_id();
-$return_datas       = get_post_meta( $order_id, 'mwb_rma_return_product', true );
-$line_items         = $order_obj->get_items( apply_filters( 'woocommerce_admin_order_item_types', 'line_item' ) );
+$order_obj    = $theorder;
+$order_id     = $order_obj->get_id();
+$return_datas = get_post_meta( $order_id, 'mwb_rma_return_product', true );
+$item_type =
+// Order Item Type.
+apply_filters( 'woocommerce_admin_order_item_types', 'line_item' );
+$line_items         = $order_obj->get_items( $item_type );
 $get_order_currency = get_woocommerce_currency_symbol( $order_obj->get_currency() );
 
 if ( is_array( $line_items ) && ! empty( $line_items ) ) {
@@ -156,7 +159,12 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 				</tbody>
 			</table>
 		</div>
-		<div><?php do_action( 'mwb_rma_global_shipping_fee', $order_id ); ?></div>
+		<div>
+		<?php
+		// Add Global Fee.
+		do_action( 'mwb_rma_global_shipping_fee', $order_id );
+		?>
+		</div>
 		<div class="mwb_rma_extra_reason">
 			<p>
 				<strong><?php esc_html_e( 'Refund Amount', 'woo-refund-and-exchange-lite' ); ?> : </strong> <?php echo wp_kses_post( mwb_wrma_format_price( $total_refund_amu, $get_order_currency ) ); ?>

@@ -32,6 +32,7 @@ if ( isset( $_POST['mwb_order_msg_submit'] ) && ! empty( $_POST['mwb_order_msg_s
 $upload_attach = get_option( 'mwb_rma_general_enable_om_attachment', 'no' );
 get_header( 'shop' );
 
+// Before Main Content.
 do_action( 'woocommerce_before_main_content' );
 
 if ( isset( $order_id ) ) {
@@ -115,8 +116,9 @@ if ( isset( $order_id ) ) {
 	</div>
 	<?php
 }
+// Woo Main Content.
 do_action( 'woocommerce_after_main_content' );
-
+// Show Sidebar.
 do_action( 'woocommerce_sidebar' );
 
 get_footer( 'shop' );

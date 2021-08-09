@@ -73,6 +73,7 @@ if ( isset( $reason ) && ! empty( $reason ) ) {
 }
 get_header( 'shop' );
 
+// Before Main Content.
 do_action( 'woocommerce_before_main_content' );
 if ( 'yes' === $allowed ) {
 	$mwb_refund_wrapper_class = get_option( 'mwb_wrma_refund_form_wrapper_class' );
@@ -106,7 +107,9 @@ if ( 'yes' === $allowed ) {
 					$get_order_currency     = get_woocommerce_currency_symbol( $order_obj->get_currency() );
 					foreach ( $order_obj->get_items() as $item_id => $item ) {
 						$item_refund_already = get_post_meta( $order_id, 'mwb_rma_request_made', true );
-						$item_allowed        = apply_filters( 'mwb_rma_remove_item_from_refund', false );
+						$item_allowed        =
+						// Remove Item From Refund.
+						apply_filters( 'mwb_rma_remove_item_from_refund', false );
 						if ( $item_allowed ) {
 							if ( ! empty( $item_refund_already ) && in_array( $item_id, $item_refund_already ) && 'pending' !== $item_refund_already[0] ) {
 								continue;
@@ -120,7 +123,9 @@ if ( 'yes' === $allowed ) {
 								$product_id = $item['product_id'];
 							}
 						}
-						$product   = apply_filters( 'woocommerce_order_item_product', $item->get_product(), $item );
+						$product =
+						// Get Product.
+						apply_filters( 'woocommerce_order_item_product', $item->get_product(), $item );
 						$thumbnail = wp_get_attachment_image( $product->get_image_id(), 'thumbnail' );
 
 						$coupon_discount = get_option( 'mwb_rma_refund_deduct_coupon', 'no' );
@@ -143,7 +148,9 @@ if ( 'yes' === $allowed ) {
 							$mwb_actual_price = $tax_exc;
 						}
 						$mwb_total_price_of_product = $item['qty'] * $mwb_actual_price;
-						if ( apply_filters( 'mwb_rma_revoke_product_refund', $product_id ) ) {
+						// Revoke Product Refund.
+						$revoke_ref = apply_filters( 'mwb_rma_revoke_product_refund', $product_id );
+						if ( $revoke_ref ) {
 							$mwb_total_actual_price += $mwb_total_price_of_product;
 						}
 						$purchase_note = get_post_meta( $product_id, '_purchase_note', true );
@@ -157,7 +164,9 @@ if ( 'yes' === $allowed ) {
 								<input type="hidden" name="mwb_rma_product_amount" class="mwb_rma_product_amount" value="<?php echo esc_html( $mwb_actual_price ); ?>">
 									<?php
 										$is_visible        = $product && $product->is_visible();
-										$product_permalink = apply_filters( 'woocommerce_order_item_permalink', $is_visible ? $product->get_permalink( $item ) : '', $item, $order_obj );
+										$product_permalink =
+										// Order item Permalink.
+										apply_filters( 'woocommerce_order_item_permalink', $is_visible ? $product->get_permalink( $item ) : '', $item, $order_obj );
 
 									if ( isset( $thumbnail ) && ! empty( $thumbnail ) ) {
 										echo wp_kses_post( $thumbnail );
@@ -169,9 +178,14 @@ if ( 'yes' === $allowed ) {
 									?>
 									<div class="mwb_rma_product_title">
 									<?php
-									echo wp_kses_post( apply_filters( 'woocommerce_order_item_name', $product_permalink ? sprintf( '<a href="%s">%s</a>', $product_permalink, $item['name'] ) : $item['name'], $item, $is_visible ) );
-									echo wp_kses_post( apply_filters( 'woocommerce_order_item_quantity_html', ' <strong class="product-quantity">' . sprintf( '&times; %s', $item['qty'] ) . '</strong>', $item ) );
+									// Woo Order Item Name.
+									$o_n = apply_filters( 'woocommerce_order_item_name', $product_permalink ? sprintf( '<a href="%s">%s</a>', $product_permalink, $item['name'] ) : $item['name'], $item, $is_visible );
+									echo wp_kses_post( $o_n );
+									// Quanity Html.
+									$q_h = apply_filters( 'woocommerce_order_item_quantity_html', ' <strong class="product-quantity">' . sprintf( '&times; %s', $item['qty'] ) . '</strong>', $item );
+									echo wp_kses_post( $q_h );
 
+									// Order Item meta Start.
 									do_action( 'woocommerce_order_item_meta_start', $item_id, $item, $order_obj, true );
 									if ( WC()->version < '3.0.0' ) {
 										$order_obj->display_item_meta( $item );
@@ -180,6 +194,7 @@ if ( 'yes' === $allowed ) {
 										wc_display_item_meta( $item );
 										wc_display_item_downloads( $item );
 									}
+									// Order Item meta End.
 									do_action( 'woocommerce_order_item_meta_end', $item_id, $item, $order_obj, true );
 									?>
 									 <p>
@@ -251,7 +266,7 @@ if ( 'yes' === $allowed ) {
 			<div class="mwb_rma_return_notification_checkbox" style="display:none"><img src="<?php echo esc_html( esc_url( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL ) ); ?>public/images/loading.gif" width="40px"></div>
 		</div>
 		<?php
-		$predefined_return_reason = get_option( 'mwb_rma_refund_reasons', array() );
+		$predefined_return_reason = get_option( 'mwb_rma_refund_reasons', '' );
 		$predefined_return_reason = explode( ',', $predefined_return_reason );
 		?>
 		<div class="mwb_rma_refund_request__row mwb_rma_flex">
@@ -367,15 +382,19 @@ if ( 'yes' === $allowed ) {
 	</div>
 	<?php
 } else {
+	$condition =
 	// To change the reason for refund.
-	$condition = apply_filters( 'mwb_rma_reason_for_order', $condition );
+	apply_filters( 'mwb_rma_reason_for_order', $condition );
 	echo esc_html( $condition );
 }
-
+// Woo Main Content.
 do_action( 'woocommerce_after_main_content' );
 
-$mwb_wrma_show_sidebar_on_form = apply_filters( 'mwb_rma_refund_form_sidebar', true );
+$mwb_wrma_show_sidebar_on_form =
+// Side show/hide on refund request form.
+apply_filters( 'mwb_rma_refund_form_sidebar', true );
 if ( $mwb_wrma_show_sidebar_on_form ) {
+	// Show Sidebar.
 	do_action( 'woocommerce_sidebar' );
 }
 

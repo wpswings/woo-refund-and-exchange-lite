@@ -175,8 +175,9 @@ class Woo_Refund_And_Exchange_Lite_Public {
 
 		// Show Refund button functionality start.
 
+		$refund_will_made =
 		// Refund Will made or not bool.
-		$refund_will_made                    = apply_filters( 'mwb_rma_refund_will_made', true, $order->get_id() );
+		apply_filters( 'mwb_rma_refund_will_made', true, $order->get_id() );
 		$mwb_rma_return_request_form_page_id = get_option( 'mwb_rma_return_request_form_page_id', true );
 		if ( $refund_will_made && 'yes' === $condition ) {
 			$return_button_text = get_option( 'mwb_rma_refund_button_text', false );
@@ -242,14 +243,19 @@ class Woo_Refund_And_Exchange_Lite_Public {
 											<tr>
 												<td>
 													<?php
-													$product = apply_filters( 'woocommerce_order_item_product', $item->get_product(), $item );
+													$product =
+													// Get Product.
+													apply_filters( 'woocommerce_order_item_product', $item->get_product(), $item );
 
 													$is_visible        = $product && $product->is_visible();
-													$product_permalink = apply_filters( 'woocommerce_order_item_permalink', $is_visible ? $product->get_permalink( $item ) : '', $item, $order );
+													$product_permalink =
+													// Order item Permalink.
+													apply_filters( 'woocommerce_order_item_permalink', $is_visible ? $product->get_permalink( $item ) : '', $item, $order );
 
 													echo esc_html( $product_permalink ) ? sprintf( '<a href="%s">%s</a>', esc_html( $product_permalink ), esc_html( $product->get_name() ) ) : esc_html( $product->get_name() );
 													echo '<strong class="product-quantity">' . sprintf( '&times; %s', esc_html( $return_product['qty'] ) ) . '</strong>';
 
+													// Order item meta start.
 													do_action( 'woocommerce_order_item_meta_start', $item_id, $item, $order );
 
 													if ( WC()->version < '3.0.0' ) {
@@ -259,7 +265,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 														wc_display_item_meta( $item );
 														wc_display_item_downloads( $item );
 													}
-
+													// Order item meta end.
 													do_action( 'woocommerce_order_item_meta_end', $item_id, $item, $order );
 													?>
 												</td>
