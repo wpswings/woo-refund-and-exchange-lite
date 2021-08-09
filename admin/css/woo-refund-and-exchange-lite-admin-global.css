@@ -1,3 +1,4 @@
+
 /*mwb form group breaker css*/
 .mwb-form-group__breaker {
     padding: 15px 0 15px 30px;
@@ -9,6 +10,22 @@
     text-transform: uppercase;
 }
 /*save_policies_setting_form*/
+
+#save_policies_setting_form input[type=date],
+#save_policies_setting_form input[type=datetime-local],
+#save_policies_setting_form input[type=datetime],
+#save_policies_setting_form input[type=email],
+#save_policies_setting_form input[type=month],
+#save_policies_setting_form input[type=number],
+#save_policies_setting_form input[type=password],
+#save_policies_setting_form input[type=search],
+#save_policies_setting_form input[type=tel],
+#save_policies_setting_form input[type=text],
+#save_policies_setting_form input[type=time],
+#save_policies_setting_form input[type=url],
+#save_policies_setting_form input[type=week] {
+	padding: 10px 15px 10px 15px;
+}
 #save_policies_setting_form .add_more_rma_policies {
     padding-bottom: 20px;
 }
@@ -18,7 +35,7 @@
 .add_more_rma_policies select,
 .add_more_rma_policies label, 
 .add_more_rma_policies input{
-    margin-right: 30px;
+    margin-right: 20px;
 }
 .admin-bar #save_policies_setting_form #mwb_rma_add_more,
 .admin-bar #save_policies_setting_form .mwb_rma_save_settings{
@@ -44,6 +61,17 @@
 	border: 1px solid;
 	border-color: rgba(0,0,0,.38);
 	border-radius: 3px;
+}
+/*Refund tab form css*/
+.mwb-wrael-gen-section-form .mwb-form-group .mwb-form-group__control .mwb-form-select .mdl-textfield__label,
+.mwb-wrael-gen-section-form .mdc-text-field+.mdc-text-field-helper-line{
+	padding-left: 0;
+	padding-top: 5px;
+}
+/*dashboard-sidebar*/
+#adminmenuwrap .dashicons-before img{
+	width: 26px;
+	height: auto;
 }
 @media only screen and (max-width: 1140px){
 	.add_more_rma_policies select,

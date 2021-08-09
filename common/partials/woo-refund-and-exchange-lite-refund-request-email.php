@@ -27,8 +27,8 @@ if ( isset( $products ) && ! empty( $products ) ) {
 	}
 }
 $rr_reason          = ! empty( $rr_reason ) ? $rr_reason : esc_html__( 'No Reason', 'woo-refund-and-exchange-lite' );
-$message            =
-'<div class="mwb_rma_refund_req_mail">
+$message          =
+'<stlye></stlye><div class="mwb_rma_refund_req_mail">
 	<div class="header">
 		<h2>' . $rr_subject . '</h2>
 	</div>
@@ -39,12 +39,12 @@ $message            =
 		</div>
 		<div class="Order">
 			<h4>Order #' . $order_id . '</h4>
-			<table>
+			<table width="100%" style="border-collapse: collapse;">
 				<tbody>
 					<tr>
-						<th>' . __( 'Product', 'woo-refund-and-exchange-lite' ) . '</th>
-						<th>' . __( 'Quantity', 'woo-refund-and-exchange-lite' ) . '</th>
-						<th>' . __( 'Price', 'woo-refund-and-exchange-lite' ) . '</th>
+						<th style="border: 1px solid #C7C7C7;">' . __( 'Product', 'woo-refund-and-exchange-lite' ) . '</th>
+						<th style="border: 1px solid #C7C7C7;">' . __( 'Quantity', 'woo-refund-and-exchange-lite' ) . '</th>
+						<th style="border: 1px solid #C7C7C7;">' . __( 'Price', 'woo-refund-and-exchange-lite' ) . '</th>
 					</tr>';
 $order_obj          = wc_get_order( $order_id );
 $get_order_currency = get_woocommerce_currency_symbol( $order_obj->get_currency() );
@@ -52,9 +52,7 @@ $requested_products = $products[ $date ]['products'];
 if ( isset( $requested_products ) && ! empty( $requested_products ) ) {
 	$total = 0;
 	foreach ( $order_obj->get_items() as $item_id => $item ) {
-		$product =
-		// Get Product.
-		apply_filters( 'woocommerce_order_item_product', $item->get_product(), $item );
+		$product = apply_filters( 'woocommerce_order_item_product', $item->get_product(), $item );
 		foreach ( $requested_products as $requested_product ) {
 			if ( isset( $requested_product['item_id'] ) ) {
 				if ( $item_id == $requested_product['item_id'] ) {
@@ -73,10 +71,10 @@ if ( isset( $requested_products ) && ! empty( $requested_products ) ) {
 						$item_meta      = new WC_Order_Item_Product( $item, $product_obj );
 						$item_meta_html = wc_display_item_meta( $item_meta, array( 'echo' => false ) );
 					}
-					$message .= '<tr><td>' . $item['name'] . '<br>';
+					$message .= '<tr><td style="border: 1px solid #C7C7C7;">' . $item['name'] . '<br>';
 					$message .= '<small>' . $item_meta_html . '</small></td>
-								<td>' . $item['qty'] . '</td>
-								<td>' . mwb_wrma_format_price( $requested_product['price'] * $requested_product['qty'], $get_order_currency ) . '</td>
+								<td style="border: 1px solid #C7C7C7;">' . $item['qty'] . '</td>
+								<td style="border: 1px solid #C7C7C7;">' . mwb_wrma_format_price( $requested_product['price'] * $requested_product['qty'], $get_order_currency ) . '</td>
 								</tr>';
 				}
 			}
@@ -84,8 +82,8 @@ if ( isset( $requested_products ) && ! empty( $requested_products ) ) {
 	}
 }
 $message    .= '<tr>
-					<th colspan="2">' . __( 'Refund Total', 'woo-refund-and-exchange-lite' ) . ':</th>
-					<td>' . mwb_wrma_format_price( $total, $get_order_currency ) . '</td>
+					<th colspan="2" style="border: 1px solid #C7C7C7;">' . __( 'Refund Total', 'woo-refund-and-exchange-lite' ) . ':</th>
+					<td style="border: 1px solid #C7C7C7;">' . mwb_wrma_format_price( $total, $get_order_currency ) . '</td>
 				</tr>
 			</tbody>
 		</table>
