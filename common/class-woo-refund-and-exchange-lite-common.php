@@ -224,7 +224,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 				do_action( 'mwb_rma_refund_req_email', $order_id );
 			}
 			do_action( 'mwb_rma_do_something_on_refund', $order_id );
-			$order->update_status( 'wc-refund-requested', 'User Request to Refund Product' );
+			$order->update_status( 'wc-return-requested', 'User Request to Refund Product' );
 			$response['auto_accept'] = apply_filters( 'mwb_rma_auto_accept_refund', false );
 			$response['flag']        = true;
 			$response['msg']         = __( 'Message send successfully. You have received a notification mail regarding this. You will redirect to the My Account Page', 'woo-refund-and-exchange-lite' );
@@ -239,7 +239,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	 */
 	public function mwb_rma_register_custom_order_status() {
 		register_post_status(
-			'wc-refund-requested',
+			'wc-return-requested',
 			array(
 				'label'                     => 'Refund Requested',
 				'public'                    => true,
@@ -250,7 +250,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			)
 		);
 		register_post_status(
-			'wc-refund-approved',
+			'wc-return-approved',
 			array(
 				'label'                     => 'Refund Approved',
 				'public'                    => true,
@@ -261,7 +261,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			)
 		);
 		register_post_status(
-			'wc-refund-cancelled',
+			'wc-return-cancelled',
 			array(
 				'label'                     => 'Refund Cancelled',
 				'public'                    => true,
@@ -286,9 +286,9 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			$mwb_rma_new_order_statuses[ $mwb_rma_key ] = $mwb_rma_status;
 
 			if ( 'wc-completed' === $mwb_rma_key ) {
-				$mwb_rma_new_order_statuses['wc-refund-requested'] = __( 'Refund Requested', 'woo-refund-and-exchange-lite' );
-				$mwb_rma_new_order_statuses['wc-refund-approved']  = __( 'Refund Approved', 'woo-refund-and-exchange-lite' );
-				$mwb_rma_new_order_statuses['wc-refund-cancelled'] = __( 'Refund Cancelled', 'woo-refund-and-exchange-lite' );
+				$mwb_rma_new_order_statuses['wc-return-requested'] = __( 'Refund Requested', 'woo-refund-and-exchange-lite' );
+				$mwb_rma_new_order_statuses['wc-return-approved']  = __( 'Refund Approved', 'woo-refund-and-exchange-lite' );
+				$mwb_rma_new_order_statuses['wc-return-cancelled'] = __( 'Refund Cancelled', 'woo-refund-and-exchange-lite' );
 				$mwb_rma_new_order_statuses                        = apply_filters( 'mwb_rma_add_custom_order_status', $mwb_rma_new_order_statuses );
 			}
 		}

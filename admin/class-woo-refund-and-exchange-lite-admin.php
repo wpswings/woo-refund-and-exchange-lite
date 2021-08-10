@@ -685,7 +685,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			}
 			// Partial Stock Manage.
 			do_action( 'mwb_rma_refund_partial_stock_product', $orderid );
-			$order_obj->update_status( 'wc-refund-approved', __( 'User Request of Refund Product is approved', 'woo-refund-and-exchange-lite' ) );
+			$order_obj->update_status( 'wc-return-approved', __( 'User Request of Refund Product is approved', 'woo-refund-and-exchange-lite' ) );
 			$response['response'] = 'success';
 			echo wp_json_encode( $response );
 		}
@@ -739,7 +739,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 					do_action( 'mwb_rma_refund_req_cancel_email', $orderid );
 				}
 				$order_obj = wc_get_order( $orderid );
-				$order_obj->update_status( 'wc-refund-cancelled', __( 'User Request of Refund Product is approved', 'woo-refund-and-exchange-lite' ) );
+				$order_obj->update_status( 'wc-return-cancelled', __( 'User Request of Refund Product is approved', 'woo-refund-and-exchange-lite' ) );
 				$response['response'] = 'success';
 				echo wp_json_encode( $response );
 
