@@ -42,7 +42,8 @@
 }
 .add_more_rma_policies select,
 .add_more_rma_policies label, 
-.add_more_rma_policies input{
+.add_more_rma_policies input,
+.add_more_rma_policies select + span{
     margin-right: 30px;
 }
 .admin-bar #save_policies_setting_form #mwb_rma_add_more,
@@ -107,5 +108,5 @@
 	}	
 }
 #add_more_rma_policies_clone{
-	display: none;
+  display: none;
 }
