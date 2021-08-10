@@ -411,6 +411,15 @@ if ( $activated ) {
 		}
 		return $uprice;
 	}
+	/**
+	 * Function to restore the setting
+	 */
+	function mwb_rma_lite_setting_restore() {
+		require_once plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-rma-lite-restore-settings-updation.php';
+		$restore_data = new Woocommerce_Rma_Lite_Restore_Settings_Updation();
+		$restore_data->mwb_rma_migrate_re_settings();
+	}
+	register_activation_hook( __FILE__, 'mwb_rma_lite_setting_restore' );
 } else {
 	/**
 	 * Show warning message if woocommerce is not install
