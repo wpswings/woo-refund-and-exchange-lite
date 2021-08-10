@@ -10,7 +10,10 @@
     text-transform: uppercase;
 }
 /*save_policies_setting_form*/
-
+#save_policies_setting_form select, 
+#save_policies_setting_form input{
+	margin-left: 0;
+}
 #save_policies_setting_form input[type=date],
 #save_policies_setting_form input[type=datetime-local],
 #save_policies_setting_form input[type=datetime],
@@ -23,8 +26,13 @@
 #save_policies_setting_form input[type=text],
 #save_policies_setting_form input[type=time],
 #save_policies_setting_form input[type=url],
-#save_policies_setting_form input[type=week] {
+#save_policies_setting_form input[type=week]{
 	padding: 10px 15px 10px 15px;
+	max-height: 50px;
+}
+#save_policies_setting_form select {
+	min-height: 50px;
+	max-height: 50px;
 }
 #save_policies_setting_form .add_more_rma_policies {
     padding-bottom: 20px;
@@ -35,7 +43,7 @@
 .add_more_rma_policies select,
 .add_more_rma_policies label, 
 .add_more_rma_policies input{
-    margin-right: 20px;
+    margin-right: 30px;
 }
 .admin-bar #save_policies_setting_form #mwb_rma_add_more,
 .admin-bar #save_policies_setting_form .mwb_rma_save_settings{
@@ -62,6 +70,18 @@
 	border-color: rgba(0,0,0,.38);
 	border-radius: 3px;
 }
+#save_policies_setting_form .select2-selection--multiple input[type=search]{
+	padding: 0;
+}
+#save_policies_setting_form .select2-container .select2-selection--multiple{
+	min-height: 50px;
+}
+#save_policies_setting_form input.mwb_rma_max_number_days, 
+#save_policies_setting_form .mwb_rma_tax_handling,
+#save_policies_setting_form .select2.select2-container.select2-container--default {
+    max-width: 180px;
+    min-width: 180px;
+}
 /*Refund tab form css*/
 .mwb-wrael-gen-section-form .mwb-form-group .mwb-form-group__control .mwb-form-select .mdl-textfield__label,
 .mwb-wrael-gen-section-form .mdc-text-field+.mdc-text-field-helper-line{
@@ -72,6 +92,9 @@
 #adminmenuwrap .dashicons-before img{
 	width: 26px;
 	height: auto;
+}
+#adminmenuwrap #adminmenu .wp-submenu a{
+	font-size: 11px;
 }
 @media only screen and (max-width: 1140px){
 	.add_more_rma_policies select,

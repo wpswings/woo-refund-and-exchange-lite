@@ -30,6 +30,7 @@ if ( empty( $a ) ) {
 		),
 	);
 }
+
 ?>
 <div id="add_more_rma_policies_clone" style="display:none">
 	<input type="hidden" value="1" class="mwb_rma_get_current_i">
@@ -60,13 +61,13 @@ if ( empty( $a ) ) {
 	</select> 
 
 	<label class="mwb_rma_conditions_label" ><?php esc_html_e( 'Is', 'woo-refund-and-exchange-lite' ); ?></label>
-	<select name="mwb_rma_setting[1][row_conditions1]" class="mwb_rma_conditions1">
+	<select name="mwb_rma_setting[1][row_conditions1]" class="mwb_rma_conditions1 mwb_rma_policy_condition">
 		<option value="mwb_rma_less_than"><?php esc_html_e( 'Less than', 'woo-refund-and-exchange-lite' ); ?></option>
 		<option value="mwb_rma_greater_than"><?php esc_html_e( 'Greater than', 'woo-refund-and-exchange-lite' ); ?></option>
 		<option value="mwb_rma_less_than_equal"><?php esc_html_e( 'Less than equal to', 'woo-refund-and-exchange-lite' ); ?></option>
 		<option value="mwb_rma_greater_than_equal"><?php esc_html_e( 'Greater than equal to', 'woo-refund-and-exchange-lite' ); ?></option>
 	</select>
-	<select name="mwb_rma_setting[1][row_conditions2]" class="mwb_rma_conditions2">
+	<select name="mwb_rma_setting[1][row_conditions2]" class="mwb_rma_conditions2 mwb_rma_policy_condition">
 		<option value="mwb_rma_equal_to"><?php esc_html_e( 'Equal to', 'woo-refund-and-exchange-lite' ); ?></option>
 		<option value="mwb_rma_not_equal_to"><?php esc_html_e( 'Not Equal to', 'woo-refund-and-exchange-lite' ); ?></option>
 	</select>
@@ -87,10 +88,7 @@ if ( empty( $a ) ) {
 		<option value="mwb_rma_inlcude_tax"><?php esc_html_e( 'Include Tax', 'woo-refund-and-exchange-lite' ); ?></option>
 		<option value="mwb_rma_exclude_tax"><?php esc_html_e( 'Exclude Tax', 'woo-refund-and-exchange-lite' ); ?></option>
 	</select>
-	<?php
-		// Add More Setting.
-		do_action( 'add_more_setting_value1' );
-	?>
+	<?php do_action( 'add_more_setting_value1' ); ?>
 </div>
 <form action="" method="post" id="save_policies_setting_form">
 	<input type="hidden" name="get_nonce" value="<?php echo esc_html( wp_create_nonce( 'create_form_nonce' ) ); ?>">
@@ -144,10 +142,7 @@ if ( empty( $a ) ) {
 					<option value="mwb_rma_not_equal_to" <?php selected( 'mwb_rma_not_equal_to', $value['row_conditions2'] ); ?>><?php esc_html_e( 'Not Equal to', 'woo-refund-and-exchange-lite' ); ?></option>
 				</select>
 				<input type="number" name="mwb_rma_setting[<?php echo esc_html( $count ); ?>][row_value]" class="mwb_rma_max_number_days" placeholder="<?php esc_html_e( 'Enter the max number of days for refund', 'woo-refund-and-exchange-lite' ); ?>" value="<?php echo isset( $value['row_value'] ) ? esc_html( $value['row_value'] ) : ''; ?>">
-				<?php
-				// Add More Setting.
-					do_action( 'add_more_setting_value2', $value, $count );
-				?>
+				<?php do_action( 'add_more_setting_value2', $value, $count ); ?>
 				<select name="mwb_rma_setting[<?php echo esc_html( $count ); ?>][row_statuses][]" class="mwb_rma_order_statues" multiple>
 					<?php
 					$statuss = wc_get_order_statuses();
@@ -173,4 +168,3 @@ if ( empty( $a ) ) {
 <input type="button" value="Add More" id="mwb_rma_add_more">
 <input type="submit" name="save_policies_setting" value="Save Setting" class="mwb_rma_save_settings">
 </form>
-
