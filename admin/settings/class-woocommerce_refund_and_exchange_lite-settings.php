@@ -145,7 +145,7 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 			 	  </div>
 			</div>
 			<div id="backup_notice_div">
-			<span id="backup_notice">Please Take the backup of this plugin. We are gonna releasing next big update of the plugin.</span>
+			<span id="backup_notice">Important - On our customer\'s demand we will be updating plugin with some significant changes soon.So its highly recommended to take backup of your present version to <br>avoid any future inconvenience.</span>
 			<span id="delete_notice">X</span></div>';
 			echo '<div class="mwb_lte_nav_bar">';
 			echo '<ul class="subsubsub">';
