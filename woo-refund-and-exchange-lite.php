@@ -9,7 +9,7 @@
  *
  * @link    https://makewebbetter.com/
  * @since   1.0.0
- * @package Woo_Refund_And_Exchange_Lite
+ * @package woo-refund-and-exchange-lite
  *
  * @wordpress-plugin
  * Plugin Name:       Return Refund and Exchange for WooCommerce
