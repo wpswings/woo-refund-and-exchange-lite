@@ -415,9 +415,20 @@ if ( $activated ) {
 	 * Function to restore the setting
 	 */
 	function mwb_rma_lite_setting_restore() {
-		require_once plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-rma-lite-restore-settings-updation.php';
-		$restore_data = new Woocommerce_Rma_Lite_Restore_Settings_Updation();
-		$restore_data->mwb_rma_migrate_re_settings();
+		$check_key_exist = get_option( 'mwb_rma_lite_setting_restore', false );
+		if ( ! $check_key_exist ) {
+			require_once plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-rma-lite-restore-settings-updation.php';
+			$restore_data = new Woocommerce_Rma_Lite_Restore_Settings_Updation();
+			$restore_data->mwb_rma_migrate_re_settings();
+			update_option( 'mwb_rma_lite_setting_restore', true );
+		}
+		$check_if_refund_exist = get_option( 'mwb_wrma_return_enable', 'not_exist' );
+		if ( 'not_exist' === $check_if_refund_exist ) {
+			require_once plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-rma-lite-setting-preset.php';
+			$restore_data = new Woocommerce_Rma_Lite_Preset_Settings();
+			$restore_data->mwb_rma_lite_preset_settings();
+			update_option( 'mwb_wrma_return_enable', 'no' );
+		}
 	}
 	register_activation_hook( __FILE__, 'mwb_rma_lite_setting_restore' );
 } else {
