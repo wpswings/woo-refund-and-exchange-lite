@@ -324,7 +324,7 @@
 		   		if( response ) {
 			   		var html = 	'<p class="mwb_order_msg_sent_notice">'+  global_rnx.message_sent +'</p><a href="" class="mwb_remove_notice_msg">X</a>';
                     $('.mwb_order_msg_notice_wrapper').addClass('mwb_msg_succuss_notice');
-$('.mwb_order_msg_notice_wrapper').removeClass('mwb_msg_error');
+					$('.mwb_order_msg_notice_wrapper').removeClass('mwb_msg_error');
 			   		$('.mwb_order_msg_notice_wrapper').html( html );
 			   		$('.mwb_order_msg_notice_wrapper').css('display', 'flex');
 			   		$('.mwb_admin_order_msg_sub_container').load(document.URL +  ' .mwb_order_msg_main_container');
@@ -355,5 +355,7 @@ $('.mwb_order_msg_notice_wrapper').removeClass('mwb_msg_error');
 
 		}
 	);
-
+	$( document ).on( 'click', '#delete_notice', function(){
+		$( '#backup_notice_div' ).remove();
+	});
 })( jQuery );

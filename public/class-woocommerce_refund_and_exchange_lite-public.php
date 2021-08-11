@@ -120,8 +120,8 @@ class woocommerce_refund_and_exchange_lite_Public {
 	public function ced_rnx_product_return_template( $template ) {
 		$ced_rnx_return_request_form_page_id = get_option( 'ced_rnx_return_request_form_page_id' );
 
-		if ( function_exists( 'icl_object_id' ) ) {
-			$ro_pageid = icl_object_id( $ced_rnx_return_request_form_page_id, 'page', false, ICL_LANGUAGE_CODE );
+		if ( has_filter( 'wpml_object_id' ) ) {
+			$ro_pageid = apply_filters( 'wpml_object_id', $ced_rnx_return_request_form_page_id, 'page', false, ICL_LANGUAGE_CODE );
 		}
 		if ( ( ( '' !== $ced_rnx_return_request_form_page_id ) && is_page( $ced_rnx_return_request_form_page_id ) ) || ( isset( $ro_pageid ) && is_page( $ro_pageid ) ) ) {
 			$located = locate_template( 'woo-refund-and-exchange-lite/public/partials/mwb-rnx-lite-refund-request-form.php' );
@@ -135,8 +135,8 @@ class woocommerce_refund_and_exchange_lite_Public {
 		}
 
 		$ced_rnx_view_order_msg_page_id = get_option( 'ced_rnx_view_order_msg_page_id' );
-		if ( function_exists( 'icl_object_id' ) ) {
-			$ro_pageid1 = icl_object_id( $ced_rnx_view_order_msg_page_id, 'page', false, ICL_LANGUAGE_CODE );
+		if ( has_filter( 'wpml_object_id' ) ) {
+			$ro_pageid = apply_filters( 'wpml_object_id', $ced_rnx_view_order_msg_page_id, 'page', false, ICL_LANGUAGE_CODE );
 		}
 		if ( ( '' !== $ced_rnx_view_order_msg_page_id ) && ( is_page( $ced_rnx_view_order_msg_page_id ) ) || ( isset( $ro_pageid1 ) && is_page( $ro_pageid1 ) ) ) {
 			$located = locate_template( 'woo-refund-and-exchange-lite/public/partials/mwb-rnx-lite-view-order-msg.php' );

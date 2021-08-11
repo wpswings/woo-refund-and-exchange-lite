@@ -1427,3 +1427,11 @@ div.mwb_order_msg_single_attachment a .mwb_order_msg_attachment_thumbnail{
 .mwb_msg_succuss_notice {
 	background: #64CD83;
 }
+#backup_notice_div {
+  background-color: rgb(206, 55, 55);
+  padding: 15px;
+  color: white;
+}
+#delete_notice{
+  float: right;
+}

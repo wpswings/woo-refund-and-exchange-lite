@@ -830,26 +830,6 @@ class woocommerce_refund_and_exchange_lite_Admin {
 		}
 	}
 
-	/**
-	 * Show plugin changes from upgrade notice
-	 *
-	 * @since 2.0.0
-	 *
-	 * @param  string $args Holds the arguments.
-	 * @param  string $response Holds the response.
-	 */
-	public function in_plugin_update_message_callback( $args, $response ) {
-		$transient_name = 'ced_rnx_upgrade_notice_' . $args['Version'];
-		$upgrade_notice = get_transient( $transient_name );
-		if ( ! $upgrade_notice ) {
-			$response = wp_safe_remote_get( 'https://plugins.svn.wordpress.org/woo-refund-and-exchange-lite/trunk/readme.txt' );
-			if ( ! is_wp_error( $response ) && ! empty( $response['body'] ) ) {
-				$upgrade_notice = $this->parse_update_notice( $response['body'], $args['new_version'] );
-				set_transient( $transient_name, $upgrade_notice, DAY_IN_SECONDS );
-			}
-		}
-		echo wp_kses_post( $upgrade_notice );
-	}
 
 	/**
 	 * Parse upgrade notice from readme.txt file.
@@ -927,7 +907,13 @@ class woocommerce_refund_and_exchange_lite_Admin {
 
 		return $valid_screens;
 	}
-
-
-
+	/** Show plugin Backup notice. */
+	public function mwb_rma_lite_admin_notice() {
+		global $pagenow;
+		if ( 'plugins.php' === $pagenow ) {
+			echo '<div class="notice notice-info is-dismissible">
+				 <p>Please Take the backup of the <b>Return Refund and Exchange for WooCommerce</b> plugin. We are gonna releasing next big update of the plugin.</p>
+			 </div>';
+		}
+	}
 }

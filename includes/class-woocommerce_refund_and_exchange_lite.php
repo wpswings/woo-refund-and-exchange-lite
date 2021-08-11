@@ -174,11 +174,13 @@ class woocommerce_refund_and_exchange_lite {
 		$this->loader->add_action( 'wp_ajax_nopriv_ced_rnx_manage_stock', $plugin_admin, 'ced_rnx_manage_stock' );
 		$this->loader->add_action( 'woocommerce_refund_created', $plugin_admin, 'ced_rnx_action_woocommerce_order_refunded', 10, 2 );
 		$this->loader->add_action( 'wp_ajax_mwb_wrma_order_messages_save', $plugin_admin, 'mwb_wrma_order_messages_save' );
-		$this->loader->add_action( 'in_plugin_update_message-woo-refund-and-exchange-lite/woocommerce-refund-and-exchange-lite.php', $plugin_admin, 'in_plugin_update_message_callback', 10, 2 );
 		// Add your screen.
 		$this->loader->add_filter( 'mwb_helper_valid_frontend_screens', $plugin_admin, 'add_mwb_frontend_screens' );
 		// Add Deactivation screen.
 		$this->loader->add_filter( 'mwb_deactivation_supported_slug', $plugin_admin, 'add_mwb_deactivation_screens' );
+
+		// Show notice.
+		$this->loader->add_action( 'admin_notices', $plugin_admin, 'mwb_rma_lite_admin_notice' );
 
 	}
 

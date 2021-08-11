@@ -143,8 +143,10 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 						<li class="mwb_lite_header_menu_button"><a href="https://makewebbetter.com/product/woocommerce-rma-return-refund-exchange/" class="" title="" target="_blank">GO PRO NOW</a></li>
 				      </ul>
 			 	  </div>
-				
-			</div>';
+			</div>
+			<div id="backup_notice_div">
+			<span id="backup_notice">Please Take the backup of this plugin. We are gonna releasing next big update of the plugin.</span>
+			<span id="delete_notice">X</span></div>';
 			echo '<div class="mwb_lte_nav_bar">';
 			echo '<ul class="subsubsub">';
 
@@ -179,7 +181,7 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 			$sections = array(
 				'overview'      => __( 'Overview', 'woo-refund-and-exchange-lite' ),
 				'refund'        => __( 'Refund Products', 'woo-refund-and-exchange-lite' ),
-				'exchange'              => __( 'Exchange Products', 'woo-refund-and-exchange-lite' ),
+				'exchange'      => __( 'Exchange Products', 'woo-refund-and-exchange-lite' ),
 				'other'         => __( 'Common Setting', 'woo-refund-and-exchange-lite' ),
 				'cancel'        => __( 'Cancel Order', 'woo-refund-and-exchange-lite' ),
 				'text_setting'  => __( 'Text Settings', 'woo-refund-and-exchange-lite' ),

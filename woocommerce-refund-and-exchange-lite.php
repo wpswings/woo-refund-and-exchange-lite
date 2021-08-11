@@ -326,43 +326,10 @@ if ( $activated ) {
 	 * @param int $page_id The ID of the post to be translated.
 	 **/
 	function ced_rnx_wpml_translate_post( $page_id ) {
-		if ( function_exists( 'icl_object_id' ) ) {
-			// $lang The language of the translated post (ie 'fr', 'de', etc.).
-			$langs = wpml_get_active_languages();
-			foreach ( $langs as $lang ) {
-				// If the translated page doesn't exist, now create it.
-				if ( icl_object_id( $page_id, 'page', false, $lang['code'] ) == null ) {
-					$page_translated_name = get_post( $page_id )->post_name . ' (-' . $lang['code'] . ')';
-					$page_translated_title = get_post( $page_id )->post_title;
-					// All page stuff.
-					$my_page = array();
-					$my_page['post_name']  = $page_translated_name;
-					$my_page['post_title'] = $page_translated_title;
-					$my_page['post_author'] = 1;
-					$my_page['post_type'] = 'page';
-					$my_page['post_status'] = 'publish';
-					// Insert translated post.
-					$post_translated_id = wp_insert_post( $my_page );
-
-					// Get trid of original post.
-					$trid = wpml_get_content_trid( 'post_' . 'page', $page_id );
-					// Get default language.
-					$default_lang = wpml_get_default_language();
-					// Associate original post and translated post.
-					global $wpdb;
-					$wpdb->update(
-						$wpdb->prefix . 'icl_translations',
-						array(
-							'trid' => $trid,
-							'language_code' => $lang['code'],
-							'source_language_code' => $default_lang,
-						),
-						array( 'element_id' => $post_translated_id )
-					);
-				}
-			}
+		if ( has_filter( 'wpml_object_id' ) ) {
+			// If the translated page doesn't exist, now create it.
+			do_action( 'wpml_admin_make_post_duplicates', $page_id );
 		}
-
 	}
 
 	/**
@@ -371,7 +338,7 @@ if ( $activated ) {
 	 * @param int $page_id The ID of the post to be deleted.
 	 */
 	function ced_rnx_delete_wpml_translate_post( $page_id ) {
-		if ( function_exists( 'icl_object_id' ) ) {
+		if ( has_filter( 'wpml_object_id' ) ) {
 			$langs = wpml_get_active_languages();
 			foreach ( $langs as $lang ) {
 				if ( icl_object_id( $page_id, 'page', false, $lang['code'] ) ) {
