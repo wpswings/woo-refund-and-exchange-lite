@@ -1,2 +1,8 @@
 <wpml-config>
+    <admin-texts>
+        <key name="mwb_rma_refund_button_text"/>
+        <key name="mwb_rma_refund_rules_editor"/>
+        <key name="mwb_rma_order_message_button_text"/>
+        <key name="mwb_rma_refund_reasons"/>
+    </admin-texts>
 </wpml-config>

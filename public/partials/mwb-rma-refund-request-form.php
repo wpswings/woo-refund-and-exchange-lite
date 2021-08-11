@@ -301,7 +301,7 @@ if ( 'yes' === $allowed ) {
 				</div>
 				<?php
 				$predefined_return_desc = get_option( 'mwb_rma_refund_description', false );
-				$predefined_return_reason_placeholder = get_option( 'mwb_rma_refund_reason_placeholder', false );
+				$placeholder = esc_html__( 'Reason for Refund Request', 'woo-refund-and-exchange-lite' );
 				if ( isset( $predefined_return_desc ) && 'on' === $predefined_return_desc ) {
 					?>
 					<div class="mwb_rma_reason_description">
@@ -310,18 +310,21 @@ if ( 'yes' === $allowed ) {
 								<b>
 								<?php
 								if ( $predefined_return_reason_placeholder ) {
-										echo esc_html( $predefined_return_reason_placeholder );
+									echo esc_html( $$placeholder );
 								} else {
-										echo esc_html__( 'Reason of Refund Request:', 'woo-refund-and-exchange-lite' );
+									echo esc_html__( 'Reason of Refund Request :', 'woo-refund-and-exchange-lite' );
 								}
 								?>
 								</b>
 							</label>
 						</div>
 						<?php
-						$placeholder = __( 'Reason for Retund Request', 'woo-refund-and-exchange-lite' );
+						$predefined_return_reason_placeholder = get_option( 'mwb_rma_refund_reason_placeholder', false );
+						if ( empty( $predefined_return_reason_placeholder ) ) {
+							$predefined_return_reason_placeholder = esc_html__( 'Reason for the Refund Request', 'woo-refund-and-exchange-lite' );
+						}
 						?>
-						<textarea name="mwb_rma_return_request_reason" cols="40" style="height: 222px;" class="mwb_rma_return_request_reason" maxlength='10000' placeholder="<?php echo esc_html( $placeholder ); ?>"><?php echo ! empty( $rr_reason ) ? esc_html( $rr_reason ) : ''; ?></textarea>
+						<textarea name="mwb_rma_return_request_reason" cols="40" style="height: 222px;" class="mwb_rma_return_request_reason" maxlength='10000' placeholder="<?php echo esc_html( $predefined_return_reason_placeholder ); ?>"><?php echo ! empty( $rr_reason ) ? esc_html( $rr_reason ) : ''; ?></textarea>
 					</div>
 					<?php
 				}
