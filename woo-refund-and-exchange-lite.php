@@ -308,6 +308,12 @@ if ( $activated ) {
 		} else {
 			$show_button = ucfirst( $func ) . __( ' request is disabled.', 'woo-refund-and-exchange-lite' );
 		}
+		if ( ! mwb_rma_pro_active() && 'yes' === $show_button ) {
+			$item_refund_already = get_post_meta( $order->get_id(), 'mwb_rma_request_made', false );
+			if ( ! empty( $item_refund_already ) ) {
+				$show_button = 'Refund request is already made and accepted';
+			}
+		}
 		return apply_filters( 'mwb_rma_functionality_reason', $show_button, $func, $order, $get_specific_setting );
 	}
 

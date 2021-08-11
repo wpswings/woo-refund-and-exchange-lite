@@ -16,9 +16,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 global $wrael_mwb_rma_obj;
 $wrael_order_message_settings =
-// Order Message Setting Array
+// Order Message Setting Array.
 apply_filters( 'mwb_rma_order_message_settings_array', array() );
-$woo_email_url                = admin_url() . 'admin.php?page=wc-settings&tab=email';
+$woo_email_url = admin_url() . 'admin.php?page=wc-settings&tab=email';
 ?>
 <!--  template file for admin settings. -->
 <form action="" method="POST" class="mwb-wrael-gen-section-form">

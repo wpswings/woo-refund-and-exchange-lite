@@ -19,10 +19,10 @@ if ( ! is_object( $theorder ) ) {
 $order_obj = $theorder;
 $order_id  = $order_obj->get_id();
 ?>
+<div class="mwb_order_msg_reload_notice_wrapper">
+	<p class="mwb_order_msg_sent_notice"><strong><?php esc_html_e( 'Messages Refreshed Successfully.', 'woo-refund-and-exchange-lite' ); ?></strong></p>
+</div>
 <div class="mwb_rma_admin_order_msg_wrapper">
-	<div class="mwb_order_msg_reload_notice_wrapper">
-		<p class="mwb_order_msg_sent_notice"><strong><?php esc_html_e( 'Messages Refreshed Successfully.', 'woo-refund-and-exchange-lite' ); ?></strong></p>
-	</div>
 	<div class="mwb_admin_order_msg_history_container">
 		<div class="mwb_admin_order_msg_history_title">
 			<h4 class="mwb_order_heading">
@@ -56,7 +56,7 @@ $order_id  = $order_obj->get_id();
 											?>
 											<div class="mwb_order_msg_single_attachment">
 												<a target="_blank" href="<?php echo esc_url( get_home_url() ) . '/wp-content/attachment/' . esc_html( $order_id ) . '-' . esc_html( $fval['name'] ); ?>">
-													<img class="mwb_order_msg_attachment_thumbnail" src="<?php echo $is_image ? esc_url( get_home_url() ) . '/wp-content/attachment/' . esc_html( $order_id ) . '-' . esc_html( $fval['name'] ) : esc_url( MWB_REFUND_N_EXCHANGE_LITE_URL ) . '/admin/images/attachment.png'; ?>">
+													<img class="mwb_order_msg_attachment_thumbnail" src="<?php echo $is_image ? esc_url( get_home_url() ) . '/wp-content/attachment/' . esc_html( $order_id ) . '-' . esc_html( $fval['name'] ) : esc_url( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL ) . '/admin/images/attachment.png'; ?>">
 													<span class="mwb_order_msg_attachment_file_name"><?php echo esc_html( $fval['name'] ); ?></span>
 												</a>
 											</div>
@@ -71,8 +71,8 @@ $order_id  = $order_obj->get_id();
 			}
 			?>
 		</div>
-		<div class="mwb_order_msg_notice_wrapper">
-		</div>
+	</div>
+	<div class="mwb_order_msg_notice_wrapper">
 	</div>
 	<div class="mwb_admin_order_msg_container">
 		<form id="mwb_order_new_msg_form" method="post" enctype="multipart/form-data" action="">

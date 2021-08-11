@@ -111,7 +111,7 @@ if ( 'yes' === $allowed ) {
 						// Remove Item From Refund.
 						apply_filters( 'mwb_rma_remove_item_from_refund', false );
 						if ( $item_allowed ) {
-							if ( ! empty( $item_refund_already ) && in_array( $item_id, $item_refund_already ) && 'pending' !== $item_refund_already[0] ) {
+							if ( ! empty( $item_refund_already ) && isset( $item_refund_already[ $item_id ] ) && 'completed' === $item_refund_already[ $item_id ] ) {
 								continue;
 							}
 						}

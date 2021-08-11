@@ -227,7 +227,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			$order->update_status( 'wc-return-requested', 'User Request to Refund Product' );
 			$response['auto_accept'] = apply_filters( 'mwb_rma_auto_accept_refund', false );
 			$response['flag']        = true;
-			$response['msg']         = __( 'Message send successfully. You have received a notification mail regarding this. You will redirect to the My Account Page', 'woo-refund-and-exchange-lite' );
+			$response['msg']         = __( 'Refund request placed successfully. You have received a notification mail regarding this. You will redirect to the My Account Page', 'woo-refund-and-exchange-lite' );
 			echo wp_json_encode( $response );
 
 			wp_die();

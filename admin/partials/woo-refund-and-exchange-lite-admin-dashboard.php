@@ -15,14 +15,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	exit(); // Exit if accessed directly.
 }
-
 global $wrael_mwb_rma_obj;
 $wrael_active_tab   = isset( $_GET['wrael_tab'] ) ? sanitize_key( $_GET['wrael_tab'] ) : 'woo-refund-and-exchange-lite-general';
 $wrael_default_tabs = $wrael_mwb_rma_obj->mwb_rma_plug_default_tabs();
 ?>
 <header>
 	<?php
-		// desc - This hook is used for trial.
+		// Used to get the settings during saving.
 		do_action( 'mwb_rma_settings_saved_notice' );
 	?>
 	<div class="mwb-header-container mwb-bg-white mwb-r-8">
