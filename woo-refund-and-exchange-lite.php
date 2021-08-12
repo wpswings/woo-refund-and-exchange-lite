@@ -207,6 +207,24 @@ if ( $activated ) {
 	}
 	add_filter( 'plugin_row_meta', 'woo_refund_and_exchange_lite_custom_settings_at_plugin_tab', 10, 2 );
 
+	add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'mwb_rma_lite_settings_link' );
+
+	/**
+	 * Settings tab of the plugin.
+	 *
+	 * @name rewardeem_woocommerce_points_rewards_settings_link
+	 * @param array $links array of the links.
+	 * @since    1.0.0
+	 */
+	function mwb_rma_lite_settings_link( $links ) {
+
+		if ( ! is_plugin_active( 'woocommerce-rma-for-return-refund-and-exchange/mwb-woocommerce-rma.php' ) ) {
+
+			$links['goPro'] = '<a style="color:#FFF;background:linear-gradient(to right,#7a28ff 0,#00a1ff 100%);padding:5px;border-radius:6px;" target="_blank" href="https://makewebbetter.com/product/woocommerce-rma-return-refund-exchange/">' . esc_html__( 'GO PREMIUM', 'woo-refund-and-exchange-lite' ) . '</a>';
+		}
+
+		return $links;
+	}
 
 	/**
 	 * Check all the condition whether to refund buttons or not.
