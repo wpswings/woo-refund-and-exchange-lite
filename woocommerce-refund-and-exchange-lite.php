@@ -32,7 +32,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
-
+$a = get_option( 'active_plugins' );
 $activated                 = true;
 $ced_rnx_activated_main_cc = false;
 if ( function_exists( 'is_multisite' ) && is_multisite() ) {
