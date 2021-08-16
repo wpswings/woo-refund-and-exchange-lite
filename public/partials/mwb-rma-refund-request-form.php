@@ -364,6 +364,11 @@ if ( 'yes' === $allowed ) {
 						<div class="mwb_rma_return_notification"><img src="<?php echo esc_html( esc_url( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL ) ); ?>public/images/loading.gif" width="40px"></div>
 					</div>
 				</form>
+				<div class="mwb_rma_customer_detail">
+				<?php
+				wc_get_template( 'order/order-details-customer.php', array( 'order' => $order_obj ) );
+				?>
+				</div>
 			</div>
 			<div class="mwb_rma__column mwb_rma__column-right mwb_rma_flex">        
 				<div class="mwb_rma_refund_rule">
@@ -376,11 +381,6 @@ if ( 'yes' === $allowed ) {
 				?>
 				</div>
 			</div>
-		</div>
-		<div class="mwb_rma_customer_detail">
-				<?php
-				wc_get_template( 'order/order-details-customer.php', array( 'order' => $order_obj ) );
-				?>
 		</div>
 	</div>
 	<?php
