@@ -571,9 +571,7 @@ margin-bottom: 6px !important;
     text-align: left;
     
 }
-#mwb_order_msg_attachment {
-    width: 90%;
-}
+
 .mwb_notice_main_container {
     margin-bottom: 15px;
 }
@@ -588,4 +586,10 @@ margin-bottom: 6px !important;
     justify-content: space-between;
     flex-wrap: wrap;
     align-items: center;
+}
+.view_msg {
+  margin-top: 2px;
+}
+.return {
+  margin-top: 2px;
 }

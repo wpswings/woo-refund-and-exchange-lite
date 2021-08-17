@@ -912,7 +912,7 @@ class woocommerce_refund_and_exchange_lite_Admin {
 		global $pagenow;
 		if ( 'plugins.php' === $pagenow ) {
 			echo '<div class="notice notice-info is-dismissible">
-				 <p>Important - On our customer\'s demand we will be updating plugin with some significant changes soon. So its highly recommended to take backup of the Return Refund and Exchange for WooCommerce to avoid any future inconvenience.</p>
+				 <p>Important - On our customer\'s demand we will be updating the plugin with some significant changes soon. So it\'s highly recommended to take backup of the Return Refund and Exchange for WooCommerce to avoid any future inconvenience.</p>
 			 </div>';
 		}
 	}
