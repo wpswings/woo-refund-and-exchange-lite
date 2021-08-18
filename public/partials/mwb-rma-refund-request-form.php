@@ -80,14 +80,14 @@ if ( 'yes' === $allowed ) {
 	$mwb_return_css           = get_option( 'mwb_wrma_return_custom_css' );
 	?>
 	<style><?php echo $mwb_return_css; ?></style>
-	<div class="mwb_rma_refund_form_wrapper  <?php echo esc_html( $mwb_refund_wrapper_class ); ?>">
+	<div class="mwb_rma_refund_form_wrapper mwb-rma-form__wrapper <?php echo esc_html( $mwb_refund_wrapper_class ); ?>">
 		<div id="mwb_rma_return_request_container">
 			<h1><?php esc_html_e( 'Order Refund Request Form', 'woo-refund-and-exchange-lite' ); ?></h1>
 		</div>
 		<ul id="mwb_rma_return_alert" ></ul>
-		<div class="mwb_rma_product_table_wrapper">
+		<div class="mwb_rma_product_table_wrapper mwb-rma-product__table-wrapper">
 			<table>
-				<thead>
+				<thead class="wb-rma-product__table">
 					<tr>
 						<?php
 						// Add extra field in the thead of the table.
@@ -176,7 +176,7 @@ if ( 'yes' === $allowed ) {
 										<?php
 									}
 									?>
-									<div class="mwb_rma_product_title">
+									<div class="mwb_rma_product_title mwb-rma__product-title">
 									<?php
 									// Woo Order Item Name.
 									$o_n = apply_filters( 'woocommerce_order_item_name', $product_permalink ? sprintf( '<a href="%s">%s</a>', $product_permalink, $item['name'] ) : $item['name'], $item, $is_visible );
@@ -245,7 +245,7 @@ if ( 'yes' === $allowed ) {
 					}
 					?>
 					<tr>
-						<th scope="row" colspan="2"><?php esc_html_e( 'Total Refund Amount', 'woo-refund-and-exchange-lite' ); ?></th>
+						<th scope="row" colspan="3"><?php esc_html_e( 'Total Refund Amount', 'woo-refund-and-exchange-lite' ); ?></th>
 						<td class="mwb_rma_total_amount_wrap"><span id="mwb_rma_total_refund_amount"><?php echo wp_kses_post( mwb_wrma_format_price( $mwb_total_actual_price, $get_order_currency ) ); ?></span>
 						<input type="hidden" name="mwb_rma_total_refund_price" class="mwb_rma_total_refund_price" value="<?php echo esc_html( $mwb_total_actual_price ); ?>">
 							<?php
@@ -364,11 +364,6 @@ if ( 'yes' === $allowed ) {
 						<div class="mwb_rma_return_notification"><img src="<?php echo esc_html( esc_url( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL ) ); ?>public/images/loading.gif" width="40px"></div>
 					</div>
 				</form>
-				<div class="mwb_rma_customer_detail">
-				<?php
-				wc_get_template( 'order/order-details-customer.php', array( 'order' => $order_obj ) );
-				?>
-				</div>
 			</div>
 			<div class="mwb_rma__column mwb_rma__column-right mwb_rma_flex">        
 				<div class="mwb_rma_refund_rule">
@@ -381,6 +376,11 @@ if ( 'yes' === $allowed ) {
 				?>
 				</div>
 			</div>
+		</div>
+		<div class="mwb_rma_customer_detail">
+				<?php
+				wc_get_template( 'order/order-details-customer.php', array( 'order' => $order_obj ) );
+				?>
 		</div>
 	</div>
 	<?php

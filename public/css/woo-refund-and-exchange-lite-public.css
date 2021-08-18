@@ -85,8 +85,7 @@ h4{
 .mwb_rma_product_table_wrapper{
     overflow-x: auto;
 }
-.mwb_rma_refund_form_wrapper .mwb_rma_product_title,
-.mwb_rma_refund_form_wrapper .mwb_rma_product_title p{
+.mwb_rma_refund_form_wrapper .mwb_rma_product_title{
     margin-top: 8px;
 }
 .mwb_rma_refund_form_wrapper .mwb_rma_refund_request__row {
