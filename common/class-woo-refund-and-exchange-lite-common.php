@@ -116,7 +116,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 		$check_ajax = check_ajax_referer( 'mwb_rma_ajax_security', 'security_check' );
 
 		if ( $check_ajax ) {
-			if ( isset( $_FILES['mwb_rma_return_request_files'] ) && isset( $_FILES['mwb_rma_return_request_files']['tmp_name'] ) ) {
+			if ( isset( $_FILES['mwb_rma_return_request_files'] ) && isset( $_FILES['mwb_rma_return_request_files']['tmp_name'] ) && isset( $_FILES['mwb_rma_return_request_files']['name'] ) ) {
 				$filename = array();
 				$order_id = isset( $_POST['mwb_rma_return_request_order'] ) ? sanitize_text_field( wp_unslash( $_POST['mwb_rma_return_request_order'] ) ) : sanitize_text_field( wp_unslash( $_POST['mwb_rma_return_request_order'] ) );
 				$count    = count( $_FILES['mwb_rma_return_request_files']['tmp_name'] );

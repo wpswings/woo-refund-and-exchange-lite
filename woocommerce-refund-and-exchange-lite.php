@@ -416,6 +416,7 @@ if ( $activated ) {
 	 * Format the price showing on the frontend and the backend
 	 *
 	 * @param string $price is current showing price.
+	 * @param string $currency_symbol .
 	 */
 	function mwb_wrma_format_price( $price, $currency_symbol ) {
 		$price           = apply_filters( 'mwb_rma_price_change_everywhere', $price );
@@ -449,7 +450,7 @@ if ( $activated ) {
 		}
 		$check_if_refund_exist = get_option( 'mwb_wrma_return_enable', 'not_exist' );
 		if ( 'not_exist' === $check_if_refund_exist ) {
-			require_once plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-rma-lite-setting-preset.php';
+			require_once plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-rma-lite-preset-settings.php';
 			$restore_data = new Woocommerce_Rma_Lite_Preset_Settings();
 			$restore_data->mwb_rma_lite_preset_settings();
 			update_option( 'mwb_wrma_return_enable', 'no' );

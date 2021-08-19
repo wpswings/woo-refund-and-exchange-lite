@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 global $wrael_mwb_rma_obj;
-$mwb_rma_refund_html = 
+$mwb_rma_refund_html =
 // Refund Setting Array.
 apply_filters( 'mwb_rma_refund_settings_array', array() );
 $woo_email_url       = admin_url() . 'admin.php?page=wc-settings&tab=email';

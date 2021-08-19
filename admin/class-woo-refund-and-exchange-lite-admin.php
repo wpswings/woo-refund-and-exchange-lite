@@ -357,7 +357,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 								if ( 'mwb_rma_refund_rules_editor' === $wrael_genaral_setting['id'] ) {
 									update_option( 'mwb_rma_refund_rules_editor', wp_kses_post( wp_unslash( $_POST[ $wrael_genaral_setting['id'] ] ) ) );
 								} else {
-									update_option( $wrael_genaral_setting['id'], is_array( $_POST[ $wrael_genaral_setting['id'] ] ) ? $this->mwb_sanitize_array( $_POST[ $wrael_genaral_setting['id'] ] ) : stripslashes( $_POST[ $wrael_genaral_setting['id'] ] ) );
+									update_option( $wrael_genaral_setting['id'], is_array( $_POST[ $wrael_genaral_setting['id'] ] ) ? $this->mwb_sanitize_array( $_POST[ $wrael_genaral_setting['id'] ] ) : stripslashes( sanitize_text_field( wp_unslash( $_POST[ $wrael_genaral_setting['id'] ] ) ) ) );
 								}
 							} else {
 								update_option( $wrael_genaral_setting['id'], '' );
@@ -388,7 +388,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	public function mwb_sanitize_array( $mwb_input_array ) {
 		foreach ( $mwb_input_array as $key => $value ) {
 			$key   = sanitize_text_field( wp_unslash( $key ) );
-			$value = stripslashes( sanitize_text_field( wp_unslash( $value ) ) );
+			$value = map_deep( wp_unslash( $value ), 'sanitize_text_field' );
 		}
 		return $mwb_input_array;
 	}

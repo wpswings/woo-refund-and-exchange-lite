@@ -134,8 +134,9 @@ class Woo_Refund_And_Exchange_Lite_Rest_Api {
 	/**
 	 * Begins execution of api endpoint.
 	 *
-	 * @param   Array $request    All information related with the api request containing in this array.
-	 * @return  Array   $mwb_rma_response   return rest response to server from where the endpoint hits.
+	 * @param    Array $request All information related with the api request containing in this array.
+	 * @param    Array $type .
+	 *  @return  Array $mwb_rma_response   return rest response to server from where the endpoint hits.
 	 * @since    1.0.0
 	 */
 	public function mwb_rma_default_callback( $request, $type ) {

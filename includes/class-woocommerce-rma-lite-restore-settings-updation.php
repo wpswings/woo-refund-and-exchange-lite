@@ -1,4 +1,14 @@
 <?php
+/**
+ *
+ * A class definition that to migrate the previous version setting.
+ *
+ * @link  https://makewebbetter.com/
+ * @since 1.0.0
+ *
+ * @package    Woo_Refund_And_Exchange_Lite
+ * @subpackage Woo_Refund_And_Exchange_Lite/includes
+ */
 
 /**
  * This is class to restore the saved data on particular keys.

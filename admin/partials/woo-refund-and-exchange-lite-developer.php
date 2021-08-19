@@ -124,4 +124,5 @@ function filtered_array( $argu ) {
 		}
 	}
 	return $count_admin;
-}	
+}
+

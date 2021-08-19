@@ -1,6 +1,6 @@
 <?php
 /**
- * The public-facing functionality of the plugin.
+ * The public-facing functionality of the plugin for return request form.
  *
  * @link       https://makewebbetter.com/
  * @since      1.0.0
@@ -41,7 +41,7 @@ if ( 'yes' === $condition && isset( $order_id ) && ! empty( $order_id ) ) {
 	} else {
 		$order_customer_id = get_post_meta( $order_id, '_customer_user', true );
 		if ( get_current_user_id() > 0 ) {
-			if ( $order_customer_id != get_current_user_id() ) {
+			if ( get_current_user_id() != $order_customer_id ) {
 				$myaccount_page     = get_option( 'woocommerce_myaccount_page_id' );
 				$myaccount_page_url = get_permalink( $myaccount_page );
 				$allowed            = 'no';
@@ -79,7 +79,7 @@ if ( 'yes' === $allowed ) {
 	$mwb_refund_wrapper_class = get_option( 'mwb_wrma_refund_form_wrapper_class' );
 	$mwb_return_css           = get_option( 'mwb_wrma_return_custom_css' );
 	?>
-	<style><?php echo $mwb_return_css; ?></style>
+	<style><?php echo wp_kses_post( $mwb_return_css ); ?></style>
 	<div class="mwb_rma_refund_form_wrapper mwb-rma-form__wrapper <?php echo esc_html( $mwb_refund_wrapper_class ); ?>">
 		<div id="mwb_rma_return_request_container">
 			<h1><?php esc_html_e( 'Order Refund Request Form', 'woo-refund-and-exchange-lite' ); ?></h1>
@@ -402,3 +402,4 @@ if ( $mwb_wrma_show_sidebar_on_form ) {
 }
 
 get_footer( 'shop' );
+
