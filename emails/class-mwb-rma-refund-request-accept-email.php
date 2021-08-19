@@ -42,9 +42,9 @@ class Mwb_Rma_Refund_Request_Accept_Email extends WC_Email {
 		$this->template_plain = 'mwb-rma-refund-request-accept-email-template.php';
 		$this->template_base  = WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'emails/templates/';
 		$this->placeholders   = array(
-			'{site_title}'       => $this->get_blogname(),
+			'{site_title}'   => $this->get_blogname(),
 			'{message_date}' => '',
-			'{order_id}' => '',
+			'{order_id}'     => '',
 		);
 		$this->order_id = '';
 		// Call parent constructor to load any other defaults not explicity defined here.
@@ -63,12 +63,12 @@ class Mwb_Rma_Refund_Request_Accept_Email extends WC_Email {
 	public function trigger( $msg, $attachment, $to, $order_id ) {
 		if ( $to ) {
 			$this->setup_locale();
-			$this->receicer = $to;
-			$this->msg      = $msg;
+			$this->receicer                       = $to;
+			$this->msg                            = $msg;
 			$this->placeholders['{message_date}'] = gmdate( 'M d, Y' );
 			$this->placeholders['{order_id}']     = '#' . $order_id;
 			$placeholder                          = $this->placeholders;
-			$this->placeholders = apply_filters( 'mwb_rma_shortcode_extend', $placeholder, $order_id );
+			$this->placeholders                   = apply_filters( 'mwb_rma_shortcode_extend', $placeholder, $order_id );
 			$this->send( $this->receicer, $this->get_subject(), $this->get_content(), $this->get_headers(), $attachment );
 		}
 		$this->restore_locale();
@@ -84,12 +84,12 @@ class Mwb_Rma_Refund_Request_Accept_Email extends WC_Email {
 		wc_get_template(
 			$this->template_html,
 			array(
-				'msg' => $this->msg,
-				'order_id' => $this->order_id,
-				'email_heading'  => $this->get_heading(),
-				'sent_to_admin'  => false,
-				'plain_text'     => false,
-				'email'          => $this,
+				'msg'                => $this->msg,
+				'order_id'           => $this->order_id,
+				'email_heading'      => $this->get_heading(),
+				'sent_to_admin'      => false,
+				'plain_text'         => false,
+				'email'              => $this,
 				'additional_content' => $this->get_additional_content(),
 			),
 			'woo-refund-and-exchange-lite',
@@ -123,15 +123,15 @@ class Mwb_Rma_Refund_Request_Accept_Email extends WC_Email {
 		wc_get_template(
 			$this->template_plain,
 			array(
-				'msg' => $this->msg,
-				'order_id' => $this->order_id,
-				'email_heading'  => $this->get_heading(),
-				'sent_to_admin'  => false,
-				'plain_text'     => true,
-				'email'          => $this,
+				'msg'                => $this->msg,
+				'order_id'           => $this->order_id,
+				'email_heading'      => $this->get_heading(),
+				'sent_to_admin'      => false,
+				'plain_text'         => true,
+				'email'              => $this,
 				'additional_content' => $this->get_additional_content(),
 			),
-			'woo-refund-and-exchange-lite',
+			'',
 			$this->template_base
 		);
 		return ob_get_clean();

@@ -827,7 +827,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	 * @param string $order_id .
 	 */
 	public function mwb_rma_refund_req_accept_email( $order_id ) {
-		include_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/woo-refund-and-exchange-lite-refund-request-accept-email.php';
+		include_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php';
 	}
 
 	/**
@@ -836,7 +836,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	 * @param string $order_id .
 	 */
 	public function mwb_rma_refund_req_cancel_email( $order_id ) {
-		include_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/woo-refund-and-exchange-lite-refund-request-cancel-email.php';
+		include_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-cancel-email.php';
 	}
 
 	/**

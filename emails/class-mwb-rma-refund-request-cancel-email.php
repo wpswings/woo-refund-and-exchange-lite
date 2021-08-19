@@ -61,12 +61,12 @@ class Mwb_Rma_Refund_Request_Cancel_Email extends WC_Email {
 	public function trigger( $msg, $attachment, $to, $order_id ) {
 		if ( $to ) {
 			$this->setup_locale();
-			$this->receicer   = $to;
-			$this->msg        = $msg;
+			$this->receicer                       = $to;
+			$this->msg                            = $msg;
 			$this->placeholders['{message_date}'] = gmdate( 'M d, Y' );
-			$this->placeholders['{order_id}'] = '#' . $order_id;
+			$this->placeholders['{order_id}']     = '#' . $order_id;
 			$placeholder                          = $this->placeholders;
-			$this->placeholders = apply_filters( 'mwb_rma_shortcode_extend', $placeholder, $order_id );
+			$this->placeholders                   = apply_filters( 'mwb_rma_shortcode_extend', $placeholder, $order_id );
 			$this->send( $this->receicer, $this->get_subject(), $this->get_content(), $this->get_headers(), $attachment );
 		}
 		$this->restore_locale();
@@ -89,7 +89,7 @@ class Mwb_Rma_Refund_Request_Cancel_Email extends WC_Email {
 				'email'          => $this,
 				'additional_content' => $this->get_additional_content(),
 			),
-			'woo-refund-and-exchange-lite',
+			'',
 			$this->template_base
 		);
 
@@ -127,7 +127,7 @@ class Mwb_Rma_Refund_Request_Cancel_Email extends WC_Email {
 				'email'          => $this,
 				'additional_content' => $this->get_additional_content(),
 			),
-			'woo-refund-and-exchange-lite',
+			'',
 			$this->template_base
 		);
 		return ob_get_clean();

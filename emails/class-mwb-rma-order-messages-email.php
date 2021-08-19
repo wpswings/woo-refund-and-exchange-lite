@@ -61,11 +61,11 @@ class Mwb_Rma_Order_Messages_Email extends WC_Email {
 	public function trigger( $msg, $attachment, $to, $order_id ) {
 		if ( $to ) {
 			$this->setup_locale();
-			$this->receicer   = $to;
-			$this->msg        = $msg;
-			$this->order_id   = $order_id;
+			$this->receicer                       = $to;
+			$this->msg                            = $msg;
+			$this->order_id                       = $order_id;
 			$this->placeholders['{message_date}'] = gmdate( 'M d, Y' );
-			$this->placeholders['{order_id}'] = '#' . $order_id;
+			$this->placeholders['{order_id}']     = '#' . $order_id;
 			$this->send( $this->receicer, $this->get_subject(), $this->get_content(), $this->get_headers(), $attachment );
 		}
 		$this->restore_locale();
@@ -81,15 +81,15 @@ class Mwb_Rma_Order_Messages_Email extends WC_Email {
 		wc_get_template(
 			$this->template_html,
 			array(
-				'msg' => $this->msg,
-				'order_id' => $this->order_id,
-				'email_heading'  => $this->get_heading(),
-				'sent_to_admin'  => false,
-				'plain_text'     => false,
-				'email'          => $this,
+				'msg'                => $this->msg,
+				'order_id'           => $this->order_id,
+				'email_heading'      => $this->get_heading(),
+				'sent_to_admin'      => false,
+				'plain_text'         => false,
+				'email'              => $this,
 				'additional_content' => $this->get_additional_content(),
 			),
-			'woo-refund-and-exchange-lite',
+			'',
 			$this->template_base
 		);
 
@@ -128,7 +128,7 @@ class Mwb_Rma_Order_Messages_Email extends WC_Email {
 				'email'          => $this,
 				'additional_content' => $this->get_additional_content(),
 			),
-			'woo-refund-and-exchange-lite',
+			'',
 			$this->template_base
 		);
 		return ob_get_clean();

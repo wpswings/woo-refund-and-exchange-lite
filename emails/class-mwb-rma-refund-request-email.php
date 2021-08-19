@@ -93,7 +93,7 @@ class Mwb_Rma_Refund_Request_Email extends WC_Email {
 				'email'          => $this,
 				'additional_content' => $this->get_additional_content(),
 			),
-			'woo-refund-and-exchange-lite',
+			'',
 			$this->template_base
 		);
 
@@ -133,7 +133,7 @@ class Mwb_Rma_Refund_Request_Email extends WC_Email {
 				'email'          => $this,
 				'additional_content' => $this->get_additional_content(),
 			),
-			'woo-refund-and-exchange-lite',
+			'',
 			$this->template_base
 		);
 		return ob_get_clean();

@@ -14,10 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 do_action( 'woocommerce_email_header', $email_heading, $email );
 
 $message = $msg;
-if ( isset( $additional_content ) && '' !== $additional_content ) {
-	echo wp_kses_post( $additional_content );
-} else {
-	echo wp_kses_post( $message );
-}
+echo wp_kses_post( $message );
+
 
 do_action( 'woocommerce_email_footer', $email );

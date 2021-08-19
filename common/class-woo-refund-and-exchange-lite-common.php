@@ -330,6 +330,6 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	 * @param string $order_id .
 	 */
 	public function mwb_rma_refund_req_email( $order_id ) {
-		include_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'common/partials/woo-refund-and-exchange-lite-refund-request-email.php';
+		include_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php';
 	}
 }
