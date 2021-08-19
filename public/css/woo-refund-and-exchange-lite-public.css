@@ -325,3 +325,9 @@ display: none;
 #mwb_rma_return_request_container{
     text-align: center;
 }
+.view_msg {
+    margin-top: 4px;
+}
+.return {
+    margin-top: 4px;
+}

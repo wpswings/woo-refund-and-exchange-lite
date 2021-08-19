@@ -15,7 +15,7 @@
 
 <div class="mwb-overview__wrapper">
 	<div class="mwb-overview__banner">
-		<img src="<?php echo esc_html( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL ); ?>admin/image/banner.jpg" alt="Overview banner image">
+		<img src="<?php echo esc_html( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL ); ?>admin/image/banner.png" alt="Overview banner image">
 	</div>
 	<div class="mwb-overview__content">
 		<div class="mwb-overview__content-description">
