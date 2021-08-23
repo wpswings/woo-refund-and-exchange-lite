@@ -215,7 +215,7 @@ if ( 'yes' === $allowed ) {
 								</div>
 							</td>
 							<td class="product-quantity">
-							<?php echo sprintf( '<input type="number" disabled value="' . esc_html( $item['qty'] ) . '" class="mwb_rma_return_product_qty" name="mwb_rma_return_product_qty">' ); ?>
+							<?php echo apply_filters( 'mwb_rma_change_quanity', sprintf( '<input type="number" disabled value="' . esc_html( $item['qty'] ) . '" class="mwb_rma_return_product_qty" name="mwb_rma_return_product_qty">' ), $item['qty'] ); ?>
 							</td>
 							<td class="product-total">
 								<?php
