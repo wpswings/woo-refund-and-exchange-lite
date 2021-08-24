@@ -4,5 +4,17 @@
         <key name="mwb_rma_refund_rules_editor"/>
         <key name="mwb_rma_order_message_button_text"/>
         <key name="mwb_rma_refund_reasons"/>
+        <key name="woocommerce_mwb_rma_refund_request_email_settings">
+            <key name="subject" />
+            <key name="heading" />
+        </key>
+          <key name="woocommerce_mwb_rma_refund_request_accept_email_settings">
+            <key name="subject" />
+            <key name="heading" />
+        </key>
+          <key name="woocommerce_mwb_rma_refund_request_cancel_email_settings">
+            <key name="subject" />
+            <key name="heading" />
+        </key>
     </admin-texts>
 </wpml-config>
