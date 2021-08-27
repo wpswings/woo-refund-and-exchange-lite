@@ -81,8 +81,18 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 										$item_arr['item_id']      = $item_id;
 										$item_arr['variation_id'] = $variation_id;
 										$item_arr['qty']          = $value->qty;
-										$item_arr['price']        = $item->get_total();
-										$ref_price               += $item->get_total();
+										$mwb_rma_check_tax = get_option( $order_id . 'check_tax', false );
+										$tax = $item->get_total_tax();
+										if ( empty( $mwb_rma_check_tax ) ) {
+												$item_arr['price']        = $item->get_total();
+												$ref_price               += $item->get_total();
+										} elseif ( 'mwb_rma_inlcude_tax' === $mwb_rma_check_tax ) {
+											$item_arr['price']        = $item->get_total() + $tax;
+											$ref_price               += $item->get_total() + $tax;
+										} elseif ( 'mwb_rma_exclude_tax' === $mwb_rma_check_tax ) {
+											$item_arr['price']        = $item->get_total() - $tax;
+											$ref_price               += $item->get_total() - $tax;
+										}
 										$array_merge[]            = $item_arr;
 									}
 								}
@@ -112,7 +122,6 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 								$mwb_rma_rest_response['status']  = 404;
 								$mwb_rma_rest_response['data']    = __( 'Some problem occur while refund requesting', 'woo-refund-and-exchange-lite' );
 							}
-
 						}
 					}
 				} else {
@@ -128,11 +137,20 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 							} else {
 								$variation_id = 0;
 							}
-							$item_arr['item_id'] = $item_id;
+							$item_arr['item_id']      = $item_id;
 							$item_arr['variation_id'] = $variation_id;
 							$item_arr['qty']          = $item->get_quantity();
-							$item_arr['price']        = $item->get_total();
-							$ref_price               += $item->get_total();
+							$tax = $item->get_total_tax();
+							if ( empty( $mwb_rma_check_tax ) ) {
+									$item_arr['price'] = $item->get_total();
+									$ref_price        += $item->get_total();
+							} elseif ( 'mwb_rma_inlcude_tax' === $mwb_rma_check_tax ) {
+								$item_arr['price'] = $item->get_total() + $tax;
+								$ref_price        += $item->get_total() + $tax;
+							} elseif ( 'mwb_rma_exclude_tax' === $mwb_rma_check_tax ) {
+								$item_arr['price'] = $item->get_total() - $tax;
+								$ref_price        += $item->get_total() - $tax;
+							}
 							$array_merge[]            = $item_arr;
 						}
 						$products1['products']      = $array_merge;
@@ -152,13 +170,13 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 						}
 					}
 					if ( $flag_refund_made ) {
+						$mwb_rma_rest_response['message'] = 'error';
+						$mwb_rma_rest_response['status']  = 404;
+						$mwb_rma_rest_response['data']    = __( 'Return Request Already has been made and accpeted', 'woo-refund-and-exchange-lite' );
+					} elseif ( ! empty( $mwb_rma_resultsdata ) ) {
 						$mwb_rma_rest_response['message'] = 'success';
 						$mwb_rma_rest_response['status']  = 200;
 						$mwb_rma_rest_response['data']    = __( 'Return Request Send Successfully', 'woo-refund-and-exchange-lite' );
-					} elseif ( ! empty( $mwb_rma_resultsdata ) ) {
-						$mwb_rma_rest_response['message'] = 'success';
-						$mwb_rma_rest_response['status']  = 404;
-						$mwb_rma_rest_response['data']    = __( 'Return Request Already has been made and accpeted', 'woo-refund-and-exchange-lite' );
 					} else {
 						$mwb_rma_rest_response['message'] = 'error';
 						$mwb_rma_rest_response['status']  = 404;
@@ -204,7 +222,7 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 					}
 				} else {
 					$mwb_rma_rest_response['status'] = 404;
-					$mwb_rma_rest_response['data']       = __( 'You can only perform the refund request accept when the request has been made earliar', 'woo-refund-and-exchange-lite' );
+					$mwb_rma_rest_response['data']   = __( 'You can only perform the refund request accept when the request has been made earliar', 'woo-refund-and-exchange-lite' );
 				}
 			} else {
 				$mwb_rma_rest_response['status'] = 404;
