@@ -631,65 +631,73 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		if ( $check_ajax ) {
 			if ( current_user_can( 'mwb-rma-refund-approve' ) ) {
 				$orderid  = isset( $_POST['orderid'] ) ? sanitize_text_field( wp_unslash( $_POST['orderid'] ) ) : '';
-				$date     = isset( $_POST['date'] ) ? sanitize_text_field( wp_unslash( $_POST['date'] ) ) : '';
+				//$date     = isset( $_POST['date'] ) ? sanitize_text_field( wp_unslash( $_POST['date'] ) ) : '';
 				$products = get_post_meta( $orderid, 'mwb_rma_return_product', true );
+				$response = $this->mwb_rma_return_req_approve_callback( $orderid, $products );
+				echo wp_json_encode( $response );
 
 			}
-			// Fetch and update the return request product.
-			if ( isset( $products ) && ! empty( $products ) ) {
-				foreach ( $products as $date => $product ) {
-					if ( 'pending' === $product['status'] ) {
-						$product_datas                     = $product['products'];
-						$products[ $date ]['status']       = 'complete';
-						$approvdate                        = date_i18n( wc_date_format(), time() );
-						$products[ $date ]['approve_date'] = $approvdate;
-						break;
-					}
-				}
-			}
-
-			// Update the status.
-			update_post_meta( $orderid, 'mwb_rma_return_product', $products );
-
-			$request_files = get_post_meta( $orderid, 'mwb_rma_return_attachment', true );
-			if ( isset( $request_files ) && ! empty( $request_files ) ) {
-				foreach ( $request_files as $date => $request_file ) {
-					if ( 'pending' === $request_file['status'] ) {
-						$request_files[ $date ]['status'] = 'complete';
-						break;
-					}
-				}
-			}
-			// Update the status.
-			update_post_meta( $orderid, 'mwb_rma_return_attachment', $request_files );
-
-			$order_obj = wc_get_order( $orderid );
-
-			$update_item_status = get_post_meta( $orderid, 'mwb_rma_request_made', true );
-			foreach ( get_post_meta( $orderid, 'mwb_rma_return_product', true ) as $key => $value ) {
-				foreach ( $value['products'] as $key => $value ) {
-					if ( isset( $update_item_status[ $value['item_id'] ] ) ) {
-						$update_item_status[ $value['item_id'] ] = 'completed';
-					}
-				}
-			}
-			update_post_meta( $orderid, 'mwb_rma_request_made', $update_item_status );
-			// Send refund request accept email to customer.
-
-			$restrict_mail =
-			// Allow/Disallow Email.
-			apply_filters( 'mwb_rma_restrict_refund_app_mails', false );
-			if ( ! $restrict_mail ) {
-				// To Send Refund Request Accept Email.
-				do_action( 'mwb_rma_refund_req_accept_email', $orderid );
-			}
-			// Partial Stock Manage.
-			do_action( 'mwb_rma_refund_partial_stock_product', $orderid );
-			$order_obj->update_status( 'wc-return-approved', __( 'User Request of Refund Product is approved', 'woo-refund-and-exchange-lite' ) );
-			$response['response'] = 'success';
-			echo wp_json_encode( $response );
 		}
 		wp_die();
+	}
+
+	/**
+	 * Accept return request callback.
+	 */
+	public function mwb_rma_return_req_approve_callback( $orderid, $products ) {
+		// Fetch and update the return request product.
+		if ( isset( $products ) && ! empty( $products ) ) {
+			foreach ( $products as $date => $product ) {
+				if ( 'pending' === $product['status'] ) {
+					$product_datas                     = $product['products'];
+					$products[ $date ]['status']       = 'complete';
+					$approvdate                        = date_i18n( wc_date_format(), time() );
+					$products[ $date ]['approve_date'] = $approvdate;
+					break;
+				}
+			}
+		}
+
+		// Update the status.
+		update_post_meta( $orderid, 'mwb_rma_return_product', $products );
+
+		$request_files = get_post_meta( $orderid, 'mwb_rma_return_attachment', true );
+		if ( isset( $request_files ) && ! empty( $request_files ) ) {
+			foreach ( $request_files as $date => $request_file ) {
+				if ( 'pending' === $request_file['status'] ) {
+					$request_files[ $date ]['status'] = 'complete';
+					break;
+				}
+			}
+		}
+		// Update the status.
+		update_post_meta( $orderid, 'mwb_rma_return_attachment', $request_files );
+
+		$order_obj = wc_get_order( $orderid );
+
+		$update_item_status = get_post_meta( $orderid, 'mwb_rma_request_made', true );
+		foreach ( get_post_meta( $orderid, 'mwb_rma_return_product', true ) as $key => $value ) {
+			foreach ( $value['products'] as $key => $value ) {
+				if ( isset( $update_item_status[ $value['item_id'] ] ) ) {
+					$update_item_status[ $value['item_id'] ] = 'completed';
+				}
+			}
+		}
+		update_post_meta( $orderid, 'mwb_rma_request_made', $update_item_status );
+		// Send refund request accept email to customer.
+
+		$restrict_mail =
+		// Allow/Disallow Email.
+		apply_filters( 'mwb_rma_restrict_refund_app_mails', false );
+		if ( ! $restrict_mail ) {
+			// To Send Refund Request Accept Email.
+			do_action( 'mwb_rma_refund_req_accept_email', $orderid );
+		}
+		// Partial Stock Manage.
+		do_action( 'mwb_rma_refund_partial_stock_product', $orderid );
+		$order_obj->update_status( 'wc-return-approved', __( 'User Request of Refund Product is approved', 'woo-refund-and-exchange-lite' ) );
+		$response = array();
+		$response['response'] = 'success';
 	}
 
 	/**
@@ -702,51 +710,59 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				$orderid  = isset( $_POST['orderid'] ) ? sanitize_text_field( wp_unslash( $_POST['orderid'] ) ) : '';
 				$date     = isset( $_POST['date'] ) ? sanitize_text_field( wp_unslash( $_POST['date'] ) ) : '';
 				$products = get_post_meta( $orderid, 'mwb_rma_return_product', true );
-
-				// Fetch the return request product.
-				if ( isset( $products ) && ! empty( $products ) ) {
-					foreach ( $products as $date => $product ) {
-						if ( 'pending' === $product['status'] ) {
-							$product_datas                    = $product['products'];
-							$products[ $date ]['status']      = 'cancel';
-							$approvdate                       = date_i18n( wc_date_format(), time() );
-							$products[ $date ]['cancel_date'] = $approvdate;
-							break;
-						}
-					}
-				}
-				// Update the status.
-				update_post_meta( $orderid, 'mwb_rma_return_product', $products );
-
-				$request_files = get_post_meta( $orderid, 'mwb_rma_return_attachment', true );
-				if ( isset( $request_files ) && ! empty( $request_files ) ) {
-					foreach ( $request_files as $date => $request_file ) {
-						if ( 'pending' === $request_file['status'] ) {
-							$request_files[ $date ]['status'] = 'cancel';
-						}
-					}
-				}
-				// Update the status.
-				update_post_meta( $orderid, 'ced_rnx_return_attachment', $request_files );
-
-				// Send the cancel refund request email to customer.
-
-				$restrict_mail =
-				// Allow/Disallow Email.
-				apply_filters( 'mwb_rma_restrict_refund_cancel_mails', false );
-				if ( ! $restrict_mail ) {
-					// To Send Refund Request Cancel Email.
-					do_action( 'mwb_rma_refund_req_cancel_email', $orderid );
-				}
-				$order_obj = wc_get_order( $orderid );
-				$order_obj->update_status( 'wc-return-cancelled', __( 'User Request of Refund Product is approved', 'woo-refund-and-exchange-lite' ) );
-				$response['response'] = 'success';
+				$response = $this->mwb_rma_return_req_cancel_callback( $orderid, $products );
 				echo wp_json_encode( $response );
 
 			}
 		}
 		wp_die();
 	}
+
+	/**
+	 * Cancel return request callback.
+	 */
+	public function mwb_rma_return_req_cancel_callback( $orderid, $products ) {
+		// Fetch the return request product.
+		if ( isset( $products ) && ! empty( $products ) ) {
+			foreach ( $products as $date => $product ) {
+				if ( 'pending' === $product['status'] ) {
+					$product_datas                    = $product['products'];
+					$products[ $date ]['status']      = 'cancel';
+					$canceldate                       = date_i18n( wc_date_format(), time() );
+					$products[ $date ]['cancel_date'] = $canceldate;
+					break;
+				}
+			}
+		}
+		// Update the status.
+		update_post_meta( $orderid, 'mwb_rma_return_product', $products );
+
+		$request_files = get_post_meta( $orderid, 'mwb_rma_return_attachment', true );
+		if ( isset( $request_files ) && ! empty( $request_files ) ) {
+			foreach ( $request_files as $date => $request_file ) {
+				if ( 'pending' === $request_file['status'] ) {
+					$request_files[ $date ]['status'] = 'cancel';
+				}
+			}
+		}
+		// Update the status.
+		update_post_meta( $orderid, 'ced_rnx_return_attachment', $request_files );
+
+		// Send the cancel refund request email to customer.
+
+		$restrict_mail =
+		// Allow/Disallow Email.
+		apply_filters( 'mwb_rma_restrict_refund_cancel_mails', false );
+		if ( ! $restrict_mail ) {
+			// To Send Refund Request Cancel Email.
+			do_action( 'mwb_rma_refund_req_cancel_email', $orderid );
+		}
+		$order_obj = wc_get_order( $orderid );
+		$order_obj->update_status( 'wc-return-cancelled', __( 'User Request of Refund Product is cancel', 'woo-refund-and-exchange-lite' ) );
+		$response = array();
+		$response['response'] = 'success';
+	}
+
 
 	/**
 	 * Update left amount because amount is refunded.
