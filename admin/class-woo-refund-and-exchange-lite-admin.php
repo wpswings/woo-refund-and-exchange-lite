@@ -624,14 +624,13 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	}
 
 	/**
-	 * Accept return request.
+	 * Accept return request approve.
 	 */
 	public function mwb_rma_return_req_approve() {
 		$check_ajax = check_ajax_referer( 'mwb_rma_ajax_seurity', 'security_check' );
 		if ( $check_ajax ) {
 			if ( current_user_can( 'mwb-rma-refund-approve' ) ) {
 				$orderid  = isset( $_POST['orderid'] ) ? sanitize_text_field( wp_unslash( $_POST['orderid'] ) ) : '';
-				//$date     = isset( $_POST['date'] ) ? sanitize_text_field( wp_unslash( $_POST['date'] ) ) : '';
 				$products = get_post_meta( $orderid, 'mwb_rma_return_product', true );
 				$response = $this->mwb_rma_return_req_approve_callback( $orderid, $products );
 				echo wp_json_encode( $response );
@@ -642,7 +641,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	}
 
 	/**
-	 * Accept return request callback.
+	 * Accept return request approve callback.
 	 */
 	public function mwb_rma_return_req_approve_callback( $orderid, $products ) {
 		// Fetch and update the return request product.
@@ -701,14 +700,13 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	}
 
 	/**
-	 * Cancel return request.
+	 * Cancel return request cancel.
 	 */
 	public function mwb_rma_return_req_cancel() {
 		$check_ajax = check_ajax_referer( 'mwb_rma_ajax_seurity', 'security_check' );
 		if ( $check_ajax ) {
 			if ( current_user_can( 'ced-rnx-refund-cancel' ) ) {
 				$orderid  = isset( $_POST['orderid'] ) ? sanitize_text_field( wp_unslash( $_POST['orderid'] ) ) : '';
-				$date     = isset( $_POST['date'] ) ? sanitize_text_field( wp_unslash( $_POST['date'] ) ) : '';
 				$products = get_post_meta( $orderid, 'mwb_rma_return_product', true );
 				$response = $this->mwb_rma_return_req_cancel_callback( $orderid, $products );
 				echo wp_json_encode( $response );
@@ -719,7 +717,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	}
 
 	/**
-	 * Cancel return request callback.
+	 * Cancel return request cancel callback.
 	 */
 	public function mwb_rma_return_req_cancel_callback( $orderid, $products ) {
 		// Fetch the return request product.
