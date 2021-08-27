@@ -43,10 +43,10 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 		 * @return  Array $mwb_rma_rest_response    returns processed data and status of operations.
 		 */
 		public function mwb_rma_refund_request_process( $wrael_request ) {
-			$data     = $wrael_request->get_params();
-			$order_id = $data['order_id'] ? absint( $data['order_id'] ) : '';
-			$products = $data['products'] ? $data['products'] : '';
-			$reason   = $data['reason'] ? $data['reason'] : '';
+			$data                  = $wrael_request->get_params();
+			$order_id              = $data['order_id'] ? absint( $data['order_id'] ) : '';
+			$products              = $data['products'] ? $data['products'] : '';
+			$reason                = $data['reason'] ? $data['reason'] : '';
 			$mwb_rma_rest_response = array();
 			// My code start
 			if ( ! empty( $order_id ) ) {
@@ -198,8 +198,10 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 		 * @return  Array $mwb_rma_rest_response    returns processed data and status of operations.
 		 */
 		public function mwb_rma_refund_request_accept_process( $wrael_request ) {
-			$data     = $wrael_request->get_params();
-			$order_id = $data['order_id'] ? absint( $data['order_id'] ) : '';
+			$mwb_mwr_rest_response = array();
+			$data                  = $wrael_request->get_params();
+			$order_id              = $data['order_id'] ? absint( $data['order_id'] ) : '';
+			$flag                  = false;
 			if ( ! empty( $order_id ) ) {
 				$products = get_post_meta( $order_id, 'mwb_rma_return_product', true );
 				if ( isset( $products ) && ! empty( $products ) ) {
@@ -239,9 +241,10 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 		 * @return  Array $mwb_rma_rest_response    returns processed data and status of operations.
 		 */
 		public function mwb_rma_refund_request_cancel_process( $wrael_request ) {
-			$data     = $wrael_request->get_params();
-			$order_id = $data['order_id'] ? absint( $data['order_id'] ) : '';
-			$flag     = false;
+			$mwb_mwr_rest_response = array();
+			$data                  = $wrael_request->get_params();
+			$order_id              = $data['order_id'] ? absint( $data['order_id'] ) : '';
+			$flag                  = false;
 			if ( ! empty( $order_id ) ) {
 				$products = get_post_meta( $order_id, 'mwb_rma_return_product', true );
 				if ( isset( $products ) && ! empty( $products ) ) {

@@ -173,8 +173,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			$order_id      = isset( $_POST['orderid'] ) ? sanitize_text_field( wp_unslash( $_POST['orderid'] ) ) : '';
 			$refund_method = isset( $_POST['refund_method'] ) ? sanitize_text_field( wp_unslash( $_POST['refund_method'] ) ) : '';
 			$refund_method = apply_filters( 'mwb_rma_refund_method_wallet', $refund_method );
-			//$products      = isset( $_POST['products'] ) ? sanitize_text_field( wp_unslash( $_POST['products'] ) ) : '';
-			$products1 = $_POST; 
+			$products1     = $_POST; 
 			$response      = $this->mwb_rma_save_return_request_callback( $order_id, $refund_method, $products1 );
 			echo wp_json_encode( $response );
 			wp_die();

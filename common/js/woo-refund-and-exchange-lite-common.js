@@ -83,7 +83,7 @@
 				if (typeof mwb_rma_refund_total == 'function') {
 					var return_data = mwb_rma_refund_total();
 					selected_product = return_data['selected_product'];
-					refund_amount = return_data['amount'];
+					refund_amount    = return_data['amount'];
 				}
 			}else{
 				$(".mwb_rma_return_column").each(function(){
