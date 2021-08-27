@@ -42,58 +42,7 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 		 * @param   object $wrael_request  data of requesting headers and other information.
 		 * @return  Array $mwb_rma_rest_response    returns processed data and status of operations.
 		 */
-		public function mwb_rma_default_process( $wrael_request ) {
-			$mwb_rma_rest_response = array();
-
-			// Write your custom code here.
-
-			$mwb_rma_rest_response['status'] = 200;
-			$mwb_rma_rest_response['data']   = $wrael_request->get_headers();
-			return $mwb_rma_rest_response;
-		}
-
-		/**
-		 * Create a refund request.
-		 *
-		 * @since    1.0.0
-		 * @param   object $wrael_request  data of requesting headers and other information.
-		 * @return  Array $mwb_rma_rest_response    returns processed data and status of operations.
-		 */
-		public function mwb_rma_refund_request_api( $wrael_request ) {
-			$mwb_rma_rest_response = array();
-
-			// Write your custom code here.
-
-			$mwb_rma_rest_response['status'] = 200;
-			$mwb_rma_rest_response['data']   = $wrael_request->get_headers();
-			return $mwb_rma_rest_response;
-		}
-
-		/**
-		 * Accept Refund Request.
-		 *
-		 * @since    1.0.0
-		 * @param   object $wrael_request  data of requesting headers and other information.
-		 * @return  Array $mwb_rma_rest_response    returns processed data and status of operations.
-		 */
-		public function mwb_rma_refund_request_accept_api( $wrael_request ) {
-			$mwb_rma_rest_response = array();
-
-			// Write your custom code here.
-
-			$mwb_rma_rest_response['status'] = 200;
-			$mwb_rma_rest_response['data']   = $wrael_request->get_headers();
-			return $mwb_rma_rest_response;
-		}
-
-		/**
-		 * Cancel Refund Request.
-		 *
-		 * @since    1.0.0
-		 * @param   object $wrael_request  data of requesting headers and other information.
-		 * @return  Array $mwb_rma_rest_response    returns processed data and status of operations.
-		 */
-		public function mwb_rma_refund_request_cancel_api( $wrael_request ) {
+		public function mwb_rma_refund_request_process( $wrael_request ) {
 			$mwb_rma_rest_response = array();
 
 			// Write your custom code here.

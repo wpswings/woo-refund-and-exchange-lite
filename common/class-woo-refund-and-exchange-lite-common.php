@@ -174,64 +174,75 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			$refund_method = isset( $_POST['refund_method'] ) ? sanitize_text_field( wp_unslash( $_POST['refund_method'] ) ) : '';
 			$refund_method = apply_filters( 'mwb_rma_refund_method_wallet', $refund_method );
 			$products      = isset( $_POST['products'] ) ? sanitize_text_field( wp_unslash( $_POST['products'] ) ) : '';
-			update_option( $order_id . 'mwb_rma_refund_method', $refund_method );
-			$order = wc_get_order( $order_id );
-
-			if ( empty( get_post_meta( $order_id, 'mwb_rma_request_made', true ) ) ) {
-				$item_id = array();
-			} else {
-				$item_id = get_post_meta( $order_id, 'mwb_rma_request_made', true );
-			}
-			if ( isset( $_POST ) && ! empty( $_POST ) && is_array( $_POST ) ) {
-				foreach ( $_POST as $post_key => $post_value ) {
-					if ( is_array( $post_value ) && ! empty( $post_value ) ) {
-						foreach ( $post_value as $post_val_key => $post_val_value ) {
-							$item_id[ $post_val_value['item_id'] ] = 'pending';
-						}
-					}
-				}
-			}
-			update_post_meta( $order_id, 'mwb_rma_request_made', $item_id );
-			$products = get_post_meta( $order_id, 'mwb_rma_return_product', true );
-			$pending  = true;
-			if ( isset( $products ) && ! empty( $products ) ) {
-				foreach ( $products as $date => $product ) {
-					if ( 'pending' === $product['status'] ) {
-							$products[ $date ]           = $_POST;
-							$products[ $date ]['status'] = 'pending'; // update requested products.
-							$pending                     = false;
-							break;
-					}
-				}
-			}
-			if ( $pending ) {
-				if ( ! is_array( $products ) ) {
-					$products = array();
-				}
-				$products                    = array();
-				$date                        = date_i18n( wc_date_format(), time() );
-				$products[ $date ]           = $_POST;
-				$products[ $date ]['status'] = 'pending';
-
-			}
-
-			update_post_meta( $order_id, 'mwb_rma_return_product', $products );
-
-			// Send refund request email to admin.
-
-			$restrict_mail = apply_filters( 'mwb_rma_restrict_refund_request_mails', false );
-			if ( ! $restrict_mail ) {
-				do_action( 'mwb_rma_refund_req_email', $order_id );
-			}
-			do_action( 'mwb_rma_do_something_on_refund', $order_id );
-			$order->update_status( 'wc-return-requested', 'User Request to Refund Product' );
-			$response['auto_accept'] = apply_filters( 'mwb_rma_auto_accept_refund', false );
-			$response['flag']        = true;
-			$response['msg']         = __( 'Refund request placed successfully. You have received a notification mail regarding this. You will redirect to the My Account Page', 'woo-refund-and-exchange-lite' );
+			$response      = $this->mwb_rma_save_return_request_callback( $order_id, $refund_method, $products );
 			echo wp_json_encode( $response );
-
 			wp_die();
 		}
+	}
+
+	/**
+	 * This function is a callback function to save return request.
+	 *
+	 * @param int    $order_id .
+	 * @param string $refund_method .
+	 * @param array  $products .
+	 */
+	public function mwb_rma_save_return_request_callback( $order_id, $refund_method, $products ) {
+		update_option( $order_id . 'mwb_rma_refund_method', $refund_method );
+		$order = wc_get_order( $order_id );
+
+		if ( empty( get_post_meta( $order_id, 'mwb_rma_request_made', true ) ) ) {
+			$item_id = array();
+		} else {
+			$item_id = get_post_meta( $order_id, 'mwb_rma_request_made', true );
+		}
+		if ( isset( $_POST ) && ! empty( $_POST ) && is_array( $_POST ) ) {
+			foreach ( $_POST as $post_key => $post_value ) {
+				if ( is_array( $post_value ) && ! empty( $post_value ) ) {
+					foreach ( $post_value as $post_val_key => $post_val_value ) {
+						$item_id[ $post_val_value['item_id'] ] = 'pending';
+					}
+				}
+			}
+		}
+		update_post_meta( $order_id, 'mwb_rma_request_made', $item_id );
+		$products = get_post_meta( $order_id, 'mwb_rma_return_product', true );
+		$pending  = true;
+		if ( isset( $products ) && ! empty( $products ) ) {
+			foreach ( $products as $date => $product ) {
+				if ( 'pending' === $product['status'] ) {
+						$products[ $date ]           = $_POST;
+						$products[ $date ]['status'] = 'pending'; // update requested products.
+						$pending                     = false;
+						break;
+				}
+			}
+		}
+		if ( $pending ) {
+			if ( ! is_array( $products ) ) {
+				$products = array();
+			}
+			$products                    = array();
+			$date                        = date_i18n( wc_date_format(), time() );
+			$products[ $date ]           = $_POST;
+			$products[ $date ]['status'] = 'pending';
+
+		}
+
+		update_post_meta( $order_id, 'mwb_rma_return_product', $products );
+
+		// Send refund request email to admin.
+
+		$restrict_mail = apply_filters( 'mwb_rma_restrict_refund_request_mails', false );
+		if ( ! $restrict_mail ) {
+			do_action( 'mwb_rma_refund_req_email', $order_id );
+		}
+		do_action( 'mwb_rma_do_something_on_refund', $order_id );
+		$order->update_status( 'wc-return-requested', 'User Request to Refund Product' );
+		$response['auto_accept'] = apply_filters( 'mwb_rma_auto_accept_refund', false );
+		$response['flag']        = true;
+		$response['msg']         = __( 'Refund request placed successfully. You have received a notification mail regarding this. You will redirect to the My Account Page', 'woo-refund-and-exchange-lite' );
+		return $response;
 	}
 
 	/**
