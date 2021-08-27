@@ -70,7 +70,6 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 									} else if ( absint( $value->qty ) > $item->get_quantity() ) {
 										$qty_flag = false;
 									} else {
-										$flag                   = true;
 										$item_arr               = array();
 										$item_arr['product_id'] = $item->get_product_id();
 										if( $item->is_type('variable') ) {
@@ -84,16 +83,16 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 										$mwb_rma_check_tax = get_option( $order_id . 'check_tax', false );
 										$tax = $item->get_total_tax();
 										if ( empty( $mwb_rma_check_tax ) ) {
-												$item_arr['price']        = $item->get_total();
-												$ref_price               += $item->get_total();
+											$item_arr['price'] = $item->get_total();
+											$ref_price        += $item->get_total();
 										} elseif ( 'mwb_rma_inlcude_tax' === $mwb_rma_check_tax ) {
-											$item_arr['price']        = $item->get_total() + $tax;
-											$ref_price               += $item->get_total() + $tax;
+											$item_arr['price'] = $item->get_total() + $tax;
+											$ref_price        += $item->get_total() + $tax;
 										} elseif ( 'mwb_rma_exclude_tax' === $mwb_rma_check_tax ) {
-											$item_arr['price']        = $item->get_total() - $tax;
-											$ref_price               += $item->get_total() - $tax;
+											$item_arr['price'] = $item->get_total() - $tax;
+											$ref_price        += $item->get_total() - $tax;
 										}
-										$array_merge[]            = $item_arr;
+										$array_merge[] = $item_arr;
 									}
 								}
 							}

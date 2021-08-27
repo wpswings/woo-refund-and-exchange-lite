@@ -97,6 +97,14 @@
 #adminmenuwrap #adminmenu .wp-submenu a{
 	font-size: 11px;
 }
+/*overview*/
+.mwb-overview__wrapper .mwb-overview__content .mwb-overview__keywords .mwb-overview__keywords-item .mwb-overview__keywords-card {
+	text-align: center;
+}
+.mwb-section .mwb-overview__wrapper .mwb-overview__content .mwb-overview__keywords .mwb-overview__keywords-item .mwb-overview__keywords-card .mwb-overview__keywords-text .mwb-overview__keywords-heading{
+    font-size: 22px;
+    line-height: 32px;
+}
 @media only screen and (max-width: 1140px){
 	.add_more_rma_policies select,
 	.add_more_rma_policies label, 
@@ -107,6 +115,12 @@
 	    margin-top: 8px;
 	}	
 }
-#add_more_rma_policies_clone{
-  display: none;
+@media only screen and (max-width: 520px){
+	.mwb-section .mwb-overview__wrapper .mwb-overview__content .mwb-overview__keywords{
+		flex-direction: column;
+	}
+	.mwb-section .mwb-overview__wrapper .mwb-overview__content .mwb-overview__keywords .mwb-overview__keywords-item{
+		flex: 0 0 100%;
+    	max-width: 100%;
+	}
 }
