@@ -47,6 +47,7 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 			$order_id              = $data['order_id'] ? absint( $data['order_id'] ) : '';
 			$products              = $data['products'] ? $data['products'] : '';
 			$reason                = $data['reason'] ? $data['reason'] : '';
+			$refund_method         = $data['refund_method'] ? $data['refund_method'] : 'manual_method';
 			$mwb_rma_rest_response = array();
 			// My code start
 			if ( ! empty( $order_id ) ) {
@@ -109,9 +110,9 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 							$products1['products']      = $array_merge;
 							$products1['order_id']      = $order_id;
 							$products1['subject']       = $reason;
-							$products1['refund_method'] = $data['refund_method'] ? $data['refund_method'] : 'manual_method';
+							$products1['refund_method'] = $refund_method;
 							$products1['amount']        = $ref_price;
-							$mwb_rma_resultsdata        = $mwb_rma_obj->mwb_rma_save_return_request_callback( $order_id, $data['refund_method'], $products1 );
+							$mwb_rma_resultsdata        = $mwb_rma_obj->mwb_rma_save_return_request_callback( $order_id, $refund_method, $products1 );
 							if ( ! empty( $mwb_rma_resultsdata ) ) {
 								$mwb_rma_rest_response['message'] = 'success';
 								$mwb_rma_rest_response['status']  = 200;
