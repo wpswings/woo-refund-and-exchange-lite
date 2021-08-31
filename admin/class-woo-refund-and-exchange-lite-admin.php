@@ -127,7 +127,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		if ( empty( $GLOBALS['admin_page_hooks']['mwb-plugins'] ) ) {
 			add_menu_page( __( 'MakeWebBetter', 'woo-refund-and-exchange-lite' ), __( 'MakeWebBetter', 'woo-refund-and-exchange-lite' ), 'manage_options', 'mwb-plugins', array( $this, 'mwb_plugins_listing_page' ), WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/image/MWB_Grey-01.svg', 15 );
 			$wrael_menus =
-			// desc - filter for trial.
+			// Add Menu.
 			apply_filters( 'mwb_add_plugins_menus_array', array() );
 			if ( is_array( $wrael_menus ) && ! empty( $wrael_menus ) ) {
 				foreach ( $wrael_menus as $wrael_key => $wrael_value ) {
@@ -176,7 +176,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	 */
 	public function mwb_plugins_listing_page() {
 		$active_marketplaces =
-		// desc - filter for trial.
+		// Add Menu.
 		apply_filters( 'mwb_add_plugins_menus_array', array() );
 		if ( is_array( $active_marketplaces ) && ! empty( $active_marketplaces ) ) {
 			include WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/welcome.php';
@@ -310,6 +310,17 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		$wrael_settings_general =
 		// To extend the general setting.
 		apply_filters( 'mwb_rma_general_setting_extend', $wrael_settings_general );
+		$wrael_settings_general[] = array(
+			'title'   => __( 'Enable to Show Bank Details field for Manual Refund', 'woo-refund-and-exchange-lite' ),
+			'type'    => 'radio-switch',
+			'id'      => 'mwb_rma_refund_manually_de',
+			'value'   => get_option( 'mwb_rma_refund_manually_de' ),
+			'class'   => 'wrael-radio-switch-class',
+			'options' => array(
+				'yes' => __( 'YES', 'woo-refund-and-exchange-lite' ),
+				'no'  => __( 'NO', 'woo-refund-and-exchange-lite' ),
+			),
+		);
 		$wrael_settings_general[] = array(
 			'type'        => 'button',
 			'id'          => 'mwb_rma_save_general_setting',

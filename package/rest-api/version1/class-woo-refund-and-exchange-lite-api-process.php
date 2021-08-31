@@ -224,7 +224,7 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 					}
 				} else {
 					$mwb_rma_rest_response['status'] = 404;
-					$mwb_rma_rest_response['data']   = __( 'You can only perform the refund request accept when the request has been made earliar', 'woo-refund-and-exchange-lite' );
+					$mwb_rma_rest_response['data']   = __( 'You can only perform the refund request accept when the request has been made earlier', 'woo-refund-and-exchange-lite' );
 				}
 			} else {
 				$mwb_rma_rest_response['status'] = 404;
@@ -267,7 +267,7 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 					}
 				} else {
 					$mwb_rma_rest_response['status'] = 404;
-					$mwb_rma_rest_response['data']       = __( 'You can only perform the refund request cancel when the request request has been made earliar', 'woo-refund-and-exchange-lite' );
+					$mwb_rma_rest_response['data']       = __( 'You can only perform the refund request cancel when the request request has been made earlier', 'woo-refund-and-exchange-lite' );
 				}
 			} else {
 				$mwb_rma_rest_response['status'] = 404;

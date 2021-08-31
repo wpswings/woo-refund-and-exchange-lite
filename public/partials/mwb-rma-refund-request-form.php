@@ -103,7 +103,9 @@ if ( 'yes' === $allowed ) {
 					$mwb_total_actual_price = 0;
 					$mwb_rma_check_tax      = get_option( $order_id . 'check_tax', false );
 					$order_obj              = wc_get_order( $order_id );
-					$show_purchase_note     = $order_obj->has_status( apply_filters( 'woocommerce_purchase_note_order_statuses', array( 'completed', 'processing' ) ) );
+					$show_purchase_note     = $order_obj->has_status(
+					// Purchases note on the order.
+					apply_filters( 'woocommerce_purchase_note_order_statuses', array( 'completed', 'processing' ) ) );
 					$get_order_currency     = get_woocommerce_currency_symbol( $order_obj->get_currency() );
 					foreach ( $order_obj->get_items() as $item_id => $item ) {
 						$item_refund_already = get_post_meta( $order_id, 'mwb_rma_request_made', true );
@@ -215,7 +217,9 @@ if ( 'yes' === $allowed ) {
 								</div>
 							</td>
 							<td class="product-quantity">
-							<?php echo apply_filters( 'mwb_rma_change_quanity', sprintf( '<input type="number" disabled value="' . esc_html( $item['qty'] ) . '" class="mwb_rma_return_product_qty" name="mwb_rma_return_product_qty">' ), $item['qty'] ); ?>
+							<?php echo 
+							// Refund form Quantity html.
+							apply_filters( 'mwb_rma_change_quanity', sprintf( '<input type="number" disabled value="' . esc_html( $item['qty'] ) . '" class="mwb_rma_return_product_qty" name="mwb_rma_return_product_qty">' ), $item['qty'] ); ?>
 							</td>
 							<td class="product-total">
 								<?php
@@ -272,8 +276,17 @@ if ( 'yes' === $allowed ) {
 		<div class="mwb_rma_refund_request__row mwb_rma_flex">
 			<div class="mwb_rma__column mwb_rma__column-left">
 				<?php
+			
 				// Add someting after table on the refund request form.
 				do_action( 'mwb_rma_after_table', $order_id );
+				$re_bank = get_option( 'mwb_rma_refund_manually_de', false );
+				if ( 'on' === $re_bank ) {
+					?>
+					<div id="bank_details">
+					<textarea name="" class="mwb_rma_bank_details" rows=4 id="mwb_rma_bank_details" maxlength="1000" placeholder="<?php esc_html_e( 'Please Enter the bank details for manual refund', 'woo-refund-and-exchange-lite' ); ?>"></textarea>
+					</div>
+					<?php
+				}
 				?>
 				<div class="mwb_rma_subject_dropdown">
 					<div>
@@ -287,10 +300,12 @@ if ( 'yes' === $allowed ) {
 					</div>
 					<select name="mwb_rma_return_request_subject" id="mwb_rma_return_request_subject">
 						<?php
-						foreach ( $predefined_return_reason as $predefine_reason ) {
-							?>
-							<option value="<?php echo esc_html( $predefine_reason ); ?>"  <?php selected( $predefine_reason, $rr_subject ); ?>><?php echo esc_html( $predefine_reason ); ?></option>
-							<?php
+						if ( ! empty( $predefined_return_reason[0] ) ) {
+							foreach ( $predefined_return_reason as $predefine_reason ) {
+								?>
+								<option value="<?php echo esc_html( $predefine_reason ); ?>"  <?php selected( $predefine_reason, $rr_subject ); ?>><?php echo esc_html( $predefine_reason ); ?></option>
+								<?php
+							}
 						}
 						?>
 						<option value=""><?php esc_html_e( 'Other', 'woo-refund-and-exchange-lite' ); ?></option>

@@ -29,7 +29,6 @@ if ( is_array( $line_items ) && ! empty( $line_items ) ) {
 	update_post_meta( $order_id, 'mwb_rma_new_refund_line_items', $line_items );
 }
 $line_items = get_post_meta( $order_id, 'mwb_rma_new_refund_line_items', true );
-
 if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 	$ref_meth = get_option( $order_id . 'mwb_rma_refund_method' );
 	foreach ( $return_datas as $key => $return_data ) {
@@ -174,6 +173,15 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 			<p><strong><?php esc_html_e( 'Subject', 'woo-refund-and-exchange-lite' ); ?> :</strong><i> <?php echo esc_html( $return_data['subject'] ); ?></i></p></p>
 			<p><b><?php esc_html_e( 'Reason', 'woo-refund-and-exchange-lite' ); ?> :</b></p>
 			<p><?php echo isset( $return_data['reason'] ) ? esc_html( $return_data['reason'] ) : esc_html__( 'No Reason', 'woo-refund-and-exchange-lite' ); ?></p>
+			<?php
+				$bank_details = get_post_meta( $order_id, 'mwb_rma_bank_details', true );
+				if ( ! empty( $bank_details ) ) {
+					?>
+					<p><strong><?php esc_html_e( 'Bank Details', 'woo-refund-and-exchange-lite' ); ?> :</strong><i> <?php echo esc_html( $bank_details ); ?></i></p></p>
+					<?php
+				}
+				
+			?>
 			<?php
 			$req_attachments = get_post_meta( $order_id, 'mwb_rma_return_attachment', true );
 			if ( isset( $req_attachments ) && ! empty( $req_attachments ) ) {

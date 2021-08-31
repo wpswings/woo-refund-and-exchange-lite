@@ -116,6 +116,7 @@
 				subject	: rr_subject,
 				reason	: rr_reason,
 				orderid : orderid,
+				bankdetails : $( '#mwb_rma_bank_details' ).val(),
 				refund_method : refund_method,
 				security_check	: wrael_public_param.mwb_rma_nonce
 			}

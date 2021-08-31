@@ -227,7 +227,7 @@ if ( $activated ) {
 	}
 
 	/**
-	 * Check all the condition whether to refund buttons or not.
+	 * Check all the condition whether to show refund buttons or not.
 	 *
 	 * @param string $func  is current functinality name i.e refund/exchange/cancel.
 	 * @param object $order is the order object.
@@ -275,33 +275,33 @@ if ( $activated ) {
 								if ( $day_diff < floatval( $value['row_value'] ) ) {
 									$show_button = 'yes';
 								} else {
-									$show_button = ucfirst( $func ) . ' days exceed must be less than' . $value['row_value'];
+									$show_button = ucfirst( $func ) . __( ' days exceed must be less than ', 'woo-refund-and-exchange-lite' ) . $value['row_value'];
 									break;
 								}
 							} elseif ( 'mwb_rma_greater_than' === $value['row_conditions1'] ) {
 								if ( $day_diff > floatval( $value['row_value'] ) ) {
 									$show_button = 'yes';
 								} else {
-									$show_button = ucfirst( $func ) . ' days must be greater than ' . $value['row_value'];
+									$show_button = ucfirst( $func ) . __( ' days must be greater than ', 'woo-refund-and-exchange-lite' ) . $value['row_value'];
 									break;
 								}
 							} elseif ( 'mwb_rma_less_than_equal' === $value['row_conditions1'] ) {
 								if ( $day_diff <= floatval( $value['row_value'] ) ) {
 									$show_button = 'yes';
 								} else {
-									$show_button = ucfirst( $func ) . ' days must be less than equal to ' . $value['row_value'];
+									$show_button = ucfirst( $func ) . __( ' days must be less than equal to ', 'woo-refund-and-exchange-lite' ) . $value['row_value'];
 									break;
 								}
 							} elseif ( 'mwb_rma_greater_than_equal' === $value['row_conditions1'] ) {
 								if ( $day_diff >= floatval( $value['row_value'] ) ) {
 									$show_button = 'yes';
 								} else {
-									$show_button = ucfirst( $func ) . ' days must be greater than equal to ' . $value['row_value'];
+									$show_button = ucfirst( $func ) . __( ' days must be greater than equal to ', 'woo-refund-and-exchange-lite' ) . $value['row_value'];
 									break;
 								}
 							}
 						} else {
-							$show_button = ucfirst( $func ) . ' max days is blank';
+							$show_button = ucfirst( $func ) . __( ' max days is blank', 'woo-refund-and-exchange-lite' );
 							break;
 						}
 					} elseif ( 'mwb_rma_order_status' === $value['row_policy'] ) {
