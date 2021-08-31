@@ -449,8 +449,26 @@
 			}
 		});
 	});
-	// Manage Stock functionality end
-	$(window).load(function() {
+	// Regenerate Api Secret key
+	$( document ).on( 'click', '#mwb_rma_generate_key_setting', function(e){
+		e.preventDefault();
+		var data = {
+			action:'mwb_rma_api_secret_key',
+			security_check	: wrael_admin_param.mwb_rma_nonce
+		};
+		$.ajax(
+			{
+				url: wrael_admin_param.ajaxurl,
+				type: "POST",
+				data: data,
+				dataType :'json',
+				success: function(response) {
+					window.location.reload();
+				}
+		});
+	});
+	// Manage Stock functionality end.
+	$( window ).load(function() {
 		// add select2 for multiselect.
 		if ($(document).find(".mwb-defaut-multiselect").length > 0) {
 			$(document)

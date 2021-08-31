@@ -214,6 +214,7 @@ class Woo_Refund_And_Exchange_Lite {
 		// Register settings.
 		$this->loader->add_filter( 'mwb_rma_refund_settings_array', $wrael_plugin_admin, 'mwb_rma_refund_settings_page', 10 );
 		$this->loader->add_filter( 'mwb_rma_order_message_settings_array', $wrael_plugin_admin, 'mwb_rma_order_message_settings_page', 10 );
+		$this->loader->add_filter( 'mwb_rma_api_settings_array', $wrael_plugin_admin, 'mwb_rma_api_settings_page', 10 );
 
 		// Add metaboxes.
 		$this->loader->add_action( 'add_meta_boxes', $wrael_plugin_admin, 'mwb_wrma_add_metaboxes' );
@@ -223,6 +224,7 @@ class Woo_Refund_And_Exchange_Lite {
 		$this->loader->add_action( 'wp_ajax_mwb_rma_return_req_approve', $wrael_plugin_admin, 'mwb_rma_return_req_approve' );
 		$this->loader->add_action( 'wp_ajax_mwb_rma_return_req_cancel', $wrael_plugin_admin, 'mwb_rma_return_req_cancel' );
 		$this->loader->add_action( 'wp_ajax_mwb_rma_manage_stock', $wrael_plugin_admin, 'mwb_rma_manage_stock' );
+		$this->loader->add_action( 'wp_ajax_mwb_rma_api_secret_key', $wrael_plugin_admin, 'mwb_rma_api_secret_key' );
 
 		// Update Refund Created amount.
 		$this->loader->add_action( 'woocommerce_refund_created', $wrael_plugin_admin, 'mwb_rma_action_woocommerce_order_refunded', 10, 2 );
@@ -392,6 +394,11 @@ class Woo_Refund_And_Exchange_Lite {
 			'title'     => esc_html__( 'Developer', 'woo-refund-and-exchange-lite' ),
 			'name'      => 'woo-refund-and-exchange-lite-developer',
 			'file_path' => WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/woo-refund-and-exchange-lite-developer.php',
+		);
+		$wrael_default_tabs['woo-refund-and-exchange-lite-api']     = array(
+			'title'     => esc_html__( 'API Setting', 'woo-refund-and-exchange-lite' ),
+			'name'      => 'woo-refund-and-exchange-lite-api',
+			'file_path' => WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/woo-refund-and-exchange-lite-api.php',
 		);
 		$wrael_default_tabs['woo-refund-and-exchange-lite-overview']      = array(
 			'title'     => esc_html__( 'Overview', 'woo-refund-and-exchange-lite' ),

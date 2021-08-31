@@ -326,7 +326,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	 */
 	public function wrael_admin_save_tab_settings() {
 		global $wrael_mwb_rma_obj;
-		if ( ( isset( $_POST['mwb_rma_save_general_setting'] ) || isset( $_POST['mwb_rma_save_refund_setting'] ) || isset( $_POST['mwb_rma_save_text_setting'] ) )
+		if ( ( isset( $_POST['mwb_rma_save_general_setting'] ) || isset( $_POST['mwb_rma_save_refund_setting'] ) || isset( $_POST['mwb_rma_save_text_setting'] ) || isset( $_POST['mwb_rma_save_api_setting'] ) )
 			&& ( ! empty( $_POST['mwb_tabs_nonce'] )
 			&& wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['mwb_tabs_nonce'] ) ), 'admin_save_data' ) )
 		) {
@@ -343,6 +343,10 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				$wrael_genaral_settings =
 				// The Order Message tab settings.
 				apply_filters( 'mwb_rma_order_message_settings_array', array() );
+			} elseif ( isset( $_POST['mwb_rma_save_api_setting'] ) ) {
+				$wrael_genaral_settings =
+				// The Order Message tab settings.
+				apply_filters( 'mwb_rma_api_settings_array', array() );
 			}
 			$wrael_button_index = array_search( 'submit', array_column( $wrael_genaral_settings, 'type' ), true );
 			if ( isset( $wrael_button_index ) && ( null == $wrael_button_index || '' == $wrael_button_index ) ) {
@@ -565,6 +569,48 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		);
 		return $mwb_rma_settings_order_message;
 	}
+	/**
+	 * To add api tab setting.
+	 *
+	 * @param array $mwb_rma_api_settings_page .
+	 */
+	public function mwb_rma_api_settings_page( $mwb_rma_settings_api ) {
+		$mwb_rma_settings_api = array(
+			array(
+				'title'   => __( 'Enable API', 'woo-refund-and-exchange-lite' ),
+				'type'    => 'radio-switch',
+				'id'      => 'mwb_rma_enable_api',
+				'value'   => get_option( 'mwb_rma_enable_api' ),
+				'class'   => 'wrael-radio-switch-class',
+				'options' => array(
+					'yes' => __( 'YES', 'woo-refund-and-exchange-lite' ),
+					'no'  => __( 'NO', 'woo-refund-and-exchange-lite' ),
+				),
+			),
+			array(
+				'title'       => __( 'Secret Key', 'woo-refund-and-exchange-lite' ),
+				'type'        => 'text',
+				'id'          => 'mwb_rma_secret_key',
+				'value'       => get_option( 'mwb_rma_secret_key' ),
+				'class'       => 'wrael-text-class',
+				'placeholder' => __( 'Please Generate the Secret Key', 'woo-refund-and-exchange-lite' ),
+			),
+			array(
+				'type'        => 'button',
+				'id'          => 'mwb_rma_generate_key_setting',
+				'button_text' => __( 'Generate Key', 'woo-refund-and-exchange-lite' ),
+				'class'       => 'wrael-button-class',
+			),
+			array(
+				'type'        => 'button',
+				'id'          => 'mwb_rma_save_api_setting',
+				'button_text' => __( 'Save Setting', 'woo-refund-and-exchange-lite' ),
+				'class'       => 'wrael-button-class',
+			),
+		); 
+		return $mwb_rma_settings_api;
+	}
+
 	/**
 	 * This function is metabox template for order msg history.
 	 *
@@ -871,6 +917,18 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			update_option( 'mwb_rma_save_policiies_setting', true );
 			$mwb_rma_error_text = esc_html__( 'Settings saved !', 'woo-refund-and-exchange-lite' );
 			$wrael_mwb_rma_obj->mwb_rma_plug_admin_notice( $mwb_rma_error_text, 'success2' );
+		}
+	}
+
+	/**
+	 * Generate the secret key
+	 */
+	public function mwb_rma_api_secret_key() {
+		$check_ajax = check_ajax_referer( 'mwb_rma_ajax_seurity', 'security_check' );
+		if ( $check_ajax ) {
+			$value = 'mwb_' . wc_rand_hash();
+			update_option( 'mwb_rma_secret_key', $value );
+			return 'success';
 		}
 	}
 }

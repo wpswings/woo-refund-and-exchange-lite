@@ -111,10 +111,21 @@ class Woo_Refund_And_Exchange_Lite_Rest_Api {
 	 * @since    1.0.0
 	 */
 	public function mwb_rma_default_permission_check( $request ) {
-
-		// Add rest api validation for each request.
-		$result = true;
-		return $result;
+		$request_params  = $request->get_params();
+		$mwb_secretkey   = isset( $request_params['secret_key'] ) ? $request_params['secret_key'] : '';
+		$secret_key      = get_option( 'mwb_rma_secret_key', true );
+		$api_enable      = get_option( 'mwb_rma_enable_api', true );
+		$mwb_secret_code = '';
+		if ( 'on' === $api_enable ) {
+			$mwb_secret_code = ! empty( $secret_key ) ? $secret_key : '';
+		}
+		if ( '' === $mwb_secretkey ) {
+			return false;
+		} elseif ( trim( $mwb_secret_code ) === trim( $mwb_secretkey ) ) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 
