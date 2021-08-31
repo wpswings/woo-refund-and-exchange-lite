@@ -22,24 +22,17 @@
 			<h2><?php echo esc_html_e( 'What Is Woo Refund And Exchange Lite?', 'woo-refund-and-exchange-lite' ); ?></h2>
 			<p>
 				<?php
-				esc_html_e(
-					'Return Refund and Exchange for WooCommerce is a one-stop solution for complete refund management plugin for your WooCommerce store. This FREE plugin allows the admin to show a "Refund" button on the desired page of your store, that the customers can use to send you a refund request for their purchased product with which they are unsatisfied.'
-				);
+				esc_html_e( 'Return Refund and Exchange for WooCommerce is a one-stop solution for complete refund management plugin for your WooCommerce store. This FREE plugin allows the admin to show a "Refund" button on the desired page of your store, that the customers can use to send you a refund request for their purchased product with which they are unsatisfied.', 'woo-refund-and-exchange-lite' );
 				?>
 			</p>
 			<p>
 				<?php
-				esc_html_e(
-					'
-					    Further, this plugin has a message feature that allows merchants and customers to connect with direct messages to solve refund related issues. Admin can set refund button text, allows customers to send reasons for refund request, set predefined reason, allow attachments along with refund request, set limits to number of attachments, set condition on products if and how long it is eligible for refund, etc.'
-				);
+				esc_html_e( 'Further, this plugin has a message feature that allows merchants and customers to connect with direct messages to solve refund related issues. Admin can set refund button text, allows customers to send reasons for refund request, set predefined reason, allow attachments along with refund request, set limits to number of attachments, set condition on products if and how long it is eligible for refund, etc.', 'woo-refund-and-exchange-lite' );
 				?>
 			</p>
 			<p>
 				<?php
-				esc_html_e(
-					'  The whole process goes under a dedicated email based notification system which would keep both the parties on the same note. With WPML, the plugin can be translated into different languages, to engage multilingual buyers across the globe. '
-				);
+				esc_html_e( 'The whole process goes under a dedicated email based notification system which would keep both the parties on the same note. With WPML, the plugin can be translated into different languages, to engage multilingual buyers across the globe. ', 'woo-refund-and-exchange-lite' );
 				?>
 			</p>
 		</div>
