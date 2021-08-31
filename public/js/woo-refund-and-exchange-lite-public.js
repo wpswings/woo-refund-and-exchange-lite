@@ -79,5 +79,19 @@
 			$('.mwb_order_msg_notice_wrapper').hide();
 		});
 		// Js for order message form end
+
+		var mwb_wrma_refund_method = $('input[name=mwb_wrma_refund_method]:checked').val();
+		if ('' !== mwb_wrma_refund_method && 'manual_method' === mwb_wrma_refund_method ) {
+			$( '#bank_details' ).show();
+		} else {
+			$( '#bank_details' ).hide();
+		}
+		$( document ).on( 'click', 'input[name=mwb_wrma_refund_method]', function() {
+			if ('' !== $(this).val() && 'manual_method' === $(this).val() ) {
+				$( '#bank_details' ).show();
+			} else {
+				$( '#bank_details' ).hide();
+			}
+		});
 	});
 })( jQuery );
