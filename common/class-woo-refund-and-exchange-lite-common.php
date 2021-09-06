@@ -79,9 +79,9 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			array(
 				'ajaxurl'               => admin_url( 'admin-ajax.php' ),
 				'mwb_rma_nonce'         => wp_create_nonce( 'mwb_rma_ajax_security' ),
-				'return_subject_msg'    => esc_html__( 'Please enter refund subject.', 'woo-refund-and-exchange-lite' ),
-				'return_reason_msg'     => esc_html__( 'Please enter refund reason.', 'woo-refund-and-exchange-lite' ),
-				'return_select_product' => esc_html__( 'Please select product to refund.', 'woo-refund-and-exchange-lite' ),
+				'return_subject_msg'    => esc_html__( 'Please Enter Refund Subject.', 'woo-refund-and-exchange-lite' ),
+				'return_reason_msg'     => esc_html__( 'Please Enter Refund Reason.', 'woo-refund-and-exchange-lite' ),
+				'return_select_product' => esc_html__( 'Please Select Product to refund.', 'woo-refund-and-exchange-lite' ),
 				'check_pro_active'      => esc_html( $pro_active ),
 				'myaccount_url'         => esc_attr( $myaccount_page_url ),
 			)

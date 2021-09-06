@@ -54,15 +54,15 @@ if ( isset( $order_id ) ) {
 					<?php if ( isset( $upload_attach ) && 'on' === $upload_attach ) : ?>
 						<div><label for="mwb_order_msg_attachment"> <?php esc_html_e( 'Attach file: ', 'woo-refund-and-exchange-lite' ); ?></label></div>
 						<div><input type="file" id="mwb_order_msg_attachment" name="mwb_order_msg_attachment[]" multiple ></div>
+						<div>
+							<label>Only .png, .jpeg extension file is approved.</label>
+						</div>
 					<?php endif; ?>
 				</div>
 				<div class="mwb-order-msg-btn">
 					<input type="submit" id="mwb_order_msg_submit" name="mwb_order_msg_submit" value="<?php esc_html_e( 'Send', 'woo-refund-and-exchange-lite' ); ?>">
 					<input 	type="hidden" name="mwb_order_msg_nonce" value="<?php echo esc_attr( wp_create_nonce( 'mwb_order_msg_nonce' ) ); ?>"> 
 				</div>     
-			</div>
-			<div>
-				<label>Only .png, .jpeg extension file is approved.</label>
 			</div>
 		</form>
 		<div class="mwb_order_msg_reload_notice_wrapper">
