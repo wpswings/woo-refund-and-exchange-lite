@@ -169,6 +169,9 @@ if ( $activated ) {
 		$wrael_plugin_standard = new Woo_Refund_And_Exchange_Lite();
 		$wrael_plugin_standard->wrael_run();
 		$GLOBALS['wrael_mwb_rma_obj'] = $wrael_plugin_standard;
+		if ( function_exists( 'vc_lean_map' ) ) {
+			include_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'wp-bakery-widgets/widgets.php';
+		}
 
 	}
 	run_woo_refund_and_exchange_lite();

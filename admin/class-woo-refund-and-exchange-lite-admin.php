@@ -419,6 +419,11 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			'My account' => __( 'Order View Page', 'woo-refund-and-exchange-lite' ),
 			'Checkout'   => __( 'Thank You Page', 'woo-refund-and-exchange-lite' ),
 		);
+		$pages     = get_pages();
+		$get_pages = array( '' => __( 'Default', 'woo-refund-and-exchange-lite' ) );
+		foreach ( $pages as $page ) {
+			$get_pages[ $page->ID ] = $page->post_title;
+		}
 		$mwb_rma_settings_refund = array(
 			array(
 				'title'       => __( 'Select pages to hide refund Button', 'woo-refund-and-exchange-lite' ),
@@ -522,6 +527,16 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			'cols'        => '80',
 			'placeholder' => __( 'Enter the Refund Rules( HTML + CSS )', 'woo-refund-and-exchange-lite' ),
 		);
+		if ( function_exists( 'vc_lean_map' ) ) {
+			$mwb_rma_settings_refund[] = array(
+				'title'       => __( 'Select the Page to Redirect', 'woo-refund-and-exchange-lite' ),
+				'type'        => 'select',
+				'id'          => 'mwb_rma_refund_page',
+				'value'       => get_option( 'mwb_rma_refund_page' ),
+				'class'       => 'wrael-textarea-class',
+				'options'     => $get_pages
+			);
+		}
 		$mwb_rma_settings_refund   =
 		// To extend Refund Apperance setting.
 		apply_filters( 'mwb_rma_refund_appearance_setting_extend', $mwb_rma_settings_refund );
@@ -540,6 +555,11 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	 * @param array $mwb_rma_settings_order_message .
 	 */
 	public function mwb_rma_order_message_settings_page( $mwb_rma_settings_order_message ) {
+		$pages = get_pages();
+		$get_pages = array( '' => __( 'Default', 'woo-refund-and-exchange-lite' ) );
+		foreach ( $pages as $page ) {
+			$get_pages[ $page->ID ] = $page->post_title;
+		}
 		$mwb_rma_settings_order_message = array(
 			array(
 				'title'   => __( 'Enable Attachment upload for order messages', 'woo-refund-and-exchange-lite' ),
@@ -569,6 +589,16 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			'class'       => 'wrael-text-class',
 			'placeholder' => __( 'Enter Order Message Button Text', 'woo-refund-and-exchange-lite' ),
 		);
+		if ( function_exists( 'vc_lean_map' ) ) {
+			$mwb_rma_settings_order_message[] = array(
+				'title'       => __( 'Select the Page to Redirect', 'woo-refund-and-exchange-lite' ),
+				'type'        => 'select',
+				'id'          => 'mwb_rma_order_msg_page',
+				'value'       => get_option( 'mwb_rma_order_msg_page' ),
+				'class'       => 'wrael-textarea-class',
+				'options'     => $get_pages
+			);
+		}
 		$mwb_rma_settings_order_message   =
 		// To Extend Order Message Appearance Setting.
 		apply_filters( 'mwb_rma_order_message_appearance_setting_extend', $mwb_rma_settings_order_message );
