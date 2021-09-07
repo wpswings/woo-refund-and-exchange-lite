@@ -274,6 +274,9 @@ class Woo_Refund_And_Exchange_Lite {
 
 		// Send Emails.
 		$this->loader->add_action( 'mwb_rma_refund_req_email', $wrael_plugin_common, 'mwb_rma_refund_req_email', 10 );
+		
+		// Multisite compatibility
+		$this->loader->add_action('wp_initialize_site', $wrael_plugin_common, 'mwb_rma_plugin_on_create_blog', 900 );
 	}
 
 	/**

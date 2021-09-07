@@ -27,8 +27,31 @@ class Woo_Refund_And_Exchange_Lite_Activator {
 	 *
 	 * @since    1.0.0
 	 */
-	public static function woo_refund_and_exchange_lite_activate() {
+	public static function woo_refund_and_exchange_lite_activate( $network_wide ) {
+		global $wpdb;
+		// check if the plugin has been activated on the network
+		if ( is_multisite() && $network_wide ) {
+			// Get all blogs in the network and activate plugins on each one.
+			$blog_ids = $wpdb->get_col( "SELECT blog_id FROM $wpdb->blogs" );
+			foreach ( $blog_ids as $blog_id ) {
+				switch_to_blog( $blog_id );
+				self::mwb_rma_create_pages();
+				restore_current_blog();
+			}
+		} else {
+			// activated on a single site, in a multi-site or on a single site
+			self::mwb_rma_create_pages();
+						 
+			
+		}
+	}
 
+	/**
+	 * Creates a translation of a post (to be used with WPML)
+	 *
+	 * @param int $page_id The ID of the post to be translated.
+	 **/
+	public static function mwb_rma_create_pages() {
 		$timestamp = get_option( 'mwb_rma_activated_timestamp', 'not_set' );
 
 		if ( 'not_set' === $timestamp ) {

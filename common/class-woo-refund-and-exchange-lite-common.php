@@ -346,4 +346,21 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	public function mwb_rma_refund_req_email( $order_id ) {
 		include_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php';
 	}
+
+	/** multisite compatibility */
+	public function mwb_rma_plugin_on_create_blog( $new_site ) {
+		if ( ! function_exists( 'is_plugin_active_for_network' ) ) {
+			require_once ABSPATH . '/wp-admin/includes/plugin.php';
+		}
+		// check if the plugin has been activated on the network
+		if ( is_plugin_active_for_network( 'woo-refund-and-exchange-lite/woocommerce-refund-and-exchange-lite.php' ) ) {
+			$blog_id = $new_site->blog_id;
+			// switch to newly created site
+			switch_to_blog( $blog_id );
+			require_once plugin_dir_path( __FILE__ ) . 'includes/class-woo-refund-and-exchange-lite-activator.php';
+			Woo_Refund_And_Exchange_Lite_Activator::mwb_rma_create_pages();
+			restore_current_blog();
+		}
+ 
+	}
 }

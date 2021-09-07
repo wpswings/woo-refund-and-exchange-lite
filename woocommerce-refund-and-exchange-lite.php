@@ -35,25 +35,26 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $activated                 = true;
 $ced_rnx_activated_main_cc = false;
+$active_plugins            = get_option( 'active_plugins', array() );
 if ( function_exists( 'is_multisite' ) && is_multisite() ) {
+	$active_plugins = array_merge( $active_plugins, get_site_option( 'active_sitewide_plugins', array() ) );
 	include_once ABSPATH . 'wp-admin/includes/plugin.php';
-	if ( ! is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
+	if ( ! in_array( 'woocommerce/woocommerce.php',  $active_plugins, true ) ) {
 		$activated = false;
 	}
-	if ( is_plugin_active( 'woocommerce-refund-and-exchange/woocommerce-refund-and-exchange.php' ) ) {
+	if ( in_array( 'woocommerce-refund-and-exchange/woocommerce-refund-and-exchange.php', $active_plugins, true ) ) {
 		$activated                 = false;
 		$ced_rnx_activated_main_cc = true;
 	}
 } else {
-	if ( ! in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ), true ) ) {
+	if ( ! in_array( 'woocommerce/woocommerce.php',  $active_plugins, true ) ) {
 		$activated = false;
 	}
-	if ( in_array( 'woocommerce-refund-and-exchange/woocommerce-refund-and-exchange.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ), true ) ) {
+	if ( in_array( 'woocommerce-refund-and-exchange/woocommerce-refund-and-exchange.php', $active_plugins, true ) ) {
 		$activated                 = false;
 		$ced_rnx_activated_main_cc = true;
 	}
 }
-
 if ( $activated ) {
 	/**
 	 * Define plugin constants.
@@ -106,10 +107,9 @@ if ( $activated ) {
 	 * The code that runs during plugin activation.
 	 * This action is documented in includes/class-woo-refund-and-exchange-lite-activator.php
 	 */
-	function activate_woo_refund_and_exchange_lite() {
-
+	function activate_woo_refund_and_exchange_lite( $network_wide ) {
 		include_once plugin_dir_path( __FILE__ ) . 'includes/class-woo-refund-and-exchange-lite-activator.php';
-		Woo_Refund_And_Exchange_Lite_Activator::woo_refund_and_exchange_lite_activate();
+		Woo_Refund_And_Exchange_Lite_Activator::woo_refund_and_exchange_lite_activate( $network_wide );
 		$mwb_rma_active_plugin = get_option( 'mwb_all_plugins_active', false );
 		if ( is_array( $mwb_rma_active_plugin ) && ! empty( $mwb_rma_active_plugin ) ) {
 			$mwb_rma_active_plugin['woo-refund-and-exchange-lite'] = array(
