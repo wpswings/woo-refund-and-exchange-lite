@@ -41,15 +41,11 @@ class Woo_Refund_And_Exchange_Lite_Activator {
 		} else {
 			// activated on a single site, in a multi-site or on a single site
 			self::mwb_rma_create_pages();
-						 
-			
 		}
 	}
 
 	/**
-	 * Creates a translation of a post (to be used with WPML)
-	 *
-	 * @param int $page_id The ID of the post to be translated.
+	 * Creates a translation of a post (to be used with WPML) && pages
 	 **/
 	public static function mwb_rma_create_pages() {
 		$timestamp = get_option( 'mwb_rma_activated_timestamp', 'not_set' );

@@ -36,8 +36,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 $activated                 = true;
 $ced_rnx_activated_main_cc = false;
 $active_plugins            = get_option( 'active_plugins', array() );
+$active_network_wide       = get_site_option( 'active_sitewide_plugins', array() );
+if ( ! empty( $active_network_wide ) ) {
+	foreach( $active_network_wide as $key => $value ) {
+		$active_plugins[] = $key;
+	}
+}
 if ( function_exists( 'is_multisite' ) && is_multisite() ) {
-	$active_plugins = array_merge( $active_plugins, get_site_option( 'active_sitewide_plugins', array() ) );
+	//$active_plugins = array_merge( $active_plugins, get_site_option( 'active_sitewide_plugins', array() ) );
 	include_once ABSPATH . 'wp-admin/includes/plugin.php';
 	if ( ! in_array( 'woocommerce/woocommerce.php',  $active_plugins, true ) ) {
 		$activated = false;
