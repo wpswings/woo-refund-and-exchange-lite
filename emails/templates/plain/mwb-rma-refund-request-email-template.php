@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-do_action( 'woocommerce_email_header', $email_heading, $email );
+echo esc_html( $email_heading ) . "\n\n";
 
 $message    = $msg;
 $admin_mail = get_option( 'admin_email' );
@@ -25,4 +25,4 @@ if ( $to === $admin_mail && ( ! empty( $additional_content ) || empty( $addition
 	}
 }
 
-do_action( 'woocommerce_email_footer', $email );
+echo wp_kses_post( apply_filters( 'woocommerce_email_footer_text', get_option( 'woocommerce_email_footer_text' ) ) );

@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-do_action( 'woocommerce_email_header', $email_heading, $email );
+echo esc_html( $email_heading ) . "\n\n";
 
 $message = $msg;
 if ( isset( $additional_content ) && '' !== $additional_content ) {
@@ -20,4 +20,5 @@ if ( isset( $additional_content ) && '' !== $additional_content ) {
 	echo wp_kses_post( $message );
 }
 
-do_action( 'woocommerce_email_footer', $email );
+echo wp_kses_post( apply_filters( 'woocommerce_email_footer_text', get_option( 'woocommerce_email_footer_text' ) ) );
+
