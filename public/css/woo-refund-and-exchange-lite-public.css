@@ -16,6 +16,10 @@
 }
 
 /* Order Refund Request Form */
+*, ::after, ::before{
+    box-sizing: border-box;
+}
+
 textarea, input[type=text], 
 input[type=number], 
 input[type=email], input[type=tel], 
@@ -132,6 +136,7 @@ form#mwb_order_new_msg_form{
     padding: 30px 30px 30px 0;
     margin-bottom: 30px;
     border: 1px solid #dddddd;
+    background-color: #ffffff;
     width: auto;
     word-wrap: break-word;
 }
@@ -142,18 +147,20 @@ form#mwb_order_new_msg_form{
     color: #fff;
     padding: 8px 52px 8px 30px;
     position: relative;
+    line-height: 1.8;
 }
 span.mwb_order_msg_sender:after {
     position: absolute;
     content: "";
-    top: -11px;
-    right: 11px;
+    top: 0;
+    right: 0;
     height: 100%;
     background-color: transparent;
-    border-top: 22px solid #ffffff;
-    border-left: 22px solid transparent;
-    border-right: 22px solid transparent;
+    border-top: 24px solid #ffffff;
+    border-left: 24px solid transparent;
+    border-right: 24px solid transparent;
     transform: rotate(90deg);
+    width: 0;
 }
 .mwb_order_msg_attach_container {
     padding-left: 30px;
@@ -209,11 +216,11 @@ a.mwb_order_send_msg_dismiss{
 /*media-query*/
 @media only screen and (min-width: 520px){
     .mwb_rma_refund_form_wrapper .mwb_rma__column-left {
-        max-width: 70%;
+        max-width: 60%;
     }
     .mwb_rma_refund_form_wrapper .mwb_rma__column-right {
-        margin-left: 30px;
-        max-width: calc(30% - 30px);
+        margin-left: 40px;
+        max-width: calc(40% - 40px);
         justify-content: flex-end;
     }
 }
@@ -287,47 +294,40 @@ div.mwb_order_msg_single_attachment a .mwb_order_msg_attachment_thumbnail{
     width: 5%;
 }
 .mwb_rma_return_notification, .mwb_rma_exchange_notification {
-background-color: #000000;
-bottom: 0;
-height: 100%;
-opacity: 0.50;
-padding: 0;
-position: fixed;
-right: 0;
-width: 100%;
-z-index: 99999;
+    background-color: #000000;
+    bottom: 0;
+    height: 100%;
+    opacity: 0.50;
+    padding: 0;
+    position: fixed;
+    right: 0;
+    width: 100%;
+    z-index: 99999;
 }
 .mwb_rma_return_notification_checkbox::after {
-background: rgba(255, 255, 255, 0.60) none repeat scroll 0 0;
-bottom: 0;
-content: "";
-height: 100%;
-left: 0;
-position: absolute;
-right: 0;
-top: 0;
-width: 100%;
+    background: rgba(255, 255, 255, 0.60) none repeat scroll 0 0;
+    bottom: 0;
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
 }
 .mwb_rma_return_notification_checkbox img {
-left: 0;
-margin: 0 auto;
-position: absolute;
-right: 0;
-text-align: center;
-top: 50%;
-transform: translateY(-50%);
-z-index: 99999999;
-}
-.mwb_rma_return_notification_checkbox
-{
-display: none;
-}
-#mwb_rma_return_request_container{
+    left: 0;
+    margin: 0 auto;
+    position: absolute;
+    right: 0;
     text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 99999999;
 }
-.view_msg {
-    margin-top: 4px;
+.mwb_rma_return_notification_checkbox {
+    display: none;
 }
-.return {
-    margin-top: 4px;
+#mwb_rma_return_request_container {
+    text-align: center;
 }
