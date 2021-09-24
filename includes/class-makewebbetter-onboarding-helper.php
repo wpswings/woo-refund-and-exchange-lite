@@ -700,7 +700,6 @@ class Makewebbetter_Onboarding_Helper {
 				}
 			}
 		}
-
 		try {
 
 			$found = current(
@@ -717,7 +716,6 @@ class Makewebbetter_Onboarding_Helper {
 			} else {
 				$action_type = 'onboarding';
 			}
-
 			if ( ! empty( $formatted_data ) && is_array( $formatted_data ) ) {
 
 				unset( $formatted_data['show-counter'] );
@@ -849,11 +847,9 @@ class Makewebbetter_Onboarding_Helper {
 			'body'        => $post_params,
 			'cookies'     => array(),
 		);
-		$response = wp_remote_post( $url, $request );
-
 		if ( is_wp_error( $response ) ) {
 			$status_code = 500;
-			$response    = esc_html__( 'Unexpected Error Occured', 'invoice-system-for-woocommerce' );
+			$response    = esc_html__( 'Unexpected Error Occured', 'woo-refund-and-exchange-lite' );
 			$curl_errors = $response;
 		} else {
 			$status_code = wp_remote_retrieve_response_code( $response );
@@ -885,9 +881,8 @@ class Makewebbetter_Onboarding_Helper {
 		$url = 'submissions/v3/integration/submit/' . self::$portal_id . '/' . $form_id;
 
 		$headers = array(
-			'Content-Type: application/json',
+			'Content-Type' => 'application/json',
 		);
-
 		$form_data = json_encode(
 			array(
 				'fields' => $form_data,
@@ -898,7 +893,6 @@ class Makewebbetter_Onboarding_Helper {
 				),
 			)
 		);
-
 		$response = $this->hic_post( $url, $form_data, $headers );
 		$response = map_deep( wp_unslash( $response ), 'sanitize_text_field' );
 		if ( 200 === $response['status_code'] ) {
