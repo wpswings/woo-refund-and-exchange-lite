@@ -847,6 +847,8 @@ class Makewebbetter_Onboarding_Helper {
 			'body'        => $post_params,
 			'cookies'     => array(),
 		);
+		$response = wp_remote_post( $url, $request );
+
 		if ( is_wp_error( $response ) ) {
 			$status_code = 500;
 			$response    = esc_html__( 'Unexpected Error Occured', 'woo-refund-and-exchange-lite' );
