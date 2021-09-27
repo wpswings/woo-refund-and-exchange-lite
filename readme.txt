@@ -5,8 +5,8 @@ Tags: return,refund, woocommerce,exchange,RMA
 Requires at least: 4.0
 Tested up to: 5.8
 WC requires at least: 3.0.0
-WC tested up to: 5.4.2
-Stable tag: 3.1.1
+WC tested up to: 5.5.2
+Stable tag: 3.1.2
 Requires PHP: 5.6
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -106,6 +106,8 @@ Visit [**Return Refund and Exchange For WooCommerce Documentation**](http://docs
 
 If you need support or have any question then kindly use our online chat window [here](https://makewebbetter.com/?utm_source=MWB-RMA-org&utm_medium=MWB-org-page&utm_campaign=MWB-RMA-org) or  connect with us then [**Generate a Ticket**](https://makewebbetter.com/submit-query/)
 
+If our documentation doesn’t contain the solution to your problem, you can visit the [**MakeWebBetter Forums**](https://forums.makewebbetter.com/?utm_source=MWB-rma-org&utm_medium=MWB-org-page&utm_campaign=MWB-rma-org) with your question.
+
 
 == Installation ==
 
@@ -126,13 +128,22 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 == FAQ ==
 
+= How to make the "Refund" button visible on store pages using this plugin? =
+
+If you want to see the Refund button then follow these steps. Go to the *WooCommerce -> Settings -> Refund-Exchange lite Setting -> Refund Products* and set the following necessary settings.
+
+1) Enable refund request.
+2) Set the maximum number of days.
+3) Select the order status in which the order can be refunded.
+4) Select pages to show a refund button.
+
 = How to setup the Refund Products? =
 
-Please reach the woocommerce menu -> Refund Exchange Lite Configuration setting -> Click on the Refund Product -> Enable Refund Request setting.
+Please reach the *WooCommerce menu -> Refund Exchange Lite Configuration setting -> Click on the Refund Product -> Enable Refund Request setting*.
 
 = How to set the order status for the orders which need to be refunded? =
 
-It's very easy to set up. Go to the Woocommerce -> Settings ->Refund Exchange Lite setting ->Refund Products and Select the order status in which the order can be Refund.
+It's very easy to set up. Go to the *WooCommerce -> Settings ->Refund Exchange Lite setting ->Refund Products* and Select the order status in which the order can be Refund.
 
 = How to use a mail configuration setting? =
 
@@ -147,8 +158,43 @@ Yes, customers and admin can communicate while processing a refund request. The 
 
 When a customer clicks on the refund button then on the refund request form the customer will get an option to upload the attachment. Customers can also add more than one attachment in their request.
 
+= Can admin limit the no. of attachment for a customer in the order messages? =
+
+Yes, the admin can limits the no. of attachment by going through *WooCommerce -> Settings -> Refund-Exchange lite Setting ->Refund Products -> Enter no. of attachment to send*, then put the no. of attachment you want to receive from your customer.
+
+= Can the admin put some customized refund policy on the refund form? =
+
+Yes, the admin can put a customized refund policy by going to *WooCommerce -> Settings -> Refund-Exchange lite Setting ->Refund Products - > Enable refund rules* and write the refund rules in the rule editor.
+
+= Is there any stock management functionality in this refund management plugin? =
+
+Yes! The plugin automatically manages the stock after every successful refund of the product. Admin can set it by following steps; WooCommerce -> Settings -> Refund-Exchange lite Setting ->Refund Products  -> Enable Manage stock. For then onwards, the refund stock will be automatically managed.
+
+= My question is not listed? =
+
+Please visit the [MakeWebBetter knowledge base](https://support.makewebbetter.com/wordpress-plugins-knowledge-base/category/woocommerce-refund-and-exchange-kb/?utm_source=MWB-rma-org&utm_medium=MWB-ORG&utm_campaign=rma-kb-ORG) for more detailed [documentation](http://docs.makewebbetter.com/woocommerce-refund-and-exchange-lite/?utm_source=MWB-RMA-org&utm_medium=MWB-ORG-Page&utm_campaign=MWB-doc) and [support](https://makewebbetter.com/submit-query/?utm_source=MWB-rma-org&utm_medium=MWB-ORG&utm_campaign=rma-support-ORG).
+
+== Screenshots ==
+
+1. Refund setting.
+2. Order detail and click the refund button.
+3. submit the request.
+4. Refund and manage the account by a merchant.
+5. Customers can send a message to the admin.
+6. Admin can reply to customer messages.
+7. Accept and cancel the refund request by a merchant.
+8. Manage the refunded product Stock.
+9. Send the mail by admin to the customer.
+10. Dedicated mailing system for refund request
+11. Mailing system for refund approved.
+12. Mailing system for refund cancel.
+13. Enable/disable email notification.
 
 == Changelog ==
+
+= 3.1.2 - RELEASED ON 27 September 2021 =
+
+* Fixed : issue in the plugin
 
 = 3.1.1 - RELEASED ON 18 August 2021 =
 
@@ -159,7 +205,7 @@ When a customer clicks on the refund button then on the refund request form the 
 = 3.1.0 - RELEASED ON 14 April 2021 =
 
 * FIX: Compatible with latest WP(5.7) and WC(5.2.0)
-* NEW: WPML Compatiblity
+* NEW: WPML Compatibility
 * NEW: Given setting to show refund button based on added page.
 * NEW: Add setting to add attachment limit during refund request.
 * FIX: Design issue fixed during mobile view.
@@ -222,26 +268,8 @@ When a customer clicks on the refund button then on the refund request form the 
 = 1.0.0 =
 * First version. 
 
-== Screenshots ==
-
-1. Refund setting.
-2. Order detail and click the refund button.
-3. submit the request.
-4. Refund and manage the account by a merchant.
-5. Customers can send a message to the admin.
-6. Admin can reply to customer messages.
-7. Accept and cancel the refund request by a merchant.
-8. Manage the refunded product Stock.
-9. Send the mail by admin to the customer.
-10. Dedicated mailing system for refund request
-11. Mailing system for refund approved.
-12. Mailing system for refund cancel.
-13. Enable/disable email notification.
-
 == Upgrade Notice ==
 
-= 3.1.1 - RELEASED ON 18 August 2021 =
+= 3.1.2 =
 
-* NEW: Add notices for upcoming RMA renovation plugin
-* FIX: Compatible with latest WP and WC
-* FIX: Minor Bug and Issues Fixes.
+* Fixed : issue in the plugin
