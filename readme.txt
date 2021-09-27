@@ -3,7 +3,7 @@ Contributors: makewebbetter
 Donate link:  https://makewebbetter.com/
 Tags: return,refund, woocommerce,exchange,RMA
 Requires at least: 4.0
-Tested up to: 5.8
+Tested up to: 5.8.1
 WC requires at least: 3.0.0
 WC tested up to: 5.5.2
 Stable tag: 3.1.2
@@ -194,22 +194,23 @@ Please visit the [MakeWebBetter knowledge base](https://support.makewebbetter.co
 
 = 3.1.2 - RELEASED ON 27 September 2021 =
 
-* Fixed : issue in the plugin
+* FIX: Onboarding form
+* FIX: Minor bug
 
 = 3.1.1 - RELEASED ON 18 August 2021 =
 
 * NEW: Add notices for upcoming RMA renovation plugin
 * FIX: Compatible with latest WP and WC
-* FIX: Minor Bug and Issues Fixes.
+* FIX: Minor Bug and Issues Fixes
 
 = 3.1.0 - RELEASED ON 14 April 2021 =
 
 * FIX: Compatible with latest WP(5.7) and WC(5.2.0)
 * NEW: WPML Compatibility
-* NEW: Given setting to show refund button based on added page.
-* NEW: Add setting to add attachment limit during refund request.
-* FIX: Design issue fixed during mobile view.
-* FIX: Minor Bug and Issues Fixes.
+* NEW: Given setting to show refund button based on added page
+* NEW: Add setting to add attachment limit during refund request
+* FIX: Design issue fixed during mobile view
+* FIX: Minor Bug and Issues Fixes
 
 = 3.0.4 - RELEASED ON 17 DECEMBER 2020 =
 
@@ -255,21 +256,25 @@ Please visit the [MakeWebBetter knowledge base](https://support.makewebbetter.co
 * New: Support for WordPress 5.4.2
 
 = 2.1.0 – RELEASED ON 18 APRIL 2020 =
+
 * New: Support for WooCommerce 4.0.1
 * New: Support for WordPress 5.4
 * New: Customers, Admin communication through messages.
 
 = 2.0.0 – RELEASED ON 24 JANUARY 2020 =
+
 * New: Compatibility with Latest WC and WP.
 * Updated in plugin core and updated language
 * Fix: Image save issue in the Mail Configuration setting.
 * Fix: Expiry date issue with a gift card for refund process.
 
 = 1.0.0 =
+
 * First version. 
 
 == Upgrade Notice ==
 
 = 3.1.2 =
 
-* Fixed : issue in the plugin
+* FIX: Onboarding form
+* FIX: Minor bug
