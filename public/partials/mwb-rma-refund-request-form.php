@@ -199,7 +199,7 @@ if ( 'yes' === $allowed ) {
 									// Order Item meta End.
 									do_action( 'woocommerce_order_item_meta_end', $item_id, $item, $order_obj, true );
 									?>
-									 <p>
+									<p>
 										<b><?php esc_html_e( 'Price', 'woo-refund-and-exchange-lite' ); ?> :</b> 
 										<?php
 											echo wp_kses_post( mwb_wrma_format_price( $mwb_actual_price, $get_order_currency ) );
@@ -217,7 +217,7 @@ if ( 'yes' === $allowed ) {
 								</div>
 							</td>
 							<td class="product-quantity">
-							<?php echo 
+							<?php echo
 							// Refund form Quantity html.
 							apply_filters( 'mwb_rma_change_quanity', sprintf( '<input type="number" disabled value="' . esc_html( $item['qty'] ) . '" class="mwb_rma_return_product_qty" name="mwb_rma_return_product_qty">' ), $item['qty'] ); ?>
 							</td>
@@ -276,7 +276,7 @@ if ( 'yes' === $allowed ) {
 		<div class="mwb_rma_refund_request__row mwb_rma_flex">
 			<div class="mwb_rma__column mwb_rma__column-left">
 				<?php
-			
+
 				// Add someting after table on the refund request form.
 				do_action( 'mwb_rma_after_table', $order_id );
 				$re_bank = get_option( 'mwb_rma_refund_manually_de', false );
@@ -324,8 +324,8 @@ if ( 'yes' === $allowed ) {
 							<label>
 								<b>
 								<?php
-								if ( $predefined_return_reason_placeholder ) {
-									echo esc_html( $$placeholder );
+								if ( $placeholder ) {
+									echo esc_html( $placeholder );
 								} else {
 									echo esc_html__( 'Reason of Refund Request :', 'woo-refund-and-exchange-lite' );
 								}
