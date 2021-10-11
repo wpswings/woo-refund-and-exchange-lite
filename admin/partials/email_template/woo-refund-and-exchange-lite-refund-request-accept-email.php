@@ -25,7 +25,7 @@ if ( isset( $products ) && ! empty( $products ) ) {
 $message            =
 '<div class="mwb_rma_refund_accept_email>
     <div class="header">
-        <h2>' . __( 'Your Refund Request is Approved', 'woo-refund-and-exchange-lite' ) . '</h2>
+        <h2>' . esc_html__( 'Your Refund Request is Approved', 'woo-refund-and-exchange-lite' ) . '</h2>
     </div>
     <div class="content">
         <div class="reason">
@@ -35,9 +35,9 @@ $message            =
 			<table width="100%" style="border-collapse: collapse;">
 				<tbody>
 					<tr>
-						<th style="border: 1px solid #C7C7C7;">' . __( 'Product', 'woo-refund-and-exchange-lite' ) . '</th>
-						<th style="border: 1px solid #C7C7C7;">' . __( 'Quantity', 'woo-refund-and-exchange-lite' ) . '</th>
-						<th style="border: 1px solid #C7C7C7;">' . __( 'Price', 'woo-refund-and-exchange-lite' ) . '</th>
+						<th style="border: 1px solid #C7C7C7;">' . esc_html__( 'Product', 'woo-refund-and-exchange-lite' ) . '</th>
+						<th style="border: 1px solid #C7C7C7;">' . esc_html__( 'Quantity', 'woo-refund-and-exchange-lite' ) . '</th>
+						<th style="border: 1px solid #C7C7C7;">' . esc_html__( 'Price', 'woo-refund-and-exchange-lite' ) . '</th>
 					</tr>';
 $order_obj          = wc_get_order( $order_id );
 $get_order_currency = get_woocommerce_currency_symbol( $order_obj->get_currency() );
@@ -77,30 +77,30 @@ if ( isset( $requested_products ) && ! empty( $requested_products ) ) {
 // Add some extra <tr> in the table for refund approve mail.
 $message        = apply_filters( 'mwb_rma_extend_extra_field_table_approve_email', $message );
 $message       .= '<tr>
-					<th colspan="2" style="border: 1px solid #C7C7C7;">' . __( 'Refund Total', 'woo-refund-and-exchange-lite' ) . ':</th>
+					<th colspan="2" style="border: 1px solid #C7C7C7;">' . esc_html__( 'Refund Total', 'woo-refund-and-exchange-lite' ) . ':</th>
 					<td style="border: 1px solid #C7C7C7;">' . mwb_wrma_format_price( $total, $get_order_currency ) . '</td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
 	<div class="Customer-detail">
-		<h4>' . __( 'Customer details', 'woo-refund-and-exchange-lite' ) . '</h4>
+		<h4>' . esc_html__( 'Customer details', 'woo-refund-and-exchange-lite' ) . '</h4>
 		<ul>
 			<li><p class="info">
-				<span class="bold">' . __( 'Email', 'woo-refund-and-exchange-lite' ) . ': </span>' . $order_obj->get_billing_email() . '
+				<span class="bold">' . esc_html__( 'Email', 'woo-refund-and-exchange-lite' ) . ': </span>' . $order_obj->get_billing_email() . '
 			</p></li>
 			<li><p class="info">
-				<span class="bold">' . __( 'Tel', 'woo-refund-and-exchange-lite' ) . ': </span>' . $order_obj->get_billing_phone() . '
+				<span class="bold">' . esc_html__( 'Tel', 'woo-refund-and-exchange-lite' ) . ': </span>' . $order_obj->get_billing_phone() . '
 			</p></li>
 		</ul>
 	</div>
 	<div class="details">
 		<div class="Shipping-detail">
-			<h4>' . __( 'Shipping Address', 'woo-refund-and-exchange-lite' ) . '</h4>
+			<h4>' . esc_html__( 'Shipping Address', 'woo-refund-and-exchange-lite' ) . '</h4>
 			' . $order_obj->get_formatted_shipping_address() . '
 		</div>
 		<div class="Billing-detail">
-			<h4>' . __( 'Billing Address', 'woo-refund-and-exchange-lite' ) . '</h4>
+			<h4>' . esc_html__( 'Billing Address', 'woo-refund-and-exchange-lite' ) . '</h4>
 			' . $order_obj->get_formatted_billing_address() . '
 		</div>
     </div>

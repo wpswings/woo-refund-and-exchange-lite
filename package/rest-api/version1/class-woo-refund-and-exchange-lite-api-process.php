@@ -101,11 +101,11 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 						if ( ! $flag ) {
 							$mwb_rma_rest_response['message'] = 'error';
 							$mwb_rma_rest_response['status']  = 404;
-							$mwb_rma_rest_response['data']    = __( 'Return Request Already has been made and accpeted for the items you have given', 'woo-refund-and-exchange-lite' );
+							$mwb_rma_rest_response['data']    = esc_html__( 'Return Request Already has been made and accpeted for the items you have given', 'woo-refund-and-exchange-lite' );
 						} elseif( ! $qty_flag ) {
 							$mwb_rma_rest_response['message'] = 'error';
 							$mwb_rma_rest_response['status']  = 404;
-							$mwb_rma_rest_response['data']    = __( 'Quanity given for items is greater than the order\'s items quantity', 'woo-refund-and-exchange-lite' );
+							$mwb_rma_rest_response['data']    = esc_html__( 'Quanity given for items is greater than the order\'s items quantity', 'woo-refund-and-exchange-lite' );
 						} else {
 							$products1['products']      = $array_merge;
 							$products1['order_id']      = $order_id;
@@ -116,11 +116,11 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 							if ( ! empty( $mwb_rma_resultsdata ) ) {
 								$mwb_rma_rest_response['message'] = 'success';
 								$mwb_rma_rest_response['status']  = 200;
-								$mwb_rma_rest_response['data']    = __( 'Refund Request Send Successfully', 'woo-refund-and-exchange-lite' );
+								$mwb_rma_rest_response['data']    = esc_html__( 'Refund Request Send Successfully', 'woo-refund-and-exchange-lite' );
 							} else {
 								$mwb_rma_rest_response['message'] = 'error';
 								$mwb_rma_rest_response['status']  = 404;
-								$mwb_rma_rest_response['data']    = __( 'Some problem occur while refund requesting', 'woo-refund-and-exchange-lite' );
+								$mwb_rma_rest_response['data']    = esc_html__( 'Some problem occur while refund requesting', 'woo-refund-and-exchange-lite' );
 							}
 						}
 					}
@@ -172,20 +172,20 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 					if ( $flag_refund_made ) {
 						$mwb_rma_rest_response['message'] = 'error';
 						$mwb_rma_rest_response['status']  = 404;
-						$mwb_rma_rest_response['data']    = __( 'Return Request Already has been made and accpeted', 'woo-refund-and-exchange-lite' );
+						$mwb_rma_rest_response['data']    = esc_html__( 'Return Request Already has been made and accpeted', 'woo-refund-and-exchange-lite' );
 					} elseif ( ! empty( $mwb_rma_resultsdata ) ) {
 						$mwb_rma_rest_response['message'] = 'success';
 						$mwb_rma_rest_response['status']  = 200;
-						$mwb_rma_rest_response['data']    = __( 'Return Request Send Successfully', 'woo-refund-and-exchange-lite' );
+						$mwb_rma_rest_response['data']    = esc_html__( 'Return Request Send Successfully', 'woo-refund-and-exchange-lite' );
 					} else {
 						$mwb_rma_rest_response['message'] = 'error';
 						$mwb_rma_rest_response['status']  = 404;
-						$mwb_rma_rest_response['data']    = __( 'Some problem occur while refund requesting', 'woo-refund-and-exchange-lite' );
+						$mwb_rma_rest_response['data']    = esc_html__( 'Some problem occur while refund requesting', 'woo-refund-and-exchange-lite' );
 					}
 				}
 			}  else {
 				$mwb_rma_rest_response['status'] = 404;
-				$mwb_rma_rest_response['data']   = __( 'Please Provide the order id to perform the process', 'woo-refund-and-exchange-lite' );
+				$mwb_rma_rest_response['data']   = esc_html__( 'Please Provide the order id to perform the process', 'woo-refund-and-exchange-lite' );
 			}
 			return $mwb_rma_rest_response;
 		}
@@ -217,18 +217,18 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 					$mwb_rma_resultsdata = $mwb_rma_obj->mwb_rma_return_req_approve_callback( $order_id, $products );
 					if ( ! empty( $mwb_rma_resultsdata ) ) {
 						$mwb_rma_rest_response['status'] = 200;
-						$mwb_rma_rest_response['data']   = __( 'Return Request Accepted Successfully', 'woo-refund-and-exchange-lite' );
+						$mwb_rma_rest_response['data']   = esc_html__( 'Return Request Accepted Successfully', 'woo-refund-and-exchange-lite' );
 					} else {
 						$mwb_rma_rest_response['status'] = 404;
-						$mwb_rma_rest_response['data']   = __( 'Some problem occur while refund request accepting', 'woo-refund-and-exchange-lite' );
+						$mwb_rma_rest_response['data']   = esc_html__( 'Some problem occur while refund request accepting', 'woo-refund-and-exchange-lite' );
 					}
 				} else {
 					$mwb_rma_rest_response['status'] = 404;
-					$mwb_rma_rest_response['data']   = __( 'You can only perform the refund request accept when the request has been made earlier', 'woo-refund-and-exchange-lite' );
+					$mwb_rma_rest_response['data']   = esc_html__( 'You can only perform the refund request accept when the request has been made earlier', 'woo-refund-and-exchange-lite' );
 				}
 			} else {
 				$mwb_rma_rest_response['status'] = 404;
-				$mwb_rma_rest_response['data']   = __( 'Please Provide the order id to perform the process', 'woo-refund-and-exchange-lite' );
+				$mwb_rma_rest_response['data']   = esc_html__( 'Please Provide the order id to perform the process', 'woo-refund-and-exchange-lite' );
 			}
 			return $mwb_rma_rest_response;
 		}
@@ -260,18 +260,18 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 					$mwb_rma_resultsdata = $mwb_rma_obj->mwb_rma_return_req_cancel_callback( $order_id, $products );
 					if ( ! empty( $mwb_rma_resultsdata ) ) {
 						$mwb_rma_rest_response['status'] = 200;
-						$mwb_rma_rest_response['data']   = __( 'Return Request Cancel Successfully', 'woo-refund-and-exchange-lite' );
+						$mwb_rma_rest_response['data']   = esc_html__( 'Return Request Cancel Successfully', 'woo-refund-and-exchange-lite' );
 					} else {
 						$mwb_rma_rest_response['status'] = 404;
-						$mwb_rma_rest_response['data']   = __( 'Some problem occur while refund request cancelling', 'woo-refund-and-exchange-lite' );
+						$mwb_rma_rest_response['data']   = esc_html__( 'Some problem occur while refund request cancelling', 'woo-refund-and-exchange-lite' );
 					}
 				} else {
 					$mwb_rma_rest_response['status'] = 404;
-					$mwb_rma_rest_response['data']       = __( 'You can only perform the refund request cancel when the request request has been made earlier', 'woo-refund-and-exchange-lite' );
+					$mwb_rma_rest_response['data']       = esc_html__( 'You can only perform the refund request cancel when the request request has been made earlier', 'woo-refund-and-exchange-lite' );
 				}
 			} else {
 				$mwb_rma_rest_response['status'] = 404;
-				$mwb_rma_rest_response['data']   = __( 'Please Provide the order id to perform the process', 'woo-refund-and-exchange-lite' );
+				$mwb_rma_rest_response['data']   = esc_html__( 'Please Provide the order id to perform the process', 'woo-refund-and-exchange-lite' );
 			}
 			return $mwb_rma_rest_response;
 		}

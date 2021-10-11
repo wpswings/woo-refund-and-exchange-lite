@@ -107,9 +107,9 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 					'wrael_gen_tab_enable'       => get_option( 'wrael_radio_switch_demo' ),
 					'mwb_rma_nonce'              => wp_create_nonce( 'mwb_rma_ajax_seurity' ),
 					'wrael_admin_param_location' => ( admin_url( 'admin.php' ) . '?page=woo_refund_and_exchange_lite_menu&wrael_tab=woo-refund-and-exchange-lite-general' ),
-					'message_sent'               => __( 'The message has been sent successfully.', 'woo-refund-and-exchange-lite' ),
-					'message_empty'              => __( 'Please enter a message.', 'woo-refund-and-exchange-lite' ),
-					'check_pro_active'           => esc_html( $pro_active ),
+					'message_sent'               => esc_html__( 'The message has been sent successfully.', 'woo-refund-and-exchange-lite' ),
+					'message_empty'              => esc_html__( 'Please enter a message.', 'woo-refund-and-exchange-lite' ),
+					'check_pro_active'           => esc_html__( $pro_active ),
 				)
 			);
 			wp_enqueue_script( $this->plugin_name . 'admin-js' );
@@ -125,7 +125,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	public function wrael_options_page() {
 		global $submenu;
 		if ( empty( $GLOBALS['admin_page_hooks']['mwb-plugins'] ) ) {
-			add_menu_page( __( 'MakeWebBetter', 'woo-refund-and-exchange-lite' ), __( 'MakeWebBetter', 'woo-refund-and-exchange-lite' ), 'manage_options', 'mwb-plugins', array( $this, 'mwb_plugins_listing_page' ), WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/image/MWB_Grey-01.svg', 15 );
+			add_menu_page( esc_html__( 'MakeWebBetter', 'woo-refund-and-exchange-lite' ), esc_html__( 'MakeWebBetter', 'woo-refund-and-exchange-lite' ), 'manage_options', 'mwb-plugins', array( $this, 'mwb_plugins_listing_page' ), WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/image/MWB_Grey-01.svg', 15 );
 			$wrael_menus =
 			// Add Menu.
 			apply_filters( 'mwb_add_plugins_menus_array', array() );
@@ -160,7 +160,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	 */
 	public function wrael_admin_submenu_page( $menus = array() ) {
 		$menus[] = array(
-			'name'      => __( 'Return Refund and Exchange for WooCommerce', 'woo-refund-and-exchange-lite' ),
+			'name'      => esc_html__( 'Return Refund and Exchange for WooCommerce', 'woo-refund-and-exchange-lite' ),
 			'slug'      => 'woo_refund_and_exchange_lite_menu',
 			'menu_link' => 'woo_refund_and_exchange_lite_menu',
 			'instance'  => $this,
@@ -285,25 +285,25 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	public function wrael_admin_general_settings_page( $wrael_settings_general ) {
 		$wrael_settings_general = array(
 			array(
-				'title'   => __( 'Enable Refund', 'woo-refund-and-exchange-lite' ),
+				'title'   => esc_html__( 'Enable Refund', 'woo-refund-and-exchange-lite' ),
 				'type'    => 'radio-switch',
 				'id'      => 'mwb_rma_refund_enable',
 				'value'   => get_option( 'mwb_rma_refund_enable' ),
 				'class'   => 'wrael-radio-switch-class',
 				'options' => array(
-					'yes' => __( 'YES', 'woo-refund-and-exchange-lite' ),
-					'no'  => __( 'NO', 'woo-refund-and-exchange-lite' ),
+					'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+					'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 				),
 			),
 			array(
-				'title'   => __( 'Enable Order Messages', 'woo-refund-and-exchange-lite' ),
+				'title'   => esc_html__( 'Enable Order Messages', 'woo-refund-and-exchange-lite' ),
 				'type'    => 'radio-switch',
 				'id'      => 'mwb_rma_general_om',
 				'value'   => get_option( 'mwb_rma_general_om' ),
 				'class'   => 'wrael-radio-switch-class',
 				'options' => array(
-					'yes' => __( 'YES', 'woo-refund-and-exchange-lite' ),
-					'no'  => __( 'NO', 'woo-refund-and-exchange-lite' ),
+					'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+					'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 				),
 			),
 		);
@@ -311,20 +311,20 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		// To extend the general setting.
 		apply_filters( 'mwb_rma_general_setting_extend', $wrael_settings_general );
 		$wrael_settings_general[] = array(
-			'title'   => __( 'Enable to Show Bank Details field for Manual Refund', 'woo-refund-and-exchange-lite' ),
+			'title'   => esc_html__( 'Enable to Show Bank Details field for Manual Refund', 'woo-refund-and-exchange-lite' ),
 			'type'    => 'radio-switch',
 			'id'      => 'mwb_rma_refund_manually_de',
 			'value'   => get_option( 'mwb_rma_refund_manually_de' ),
 			'class'   => 'wrael-radio-switch-class',
 			'options' => array(
-				'yes' => __( 'YES', 'woo-refund-and-exchange-lite' ),
-				'no'  => __( 'NO', 'woo-refund-and-exchange-lite' ),
+				'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+				'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 			),
 		);
 		$wrael_settings_general[] = array(
 			'type'        => 'button',
 			'id'          => 'mwb_rma_save_general_setting',
-			'button_text' => __( 'Save Setting', 'woo-refund-and-exchange-lite' ),
+			'button_text' => esc_html__( 'Save Setting', 'woo-refund-and-exchange-lite' ),
 			'class'       => 'wrael-button-class',
 		);
 		return $wrael_settings_general;
@@ -369,10 +369,14 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 					foreach ( $wrael_genaral_settings as $wrael_genaral_setting ) {
 						if ( isset( $wrael_genaral_setting['id'] ) && '' !== $wrael_genaral_setting['id'] ) {
 							if ( isset( $_POST[ $wrael_genaral_setting['id'] ] ) ) {
+								$setting = $_POST[ $wrael_genaral_setting['id'] ];
 								if ( 'mwb_rma_refund_rules_editor' === $wrael_genaral_setting['id'] ) {
-									update_option( 'mwb_rma_refund_rules_editor', wp_kses_post( wp_unslash( $_POST[ $wrael_genaral_setting['id'] ] ) ) );
+									if ( 'textarea' === $wrael_genaral_setting['type'] || 'text' === $wrael_genaral_setting['type'] ) {
+										$setting = trim( preg_replace( '/\s\s+/', ' ', $setting ) );
+									}
+									update_option( 'mwb_rma_refund_rules_editor', wp_kses_post( wp_unslash( $setting ) ) );
 								} else {
-									update_option( $wrael_genaral_setting['id'], is_array( $_POST[ $wrael_genaral_setting['id'] ] ) ? $this->mwb_sanitize_array( $_POST[ $wrael_genaral_setting['id'] ] ) : stripslashes( sanitize_text_field( wp_unslash( $_POST[ $wrael_genaral_setting['id'] ] ) ) ) );
+									update_option( $wrael_genaral_setting['id'], is_array( $setting ) ? $this->mwb_sanitize_array( $setting ) : stripslashes( sanitize_text_field( wp_unslash( $setting ) ) ) );
 								}
 							} else {
 								update_option( $wrael_genaral_setting['id'], '' );
@@ -415,20 +419,20 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	 */
 	public function mwb_rma_refund_settings_page( $mwb_rma_settings_refund ) {
 		$button_view             = array(
-			'order-page' => __( 'Order Page', 'woo-refund-and-exchange-lite' ),
-			'My account' => __( 'Order View Page', 'woo-refund-and-exchange-lite' ),
-			'Checkout'   => __( 'Thank You Page', 'woo-refund-and-exchange-lite' ),
+			'order-page' => esc_html__( 'Order Page', 'woo-refund-and-exchange-lite' ),
+			'My account' => esc_html__( 'Order View Page', 'woo-refund-and-exchange-lite' ),
+			'Checkout'   => esc_html__( 'Thank You Page', 'woo-refund-and-exchange-lite' ),
 		);
 		$pages     = get_pages();
-		$get_pages = array( '' => __( 'Default', 'woo-refund-and-exchange-lite' ) );
+		$get_pages = array( '' => esc_html__( 'Default', 'woo-refund-and-exchange-lite' ) );
 		foreach ( $pages as $page ) {
 			$get_pages[ $page->ID ] = $page->post_title;
 		}
 		$mwb_rma_settings_refund = array(
 			array(
-				'title'       => __( 'Select pages to hide refund Button', 'woo-refund-and-exchange-lite' ),
+				'title'       => esc_html__( 'Select pages to hide refund Button', 'woo-refund-and-exchange-lite' ),
 				'type'        => 'multiselect',
-				'description' => __( 'Select the pages to hide refund button.', 'woo-refund-and-exchange-lite' ),
+				'description' => esc_html__( 'Select the pages to hide refund button.', 'woo-refund-and-exchange-lite' ),
 				'id'          => 'mwb_rma_refund_button_pages',
 				'value'       => get_option( 'mwb_rma_refund_button_pages' ),
 				'class'       => 'wrael-multiselect-class mwb-defaut-multiselect',
@@ -436,31 +440,31 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				'options'     => $button_view,
 			),
 			array(
-				'title'   => __( 'Enable to Manage Stock button', 'woo-refund-and-exchange-lite' ),
+				'title'   => esc_html__( 'Enable to Manage Stock button', 'woo-refund-and-exchange-lite' ),
 				'type'    => 'radio-switch',
 				'id'      => 'mwb_rma_refund_manage_stock',
 				'value'   => get_option( 'mwb_rma_refund_manage_stock' ),
 				'class'   => 'wrael-radio-switch-class',
 				'options' => array(
-					'yes' => __( 'YES', 'woo-refund-and-exchange-lite' ),
-					'no'  => __( 'NO', 'woo-refund-and-exchange-lite' ),
+					'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+					'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 				),
 			),
 			array(
-				'title'   => __( 'Enable Attachment', 'woo-refund-and-exchange-lite' ),
+				'title'   => esc_html__( 'Enable Attachment', 'woo-refund-and-exchange-lite' ),
 				'type'    => 'radio-switch',
 				'id'      => 'mwb_rma_refund_attachment',
 				'value'   => get_option( 'mwb_rma_refund_attachment' ),
 				'class'   => 'wrael-radio-switch-class',
 				'options' => array(
-					'yes' => __( 'YES', 'woo-refund-and-exchange-lite' ),
-					'no'  => __( 'NO', 'woo-refund-and-exchange-lite' ),
+					'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+					'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 				),
 			),
 			array(
-				'title'       => __( 'Attachement Limit', 'woo-refund-and-exchange-lite' ),
+				'title'       => esc_html__( 'Attachement Limit', 'woo-refund-and-exchange-lite' ),
 				'type'        => 'number',
-				'description' => __( 'By default, It will take 5. If not given any.', 'woo-refund-and-exchange-lite' ),
+				'description' => esc_html__( 'By default, It will take 5. If not given any.', 'woo-refund-and-exchange-lite' ),
 				'id'          => 'mwb_rma_attachment_limit',
 				'value'       => get_option( 'mwb_rma_attachment_limit' ),
 				'class'       => 'wrael-number-class',
@@ -478,72 +482,73 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			'name' => 'Appearance',
 		);
 		$mwb_rma_settings_refund[] = array(
-			'title'       => __( 'Refund Button Text', 'woo-refund-and-exchange-lite' ),
+			'title'       => esc_html__( 'Refund Button Text', 'woo-refund-and-exchange-lite' ),
 			'type'        => 'text',
 			'id'          => 'mwb_rma_refund_button_text',
 			'value'       => get_option( 'mwb_rma_refund_button_text' ),
 			'class'       => 'wrael-text-class',
-			'placeholder' => __( 'Enter Refund Button Text', 'woo-refund-and-exchange-lite' ),
+			'placeholder' => esc_html__( 'Enter Refund Button Text', 'woo-refund-and-exchange-lite' ),
 		);
 		$mwb_rma_settings_refund[] = array(
-			'title'   => __( 'Enable Refund Reason Description', 'woo-refund-and-exchange-lite' ),
+			'title'   => esc_html__( 'Enable Refund Reason Description', 'woo-refund-and-exchange-lite' ),
 			'type'    => 'radio-switch',
 			'id'      => 'mwb_rma_refund_description',
 			'value'   => get_option( 'mwb_rma_refund_description' ),
 			'class'   => 'wrael-radio-switch-class',
 			'options' => array(
-				'yes' => __( 'YES', 'woo-refund-and-exchange-lite' ),
-				'no'  => __( 'NO', 'woo-refund-and-exchange-lite' ),
+				'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+				'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 			),
 		);
 		$mwb_rma_settings_refund[] = array(
-			'title'       => __( 'Predefined Refund Reason', 'woo-refund-and-exchange-lite' ),
+			'title'       => esc_html__( 'Predefined Refund Reason', 'woo-refund-and-exchange-lite' ),
 			'type'        => 'textarea',
 			'id'          => 'mwb_rma_refund_reasons',
 			'value'       => get_option( 'mwb_rma_refund_reasons' ),
 			'class'       => 'wrael-textarea-class',
 			'rows'        => '2',
 			'cols'        => '80',
-			'placeholder' => __( 'Enter the multiple reason separated by comma', 'woo-refund-and-exchange-lite' ),
+			'placeholder' => esc_html__( 'Enter the multiple reason separated by comma', 'woo-refund-and-exchange-lite' ),
 		);
 		$mwb_rma_settings_refund[] = array(
-			'title'   => __( 'Enable Refund Rules', 'woo-refund-and-exchange-lite' ),
+			'title'   => esc_html__( 'Enable Refund Rules', 'woo-refund-and-exchange-lite' ),
 			'type'    => 'radio-switch',
 			'id'      => 'mwb_rma_refund_rules',
 			'value'   => get_option( 'mwb_rma_refund_rules' ),
 			'class'   => 'wrael-radio-switch-class',
 			'options' => array(
-				'yes' => __( 'YES', 'woo-refund-and-exchange-lite' ),
-				'no'  => __( 'NO', 'woo-refund-and-exchange-lite' ),
+				'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+				'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 			),
 		);
 		$mwb_rma_settings_refund[] = array(
-			'title'       => __( 'Refund Rules Editor', 'woo-refund-and-exchange-lite' ),
+			'title'       => esc_html__( 'Refund Rules Editor', 'woo-refund-and-exchange-lite' ),
 			'type'        => 'textarea',
 			'id'          => 'mwb_rma_refund_rules_editor',
 			'value'       => get_option( 'mwb_rma_refund_rules_editor' ),
 			'class'       => 'wrael-textarea-class',
 			'rows'        => '5',
 			'cols'        => '80',
-			'placeholder' => __( 'Enter the Refund Rules( HTML + CSS )', 'woo-refund-and-exchange-lite' ),
+			'placeholder' => esc_html__( 'Enter the Refund Rules( HTML + CSS )', 'woo-refund-and-exchange-lite' ),
 		);
 		if ( function_exists( 'vc_lean_map' ) ) {
 			$mwb_rma_settings_refund[] = array(
-				'title'       => __( 'Select the Page to Redirect', 'woo-refund-and-exchange-lite' ),
+				'title'       => esc_html__( 'Select the Page to Redirect', 'woo-refund-and-exchange-lite' ),
 				'type'        => 'select',
 				'id'          => 'mwb_rma_refund_page',
+				'description' => '',
 				'value'       => get_option( 'mwb_rma_refund_page' ),
 				'class'       => 'wrael-textarea-class',
 				'options'     => $get_pages
 			);
 		}
-		$mwb_rma_settings_refund   =
+		$mwb_rma_settings_refund =
 		// To extend Refund Apperance setting.
 		apply_filters( 'mwb_rma_refund_appearance_setting_extend', $mwb_rma_settings_refund );
 		$mwb_rma_settings_refund[] = array(
 			'type'        => 'button',
 			'id'          => 'mwb_rma_save_refund_setting',
-			'button_text' => __( 'Save Setting', 'woo-refund-and-exchange-lite' ),
+			'button_text' => esc_html__( 'Save Setting', 'woo-refund-and-exchange-lite' ),
 			'class'       => 'wrael-button-class',
 		);
 		return $mwb_rma_settings_refund;
@@ -556,20 +561,20 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	 */
 	public function mwb_rma_order_message_settings_page( $mwb_rma_settings_order_message ) {
 		$pages = get_pages();
-		$get_pages = array( '' => __( 'Default', 'woo-refund-and-exchange-lite' ) );
+		$get_pages = array( '' => esc_html__( 'Default', 'woo-refund-and-exchange-lite' ) );
 		foreach ( $pages as $page ) {
 			$get_pages[ $page->ID ] = $page->post_title;
 		}
 		$mwb_rma_settings_order_message = array(
 			array(
-				'title'   => __( 'Enable Attachment upload for order messages', 'woo-refund-and-exchange-lite' ),
+				'title'   => esc_html__( 'Enable Attachment upload for order messages', 'woo-refund-and-exchange-lite' ),
 				'type'    => 'radio-switch',
 				'id'      => 'mwb_rma_general_enable_om_attachment',
 				'value'   => get_option( 'mwb_rma_general_enable_om_attachment' ),
 				'class'   => 'wrael-radio-switch-class',
 				'options' => array(
-					'yes' => __( 'YES', 'woo-refund-and-exchange-lite' ),
-					'no'  => __( 'NO', 'woo-refund-and-exchange-lite' ),
+					'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+					'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 				),
 			),
 		);
@@ -582,16 +587,16 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			'name' => 'Appearance',
 		);
 		$mwb_rma_settings_order_message[] = array(
-			'title'       => __( 'Order Message Button Text', 'woo-refund-and-exchange-lite' ),
+			'title'       => esc_html__( 'Order Message Button Text', 'woo-refund-and-exchange-lite' ),
 			'type'        => 'text',
 			'id'          => 'mwb_rma_order_message_button_text',
 			'value'       => get_option( 'mwb_rma_order_message_button_text' ),
 			'class'       => 'wrael-text-class',
-			'placeholder' => __( 'Enter Order Message Button Text', 'woo-refund-and-exchange-lite' ),
+			'placeholder' => esc_html__( 'Enter Order Message Button Text', 'woo-refund-and-exchange-lite' ),
 		);
 		if ( function_exists( 'vc_lean_map' ) ) {
 			$mwb_rma_settings_order_message[] = array(
-				'title'       => __( 'Select the Page to Redirect', 'woo-refund-and-exchange-lite' ),
+				'title'       => esc_html__( 'Select the Page to Redirect', 'woo-refund-and-exchange-lite' ),
 				'type'        => 'select',
 				'id'          => 'mwb_rma_order_msg_page',
 				'value'       => get_option( 'mwb_rma_order_msg_page' ),
@@ -605,47 +610,47 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		$mwb_rma_settings_order_message[] = array(
 			'type'        => 'button',
 			'id'          => 'mwb_rma_save_text_setting',
-			'button_text' => __( 'Save Setting', 'woo-refund-and-exchange-lite' ),
+			'button_text' => esc_html__( 'Save Setting', 'woo-refund-and-exchange-lite' ),
 			'class'       => 'wrael-button-class',
 		);
 		return $mwb_rma_settings_order_message;
 	}
 	/**
-	 * To add api tab setting.
+	 * To add api tab setting .
 	 *
-	 * @param array $mwb_rma_api_settings_page .
+	 * @param array $mwb_rma_settings_api .
 	 */
 	public function mwb_rma_api_settings_page( $mwb_rma_settings_api ) {
 		$mwb_rma_settings_api = array(
 			array(
-				'title'   => __( 'Enable API', 'woo-refund-and-exchange-lite' ),
+				'title'   => esc_html__( 'Enable API', 'woo-refund-and-exchange-lite' ),
 				'type'    => 'radio-switch',
 				'id'      => 'mwb_rma_enable_api',
 				'value'   => get_option( 'mwb_rma_enable_api' ),
 				'class'   => 'wrael-radio-switch-class',
 				'options' => array(
-					'yes' => __( 'YES', 'woo-refund-and-exchange-lite' ),
-					'no'  => __( 'NO', 'woo-refund-and-exchange-lite' ),
+					'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+					'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 				),
 			),
 			array(
-				'title'       => __( 'Secret Key', 'woo-refund-and-exchange-lite' ),
+				'title'       => esc_html__( 'Secret Key', 'woo-refund-and-exchange-lite' ),
 				'type'        => 'text',
 				'id'          => 'mwb_rma_secret_key',
 				'value'       => get_option( 'mwb_rma_secret_key' ),
 				'class'       => 'wrael-text-class',
-				'placeholder' => __( 'Please Generate the Secret Key', 'woo-refund-and-exchange-lite' ),
+				'placeholder' => esc_html__( 'Please Generate the Secret Key', 'woo-refund-and-exchange-lite' ),
 			),
 			array(
 				'type'        => 'button',
 				'id'          => 'mwb_rma_generate_key_setting',
-				'button_text' => __( 'Generate Key', 'woo-refund-and-exchange-lite' ),
+				'button_text' => esc_html__( 'Generate Key', 'woo-refund-and-exchange-lite' ),
 				'class'       => 'wrael-button-class',
 			),
 			array(
 				'type'        => 'button',
 				'id'          => 'mwb_rma_save_api_setting',
-				'button_text' => __( 'Save Setting', 'woo-refund-and-exchange-lite' ),
+				'button_text' => esc_html__( 'Save Setting', 'woo-refund-and-exchange-lite' ),
 				'class'       => 'wrael-button-class',
 			),
 		); 
@@ -680,14 +685,14 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		if ( isset( $mwb_rma_return_enable ) && 'on' === $mwb_rma_return_enable ) {
 			add_meta_box(
 				'mwb_rma_order_refund',
-				__( 'Refund Requested Products', 'woo-refund-and-exchange-lite' ),
+				esc_html__( 'Refund Requested Products', 'woo-refund-and-exchange-lite' ),
 				array( $this, 'mwb_rma_order_return' ),
 				'shop_order'
 			);
 		}
 		add_meta_box(
 			'mwb_rma_order_msg_history',
-			__( 'Order Message History', 'woo-refund-and-exchange-lite' ),
+			esc_html__( 'Order Message History', 'woo-refund-and-exchange-lite' ),
 			array( $this, 'mwb_rma_order_msg_history' ),
 			'shop_order'
 		);
@@ -705,7 +710,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			$to       = $order->get_billing_email();
 			$sender   = 'Shop Manager';
 			$flag     = mwb_rma_lite_send_order_msg_callback( $order_id, $msg, $sender, $to );
-			echo esc_html( $flag );
+			echo esc_html__( $flag );
 			wp_die();
 		}
 	}
@@ -781,7 +786,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		}
 		// Partial Stock Manage.
 		do_action( 'mwb_rma_refund_partial_stock_product', $orderid );
-		$order_obj->update_status( 'wc-return-approved', __( 'User Request of Refund Product is approved', 'woo-refund-and-exchange-lite' ) );
+		$order_obj->update_status( 'wc-return-approved', esc_html__( 'User Request of Refund Product is approved', 'woo-refund-and-exchange-lite' ) );
 		$response = array();
 		$response['response'] = 'success';
 	}
@@ -843,7 +848,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			do_action( 'mwb_rma_refund_req_cancel_email', $orderid );
 		}
 		$order_obj = wc_get_order( $orderid );
-		$order_obj->update_status( 'wc-return-cancelled', __( 'User Request of Refund Product is cancel', 'woo-refund-and-exchange-lite' ) );
+		$order_obj->update_status( 'wc-return-cancelled', esc_html__( 'User Request of Refund Product is cancel', 'woo-refund-and-exchange-lite' ) );
 		$response = array();
 		$response['response'] = 'success';
 	}
@@ -900,14 +905,14 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 												$product->save();
 												update_post_meta( $order_id, 'mwb_rma_manage_stock_for_return', 'no' );
 												$response['result'] = 'success';
-												$response['msg']    = __( 'Product Stock is updated Successfully.', 'woo-refund-and-exchange-lite' );
+												$response['msg']    = esc_html__( 'Product Stock is updated Successfully.', 'woo-refund-and-exchange-lite' );
 												/* translators: %s: search term */
-												wc_get_order( $order_id )->add_order_note( sprintf( __( '%s Product Stock is updated Successfully.', 'woo-refund-and-exchange-lite' ), $product->get_name() ), false, true );
+												wc_get_order( $order_id )->add_order_note( sprintf( esc_html__( '%s Product Stock is updated Successfully.', 'woo-refund-and-exchange-lite' ), $product->get_name() ), false, true );
 											} else {
 												$response['result'] = false;
-												$response['msg']    = __( 'Product Stock is not updated as manage stock setting of product is disable.', 'woo-refund-and-exchange-lite' );
+												$response['msg']    = esc_html__( 'Product Stock is not updated as manage stock setting of product is disable.', 'woo-refund-and-exchange-lite' );
 												/* translators: %s: search term */
-												wc_get_order( $order_id )->add_order_note( sprintf( __( '%s Product Stock is not updated as manage stock setting of product is disable.', 'woo-refund-and-exchange-lite' ), $product->get_name() ), false, true );
+												wc_get_order( $order_id )->add_order_note( sprintf( esc_html__( '%s Product Stock is not updated as manage stock setting of product is disable.', 'woo-refund-and-exchange-lite' ), $product->get_name() ), false, true );
 											}
 										}
 									}
@@ -951,6 +956,17 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			foreach ( $_POST as $key => $value ) {
 				sanitize_text_field( wp_unslash( $key ) );
 				map_deep( wp_unslash( $value ), 'sanitize_text_field' );
+				foreach ( $value as $setting_index => $setting_value ) {
+					if ( 'mwb_rma_maximum_days' === $setting_value['row_policy'] ) {
+						if ( isset( $setting_value['row_value'] ) && empty( $setting_value['row_value'] ) ) {
+							unset( $_POST[ $key ][ $setting_index ] );
+						}
+					} elseif ( 'mwb_rma_order_status' === $setting_value['row_policy'] ) {
+						if ( isset( $setting_value['row_statuses'] ) && empty( $setting_value['row_statuses'] ) ) {
+							unset( $_POST[ $key ][ $setting_index ] );
+						}
+					}
+				}
 			}
 			// Policies Setting Saving.
 			do_action( 'mwb_rma_policies_setting', $_POST );

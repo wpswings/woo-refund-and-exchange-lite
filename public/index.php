@@ -7,4 +7,4 @@
  * @package    Woo_Refund_And_Exchange_Lite
  */
 
-esc_html_e( 'oops looks like nothing is here', 'mwb-role-based-pricing-for-woocommerce' );
+esc_html_e( 'oops looks like nothing is here', 'woo-refund-and-exchange-lite' );

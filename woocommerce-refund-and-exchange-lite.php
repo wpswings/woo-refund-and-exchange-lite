@@ -33,32 +33,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
 
-$activated                 = true;
-$ced_rnx_activated_main_cc = false;
-$active_plugins            = get_option( 'active_plugins', array() );
-$active_network_wide       = get_site_option( 'active_sitewide_plugins', array() );
+$activated           = true;
+$active_plugins      = get_option( 'active_plugins', array() );
+$active_network_wide = get_site_option( 'active_sitewide_plugins', array() );
 if ( ! empty( $active_network_wide ) ) {
-	foreach( $active_network_wide as $key => $value ) {
+	foreach ( $active_network_wide as $key => $value ) {
 		$active_plugins[] = $key;
 	}
 }
 if ( function_exists( 'is_multisite' ) && is_multisite() ) {
-	//$active_plugins = array_merge( $active_plugins, get_site_option( 'active_sitewide_plugins', array() ) );
+	$active_plugins = array_merge( $active_plugins, get_site_option( 'active_sitewide_plugins', array() ) );
 	include_once ABSPATH . 'wp-admin/includes/plugin.php';
-	if ( ! in_array( 'woocommerce/woocommerce.php',  $active_plugins, true ) ) {
+	if ( ! in_array( 'woocommerce/woocommerce.php', $active_plugins, true ) ) {
 		$activated = false;
-	}
-	if ( in_array( 'woocommerce-refund-and-exchange/woocommerce-refund-and-exchange.php', $active_plugins, true ) ) {
-		$activated                 = false;
-		$ced_rnx_activated_main_cc = true;
 	}
 } else {
-	if ( ! in_array( 'woocommerce/woocommerce.php',  $active_plugins, true ) ) {
+	if ( ! in_array( 'woocommerce/woocommerce.php', $active_plugins, true ) ) {
 		$activated = false;
-	}
-	if ( in_array( 'woocommerce-refund-and-exchange/woocommerce-refund-and-exchange.php', $active_plugins, true ) ) {
-		$activated                 = false;
-		$ced_rnx_activated_main_cc = true;
 	}
 }
 if ( $activated ) {
@@ -119,13 +110,13 @@ if ( $activated ) {
 		$mwb_rma_active_plugin = get_option( 'mwb_all_plugins_active', false );
 		if ( is_array( $mwb_rma_active_plugin ) && ! empty( $mwb_rma_active_plugin ) ) {
 			$mwb_rma_active_plugin['woo-refund-and-exchange-lite'] = array(
-				'plugin_name' => __( 'Woo Refund And Exchange Lite', 'woo-refund-and-exchange-lite' ),
+				'plugin_name' => esc_html__( 'Woo Refund And Exchange Lite', 'woo-refund-and-exchange-lite' ),
 				'active'      => '1',
 			);
 		} else {
 			$mwb_rma_active_plugin                                 = array();
 			$mwb_rma_active_plugin['woo-refund-and-exchange-lite'] = array(
-				'plugin_name' => __( 'Woo Refund And Exchange Lite', 'woo-refund-and-exchange-lite' ),
+				'plugin_name' => esc_html__( 'Woo Refund And Exchange Lite', 'woo-refund-and-exchange-lite' ),
 				'active'      => '1',
 			);
 		}
@@ -194,7 +185,7 @@ if ( $activated ) {
 	 */
 	function woo_refund_and_exchange_lite_settings_link( $links ) {
 		$my_link = array(
-			'<a href="' . admin_url( 'admin.php?page=woo_refund_and_exchange_lite_menu' ) . '">' . __( 'Settings', 'woo-refund-and-exchange-lite' ) . '</a>',
+			'<a href="' . admin_url( 'admin.php?page=woo_refund_and_exchange_lite_menu' ) . '">' . esc_html__( 'Settings', 'woo-refund-and-exchange-lite' ) . '</a>',
 		);
 		return array_merge( $my_link, $links );
 	}
@@ -208,9 +199,9 @@ if ( $activated ) {
 	 */
 	function woo_refund_and_exchange_lite_custom_settings_at_plugin_tab( $links_array, $plugin_file_name ) {
 		if ( strpos( $plugin_file_name, basename( __FILE__ ) ) ) {
-			$links_array[] = '<a href="#" target="_blank"><img src="' . esc_html( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL ) . 'admin/image/Demo.svg" class="mwb-info-img" alt="Demo image">' . __( 'Demo', 'woo-refund-and-exchange-lite' ) . '</a>';
-			$links_array[] = '<a href="https://docs.makewebbetter.com/woocommerce-refund-and-exchange-lite" target="_blank"><img src="' . esc_html( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL ) . 'admin/image/Documentation.svg" class="mwb-info-img" alt="documentation image">' . __( 'Documentation', 'woo-refund-and-exchange-lite' ) . '</a>';
-			$links_array[] = '<a href="#" target="_blank"><img src="' . esc_html( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL ) . 'admin/image/Support.svg" class="mwb-info-img" alt="support image">' . __( 'Support', 'woo-refund-and-exchange-lite' ) . '</a>';
+			$links_array[] = '<a href="#" target="_blank"><img src="' . esc_html__( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL ) . 'admin/image/Demo.svg" class="mwb-info-img" alt="Demo image">' . esc_html__( 'Demo', 'woo-refund-and-exchange-lite' ) . '</a>';
+			$links_array[] = '<a href="https://docs.makewebbetter.com/woocommerce-refund-and-exchange-lite" target="_blank"><img src="' . esc_html__( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL ) . 'admin/image/Documentation.svg" class="mwb-info-img" alt="documentation image">' . esc_html__( 'Documentation', 'woo-refund-and-exchange-lite' ) . '</a>';
+			$links_array[] = '<a href="#" target="_blank"><img src="' . esc_html__( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL ) . 'admin/image/Support.svg" class="mwb-info-img" alt="support image">' . esc_html__( 'Support', 'woo-refund-and-exchange-lite' ) . '</a>';
 		}
 		return $links_array;
 	}
@@ -261,71 +252,72 @@ if ( $activated ) {
 			$days       = $today_date - $order_date;
 			$day_diff   = floor( $days / ( 60 * 60 * 24 ) );
 			// Check max days exist in array.
-			$check_max_days = strpos( wp_json_encode( $get_specific_setting ), 'mwb_rma_maximum_days' ) > 0 ? true : false;
-			// Check order status exist in array.
-			$check_order_statuses = strpos( wp_json_encode( $get_specific_setting ), 'mwb_rma_order_status' ) > 0 ? true : false;
+			//$check_order_statuses = strpos( wp_json_encode( $get_specific_setting ), 'mwb_rma_order_status' ) > 0 ? true : false;
 			// Check tax handing exist in array.
 			$check_tax_handling = strpos( wp_json_encode( $get_specific_setting ), 'mwb_rma_tax_handling' ) > 0 ? true : false;
 			if ( ! $check_tax_handling ) {
 				update_option( $order->get_id() . 'check_tax', '' );
 			}
-			if ( ! empty( $get_specific_setting ) && $check_max_days && $check_order_statuses ) {
+			if ( empty( $condition ) || ( isset( $condition['mwb_rma_setting'] ) && empty( $condition['mwb_rma_setting'] ) ) ) {
+				$show_button = 'yes';
+			}
+			if ( ! empty( $get_specific_setting ) ) {
 				foreach ( $get_specific_setting as $key => $value ) {
-					if ( 'mwb_rma_tax_handling' === $value['row_policy'] ) {
-						if ( 'mwb_rma_inlcude_tax' === $value['row_tax'] ) {
+					if ( isset( $value['row_policy'] ) && 'mwb_rma_tax_handling' === $value['row_policy'] ) {
+						if ( isset( $value['row_tax'] ) && 'mwb_rma_inlcude_tax' === $value['row_tax'] ) {
 							update_option( $order->get_id() . 'check_tax', 'mwb_rma_inlcude_tax' );
-						} elseif ( 'mwb_rma_exclude_tax' === $value['row_tax'] ) {
+						} elseif ( isset( $value['row_tax'] ) && 'mwb_rma_exclude_tax' === $value['row_tax'] ) {
 							update_option( $order->get_id() . 'check_tax', 'mwb_rma_exclude_tax' );
 						}
 					}
-					if ( 'mwb_rma_maximum_days' === $value['row_policy'] ) {
+					if ( isset( $value['row_policy'] ) && 'mwb_rma_maximum_days' === $value['row_policy'] ) {
 						if ( isset( $value['row_value'] ) && ! empty( $value['row_value'] ) ) {
-							if ( 'mwb_rma_less_than' === $value['row_conditions1'] ) {
-								if ( $day_diff < floatval( $value['row_value'] ) ) {
+							if ( isset( $value['row_conditions1'] ) && 'mwb_rma_less_than' === $value['row_conditions1'] ) {
+								if ( isset( $value['row_value'] ) && $day_diff < floatval( $value['row_value'] ) ) {
 									$show_button = 'yes';
 								} else {
-									$show_button = ucfirst( $func ) . __( ' days exceed must be less than ', 'woo-refund-and-exchange-lite' ) . $value['row_value'];
+									$show_button = ucfirst( $func ) . esc_html__( ' days exceed must be less than ', 'woo-refund-and-exchange-lite' ) . $value['row_value'];
 									break;
 								}
-							} elseif ( 'mwb_rma_greater_than' === $value['row_conditions1'] ) {
-								if ( $day_diff > floatval( $value['row_value'] ) ) {
+							} elseif ( $value['row_conditions1'] && 'mwb_rma_greater_than' === $value['row_conditions1'] ) {
+								if ( isset( $value['row_value'] ) && $day_diff > floatval( $value['row_value'] ) ) {
 									$show_button = 'yes';
 								} else {
-									$show_button = ucfirst( $func ) . __( ' days must be greater than ', 'woo-refund-and-exchange-lite' ) . $value['row_value'];
+									$show_button = ucfirst( $func ) . esc_html__( ' days must be greater than ', 'woo-refund-and-exchange-lite' ) . $value['row_value'];
 									break;
 								}
-							} elseif ( 'mwb_rma_less_than_equal' === $value['row_conditions1'] ) {
-								if ( $day_diff <= floatval( $value['row_value'] ) ) {
+							} elseif ( $value['row_conditions1'] && 'mwb_rma_less_than_equal' === $value['row_conditions1'] ) {
+								if ( isset( $value['row_value'] ) && $day_diff <= floatval( $value['row_value'] ) ) {
 									$show_button = 'yes';
 								} else {
-									$show_button = ucfirst( $func ) . __( ' days must be less than equal to ', 'woo-refund-and-exchange-lite' ) . $value['row_value'];
+									$show_button = ucfirst( $func ) . esc_html__( ' days must be less than equal to ', 'woo-refund-and-exchange-lite' ) . $value['row_value'];
 									break;
 								}
-							} elseif ( 'mwb_rma_greater_than_equal' === $value['row_conditions1'] ) {
-								if ( $day_diff >= floatval( $value['row_value'] ) ) {
+							} elseif ( $value['row_conditions1'] && 'mwb_rma_greater_than_equal' === $value['row_conditions1'] ) {
+								if ( isset( $value['row_value'] ) && $day_diff >= floatval( $value['row_value'] ) ) {
 									$show_button = 'yes';
 								} else {
-									$show_button = ucfirst( $func ) . __( ' days must be greater than equal to ', 'woo-refund-and-exchange-lite' ) . $value['row_value'];
+									$show_button = ucfirst( $func ) . esc_html__( ' days must be greater than equal to ', 'woo-refund-and-exchange-lite' ) . $value['row_value'];
 									break;
 								}
 							}
 						} else {
-							$show_button = ucfirst( $func ) . __( ' max days is blank', 'woo-refund-and-exchange-lite' );
+							$show_button = ucfirst( $func ) . esc_html__( ' max days is blank', 'woo-refund-and-exchange-lite' );
 							break;
 						}
-					} elseif ( 'mwb_rma_order_status' === $value['row_policy'] ) {
-						if ( 'mwb_rma_equal_to' === $value['row_conditions2'] ) {
+					} elseif ( isset( $value['row_policy'] ) && 'mwb_rma_order_status' === $value['row_policy'] ) {
+						if ( $value['row_conditions2'] && 'mwb_rma_equal_to' === $value['row_conditions2'] ) {
 							if ( isset( $value['row_statuses'] ) && in_array( 'wc-' . $order->get_status(), $value['row_statuses'], true ) ) {
 								$show_button = 'yes';
 							} else {
-								$show_button = ucfirst( $func ) . __( ' request can\'t make on this order.', 'woo-refund-and-exchange-lite' );
+								$show_button = ucfirst( $func ) . esc_html__( ' request can\'t make on this order.', 'woo-refund-and-exchange-lite' );
 								break;
 							}
-						} elseif ( 'mwb_rma_not_equal_to' === $value['row_conditions2'] ) {
+						} elseif ( $value['row_conditions2'] && 'mwb_rma_not_equal_to' === $value['row_conditions2'] ) {
 							if ( isset( $value['row_statuses'] ) && ! in_array( 'wc-' . $order->get_status(), $value['row_statuses'], true ) ) {
 								$show_button = 'yes';
 							} else {
-								$show_button = ucfirst( $func ) . __( ' request can\'t make on this order.', 'woo-refund-and-exchange-lite' );
+								$show_button = ucfirst( $func ) . esc_html__( ' request can\'t make on this order.', 'woo-refund-and-exchange-lite' );
 								break;
 							}
 						}
@@ -333,7 +325,7 @@ if ( $activated ) {
 				}
 			}
 		} else {
-			$show_button = ucfirst( $func ) . __( ' request is disabled.', 'woo-refund-and-exchange-lite' );
+			$show_button = ucfirst( $func ) . esc_html__( ' request is disabled.', 'woo-refund-and-exchange-lite' );
 		}
 		$products = get_post_meta( $order->get_id(), 'mwb_rma_return_product', true );
 		if ( isset( $products ) && ! empty( $products ) && ! mwb_rma_pro_active() && 'yes' === $show_button ) {
@@ -472,37 +464,17 @@ if ( $activated ) {
 	 * Show warning message if woocommerce is not install
 	 */
 	function mwb_rma_plugin_error_notice_lite() {
-		if ( ! $activated ) {
-			?>
-			<div class="error notice is-dismissible">
-				<p><?php esc_html_e( 'Woocommerce is not activated, Please activate Woocommerce first to install WooCommerce Refund and Exchange Lite.', 'woo-refund-and-exchange-lite' ); ?></p>
-			</div>
-			<style>
-			#message{display:none;}
-			</style>
-			<?php
-		}
-	}
-
-	/**
-	 * Show warning message if woocommerce is not install
-	 */
-	function mwb_rma_plugin_error_notice_when_pro_activated() {
 		?>
 		<div class="error notice is-dismissible">
-			<p><?php esc_html_e( 'WooCommerce RMA | Return-Refund-Exchange is activated so you did not need to install WooCommerce Refund and Exchange Lite because the Main version contains all the features of our lite extension.', 'woo-refund-and-exchange-lite' ); ?></p>
+			<p><?php esc_html_e( 'Woocommerce is not activated, Please activate Woocommerce first to install WooCommerce Refund and Exchange Lite.', 'woo-refund-and-exchange-lite' ); ?></p>
 		</div>
 		<style>
 		#message{display:none;}
 		</style>
 		<?php
 	}
+	add_action( 'admin_init', 'mwb_rma_plugin_deactivate_lite' );
 
-	if ( $ced_rnx_activated_main_cc ) {
-		add_action( 'admin_init', 'mwb_rma_plugin_deactivate_when_pro_is_activated' );
-	} else {
-		add_action( 'admin_init', 'mwb_rma_plugin_deactivate_lite' );
-	}
 
 	/**
 	 * Call Admin notices
@@ -513,21 +485,7 @@ if ( $activated ) {
 	 */
 	function mwb_rma_plugin_deactivate_lite() {
 		deactivate_plugins( plugin_basename( __FILE__ ) );
-		do_action( 'woocommerce_product_options_stock_fields' );
 		add_action( 'admin_notices', 'mwb_rma_plugin_error_notice_lite' );
-	}
-
-	/**
-	 * Call Admin notices
-	 *
-	 * @name ced_rnx_plugin_deactivate()
-	 * @author MakeWebBetter<webmaster@makewebbetter.com>
-	 * @link http://www.makewebbetter.com/
-	 */
-	function mwb_rma_plugin_deactivate_when_pro_is_activated() {
-		deactivate_plugins( plugin_basename( __FILE__ ) );
-		do_action( 'woocommerce_product_options_stock_fields' );
-		add_action( 'admin_notices', 'mwb_rma_plugin_error_notice_when_pro_activated' );
 	}
 }
 

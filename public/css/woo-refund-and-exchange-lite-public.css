@@ -10,11 +10,10 @@
 .mwb_order_msg_sub_container {
     padding: 30px;
     border: solid #ccc 1px;
-/*    overflow-y: auto;
+   overflow-y: auto;
     min-height: 200px;
-    max-height: 400px;*/
+    max-height: 400px;
 }
-
 /* Order Refund Request Form */
 *, ::after, ::before{
     box-sizing: border-box;

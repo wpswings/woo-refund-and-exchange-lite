@@ -23,13 +23,13 @@ $order_id  = $order_obj->get_id();
 	<p class="mwb_order_msg_sent_notice"><strong><?php esc_html_e( 'Messages Refreshed Successfully.', 'woo-refund-and-exchange-lite' ); ?></strong></p>
 </div>
 <div class="mwb_rma_admin_order_msg_wrapper">
+	<div class="mwb_admin_order_msg_history_title">
+		<h4 class="mwb_order_heading">
+			<?php esc_html_e( 'Message History', 'woo-refund-and-exchange-lite' ); ?>
+			<a href="" class="mwb_wrma_reload_messages"><img src="<?php echo esc_url( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL ) . '/public/images/reload-icon.png'; ?>" class="reload-icon"></a>
+		</h4>
+	</div>
 	<div class="mwb_admin_order_msg_history_container">
-		<div class="mwb_admin_order_msg_history_title">
-			<h4 class="mwb_order_heading">
-				<?php esc_html_e( 'Message History', 'woo-refund-and-exchange-lite' ); ?>
-				<a href="" class="mwb_wrma_reload_messages"><img src="<?php echo esc_url( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL ) . '/public/images/reload-icon.png'; ?>" class="reload-icon"></a>
-			</h4>
-		</div>
 		<div class="mwb_admin_order_msg_sub_container">
 			<?php
 			$mwb_order_messages = get_option( $order_id . '-mwb_cutomer_order_msg', array() );
@@ -39,11 +39,11 @@ $order_id  = $order_obj->get_id();
 						?>
 						<div class="mwb_order_msg_main_container mwb_order_messages">
 							<div>
-								<div class="mwb_order_msg_sender"><?php echo esc_html( ( 'Customer' === $om_val['sender'] ) ? __( 'Customer', 'woo-refund-and-exchange-lite' ) : __( 'Shop Manager', 'woo-refund-and-exchange-lite' ) ); ?></div>
-								<span class="mwb_order_msg_date"><?php echo esc_html( get_date_from_gmt( gmdate( 'Y-m-d h:i a', $om_key ), 'Y-m-d h:i a' ) ); ?></span>
+								<div class="mwb_order_msg_sender <?php echo 'mwb_order_msg_sender_' . $om_val['sender']; ?>"><?php echo esc_html__( ( 'Customer' === $om_val['sender'] ) ? esc_html__( 'Customer', 'woo-refund-and-exchange-lite' ) : esc_html__( 'Shop Manager', 'woo-refund-and-exchange-lite' ) ); ?></div>
+								<span class="mwb_order_msg_date"><?php echo esc_html__( get_date_from_gmt( gmdate( 'Y-m-d h:i a', $om_key ), 'Y-m-d h:i a' ) ); ?></span>
 							</div>
 							<div class="mwb_order_msg_detail_container">
-								<span><?php echo esc_html( $om_val['msg'] ); ?></span>
+								<span><?php echo esc_html__( $om_val['msg'] ); ?></span>
 							</div>
 							<?php if ( isset( $om_val['files'] ) && ! empty( $om_val['files'] ) ) { ?>
 								<hr>
@@ -55,9 +55,9 @@ $order_id  = $order_obj->get_id();
 											$is_image = $fval['img'];
 											?>
 											<div class="mwb_order_msg_single_attachment">
-												<a target="_blank" href="<?php echo esc_url( get_home_url() ) . '/wp-content/attachment/' . esc_html( $order_id ) . '-' . esc_html( $fval['name'] ); ?>">
-													<img class="mwb_order_msg_attachment_thumbnail" src="<?php echo $is_image ? esc_url( get_home_url() ) . '/wp-content/attachment/' . esc_html( $order_id ) . '-' . esc_html( $fval['name'] ) : esc_url( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL ) . '/admin/images/attachment.png'; ?>">
-													<span class="mwb_order_msg_attachment_file_name"><?php echo esc_html( $fval['name'] ); ?></span>
+												<a target="_blank" href="<?php echo esc_url( get_home_url() ) . '/wp-content/attachment/' . esc_html__( $order_id ) . '-' . esc_html__( $fval['name'] ); ?>">
+													<img class="mwb_order_msg_attachment_thumbnail" src="<?php echo $is_image ? esc_url( get_home_url() ) . '/wp-content/attachment/' . esc_html__( $order_id ) . '-' . esc_html__( $fval['name'] ) : esc_url( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL ) . '/admin/images/attachment.png'; ?>">
+													<span class="mwb_order_msg_attachment_file_name"><?php echo esc_html__( $fval['name'] ); ?></span>
 												</a>
 											</div>
 										<?php } ?>

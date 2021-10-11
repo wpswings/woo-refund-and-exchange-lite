@@ -18,21 +18,35 @@ global $wrael_mwb_rma_obj;
 $mwb_rma_refund_html =
 // Refund Setting Array.
 apply_filters( 'mwb_rma_refund_settings_array', array() );
-$woo_email_url       = admin_url() . 'admin.php?page=wc-settings&tab=email';
+$woo_request_email_url = admin_url() . 'admin.php?page=wc-settings&tab=email&section=mwb_rma_refund_request_email';
+$woo_accept_email_url  = admin_url() . 'admin.php?page=wc-settings&tab=email&section=mwb_rma_refund_request_accept_email';
+$woo_cancel_email_url  = admin_url() . 'admin.php?page=wc-settings&tab=email&section=mwb_rma_refund_request_cancel_email';
 ?>
 <!--  template file for admin settings. -->
 <form action="" method="POST" class="mwb-wrael-gen-section-form">
 	<div class="wrael-secion-wrap">
 		<?php
 		$mwb_rma_refund_html = $wrael_mwb_rma_obj->mwb_rma_plug_generate_html( $mwb_rma_refund_html );
-		echo esc_html( $mwb_rma_refund_html );
+		echo esc_html__( $mwb_rma_refund_html );
 		wp_nonce_field( 'admin_save_data', 'mwb_tabs_nonce' );
 		?>
 	</div>
 </form>
 <h6><b>
 <?php
-/* translators: %s: search term */
-echo sprintf( esc_html__( 'To Configure Refund Related Emails %s.', 'woo-refund-and-exchange-lite' ), '<a href="' . esc_html( $woo_email_url ) . '">Click Here</a>' );
+/* translators: %s: link */
+echo sprintf( esc_html__( 'To configure refund request email %s.', 'woo-refund-and-exchange-lite' ), '<a href="' . esc_html__( $woo_request_email_url ) . '">Click Here</a>' );
+?>
+</b></h6>
+<h6><b>
+<?php
+/* translators: %s: link */
+echo sprintf( esc_html__( 'To configure refund request accept email %s.', 'woo-refund-and-exchange-lite' ), '<a href="' . esc_html__( $woo_accept_email_url ) . '">Click Here</a>' );
+?>
+</b></h6>
+<h6><b>
+<?php
+/* translators: %s: link */
+echo sprintf( esc_html__( 'To configure refund request cancel email %s.', 'woo-refund-and-exchange-lite' ), '<a href="' . esc_html__( $woo_cancel_email_url ) . '">Click Here</a>' );
 ?>
 </b></h6>

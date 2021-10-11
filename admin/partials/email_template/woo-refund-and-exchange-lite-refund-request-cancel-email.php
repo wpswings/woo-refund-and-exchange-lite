@@ -16,7 +16,7 @@ $message        =
         <h4>Order #' . $order_id . '</h4>
     </div>
     <div class="header">
-        <h2>' . __( 'Your Refund Request is Cancelled', 'woo-refund-and-exchange-lite' ) . '</h2>
+        <h2>' . esc_html__( 'Your Refund Request is Cancelled', 'woo-refund-and-exchange-lite' ) . '</h2>
     </div>';
 $attachment     = array();
 $customer_email = WC()->mailer()->emails['mwb_rma_refund_request_cancel_email'];

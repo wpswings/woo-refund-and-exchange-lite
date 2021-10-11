@@ -144,7 +144,7 @@ class Mwb_Rma_Refund_Request_Email extends WC_Email {
 	 */
 	public function init_form_fields() {
 		// translators: %s: list of placeholders.
-		$placeholder_text  = sprintf( __( 'Available placeholders: %s', 'woo-refund-and-exchange-lite' ), '<code>' . esc_html( implode( '</code>, <code>', array_keys( $this->placeholders ) ) ) . '</code>' );
+		$placeholder_text  = sprintf( esc_html__( 'Available placeholders: %s', 'woo-refund-and-exchange-lite' ), '<code>' . esc_html__( implode( '</code>, <code>', array_keys( $this->placeholders ) ) ) . '</code>' );
 		$this->form_fields = array(
 			'enabled'    => array(
 				'title'   => 'Enable/Disable',
@@ -169,10 +169,10 @@ class Mwb_Rma_Refund_Request_Email extends WC_Email {
 				'default'     => '',
 			),
 			'additional_content' => array(
-				'title'       => __( 'Custom Email', 'woocommerce' ),
-				'description' => __( 'If N/A then default email will send.', 'woo-refund-and-exchange-lite' ) . ' ' . $placeholder_text,
+				'title'       => esc_html__( 'Custom Email', 'woo-refund-and-exchange-lite' ),
+				'description' => esc_html__( 'If N/A then default email will send.', 'woo-refund-and-exchange-lite' ) . ' ' . $placeholder_text,
 				'css'         => 'width:400px; height: 75px;',
-				'placeholder' => __( 'N/A', 'woo-refund-and-exchange-lite' ),
+				'placeholder' => esc_html__( 'N/A', 'woo-refund-and-exchange-lite' ),
 				'type'        => 'textarea',
 				'default'     => $this->get_default_additional_content(),
 				'desc_tip'    => true,

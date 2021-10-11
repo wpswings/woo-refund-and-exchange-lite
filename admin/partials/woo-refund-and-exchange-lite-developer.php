@@ -43,11 +43,11 @@ $count_public = filtered_array( $wrael_developer_public_hooks );
 					foreach ( $count_admin as $k => $v ) {
 						if ( isset( $v['action_hook'] ) ) {
 							?>
-						<tr class="mdc-data-table__row"><td class="mdc-data-table__cell"><?php esc_html_e( 'Action Hook', 'woo-refund-and-exchange-lite' ); ?></td><td class="mdc-data-table__cell"><?php echo esc_html( $v['action_hook'] ); ?></td><td class="mdc-data-table__cell"><?php echo esc_html( $v['desc'] ); ?></td></tr>
+						<tr class="mdc-data-table__row"><td class="mdc-data-table__cell"><?php esc_html_e( 'Action Hook', 'woo-refund-and-exchange-lite' ); ?></td><td class="mdc-data-table__cell"><?php echo esc_html__( $v['action_hook'] ); ?></td><td class="mdc-data-table__cell"><?php echo esc_html__( $v['desc'] ); ?></td></tr>
 							<?php
 						} else {
 							?>
-							<tr class="mdc-data-table__row"><td class="mdc-data-table__cell"><?php esc_html_e( 'Filter Hook', 'woo-refund-and-exchange-lite' ); ?></td><td class="mdc-data-table__cell"><?php echo esc_html( $v['filter_hook'] ); ?></td><td class="mdc-data-table__cell"><?php echo esc_html( $v['desc'] ); ?></td></tr>
+							<tr class="mdc-data-table__row"><td class="mdc-data-table__cell"><?php esc_html_e( 'Filter Hook', 'woo-refund-and-exchange-lite' ); ?></td><td class="mdc-data-table__cell"><?php echo esc_html__( $v['filter_hook'] ); ?></td><td class="mdc-data-table__cell"><?php echo esc_html__( $v['desc'] ); ?></td></tr>
 							<?php
 						}
 					}
@@ -78,11 +78,11 @@ $count_public = filtered_array( $wrael_developer_public_hooks );
 					foreach ( $count_public as $k => $v ) {
 						if ( isset( $v['action_hook'] ) ) {
 							?>
-						<tr class="mdc-data-table__row"><td class="mdc-data-table__cell"><?php esc_html_e( 'Action Hook', 'woo-refund-and-exchange-lite' ); ?></td><td class="mdc-data-table__cell"><?php echo esc_html( $v['action_hook'] ); ?></td><td class="mdc-data-table__cell"><?php echo esc_html( $v['desc'] ); ?></td></tr>
+						<tr class="mdc-data-table__row"><td class="mdc-data-table__cell"><?php esc_html_e( 'Action Hook', 'woo-refund-and-exchange-lite' ); ?></td><td class="mdc-data-table__cell"><?php echo esc_html__( $v['action_hook'] ); ?></td><td class="mdc-data-table__cell"><?php echo esc_html__( $v['desc'] ); ?></td></tr>
 							<?php
 						} else {
 							?>
-							<tr class="mdc-data-table__row"><td class="mdc-data-table__cell"><?php esc_html_e( 'Filter Hook', 'woo-refund-and-exchange-lite' ); ?></td><td class="mdc-data-table__cell"><?php echo esc_html( $v['filter_hook'] ); ?></td><td class="mdc-data-table__cell"><?php echo esc_html( $v['desc'] ); ?></td></tr>
+							<tr class="mdc-data-table__row"><td class="mdc-data-table__cell"><?php esc_html_e( 'Filter Hook', 'woo-refund-and-exchange-lite' ); ?></td><td class="mdc-data-table__cell"><?php echo esc_html__( $v['filter_hook'] ); ?></td><td class="mdc-data-table__cell"><?php echo esc_html__( $v['desc'] ); ?></td></tr>
 							<?php
 						}
 					}
