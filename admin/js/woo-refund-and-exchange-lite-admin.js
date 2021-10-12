@@ -51,7 +51,7 @@
 				return new MDCSwitch(el);
 			}
 		);
-
+		$("a[href='admin.php?page=woo_refund_and_exchange_lite_menu']").addClass('submenu-font-size-fix');
 		$(".mwb-password-hidden").click(function() {
 			if ($(".mwb-form__password").attr("type") == "text") {
 				$(".mwb-form__password").attr("type", "password");
@@ -132,6 +132,7 @@
 			if( current_set != '' && current_set != null ) {
 				output_setting.forEach(function(item) {
 					if( current_fun == item.name && item.value != null &&  $.inArray( current_set, item.value ) != -1 ) {
+						alert('Policy already exist');
 						current_set_obj.parent( '.add_more_rma_policies' ).remove();
 					}
 				});

@@ -83,6 +83,8 @@
 		var mwb_wrma_refund_method = $('input[name=mwb_wrma_refund_method]:checked').val();
 		if ('' !== mwb_wrma_refund_method && 'manual_method' === mwb_wrma_refund_method ) {
 			$( '#bank_details' ).show();
+		} else if( ! wrael_public_param.check_pro_active ) {
+			$( '#bank_details' ).show();
 		} else {
 			$( '#bank_details' ).hide();
 		}

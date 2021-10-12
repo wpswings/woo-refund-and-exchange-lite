@@ -958,11 +958,11 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				map_deep( wp_unslash( $value ), 'sanitize_text_field' );
 				foreach ( $value as $setting_index => $setting_value ) {
 					if ( 'mwb_rma_maximum_days' === $setting_value['row_policy'] ) {
-						if ( isset( $setting_value['row_value'] ) && empty( $setting_value['row_value'] ) ) {
+						if ( empty( $setting_value['row_value'] ) ) {
 							unset( $_POST[ $key ][ $setting_index ] );
 						}
 					} elseif ( 'mwb_rma_order_status' === $setting_value['row_policy'] ) {
-						if ( isset( $setting_value['row_statuses'] ) && empty( $setting_value['row_statuses'] ) ) {
+						if ( empty( $setting_value['row_statuses'] ) ) {
 							unset( $_POST[ $key ][ $setting_index ] );
 						}
 					}

@@ -79,7 +79,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 				'return_subject_msg'    => esc_html__( 'Please enter refund subject.', 'woo-refund-and-exchange-lite' ),
 				'return_reason_msg'     => esc_html__( 'Please enter refund reason.', 'woo-refund-and-exchange-lite' ),
 				'return_select_product' => esc_html__( 'Please select product to refund.', 'woo-refund-and-exchange-lite' ),
-				'check_pro_active'      => esc_html__( $pro_active ),
+				'check_pro_active'      => esc_html( $pro_active ),
 			)
 		);
 		wp_enqueue_script( $this->plugin_name );

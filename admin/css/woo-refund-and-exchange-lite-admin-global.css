@@ -94,7 +94,7 @@
 	width: 26px;
 	height: auto;
 }
-#adminmenuwrap #adminmenu .wp-submenu a{
+#adminmenuwrap #adminmenu .submenu-font-size-fix{
 	font-size: 11px;
 }
 /*overview*/

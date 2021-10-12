@@ -189,9 +189,13 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	 *
 	 * @param int    $order_id .
 	 * @param string $refund_method .
-	 * @param array  $products .
+	 * @param array  $products1 .
 	 */
 	public function mwb_rma_save_return_request_callback( $order_id, $refund_method, $products1 ) {
+		$wallet_enabled = get_option( 'mwb_rma_wallet_enable', 'no' );
+		if ( 'on' === $wallet_enabled ) {
+			$refund_method = 'wallet_method';
+		}
 		update_option( $order_id . 'mwb_rma_refund_method', $refund_method );
 		$order = wc_get_order( $order_id );
 		if ( empty( get_post_meta( $order_id, 'mwb_rma_request_made', true ) ) ) {
