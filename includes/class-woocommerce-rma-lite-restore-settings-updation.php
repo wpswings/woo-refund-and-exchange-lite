@@ -166,7 +166,7 @@ class Woocommerce_Rma_Lite_Restore_Settings_Updation {
 			$content = '';
 		}
 		$content                   = str_replace( '[', '{', $content );
-			$content               = str_replace( ']', '}', $content );
+		$content                   = str_replace( ']', '}', $content );
 		$refund_request_accept_add = array(
 			'enabled'            => 'yes',
 			'subject'            => $subject,

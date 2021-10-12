@@ -35,13 +35,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $activated           = true;
 $active_plugins      = get_option( 'active_plugins', array() );
-$active_network_wide = get_site_option( 'active_sitewide_plugins', array() );
-if ( ! empty( $active_network_wide ) ) {
-	foreach ( $active_network_wide as $key => $value ) {
-		$active_plugins[] = $key;
-	}
-}
 if ( function_exists( 'is_multisite' ) && is_multisite() ) {
+	$active_network_wide = get_site_option( 'active_sitewide_plugins', array() );
+	if ( ! empty( $active_network_wide ) ) {
+		foreach ( $active_network_wide as $key => $value ) {
+			$active_plugins[] = $key;
+		}
+	}
 	$active_plugins = array_merge( $active_plugins, get_site_option( 'active_sitewide_plugins', array() ) );
 	include_once ABSPATH . 'wp-admin/includes/plugin.php';
 	if ( ! in_array( 'woocommerce/woocommerce.php', $active_plugins, true ) ) {
@@ -233,13 +233,13 @@ if ( $activated ) {
 	 * @param object $order is the order object.
 	 */
 	function mwb_rma_show_buttons( $func, $order ) {
-		$show_button = 'no';
-		$condition   = get_option( 'policies_setting_option', array() );
-		$check       = get_option( 'mwb_rma_' . $func . '_enable', false );
+		$show_button          = 'no';
+		$setting_saved        = get_option( 'policies_setting_option', array() );
+		$check                = get_option( 'mwb_rma_' . $func . '_enable', false );
 		$get_specific_setting = array();
 		if ( 'on' === $check ) {
-			if ( isset( $condition['mwb_rma_setting'] ) && ! empty( $condition['mwb_rma_setting'] ) ) {
-				foreach ( $condition['mwb_rma_setting'] as $key => $value ) {
+			if ( isset( $setting_saved['mwb_rma_setting'] ) && ! empty( $setting_saved['mwb_rma_setting'] ) ) {
+				foreach ( $setting_saved['mwb_rma_setting'] as $key => $value ) {
 					if ( $func === $value['row_functionality'] ) {
 						array_push( $get_specific_setting, $value );
 					}
@@ -251,14 +251,12 @@ if ( $activated ) {
 			$today_date = strtotime( $today_date );
 			$days       = $today_date - $order_date;
 			$day_diff   = floor( $days / ( 60 * 60 * 24 ) );
-			// Check max days exist in array.
-			//$check_order_statuses = strpos( wp_json_encode( $get_specific_setting ), 'mwb_rma_order_status' ) > 0 ? true : false;
 			// Check tax handing exist in array.
 			$check_tax_handling = strpos( wp_json_encode( $get_specific_setting ), 'mwb_rma_tax_handling' ) > 0 ? true : false;
 			if ( ! $check_tax_handling ) {
 				update_option( $order->get_id() . 'check_tax', '' );
 			}
-			if ( empty( $condition ) || ( isset( $condition['mwb_rma_setting'] ) && empty( $condition['mwb_rma_setting'] ) ) ) {
+			if ( empty( $get_specific_settings ) ) {
 				$show_button = 'yes';
 			}
 			if ( ! empty( $get_specific_setting ) ) {
@@ -331,11 +329,11 @@ if ( $activated ) {
 		if ( isset( $products ) && ! empty( $products ) && ! mwb_rma_pro_active() && 'yes' === $show_button ) {
 			foreach ( $products as $date => $product ) {
 				if ( 'complete' === $product['status'] ) {
-					$show_button = 'Refund request is already made and accepted';
+					$show_button = esc_html__( 'Refund request is already made and accepted', 'woo-refund-and-exchange-lite' );
 				}
 			}
 		}
-		return apply_filters( 'mwb_rma_functionality_reason', $show_button, $func, $order, $get_specific_setting );
+		return apply_filters( 'mwb_rma_policies_functionality_extend', $show_button, $func, $order, $get_specific_setting );
 	}
 
 	/**
@@ -443,19 +441,19 @@ if ( $activated ) {
 	 * Function to restore the setting
 	 */
 	function mwb_rma_lite_setting_restore() {
-		$check_key_exist = get_option( 'mwb_rma_lite_setting_restore', false );
-		if ( ! $check_key_exist ) {
-			require_once plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-rma-lite-restore-settings-updation.php';
-			$restore_data = new Woocommerce_Rma_Lite_Restore_Settings_Updation();
-			$restore_data->mwb_rma_migrate_re_settings();
-			update_option( 'mwb_rma_lite_setting_restore', true );
-		}
 		$check_if_refund_exist = get_option( 'mwb_wrma_return_enable', 'not_exist' );
 		if ( 'not_exist' === $check_if_refund_exist ) {
 			require_once plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-rma-lite-preset-settings.php';
 			$restore_data = new Woocommerce_Rma_Lite_Preset_Settings();
 			$restore_data->mwb_rma_lite_preset_settings();
 			update_option( 'mwb_wrma_return_enable', 'no' );
+		}
+		$check_key_exist = get_option( 'mwb_rma_lite_setting_restore', false );
+		if ( ! $check_key_exist ) {
+			require_once plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-rma-lite-restore-settings-updation.php';
+			$restore_data = new Woocommerce_Rma_Lite_Restore_Settings_Updation();
+			$restore_data->mwb_rma_migrate_re_settings();
+			update_option( 'mwb_rma_lite_setting_restore', true );
 		}
 	}
 	register_activation_hook( __FILE__, 'mwb_rma_lite_setting_restore' );

@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 $rma_policies_setting = get_option( 'policies_setting_option', false );
-if ( empty( $rma_policies_setting ) ) {
+if ( empty( $rma_policies_setting ) || ( isset( $rma_policies_setting['mwb_rma_setting'] ) && empty( $rma_policies_setting['mwb_rma_setting'] ) ) ) {
 	$rma_policies_setting = array(
 		'mwb_rma_setting' => array(
 			0 => array(

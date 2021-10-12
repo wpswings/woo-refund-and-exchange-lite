@@ -23,7 +23,6 @@ if ( isset( $_GET['mwb_rma_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp
 } else {
 	$order_id = '';
 }
-
 $allowed = 'yes';
 if ( ! empty( $order_id ) ) {
 	$condition = mwb_rma_show_buttons( 'refund', wc_get_order( $order_id ) );

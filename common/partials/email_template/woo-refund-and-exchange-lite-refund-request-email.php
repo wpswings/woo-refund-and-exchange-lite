@@ -27,7 +27,7 @@ if ( isset( $products ) && ! empty( $products ) ) {
 	}
 }
 $rr_reason          = ! empty( $rr_reason ) ? $rr_reason : esc_html__( 'No Reason', 'woo-refund-and-exchange-lite' );
-$message          =
+$message            =
 '<stlye></stlye><div class="mwb_rma_refund_req_mail">
 	<div class="header">
 		<h2>' . $rr_subject . '</h2>
@@ -81,7 +81,7 @@ if ( isset( $requested_products ) && ! empty( $requested_products ) ) {
 		}
 	}
 }
-$message    .= '<tr>
+$message       .= '<tr>
 					<th colspan="2" style="border: 1px solid #C7C7C7;">' . esc_html__( 'Refund Total', 'woo-refund-and-exchange-lite' ) . ':</th>
 					<td style="border: 1px solid #C7C7C7;">' . mwb_wrma_format_price( $total, $get_order_currency ) . '</td>
 				</tr>

@@ -32,21 +32,21 @@ $woo_cancel_email_url  = admin_url() . 'admin.php?page=wc-settings&tab=email&sec
 		?>
 	</div>
 </form>
-<h6><b>
+<h6>
 <?php
 /* translators: %s: link */
-echo sprintf( esc_html__( 'To configure refund request email %s.', 'woo-refund-and-exchange-lite' ), '<a href="' . esc_html__( $woo_request_email_url ) . '">Click Here</a>' );
+echo sprintf( esc_html__( 'To Configure Refund Request Email %s.', 'woo-refund-and-exchange-lite' ), '<a href="' . esc_html__( $woo_request_email_url ) . '">Click Here</a>' );
 ?>
-</b></h6>
-<h6><b>
+</h6>
+<h6>
 <?php
 /* translators: %s: link */
-echo sprintf( esc_html__( 'To configure refund request accept email %s.', 'woo-refund-and-exchange-lite' ), '<a href="' . esc_html__( $woo_accept_email_url ) . '">Click Here</a>' );
+echo sprintf( esc_html__( 'To Configure Refund Request Accept Email %s.', 'woo-refund-and-exchange-lite' ), '<a href="' . esc_html__( $woo_accept_email_url ) . '">Click Here</a>' );
 ?>
-</b></h6>
-<h6><b>
+</h6>
+<h6>
 <?php
 /* translators: %s: link */
-echo sprintf( esc_html__( 'To configure refund request cancel email %s.', 'woo-refund-and-exchange-lite' ), '<a href="' . esc_html__( $woo_cancel_email_url ) . '">Click Here</a>' );
+echo sprintf( esc_html__( 'To Configure Refund Request Cancel Email %s.', 'woo-refund-and-exchange-lite' ), '<a href="' . esc_html__( $woo_cancel_email_url ) . '">Click Here</a>' );
 ?>
-</b></h6>
+</h6>

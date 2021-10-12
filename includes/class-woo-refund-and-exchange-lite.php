@@ -473,113 +473,6 @@ class Woo_Refund_And_Exchange_Lite {
 		echo wp_kses_post( $wrael_notice );
 	}
 
-
-	/**
-	 * Show WordPress and server info.
-	 *
-	 * @return Array $wrael_system_data returns array of all WordPress and server related information.
-	 * @since  1.0.0
-	 */
-	public function mwb_rma_plug_system_status() {
-		global $wpdb;
-		$wrael_system_status    = array();
-		$wrael_wordpress_status = array();
-		$wrael_system_data      = array();
-
-		// Get the web server.
-		$wrael_system_status['web_server'] = isset( $_SERVER['SERVER_SOFTWARE'] ) ? sanitize_text_field( wp_unslash( $_SERVER['SERVER_SOFTWARE'] ) ) : '';
-
-		// Get PHP version.
-		$wrael_system_status['php_version'] = function_exists( 'phpversion' ) ? phpversion() : esc_html__( 'N/A (phpversion function does not exist)', 'woo-refund-and-exchange-lite' );
-
-		// Get the server's IP address.
-		$wrael_system_status['server_ip'] = isset( $_SERVER['SERVER_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['SERVER_ADDR'] ) ) : '';
-
-		// Get the server's port.
-		$wrael_system_status['server_port'] = isset( $_SERVER['SERVER_PORT'] ) ? sanitize_text_field( wp_unslash( $_SERVER['SERVER_PORT'] ) ) : '';
-
-		// Get the uptime.
-		$wrael_system_status['uptime'] = function_exists( 'exec' ) ? @exec( 'uptime -p' ) : esc_html__( 'N/A (make sure exec function is enabled)', 'woo-refund-and-exchange-lite' );
-
-		// Get the server path.
-		$wrael_system_status['server_path'] = defined( 'ABSPATH' ) ? ABSPATH : esc_html__( 'N/A (ABSPATH constant not defined)', 'woo-refund-and-exchange-lite' );
-
-		// Get the OS.
-		$wrael_system_status['os'] = function_exists( 'php_uname' ) ? php_uname( 's' ) : esc_html__( 'N/A (php_uname function does not exist)', 'woo-refund-and-exchange-lite' );
-
-		// Get WordPress version.
-		$wrael_wordpress_status['wp_version'] = function_exists( 'get_bloginfo' ) ? get_bloginfo( 'version' ) : esc_html__( 'N/A (get_bloginfo function does not exist)', 'woo-refund-and-exchange-lite' );
-
-		// Get and count active WordPress plugins.
-		$wrael_wordpress_status['wp_active_plugins'] = function_exists( 'get_option' ) ? count( get_option( 'active_plugins' ) ) : esc_html__( 'N/A (get_option function does not exist)', 'woo-refund-and-exchange-lite' );
-
-		// See if this site is multisite or not.
-		$wrael_wordpress_status['wp_multisite'] = function_exists( 'is_multisite' ) && is_multisite() ? esc_html__( 'Yes', 'woo-refund-and-exchange-lite' ) : esc_html__( 'No', 'woo-refund-and-exchange-lite' );
-
-		// See if WP Debug is enabled.
-		$wrael_wordpress_status['wp_debug_enabled'] = defined( 'WP_DEBUG' ) ? esc_html__( 'Yes', 'woo-refund-and-exchange-lite' ) : esc_html__( 'No', 'woo-refund-and-exchange-lite' );
-
-		// See if WP Cache is enabled.
-		$wrael_wordpress_status['wp_cache_enabled'] = defined( 'WP_CACHE' ) ? esc_html__( 'Yes', 'woo-refund-and-exchange-lite' ) : esc_html__( 'No', 'woo-refund-and-exchange-lite' );
-
-		// Get the total number of WordPress users on the site.
-		$wrael_wordpress_status['wp_users'] = function_exists( 'count_users' ) ? count_users() : esc_html__( 'N/A (count_users function does not exist)', 'woo-refund-and-exchange-lite' );
-
-		// Get the number of published WordPress posts.
-		$wrael_wordpress_status['wp_posts'] = wp_count_posts()->publish >= 1 ? wp_count_posts()->publish : esc_html__( '0', 'woo-refund-and-exchange-lite' );
-
-		// Get PHP memory limit.
-		$wrael_system_status['php_memory_limit'] = function_exists( 'ini_get' ) ? (int) ini_get( 'memory_limit' ) : esc_html__( 'N/A (ini_get function does not exist)', 'woo-refund-and-exchange-lite' );
-
-		// Get the PHP error log path.
-		$wrael_system_status['php_error_log_path'] = ! ini_get( 'error_log' ) ? esc_html__( 'N/A', 'woo-refund-and-exchange-lite' ) : ini_get( 'error_log' );
-
-		// Get PHP max upload size.
-		$wrael_system_status['php_max_upload'] = function_exists( 'ini_get' ) ? (int) ini_get( 'upload_max_filesize' ) : esc_html__( 'N/A (ini_get function does not exist)', 'woo-refund-and-exchange-lite' );
-
-		// Get PHP max post size.
-		$wrael_system_status['php_max_post'] = function_exists( 'ini_get' ) ? (int) ini_get( 'post_max_size' ) : esc_html__( 'N/A (ini_get function does not exist)', 'woo-refund-and-exchange-lite' );
-
-		// Get the PHP architecture.
-		if ( PHP_INT_SIZE == 4 ) {
-			$wrael_system_status['php_architecture'] = '32-bit';
-		} elseif ( PHP_INT_SIZE == 8 ) {
-			$wrael_system_status['php_architecture'] = '64-bit';
-		} else {
-			$wrael_system_status['php_architecture'] = 'N/A';
-		}
-
-		// Get server host name.
-		$wrael_system_status['server_hostname'] = function_exists( 'gethostname' ) ? gethostname() : esc_html__( 'N/A (gethostname function does not exist)', 'woo-refund-and-exchange-lite' );
-
-		// Show the number of processes currently running on the server.
-		$wrael_system_status['processes'] = function_exists( 'exec' ) ? @exec( 'ps aux | wc -l' ) : esc_html__( 'N/A (make sure exec is enabled)', 'woo-refund-and-exchange-lite' );
-
-		// Get the memory usage.
-		$wrael_system_status['memory_usage'] = function_exists( 'memory_get_peak_usage' ) ? round( memory_get_peak_usage( true ) / 1024 / 1024, 2 ) : 0;
-
-		// Get CPU usage.
-		// Check to see if system is Windows, if so then use an alternative since sys_getloadavg() won't work.
-		if ( stristr( PHP_OS, 'win' ) ) {
-			$wrael_system_status['is_windows']        = true;
-			$wrael_system_status['windows_cpu_usage'] = function_exists( 'exec' ) ? @exec( 'wmic cpu get loadpercentage /all' ) : esc_html__( 'N/A (make sure exec is enabled)', 'woo-refund-and-exchange-lite' );
-		}
-
-		// Get the memory limit.
-		$wrael_system_status['memory_limit'] = function_exists( 'ini_get' ) ? (int) ini_get( 'memory_limit' ) : esc_html__( 'N/A (ini_get function does not exist)', 'woo-refund-and-exchange-lite' );
-
-		// Get the PHP maximum execution time.
-		$wrael_system_status['php_max_execution_time'] = function_exists( 'ini_get' ) ? ini_get( 'max_execution_time' ) : esc_html__( 'N/A (ini_get function does not exist)', 'woo-refund-and-exchange-lite' );
-
-		// Get outgoing IP address.
-		$wrael_system_status['outgoing_ip'] = function_exists( 'file_get_contents' ) ? file_get_contents( 'http://ipecho.net/plain' ) : esc_html__( 'N/A (file_get_contents function does not exist)', 'woo-refund-and-exchange-lite' );
-
-		$wrael_system_data['php'] = $wrael_system_status;
-		$wrael_system_data['wp']  = $wrael_wordpress_status;
-
-		return $wrael_system_data;
-	}
-
 	/**
 	 * Generate html components.
 	 *
@@ -626,6 +519,7 @@ class Woo_Refund_And_Exchange_Lite {
 									max = "<?php echo ( isset( $wrael_component['max'] ) ? esc_attr( $wrael_component['max'] ) : '' ); ?>"
 										<?php
 									}
+									echo ' ' . ( isset( $wrael_component['attr'] ) ? esc_attr( $wrael_component['attr'] ) : '' );
 									?>
 									>
 								</label>

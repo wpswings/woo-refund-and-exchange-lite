@@ -330,3 +330,6 @@ div.mwb_order_msg_single_attachment a .mwb_order_msg_attachment_thumbnail{
 #mwb_rma_return_request_container {
     text-align: center;
 }
+.return, .view_msg {
+    margin-top: 4px;
+}

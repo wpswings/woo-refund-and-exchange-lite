@@ -177,8 +177,13 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			}
 			$refund_method = isset( $_POST['refund_method'] ) ? sanitize_text_field( wp_unslash( $_POST['refund_method'] ) ) : '';
 			$refund_method = apply_filters( 'mwb_rma_refund_method_wallet', $refund_method );
-			$products1     = $_POST; 
-			$response      = $this->mwb_rma_save_return_request_callback( $order_id, $refund_method, $products1 );
+			$wallet_enabled = get_option( 'mwb_rma_wallet_enable', 'no' );
+			$refund_method  = get_option( 'mwb_rma_refund_method', 'no' );
+			if ( mwb_rma_pro_active() && 'on' === $wallet_enabled && 'on' !== $refund_method ) {
+				$refund_method = 'wallet_method';
+			}
+			$products1 = $_POST; 
+			$response  = $this->mwb_rma_save_return_request_callback( $order_id, $refund_method, $products1 );
 			echo wp_json_encode( $response );
 			wp_die();
 		}
@@ -192,10 +197,6 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	 * @param array  $products1 .
 	 */
 	public function mwb_rma_save_return_request_callback( $order_id, $refund_method, $products1 ) {
-		$wallet_enabled = get_option( 'mwb_rma_wallet_enable', 'no' );
-		if ( 'on' === $wallet_enabled ) {
-			$refund_method = 'wallet_method';
-		}
 		update_option( $order_id . 'mwb_rma_refund_method', $refund_method );
 		$order = wc_get_order( $order_id );
 		if ( empty( get_post_meta( $order_id, 'mwb_rma_request_made', true ) ) ) {
@@ -235,7 +236,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			$products[ $date ]['status'] = 'pending';
 
 		}
-		
+
 		update_post_meta( $order_id, 'mwb_rma_return_product', $products );
 
 		// Send refund request email to admin.
