@@ -26,10 +26,10 @@ class Woo_Refund_And_Exchange_Lite_Deactivator {
 	 *
 	 * @since 1.0.0
 	 */
-	public static function woo_refund_and_exchange_lite_deactivate() {
+	public static function woo_refund_and_exchange_lite_deactivate( $network_wide ) {
 		global $wpdb;
 		// Check if we are on a Multisite or not.
-		if ( is_multisite() ) {
+		if ( is_multisite() && $network_wide ) {
 			// Retrieve all site IDs from all networks (WordPress >= 4.6 provides easy to use functions for that).
 			if ( function_exists( 'get_sites' ) ) {
 				$site_ids = get_sites( array( 'fields' => 'ids' ) );

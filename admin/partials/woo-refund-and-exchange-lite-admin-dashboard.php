@@ -18,6 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $wrael_mwb_rma_obj;
 $wrael_active_tab   = isset( $_GET['wrael_tab'] ) ? sanitize_key( $_GET['wrael_tab'] ) : 'woo-refund-and-exchange-lite-general';
 $wrael_default_tabs = $wrael_mwb_rma_obj->mwb_rma_plug_default_tabs();
+do_action( 'mwb_rma_show_license_info' );
 ?>
 <header>
 	<?php
