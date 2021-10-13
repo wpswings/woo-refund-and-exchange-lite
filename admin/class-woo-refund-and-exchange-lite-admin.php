@@ -109,7 +109,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 					'wrael_admin_param_location' => ( admin_url( 'admin.php' ) . '?page=woo_refund_and_exchange_lite_menu&wrael_tab=woo-refund-and-exchange-lite-general' ),
 					'message_sent'               => esc_html__( 'The message has been sent successfully.', 'woo-refund-and-exchange-lite' ),
 					'message_empty'              => esc_html__( 'Please enter a message.', 'woo-refund-and-exchange-lite' ),
-					'check_pro_active'           => esc_html__( $pro_active ),
+					'check_pro_active'           => esc_html( $pro_active ),
 				)
 			);
 			wp_enqueue_script( $this->plugin_name . 'admin-js' );
@@ -539,7 +539,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				'description' => '',
 				'value'       => get_option( 'mwb_rma_refund_page' ),
 				'class'       => 'wrael-textarea-class',
-				'options'     => $get_pages
+				'options'     => $get_pages,
 			);
 		}
 		$mwb_rma_settings_refund =
@@ -601,10 +601,10 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				'id'          => 'mwb_rma_order_msg_page',
 				'value'       => get_option( 'mwb_rma_order_msg_page' ),
 				'class'       => 'wrael-textarea-class',
-				'options'     => $get_pages
+				'options'     => $get_pages,
 			);
 		}
-		$mwb_rma_settings_order_message   =
+		$mwb_rma_settings_order_message =
 		// To Extend Order Message Appearance Setting.
 		apply_filters( 'mwb_rma_order_message_appearance_setting_extend', $mwb_rma_settings_order_message );
 		$mwb_rma_settings_order_message[] = array(

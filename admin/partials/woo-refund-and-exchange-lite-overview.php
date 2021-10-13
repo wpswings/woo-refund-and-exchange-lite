@@ -15,7 +15,7 @@
 
 <div class="mwb-overview__wrapper">
 	<div class="mwb-overview__banner">
-		<img src="<?php echo esc_html__( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL ); ?>admin/image/banner.png" alt="Overview banner image">
+		<img src="<?php echo esc_html( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL ); ?>admin/image/banner.png" alt="Overview banner image">
 	</div>
 	<div class="mwb-overview__content">
 		<div class="mwb-overview__content-description">
@@ -41,7 +41,7 @@
 			<div class="mwb-overview__keywords-item">
 				<div class="mwb-overview__keywords-card">
 					<div class="mwb-overview__keywords-image">
-						<img src="<?php echo esc_html__( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/image/Connect-via-Messages.png' ); ?>" alt="AConnect-via-Messages image">
+						<img src="<?php echo esc_html( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/image/Connect-via-Messages.png' ); ?>" alt="AConnect-via-Messages image">
 					</div>
 					<div class="mwb-overview__keywords-text">
 						<h3 class="mwb-overview__keywords-heading"><?php echo esc_html_e( ' Connect via Messages ', 'woo-refund-and-exchange-lite' ); ?></h3>
@@ -56,7 +56,7 @@
 			<div class="mwb-overview__keywords-item">
 				<div class="mwb-overview__keywords-card">
 					<div class="mwb-overview__keywords-image">
-						<img src="<?php echo esc_html__( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/image/Allow-And-Set-Attachments-Limit.png' ); ?>" alt="Allow-And-Set-Attachments-Limit image">
+						<img src="<?php echo esc_html( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/image/Allow-And-Set-Attachments-Limit.png' ); ?>" alt="Allow-And-Set-Attachments-Limit image">
 					</div>
 					<div class="mwb-overview__keywords-text">
 						<h3 class="mwb-overview__keywords-heading"><?php echo esc_html_e( ' Allow And Set Attachments Limit ', 'woo-refund-and-exchange-lite' ); ?></h3>
@@ -71,7 +71,7 @@
 			<div class="mwb-overview__keywords-item">
 				<div class="mwb-overview__keywords-card">
 					<div class="mwb-overview__keywords-image">
-						<img src="<?php echo esc_html__( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/image/Set-Return-Refund-Conditions.png' ); ?>" alt="Set-Return-Refund-Conditions image">
+						<img src="<?php echo esc_html( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/image/Set-Return-Refund-Conditions.png' ); ?>" alt="Set-Return-Refund-Conditions image">
 					</div>
 					<div class="mwb-overview__keywords-text">
 						<h3 class="mwb-overview__keywords-heading"><?php echo esc_html_e( ' Set Return Refund Conditions ', 'woo-refund-and-exchange-lite' ); ?></h3>
@@ -86,7 +86,7 @@
 			<div class="mwb-overview__keywords-item">
 				<div class="mwb-overview__keywords-card">
 					<div class="mwb-overview__keywords-image">
-						<img src="<?php echo esc_html__( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/image/Send-Email-Notification.png' ); ?>" alt="Send-Email-Notification image">
+						<img src="<?php echo esc_html( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/image/Send-Email-Notification.png' ); ?>" alt="Send-Email-Notification image">
 					</div>
 					<div class="mwb-overview__keywords-text">
 						<h3 class="mwb-overview__keywords-heading"><?php echo esc_html_e( ' Send Email Notification' ); ?></h3>
@@ -101,7 +101,7 @@
 			<div class="mwb-overview__keywords-item">
 				<div class="mwb-overview__keywords-card">
 					<div class="mwb-overview__keywords-image">
-						<img src="<?php echo esc_html__( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/image/Manage-Product-Returns.png' ); ?>" alt="Manage-Product-Returns image">
+						<img src="<?php echo esc_html( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/image/Manage-Product-Returns.png' ); ?>" alt="Manage-Product-Returns image">
 					</div>
 					<div class="mwb-overview__keywords-text">
 						<h3 class="mwb-overview__keywords-heading"><?php echo esc_html_e( ' Manage Product Returns ', 'woo-refund-and-exchange-lite' ); ?></h3>

@@ -3,10 +3,10 @@ Contributors: makewebbetter
 Donate link:  https://makewebbetter.com/
 Tags: return,refund, woocommerce,exchange,RMA
 Requires at least: 4.0
-Tested up to: 5.6
+Tested up to: 5.8.1
 WC requires at least: 3.0.0
-WC tested up to: 4.8.0
-Stable tag: 3.0.4
+WC tested up to: 5.7.1
+Stable tag: 4.0.0
 Requires PHP: 5.6
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -40,7 +40,7 @@ Return Refund and Exchange for WooCommerce lets you create a simple refund manag
 * Admin can add shortcode for order_id in the emails to track down the customer from whom refund and exchange request is made
 
 
-== WHAT’S INCLUDED IN OUR FREE RETURN REFUND AND EXCHANGE FOR WOOCOMMERCE PLUGIN ==
+== WHATâ€™S INCLUDED IN OUR FREE RETURN REFUND AND EXCHANGE FOR WOOCOMMERCE PLUGIN ==
 
 **1)** **Dedicated refund system**
 With our Return Refund and Exchange plugin, merchants can create a dedicated refund system where they can build an email template to send to the customers who ask for a refund. Merchants can add the name, email, email header, and footer for their email template.
@@ -52,13 +52,13 @@ Merchants can add multiple reasons for a product refund. Customers can select an
 Merchants can notify the customers for different scenarios for the product refund. They can create different emails if a refund request is generated, approved, or canceled. Merchants can add a different subject line and content for every scenario. They can also use Shortcodes to add elements in the email content.
 
 **4)** **Efficient Tax Handling**
-With our Refund and Exchange plugin, merchants can handle the tax on the refund products easily. They can simply enable or disable the tax calculation on the refund products by going to the plugin settings and enabling the “Enable Tax” option.
+With our Refund and Exchange plugin, merchants can handle the tax on the refund products easily. They can simply enable or disable the tax calculation on the refund products by going to the plugin settings and enabling the â€œEnable Taxâ€ option.
 
 **5)** **Stock Management**
 Our Refund management plugin provides a feature to manage stock. Merchants need to enable this feature from the plugin settings. Once you enable this feature, the product stock will be increased whenever a refund request is accepted.
 
 **6)** **Refund on selected order status**
-You can select the order status on which a customer can submit a refund request. You can select either a single or multiple order status in this setting. For example, if you select Completed, and Failed order statuses, you’ll allow your customers to generate a refund request if their order is completed, or failed.
+You can select the order status on which a customer can submit a refund request. You can select either a single or multiple order status in this setting. For example, if you select Completed, and Failed order statuses, youâ€™ll allow your customers to generate a refund request if their order is completed, or failed.
 
 **7)** **Order Related Messages and Email notifications**
 You can allow your customers to send you the order related queries. Furthermore, you can also enable/disable the settings to let your customers add the attachments along with their messages.
@@ -182,23 +182,23 @@ When a customer clicks on the refund button then on the refund request form cust
 * Fix: Refund rule editor display issue
 * FIX: Incorrect Notification when activating premium
 
-= 2.1.2 – RELEASED ON 21 JULY 2020 =
+= 2.1.2 â€“ RELEASED ON 21 JULY 2020 =
 
 * Important: Your translation might be lost please take a backup of your language translations before the update.
 * New: Support for WooCommerce 4.3.0
 * New: Support for WordPress 5.4.2
 
-= 2.1.1 – RELEASED ON 15 JULY 2020 =
+= 2.1.1 â€“ RELEASED ON 15 JULY 2020 =
 
 * New: Support for WooCommerce 4.3.0
 * New: Support for WordPress 5.4.2
 
-= 2.1.0 – RELEASED ON 18 APRIL 2020 =
+= 2.1.0 â€“ RELEASED ON 18 APRIL 2020 =
 * New: Support for WooCommerce 4.0.1
 * New: Support for WordPress 5.4
 * New: Customers, Admin communication through messages.
 
-= 2.0.0 – RELEASED ON 24 JANUARY 2020 =
+= 2.0.0 â€“ RELEASED ON 24 JANUARY 2020 =
 * New: Compatibility with Latest WC and WP.
 * Updated in plugin core and updated language
 * Fix: Image save issue in the Mail Configuration setting.

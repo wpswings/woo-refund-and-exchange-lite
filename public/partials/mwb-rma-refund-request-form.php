@@ -29,7 +29,7 @@ if ( ! empty( $order_id ) ) {
 }
 $rr_subject = '';
 $rr_reason  = '';
-if ( 'yes' === $condition && isset( $order_id ) && ! empty( $order_id ) ) {
+if ( isset( $condition ) && 'yes' === $condition && isset( $order_id ) && ! empty( $order_id ) ) {
 	if ( ! is_numeric( $order_id ) ) {
 		if ( get_current_user_id() > 0 ) {
 			$myaccount_page     = get_option( 'woocommerce_myaccount_page_id' );
@@ -395,10 +395,11 @@ if ( 'yes' === $allowed ) {
 	</div>
 	<?php
 } else {
-	$condition =
-	// To change the reason for refund.
-	apply_filters( 'mwb_rma_reason_for_order', $condition );
-	echo esc_html__( $condition );
+	if ( isset( $condition ) ) {
+		echo esc_html( $condition );
+	} else {
+		echo esc_html__( 'Refund Request Can\'t make on this order', 'mwb-woocommerce-rma' );
+	}
 }
 // Woo Main Content.
 do_action( 'woocommerce_after_main_content' );

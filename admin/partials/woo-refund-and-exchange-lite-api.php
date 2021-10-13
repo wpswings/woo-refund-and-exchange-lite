@@ -24,7 +24,7 @@ apply_filters( 'mwb_rma_api_settings_array', array() );
 	<div class="wrael-secion-wrap">
 		<?php
 		$wrael_api_html = $wrael_mwb_rma_obj->mwb_rma_plug_generate_html( $wrael_api_settings );
-		echo esc_html__( $wrael_api_html );
+		echo esc_html( $wrael_api_html );
 		wp_nonce_field( 'admin_save_data', 'mwb_tabs_nonce' );
 		?>
 	</div>

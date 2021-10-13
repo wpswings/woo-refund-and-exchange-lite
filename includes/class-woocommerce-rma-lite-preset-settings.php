@@ -21,19 +21,16 @@ class Woocommerce_Rma_Lite_Preset_Settings {
 	 * Function to migrate the settings
 	 */
 	public function mwb_rma_lite_preset_settings() {
-		$set_policies_arr = array(
-			'mwb_rma_setting' =>
-			array(
-				0 => array(
-					'row_functionality'    => 'refund',
-					'row_policy'           => 'mwb_rma_order_status',
-					'row_conditions2'      => 'mwb_rma_equal_to',
-					'row_statuses'         => array( 'wc-processing' ),
-					'incase_functionality' => 'incase',
-				),
-			),
+		$policies_setting = array( 'mwb_rma_setting' => array() );
+		$statuss          = array(
+			'row_policy'           => 'mwb_rma_order_status',
+			'row_functionality'    => 'refund',
+			'row_conditions2'      => 'mwb_rma_equal_to',
+			'incase_functionality' => 'incase',
+			'row_statuses'         => array( 'wc-completed' ),
 		);
-		update_option( 'policies_setting_option', $set_policies_arr );
+		array_push( $policies_setting['mwb_rma_setting'], $statuss );
+		update_option( 'policies_setting_option', $policies_setting );
 		$refund_request_add = array(
 			'enabled'            => 'yes',
 			'subject'            => 'Refund Request for order {order_id} message from {message_date}',
