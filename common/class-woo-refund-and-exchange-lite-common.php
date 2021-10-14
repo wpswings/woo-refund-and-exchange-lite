@@ -204,11 +204,13 @@ class Woo_Refund_And_Exchange_Lite_Common {
 		} else {
 			$item_id = get_post_meta( $order_id, 'mwb_rma_request_made', true );
 		}
+		$item_ids = array();
 		if ( isset( $products1 ) && ! empty( $products1 ) && is_array( $products1 ) ) {
 			foreach ( $products1 as $post_key => $post_value ) {
 				if ( is_array( $post_value ) && ! empty( $post_value ) ) {
 					foreach ( $post_value as $post_val_key => $post_val_value ) {
 						$item_id[ $post_val_value['item_id'] ] = 'pending';
+						$item_ids[]                            = $post_val_value['item_id'];
 					}
 				}
 			}
@@ -245,7 +247,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 		if ( ! $restrict_mail ) {
 			do_action( 'mwb_rma_refund_req_email', $order_id );
 		}
-		do_action( 'mwb_rma_do_something_on_refund', $order_id );
+		do_action( 'mwb_rma_do_something_on_refund', $order_id, $item_ids );
 		$order->update_status( 'wc-return-requested', esc_html__( 'User Request to refund product', 'woo-refund-and-exchange-lite' ) );
 		$response['auto_accept'] = apply_filters( 'mwb_rma_auto_accept_refund', false );
 		$response['flag']        = true;
