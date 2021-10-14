@@ -343,10 +343,19 @@ class Woo_Refund_And_Exchange_Lite_Public {
 		if ( ( ( '' !== $mwb_rma_return_request_form_page_id ) && is_page( $mwb_rma_return_request_form_page_id ) ) || ( isset( $ro_pageid ) && is_page( $ro_pageid ) ) ) {
 			$get_id = get_option( 'mwb_rma_refund_page' );
 			if ( function_exists( 'vc_lean_map' ) && ! empty( $get_id ) ) {
-				$url = get_page_link( $get_id ) . '?order_id=' . $_GET['order_id'] . '&' . 'mwb_rma_nonce=' . $_GET['mwb_rma_nonce'];
-				wp_redirect( $url );
+				if ( isset( $_GET['mwb_rma_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['mwb_rma_nonce'] ) ), 'mwb_rma_nonce' ) && isset( $_GET['order_id'] ) ) {
+					$url           = get_permalink( $get_id );
+					$order_id      = sanitize_text_field( wp_unslash( $_GET['order_id'] ) );
+					$mwb_rma_nonce = sanitize_text_field( wp_unslash( $_GET['mwb_rma_nonce'] ) );
+					$args          = array(
+						'order_id'      => $order_id,
+						'mwb_rma_nonce' => $mwb_rma_nonce,
+					);
+					$url = add_query_arg( $args, $url );
+					wp_safe_redirect( $url );
+				}
 			}
-			$new_template = WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'public/partials/mwb-rma-refund-request-form.php';
+			$new_template = esc_html( WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH ) . 'public/partials/mwb-rma-refund-request-form.php';
 			$template     = $new_template;
 		}
 
@@ -357,11 +366,20 @@ class Woo_Refund_And_Exchange_Lite_Public {
 		if ( ( '' !== $mwb_rma_view_order_msg_page_id ) && ( is_page( $mwb_rma_view_order_msg_page_id ) ) || ( isset( $ro_pageid1 ) && is_page( $ro_pageid1 ) ) ) {
 			$get_id = get_option( 'mwb_rma_order_msg_page' );
 			if ( function_exists( 'vc_lean_map' ) && ! empty( $get_id ) ) {
-				$url = get_page_link( $get_id ) . '?order_id=' . $_GET['order_id'] . '&' . 'mwb_rma_nonce=' . $_GET['mwb_rma_nonce'];
-				wp_redirect( $url );
+				if ( isset( $_GET['mwb_rma_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['mwb_rma_nonce'] ) ), 'mwb_rma_nonce' ) && isset( $_GET['order_id'] ) ) {
+					$url           = get_permalink( $get_id );
+					$order_id      = sanitize_text_field( wp_unslash( $_GET['order_id'] ) );
+					$mwb_rma_nonce = sanitize_text_field( wp_unslash( $_GET['mwb_rma_nonce'] ) );
+					$args          = array(
+						'order_id'      => $order_id,
+						'mwb_rma_nonce' => $mwb_rma_nonce,
+					);
+					$url = add_query_arg( $args, $url );
+					wp_safe_redirect( $url );
+				}
 			}
-			$new_template = WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'public/partials/mwb-rma-view-order-msg.php';
-			$template = $new_template;
+			$new_template = esc_html( WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH ) . 'public/partials/mwb-rma-view-order-msg.php';
+			$template     = $new_template;
 		}
 		return $template;
 	}

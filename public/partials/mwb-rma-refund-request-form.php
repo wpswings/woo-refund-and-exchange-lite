@@ -218,9 +218,9 @@ if ( 'yes' === $allowed ) {
 							</td>
 							<td class="product-quantity">
 							<?php
-							echo
+							echo wp_kses_post(
 							// Refund form Quantity html.
-							apply_filters( 'mwb_rma_change_quanity', sprintf( '<input type="number" disabled value="' . esc_html( $item['qty'] ) . '" class="mwb_rma_return_product_qty" name="mwb_rma_return_product_qty">' ), $item['qty'] );
+							apply_filters( 'mwb_rma_change_quanity', sprintf( '<input type="number" disabled value="' . esc_html( $item['qty'] ) . '" class="mwb_rma_return_product_qty" name="mwb_rma_return_product_qty">' ), $item['qty'] ));
 							?>
 							</td>
 							<td class="product-total">

@@ -369,11 +369,11 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 					foreach ( $wrael_genaral_settings as $wrael_genaral_setting ) {
 						if ( isset( $wrael_genaral_setting['id'] ) && '' !== $wrael_genaral_setting['id'] ) {
 							if ( isset( $_POST[ $wrael_genaral_setting['id'] ] ) ) {
-								$setting = $_POST[ $wrael_genaral_setting['id'] ];
+								$setting = wp_unslash( $_POST[ $wrael_genaral_setting['id'] ] );
+								if ( 'textarea' === $wrael_genaral_setting['type'] || 'text' === $wrael_genaral_setting['type'] ) {
+									$setting = trim( preg_replace( '/\s\s+/', ' ', $setting ) );
+								}
 								if ( 'mwb_rma_refund_rules_editor' === $wrael_genaral_setting['id'] ) {
-									if ( 'textarea' === $wrael_genaral_setting['type'] || 'text' === $wrael_genaral_setting['type'] ) {
-										$setting = trim( preg_replace( '/\s\s+/', ' ', $setting ) );
-									}
 									update_option( 'mwb_rma_refund_rules_editor', wp_kses_post( wp_unslash( $setting ) ) );
 								} else {
 									update_option( $wrael_genaral_setting['id'], is_array( $setting ) ? $this->mwb_sanitize_array( $setting ) : stripslashes( sanitize_text_field( wp_unslash( $setting ) ) ) );
