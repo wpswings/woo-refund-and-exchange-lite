@@ -36,10 +36,11 @@ $order_id  = $order_obj->get_id();
 			if ( isset( $mwb_order_messages ) && is_array( $mwb_order_messages ) && ! empty( $mwb_order_messages ) ) {
 				foreach ( array_reverse( $mwb_order_messages ) as $o_key => $o_val ) {
 					foreach ( $o_val as $om_key => $om_val ) {
+						$sender = ( 'Customer' === $om_val['sender'] ) ? esc_html__( 'Customer', 'woo-refund-and-exchange-lite' ) : esc_html__( 'Shop Manager', 'woo-refund-and-exchange-lite' );
 						?>
 						<div class="mwb_order_msg_main_container mwb_order_messages">
 							<div>
-								<div class="mwb_order_msg_sender <?php echo 'mwb_order_msg_sender_' . $om_val['sender']; ?>"><?php echo esc_html( ( 'Customer' === $om_val['sender'] ) ? esc_html__( 'Customer', 'woo-refund-and-exchange-lite' ) : esc_html__( 'Shop Manager', 'woo-refund-and-exchange-lite' ) ); ?></div>
+								<div class="mwb_order_msg_sender <?php echo 'mwb_order_msg_sender_' . esc_html( $om_val['sender'] ); ?>"><?php echo esc_html( $sender ); ?></div>
 								<span class="mwb_order_msg_date"><?php echo esc_html( get_date_from_gmt( gmdate( 'Y-m-d h:i a', $om_key ), 'Y-m-d h:i a' ) ); ?></span>
 							</div>
 							<div class="mwb_order_msg_detail_container">

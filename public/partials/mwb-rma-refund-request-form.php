@@ -174,7 +174,7 @@ if ( 'yes' === $allowed ) {
 										echo wp_kses_post( $thumbnail );
 									} else {
 										?>
-										<img alt="Placeholder" width="150" height="150" class="attachment-thumbnail size-thumbnail wp-post-image" src="<?php echo esc_html__( plugins_url() ); ?>/woocommerce/assets/images/placeholder.png">
+										<img alt="Placeholder" width="150" height="150" class="attachment-thumbnail size-thumbnail wp-post-image" src="<?php echo esc_html( plugins_url() ); ?>/woocommerce/assets/images/placeholder.png">
 										<?php
 									}
 									?>
@@ -218,7 +218,8 @@ if ( 'yes' === $allowed ) {
 							</td>
 							<td class="product-quantity">
 							<?php
-							echo // Refund form Quantity html.
+							echo
+							// Refund form Quantity html.
 							apply_filters( 'mwb_rma_change_quanity', sprintf( '<input type="number" disabled value="' . esc_html( $item['qty'] ) . '" class="mwb_rma_return_product_qty" name="mwb_rma_return_product_qty">' ), $item['qty'] );
 							?>
 							</td>

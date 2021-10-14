@@ -122,7 +122,7 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 											echo esc_html( $refund_product_new[ $returnkey ]['name'] );
 										}
 										if ( isset( $refund_product_new[ $returnkey ]['sku'] ) && ! empty( $refund_product_new[ $returnkey ] ) ) {
-											echo '<div class="wc-order-item-sku"><strong>' . esc_html__( 'SKU:', 'woo-refund-and-exchange-lite' ) . '</strong> ' . esc_html__( $refund_product_new[ $returnkey ]['sku'] ) . '</div>';
+											echo '<div class="wc-order-item-sku"><strong>' . esc_html__( 'SKU:', 'woo-refund-and-exchange-lite' ) . '</strong> ' . esc_html( $refund_product_new[ $returnkey ]['sku'] ) . '</div>';
 										}
 										$var_id = $refund_product_new[ $returnkey ]['variation_id'];
 										if ( isset( $var_id ) && ! empty( $var_id ) ) {
@@ -177,7 +177,7 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 				$bank_details = get_post_meta( $order_id, 'mwb_rma_bank_details', true );
 			if ( ! empty( $bank_details ) ) {
 				?>
-					<p><strong><?php esc_html_e( 'Bank Details', 'woo-refund-and-exchange-lite' ); ?> :</strong><i> <?php echo esc_html__( $bank_details ); ?></i></p></p>
+					<p><strong><?php esc_html_e( 'Bank Details', 'woo-refund-and-exchange-lite' ); ?> :</strong><i> <?php echo esc_html( $bank_details ); ?></i></p></p>
 					<?php
 			}
 
