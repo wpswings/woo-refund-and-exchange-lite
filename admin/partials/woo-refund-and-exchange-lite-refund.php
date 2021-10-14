@@ -27,7 +27,7 @@ $woo_cancel_email_url  = admin_url() . 'admin.php?page=wc-settings&tab=email&sec
 	<div class="wrael-secion-wrap">
 		<?php
 		$mwb_rma_refund_html = $wrael_mwb_rma_obj->mwb_rma_plug_generate_html( $mwb_rma_refund_html );
-		echo esc_html__( $mwb_rma_refund_html );
+		echo esc_html( $mwb_rma_refund_html );
 		wp_nonce_field( 'admin_save_data', 'mwb_tabs_nonce' );
 		?>
 	</div>
@@ -35,18 +35,18 @@ $woo_cancel_email_url  = admin_url() . 'admin.php?page=wc-settings&tab=email&sec
 <h6>
 <?php
 /* translators: %s: link */
-echo sprintf( esc_html__( 'To Configure Refund Request Email %s.', 'woo-refund-and-exchange-lite' ), '<a href="' . esc_html__( $woo_request_email_url ) . '">Click Here</a>' );
+echo sprintf( esc_html__( 'To Configure Refund Request Email %s.', 'woo-refund-and-exchange-lite' ), '<a href="' . esc_html( $woo_request_email_url ) . '">Click Here</a>' );
 ?>
 </h6>
 <h6>
 <?php
 /* translators: %s: link */
-echo sprintf( esc_html__( 'To Configure Refund Request Accept Email %s.', 'woo-refund-and-exchange-lite' ), '<a href="' . esc_html__( $woo_accept_email_url ) . '">Click Here</a>' );
+echo sprintf( esc_html__( 'To Configure Refund Request Accept Email %s.', 'woo-refund-and-exchange-lite' ), '<a href="' . esc_html( $woo_accept_email_url ) . '">Click Here</a>' );
 ?>
 </h6>
 <h6>
 <?php
 /* translators: %s: link */
-echo sprintf( esc_html__( 'To Configure Refund Request Cancel Email %s.', 'woo-refund-and-exchange-lite' ), '<a href="' . esc_html__( $woo_cancel_email_url ) . '">Click Here</a>' );
+echo sprintf( esc_html__( 'To Configure Refund Request Cancel Email %s.', 'woo-refund-and-exchange-lite' ), '<a href="' . esc_html( $woo_cancel_email_url ) . '">Click Here</a>' );
 ?>
 </h6>

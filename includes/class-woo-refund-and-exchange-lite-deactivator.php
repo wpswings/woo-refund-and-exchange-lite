@@ -24,6 +24,7 @@ class Woo_Refund_And_Exchange_Lite_Deactivator {
 	 *
 	 * Long Description.
 	 *
+	 * @param array $network_wide .
 	 * @since 1.0.0
 	 */
 	public static function woo_refund_and_exchange_lite_deactivate( $network_wide ) {
@@ -36,7 +37,7 @@ class Woo_Refund_And_Exchange_Lite_Deactivator {
 			} else {
 				$site_ids = $wpdb->get_col( "SELECT blog_id FROM $wpdb->blogs;" );
 			}
-			
+
 			// Uninstall the plugin for all these sites.
 			foreach ( $site_ids as $site_id ) {
 				switch_to_blog( $site_id );

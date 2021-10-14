@@ -162,10 +162,10 @@ class Woo_Refund_And_Exchange_Lite_Public {
 		if ( isset( $redirect_uri ) ) {
 			if ( isset( $view_msg ) && 'on' === $view_msg ) {
 				?>
-				<form action="<?php echo esc_html__( add_query_arg( 'order_id', $order->get_id(), $view_order_msg_url ) ); ?>" method="post">
-					<input type="hidden" value="<?php echo esc_html__( $order->get_id() ); ?>" name="order_id">
+				<form action="<?php echo esc_html( add_query_arg( 'order_id', $order->get_id(), $view_order_msg_url ) ); ?>" method="post">
+					<input type="hidden" value="<?php echo esc_html( $order->get_id() ); ?>" name="order_id">
 					<p>
-						<input type="submit" class="btn button" value="<?php echo esc_html__( $mwb_rma_order_message_button_text ); ?>">
+						<input type="submit" class="btn button" value="<?php echo esc_html( $mwb_rma_order_message_button_text ); ?>">
 					</p>
 				</form>
 				<?php
@@ -197,9 +197,9 @@ class Woo_Refund_And_Exchange_Lite_Public {
 			}
 			if ( ! in_array( get_the_title(), $refund_button_view, true ) ) {
 				?>
-				<form action="<?php echo esc_html__( $return_url ); ?>" method="post">
-					<input type="hidden" value="<?php echo esc_html__( $order->get_id() ); ?>" name="order_id">
-					<p><input type="submit" class="btn button" value="<?php echo esc_html__( $return_button_text ); ?>" name="ced_new_return_request"></p>
+				<form action="<?php echo esc_html( $return_url ); ?>" method="post">
+					<input type="hidden" value="<?php echo esc_html( $order->get_id() ); ?>" name="order_id">
+					<p><input type="submit" class="btn button" value="<?php echo esc_html( $return_button_text ); ?>" name="ced_new_return_request"></p>
 				</form>
 				<?php
 			}
@@ -218,7 +218,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 				$date_format = get_option( 'date_format' );
 				$date        = date_format( $date, $date_format );
 				?>
-				<p><?php esc_html_e( 'Following product Refund request made on', 'woo-refund-and-exchange-lite' ); ?> <b><?php echo esc_html__( $date ); ?>.</b></p>
+				<p><?php esc_html_e( 'Following product Refund request made on', 'woo-refund-and-exchange-lite' ); ?> <b><?php echo esc_html( $date ); ?>.</b></p>
 					<table>
 						<thead>
 							<tr>
@@ -252,8 +252,8 @@ class Woo_Refund_And_Exchange_Lite_Public {
 													// Order item Permalink.
 													apply_filters( 'woocommerce_order_item_permalink', $is_visible ? $product->get_permalink( $item ) : '', $item, $order );
 
-													echo esc_html__( $product_permalink ) ? sprintf( '<a href="%s">%s</a>', esc_html__( $product_permalink ), esc_html__( $product->get_name() ) ) : esc_html__( $product->get_name() );
-													echo '<strong class="product-quantity">' . sprintf( '&times; %s', esc_html__( $return_product['qty'] ) ) . '</strong>';
+													echo esc_html( $product_permalink ) ? sprintf( '<a href="%s">%s</a>', esc_html( $product_permalink ), esc_html( $product->get_name() ) ) : esc_html( $product->get_name() );
+													echo '<strong class="product-quantity">' . sprintf( '&times; %s', esc_html( $return_product['qty'] ) ) . '</strong>';
 
 													// Order item meta start.
 													do_action( 'woocommerce_order_item_meta_start', $item_id, $item, $order );
@@ -298,8 +298,8 @@ class Woo_Refund_And_Exchange_Lite_Public {
 						$return_url = add_query_arg( 'order_id', $order->get_id(), $return_url );
 						$return_url = wp_nonce_url( $return_url, 'mwb_rma_nonce', 'mwb_rma_nonce' );
 						?>
-							<form action="<?php echo esc_html__( $return_url ); ?>" method="post">
-								<input type="hidden" value="<?php echo esc_html__( $order->get_id() ); ?>" name="order_id">
+							<form action="<?php echo esc_html( $return_url ); ?>" method="post">
+								<input type="hidden" value="<?php echo esc_html( $order->get_id() ); ?>" name="order_id">
 								<p>
 									<input type="submit" class="btn button" value="<?php esc_html_e( 'Update Request', 'woo-refund-and-exchange-lite' ); ?>" name="mwb_mra_return_request">
 								</p>
@@ -311,7 +311,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 						$format       = get_option( 'date_format' );
 						$approve_date = date_format( $appdate, $format );
 						?>
-							<p><b><?php esc_html_e( 'Above product Refund request is approved on', 'woo-refund-and-exchange-lite' ); ?> <?php echo esc_html__( $approve_date ); ?>.</b></p>
+							<p><b><?php esc_html_e( 'Above product Refund request is approved on', 'woo-refund-and-exchange-lite' ); ?> <?php echo esc_html( $approve_date ); ?>.</b></p>
 							<?php
 					}
 
@@ -320,7 +320,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 						$format     = get_option( 'date_format' );
 						$canceldate = date_format( $appdate, $format );
 						?>
-							<p><b><?php esc_html_e( 'Above product Refund request is canceled on', 'woo-refund-and-exchange-lite' ); ?> <?php echo esc_html__( $canceldate ); ?>.</b></p>
+							<p><b><?php esc_html_e( 'Above product Refund request is canceled on', 'woo-refund-and-exchange-lite' ); ?> <?php echo esc_html( $canceldate ); ?>.</b></p>
 							<?php
 					}
 					?>

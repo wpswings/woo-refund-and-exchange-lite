@@ -133,7 +133,6 @@ class Woo_Refund_And_Exchange_Lite_Rest_Api {
 	 * Begins execution of api endpoint.
 	 *
 	 * @param array $request All information related with the api request containing in this array.
-	 * @param array $type .
 	 * @return array $mwb_rma_response   return rest response to server from where the endpoint hits.
 	 * @since    1.0.0
 	 */
@@ -154,7 +153,6 @@ class Woo_Refund_And_Exchange_Lite_Rest_Api {
 	 * Begins execution of api endpoint.
 	 *
 	 * @param array $request All information related with the api request containing in this array.
-	 * @param array $type .
 	 * @return array $mwb_rma_response   return rest response to server from where the endpoint hits.
 	 * @since    1.0.0
 	 */
@@ -171,13 +169,12 @@ class Woo_Refund_And_Exchange_Lite_Rest_Api {
 	}
 
 		/**
-	 * Begins execution of api endpoint.
-	 *
-	 * @param array $request All information related with the api request containing in this array.
-	 * @param array $type .
-	 * @return array $mwb_rma_response   return rest response to server from where the endpoint hits.
-	 * @since    1.0.0
-	 */
+		 * Begins execution of api endpoint.
+		 *
+		 * @param array $request All information related with the api request containing in this array.
+		 * @return array $mwb_rma_response   return rest response to server from where the endpoint hits.
+		 * @since    1.0.0
+		 */
 	public function mwb_rma_refund_request_cancel_callback( $request ) {
 		require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php';
 		$mwb_rma_api_obj     = new Woo_Refund_And_Exchange_Lite_Api_Process();

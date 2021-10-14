@@ -39,7 +39,7 @@ $order_id  = $order_obj->get_id();
 						?>
 						<div class="mwb_order_msg_main_container mwb_order_messages">
 							<div>
-								<div class="mwb_order_msg_sender <?php echo 'mwb_order_msg_sender_' . $om_val['sender']; ?>"><?php echo esc_html__( ( 'Customer' === $om_val['sender'] ) ? esc_html__( 'Customer', 'woo-refund-and-exchange-lite' ) : esc_html__( 'Shop Manager', 'woo-refund-and-exchange-lite' ) ); ?></div>
+								<div class="mwb_order_msg_sender <?php echo 'mwb_order_msg_sender_' . $om_val['sender']; ?>"><?php echo esc_html( ( 'Customer' === $om_val['sender'] ) ? esc_html__( 'Customer', 'woo-refund-and-exchange-lite' ) : esc_html__( 'Shop Manager', 'woo-refund-and-exchange-lite' ) ); ?></div>
 								<span class="mwb_order_msg_date"><?php echo esc_html( get_date_from_gmt( gmdate( 'Y-m-d h:i a', $om_key ), 'Y-m-d h:i a' ) ); ?></span>
 							</div>
 							<div class="mwb_order_msg_detail_container">

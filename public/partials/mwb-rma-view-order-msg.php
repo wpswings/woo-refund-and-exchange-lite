@@ -83,11 +83,11 @@ if ( isset( $order_id ) ) {
 							?>
 							<div class="mwb_order_msg_main_container mwb_order_messages">
 								<div class="mwb_order_msg_sender_details mwb_rma_flex">
-									<span class="mwb_order_msg_sender <?php echo 'mwb_order_msg_sender_' . $om_val['sender']; ?>"><?php echo esc_html__( ( 'Customer' === $om_val['sender'] ) ? esc_html__( 'Customer', 'woo-refund-and-exchange-lite' ) : esc_html__( 'Shop Manager', 'woo-refund-and-exchange-lite' ) ); ?></span>
-									<span class="mwb_order_msg_date"><?php echo esc_html__( get_date_from_gmt( gmdate( 'Y-m-d h:i a', $om_key ), 'Y-m-d h:i a' ) ); ?></span>
+									<span class="mwb_order_msg_sender <?php echo 'mwb_order_msg_sender_' . $om_val['sender']; ?>"><?php echo esc_html( ( 'Customer' === $om_val['sender'] ) ? esc_html__( 'Customer', 'woo-refund-and-exchange-lite' ) : esc_html__( 'Shop Manager', 'woo-refund-and-exchange-lite' ) ); ?></span>
+									<span class="mwb_order_msg_date"><?php echo esc_html( get_date_from_gmt( gmdate( 'Y-m-d h:i a', $om_key ), 'Y-m-d h:i a' ) ); ?></span>
 								</div>
 								<div class="mwb_order_msg_detail_container">
-									<span><?php echo esc_html__( $om_val['msg'] ); ?></span>
+									<span><?php echo esc_html( $om_val['msg'] ); ?></span>
 								</div>
 								<?php if ( isset( $om_val['files'] ) && ! empty( $om_val['files'] ) ) { ?>
 
@@ -99,9 +99,9 @@ if ( isset( $order_id ) ) {
 												$is_image = $fval['img'];
 												?>
 												<div class="mwb_order_msg_single_attachment">
-													<a target="_blank" href="<?php echo esc_url( get_home_url() ) . '/wp-content/attachment/' . esc_html__( $order_id ) . '-' . esc_html__( $fval['name'] ); ?>">
-														<img class="mwb_order_msg_attachment_thumbnail" src="<?php echo $is_image ? esc_url( get_home_url() ) . '/wp-content/attachment/' . esc_html__( $order_id ) . '-' . esc_html__( $fval['name'] ) : esc_url( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL ) . '/public/images/attachment.png'; ?>">
-														<span class="mwb_order_msg_attachment_file_name"><?php echo esc_html__( $fval['name'] ); ?></span>
+													<a target="_blank" href="<?php echo esc_url( get_home_url() ) . '/wp-content/attachment/' . esc_html( $order_id ) . '-' . esc_html( $fval['name'] ); ?>">
+														<img class="mwb_order_msg_attachment_thumbnail" src="<?php echo $is_image ? esc_url( get_home_url() ) . '/wp-content/attachment/' . esc_html( $order_id ) . '-' . esc_html( $fval['name'] ) : esc_url( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL ) . '/public/images/attachment.png'; ?>">
+														<span class="mwb_order_msg_attachment_file_name"><?php echo esc_html( $fval['name'] ); ?></span>
 													</a>
 												</div>
 											<?php } ?>

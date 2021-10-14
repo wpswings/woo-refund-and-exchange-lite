@@ -49,7 +49,7 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 			$reason                = $data['reason'] ? $data['reason'] : '';
 			$refund_method         = $data['refund_method'] ? $data['refund_method'] : 'manual_method';
 			$mwb_rma_rest_response = array();
-			// My code start
+			// My code start .
 			if ( ! empty( $order_id ) ) {
 				$order_obj = wc_get_order( $order_id );
 				require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'common/class-woo-refund-and-exchange-lite-common.php';
@@ -61,10 +61,10 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 						$ref_price   = 0;
 						$flag        = true;
 						$qty_flag    = true;
-						foreach ( $order_obj->get_items() as $item_id => $item ) {	
+						foreach ( $order_obj->get_items() as $item_id => $item ) {
 							foreach ( json_decode( $products ) as $key => $value ) {
 								$item_id1 = $value->item_id;
-								if ( ! empty( $item_id1 ) && isset( $value->item_id ) && $item_id1 == $item_id  ) {
+								if ( ! empty( $item_id1 ) && isset( $value->item_id ) && $item_id1 == $item_id ) {
 									$item_refund_already = get_post_meta( $order_id, 'mwb_rma_request_made', true );
 									if ( ! empty( $item_refund_already ) && isset( $item_refund_already[ $item_id ] ) && 'completed' === $item_refund_already[ $item_id1 ] ) {
 										$flag = false;
@@ -73,7 +73,7 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 									} else {
 										$item_arr               = array();
 										$item_arr['product_id'] = $item->get_product_id();
-										if( $item->is_type('variable') ) {
+										if ( $item->is_type( 'variable' ) ) {
 											$variation_id = $item->get_variation_id();
 										} else {
 											$variation_id = 0;
@@ -102,7 +102,7 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 							$mwb_rma_rest_response['message'] = 'error';
 							$mwb_rma_rest_response['status']  = 404;
 							$mwb_rma_rest_response['data']    = esc_html__( 'Return Request Already has been made and accpeted for the items you have given', 'woo-refund-and-exchange-lite' );
-						} elseif( ! $qty_flag ) {
+						} elseif ( ! $qty_flag ) {
 							$mwb_rma_rest_response['message'] = 'error';
 							$mwb_rma_rest_response['status']  = 404;
 							$mwb_rma_rest_response['data']    = esc_html__( 'Quanity given for items is greater than the order\'s items quantity', 'woo-refund-and-exchange-lite' );
@@ -128,11 +128,11 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 					$products1   = array();
 					$array_merge = array();
 					$ref_price = 0;
-					if( ! empty( $order_obj ) ) {
+					if ( ! empty( $order_obj ) ) {
 						foreach ( $order_obj->get_items() as $item_id => $item ) {
 							$item_arr = array();
 							$item_arr['product_id'] = $item->get_product_id();
-							if( $item->is_type('variable') ) {
+							if ( $item->is_type( 'variable' ) ) {
 								$variation_id = $item->get_variation_id();
 							} else {
 								$variation_id = 0;
@@ -183,7 +183,7 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 						$mwb_rma_rest_response['data']    = esc_html__( 'Some problem occur while refund requesting', 'woo-refund-and-exchange-lite' );
 					}
 				}
-			}  else {
+			} else {
 				$mwb_rma_rest_response['status'] = 404;
 				$mwb_rma_rest_response['data']   = esc_html__( 'Please Provide the order id to perform the process', 'woo-refund-and-exchange-lite' );
 			}

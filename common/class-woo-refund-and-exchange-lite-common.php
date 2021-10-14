@@ -82,7 +82,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 				'return_subject_msg'    => esc_html__( 'Please Enter Refund Subject.', 'woo-refund-and-exchange-lite' ),
 				'return_reason_msg'     => esc_html__( 'Please Enter Refund Reason.', 'woo-refund-and-exchange-lite' ),
 				'return_select_product' => esc_html__( 'Please Select Product to refund.', 'woo-refund-and-exchange-lite' ),
-				'check_pro_active'      => esc_html__( $pro_active ),
+				'check_pro_active'      => esc_html( $pro_active ),
 				'myaccount_url'         => esc_attr( $myaccount_page_url ),
 			)
 		);
@@ -170,19 +170,19 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	public function mwb_rma_save_return_request() {
 		$check_ajax = check_ajax_referer( 'mwb_rma_ajax_security', 'security_check' );
 		if ( $check_ajax && current_user_can( 'mwb-rma-refund-request' ) ) {
-			$order_id      = isset( $_POST['orderid'] ) ? sanitize_text_field( wp_unslash( $_POST['orderid'] ) ) : '';
-			$re_bank = get_option( 'mwb_rma_refund_manually_de', false );
+			$order_id = isset( $_POST['orderid'] ) ? sanitize_text_field( wp_unslash( $_POST['orderid'] ) ) : '';
+			$re_bank  = get_option( 'mwb_rma_refund_manually_de', false );
 			if ( 'on' === $re_bank && ! empty( $_POST['bankdetails'] ) ) {
 				update_post_meta( $order_id, 'mwb_rma_bank_details', $_POST['bankdetails'] );
 			}
-			$refund_method = isset( $_POST['refund_method'] ) ? sanitize_text_field( wp_unslash( $_POST['refund_method'] ) ) : '';
-			$refund_method = apply_filters( 'mwb_rma_refund_method_wallet', $refund_method );
+			$refund_method  = isset( $_POST['refund_method'] ) ? sanitize_text_field( wp_unslash( $_POST['refund_method'] ) ) : '';
+			$refund_method  = apply_filters( 'mwb_rma_refund_method_wallet', $refund_method );
 			$wallet_enabled = get_option( 'mwb_rma_wallet_enable', 'no' );
 			$refund_method  = get_option( 'mwb_rma_refund_method', 'no' );
 			if ( mwb_rma_pro_active() && 'on' === $wallet_enabled && 'on' !== $refund_method ) {
 				$refund_method = 'wallet_method';
 			}
-			$products1 = $_POST; 
+			$products1 = $_POST;
 			$response  = $this->mwb_rma_save_return_request_callback( $order_id, $refund_method, $products1 );
 			echo wp_json_encode( $response );
 			wp_die();
@@ -246,7 +246,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			do_action( 'mwb_rma_refund_req_email', $order_id );
 		}
 		do_action( 'mwb_rma_do_something_on_refund', $order_id );
-		$order->update_status( 'wc-return-requested',  esc_html__( 'User Request to refund product', 'woo-refund-and-exchange-lite' ) );
+		$order->update_status( 'wc-return-requested', esc_html__( 'User Request to refund product', 'woo-refund-and-exchange-lite' ) );
 		$response['auto_accept'] = apply_filters( 'mwb_rma_auto_accept_refund', false );
 		$response['flag']        = true;
 		$response['msg']         = esc_html__( 'Refund request placed successfully. You have received a notification mail regarding this. You will redirect to the My Account Page', 'woo-refund-and-exchange-lite' );
@@ -352,20 +352,25 @@ class Woo_Refund_And_Exchange_Lite_Common {
 		include_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php';
 	}
 
-	/** multisite compatibility */
+	/**
+	 *  Multisite compatibility 
+	 *
+	 * @param array $new_site .
+	 * @return void
+	 */
 	public function mwb_rma_plugin_on_create_blog( $new_site ) {
 		if ( ! function_exists( 'is_plugin_active_for_network' ) ) {
 			require_once ABSPATH . '/wp-admin/includes/plugin.php';
 		}
-		// check if the plugin has been activated on the network
+		// Check if the plugin has been activated on the network .
 		if ( is_plugin_active_for_network( 'woo-refund-and-exchange-lite/woocommerce-refund-and-exchange-lite.php' ) ) {
 			$blog_id = $new_site->blog_id;
-			// switch to newly created site
+			// Switch to newly created site .
 			switch_to_blog( $blog_id );
 			require_once plugin_dir_path( __FILE__ ) . 'includes/class-woo-refund-and-exchange-lite-activator.php';
 			Woo_Refund_And_Exchange_Lite_Activator::mwb_rma_create_pages();
 			restore_current_blog();
 		}
- 
+
 	}
 }

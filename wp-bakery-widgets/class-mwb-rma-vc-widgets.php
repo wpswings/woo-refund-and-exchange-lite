@@ -47,7 +47,7 @@ if ( ! class_exists( 'Mwb_Rma_Vc_Widgets' ) ) {
 				'name'        => esc_html__( 'Refund Form', 'woo-refund-and-exchange-lite' ),
 				'description' => esc_html__( 'Add Refund Form into your page', 'woo-refund-and-exchange-lite' ),
 				'base'        => 'vc_infobox',
-				'category' => esc_html__('RMA FORMS', 'woo-refund-and-exchange-lite'),
+				'category' => esc_html__( 'RMA FORMS', 'woo-refund-and-exchange-lite' ),
 				'icon' => plugin_dir_path( __FILE__ ) . 'assets/img/note.png',
 			);
 		}
@@ -57,7 +57,7 @@ if ( ! class_exists( 'Mwb_Rma_Vc_Widgets' ) ) {
 				'name'        => esc_html__( 'Order Message Form', 'woo-refund-and-exchange-lite' ),
 				'description' => esc_html__( 'Add Order Message Form into your page', 'woo-refund-and-exchange-lite' ),
 				'base'        => 'vc_infobox',
-				'category'    => esc_html__('RMA FORMS', 'woo-refund-and-exchange-lite'),
+				'category'    => esc_html__( 'RMA FORMS', 'woo-refund-and-exchange-lite' ),
 				'icon'        => plugin_dir_path( __FILE__ ) . 'assets/img/note.png',
 				'params'      => '',
 

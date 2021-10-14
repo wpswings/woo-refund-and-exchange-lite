@@ -26,7 +26,7 @@ apply_filters( 'mwb_rma_deactivation_form_fields', array() );
 <?php if ( ! empty( $wrael_onboarding_form_deactivate ) ) : ?>
 	<div id="<?php echo esc_attr( $mwb_plugin_onboarding_popup_id ); ?>" class="mdc-dialog mdc-dialog--scrollable
 	<?php
-	echo esc_html__(
+	echo esc_html(
 	// desc - filter for trial.
 		apply_filters( 'mwb_stand_dialog_classes', 'woo-refund-and-exchange-lite' )
 	);
@@ -46,7 +46,7 @@ apply_filters( 'mwb_rma_deactivation_form_fields', array() );
 					<form action="#" method="post" class="mwb-wrael-on-boarding-form">
 						<?php
 						$wrael_onboarding_deactive_html = $wrael_mwb_rma_obj->mwb_rma_plug_generate_html( $wrael_onboarding_form_deactivate );
-						echo esc_html__( $wrael_onboarding_deactive_html );
+						echo esc_html( $wrael_onboarding_deactive_html );
 						?>
 						<div class="mwb-wrael-on-boarding-form-btn__wrapper mdc-dialog__actions">
 							<div class="mwb-wrael-on-boarding-form-submit mwb-wrael-on-boarding-form-verify ">

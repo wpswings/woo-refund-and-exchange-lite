@@ -139,7 +139,7 @@ class Mwb_Rma_Order_Messages_Email extends WC_Email {
 	 */
 	public function init_form_fields() {
 		// translators: %s: list of placeholders.
-		$placeholder_text  = sprintf( esc_html__( 'Available placeholders: %s', 'woo-refund-and-exchange-lite' ), '<code>' . esc_html__( implode( '</code>, <code>', array_keys( $this->placeholders ) ) ) . '</code>' );
+		$placeholder_text  = sprintf( esc_html__( 'Available placeholders: %s', 'woo-refund-and-exchange-lite' ), '<code>' . esc_html( implode( '</code>, <code>', array_keys( $this->placeholders ) ) ) . '</code>' );
 		$this->form_fields = array(
 			'enabled'    => array(
 				'title'   => 'Enable/Disable',

@@ -371,18 +371,18 @@ class Woo_Refund_And_Exchange_Lite {
 	 */
 	public function mwb_rma_plug_default_tabs() {
 		$wrael_default_tabs = array();
-		$wrael_default_tabs['woo-refund-and-exchange-lite-general']       = array(
+		$wrael_default_tabs['woo-refund-and-exchange-lite-general'] = array(
 			'title'     => esc_html__( 'General', 'woo-refund-and-exchange-lite' ),
 			'name'      => 'woo-refund-and-exchange-lite-general',
 			'file_path' => WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/woo-refund-and-exchange-lite-general.php',
 		);
-		$wrael_default_tabs['woo-refund-and-exchange-lite-refund']        = array(
+		$wrael_default_tabs['woo-refund-and-exchange-lite-refund']  = array(
 			'title'     => esc_html__( 'Refund', 'woo-refund-and-exchange-lite' ),
 			'name'      => 'woo-refund-and-exchange-lite-refund',
 			'file_path' => WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/woo-refund-and-exchange-lite-refund.php',
 		);
 		$wrael_default_tabs = apply_filters( 'mwb_rma_plugin_admin_settings_tabs_addon_before', $wrael_default_tabs );
-		$wrael_default_tabs['woo-refund-and-exchange-lite-policies']      = array(
+		$wrael_default_tabs['woo-refund-and-exchange-lite-policies'] = array(
 			'title'     => esc_html__( 'RMA Policies', 'woo-refund-and-exchange-lite' ),
 			'name'      => 'woo-refund-and-exchange-lite-refund-policies',
 			'file_path' => WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/woo-refund-and-exchange-lite-policies.php',
@@ -398,7 +398,7 @@ class Woo_Refund_And_Exchange_Lite {
 			'name'      => 'woo-refund-and-exchange-lite-developer',
 			'file_path' => WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/woo-refund-and-exchange-lite-developer.php',
 		);
-		$wrael_default_tabs['woo-refund-and-exchange-lite-api']     = array(
+		$wrael_default_tabs['woo-refund-and-exchange-lite-api']           = array(
 			'title'     => esc_html__( 'API Setting', 'woo-refund-and-exchange-lite' ),
 			'name'      => 'woo-refund-and-exchange-lite-api',
 			'file_path' => WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/woo-refund-and-exchange-lite-api.php',
@@ -467,7 +467,7 @@ class Woo_Refund_And_Exchange_Lite {
 		}
 
 		$wrael_notice  = '<div class="' . esc_attr( $wrael_classes ) . '">';
-		$wrael_notice .= '<p>' . esc_html__( $wrael_message ) . '</p>';
+		$wrael_notice .= '<p>' . esc_html( $wrael_message ) . '</p>';
 		$wrael_notice .= '</div>';
 
 		echo wp_kses_post( $wrael_notice );
@@ -492,7 +492,7 @@ class Woo_Refund_And_Exchange_Lite {
 							?>
 						<div class="mwb-form-group mwb-wrael-<?php echo esc_attr( $wrael_component['type'] ); ?>">
 							<div class="mwb-form-group__label">
-								<label for="<?php echo esc_attr( $wrael_component['id'] ); ?>" class="mwb-form-label"><?php echo ( isset( $wrael_component['title'] ) ? esc_html__( $wrael_component['title'] ) : '' ); ?></label>
+								<label for="<?php echo esc_attr( $wrael_component['id'] ); ?>" class="mwb-form-label"><?php echo ( isset( $wrael_component['title'] ) ? esc_html( $wrael_component['title'] ) : '' ); ?></label>
 							</div>
 							<div class="mwb-form-group__control">
 								<label class="mdc-text-field mdc-text-field--outlined">
@@ -507,7 +507,7 @@ class Woo_Refund_And_Exchange_Lite {
 									</span>
 									<input
 									class="mdc-text-field__input <?php echo ( isset( $wrael_component['class'] ) ? esc_attr( $wrael_component['class'] ) : '' ); ?>" 
-									name="<?php echo ( isset( $wrael_component['name'] ) ? esc_html__( $wrael_component['name'] ) : esc_html__( $wrael_component['id'] ) ); ?>"
+									name="<?php echo ( isset( $wrael_component['name'] ) ? esc_html( $wrael_component['name'] ) : esc_html( $wrael_component['id'] ) ); ?>"
 									id="<?php echo esc_attr( $wrael_component['id'] ); ?>"
 									type="<?php echo esc_attr( $wrael_component['type'] ); ?>"
 									value="<?php echo ( isset( $wrael_component['value'] ) ? esc_attr( $wrael_component['value'] ) : '' ); ?>"
@@ -535,7 +535,7 @@ class Woo_Refund_And_Exchange_Lite {
 							?>
 						<div class="mwb-form-group">
 							<div class="mwb-form-group__label">
-								<label for="<?php echo esc_attr( $wrael_component['id'] ); ?>" class="mwb-form-label"><?php echo ( isset( $wrael_component['title'] ) ? esc_html__( $wrael_component['title'] ) : '' ); ?></label>
+								<label for="<?php echo esc_attr( $wrael_component['id'] ); ?>" class="mwb-form-label"><?php echo ( isset( $wrael_component['title'] ) ? esc_html( $wrael_component['title'] ) : '' ); ?></label>
 							</div>
 							<div class="mwb-form-group__control">
 								<label class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-trailing-icon">
@@ -547,7 +547,7 @@ class Woo_Refund_And_Exchange_Lite {
 									</span>
 									<input 
 									class="mdc-text-field__input <?php echo ( isset( $wrael_component['class'] ) ? esc_attr( $wrael_component['class'] ) : '' ); ?> mwb-form__password" 
-									name="<?php echo ( isset( $wrael_component['name'] ) ? esc_html__( $wrael_component['name'] ) : esc_html__( $wrael_component['id'] ) ); ?>"
+									name="<?php echo ( isset( $wrael_component['name'] ) ? esc_html( $wrael_component['name'] ) : esc_html( $wrael_component['id'] ) ); ?>"
 									id="<?php echo esc_attr( $wrael_component['id'] ); ?>"
 									type="<?php echo esc_attr( $wrael_component['type'] ); ?>"
 									value="<?php echo ( isset( $wrael_component['value'] ) ? esc_attr( $wrael_component['value'] ) : '' ); ?>"
@@ -567,7 +567,7 @@ class Woo_Refund_And_Exchange_Lite {
 							?>
 						<div class="mwb-form-group">
 							<div class="mwb-form-group__label">
-								<label class="mwb-form-label" for="<?php echo esc_attr( $wrael_component['id'] ); ?>"><?php echo ( isset( $wrael_component['title'] ) ? esc_html__( $wrael_component['title'] ) : '' ); ?></label>
+								<label class="mwb-form-label" for="<?php echo esc_attr( $wrael_component['id'] ); ?>"><?php echo ( isset( $wrael_component['title'] ) ? esc_html( $wrael_component['title'] ) : '' ); ?></label>
 							</div>
 							<div class="mwb-form-group__control">
 								<label class="mdc-text-field mdc-text-field--outlined mdc-text-field--textarea"      for="text-field-hero-input">
@@ -579,7 +579,7 @@ class Woo_Refund_And_Exchange_Lite {
 										<span class="mdc-notched-outline__trailing"></span>
 									</span>
 									<span class="mdc-text-field__resizer">
-										<textarea rows=<?php echo ( isset( $wrael_component['rows'] ) ) ? esc_attr( $wrael_component['rows'] ) : ''; ?> cols=<?php echo ( isset( $wrael_component['cols'] ) ) ? esc_attr( $wrael_component['cols'] ) : ''; ?> class="mdc-text-field__input <?php echo ( isset( $wrael_component['class'] ) ? esc_attr( $wrael_component['class'] ) : '' ); ?>" rows="2" cols="25" aria-label="Label" name="<?php echo ( isset( $wrael_component['name'] ) ? esc_html__( $wrael_component['name'] ) : esc_html__( $wrael_component['id'] ) ); ?>" id="<?php echo esc_attr( $wrael_component['id'] ); ?>" placeholder="<?php echo ( isset( $wrael_component['placeholder'] ) ? esc_attr( $wrael_component['placeholder'] ) : '' ); ?>"><?php echo ( isset( $wrael_component['value'] ) ? esc_textarea( $wrael_component['value'] ) : '' ); ?></textarea>
+										<textarea rows=<?php echo ( isset( $wrael_component['rows'] ) ) ? esc_attr( $wrael_component['rows'] ) : ''; ?> cols=<?php echo ( isset( $wrael_component['cols'] ) ) ? esc_attr( $wrael_component['cols'] ) : ''; ?> class="mdc-text-field__input <?php echo ( isset( $wrael_component['class'] ) ? esc_attr( $wrael_component['class'] ) : '' ); ?>" rows="2" cols="25" aria-label="Label" name="<?php echo ( isset( $wrael_component['name'] ) ? esc_html( $wrael_component['name'] ) : esc_html( $wrael_component['id'] ) ); ?>" id="<?php echo esc_attr( $wrael_component['id'] ); ?>" placeholder="<?php echo ( isset( $wrael_component['placeholder'] ) ? esc_attr( $wrael_component['placeholder'] ) : '' ); ?>"><?php echo ( isset( $wrael_component['value'] ) ? esc_textarea( $wrael_component['value'] ) : '' ); ?></textarea>
 									</span>
 								</label>
 							</div>
@@ -592,11 +592,11 @@ class Woo_Refund_And_Exchange_Lite {
 							?>
 						<div class="mwb-form-group">
 							<div class="mwb-form-group__label">
-								<label class="mwb-form-label" for="<?php echo esc_attr( $wrael_component['id'] ); ?>"><?php echo ( isset( $wrael_component['title'] ) ? esc_html__( $wrael_component['title'] ) : '' ); ?></label>
+								<label class="mwb-form-label" for="<?php echo esc_attr( $wrael_component['id'] ); ?>"><?php echo ( isset( $wrael_component['title'] ) ? esc_html( $wrael_component['title'] ) : '' ); ?></label>
 							</div>
 							<div class="mwb-form-group__control">
 								<div class="mwb-form-select">
-									<select id="<?php echo esc_attr( $wrael_component['id'] ); ?>" name="<?php echo ( isset( $wrael_component['name'] ) ? esc_html__( $wrael_component['name'] ) : esc_html__( $wrael_component['id'] ) ); ?><?php echo ( 'multiselect' === $wrael_component['type'] ) ? '[]' : ''; ?>" id="<?php echo esc_attr( $wrael_component['id'] ); ?>" class="mdl-textfield__input <?php echo ( isset( $wrael_component['class'] ) ? esc_attr( $wrael_component['class'] ) : '' ); ?>" <?php echo 'multiselect' === $wrael_component['type'] ? 'multiple="multiple"' : ''; ?> >
+									<select id="<?php echo esc_attr( $wrael_component['id'] ); ?>" name="<?php echo ( isset( $wrael_component['name'] ) ? esc_html( $wrael_component['name'] ) : esc_html( $wrael_component['id'] ) ); ?><?php echo ( 'multiselect' === $wrael_component['type'] ) ? '[]' : ''; ?>" id="<?php echo esc_attr( $wrael_component['id'] ); ?>" class="mdl-textfield__input <?php echo ( isset( $wrael_component['class'] ) ? esc_attr( $wrael_component['class'] ) : '' ); ?>" <?php echo 'multiselect' === $wrael_component['type'] ? 'multiple="multiple"' : ''; ?> >
 							<?php
 							foreach ( $wrael_component['options'] as $wrael_key => $wrael_val ) {
 								?>
@@ -609,7 +609,7 @@ class Woo_Refund_And_Exchange_Lite {
 												}
 												?>
 												>
-												<?php echo esc_html__( $wrael_val ); ?>
+												<?php echo esc_html( $wrael_val ); ?>
 											</option>
 										<?php
 							}
@@ -627,13 +627,13 @@ class Woo_Refund_And_Exchange_Lite {
 							?>
 						<div class="mwb-form-group">
 							<div class="mwb-form-group__label">
-								<label for="<?php echo esc_attr( $wrael_component['id'] ); ?>" class="mwb-form-label"><?php echo ( isset( $wrael_component['title'] ) ? esc_html__( $wrael_component['title'] ) : '' ); ?></label>
+								<label for="<?php echo esc_attr( $wrael_component['id'] ); ?>" class="mwb-form-label"><?php echo ( isset( $wrael_component['title'] ) ? esc_html( $wrael_component['title'] ) : '' ); ?></label>
 							</div>
 							<div class="mwb-form-group__control mwb-pl-4">
 								<div class="mdc-form-field">
 									<div class="mdc-checkbox">
 										<input 
-										name="<?php echo ( isset( $wrael_component['name'] ) ? esc_html__( $wrael_component['name'] ) : esc_html__( $wrael_component['id'] ) ); ?>"
+										name="<?php echo ( isset( $wrael_component['name'] ) ? esc_html( $wrael_component['name'] ) : esc_html( $wrael_component['id'] ) ); ?>"
 										id="<?php echo esc_attr( $wrael_component['id'] ); ?>"
 										type="checkbox"
 										class="mdc-checkbox__native-control <?php echo ( isset( $wrael_component['class'] ) ? esc_attr( $wrael_component['class'] ) : '' ); ?>"
@@ -659,7 +659,7 @@ class Woo_Refund_And_Exchange_Lite {
 							?>
 						<div class="mwb-form-group">
 							<div class="mwb-form-group__label">
-								<label for="<?php echo esc_attr( $wrael_component['id'] ); ?>" class="mwb-form-label"><?php echo ( isset( $wrael_component['title'] ) ? esc_html__( $wrael_component['title'] ) : '' ); ?></label>
+								<label for="<?php echo esc_attr( $wrael_component['id'] ); ?>" class="mwb-form-label"><?php echo ( isset( $wrael_component['title'] ) ? esc_html( $wrael_component['title'] ) : '' ); ?></label>
 							</div>
 							<div class="mwb-form-group__control mwb-pl-4">
 								<div class="mwb-flex-col">
@@ -669,7 +669,7 @@ class Woo_Refund_And_Exchange_Lite {
 										<div class="mdc-form-field">
 											<div class="mdc-radio">
 												<input
-												name="<?php echo ( isset( $wrael_component['name'] ) ? esc_html__( $wrael_component['name'] ) : esc_html__( $wrael_component['id'] ) ); ?>"
+												name="<?php echo ( isset( $wrael_component['name'] ) ? esc_html( $wrael_component['name'] ) : esc_html( $wrael_component['id'] ) ); ?>"
 												value="<?php echo esc_attr( $wrael_radio_key ); ?>"
 												type="radio"
 												class="mdc-radio__native-control <?php echo ( isset( $wrael_component['class'] ) ? esc_attr( $wrael_component['class'] ) : '' ); ?>"
@@ -681,7 +681,7 @@ class Woo_Refund_And_Exchange_Lite {
 												</div>
 												<div class="mdc-radio__ripple"></div>
 											</div>
-											<label for="radio-1"><?php echo esc_html__( $wrael_radio_val ); ?></label>
+											<label for="radio-1"><?php echo esc_html( $wrael_radio_val ); ?></label>
 										</div>    
 								<?php
 							}
@@ -697,7 +697,7 @@ class Woo_Refund_And_Exchange_Lite {
 
 						<div class="mwb-form-group">
 							<div class="mwb-form-group__label">
-								<label for="" class="mwb-form-label"><?php echo ( isset( $wrael_component['title'] ) ? esc_html__( $wrael_component['title'] ) : '' ); ?></label>
+								<label for="" class="mwb-form-label"><?php echo ( isset( $wrael_component['title'] ) ? esc_html( $wrael_component['title'] ) : '' ); ?></label>
 							</div>
 							<div class="mwb-form-group__control">
 								<div>
@@ -705,7 +705,7 @@ class Woo_Refund_And_Exchange_Lite {
 										<div class="mdc-switch__track"></div>
 										<div class="mdc-switch__thumb-underlay">
 											<div class="mdc-switch__thumb"></div>
-											<input name="<?php echo ( isset( $wrael_component['name'] ) ? esc_html__( $wrael_component['name'] ) : esc_html__( $wrael_component['id'] ) ); ?>" type="checkbox" id="<?php echo esc_html__( $wrael_component['id'] ); ?>" value="on" class="mdc-switch__native-control <?php echo ( isset( $wrael_component['class'] ) ? esc_attr( $wrael_component['class'] ) : '' ); ?>" role="switch" aria-checked="
+											<input name="<?php echo ( isset( $wrael_component['name'] ) ? esc_html( $wrael_component['name'] ) : esc_html( $wrael_component['id'] ) ); ?>" type="checkbox" id="<?php echo esc_html( $wrael_component['id'] ); ?>" value="on" class="mdc-switch__native-control <?php echo ( isset( $wrael_component['class'] ) ? esc_attr( $wrael_component['class'] ) : '' ); ?>" role="switch" aria-checked="
 							<?php
 							if ( 'on' === $wrael_component['value'] ) {
 								echo 'true';
@@ -732,9 +732,9 @@ class Woo_Refund_And_Exchange_Lite {
 						<div class="mwb-form-group">
 							<div class="mwb-form-group__label"></div>
 							<div class="mwb-form-group__control">
-								<button class="mdc-button mdc-button--raised" name= "<?php echo ( isset( $wrael_component['name'] ) ? esc_html__( $wrael_component['name'] ) : esc_html__( $wrael_component['id'] ) ); ?>"
+								<button class="mdc-button mdc-button--raised" name= "<?php echo ( isset( $wrael_component['name'] ) ? esc_html( $wrael_component['name'] ) : esc_html( $wrael_component['id'] ) ); ?>"
 									id="<?php echo esc_attr( $wrael_component['id'] ); ?>"> <span class="mdc-button__ripple"></span>
-									<span class="mdc-button__label <?php echo ( isset( $wrael_component['class'] ) ? esc_attr( $wrael_component['class'] ) : '' ); ?>"><?php echo ( isset( $wrael_component['button_text'] ) ? esc_html__( $wrael_component['button_text'] ) : '' ); ?></span>
+									<span class="mdc-button__label <?php echo ( isset( $wrael_component['class'] ) ? esc_attr( $wrael_component['class'] ) : '' ); ?>"><?php echo ( isset( $wrael_component['button_text'] ) ? esc_html( $wrael_component['button_text'] ) : '' ); ?></span>
 								</button>
 							</div>
 						</div>
@@ -746,7 +746,7 @@ class Woo_Refund_And_Exchange_Lite {
 							?>
 							<div class="mwb-form-group mwb-wrael-<?php echo esc_attr( $wrael_component['type'] ); ?>">
 								<div class="mwb-form-group__label">
-									<label for="<?php echo esc_attr( $wrael_component['id'] ); ?>" class="mwb-form-label"><?php echo ( isset( $wrael_component['title'] ) ? esc_html__( $wrael_component['title'] ) : '' ); ?></label>
+									<label for="<?php echo esc_attr( $wrael_component['id'] ); ?>" class="mwb-form-label"><?php echo ( isset( $wrael_component['title'] ) ? esc_html( $wrael_component['title'] ) : '' ); ?></label>
 									</div>
 									<div class="mwb-form-group__control">
 							<?php
@@ -764,7 +764,7 @@ class Woo_Refund_And_Exchange_Lite {
 												</span>
 												<input 
 												class="mdc-text-field__input <?php echo ( isset( $wrael_component['class'] ) ? esc_attr( $wrael_component['class'] ) : '' ); ?>" 
-												name="<?php echo ( isset( $wrael_component['name'] ) ? esc_html__( $wrael_component['name'] ) : esc_html__( $wrael_component['id'] ) ); ?>"
+												name="<?php echo ( isset( $wrael_component['name'] ) ? esc_html( $wrael_component['name'] ) : esc_html( $wrael_component['id'] ) ); ?>"
 												id="<?php echo esc_attr( $component['id'] ); ?>"
 												type="<?php echo esc_attr( $component['type'] ); ?>"
 												value="<?php echo ( isset( $wrael_component['value'] ) ? esc_attr( $wrael_component['value'] ) : '' ); ?>"
@@ -785,17 +785,17 @@ class Woo_Refund_And_Exchange_Lite {
 							?>
 							<div class="mwb-form-group mwb-wrael-<?php echo esc_attr( $wrael_component['type'] ); ?>">
 								<div class="mwb-form-group__label">
-									<label for="<?php echo esc_attr( $wrael_component['id'] ); ?>" class="mwb-form-label"><?php echo ( isset( $wrael_component['title'] ) ? esc_html__( $wrael_component['title'] ) : '' ); ?></label>
+									<label for="<?php echo esc_attr( $wrael_component['id'] ); ?>" class="mwb-form-label"><?php echo ( isset( $wrael_component['title'] ) ? esc_html( $wrael_component['title'] ) : '' ); ?></label>
 								</div>
 								<div class="mwb-form-group__control">
 									<label>
 										<input 
 										class="<?php echo ( isset( $wrael_component['class'] ) ? esc_attr( $wrael_component['class'] ) : '' ); ?>" 
-										name="<?php echo ( isset( $wrael_component['name'] ) ? esc_html__( $wrael_component['name'] ) : esc_html__( $wrael_component['id'] ) ); ?>"
+										name="<?php echo ( isset( $wrael_component['name'] ) ? esc_html( $wrael_component['name'] ) : esc_html( $wrael_component['id'] ) ); ?>"
 										id="<?php echo esc_attr( $wrael_component['id'] ); ?>"
 										type="<?php echo esc_attr( $wrael_component['type'] ); ?>"
 										value="<?php echo ( isset( $wrael_component['value'] ) ? esc_attr( $wrael_component['value'] ) : '' ); ?>"
-									<?php echo esc_html__( ( 'date' === $wrael_component['type'] ) ? 'max=' . gmdate( 'Y-m-d', strtotime( gmdate( 'Y-m-d', mktime() ) . ' + 365 day' ) ) . 'min=' . gmdate( 'Y-m-d' ) . '' : '' ); ?>
+									<?php echo esc_html( ( 'date' === $wrael_component['type'] ) ? 'max=' . gmdate( 'Y-m-d', strtotime( gmdate( 'Y-m-d', mktime() ) . ' + 365 day' ) ) . 'min=' . gmdate( 'Y-m-d' ) . '' : '' ); ?>
 										>
 									</label>
 									<div class="mdc-text-field-helper-line">
@@ -811,7 +811,7 @@ class Woo_Refund_And_Exchange_Lite {
 						<tr valign="top">
 							<td scope="row">
 								<input type="submit" class="button button-primary" 
-								name="<?php echo ( isset( $wrael_component['name'] ) ? esc_html__( $wrael_component['name'] ) : esc_html__( $wrael_component['id'] ) ); ?>"
+								name="<?php echo ( isset( $wrael_component['name'] ) ? esc_html( $wrael_component['name'] ) : esc_html( $wrael_component['id'] ) ); ?>"
 								id="<?php echo esc_attr( $wrael_component['id'] ); ?>"
 								class="<?php echo ( isset( $wrael_component['class'] ) ? esc_attr( $wrael_component['class'] ) : '' ); ?>"
 								value="<?php echo esc_attr( $wrael_component['button_text'] ); ?>"
@@ -823,7 +823,7 @@ class Woo_Refund_And_Exchange_Lite {
 						case 'breaker':
 							?>
 							<div class="mwb-form-group__breaker">
-							<span><b><?php echo ( isset( $wrael_component['name'] ) ? esc_html__( $wrael_component['name'] ) : esc_html__( $wrael_component['id'] ) ); ?></span></b>
+							<span><b><?php echo ( isset( $wrael_component['name'] ) ? esc_html( $wrael_component['name'] ) : esc_html( $wrael_component['id'] ) ); ?></span></b>
 							</div>
 							<?php
 							break;

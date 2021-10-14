@@ -25,6 +25,7 @@ class Woo_Refund_And_Exchange_Lite_Activator {
 	 *
 	 * Long Description.
 	 *
+	 * @param array $network_wide .
 	 * @since    1.0.0
 	 */
 	public static function woo_refund_and_exchange_lite_activate( $network_wide ) {
@@ -39,7 +40,7 @@ class Woo_Refund_And_Exchange_Lite_Activator {
 				restore_current_blog();
 			}
 		} else {
-			// activated on a single site, in a multi-site or on a single site
+			// Activated on a single site, in a multi-site or on a single site.
 			self::mwb_rma_create_pages();
 		}
 	}

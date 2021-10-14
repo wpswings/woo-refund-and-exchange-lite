@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-echo esc_html__( $email_heading ) . "\n\n";
+echo esc_html( $email_heading ) . "\n\n";
 
 $message = $msg;
 echo wp_kses_post( $message );

@@ -654,7 +654,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				'button_text' => esc_html__( 'Save Setting', 'woo-refund-and-exchange-lite' ),
 				'class'       => 'wrael-button-class',
 			),
-		); 
+		);
 		return $mwb_rma_settings_api;
 	}
 
@@ -711,7 +711,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			$to       = $order->get_billing_email();
 			$sender   = 'Shop Manager';
 			$flag     = mwb_rma_lite_send_order_msg_callback( $order_id, $msg, $sender, $to );
-			echo esc_html__( $flag );
+			echo esc_html( $flag );
 			wp_die();
 		}
 	}
@@ -735,6 +735,10 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 
 	/**
 	 * Accept return request approve callback.
+	 *
+	 * @param string  $orderid .
+	 * @param array() $products .
+	 * @return void
 	 */
 	public function mwb_rma_return_req_approve_callback( $orderid, $products ) {
 		// Fetch and update the return request product.
@@ -811,6 +815,10 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 
 	/**
 	 * Cancel return request cancel callback.
+	 *
+	 * @param string  $orderid .
+	 * @param array() $products .
+	 * @return void
 	 */
 	public function mwb_rma_return_req_cancel_callback( $orderid, $products ) {
 		// Fetch the return request product.
