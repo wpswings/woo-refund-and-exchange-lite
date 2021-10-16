@@ -98,15 +98,8 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 								$mwb_rma_check_tax = get_option( $order_id . 'check_tax', false );
 								$tax_inc           = $item->get_total() + $item->get_subtotal_tax();
 								$tax_exc           = $item->get_total() - $item->get_subtotal_tax();
-
-								if ( empty( $mwb_rma_check_tax ) ) {
-									$prod_price = $item->get_total();
-								} elseif ( 'mwb_rma_inlcude_tax' === $mwb_rma_check_tax ) {
-									$prod_price = $tax_inc;
-								} elseif ( 'mwb_rma_exclude_tax' === $mwb_rma_check_tax ) {
-									$prod_price = $tax_exc;
-								}
-								$total_pro_price = $prod_price * $return_product['qty'];
+								$prod_price        = $return_product['price'];
+								$total_pro_price   = $prod_price * $return_product['qty'];
 								?>
 								<tr>
 									<td class="thumb">
