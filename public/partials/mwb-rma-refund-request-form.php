@@ -72,8 +72,14 @@ if ( isset( $reason ) && ! empty( $reason ) ) {
 }
 get_header( 'shop' );
 
-// Before Main Content.
-do_action( 'woocommerce_before_main_content' );
+
+$mwb_wrma_show_sidebar_on_form =
+// Side show/hide on refund request form.
+apply_filters( 'mwb_rma_refund_form_sidebar', true );
+if ( $mwb_wrma_show_sidebar_on_form ) {
+	// Before Main Content.
+	do_action( 'woocommerce_before_main_content' );
+}
 if ( 'yes' === $allowed ) {
 	$mwb_refund_wrapper_class = get_option( 'mwb_wrma_refund_form_wrapper_class' );
 	$mwb_return_css           = get_option( 'mwb_wrma_return_custom_css' );
@@ -404,15 +410,14 @@ if ( 'yes' === $allowed ) {
 		echo esc_html__( 'Refund Request Can\'t make on this order', 'mwb-woocommerce-rma' );
 	}
 }
-// Woo Main Content.
-do_action( 'woocommerce_after_main_content' );
+
 
 $mwb_wrma_show_sidebar_on_form =
 // Side show/hide on refund request form.
 apply_filters( 'mwb_rma_refund_form_sidebar', true );
 if ( $mwb_wrma_show_sidebar_on_form ) {
-	// Show Sidebar.
-	do_action( 'woocommerce_sidebar' );
+	// Woo Main Content.
+	do_action( 'woocommerce_after_main_content' );
 }
 
 get_footer( 'shop' );
