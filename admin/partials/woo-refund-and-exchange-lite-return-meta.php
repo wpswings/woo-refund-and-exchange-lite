@@ -19,16 +19,11 @@ if ( ! is_object( $theorder ) ) {
 $order_obj    = $theorder;
 $order_id     = $order_obj->get_id();
 $return_datas = get_post_meta( $order_id, 'mwb_rma_return_product', true );
-$item_type =
+$item_type    =
 // Order Item Type.
 apply_filters( 'woocommerce_admin_order_item_types', 'line_item' );
 $line_items         = $order_obj->get_items( $item_type );
 $get_order_currency = get_woocommerce_currency_symbol( $order_obj->get_currency() );
-
-if ( is_array( $line_items ) && ! empty( $line_items ) ) {
-	update_post_meta( $order_id, 'mwb_rma_new_refund_line_items', $line_items );
-}
-$line_items = get_post_meta( $order_id, 'mwb_rma_new_refund_line_items', true );
 if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 	$ref_meth = get_option( $order_id . 'mwb_rma_refund_method' );
 	foreach ( $return_datas as $key => $return_data ) {
@@ -45,8 +40,8 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 				<tr>
 					<th><?php esc_html_e( 'Item', 'woo-refund-and-exchange-lite' ); ?></th>
 					<th><?php esc_html_e( 'Name', 'woo-refund-and-exchange-lite' ); ?></th>
-					<th><?php esc_html_e( 'Cost', 'woo-refund-and-exchange-lite' ); ?></th>
-					<th><?php esc_html_e( 'Qty', 'woo-refund-and-exchange-lite' ); ?></th>
+					<th><?php esc_html_e( 'Price', 'woo-refund-and-exchange-lite' ); ?></th>
+					<th><?php esc_html_e( 'Quantity', 'woo-refund-and-exchange-lite' ); ?></th>
 					<th><?php esc_html_e( 'Total', 'woo-refund-and-exchange-lite' ); ?></th>
 				</tr>
 				</thead>
@@ -94,12 +89,8 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 										}
 									}
 								}
-
-								$mwb_rma_check_tax = get_option( $order_id . 'check_tax', false );
-								$tax_inc           = $item->get_total() + $item->get_subtotal_tax();
-								$tax_exc           = $item->get_total() - $item->get_subtotal_tax();
-								$prod_price        = $return_product['price'];
-								$total_pro_price   = $prod_price * $return_product['qty'];
+								$prod_price      = $return_product['price'];
+								$total_pro_price = $prod_price * $return_product['qty'];
 								?>
 								<tr>
 									<td class="thumb">
@@ -142,10 +133,9 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 					$total_refund_amu =
 					// Change refund total amount on product meta.
 					apply_filters( 'mwb_rma_refund_total_amount', $total, $order_id );
-
 					?>
 					<tr>
-						<th colspan="4"><?php esc_html_e( 'Total Amount', 'woo-refund-and-exchange-lite' ); ?></th>
+						<th colspan="4"><?php esc_html_e( 'Total', 'woo-refund-and-exchange-lite' ); ?></th>
 						<th><?php echo wp_kses_post( mwb_wrma_format_price( $total, $get_order_currency ) ); ?></th>
 					</tr>
 				</tbody>
@@ -163,17 +153,20 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 			</p>
 		</div>
 		<div class="mwb_rma_reason">
-			<p><strong><?php esc_html_e( 'Subject', 'woo-refund-and-exchange-lite' ); ?> :</strong><i> <?php echo esc_html( $return_data['subject'] ); ?></i></p></p>
-			<p><b><?php esc_html_e( 'Reason', 'woo-refund-and-exchange-lite' ); ?> :</b></p>
-			<p><?php echo isset( $return_data['reason'] ) ? esc_html( $return_data['reason'] ) : esc_html__( 'No Reason', 'woo-refund-and-exchange-lite' ); ?></p>
+			<p><strong><?php esc_html_e( 'Subject', 'woo-refund-and-exchange-lite' ); ?> : </strong><i> <?php echo esc_html( $return_data['subject'] ); ?></i></p>
 			<?php
-				$bank_details = get_post_meta( $order_id, 'mwb_rma_bank_details', true );
+			if ( isset( $return_data['reason'] ) && ! empty( $return_data['reason'] ) ) {
+				echo '<p><b>' . esc_html( 'Reason', 'woo-refund-and-exchange-lite' ) . ': </b></p>';
+				echo '<p>' . esc_html( $return_data['reason'] ) . '</p>';
+			}
+			?>
+			<?php
+			$bank_details = get_post_meta( $order_id, 'mwb_rma_bank_details', true );
 			if ( ! empty( $bank_details ) ) {
 				?>
-					<p><strong><?php esc_html_e( 'Bank Details', 'woo-refund-and-exchange-lite' ); ?> :</strong><i> <?php echo esc_html( $bank_details ); ?></i></p></p>
-					<?php
+				<p><strong><?php esc_html_e( 'Bank Details', 'woo-refund-and-exchange-lite' ); ?> :</strong><i> <?php echo esc_html( $bank_details ); ?></i></p>
+				<?php
 			}
-
 			?>
 			<?php
 			$req_attachments = get_post_meta( $order_id, 'mwb_rma_return_attachment', true );
@@ -227,7 +220,6 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 			?>
 			<input type="hidden" name="mwb_rma_total_amount_for_refund" class="mwb_rma_total_amount_for_refund" value="<?php echo esc_html( $total_refund_amu ); ?>">
 			<input type="hidden" value="<?php echo esc_html( $return_data['subject'] ); ?>" id="mwb_rma_refund_reason">
-
 			<?php
 			$approve_date          = date_create( $return_data['approve_date'] );
 			$date_format           = get_option( 'date_format' );
@@ -267,7 +259,6 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 			<?php
 		}
 		?>
-		<hr/>
 		<?php
 	}
 } else {
