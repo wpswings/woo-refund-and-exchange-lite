@@ -410,8 +410,6 @@ if ( 'yes' === $allowed ) {
 		echo esc_html__( 'Refund Request Can\'t make on this order', 'mwb-woocommerce-rma' );
 	}
 }
-
-
 $mwb_wrma_show_sidebar_on_form =
 // Side show/hide on refund request form.
 apply_filters( 'mwb_rma_refund_form_sidebar', true );

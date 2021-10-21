@@ -179,7 +179,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			$refund_method  = apply_filters( 'mwb_rma_refund_method_wallet', $refund_method );
 			$wallet_enabled = get_option( 'mwb_rma_wallet_enable', 'no' );
 			$refund_method  = get_option( 'mwb_rma_refund_method', 'no' );
-			if ( mwb_rma_pro_active() && 'on' === $wallet_enabled && 'on' !== $refund_method ) {
+			if ( mwb_rma_pro_active() && 'on' === $wallet_enabled && ( 'on' !== $refund_method || empty( $refund_method ) ) ) {
 				$refund_method = 'wallet_method';
 			}
 			$products1 = $_POST;
@@ -243,8 +243,8 @@ class Woo_Refund_And_Exchange_Lite_Common {
 
 		// Send refund request email to admin.
 
-		$restrict_mail = apply_filters( 'mwb_rma_restrict_refund_request_mails', false );
-		if ( ! $restrict_mail ) {
+		$restrict_mail = apply_filters( 'mwb_rma_restrict_refund_request_mails', true );
+		if ( $restrict_mail ) {
 			do_action( 'mwb_rma_refund_req_email', $order_id );
 		}
 		do_action( 'mwb_rma_do_something_on_refund', $order_id, $item_ids );
@@ -374,5 +374,23 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			restore_current_blog();
 		}
 
+	}
+
+	/**
+	 * Send refund request accept email to customer
+	 *
+	 * @param string $order_id .
+	 */
+	public function mwb_rma_refund_req_accept_email( $order_id ) {
+		include_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php';
+	}
+
+	/**
+	 * Send refund request cancel email to customer.
+	 *
+	 * @param string $order_id .
+	 */
+	public function mwb_rma_refund_req_cancel_email( $order_id ) {
+		include_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-cancel-email.php';
 	}
 }

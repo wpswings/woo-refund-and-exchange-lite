@@ -113,11 +113,11 @@ $message       .= '<tr>
 $attachment     = array();
 $to             = get_option( 'admin_email' );
 $admin_email    = WC()->mailer()->emails['mwb_rma_refund_request_email'];
-$restrict_mail1 = apply_filters( 'mwb_rma_restrict_refund_request_user_mail', false );
-$restrict_mail2 = apply_filters( 'mwb_rma_restrict_refund_request_admin_mail', false );
-if ( ! $restrict_mail2 ) {
+$restrict_mail1 = apply_filters( 'mwb_rma_restrict_refund_request_user_mail', true );
+$restrict_mail2 = apply_filters( 'mwb_rma_restrict_refund_request_admin_mail', true );
+if ( $restrict_mail2 ) {
 	$admin_email->trigger( $message, $attachment, $to, $order_id );
 }
-if ( ! $restrict_mail1 ) {
+if ( $restrict_mail1 ) {
 	$admin_email->trigger( $message, $attachment, $order_obj->get_billing_email(), $order_id );
 }

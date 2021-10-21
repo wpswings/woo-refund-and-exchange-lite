@@ -229,10 +229,6 @@ class Woo_Refund_And_Exchange_Lite {
 		// Update Refund Created amount.
 		$this->loader->add_action( 'woocommerce_refund_created', $wrael_plugin_admin, 'mwb_rma_action_woocommerce_order_refunded', 10, 2 );
 
-		// Send Email.
-		$this->loader->add_action( 'mwb_rma_refund_req_accept_email', $wrael_plugin_admin, 'mwb_rma_refund_req_accept_email', 10 );
-		$this->loader->add_action( 'mwb_rma_refund_req_cancel_email', $wrael_plugin_admin, 'mwb_rma_refund_req_cancel_email', 10 );
-
 		// Save policies setting.
 		$this->loader->add_action( 'mwb_rma_settings_saved_notice', $wrael_plugin_admin, 'mwb_rma_save_policies_setting' );
 	}
@@ -277,6 +273,10 @@ class Woo_Refund_And_Exchange_Lite {
 
 		// Multisite compatibility.
 		$this->loader->add_action( 'wp_initialize_site', $wrael_plugin_common, 'mwb_rma_plugin_on_create_blog', 900 );
+
+		// Send Email.
+		$this->loader->add_action( 'mwb_rma_refund_req_accept_email', $wrael_plugin_common, 'mwb_rma_refund_req_accept_email', 10 );
+		$this->loader->add_action( 'mwb_rma_refund_req_cancel_email', $wrael_plugin_common, 'mwb_rma_refund_req_cancel_email', 10 );
 	}
 
 	/**

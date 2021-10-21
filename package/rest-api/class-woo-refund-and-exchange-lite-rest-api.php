@@ -106,8 +106,8 @@ class Woo_Refund_And_Exchange_Lite_Rest_Api {
 	/**
 	 * Begins validation process of api endpoint.
 	 *
-	 * @param   Array $request    All information related with the api request containing in this array.
-	 * @return  Array   $result   return rest response to server from where the endpoint hits.
+	 * @param  Object $request    All information related with the api request containing in this array.
+	 * @return Array $result   return rest response to server from where the endpoint hits.
 	 * @since    1.0.0
 	 */
 	public function mwb_rma_default_permission_check( $request ) {
