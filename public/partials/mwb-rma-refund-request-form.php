@@ -40,12 +40,9 @@ if ( isset( $condition ) && 'yes' === $condition && isset( $order_id ) && ! empt
 		if ( get_current_user_id() != $order_customer_id ) {
 			$myaccount_page     = get_option( 'woocommerce_myaccount_page_id' );
 			$myaccount_page_url = get_permalink( $myaccount_page );
-			$allowed            = 'no';
-			$reason             = wp_kses_post( "This order #$order_id is not associated to your account. <a href='$myaccount_page_url'>Click Here</a>" );
+			$condition          = wp_kses_post( "This order #$order_id is not associated to your account. <a href='$myaccount_page_url'>Click Here</a>" );
 		}
 	}
-} else {
-	$allowed = 'no';
 }
 $products = get_post_meta( $order_id, 'mwb_rma_return_product', true );
 // Get pending return request.
@@ -62,10 +59,6 @@ if ( isset( $products ) && ! empty( $products ) ) {
 		break;
 	}
 }
-
-if ( isset( $reason ) && ! empty( $reason ) ) {
-	$condition = $reason;
-}
 get_header( 'shop' );
 
 
@@ -76,7 +69,7 @@ if ( $mwb_wrma_show_sidebar_on_form ) {
 	// Before Main Content.
 	do_action( 'woocommerce_before_main_content' );
 }
-if ( 'yes' === $allowed ) {
+if ( isset( $condition ) && 'yes' === $condition ) {
 	$mwb_refund_wrapper_class = get_option( 'mwb_wrma_refund_form_wrapper_class' );
 	$mwb_return_css           = get_option( 'mwb_wrma_return_custom_css' );
 	?>
