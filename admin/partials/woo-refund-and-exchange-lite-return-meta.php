@@ -233,7 +233,7 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 			<?php
 			if ( 'yes' !== $mwb_rma_refund_amount ) {
 				?>
-				<input type="button" name="mwb_rma_left_amount" data-refund_method="<?php echo esc_html( $refund_method ); ?>" class="button button-primary" data-orderid="<?php echo esc_html( $order_id ); ?>" id="mwb_rma_left_amount" Value="<?php esc_html_e( 'Refund Amount', 'woo-refund-and-exchange-lite' ); ?>" >
+				<input type="button" class="button button-primary" name="mwb_rma_left_amount" data-refund_method="<?php echo esc_html( $refund_method ); ?>" class="button button-primary" data-orderid="<?php echo esc_html( $order_id ); ?>" id="mwb_rma_left_amount" Value="<?php esc_html_e( 'Refund Amount', 'woo-refund-and-exchange-lite' ); ?>" >
 				<?php
 			}
 			$manage_stock = get_option( 'mwb_rma_refund_manage_stock', 'no' );
@@ -244,7 +244,7 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 			}
 			if ( 'on' === $manage_stock && 'yes' === $mwb_rma_manage_stock_for_return ) {
 				?>
-				<div id="mwb_rma_stock_button_wrapper"><?php esc_html_e( 'When Product Back in stock then for stock management click on ', 'woo-refund-and-exchange-lite' ); ?> <input type="button" name="mwb_rma_stock_back" class="button button-primary" id="mwb_rma_stock_back" data-type="mwb_rma_return" data-orderid="<?php echo esc_html( $order_id ); ?>" Value="<?php esc_html_e( 'Manage Stock', 'woo-refund-and-exchange-lite' ); ?>" ></div> 
+				<div id="mwb_rma_stock_button_wrapper"><?php esc_html_e( 'When Product Back in stock then for stock management click on ', 'woo-refund-and-exchange-lite' ); ?> <input type="button" class="button button-primary" name="mwb_rma_stock_back" class="button button-primary" id="mwb_rma_stock_back" data-type="mwb_rma_return" data-orderid="<?php echo esc_html( $order_id ); ?>" Value="<?php esc_html_e( 'Manage Stock', 'woo-refund-and-exchange-lite' ); ?>" ></div> 
 				<?php
 			}
 		}

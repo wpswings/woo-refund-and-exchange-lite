@@ -75,7 +75,7 @@ class Woo_Refund_And_Exchange_Lite_Rest_Api {
 	public function mwb_rma_add_endpoint() {
 		register_rest_route(
 			'rma',
-			'/refund-request',
+			'refund-request',
 			array(
 				'methods'             => 'POST',
 				'callback'            => array( $this, 'mwb_rma_refund_request_callback' ),
@@ -84,7 +84,7 @@ class Woo_Refund_And_Exchange_Lite_Rest_Api {
 		);
 		register_rest_route(
 			'rma',
-			'/refund-request-accept',
+			'refund-request-accept',
 			array(
 				'methods'             => 'POST',
 				'callback'            => array( $this, 'mwb_rma_refund_request_accept_callback' ),
@@ -93,7 +93,7 @@ class Woo_Refund_And_Exchange_Lite_Rest_Api {
 		);
 		register_rest_route(
 			'rma',
-			'/refund-request-cancel',
+			'refund-request-cancel',
 			array(
 				'methods'             => 'POST',
 				'callback'            => array( $this, 'mwb_rma_refund_request_cancel_callback' ),

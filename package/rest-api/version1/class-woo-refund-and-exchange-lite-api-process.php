@@ -50,13 +50,10 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 			$refund_method         = isset( $data['refund_method'] ) ? $data['refund_method'] : '';
 			$mwb_rma_rest_response = array();
 			$order_obj             = wc_get_order( $order_id );
-			// My code start .
 			if ( ! empty( $order_id ) && ! empty( $order_obj ) && ! empty( $reason ) ) {
 				$check_refund = mwb_rma_show_buttons( 'refund', $order_obj );
 				if ( 'yes' === $check_refund ) {
-					require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'common/class-woo-refund-and-exchange-lite-common.php';
-					$mwb_rma_obj = new Woo_Refund_And_Exchange_Lite_Common( 'Return Refund and Exchange for WooCommerce', '4.0.0' );
-					if ( mwb_rma_pro_active() ) {
+					if ( mwb_rma_pro_active() && ! empty( $products ) ) {
 						$products1    = array();
 						$array_merge  = array();
 						$ref_price    = 0;
@@ -142,13 +139,16 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 							$mwb_rma_rest_response['message'] = 'error';
 							$mwb_rma_rest_response['status']  = 404;
 							$mwb_rma_rest_response['data']    = esc_html__( 'Products given by you dosn\'t a valid json format', 'woo-refund-and-exchange-lite' );
+						} elseif ( empty( $products ) ) {
+							$mwb_rma_rest_response['status'] = 404;
+							$mwb_rma_rest_response['data']   = esc_html__( 'Please Provide the data for the products', 'woo-refund-and-exchange-lite' );
 						} else {
 							$products1['products']      = $array_merge;
 							$products1['order_id']      = $order_id;
 							$products1['subject']       = $reason;
 							$products1['refund_method'] = $refund_method;
 							$products1['amount']        = $ref_price;
-							$mwb_rma_resultsdata        = $mwb_rma_obj->mwb_rma_save_return_request_callback( $order_id, $refund_method, $products1 );
+							$mwb_rma_resultsdata        = mwb_rma_save_return_request_callback( $order_id, $refund_method, $products1 );
 							if ( ! empty( $mwb_rma_resultsdata ) ) {
 								$mwb_rma_rest_response['message'] = 'success';
 								$mwb_rma_rest_response['status']  = 200;
@@ -194,7 +194,7 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 							$products1['refund_method'] = 'manual_method';
 							$products1['amount']        = $ref_price;
 						}
-						$mwb_rma_resultsdata = $mwb_rma_obj->mwb_rma_save_return_request_callback( $order_id, 'manual_method', $products1 );
+						$mwb_rma_resultsdata = mwb_rma_save_return_request_callback( $order_id, 'manual_method', $products1 );
 						$flag_refund_made    = false;
 						$products            = get_post_meta( $order_id, 'mwb_rma_return_product', true );
 						if ( isset( $products ) && ! empty( $products ) ) {
@@ -225,6 +225,9 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 			} elseif ( empty( $reason ) ) {
 				$mwb_rma_rest_response['status'] = 404;
 				$mwb_rma_rest_response['data']   = esc_html__( 'Please Provide the reason for refund', 'woo-refund-and-exchange-lite' );
+			} elseif ( empty( $products ) ) {
+				$mwb_rma_rest_response['status'] = 404;
+				$mwb_rma_rest_response['data']   = esc_html__( 'Please Provide the data for the products', 'woo-refund-and-exchange-lite' );
 			} else {
 				$mwb_rma_rest_response['status'] = 404;
 				$mwb_rma_rest_response['data']   = esc_html__( 'Please Provide the correct order id to perform the process', 'woo-refund-and-exchange-lite' );
@@ -258,9 +261,7 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 					}
 				}
 				if ( $flag ) {
-					require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/class-woo-refund-and-exchange-lite-admin.php';
-					$mwb_rma_obj         = new Woo_Refund_And_Exchange_Lite_Admin( 'Return Refund and Exchange for WooCommerce', '4.0.0' );
-					$mwb_rma_resultsdata = $mwb_rma_obj->mwb_rma_return_req_approve_callback( $order_id, $products );
+					$mwb_rma_resultsdata = mwb_rma_return_req_approve_callback( $order_id, $products );
 					if ( ! empty( $mwb_rma_resultsdata ) ) {
 						$mwb_rma_rest_response['status'] = 200;
 						$mwb_rma_rest_response['data']   = esc_html__( 'Return Request Accepted Successfully', 'woo-refund-and-exchange-lite' );
@@ -292,7 +293,7 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 		public function mwb_rma_refund_request_cancel_process( $wrael_request ) {
 			$mwb_rma_rest_response = array();
 			$data                  = $wrael_request->get_params();
-			$order_id              = isset( $data['order_id'] ) ? absint( $data['order_id'] ) : '';
+			$order_id              = isset( $data['order_id'] ) ? absint( $data['order_id'] ) : 0;
 			$flag                  = false;
 			$flag_cancel           = false;
 			$order_obj             = wc_get_order( $order_id );
@@ -308,9 +309,7 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 					}
 				}
 				if ( $flag ) {
-					require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/class-woo-refund-and-exchange-lite-admin.php';
-					$mwb_rma_obj         = new Woo_Refund_And_Exchange_Lite_Admin( 'Return Refund and Exchange for WooCommerce', '4.0.0' );
-					$mwb_rma_resultsdata = $mwb_rma_obj->mwb_rma_return_req_cancel_callback( $order_id, $products );
+					$mwb_rma_resultsdata = mwb_rma_return_req_cancel_callback( $order_id, $products );
 					if ( ! empty( $mwb_rma_resultsdata ) ) {
 						$mwb_rma_rest_response['status'] = 200;
 						$mwb_rma_rest_response['data']   = esc_html__( 'Return Request Cancel Successfully', 'woo-refund-and-exchange-lite' );

@@ -336,8 +336,7 @@
 				type: "POST",
 				data: data,
 				dataType :'json',
-				success: function(response)
-			{
+				success: function(response){
 					$( ".mwb_rma_return_loader" ).hide();
 					window.location.reload();
 				}

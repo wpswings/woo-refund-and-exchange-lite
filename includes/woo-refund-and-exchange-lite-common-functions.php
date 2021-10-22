@@ -223,14 +223,240 @@ function mwb_rma_pro_active() {
 	return $pro_active;
 }
 
-function mwb_json_validate($string) {
-	// decode the JSON data
-	$result = json_decode($string);
 
+/**
+ * This function is a callback function to save return request.
+ *
+ * @param int    $order_id .
+ * @param string $refund_method .
+ * @param array  $products1 .
+ */
+function mwb_rma_save_return_request_callback( $order_id, $refund_method, $products1 ) {
+	update_option( $order_id . 'mwb_rma_refund_method', $refund_method );
+	$order = wc_get_order( $order_id );
+	if ( empty( get_post_meta( $order_id, 'mwb_rma_request_made', true ) ) ) {
+		$item_id = array();
+	} else {
+		$item_id = get_post_meta( $order_id, 'mwb_rma_request_made', true );
+	}
+	$item_ids = array();
+	if ( isset( $products1 ) && ! empty( $products1 ) && is_array( $products1 ) ) {
+		foreach ( $products1 as $post_key => $post_value ) {
+			if ( is_array( $post_value ) && ! empty( $post_value ) ) {
+				foreach ( $post_value as $post_val_key => $post_val_value ) {
+					$item_id[ $post_val_value['item_id'] ] = 'pending';
+					$item_ids[]                            = $post_val_value['item_id'];
+				}
+			}
+		}
+	}
+	update_post_meta( $order_id, 'mwb_rma_request_made', $item_id );
+	$products = get_post_meta( $order_id, 'mwb_rma_return_product', true );
+	$pending  = true;
+	if ( isset( $products ) && ! empty( $products ) ) {
+		foreach ( $products as $date => $product ) {
+			if ( 'pending' === $product['status'] ) {
+					$products[ $date ]           = $products1;
+					$products[ $date ]['status'] = 'pending'; // update requested products.
+					$pending                     = false;
+					break;
+			}
+		}
+	}
+	if ( $pending ) {
+		if ( ! is_array( $products ) ) {
+			$products = array();
+		}
+		$products                    = array();
+		$date                        = date_i18n( wc_date_format(), time() );
+		$products[ $date ]           = $products1;
+		$products[ $date ]['status'] = 'pending';
+
+	}
+
+	update_post_meta( $order_id, 'mwb_rma_return_product', $products );
+
+	// Send refund request email to admin.
+
+	$restrict_mail = apply_filters( 'mwb_rma_restrict_refund_request_mails', true );
+	if ( $restrict_mail ) {
+		do_action( 'mwb_rma_refund_req_email', $order_id );
+	}
+	do_action( 'mwb_rma_do_something_on_refund', $order_id, $item_ids );
+	$order->update_status( 'wc-return-requested', esc_html__( 'User Request to refund product', 'woo-refund-and-exchange-lite' ) );
+	$response['auto_accept'] = apply_filters( 'mwb_rma_auto_accept_refund', false );
+	$response['flag']        = true;
+	$response['msg']         = esc_html__( 'Refund request placed successfully. You have received a notification mail regarding this. You will redirect to the My Account Page', 'woo-refund-and-exchange-lite' );
+	return $response;
+}
+
+/**
+ * Accept return request approve callback.
+ *
+ * @param string  $orderid .
+ * @param array() $products .
+ */
+function mwb_rma_return_req_approve_callback( $orderid, $products ) {
+	// Fetch and update the return request product.
+	if ( isset( $products ) && ! empty( $products ) ) {
+		foreach ( $products as $date => $product ) {
+			if ( 'pending' === $product['status'] ) {
+				$product_datas                     = $product['products'];
+				$products[ $date ]['status']       = 'complete';
+				$approvdate                        = date_i18n( wc_date_format(), time() );
+				$products[ $date ]['approve_date'] = $approvdate;
+				break;
+			}
+		}
+	}
+
+	// Update the status.
+	update_post_meta( $orderid, 'mwb_rma_return_product', $products );
+
+	$request_files = get_post_meta( $orderid, 'mwb_rma_return_attachment', true );
+	if ( isset( $request_files ) && ! empty( $request_files ) ) {
+		foreach ( $request_files as $date => $request_file ) {
+			if ( 'pending' === $request_file['status'] ) {
+				$request_files[ $date ]['status'] = 'complete';
+				break;
+			}
+		}
+	}
+	// Update the status.
+	update_post_meta( $orderid, 'mwb_rma_return_attachment', $request_files );
+	$total_price = 0;
+	$order_obj = wc_get_order( $orderid );
+	// Reduce the order item qty because of return.
+	if ( isset( $product_datas ) && ! empty( $product_datas ) ) {
+		foreach ( $order_obj->get_items() as $item_id => $item ) {
+			$product = apply_filters( 'woocommerce_order_item_product', $order_obj->get_product_from_item( $item ), $item );
+			foreach ( $product_datas as $requested_product ) {
+				if ( $item_id == $requested_product['item_id'] ) {
+					if ( $item['product_id'] == $requested_product['product_id'] || $item['variation_id'] == $requested_product['variation_id']) {
+						$product     = apply_filters( 'woocommerce_order_item_product', $order_obj->get_product_from_item( $item ), $item );
+						$item['qty'] = $item['qty'] - $requested_product['qty'];
+						$args['qty'] = $item['qty'];
+						wc_update_order_item_meta( $item_id, '_qty', $item['qty'] );
+
+						$product = wc_get_product($product->get_id());
+
+						if ( $product->backorders_require_notification() && $product->is_on_backorder( $args['qty'] ) ) {
+							$item->add_meta_data( apply_filters( 'woocommerce_backordered_item_meta_name', __( 'Backordered', 'woocommerce' ) ), $args['qty'] - max( 0, $product->get_stock_quantity() ), true );
+						}
+						$item_data          = $item->get_data();
+						$price_excluded_tax = wc_get_price_excluding_tax($product, array( 'qty' => 1 ));
+						$price_tax_excluded = $item_data['total']/$item_data['quantity'];
+						$args['subtotal']   = $price_excluded_tax*$args['qty'];
+						$args['total']	    = $price_tax_excluded*$args['qty'];
+						$item->set_order_id( $orderid );
+						$item->set_props( $args );
+						$item->save();
+						$total_price += $requested_product['price'] * $requested_product['qty'];
+						/* translators1: product name .
+							* translators2: product qty.
+							*/
+						$order_obj->add_order_note( sprintf( __( '%s %s Item Quantity has been reduce because of the return', 'woo-refund-and-exchange-lite' ), $product->get_name(), $requested_product['qty'] ), false, true );
+					}
+				}
+			}
+		}
+	}
+	if ( $total_price > 0 ) {
+		$new_fee = new WC_Order_Item_Fee();
+		$new_fee->set_name( esc_attr( 'Refundable Amount' ) );
+		$new_fee->set_total( $total_price );
+		$new_fee->set_tax_class( '' );
+		$new_fee->set_tax_status( 'none' );
+		$new_fee->save();
+		$order_obj->add_item( $new_fee );
+	}
+	$update_item_status = get_post_meta( $orderid, 'mwb_rma_request_made', true );
+	foreach ( get_post_meta( $orderid, 'mwb_rma_return_product', true ) as $key => $value ) {
+		foreach ( $value['products'] as $key => $value ) {
+			if ( isset( $update_item_status[ $value['item_id'] ] ) ) {
+				$update_item_status[ $value['item_id'] ] = 'completed';
+			}
+		}
+	}
+	update_post_meta( $orderid, 'mwb_rma_request_made', $update_item_status );
+	// Send refund request accept email to customer.
+
+	$restrict_mail =
+	// Allow/Disallow Email.
+	apply_filters( 'mwb_rma_restrict_refund_app_mails', true );
+	if ( $restrict_mail ) {
+		// To Send Refund Request Accept Email.
+		do_action( 'mwb_rma_refund_req_accept_email', $orderid );
+	}
+	// Partial Stock Manage.
+	do_action( 'mwb_rma_refund_partial_stock_product', $orderid );
+	$order_obj->update_status( 'wc-return-approved', esc_html__( 'User Request of Refund Product is approved', 'woo-refund-and-exchange-lite' ) );
+	$response             = array();
+	$response['response'] = 'success';
+	return $response;
+}
+
+/**
+ * Cancel return request cancel callback.
+ *
+ * @param string  $orderid .
+ * @param array() $products .
+ */
+function mwb_rma_return_req_cancel_callback( $orderid, $products ) {
+	// Fetch the return request product.
+	if ( isset( $products ) && ! empty( $products ) ) {
+		foreach ( $products as $date => $product ) {
+			if ( 'pending' === $product['status'] ) {
+				$product_datas                    = $product['products'];
+				$products[ $date ]['status']      = 'cancel';
+				$canceldate                       = date_i18n( wc_date_format(), time() );
+				$products[ $date ]['cancel_date'] = $canceldate;
+				break;
+			}
+		}
+	}
+	// Update the status.
+	update_post_meta( $orderid, 'mwb_rma_return_product', $products );
+
+	$request_files = get_post_meta( $orderid, 'mwb_rma_return_attachment', true );
+	if ( isset( $request_files ) && ! empty( $request_files ) ) {
+		foreach ( $request_files as $date => $request_file ) {
+			if ( 'pending' === $request_file['status'] ) {
+				$request_files[ $date ]['status'] = 'cancel';
+			}
+		}
+	}
+	// Update the status.
+	update_post_meta( $orderid, 'ced_rnx_return_attachment', $request_files );
+
+	// Send the cancel refund request email to customer.
+
+	$restrict_mail =
+	// Allow/Disallow Email.
+	apply_filters( 'mwb_rma_restrict_refund_cancel_mails', true );
+	if ( $restrict_mail ) {
+		// To Send Refund Request Cancel Email.
+		do_action( 'mwb_rma_refund_req_cancel_email', $orderid );
+	}
+	$order_obj = wc_get_order( $orderid );
+	$order_obj->update_status( 'wc-return-cancelled', esc_html__( 'User Request of Refund Product is cancel', 'woo-refund-and-exchange-lite' ) );
+	$response             = array();
+	$response['response'] = 'success';
+	return $response;
+}
+
+/**
+ * Validate the json string .
+ *
+ * @param string $string .
+ */
+function mwb_json_validate( $string ) {
+	// decode the JSON data .
+	$result = json_decode( $string );
 	// switch and check possible JSON errors .
-	switch (json_last_error()) {
+	switch ( json_last_error() ) {
 		case JSON_ERROR_NONE:
-			$error = ''; // JSON is valid // No error has occurred
+			$error = ''; // JSON is valid // No error has occurred.
 			break;
 		case JSON_ERROR_DEPTH:
 			$error = 'The maximum stack depth has been exceeded.';
@@ -244,15 +470,15 @@ function mwb_json_validate($string) {
 		case JSON_ERROR_SYNTAX:
 			$error = 'Syntax error, malformed JSON.';
 			break;
-		// PHP >= 5.3.3
+		// PHP >= 5.3.3 .
 		case JSON_ERROR_UTF8:
 			$error = 'Malformed UTF-8 characters, possibly incorrectly encoded.';
 			break;
-		// PHP >= 5.5.0
+		// PHP >= 5.5.0 .
 		case JSON_ERROR_RECURSION:
 			$error = 'One or more recursive references in the value to be encoded.';
 			break;
-		// PHP >= 5.5.0
+		// PHP >= 5.5.0 .
 		case JSON_ERROR_INF_OR_NAN:
 			$error = 'One or more NAN or INF values in the value to be encoded.';
 			break;
@@ -264,10 +490,10 @@ function mwb_json_validate($string) {
 			break;
 	}
 
-	if ($error !== '') {
-		// throw the Exception or exit // or whatever :)
-		exit($error);
+	if ( $error !== '' ) {
+		// throw the Exception or exit // or whatever :) .
+		exit( $error );
 	}
-	// everything is OK
+	// everything is OK .
 	return $result;
 }
