@@ -35,7 +35,7 @@ get_header( 'shop' );
 // Before Main Content.
 do_action( 'woocommerce_before_main_content' );
 
-if ( isset( $order_id ) ) {
+if ( isset( $order_id ) && ! empty( $order_id ) ) {
 	?>
 <div class="mwb_rma_order_msg_wrapper">
 	<?php if ( $flag ) { ?>	
