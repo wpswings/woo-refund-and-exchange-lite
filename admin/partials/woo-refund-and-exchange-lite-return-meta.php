@@ -15,7 +15,6 @@ if ( ! is_int( $thepostid ) ) {
 if ( ! is_object( $theorder ) ) {
 	$theorder = wc_get_order( $thepostid );
 }
-
 $order_obj    = $theorder;
 $order_id     = $order_obj->get_id();
 $return_datas = get_post_meta( $order_id, 'mwb_rma_return_product', true );
