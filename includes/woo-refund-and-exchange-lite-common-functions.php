@@ -289,7 +289,7 @@ function mwb_rma_save_return_request_callback( $order_id, $refund_method, $produ
 	$response['auto_accept'] = apply_filters( 'mwb_rma_auto_accept_refund', false );
 	$response['flag']        = true;
 	$response['msg']         = esc_html__( 'Refund request placed successfully. You have received a notification mail regarding this. You will redirect to the My Account Page', 'woo-refund-and-exchange-lite' );
-	return '$response';
+	return $response;
 }
 
 /**
