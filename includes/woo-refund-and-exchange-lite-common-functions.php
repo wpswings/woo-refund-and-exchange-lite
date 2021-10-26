@@ -276,18 +276,20 @@ function mwb_rma_save_return_request_callback( $order_id, $refund_method, $produ
 
 	update_post_meta( $order_id, 'mwb_rma_return_product', $products );
 
-	// Send refund request email to admin.
+	// Send refund request email to admin and customer.
 
 	$restrict_mail = apply_filters( 'mwb_rma_restrict_refund_request_mails', true );
 	if ( $restrict_mail ) {
 		do_action( 'mwb_rma_refund_req_email', $order_id );
 	}
 	do_action( 'mwb_rma_do_something_on_refund', $order_id, $item_ids );
+
 	$order->update_status( 'wc-return-requested', esc_html__( 'User Request to refund product', 'woo-refund-and-exchange-lite' ) );
+
 	$response['auto_accept'] = apply_filters( 'mwb_rma_auto_accept_refund', false );
 	$response['flag']        = true;
 	$response['msg']         = esc_html__( 'Refund request placed successfully. You have received a notification mail regarding this. You will redirect to the My Account Page', 'woo-refund-and-exchange-lite' );
-	return $response;
+	return '$response';
 }
 
 /**
@@ -444,7 +446,6 @@ function mwb_rma_return_req_cancel_callback( $orderid, $products ) {
 	$response['response'] = 'success';
 	return $response;
 }
-
 /**
  * Validate the json string .
  *
