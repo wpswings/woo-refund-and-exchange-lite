@@ -311,7 +311,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		// To extend the general setting.
 		apply_filters( 'mwb_rma_general_setting_extend', $wrael_settings_general );
 		$wrael_settings_general[] = array(
-			'title'   => esc_html__( 'Enable to Show Bank Details field for Manual Refund', 'woo-refund-and-exchange-lite' ),
+			'title'   => esc_html__( 'Enable to Show Bank Details Field For Manual Refund', 'woo-refund-and-exchange-lite' ),
 			'type'    => 'radio-switch',
 			'id'      => 'mwb_rma_refund_manually_de',
 			'value'   => get_option( 'mwb_rma_refund_manually_de' ),

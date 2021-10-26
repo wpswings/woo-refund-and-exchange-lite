@@ -102,15 +102,6 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 					);
 					$get_order_currency = get_woocommerce_currency_symbol( $order_obj->get_currency() );
 					foreach ( $order_obj->get_items() as $item_id => $item ) {
-						$item_refund_already = get_post_meta( $order_id, 'ssssssssssssss', true );
-						$item_allowed        =
-						// Remove Item From Refund.
-						apply_filters( 'mwb_rma_remove_item_from_refund', false );
-						if ( $item_allowed ) {
-							if ( ! empty( $item_refund_already ) && isset( $item_refund_already[ $item_id ] ) && 'completed' === $item_refund_already[ $item_id ] ) {
-								continue;
-							}
-						}
 						if ( $item['qty'] > 0 ) {
 							if ( isset( $item['variation_id'] ) && $item['variation_id'] > 0 ) {
 								$variation_id = $item['variation_id'];

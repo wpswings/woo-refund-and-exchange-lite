@@ -55,5 +55,13 @@ class Woocommerce_Rma_Lite_Preset_Settings {
 			'email_type'         => 'html',
 		);
 		update_option( 'woocommerce_mwb_rma_refund_request_cancel_email_settings', $refund_request_cancel_add );
+		$refund_request_cancel_add = array(
+			'enabled'            => 'yes',
+			'subject'            => 'Your {site_title} order {order_id} message from {message_date}',
+			'heading'            => 'Thank You',
+			'additional_content' => '',
+			'email_type'         => 'html',
+		);
+		update_option( 'woocommerce_mwb_rma_order_messages_email_settings', $refund_request_cancel_add );
 	}
 }

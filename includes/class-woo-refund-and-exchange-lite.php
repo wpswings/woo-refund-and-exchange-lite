@@ -730,7 +730,6 @@ class Woo_Refund_And_Exchange_Lite {
 						case 'button':
 							?>
 						<div class="mwb-form-group">
-							<div class="mwb-form-group__label"></div>
 							<div class="mwb-form-group__control">
 								<button class="mdc-button mdc-button--raised" name= "<?php echo ( isset( $wrael_component['name'] ) ? esc_html( $wrael_component['name'] ) : esc_html( $wrael_component['id'] ) ); ?>"
 									id="<?php echo esc_attr( $wrael_component['id'] ); ?>"> <span class="mdc-button__ripple"></span>

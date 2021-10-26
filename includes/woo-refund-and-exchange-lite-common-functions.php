@@ -240,14 +240,10 @@ function mwb_rma_save_return_request_callback( $order_id, $refund_method, $produ
 		$item_id = get_post_meta( $order_id, 'mwb_rma_request_made', true );
 	}
 	$item_ids = array();
-	if ( isset( $products1 ) && ! empty( $products1 ) && is_array( $products1 ) ) {
-		foreach ( $products1 as $post_key => $post_value ) {
-			if ( is_array( $post_value ) && ! empty( $post_value ) ) {
-				foreach ( $post_value as $post_val_key => $post_val_value ) {
-					$item_id[ $post_val_value['item_id'] ] = 'pending';
-					$item_ids[]                            = $post_val_value['item_id'];
-				}
-			}
+	if ( isset( $products1['products'] ) && ! empty( $products1['products'] ) && is_array( $products1['products'] ) ) {
+		foreach ( $products1['products'] as $post_key => $post_value ) {
+			$item_id[ $post_value['item_id'] ] = 'pending';
+			$item_ids[]                        = $post_value['item_id'];
 		}
 	}
 	update_post_meta( $order_id, 'mwb_rma_request_made', $item_id );

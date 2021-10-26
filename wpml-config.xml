@@ -12,7 +12,11 @@
             <key name="subject" />
             <key name="heading" />
         </key>
-          <key name="woocommerce_mwb_rma_refund_request_cancel_email_settings">
+        <key name="woocommerce_mwb_rma_refund_request_cancel_email_settings">
+            <key name="subject" />
+            <key name="heading" />
+        </key>
+         <key name="woocommerce_mwb_rma_order_messages_email_settings">
             <key name="subject" />
             <key name="heading" />
         </key>
