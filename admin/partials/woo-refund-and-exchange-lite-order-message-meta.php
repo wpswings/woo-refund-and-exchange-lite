@@ -38,11 +38,16 @@ $order_id  = $order_obj->get_id();
 					foreach ( $o_val as $om_key => $om_val ) {
 						$sender = ( 'Customer' === $om_val['sender'] ) ? esc_html__( 'Customer', 'woo-refund-and-exchange-lite' ) : esc_html__( 'Shop Manager', 'woo-refund-and-exchange-lite' );
 						?>
-						<div class="mwb_order_msg_main_container mwb_order_messages">
-							<div>
-								<div class="mwb_order_msg_sender <?php echo 'mwb_order_msg_sender_' . esc_html( $om_val['sender'] ); ?>"><?php echo esc_html( $sender ); ?></div>
-								<span class="mwb_order_msg_date"><?php echo esc_html( get_date_from_gmt( gmdate( 'Y-m-d h:i a', $om_key ), 'Y-m-d h:i a' ) ); ?></span>
-							</div>
+						<div class="mwb-order-msg__row">
+							<div class="mwb_order_msg_main_container mwb_order_messages <?php echo ( 'Customer' === $om_val['sender'] ) ? 'wmb-order-customer__msg-container' : 'wmb-order-admin__msg-container'; ?>">
+									<div class="mwb_order_msg_sender_details">
+										<span class="mwb_order_msg_sender "><?php echo esc_html( $sender ); ?></span>
+										<span class="mwb_order_msg_date"><?php echo esc_html( get_date_from_gmt( gmdate( 'Y-m-d h:i a', $om_key ), 'Y-m-d h:i a' ) ); ?></span>
+									</div>
+								</div>
+								<div class="mwb_order_msg_detail_container">
+									<span><?php echo esc_html( $om_val['msg'] ); ?></span>
+								</div>
 							<div class="mwb_order_msg_detail_container">
 								<span><?php echo esc_html( $om_val['msg'] ); ?></span>
 							</div>
@@ -79,10 +84,10 @@ $order_id  = $order_obj->get_id();
 		<form id="mwb_order_new_msg_form" method="post" enctype="multipart/form-data" action="">
 			<div class="mwb_order_msg_title"><h4 class="mwb-order-heading"><?php esc_html_e( 'Add a message', 'woo-refund-and-exchange-lite' ); ?></h4></div>
 			<textarea id="mwb_order_new_msg" name="mwb_order_new_msg" placeholder="<?php esc_html_e( 'Write a message you want to sent to the Customer.', 'woo-refund-and-exchange-lite' ); ?>" maxlength="10000" rows="5"></textarea>
-			<div>
+			<div class="mwb-order-msg__attachment-lable">
 				<label for="mwb_order_msg_attachment"> <?php esc_html_e( 'Attach files ', 'woo-refund-and-exchange-lite' ); ?></label>
 			</div>
-			<div class="mwb-order-msg-attachment-wrapper">
+			<div class="mwb-order-msg-attachment-wrapper mwb_rma_flex">
 				<input type="file" id="mwb_order_msg_attachment" name="mwb_order_msg_attachment[]" multiple >
 				<div class="mwb-order-msg-btn">
 					<button type="submit" class="button button-primary" id="mwb_order_msg_submit" name="mwb_order_msg_submit" data-id="<?php echo esc_attr( $order_id ); ?>"><?php esc_html_e( 'Send', 'woo-refund-and-exchange-lite' ); ?> </button>

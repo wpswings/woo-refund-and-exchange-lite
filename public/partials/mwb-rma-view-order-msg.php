@@ -82,10 +82,12 @@ if ( isset( $order_id ) ) {
 						foreach ( $o_val as $om_key => $om_val ) {
 							$sender = ( 'Customer' === $om_val['sender'] ) ? esc_html__( 'Customer', 'woo-refund-and-exchange-lite' ) : esc_html__( 'Shop Manager', 'woo-refund-and-exchange-lite' );
 							?>
-							<div class="mwb_order_msg_main_container mwb_order_messages">
-								<div class="mwb_order_msg_sender_details mwb_rma_flex">
-									<span class="mwb_order_msg_sender <?php echo 'mwb_order_msg_sender_' . esc_html( $om_val['sender'] ); ?>"><?php echo esc_html( $sender ); ?></span>
-									<span class="mwb_order_msg_date"><?php echo esc_html( get_date_from_gmt( gmdate( 'Y-m-d h:i a', $om_key ), 'Y-m-d h:i a' ) ); ?></span>
+							<div class="mwb-order-msg__row">
+								<div class="mwb_order_msg_main_container mwb_order_messages <?php echo ( 'Customer' === $om_val['sender'] ) ? 'wmb-order-customer__msg-container' : 'wmb-order-admin__msg-container'; ?>">
+									<div class="mwb_order_msg_sender_details">
+										<span class="mwb_order_msg_sender "><?php echo esc_html( $sender ); ?></span>
+										<span class="mwb_order_msg_date"><?php echo esc_html( get_date_from_gmt( gmdate( 'Y-m-d h:i a', $om_key ), 'Y-m-d h:i a' ) ); ?></span>
+									</div>
 								</div>
 								<div class="mwb_order_msg_detail_container">
 									<span><?php echo esc_html( $om_val['msg'] ); ?></span>
