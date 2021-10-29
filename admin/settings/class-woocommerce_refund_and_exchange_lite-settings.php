@@ -8,14 +8,7 @@
 if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 	class MwbBasicframeworkAdminSettings {
 
-		protected $loader;
-
 		public function __construct() {
-
-			self::loadDependencies();
-		}
-
-		public function loadDependencies() {
 
 			add_action( 'admin_head', array( $this, 'add_current_class_on_rma_menu' ) );
 			add_submenu_page( '', '', '', 'manage_woocommerce', 'ced-rnx-notification', array( $this, 'ced_rnx_notification_callback' ) );
