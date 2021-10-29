@@ -21,8 +21,13 @@ if ( isset( $_GET['mwb_rma_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp
 $upload_attach = get_option( 'mwb_rma_general_enable_om_attachment', 'no' );
 get_header( 'shop' );
 
-// Before Main Content.
-do_action( 'woocommerce_before_main_content' );
+$mwb_wrma_show_sidebar_on_form =
+// Side show/hide on refund request form.
+apply_filters( 'mwb_rma_refund_form_sidebar', true );
+if ( $mwb_wrma_show_sidebar_on_form ) {
+	// Before Main Content.
+	do_action( 'woocommerce_before_main_content' );
+}
 
 if ( isset( $order_id ) && ! empty( $order_id ) ) {
 	?>
@@ -109,9 +114,12 @@ if ( isset( $order_id ) && ! empty( $order_id ) ) {
 	</div>
 	<?php
 }
-// Woo Main Content.
-do_action( 'woocommerce_after_main_content' );
-// Show Sidebar.
-do_action( 'woocommerce_sidebar' );
+$mwb_wrma_show_sidebar_on_form =
+// Side show/hide on refund request form.
+apply_filters( 'mwb_rma_refund_form_sidebar', true );
+if ( $mwb_wrma_show_sidebar_on_form ) {
+	// Woo Main Content.
+	do_action( 'woocommerce_after_main_content' );
+}
 
 get_footer( 'shop' );
