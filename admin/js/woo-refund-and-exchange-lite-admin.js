@@ -259,7 +259,7 @@
 						$('.mwb_order_msg_notice_wrapper').removeClass('mwb_msg_error');
 						$('.mwb_order_msg_notice_wrapper').html( html );
 						$('.mwb_order_msg_notice_wrapper').css('display', 'flex');
-						$('.mwb_admin_order_msg_sub_container').load(document.URL +  ' .mwb_order_msg_main_container');
+						$('.mwb_admin_order_msg_sub_container').load(document.URL +  ' .mwb-order-msg__row');
 						$('#mwb_order_new_msg').val("");
 						$('#mwb_order_msg_attachment').val('');
 				}
@@ -275,7 +275,7 @@
 	$(document).on('click','.mwb_wrma_reload_messages',function(e) {
 		e.preventDefault();
 		$(this).addClass('mwb-loader-icon');
-		$('.mwb_admin_order_msg_sub_container').load(document.URL +  ' .mwb_order_msg_main_container');
+		$('.mwb_admin_order_msg_sub_container').load(document.URL +  ' .mwb-order-msg__row');
 		setTimeout(function() {
 			$('.mwb_wrma_reload_messages').removeClass('mwb-loader-icon');
 						$('.mwb_order_msg_reload_notice_wrapper').show();

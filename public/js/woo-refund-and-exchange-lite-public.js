@@ -65,7 +65,7 @@
 		$(document).on('click','.mwb_reload_messages',function(e) {
 			e.preventDefault();
 			$(this).addClass('mwb-loader-icon');
-			$('.mwb_order_msg_sub_container').load(document.URL +  ' .mwb_order_msg_main_container');
+			$('.mwb_order_msg_sub_container').load(document.URL +  ' .mwb-order-msg__row');
 				setTimeout(function() {
 					$('.mwb_reload_messages').removeClass('mwb-loader-icon');
 					$('.mwb_order_msg_reload_notice_wrapper').show();

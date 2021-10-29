@@ -75,13 +75,13 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 	?>
 	<style><?php echo wp_kses_post( $mwb_return_css ); ?></style>
 	<div class="mwb_rma_refund_form_wrapper mwb-rma-form__wrapper <?php echo esc_html( $mwb_refund_wrapper_class ); ?>">
-		<div id="mwb_rma_return_request_container">
+		<div id="mwb_rma_return_request_container" class="mwb-rma-form__header">
 			<h1><?php esc_html_e( 'Order Refund Request Form', 'woo-refund-and-exchange-lite' ); ?></h1>
 		</div>
 		<ul id="mwb_rma_return_alert" ></ul>
 		<div class="mwb_rma_product_table_wrapper mwb-rma-product__table-wrapper">
-			<table>
-				<thead class="wb-rma-product__table">
+			<table class="mwb-rma-product__table">
+				<thead >
 					<tr>
 						<?php
 						// Add extra field in the thead of the table.
@@ -148,6 +148,7 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 								?>
 								<td class="product-name">
 									<input type="hidden" name="mwb_rma_product_amount" class="mwb_rma_product_amount" value="<?php echo esc_html( $mwb_actual_price ); ?>">
+									<div class="mwb-rma-product__wrap">
 										<?php
 											$is_visible        = $product && $product->is_visible();
 											$product_permalink =
@@ -163,41 +164,42 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 										}
 										?>
 										<div class="mwb_rma_product_title mwb-rma__product-title">
-										<?php
-										// Woo Order Item Name.
-										$o_n = apply_filters( 'woocommerce_order_item_name', $product_permalink ? sprintf( '<a href="%s">%s</a>', $product_permalink, $item['name'] ) : $item['name'], $item, $is_visible );
-										echo wp_kses_post( $o_n );
-										// Quanity Html.
-										$q_h = apply_filters( 'woocommerce_order_item_quantity_html', ' <strong class="product-quantity">' . sprintf( '&times; %s', $item['qty'] ) . '</strong>', $item );
-										echo wp_kses_post( $q_h );
-
-										// Order Item meta Start.
-										do_action( 'woocommerce_order_item_meta_start', $item_id, $item, $order_obj, true );
-										if ( WC()->version < '3.0.0' ) {
-											$order_obj->display_item_meta( $item );
-											$order_obj->display_item_downloads( $item );
-										} else {
-											wc_display_item_meta( $item );
-											wc_display_item_downloads( $item );
-										}
-										// Order Item meta End.
-										do_action( 'woocommerce_order_item_meta_end', $item_id, $item, $order_obj, true );
-										?>
-										<p>
-											<b><?php esc_html_e( 'Price', 'woo-refund-and-exchange-lite' ); ?> :</b> 
 											<?php
-												echo wp_kses_post( mwb_wrma_format_price( $mwb_actual_price, $get_order_currency ) );
-											if ( 'mwb_rma_inlcude_tax' === $mwb_rma_check_tax ) {
-												?>
-												<small class="tax_label"><?php esc_html_e( '(incl. tax)', 'woo-refund-and-exchange-lite' ); ?></small>
-												<?php
-											} elseif ( 'mwb_rma_exclude_tax' === $mwb_rma_check_tax ) {
-												?>
-													<small class="tax_label"><?php esc_html_e( '(excl. tax)', 'woo-refund-and-exchange-lite' ); ?></small>
-													<?php
+											// Woo Order Item Name.
+											$o_n = apply_filters( 'woocommerce_order_item_name', $product_permalink ? sprintf( '<a href="%s">%s</a>', $product_permalink, $item['name'] ) : $item['name'], $item, $is_visible );
+											echo wp_kses_post( $o_n );
+											// Quanity Html.
+											$q_h = apply_filters( 'woocommerce_order_item_quantity_html', ' <strong class="product-quantity">' . sprintf( '&times; %s', $item['qty'] ) . '</strong>', $item );
+											echo wp_kses_post( $q_h );
+
+											// Order Item meta Start.
+											do_action( 'woocommerce_order_item_meta_start', $item_id, $item, $order_obj, true );
+											if ( WC()->version < '3.0.0' ) {
+												$order_obj->display_item_meta( $item );
+												$order_obj->display_item_downloads( $item );
+											} else {
+												wc_display_item_meta( $item );
+												wc_display_item_downloads( $item );
 											}
+											// Order Item meta End.
+											do_action( 'woocommerce_order_item_meta_end', $item_id, $item, $order_obj, true );
 											?>
-										</p>
+											<p>
+												<b><?php esc_html_e( 'Price', 'woo-refund-and-exchange-lite' ); ?> :</b> 
+												<?php
+													echo wp_kses_post( mwb_wrma_format_price( $mwb_actual_price, $get_order_currency ) );
+												if ( 'mwb_rma_inlcude_tax' === $mwb_rma_check_tax ) {
+													?>
+													<small class="tax_label"><?php esc_html_e( '(incl. tax)', 'woo-refund-and-exchange-lite' ); ?></small>
+													<?php
+												} elseif ( 'mwb_rma_exclude_tax' === $mwb_rma_check_tax ) {
+													?>
+														<small class="tax_label"><?php esc_html_e( '(excl. tax)', 'woo-refund-and-exchange-lite' ); ?></small>
+														<?php
+												}
+												?>
+											</p>
+										</div>
 									</div>
 								</td>
 								<td class="product-quantity">
@@ -260,8 +262,8 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 		$predefined_return_reason = get_option( 'mwb_rma_refund_reasons', '' );
 		$predefined_return_reason = explode( ',', $predefined_return_reason );
 		?>
-		<div class="mwb_rma_refund_request__row mwb_rma_flex">
-			<div class="mwb_rma__column mwb_rma__column-left">
+		<div class="mwb-rma-refund-request__row mwb-rma-row__pd">
+			<div class="mwb-rma-col">
 				<?php
 
 				// Add someting after table on the refund request form.
@@ -275,7 +277,7 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 					<?php
 				}
 				?>
-				<div class="mwb_rma_subject_dropdown">
+				<div class="mwb_rma_subject_dropdown mwb-rma-subject__dropdown">
 					<div>
 						<label>
 							<b>
@@ -363,22 +365,26 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 					</div>
 				</form>
 			</div>
-			<div class="mwb_rma__column mwb_rma__column-right mwb_rma_flex">        
-				<div class="mwb_rma_refund_rule">
 				<?php
 				$refund_rules_enable = get_option( 'mwb_rma_refund_rules', 'no' );
 				$refund_rules        = get_option( 'mwb_rma_refund_rules_editor', '' );
 				if ( isset( $refund_rules_enable ) && 'on' === $refund_rules_enable && ! empty( $refund_rules ) ) {
-					echo wp_kses_post( $refund_rules );
+					?>
+					<div class="mwb-rma-col mwb_rma_flex">        
+						<div>
+							<?php
+								echo wp_kses_post( $refund_rules );
+							?>
+						</div>
+					</div>
+					<?php
 				}
 				?>
-				</div>
-			</div>
 		</div>
 		<div class="mwb_rma_customer_detail">
-				<?php
-				wc_get_template( 'order/order-details-customer.php', array( 'order' => $order_obj ) );
-				?>
+			<?php
+			wc_get_template( 'order/order-details-customer.php', array( 'order' => $order_obj ) );
+			?>
 		</div>
 	</div>
 	<?php

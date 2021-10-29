@@ -1,4 +1,7 @@
 
+#add_more_rma_policies_clone {
+    display: none;
+}
 /*mwb form group breaker css*/
 .mwb-form-group__breaker {
     padding: 15px 0 15px 30px;
@@ -115,7 +118,7 @@
 	    margin-top: 8px;
 	}	
 }
-@media only screen and (max-width: 520px){
+@media only screen and (max-width: 520px) {
 	.mwb-section .mwb-overview__wrapper .mwb-overview__content .mwb-overview__keywords{
 		flex-direction: column;
 	}
@@ -123,7 +126,4 @@
 		flex: 0 0 100%;
     	max-width: 100%;
 	}
-}
-#add_more_rma_policies_clone {
-    display: none;
 }
