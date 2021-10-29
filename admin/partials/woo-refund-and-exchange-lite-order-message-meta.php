@@ -26,11 +26,11 @@ $order_id  = $order_obj->get_id();
 	<div class="mwb_admin_order_msg_history_title">
 		<h4 class="mwb_order_heading">
 			<?php esc_html_e( 'Message History', 'woo-refund-and-exchange-lite' ); ?>
-			<a href="" class="mwb_wrma_reload_messages"><img src="<?php echo esc_url( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL ) . '/public/images/reload-icon.png'; ?>" class="reload-icon"></a>
+			<a href="" class="mwb_reload_messages"><img src="<?php echo esc_url( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL ) . '/public/images/reload-icon.png'; ?>" class="reload-icon"></a>
 		</h4>
 	</div>
 	<div class="mwb_admin_order_msg_history_container">
-		<div class="mwb_admin_order_msg_sub_container">
+		<div class="mwb_order_msg_sub_container">
 			<?php
 			$mwb_order_messages = get_option( $order_id . '-mwb_cutomer_order_msg', array() );
 			if ( isset( $mwb_order_messages ) && is_array( $mwb_order_messages ) && ! empty( $mwb_order_messages ) ) {
@@ -79,6 +79,7 @@ $order_id  = $order_obj->get_id();
 	</div>
 	<div class="mwb_admin_order_msg_container">
 		<form id="mwb_order_new_msg_form" method="post" enctype="multipart/form-data" action="">
+			<input type="hidden" value="admin" id="order_msg_type" name="order_msg_type">	
 			<div class="mwb_order_msg_title"><h4 class="mwb-order-heading"><?php esc_html_e( 'Add a message', 'woo-refund-and-exchange-lite' ); ?></h4></div>
 				<textarea id="mwb_order_new_msg" name="mwb_order_new_msg" placeholder="<?php esc_html_e( 'Write a message you want to sent to the Customer.', 'woo-refund-and-exchange-lite' ); ?>" maxlength="10000" rows="2"></textarea>
 			<div class="mwb-order-msg__attachment-lable">

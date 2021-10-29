@@ -150,11 +150,11 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 									<input type="hidden" name="mwb_rma_product_amount" class="mwb_rma_product_amount" value="<?php echo esc_html( $mwb_actual_price ); ?>">
 									<div class="mwb-rma-product__wrap">
 										<?php
-											$is_visible        = $product && $product->is_visible();
-											$product_permalink =
-											// Order item Permalink.
-											apply_filters( 'woocommerce_order_item_permalink', $is_visible ? $product->get_permalink( $item ) : '', $item, $order_obj );
-
+										$is_visible        = $product && $product->is_visible();
+										$product_permalink =
+										// Order item Permalink.
+										apply_filters( 'woocommerce_order_item_permalink', $is_visible ? $product->get_permalink( $item ) : '', $item, $order_obj );
+										$thumbnail = wp_get_attachment_image( $product->get_image_id(), 'thumbnail' );
 										if ( isset( $thumbnail ) && ! empty( $thumbnail ) ) {
 											echo wp_kses_post( $thumbnail );
 										} else {

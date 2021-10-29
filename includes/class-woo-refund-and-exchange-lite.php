@@ -220,7 +220,6 @@ class Woo_Refund_And_Exchange_Lite {
 		$this->loader->add_action( 'add_meta_boxes', $wrael_plugin_admin, 'mwb_wrma_add_metaboxes' );
 
 		// Ajax hooks.
-		$this->loader->add_action( 'wp_ajax_mwb_rma_order_messages_save', $wrael_plugin_admin, 'mwb_rma_order_messages_save' );
 		$this->loader->add_action( 'wp_ajax_mwb_rma_return_req_approve', $wrael_plugin_admin, 'mwb_rma_return_req_approve' );
 		$this->loader->add_action( 'wp_ajax_mwb_rma_return_req_cancel', $wrael_plugin_admin, 'mwb_rma_return_req_cancel' );
 		$this->loader->add_action( 'wp_ajax_mwb_rma_manage_stock', $wrael_plugin_admin, 'mwb_rma_manage_stock' );
@@ -240,12 +239,12 @@ class Woo_Refund_And_Exchange_Lite {
 	 * @since 1.0.0
 	 */
 	private function woo_refund_and_exchange_lite_common_hooks() {
-
 		$wrael_plugin_common = new Woo_Refund_And_Exchange_Lite_Common( $this->wrael_get_plugin_name(), $this->wrael_get_version() );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $wrael_plugin_common, 'wrael_common_enqueue_styles' );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $wrael_plugin_common, 'wrael_common_enqueue_scripts' );
+		$this->loader->add_action( 'admin_enqueue_scripts', $wrael_plugin_common, 'wrael_common_enqueue_scripts' );
 
 		// license validation.
 		$this->loader->add_action( 'wp_ajax_mwb_rma_validate_license_key', $wrael_plugin_common, 'mwb_rma_validate_license_key' );
@@ -277,6 +276,10 @@ class Woo_Refund_And_Exchange_Lite {
 		// Send Email.
 		$this->loader->add_action( 'mwb_rma_refund_req_accept_email', $wrael_plugin_common, 'mwb_rma_refund_req_accept_email', 10 );
 		$this->loader->add_action( 'mwb_rma_refund_req_cancel_email', $wrael_plugin_common, 'mwb_rma_refund_req_cancel_email', 10 );
+
+		// send order messages.
+		$this->loader->add_action( 'wp_ajax_mwb_rma_order_messages_save', $wrael_plugin_common, 'mwb_rma_order_messages_save' );
+		$this->loader->add_action( 'wp_ajax_nopriv_mwb_rma_order_messages_save', $wrael_plugin_common, 'mwb_rma_order_messages_save' );
 	}
 
 	/**

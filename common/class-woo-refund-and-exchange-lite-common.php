@@ -83,6 +83,8 @@ class Woo_Refund_And_Exchange_Lite_Common {
 				'return_reason_msg'     => esc_html__( 'Please Enter Refund Reason.', 'woo-refund-and-exchange-lite' ),
 				'return_select_product' => esc_html__( 'Please Select Product to refund.', 'woo-refund-and-exchange-lite' ),
 				'check_pro_active'      => esc_html( $pro_active ),
+				'message_sent'          => esc_html__( 'The message has been sent successfully', 'woo-refund-and-exchange-lite' ),
+				'message_empty'         => esc_html__( 'Please Enter a Message.', 'woo-refund-and-exchange-lite' ),
 				'myaccount_url'         => esc_attr( $myaccount_page_url ),
 			)
 		);
@@ -289,7 +291,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	}
 
 	/**
-	 *  Multisite compatibility 
+	 *  Multisite compatibility .
 	 *
 	 * @param array $new_site .
 	 * @return void
@@ -326,5 +328,26 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	 */
 	public function mwb_rma_refund_req_cancel_email( $order_id ) {
 		include_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-cancel-email.php';
+	}
+	/**
+	 * Save order message from admin side.
+	 */
+	public function mwb_rma_order_messages_save() {
+		$check_ajax = check_ajax_referer( 'mwb_rma_ajax_security', 'security_check' );
+		if ( $check_ajax ) {
+			$msg      = isset( $_POST['msg'] ) ? filter_input( INPUT_POST, 'msg' ) : '';
+			$msg_type = isset( $_POST['order_msg_type'] ) ? filter_input( INPUT_POST, 'order_msg_type' ) : '';
+			$order_id = isset( $_POST['order_id'] ) ? filter_input( INPUT_POST, 'order_id' ) : '';
+			$order    = wc_get_order( $order_id );
+			$to       = $order->get_billing_email();
+			if ( 'admin' === $msg_type ) {
+				$sender = 'Shop Manager';
+			} else {
+				$sender = 'Customer';
+			}
+			$flag = mwb_rma_lite_send_order_msg_callback( $order_id, $msg, $sender, $to );
+			echo esc_html( $flag );
+			wp_die();
+		}
 	}
 }

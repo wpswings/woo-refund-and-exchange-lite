@@ -30,13 +30,13 @@
 
 
 /*mwb_rma_order_msg_history*/
-#mwb_rma_order_msg_history .mwb_wrma_reload_messages {
+#mwb_rma_order_msg_history .mwb_reload_messages {
 	display: inline-block;
     width: 16px;
     margin-left: 10px;
     vertical-align: middle;
 }
-#mwb_rma_order_msg_history .mwb_wrma_reload_messages img {
+#mwb_rma_order_msg_history .mwb_reload_messages img {
 	width: 100%;
 }
 .mwb_admin_order_msg_history_container{
@@ -129,7 +129,7 @@ span.mwb_order_msg_date {
     justify-content: space-between;
 }
 /*new-css*/
-.mwb_admin_order_msg_sub_container {
+.mwb_order_msg_sub_container {
     display: flex;
     flex-wrap: wrap;
 }

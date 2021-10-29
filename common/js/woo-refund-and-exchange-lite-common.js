@@ -183,6 +183,81 @@
 				}
 			});
 		});
+
+		$(document).on('click','.mwb_remove_notice_msg',function(e) {
+			e.preventDefault();
+			$('.mwb_order_msg_notice_wrapper').hide();
+		});
+
+		// Send the order message 
+		$( document ).on( 'click', '#mwb_order_msg_submit', function (e) {
+			e.preventDefault();
+			var up_files = $('#mwb_order_msg_attachment');
+			var msg      = $('#mwb_order_new_msg').val();
+			var order_msg_type = $('#order_msg_type').val();
+			var alerthtml = '';
+			if ( msg == '' ) {
+				alerthtml = '<p class="mwb_order_msg_sent_notice">'+  wrael_common_param.message_empty +'</p><a href="" class="mwb_remove_notice_msg">X</a>';
+				$(".mwb_order_msg_notice_wrapper").css('display', 'flex');
+				$(".mwb_order_msg_notice_wrapper").css('background-color', 'red');
+				$(".mwb_order_msg_notice_wrapper").html(alerthtml);
+				return false;
+			}
+			var order_id = $(this).data("id");
+	
+			var form_data = new FormData();
+	
+			// Read selected files
+			var totalfiles = up_files[0].files.length;
+			for (var index = 0; index < totalfiles; index++) {
+					 form_data.append("mwb_order_msg_attachment[]", up_files[0].files[index]);
+			}
+			form_data.append( "action", 'mwb_rma_order_messages_save' );
+			form_data.append( "msg", msg );
+			form_data.append( "order_msg_type", order_msg_type );
+			form_data.append( "order_id", order_id );
+			form_data.append( "security_check", wrael_common_param.mwb_rma_nonce );
+	
+			// AJAX request
+			$.ajax({
+				url: wrael_common_param.ajaxurl, 
+				type: 'post',
+				data: form_data,
+				dataType: 'json',
+				contentType: false,
+				processData: false,
+				success: function ( response ) {
+					if( response ) {
+						var html = 	'<p class="mwb_order_msg_sent_notice">'+  wrael_common_param.message_sent +'</p><a href="" class="mwb_remove_notice_msg">X</a>';
+							$(".mwb_order_msg_notice_wrapper").css('background-color', '#64CD83');
+							$('.mwb_order_msg_notice_wrapper').css('display', 'flex');
+							$('.mwb_order_msg_sub_container').load(document.URL +  ' .mwb-order-msg__row');
+							$('#mwb_order_new_msg').val("");
+							$('#mwb_order_msg_attachment').val('');
+							$('.mwb_order_msg_notice_wrapper').html( html );
+					}
+				}
+			});
+		});
+
+		// Order message refresh
+		$('.mwb_order_msg_reload_notice_wrapper').hide();
+		$(document).on('click','.mwb_reload_messages',function(e) {
+			e.preventDefault();
+			$(this).addClass('mwb-loader-icon');
+			$('.mwb_order_msg_sub_container').load(document.URL +  ' .mwb-order-msg__row');
+				setTimeout(function() {
+					$('.mwb_reload_messages').removeClass('mwb-loader-icon');
+					$('.mwb_order_msg_reload_notice_wrapper').show();
+				}, 2000);
+				setTimeout(function() {
+						$('.mwb_order_msg_reload_notice_wrapper').hide();
+				}, 3000);
+		});
+		$(document).on('click','.mwb_order_send_msg_dismiss',function(e) {
+			e.preventDefault();
+			$('.mwb_order_msg_notice_wrapper').hide();
+		});
 	});
 
 })( jQuery );

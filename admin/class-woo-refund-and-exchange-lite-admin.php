@@ -107,8 +107,6 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 					'wrael_gen_tab_enable'       => get_option( 'wrael_radio_switch_demo' ),
 					'mwb_rma_nonce'              => wp_create_nonce( 'mwb_rma_ajax_seurity' ),
 					'wrael_admin_param_location' => ( admin_url( 'admin.php' ) . '?page=woo_refund_and_exchange_lite_menu&wrael_tab=woo-refund-and-exchange-lite-general' ),
-					'message_sent'               => esc_html__( 'The message has been sent successfully.', 'woo-refund-and-exchange-lite' ),
-					'message_empty'              => esc_html__( 'Please enter a message.', 'woo-refund-and-exchange-lite' ),
 					'check_pro_active'           => esc_html( $pro_active ),
 				)
 			);
@@ -697,23 +695,6 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			array( $this, 'mwb_rma_order_msg_history' ),
 			'shop_order'
 		);
-	}
-
-	/**
-	 * Save order message from admin side.
-	 */
-	public function mwb_rma_order_messages_save() {
-		$check_ajax = check_ajax_referer( 'mwb_rma_ajax_seurity', 'security_check' );
-		if ( $check_ajax ) {
-			$msg      = isset( $_POST['msg'] ) ? filter_input( INPUT_POST, 'msg' ) : '';
-			$order_id = isset( $_POST['order_id'] ) ? filter_input( INPUT_POST, 'order_id' ) : '';
-			$order    = wc_get_order( $order_id );
-			$to       = $order->get_billing_email();
-			$sender   = 'Shop Manager';
-			$flag     = mwb_rma_lite_send_order_msg_callback( $order_id, $msg, $sender, $to );
-			echo esc_html( $flag );
-			wp_die();
-		}
 	}
 
 	/**

@@ -75,11 +75,6 @@ select {
 .mwb_rma_refund_form_wrapper .mwb_rma_other_subject input {
     width: 100%;
 }
-.mwb_rma_refund_form_wrapper .product-name img{
-	width: 100%;
-	max-width: 80px;
-    min-width: 60px;
-}
 .mwb-rma-product__table { 
     border-collapse: collapse;
     width: 100%;
@@ -282,10 +277,15 @@ img.mwb_order_msg_attachment_thumbnail {
     justify-content: space-between;
     align-items: center;
 }
-.mwb_order_msg_notice_wrapper{
-    padding: 8px 15px;
+.mwb_order_msg_notice_wrapper {
+    color: #fff;
     border-radius: 5px;
-    background: #64CD83;
+    display: none;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 5px 15px;
+    font-weight: 600;
     margin-bottom: 20px;
 }
 .mwb_order_msg_notice_wrapper p{

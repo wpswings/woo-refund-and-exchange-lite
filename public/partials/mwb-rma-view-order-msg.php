@@ -18,17 +18,6 @@ if ( isset( $_GET['mwb_rma_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp
 	$order_id = sanitize_text_field( wp_unslash( $_GET['order_id'] ) );
 }
 
-// Send Order messages code start.
-$get_nonce = isset( $_POST['mwb_order_msg_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['mwb_order_msg_nonce'] ) ) : '';
-if ( isset( $_POST['mwb_order_msg_submit'] ) && ! empty( $_POST['mwb_order_msg_submit'] ) && isset( $order_id ) ) {
-	if ( wp_verify_nonce( $get_nonce, 'mwb_order_msg_nonce' ) ) {
-		$msg    = isset( $_POST['mwb_order_new_msg'] ) ? filter_input( INPUT_POST, 'mwb_order_new_msg' ) : '';
-		$to     = get_option( 'admin_email', false );
-		$sender = 'Customer';
-		$flag   = mwb_rma_lite_send_order_msg_callback( $order_id, $msg, $sender, $to );
-	}
-}
-// Send Order messages code end.
 $upload_attach = get_option( 'mwb_rma_general_enable_om_attachment', 'no' );
 get_header( 'shop' );
 
@@ -38,13 +27,11 @@ do_action( 'woocommerce_before_main_content' );
 if ( isset( $order_id ) && ! empty( $order_id ) ) {
 	?>
 <div class="mwb_rma_order_msg_wrapper">
-	<?php if ( $flag ) { ?>	
 	<div class="mwb_order_msg_notice_wrapper">
-		<p class="mwb_order_msg_sent_notice"><strong><?php esc_html_e( 'Message has been sent.', 'woo-refund-and-exchange-lite' ); ?></strong><a href="#" class="mwb_order_send_msg_dismiss">X</a></p>
 	</div>
-	<?php } ?>
 	<div class="mwb_order_msg_container">
 		<form id="mwb_order_new_msg_form" method="post" enctype="multipart/form-data">
+			<input type="hidden" value="user" id="order_msg_type" name="order_msg_type">
 			<div class="mwb_order_msg_title">
 				<h4><?php esc_html_e( 'Add a message', 'woo-refund-and-exchange-lite' ); ?></h4>
 			</div>
@@ -60,7 +47,7 @@ if ( isset( $order_id ) && ! empty( $order_id ) ) {
 					<?php endif; ?>
 				</div>
 				<div class="mwb-order-msg-btn">
-					<input type="submit" id="mwb_order_msg_submit" name="mwb_order_msg_submit" value="<?php esc_html_e( 'Send', 'woo-refund-and-exchange-lite' ); ?>">
+					<input type="submit" id="mwb_order_msg_submit" name="mwb_order_msg_submit" value="<?php esc_html_e( 'Send', 'woo-refund-and-exchange-lite' ); ?>" data-id="<?php echo esc_attr( $order_id ); ?>">
 					<input 	type="hidden" name="mwb_order_msg_nonce" value="<?php echo esc_attr( wp_create_nonce( 'mwb_order_msg_nonce' ) ); ?>"> 
 				</div>     
 			</div>

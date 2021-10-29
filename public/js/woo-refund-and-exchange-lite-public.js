@@ -60,26 +60,6 @@
 			$(this).parent( '.add_field_input_div' ).remove();
 		});
 
-		// Js for order message form start
-		$('.mwb_order_msg_reload_notice_wrapper').hide();
-		$(document).on('click','.mwb_reload_messages',function(e) {
-			e.preventDefault();
-			$(this).addClass('mwb-loader-icon');
-			$('.mwb_order_msg_sub_container').load(document.URL +  ' .mwb-order-msg__row');
-				setTimeout(function() {
-					$('.mwb_reload_messages').removeClass('mwb-loader-icon');
-					$('.mwb_order_msg_reload_notice_wrapper').show();
-				}, 2000);
-				setTimeout(function() {
-					 $('.mwb_order_msg_reload_notice_wrapper').hide();
-				}, 3000);
-		});
-		$(document).on('click','.mwb_order_send_msg_dismiss',function(e) {
-			e.preventDefault();
-			$('.mwb_order_msg_notice_wrapper').hide();
-		});
-		// Js for order message form end
-
 		var mwb_wrma_refund_method = $('input[name=mwb_wrma_refund_method]:checked').val();
 		if ('' !== mwb_wrma_refund_method && 'manual_method' === mwb_wrma_refund_method ) {
 			$( '#bank_details' ).show();
