@@ -68,14 +68,11 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 
 			wp_enqueue_style( 'mwb-wrael-meterial-icons-css', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/material-design/icon.css', array(), time(), 'all' );
 
-			wp_enqueue_style( $this->plugin_name . '-admin-global', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/css/woo-refund-and-exchange-lite-admin-global.css', array( 'mwb-wrael-meterial-icons-css' ), time(), 'all' );
-
 			wp_enqueue_style( 'mwb-admin-min-css', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/css/mwb-admin.min.css', array(), $this->version, 'all' );
 			wp_enqueue_style( 'mwb-datatable-css', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/datatables/media/css/jquery.dataTables.min.css', array(), $this->version, 'all' );
-			wp_enqueue_style( $this->plugin_name, WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/css/woo-refund-and-exchange-lite-admin.scss', array(), $this->version, 'all' );
 		}
 		if ( isset( $screen->id ) && 'shop_order' === $screen->id ) {
-			wp_enqueue_style( $this->plugin_name, WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/css/mwb-order-edit-page.css', array(), $this->version, 'all' );
+			wp_enqueue_style( $this->plugin_name, WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/css/mwb-order-edit-page-lite.min.css', array(), $this->version, 'all' );
 		}
 
 	}
@@ -97,7 +94,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			wp_enqueue_script( 'mwb-wrael-datatable', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/datatables.net/js/jquery.dataTables.min.js', array(), time(), false );
 			wp_enqueue_script( 'mwb-wrael-datatable-btn', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/datatables.net/buttons/dataTables.buttons.min.js', array(), time(), false );
 			wp_enqueue_script( 'mwb-wrael-datatable-btn-2', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/datatables.net/buttons/buttons.html5.min.js', array(), time(), false );
-			wp_register_script( $this->plugin_name . 'admin-js', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/js/woo-refund-and-exchange-lite-admin.js', array( 'jquery', 'mwb-wrael-select2', 'mwb-wrael-metarial-js', 'mwb-wrael-metarial-js2', 'mwb-wrael-metarial-lite' ), $this->version, false );
+			wp_register_script( $this->plugin_name . 'admin-js', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/js/mwb-admin.min.js', array( 'jquery', 'mwb-wrael-select2', 'mwb-wrael-metarial-js', 'mwb-wrael-metarial-js2', 'mwb-wrael-metarial-lite' ), $this->version, false );
 			wp_localize_script(
 				$this->plugin_name . 'admin-js',
 				'wrael_admin_param',
@@ -111,7 +108,6 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				)
 			);
 			wp_enqueue_script( $this->plugin_name . 'admin-js' );
-			wp_enqueue_script( 'mwb-admin-min-js', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/js/mwb-admin.min.js', array(), time(), false );
 		}
 	}
 

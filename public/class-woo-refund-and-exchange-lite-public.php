@@ -58,7 +58,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 	 */
 	public function wrael_public_enqueue_styles() {
 
-		wp_enqueue_style( $this->plugin_name, WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'public/css/woo-refund-and-exchange-lite-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'public/css/mwb-public.min.css', array(), $this->version, 'all' );
 
 	}
 
@@ -69,7 +69,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 	 */
 	public function wrael_public_enqueue_scripts() {
 		$pro_active = mwb_rma_pro_active();
-		wp_register_script( $this->plugin_name, WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'public/js/woo-refund-and-exchange-lite-public.js', array( 'jquery' ), $this->version, false );
+		wp_register_script( $this->plugin_name, WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'public/js/mwb-public.min.js', array( 'jquery' ), $this->version, false );
 		wp_localize_script(
 			$this->plugin_name,
 			'wrael_public_param',
