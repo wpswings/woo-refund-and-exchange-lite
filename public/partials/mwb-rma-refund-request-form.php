@@ -76,7 +76,7 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 	<style><?php echo wp_kses_post( $mwb_return_css ); ?></style>
 	<div class="mwb_rma_refund_form_wrapper mwb-rma-form__wrapper <?php echo esc_html( $mwb_refund_wrapper_class ); ?>">
 		<div id="mwb_rma_return_request_container" class="mwb-rma-form__header">
-			<h1><?php esc_html_e( 'Order Refund Request Form', 'woo-refund-and-exchange-lite' ); ?></h1>
+			<h1 class="mwb-rma-form__heading"><?php esc_html_e( 'Order\'s Product Refund Request Form', 'woo-refund-and-exchange-lite' ); ?></h1>
 		</div>
 		<ul id="mwb_rma_return_alert" ></ul>
 		<div class="mwb_rma_product_table_wrapper mwb-rma-product__table-wrapper">

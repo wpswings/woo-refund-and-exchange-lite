@@ -88,9 +88,13 @@ span.mwb_order_msg_date {
     padding-left: 30px;
     color: #1f1f1f;
 }
-.mwb_order_msg_detail_container span {
+.mwb-loader-icon {
+    animation: spin 1s infinite linear;
+    transition: all .3s;
+    transition-timing-function: ease-in;
+}
+.mwb_order_msg_detail_container {
     padding: 20px 0 20px 30px;
-    display: inline-block;
 }
 .mwb_order_msg_attach_container {
     padding-left: 30px;
@@ -150,6 +154,15 @@ span.mwb_order_msg_date {
     width: 100%;
 }
 
+#mwb_order_msg_submit {
+    background: #374585;
+    border: 1px solid #374585;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 3px;
+}
+
 /*media-query*/
 @media only screen and (max-width: 575px) {
     .mwb-order-msg__row {
@@ -169,7 +182,7 @@ span.mwb_order_msg_date {
         margin-top: 15px;
         padding-left: 15px;
     }
-    .mwb_order_msg_detail_container span{
+    .mwb_order_msg_detail_container {
         padding: 15px 0 15px 15px;
     }
     .mwb_order_msg_attach_container{

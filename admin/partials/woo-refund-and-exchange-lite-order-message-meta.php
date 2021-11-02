@@ -20,7 +20,7 @@ $order_obj = $theorder;
 $order_id  = $order_obj->get_id();
 ?>
 <div class="mwb_order_msg_reload_notice_wrapper">
-	<p class="mwb_order_msg_sent_notice"><strong><?php esc_html_e( 'Messages Refreshed Successfully.', 'woo-refund-and-exchange-lite' ); ?></strong></p>
+	<p class="mwb_order_msg_sent_notice"><strong><?php esc_html_e( 'Messages Refreshed Successfully', 'woo-refund-and-exchange-lite' ); ?></strong></p>
 </div>
 <div class="mwb_rma_admin_order_msg_wrapper">
 	<div class="mwb_admin_order_msg_history_title">
@@ -83,7 +83,7 @@ $order_id  = $order_obj->get_id();
 			<div class="mwb_order_msg_title"><h4 class="mwb-order-heading"><?php esc_html_e( 'Add a message', 'woo-refund-and-exchange-lite' ); ?></h4></div>
 				<textarea id="mwb_order_new_msg" name="mwb_order_new_msg" placeholder="<?php esc_html_e( 'Write a message you want to sent to the Customer.', 'woo-refund-and-exchange-lite' ); ?>" maxlength="10000" rows="2"></textarea>
 			<div class="mwb-order-msg__attachment-lable">
-				<label for="mwb_order_msg_attachment"> <?php esc_html_e( 'Attach files ', 'woo-refund-and-exchange-lite' ); ?></label>
+				<label for="mwb_order_msg_attachment"> <?php esc_html_e( 'Attach file', 'woo-refund-and-exchange-lite' ); ?>:</label>
 			</div>
 			<div class="mwb-order-msg-attachment-wrapper mwb_rma_flex">
 				<input type="file" id="mwb_order_msg_attachment" name="mwb_order_msg_attachment[]" multiple >
@@ -94,4 +94,5 @@ $order_id  = $order_obj->get_id();
 		</form>
 	</div>
 </div>
+<hr/>
 <?php

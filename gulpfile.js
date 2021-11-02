@@ -189,6 +189,25 @@ function scriptsBackend()
   );
 }
 
+// Scripts Common 
+function scriptsCommon()
+{
+  return (
+  gulp
+    .src([
+    'assets/src/common/js/**/*',
+
+    ])
+    .pipe(plumber())
+    .pipe(concat('woo-refund-and-exchange-lite-common.js'))
+    .pipe(gulp.dest('common/js'))
+    .pipe(terser())
+    .pipe(rename({ suffix: '.min' }))
+    .pipe(gulp.dest('common/js'))
+    .pipe(browsersync.stream())
+  );
+}
+
 // Fonts
 function fonts()
 {
@@ -226,9 +245,10 @@ function watchFiles()
   gulp.watch('assets/src/back-end/scss/**/*', cssOrderEditBackend);
   gulp.watch('assets/src/back-end/js/**/*', scriptsBackend);
   gulp.watch('assets/src/front-end/fonts/**/*', fontsBackend);
+  gulp.watch('assets/src/common/js/**/*', scriptsCommon);
 }
 
-const start = gulp.series(clean, images, fonts, css, scripts, html, imagesBackend, cssBackend, cssOrderEditBackend, scriptsBackend, fontsBackend);
+const start = gulp.series(clean, images, fonts, css, scripts, html, imagesBackend, cssBackend, cssOrderEditBackend, scriptsBackend, scriptsCommon, fontsBackend);
 const watch = gulp.parallel(watchFiles, browserSync);
 
 // export tasks
@@ -240,6 +260,7 @@ exports.imagesBackend = imagesBackend;
 exports.cssBackend = cssBackend;
 exports.cssOrderEditBackend = cssOrderEditBackend;
 exports.scriptsBackend = scriptsBackend;
+exports.scriptsCommon = scriptsCommon;
 exports.fontsBackend = fontsBackend;
 exports.watch = watch;
 exports.default = gulp.series(start, watch);

@@ -3,6 +3,7 @@
     'components/components',
     'layout/layout',
     'pages/page';
+
 /**
  * All of the CSS for your public-facing functionality should be
  * included in this file.
@@ -113,11 +114,11 @@ select {
 .mwb-rma-form__wrapper .mwb-rma-form__header {
     background-color: #333333;
 }
-.mwb-rma-form__wrapper h1 {
+.mwb-rma-form__wrapper .mwb-rma-form__heading {
     font-size: 24px;
     color: #ffffff;
     font-weight: 500;
-    text-align: left;
+    text-align: center;
     padding: 10px 15px;
     margin-top: 0;
 }
@@ -307,6 +308,11 @@ a.mwb_order_send_msg_dismiss{
     justify-content: space-between;
     flex-wrap: wrap;
     align-items: center;
+}
+.mwb-loader-icon {
+    animation: spin 1s infinite linear;
+    transition: all .3s;
+    transition-timing-function: ease-in;
 }
 .mwb_order_msg_sub_container {
     display: flex;
