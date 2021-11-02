@@ -18,14 +18,14 @@ if ( ! is_object( $theorder ) ) {
 	$theorder = wc_get_order( $thepostid );
 }
 
-$order = $theorder;
+$order_obj = $theorder;
 if ( WC()->version < '3.0.0' ) {
-	$order_id = $order->id;
+	$order_id = $order_obj->id;
 } else {
-	$order_id = $order->get_id();
+	$order_id = $order_obj->get_id();
 }
 $return_datas = get_post_meta( $order_id, 'ced_rnx_return_product', true );
-$line_items  = $order->get_items( apply_filters( 'woocommerce_admin_order_item_types', 'line_item' ) );
+$line_items   = $order_obj->get_items( apply_filters( 'woocommerce_admin_order_item_types', 'line_item' ) );
 if ( is_array( $line_items ) && ! empty( $line_items ) ) {
 	update_post_meta( $order_id, 'ced_rnx_new_refund_line_items', $line_items );
 }
@@ -33,9 +33,9 @@ $line_items = get_post_meta( $order_id, 'ced_rnx_new_refund_line_items', true );
 
 if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 	foreach ( $return_datas as $key => $return_data ) {
-		$date = date_create( $key );
+		$date        = date_create( $key );
 		$date_format = get_option( 'date_format' );
-		$date = date_format( $date, $date_format );
+		$date        = date_format( $date, $date_format );
 		?>
 		<p><?php esc_html_e( 'Following product refund request made on', 'woo-refund-and-exchange-lite' ); ?> <b><?php echo esc_html( $date ); ?>.</b></p>
 		<div>
@@ -58,7 +58,7 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 				foreach ( $line_items as $item_id => $item ) {
 					foreach ( $return_products as $returnkey => $return_product ) {
 						if ( $item_id == $return_product['item_id'] ) {
-							$refund_product_detail = $order->get_meta_data();
+							$refund_product_detail = $order_obj->get_meta_data();
 							foreach ( $refund_product_detail as $rpd_value ) {
 								$refund_product_data = $rpd_value->get_data();
 								if ( 'ced_rnx_return_product' == $refund_product_data['key'] ) {
@@ -118,9 +118,9 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 								}
 								?>
 								</td>
-								<td><?php echo wc_price( $return_product['price'] ); /*phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped*/ ?></td>
+								<td><?php echo wp_kses_post( wc_price( $return_product['price'] ) ); ?></td>
 								<td><?php echo esc_html( $return_product['qty'] ); ?></td>
-								<td><?php echo wc_price( $return_product['price'] * $return_product['qty'] ); /*phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped*/ ?></td>
+								<td><?php echo wp_kses_post( wc_price( $return_product['price'] * $return_product['qty'] ) ); ?></td>
 							</tr>
 							<?php
 							$total += $return_product['price'] * $return_product['qty'];
@@ -130,7 +130,7 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 				?>
 					<tr>
 						<th colspan="4"><?php esc_html_e( 'Total Amount', 'woo-refund-and-exchange-lite' ); ?></th>
-						<th><?php echo wc_price( $total ); /*phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped*/ ?></th>
+						<th><?php echo wp_kses_post( wc_price( $total ) ); ?></th>
 					</tr>
 				</tbody>
 			</table>	
@@ -139,7 +139,7 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 		<?php
 
 
-		if ( 'pending' == $return_data['status'] ) {
+		if ( 'pending' === $return_data['status'] ) {
 			?>
 			<input type="hidden" value="<?php echo esc_attr( ced_rnx_lite_currency_seprator( $return_data['amount'] ) ); ?>" id="ced_rnx_refund_amount">
 			<input type="hidden" value="<?php echo esc_attr( $return_data['subject'] ); ?>" id="ced_rnx_refund_reason">
@@ -147,7 +147,7 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 		}
 		?>
 		<p><strong>	
-		<?php esc_html_e( 'Refund Amount', 'woo-refund-and-exchange-lite' ); ?> :</strong> <?php echo wc_price( $return_data['amount'] );/*phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped*/ ?> <input type="hidden" name="ced_rnx_total_amount_for_refund" class="ced_rnx_total_amount_for_refund" value="<?php echo esc_attr( ced_rnx_lite_currency_seprator( $return_data['amount'] ) ); ?>"></p>
+		<?php esc_html_e( 'Refund Amount', 'woo-refund-and-exchange-lite' ); ?> :</strong> <?php echo wp_kses_post( wc_price( $return_data['amount'] ) ); ?> <input type="hidden" name="ced_rnx_total_amount_for_refund" class="ced_rnx_total_amount_for_refund" value="<?php echo esc_attr( ced_rnx_lite_currency_seprator( $return_data['amount'] ) ); ?>"></p>
 		<div class="ced_rnx_reason">	
 			<p><strong><?php esc_html_e( 'Subject', 'woo-refund-and-exchange-lite' ); ?> :</strong><i> <?php echo esc_html( $return_data['subject'] ); ?></i></p></p>
 			<p><b><?php esc_html_e( 'Reason', 'woo-refund-and-exchange-lite' ); ?> :</b></p>

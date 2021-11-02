@@ -16,11 +16,11 @@ if ( ! is_object( $theorder ) ) {
 	$theorder = wc_get_order( $thepostid );
 }
 
-$order = $theorder;
+$order_obj = $theorder;
 if ( WC()->version < '3.0.0' ) {
-	$order_id = $order->id;
+	$order_id = $order_obj->id;
 } else {
-	$order_id = $order->get_id();
+	$order_id = $order_obj->get_id();
 }
 
 ?>
@@ -47,7 +47,7 @@ if ( WC()->version < '3.0.0' ) {
 						<div class="mwb_order_msg_main_container mwb_order_messages">
 							<div>
 								<div class="mwb_order_msg_sender"><?php echo esc_html( ( 'Customer' === $om_val['sender'] ) ? __( 'Customer', 'woo-refund-and-exchange-lite' ) : __( 'Shop Manager', 'woo-refund-and-exchange-lite' ) ); ?></div>
-								<span class="mwb_order_msg_date"><?php echo esc_html( get_date_from_gmt( date( 'Y-m-d h:i a', $om_key ), 'Y-m-d h:i a' ) ); ?></span>
+								<span class="mwb_order_msg_date"><?php echo esc_html( get_date_from_gmt( gmdate( 'Y-m-d h:i a', $om_key ), 'Y-m-d h:i a' ) ); ?></span>
 							</div>
 							<div class="mwb_order_msg_detail_container">
 								<span><?php echo esc_html( $om_val['msg'] ); ?></span>

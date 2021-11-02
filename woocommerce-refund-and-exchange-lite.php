@@ -134,7 +134,7 @@ if ( $activated ) {
 	register_deactivation_hook( __FILE__, 'deactivate_woocommerce_refund_and_exchange_lite' );
 
 	// The core plugin class that is used to define internationalization, admin-specific hooks, and public-facing site hooks.
-	require plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce_refund_and_exchange_lite.php';
+	require plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-refund-and-exchange-lite.php';
 
 	/**
 	 * This function is used for formatting the price seprator
@@ -284,7 +284,7 @@ if ( $activated ) {
 				}
 			}
 		}
-		$date                         = strtotime( date( 'Y-m-d H:i:s' ) );
+		$date                         = strtotime( gmdate( 'Y-m-d H:i:s' ) );
 		$order_msg[ $date ]['sender'] = $sender;
 		$order_msg[ $date ]['msg']    = $msg;
 		$order_msg[ $date ]['files']  = $filename;
@@ -315,7 +315,7 @@ if ( $activated ) {
 	 */
 	function run_woocommerce_refund_and_exchange_lite() {
 
-		$plugin = new woocommerce_refund_and_exchange_lite();
+		$plugin = new Woocommerce_Refund_And_Exchange_Lite();
 		$plugin->run();
 	}
 	run_woocommerce_refund_and_exchange_lite();
@@ -361,7 +361,7 @@ if ( $activated ) {
 		// The path to our plugin's main file.
 		$our_plugin = plugin_basename( __FILE__ );
 		// If an update has taken place and the updated type is plugins and the plugins element exists.
-		if ( $options['action'] == 'update' && $options['type'] == 'plugin' && isset( $options['plugins'] ) ) {
+		if ( 'update' === $options['action'] && 'plugin' === $options['type'] && isset( $options['plugins'] ) ) {
 			// Iterate through the plugins being updated and check if ours is there.
 			foreach ( $options['plugins'] as $plugin ) {
 				if ( $plugin == $our_plugin ) {

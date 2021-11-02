@@ -19,7 +19,7 @@
  * @subpackage woocommerce_refund_and_exchange_lite/admin
  * @author     MakeWebBetter <webmaster@makewebbetter.com>
  */
-class woocommerce_refund_and_exchange_lite_Admin {
+class Woocommerce_Refund_And_Exchange_Lite_Admin {
 
 	/**
 	 * The ID of this plugin.
@@ -68,10 +68,10 @@ class woocommerce_refund_and_exchange_lite_Admin {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in woocommerce_refund_and_exchange_lite_Loader as all of the hooks are defined
+		 * defined in Woocommerce_Refund_And_Exchange_Lite_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The woocommerce_refund_and_exchange_lite_Loader will then create the relationship
+		 * The Woocommerce_Refund_And_Exchange_Lite_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
@@ -91,10 +91,10 @@ class woocommerce_refund_and_exchange_lite_Admin {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in woocommerce_refund_and_exchange_lite_Loader as all of the hooks are defined
+		 * defined in Woocommerce_Refund_And_Exchange_Lite_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The woocommerce_refund_and_exchange_lite_Loader will then create the relationship
+		 * The Woocommerce_Refund_And_Exchange_Lite_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
@@ -119,11 +119,10 @@ class woocommerce_refund_and_exchange_lite_Admin {
 	 * @since    1.0.0
 	 */
 	public function admin_menus() {
-
-		require_once 'settings/class-woocommerce_refund_and_exchange_lite-settings.php';
-		$tabs = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : '';
-		$sections = isset( $_GET['section'] ) ? sanitize_text_field( wp_unslash( $_GET['section'] ) ) : '';
-		$admin_obj = new MwbBasicframeworkAdminSettings();
+		require_once 'settings/class-mwb-basic-framework-admin-settings.php';
+		$tabs      = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : '';
+		$sections  = isset( $_GET['section'] ) ? sanitize_text_field( wp_unslash( $_GET['section'] ) ) : '';
+		$admin_obj = new Mwb_Basic_Framework_Admin_Settings();
 		if ( 'ced_rnx_setting' == $tabs ) {
 			if ( 'refund' == $sections ) {
 				$admin_obj->ced_rnx_setting_save();
@@ -152,7 +151,7 @@ class woocommerce_refund_and_exchange_lite_Admin {
 				'public'                    => true,
 				'exclude_from_search'       => false,
 				'show_in_admin_all_list'    => true,
-				'show_in_admin_status_list' => true,
+				'show_in_admin_status_list' => true, /* translators: %s: search term */
 				'label_count'               => _n_noop( 'Refund Requested <span class="count">(%s)</span>', 'Refund Requested <span class="count">(%s)</span>' ),
 			)
 		);
@@ -164,7 +163,7 @@ class woocommerce_refund_and_exchange_lite_Admin {
 				'public'                    => true,
 				'exclude_from_search'       => false,
 				'show_in_admin_all_list'    => true,
-				'show_in_admin_status_list' => true,
+				'show_in_admin_status_list' => true, /* translators: %s: search term */
 				'label_count'               => _n_noop( 'Refund Approved <span class="count">(%s)</span>', 'Refund Approved <span class="count">(%s)</span>' ),
 			)
 		);
@@ -176,7 +175,7 @@ class woocommerce_refund_and_exchange_lite_Admin {
 				'public'                    => true,
 				'exclude_from_search'       => false,
 				'show_in_admin_all_list'    => true,
-				'show_in_admin_status_list' => true,
+				'show_in_admin_status_list' => true, /* translators: %s: search term */
 				'label_count'               => _n_noop( 'Refund Cancelled <span class="count">(%s)</span>', 'Refund Cancelled <span class="count">(%s)</span>' ),
 			)
 		);
@@ -570,9 +569,8 @@ class woocommerce_refund_and_exchange_lite_Admin {
 				$new_fee_old->amount    = (float) esc_attr( $total_price );
 				$new_fee_old->tax_class = '';
 				$new_fee_old->taxable   = false;
-				$new_fee->tax       = $totalProducttax;
 				$new_fee_old->tax_data  = array();
-				$item_id = $order->add_fee( $new_fee_old );
+				$item_id                = $order->add_fee( $new_fee_old );
 
 				$order->update_status( 'wc-refund-approved', __( 'User Request of Refund Product is approved', 'woo-refund-and-exchange-lite' ) );
 				$response['response'] = 'success';

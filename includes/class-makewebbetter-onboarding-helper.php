@@ -56,19 +56,38 @@ class Makewebbetter_Onboarding_Helper {
 	 * Form id of hubspot api.
 	 *
 	 * @since 1.0.0
-	 * @var string Form id.
+	 * @var string Form activation id.
 	 */
-	private static $onboarding_form_id   = 'd94dcb10-c9c1-4155-a9ad-35354f2c3b52';
+	private static $onboarding_form_id = 'd94dcb10-c9c1-4155-a9ad-35354f2c3b52';
+	/**
+	 * Form id of hubspot api.
+	 *
+	 * @since 1.0.0
+	 * @var string Form deactivation id.
+	 */
 	private static $deactivation_form_id = '329ffc7a-0e8c-4e11-8b41-960815c31f8d';
 
 
 	/**
-	 * Plugin Name.
+	 * Plugin name.
 	 *
 	 * @since 1.0.0
+	 * @var string plugin name.
 	 */
 	private static $plugin_name;
+	/**
+	 * Store Name.
+	 *
+	 * @since 1.0.0
+	 * @var string store name.
+	 */
 	private static $store_name;
+	/**
+	 * Store Url.
+	 *
+	 * @since 1.0.0
+	 * @var string store url.
+	 */
 	private static $store_url;
 
 	/**
@@ -79,7 +98,7 @@ class Makewebbetter_Onboarding_Helper {
 	public function __construct() {
 
 		self::$store_name = get_bloginfo( 'name' );
-		self::$store_url = home_url();
+		self::$store_url  = home_url();
 
 		if ( defined( 'ONBOARD_PLUGIN_NAME' ) ) {
 			self::$plugin_name = ONBOARD_PLUGIN_NAME;
@@ -208,7 +227,7 @@ class Makewebbetter_Onboarding_Helper {
 	public function add_deactivation_popup_screen() {
 
 		global $pagenow;
-		if ( ! empty( $pagenow ) && 'plugins.php' == $pagenow ) {
+		if ( ! empty( $pagenow ) && 'plugins.php' === $pagenow ) {
 			require_once MWB_REFUND_N_EXCHANGE_LITE_DIRPATH . 'includes/extra-templates/makewebbetter-deactivation-template-display.php';
 		}
 	}
@@ -570,8 +589,7 @@ class Makewebbetter_Onboarding_Helper {
 					<?php endforeach; ?>
 
 					<?php
-				 endif;
-
+				endif;
 				break;
 
 			case 'checkbox':
@@ -803,8 +821,8 @@ class Makewebbetter_Onboarding_Helper {
 	/**
 	 * Handle Hubspot form submission.
 	 *
-	 * @param      string $result       The result of this validation.
-	 * @since    1.0.0
+	 * @param boolean $submission .
+	 * @param string  $action_type .
 	 */
 	protected function handle_form_submission_for_hubspot( $submission = false, $action_type = 'onboarding' ) {
 
@@ -827,11 +845,12 @@ class Makewebbetter_Onboarding_Helper {
 		}
 	}
 
-
 	/**
 	 * Handle Hubspot POST api calls.
 	 *
-	 * @since    1.0.0
+	 * @param string $endpoint .
+	 * @param array  $post_params .
+	 * @param array  $headers .
 	 */
 	private function hic_post( $endpoint, $post_params, $headers ) {
 
@@ -867,10 +886,10 @@ class Makewebbetter_Onboarding_Helper {
 	}
 
 	/**
-	 *  Hubwoo Onboarding Submission :: Get a form.
+	 * Hubwoo Onboarding Submission :: Get a form.
 	 *
-	 * @param           $form_id    form ID.
-	 * @since       1.0.0
+	 * @param array  $form_data .
+	 * @param string $action_type .
 	 */
 	protected function hubwoo_submit_form( $form_data = array(), $action_type = 'onboarding' ) {
 
@@ -918,21 +937,20 @@ class Makewebbetter_Onboarding_Helper {
 		$ipaddress = '';
 		if ( getenv( 'HTTP_CLIENT_IP' ) ) {
 			$ipaddress = getenv( 'HTTP_CLIENT_IP' );
-		} else if ( getenv( 'HTTP_X_FORWARDED_FOR' ) ) {
+		} elseif ( getenv( 'HTTP_X_FORWARDED_FOR' ) ) {
 			$ipaddress = getenv( 'HTTP_X_FORWARDED_FOR' );
-		} else if ( getenv( 'HTTP_X_FORWARDED' ) ) {
+		} elseif ( getenv( 'HTTP_X_FORWARDED' ) ) {
 			$ipaddress = getenv( 'HTTP_X_FORWARDED' );
-		} else if ( getenv( 'HTTP_FORWARDED_FOR' ) ) {
+		} elseif ( getenv( 'HTTP_FORWARDED_FOR' ) ) {
 			$ipaddress = getenv( 'HTTP_FORWARDED_FOR' );
-		} else if ( getenv( 'HTTP_FORWARDED' ) ) {
+		} elseif ( getenv( 'HTTP_FORWARDED' ) ) {
 			$ipaddress = getenv( 'HTTP_FORWARDED' );
-		} else if ( getenv( 'REMOTE_ADDR' ) ) {
+		} elseif ( getenv( 'REMOTE_ADDR' ) ) {
 			$ipaddress = getenv( 'REMOTE_ADDR' );
 		} else {
 			$ipaddress = 'UNKNOWN';
 		}
 		return $ipaddress;
 	}
-
 	// End of Class.
 }

@@ -16,7 +16,7 @@ if ( isset( $_POST['order_id'] ) ) {
 	$order_id = sanitize_text_field( wp_unslash( $_GET['order_id'] ) );
 }
 
-$flag = false;
+$flag      = false;
 $get_nonce = isset( $_REQUEST['mwb-order-msg-nonce'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['mwb-order-msg-nonce'] ) ) : '';
 if ( isset( $_POST['mwb_order_msg_submit'] ) && ! empty( $_POST['mwb_order_msg_submit'] ) && isset( $order_id ) ) {
 	if ( wp_verify_nonce( $get_nonce, 'mwb-order-msg-nonce' ) ) {
@@ -87,7 +87,7 @@ if ( isset( $order_id ) ) {
 						<div class="mwb_order_msg_main_container mwb_order_messages">
 							<div>
 								<div class="mwb_order_msg_sender"><?php echo esc_html( ( 'Customer' === $om_val['sender'] ) ? __( 'Customer', 'woo-refund-and-exchange-lite' ) : __( 'Shop Manager', 'woo-refund-and-exchange-lite' ) ); ?></div>
-								<span class="mwb_order_msg_date"><?php echo esc_html( get_date_from_gmt( date( 'Y-m-d h:i a', $om_key ), 'Y-m-d h:i a' ) ); ?></span>
+								<span class="mwb_order_msg_date"><?php echo esc_html( get_date_from_gmt( gmdate( 'Y-m-d h:i a', $om_key ), 'Y-m-d h:i a' ) ); ?></span>
 							</div>
 							<div class="mwb_order_msg_detail_container">
 								<span><?php echo esc_html( $om_val['msg'], 'woo-refund-and-exchange-lite' ); ?></span>

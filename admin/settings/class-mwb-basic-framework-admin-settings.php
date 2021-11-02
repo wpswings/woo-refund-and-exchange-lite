@@ -5,9 +5,10 @@
  * @package woocommerce_refund_and_exchange_lite
  */
 
-if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
-	class MwbBasicframeworkAdminSettings {
-
+if ( ! class_exists( 'Mwb_Basic_Framework_Admin_Settings' ) ) {
+	/** To register the setting */
+	class Mwb_Basic_Framework_Admin_Settings {
+		/** Constructor */
 		public function __construct() {
 
 			add_action( 'admin_head', array( $this, 'add_current_class_on_rma_menu' ) );
@@ -29,8 +30,8 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 		 * @return void
 		 */
 		public function add_current_class_on_rma_menu() {
-			$get_tab = isset( $_GET['tab'] ) ? $_GET['tab'] : '';
-			$get_section = isset( $_GET['section'] ) ? $_GET['section'] : '';
+			$get_tab     = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : '';
+			$get_section = isset( $_GET['section'] ) ? sanitize_text_field( wp_unslash( $_GET['section'] ) ) : '';
 			if ( 'ced_rnx_setting' === $get_tab ) {
 				?>
 				<script type="text/javascript">
@@ -65,13 +66,14 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 			return $settings_tabs;
 		}
 
+		/** Add some template for pro */
 		public function ced_rnx_settings_tab() {
 			global $current_section;
 			woocommerce_admin_fields( self::ced_rnx_get_settings( $current_section ) );
-			$get_tab = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : '';
-			$get_section = '';           if ( isset( $_GET['section'] ) ) {
+			$get_tab     = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : '';
+			$get_section = '';
+			if ( isset( $_GET['section'] ) ) {
 				$get_section = isset( $_GET['section'] ) ? sanitize_text_field( wp_unslash( $_GET['section'] ) ) : '';
-				$get_section = sanitize_text_field( $get_section );
 				if ( 'refund' !== $get_section ) {
 					include_once MWB_REFUND_N_EXCHANGE_LITE_DIRPATH . 'admin/partials/mwb-rnx-lite-pro-purchase-template.php';
 					?>
@@ -146,7 +148,7 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 			$array_keys = array_keys( $sections );
 
 			foreach ( $sections as $id => $label ) {
-				echo '<li><a href="' . esc_url( admin_url( 'admin.php?page=wc-settings&tab=' . $this->id . '&section=' . sanitize_title( $id ) ) ) . '" class="' . ( $current_section == $id ? 'current' : '' ) . '">' . esc_html__( $label ) . '</a> ' . ( end( $array_keys ) == $id ? '' : '|' ) . ' </li>';
+				echo '<li><a href="' . esc_url( admin_url( 'admin.php?page=wc-settings&tab=' . $this->id . '&section=' . sanitize_title( $id ) ) ) . '" class="' . ( $current_section == $id ? 'current' : '' ) . '">' . esc_html( $label ) . '</a> ' . ( end( $array_keys ) == $id ? '' : '|' ) . ' </li>';
 
 			}
 			echo '<li> | <a href="' . esc_url( admin_url() ) . 'admin.php?page=ced-rnx-notification">' . esc_html__( 'Mail Configuration', 'woo-refund-and-exchange-lite' ) . '</a></li>';
@@ -188,8 +190,7 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 		/**
 		 * Section setting
 		 *
-		 * @author MakeWebBetter<webmaster@makewebbetter.com>
-		 * @link http://www.makewebbetter.com/
+		 * @param string $current_section .
 		 */
 		public function ced_rnx_get_settings( $current_section ) {
 
@@ -320,7 +321,7 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 						'desc_tip' => true,
 					),
 					array(
-						'title'         => __( 'Enable Order Messages', 'woo-refund-and-exchange-lite' ),
+						'title'         => __( 'Enable Order Messages', 'woo-refund-and-exchange-lite' ), /* translators: %s: search term */
 						'desc'          => sprintf( __( 'Enable this if you want to allow your customers to message their order related query. To configure order message mails. %s', 'woo-refund-and-exchange-lite' ), '<a href="' . $emai_url . '">Click Here</a>' ),
 						'default'       => 'no',
 						'type'          => 'checkbox',

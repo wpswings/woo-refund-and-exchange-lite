@@ -19,7 +19,7 @@
  * @subpackage woocommerce_refund_and_exchange_lite/public
  * @author     MakeWebBetter <webmaster@makewebbetter.com>
  */
-class woocommerce_refund_and_exchange_lite_Public {
+class Woocommerce_Refund_And_Exchange_Lite_Public {
 
 	/**
 	 * The ID of this plugin.
@@ -62,10 +62,10 @@ class woocommerce_refund_and_exchange_lite_Public {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in woocommerce_refund_and_exchange_lite_Loader as all of the hooks are defined
+		 * defined in Woocommerce_Refund_And_Exchange_Lite_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The woocommerce_refund_and_exchange_lite_Loader will then create the relationship
+		 * The Woocommerce_Refund_And_Exchange_Lite_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
@@ -84,10 +84,10 @@ class woocommerce_refund_and_exchange_lite_Public {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in woocommerce_refund_and_exchange_lite_Loader as all of the hooks are defined
+		 * defined in Woocommerce_Refund_And_Exchange_Lite_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The woocommerce_refund_and_exchange_lite_Loader will then create the relationship
+		 * The Woocommerce_Refund_And_Exchange_Lite_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
@@ -744,8 +744,8 @@ class woocommerce_refund_and_exchange_lite_Public {
 		$view_order_msg_url = get_permalink( $page_id );
 		$ced_rnx_return = get_option( 'mwb_wrma_return_enable', false );
 		$view_msg = get_option( 'mwb_wrma_order_message_view', 'no' );
-		$redirect_uri = wp_unslash( $_SERVER['REQUEST_URI'] );
-		if ( isset( $redirect_uri )){
+		$redirect_uri = isset( $_SERVER['REQUEST_URI'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '';
+		if ( isset( $redirect_uri ) ) {
 			if ( isset( $view_msg ) && 'yes' == $view_msg && isset( $ced_rnx_return ) && 'yes' == $ced_rnx_return && strpos( $redirect_uri, 'order-received' ) === false ) {
 				?>
 				<form action="<?php echo esc_html( add_query_arg( 'order_id', $order_id, $view_order_msg_url ) ); ?>" method="post">
@@ -841,7 +841,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 											</td>
 											<td class="product-total">
 											<?php
-												echo wc_price( $return_product['price'] * $return_product['qty'] ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped;
+												echo wp_kses_post( wc_price( $return_product['price'] * $return_product['qty'] ) );
 											?>
 												</td>
 											</tr>
@@ -853,7 +853,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 							?>
 							<tr>
 								<th scope="row"><?php esc_html_e( 'Refund Amount', 'woo-refund-and-exchange-lite' ); ?></th>
-								<th><?php echo wc_price( $product_data['amount'] );//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped; ?></th>
+								<th><?php echo wp_kses_post( wc_price( $product_data['amount'] ) ); ?></th>
 							</tr>
 							<?php
 							$added_fees = get_post_meta( $order_id, 'ced_rnx_return_added_fee', true );
@@ -942,7 +942,7 @@ class woocommerce_refund_and_exchange_lite_Public {
 							$format = get_option( 'date_format' );
 							$appdate = date_format( $appdate, $format );
 							?>
-								<p><?php esc_html_e( 'Above product Refund request is canceled on', 'woo-refund-and-exchange-lite' ); ?> <b><?php esc_html_e( "$appdate" ); ?>.</b></p>
+								<p><?php esc_html_e( 'Above product Refund request is canceled on', 'woo-refund-and-exchange-lite' ); ?> <b><?php echo esc_html( $appdate ); ?>.</b></p>
 								<?php
 						}
 					}
