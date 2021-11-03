@@ -5,8 +5,8 @@ Tags: return,refund, woocommerce,exchange,RMA
 Requires at least: 4.0
 Tested up to: 5.8.1
 WC requires at least: 3.0.0
-WC tested up to: 5.5.2
-Stable tag: 3.1.2
+WC tested up to: 5.8.0
+Stable tag: 3.1.3
 Requires PHP: 5.6
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -37,7 +37,7 @@ Return Refund and Exchange for WooCommerce lets you create a simple refund manag
 * Create a dedicated mailing system for refund management
 * Add predefined elements in email content with shortcodes
 * Communicate with customers through messages and Emails
-* Admin can add shortcode for order_id in the emails to track down the customer from whom refund and exchange request is made
+* Admin can add the shortcode for order_id in the emails to track down the customer from whom refund and exchange request is made
 * Serve the full RMA features to multilingual buyers (internationally) with *WPML translation*.
 * Manage return and refund features for Cash on delivery(COD) buyers.
 
@@ -51,7 +51,7 @@ With our Return Refund and Exchange plugin, merchants can create a dedicated ref
 Merchants can add multiple reasons for a product refund. Customers can select any of these reasons while asking for a refund.
 
 **3)** **Mail Notification For Refund**
-Merchants can notify the customers for different scenarios for the product refund. They can create different emails if a refund request is generated, approved, or canceled. Merchants can add a different subject line and content for every scenario. They can also use Shortcodes to add elements in the email content.
+Merchants can notify the customers of different scenarios for the product refund. They can create different emails if a refund request is generated, approved, or cancelled. Merchants can add a different subject line and content for every scenario. They can also use Shortcodes to add elements to the email content.
 
 **4)** **Efficient Tax Handling**
 With our Refund and Exchange plugin, merchants can handle the tax on the refund products easily. They can simply enable or disable the tax calculation on the refund products by going to the plugin settings and enabling the “Enable Tax” option.
@@ -93,7 +93,6 @@ Visit [**Return Refund and Exchange For WooCommerce Documentation**](http://docs
 * Shortcode of product table and the refundable amount for Refund Mails
 * Compatibility with WordPress Multilingual (WPML)
 
-
 *Make a smart move with Premium Version of [Refund and Exchange](https://makewebbetter.com/product/woocommerce-rma-return-refund-exchange/?utm_source=MWB-RMA-org&utm_medium=MWB-ORG-Page&utm_campaign=MWB-RMA1)*
 
 == LIVE DEMO OF PREMIUM VERSION ==
@@ -101,13 +100,15 @@ Visit [**Return Refund and Exchange For WooCommerce Documentation**](http://docs
 * [**RMA For Return Refund & Exchange Frontend demo**](https://demo.makewebbetter.com/woocommerce-rma-for-return-refund-and-exchange/my-account/orders/?visitor=true&utm_source=MWB-RMA-org&utm_medium=MWB-ORG-Page&utm_campaign=MWB-frontend_demo)
 * [**RMA For Return Refund & Exchange Backend demo**](https://demo.makewebbetter.com/woocommerce-rma-for-return-refund-and-exchange/get-your-personal-demo/?utm_source=MWB-RMA-org&utm_medium=MWB-ORG-Page&utm_campaign=MWB-backend_demo)
 
-
 == SUPPORT ==
 
-If you need support or have any question then kindly use our online chat window [here](https://makewebbetter.com/?utm_source=MWB-RMA-org&utm_medium=MWB-org-page&utm_campaign=MWB-RMA-org) or  connect with us then [**Generate a Ticket**](https://makewebbetter.com/submit-query/)
+If you need support or have any questions then kindly use our online chat window [here](https://makewebbetter.com/?utm_source=MWB-RMA-org&utm_medium=MWB-org-page&utm_campaign=MWB-RMA-org) or  connect with us then [**Generate a Ticket**](https://makewebbetter.com/submit-query/)
 
 If our documentation doesn’t contain the solution to your problem, you can visit the [**MakeWebBetter Forums**](https://forums.makewebbetter.com/?utm_source=MWB-rma-org&utm_medium=MWB-org-page&utm_campaign=MWB-rma-org) with your question.
 
+== CONTRIBUTE AND TRANSLATE ==
+
+Return Refund and Exchange For WooCommerce is translated into multiple languages Chinese, Dutch, Russian, Spanish and many more. Help localize Return Refund and Exchange For WooCommerce even further by adding your locale Language.[Click Here](https://translate.wordpress.org/projects/wp-plugins/woo-refund-and-exchange-lite)
 
 == Installation ==
 
@@ -132,12 +133,12 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 If you want to see the Refund button then follow these steps. Go to the *WooCommerce -> Settings -> Refund-Exchange lite Setting -> Refund Products* and set the following necessary settings.
 
-1) Enable refund request.
+1) Enable refund requests.
 2) Set the maximum number of days.
 3) Select the order status in which the order can be refunded.
 4) Select pages to show a refund button.
 
-= How to setup the Refund Products? =
+= How to set up the Refund Products? =
 
 Please reach the *WooCommerce menu -> Refund Exchange Lite Configuration setting -> Click on the Refund Product -> Enable Refund Request setting*.
 
@@ -156,11 +157,11 @@ Yes, customers and admin can communicate while processing a refund request. The 
 
 = How can a customer send an attachment with a refund request? =
 
-When a customer clicks on the refund button then on the refund request form the customer will get an option to upload the attachment. Customers can also add more than one attachment in their request.
+When a customer clicks on the refund button then on the refund request form the customer will get an option to upload the attachment. Customers can also add more than one attachment to their request.
 
-= Can admin limit the no. of attachment for a customer in the order messages? =
+= Can the admin limit the no. of attachment for a customer in the order messages? =
 
-Yes, the admin can limits the no. of attachment by going through *WooCommerce -> Settings -> Refund-Exchange lite Setting ->Refund Products -> Enter no. of attachment to send*, then put the no. of attachment you want to receive from your customer.
+Yes, the admin can limit the no. of attachment by going through *WooCommerce -> Settings -> Refund-Exchange lite Setting ->Refund Products -> Enter no. of attachment to send*, then put the no. of attachment you want to receive from your customer.
 
 = Can the admin put some customized refund policy on the refund form? =
 
@@ -192,18 +193,23 @@ Please visit the [MakeWebBetter knowledge base](https://support.makewebbetter.co
 
 == Changelog ==
 
-= 3.1.2 - RELEASED ON 27 September 2021 =
+= 3.1.3 - RELEASED ON 3 NOVEMBER 2021 =
+
+* FIX: Compatible with latest WP and WC
+* FIX: Minor bug
+
+= 3.1.2 - RELEASED ON 27 SEPTEMBER 2021 =
 
 * FIX: Onboarding form
 * FIX: Minor bug
 
-= 3.1.1 - RELEASED ON 18 August 2021 =
+= 3.1.1 - RELEASED ON 18 AUGUST 2021 =
 
 * NEW: Add notices for upcoming RMA renovation plugin
 * FIX: Compatible with latest WP and WC
 * FIX: Minor Bug and Issues Fixes
 
-= 3.1.0 - RELEASED ON 14 April 2021 =
+= 3.1.0 - RELEASED ON 14 APRIL 2021 =
 
 * FIX: Compatible with latest WP(5.7) and WC(5.2.0)
 * NEW: WPML Compatibility
@@ -215,7 +221,7 @@ Please visit the [MakeWebBetter knowledge base](https://support.makewebbetter.co
 = 3.0.4 - RELEASED ON 17 DECEMBER 2020 =
 
 * NEW: order_id shortcode for view order msg mails
-* NEW: Video link on Overview tab
+* NEW: Video link on the Overview tab
 * FIX: Compatibility with Latest WP (5.6)
 
 = 3.0.3 - RELEASED ON 13 NOVEMBER 2020 =
@@ -274,7 +280,7 @@ Please visit the [MakeWebBetter knowledge base](https://support.makewebbetter.co
 
 == Upgrade Notice ==
 
-= 3.1.2 =
+= 3.1.3 - RELEASED ON 3 NOVEMBER 2021 =
 
-* FIX: Onboarding form
+* FIX: Compatible with latest WP and WC
 * FIX: Minor bug
