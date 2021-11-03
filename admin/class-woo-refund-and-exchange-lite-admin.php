@@ -58,6 +58,18 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	 */
 	public function wrael_admin_enqueue_styles( $hook ) {
 		$screen = get_current_screen();
+		// multistep form css.
+		if ( ! mwb_rma_standard_check_multistep() && mwb_rma_pro_active() ) {
+			$style_url        = WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'build/style-index.css';
+			wp_enqueue_style(
+				'mwb-admin-react-styles',
+				$style_url,
+				array(),
+				time(),
+				false
+			);
+			return;
+		}
 		if ( isset( $screen->id ) && 'makewebbetter_page_woo_refund_and_exchange_lite_menu' === $screen->id ) {
 
 			wp_enqueue_style( 'mwb-wrael-select2-css', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/select-2/woo-refund-and-exchange-lite-select2.css', array(), time(), 'all' );
@@ -86,6 +98,43 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	public function wrael_admin_enqueue_scripts( $hook ) {
 		$screen     = get_current_screen();
 		$pro_active = mwb_rma_pro_active();
+		if ( isset( $screen->id ) && 'makewebbetter_page_woo_refund_and_exchange_lite_menu' === $screen->id ) {
+			if ( ! mwb_rma_standard_check_multistep() && mwb_rma_pro_active() ) {
+				// js for the multistep from.
+				$script_path      = '../../build/index.js';
+				$script_asset_path = WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'build/index.asset.php';
+				$script_asset      = file_exists( $script_asset_path )
+					? require $script_asset_path
+					: array(
+						'dependencies' => array(
+							'wp-hooks',
+							'wp-element',
+							'wp-i18n',
+							'wc-components',
+						),
+						'version'      => filemtime( $script_path ),
+					);
+				$script_url        = WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'build/index.js';
+				wp_register_script(
+					'react-app-block',
+					$script_url,
+					$script_asset['dependencies'],
+					$script_asset['version'],
+					true
+				);
+				wp_enqueue_script( 'react-app-block' );
+				wp_localize_script(
+					'react-app-block',
+					'frontend_ajax_object',
+					array(
+						'ajaxurl'            => admin_url( 'admin-ajax.php' ),
+						'mwb_standard_nonce' => wp_create_nonce( 'ajax-nonce' ),
+						'redirect_url' => admin_url( 'admin.php?page=woo_refund_and_exchange_lite_menu' ),
+					)
+				);
+				return;
+			}
+		}
 		if ( isset( $screen->id ) && 'makewebbetter_page_woo_refund_and_exchange_lite_menu' === $screen->id || 'shop_order' === $screen->id ) {
 			wp_enqueue_script( 'mwb-wrael-select2', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/select-2/woo-refund-and-exchange-lite-select2.js', array( 'jquery' ), time(), false );
 			wp_enqueue_script( 'mwb-wrael-metarial-js', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/material-design/material-components-web.min.js', array(), time(), false );
@@ -304,6 +353,17 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		$wrael_settings_general =
 		// To extend the general setting.
 		apply_filters( 'mwb_rma_general_setting_extend', $wrael_settings_general );
+		$wrael_settings_general[] = array(
+			'title'   => esc_html__( 'Enable Tracking', 'woo-refund-and-exchange-lite' ),
+			'type'    => 'radio-switch',
+			'id'      => 'wrael_enable_tracking',
+			'value'   => get_option( 'wrael_enable_tracking' ),
+			'class'   => 'wrael-radio-switch-class',
+			'options' => array(
+				'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+				'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
+			),
+		);
 		$wrael_settings_general[] = array(
 			'title'   => esc_html__( 'Enable to Show Bank Details Field For Manual Refund', 'woo-refund-and-exchange-lite' ),
 			'type'    => 'radio-switch',

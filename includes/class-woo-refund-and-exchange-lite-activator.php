@@ -37,11 +37,17 @@ class Woo_Refund_And_Exchange_Lite_Activator {
 			foreach ( $blog_ids as $blog_id ) {
 				switch_to_blog( $blog_id );
 				self::mwb_rma_create_pages();
+				// Schedule event to send data to makewebbetter.
+				wp_clear_scheduled_hook( 'makewebbetter_tracker_send_event' );
+				wp_schedule_event( time() + 10, apply_filters( 'makewebbetter_tracker_event_recurrence', 'daily' ), 'makewebbetter_tracker_send_event' );
 				restore_current_blog();
 			}
 		} else {
 			// Activated on a single site, in a multi-site or on a single site.
 			self::mwb_rma_create_pages();
+			// Schedule event to send data to makewebbetter.
+			wp_clear_scheduled_hook( 'makewebbetter_tracker_send_event' );
+			wp_schedule_event( time() + 10, apply_filters( 'makewebbetter_tracker_event_recurrence', 'daily' ), 'makewebbetter_tracker_send_event' );
 		}
 	}
 

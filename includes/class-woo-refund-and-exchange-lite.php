@@ -280,6 +280,13 @@ class Woo_Refund_And_Exchange_Lite {
 		// send order messages.
 		$this->loader->add_action( 'wp_ajax_mwb_rma_order_messages_save', $wrael_plugin_common, 'mwb_rma_order_messages_save' );
 		$this->loader->add_action( 'wp_ajax_nopriv_mwb_rma_order_messages_save', $wrael_plugin_common, 'mwb_rma_order_messages_save' );
+
+		// Save ajax request for the plugin's multistep.
+		$this->loader->add_action( 'wp_ajax_mwb_standard_save_settings_filter', $wrael_plugin_common, 'mwb_rma_standard_save_settings_filter' );
+		$this->loader->add_action( 'wp_ajax_nopriv_mwb_standard_save_settings_filter', $wrael_plugin_common, 'mwb_rma_standard_save_settings_filter' );
+		if ( self::is_enbale_usage_tracking() ) {
+			$this->loader->add_action( 'makewebbetter_tracker_send_event', $wrael_plugin_common, 'wrael_makewebbetter_tracker_send_event' );
+		}
 	}
 
 	/**
@@ -365,6 +372,16 @@ class Woo_Refund_And_Exchange_Lite {
 	 */
 	public function wrael_get_version() {
 		return $this->version;
+	}
+	/**
+	 * Check is usage tracking is enable
+	 *
+	 * @version 1.0.0
+	 * @name is_enbale_usage_tracking
+	 */
+	public static function is_enbale_usage_tracking() {
+		$check_is_enable = get_option( 'wrael_enable_tracking', false );
+		return ! empty( $check_is_enable ) ? true : false;
 	}
 
 	/**

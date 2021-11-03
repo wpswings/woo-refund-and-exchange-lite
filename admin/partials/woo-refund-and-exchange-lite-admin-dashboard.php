@@ -15,6 +15,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	exit(); // Exit if accessed directly.
 }
+if ( ! mwb_rma_standard_check_multistep() && mwb_rma_pro_active() ) {
+	?>
+	<div id="react-app"></div>
+	<?php
+	return;
+}
 global $wrael_mwb_rma_obj;
 $wrael_active_tab   = isset( $_GET['wrael_tab'] ) ? sanitize_key( $_GET['wrael_tab'] ) : 'woo-refund-and-exchange-lite-general';
 $wrael_default_tabs = $wrael_mwb_rma_obj->mwb_rma_plug_default_tabs();

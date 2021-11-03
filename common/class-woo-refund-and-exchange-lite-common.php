@@ -350,4 +350,60 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			wp_die();
 		}
 	}
+
+	/**
+	 * Function is used for the sending the track data.
+	 *
+	 * @param boolean $override .
+	 */
+	public function wrael_makewebbetter_tracker_send_event( $override = false ) {
+		require WC()->plugin_path() . '/includes/class-wc-tracker.php';
+
+		$last_send = get_option( 'makewebbetter_tracker_last_send' );
+		if ( ! apply_filters( 'makewebbetter_tracker_send_override', $override ) ) {
+			// Send a maximum of once per week by default.
+			$last_send = $this->mwb_wrael_last_send_time();
+			if ( $last_send && $last_send > apply_filters( 'makewebbetter_tracker_last_send_interval', strtotime( '-1 week' ) ) ) {
+				return;
+			}
+		} else {
+			// Make sure there is at least a 1 hour delay between override sends, we don't want duplicate calls due to double clicking links.
+			$last_send = $this->mwb_wrael_last_send_time();
+			if ( $last_send && $last_send > strtotime( '-1 hours' ) ) {
+				return;
+			}
+		}
+		// Update time first before sending to ensure it is set.
+		update_option( 'makewebbetter_tracker_last_send', time() );
+		$params  = WC_Tracker::get_tracking_data();
+		$params  = apply_filters( 'makewebbetter_tracker_params', $params );
+		$api_url = 'https://tracking.makewebbetter.com/wp-json/wrael-route/v1/wrael-testing-data/';
+		$sucess  = wp_safe_remote_post(
+			$api_url,
+			array(
+				'method' => 'POST',
+				'body'   => wp_json_encode( $params ),
+			)
+		);
+	}
+
+	/**
+	 * Get the updated time.
+	 *
+	 * @name mwb_wrael_last_send_time
+	 *
+	 * @since 1.0.0
+	 */
+	public function mwb_wrael_last_send_time() {
+		return apply_filters( 'makewebbetter_tracker_last_send_time', get_option( 'makewebbetter_tracker_last_send', false ) );
+	}
+
+	/**
+	 * Update the option for settings from the multistep form.
+	 */
+	public function mwb_rma_standard_save_settings_filter() {
+		check_ajax_referer( 'ajax-nonce', 'nonce' );
+		update_option( 'wrael_plugin_standard_multistep_done', 'yes' );
+		wp_send_json( 'yes' );
+	}
 }
