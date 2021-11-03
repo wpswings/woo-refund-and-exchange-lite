@@ -84,7 +84,7 @@ if ( WC()->version < '3.0.0' ) {
 	<div class="mwb_admin_order_msg_container">
 		<form id="mwb_order_new_msg_form" method="post" enctype="multipart/form-data" action="">
 			<div class="mwb_order_msg_title"><h4 class="mwb-order-heading"><?php esc_html_e( 'Add a message', 'woo-refund-and-exchange-lite' ); ?></h4></div>
-			<textarea id="mwb_order_new_msg" name="mwb_order_new_msg" placeholder="<?php esc_html_e( 'Write a message you want to sent to the Customer.', 'woo-refund-and-exchange-lite' ); ?>" maxlength="10000" rows="5"></textarea>
+			<textarea id="mwb_order_new_msg" name="mwb_order_new_msg" placeholder="<?php esc_html_e( 'Write a message you want to send to the Customer.', 'woo-refund-and-exchange-lite' ); ?>" maxlength="10000" rows="5"></textarea>
 			<div>
 				<label for="mwb_order_msg_attachment"> <?php esc_html_e( 'Attach files ', 'woo-refund-and-exchange-lite' ); ?></label>
 			</div>

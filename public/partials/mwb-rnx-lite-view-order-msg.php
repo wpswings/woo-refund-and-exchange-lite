@@ -52,7 +52,7 @@ if ( isset( $order_id ) ) {
 	<div class="mwb_order_msg_container">
 		<form id="mwb_order_new_msg_form" method="post" enctype="multipart/form-data">
 			<div class="mwb_order_msg_title"><h4 class="mwb-order-heading"><?php esc_html_e( 'Add a message', 'woo-refund-and-exchange-lite' ); ?></h4></div>
-			<textarea id="mwb_order_new_msg" name="mwb_order_new_msg" placeholder="<?php esc_html_e( 'Write a message you want to sent to the Shop Manager.', 'woo-refund-and-exchange-lite' ); ?>" rows="5" maxlength='10000' required ></textarea>
+			<textarea id="mwb_order_new_msg" name="mwb_order_new_msg" placeholder="<?php esc_html_e( 'Write a message you want to send to the Shop Manager', 'woo-refund-and-exchange-lite' ); ?>" rows="5" maxlength='10000' required ></textarea>
 			<?php if ( isset( $upload_attach ) && 'yes' == $upload_attach ) { ?>
 				<div>
 				<label for="mwb_order_msg_attachment"> <?php esc_html_e( 'Attach files: ', 'woo-refund-and-exchange-lite' ); ?></label>

@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Return Refund and Exchange for Woocommerce 3.1.0\n"
-"POT-Creation-Date: 2021-11-02 19:20+0530\n"
+"POT-Creation-Date: 2021-11-03 13:41+0530\n"
 "PO-Revision-Date: 2021-04-02 10:47+0530\n"
 "Last-Translator: \n"
 "Language-Team: MakeWebBetter\n"
@@ -303,7 +303,7 @@ msgid "Add a message"
 msgstr ""
 
 #: admin/partials/mwb-rnx-lite-order-msg-history-meta.php:87
-msgid "Write a message you want to sent to the Customer."
+msgid "Write a message you want to send to the Customer."
 msgstr ""
 
 #: admin/partials/mwb-rnx-lite-order-msg-history-meta.php:89
@@ -843,7 +843,7 @@ msgid "Message has been sent."
 msgstr ""
 
 #: public/partials/mwb-rnx-lite-view-order-msg.php:55
-msgid "Write a message you want to sent to the Shop Manager."
+msgid "Write a message you want to send to the Shop Manager"
 msgstr ""
 
 #: public/partials/mwb-rnx-lite-view-order-msg.php:58

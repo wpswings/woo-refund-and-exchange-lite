@@ -497,7 +497,7 @@ class Woocommerce_Refund_And_Exchange_Lite_Admin {
 							</div>
 							<div class="Billing-detail">
 								<h4>' . __( 'Billing Address', 'woo-refund-and-exchange-lite' ) . '</h4>
-								' . $order->get_formatted_billing_address() . '
+								' . $order->get_formatted_billing_address() ? $order->get_formatted_billing_address() : $order->get_formatted_shipping_address() . '
 							</div>
 							<div class="clear"></div>
 						</div>
