@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The file that defines the core plugin class
  *
@@ -27,7 +26,7 @@
  * @subpackage woocommerce_refund_and_exchange_lite/includes
  * @author     MakeWebBetter <webmaster@makewebbetter.com>
  */
-class woocommerce_refund_and_exchange_lite {
+class Woocommerce_Refund_And_Exchange_Lite {
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -35,7 +34,7 @@ class woocommerce_refund_and_exchange_lite {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      woocommerce_refund_and_exchange_lite_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      Woocommerce_Refund_And_Exchange_Lite_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -84,10 +83,10 @@ class woocommerce_refund_and_exchange_lite {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - woocommerce_refund_and_exchange_lite_Loader. Orchestrates the hooks of the plugin.
-	 * - woocommerce_refund_and_exchange_lite_i18n. Defines internationalization functionality.
-	 * - woocommerce_refund_and_exchange_lite_Admin. Defines all hooks for the admin area.
-	 * - woocommerce_refund_and_exchange_lite_Public. Defines all hooks for the public side of the site.
+	 * - Woocommerce_Refund_And_Exchange_Lite_Loader. Orchestrates the hooks of the plugin.
+	 * - Woocommerce_Refund_And_Exchange_Lite_I18n. Defines internationalization functionality.
+	 * - Woocommerce_Refund_And_Exchange_Lite_Admin. Defines all hooks for the admin area.
+	 * - Woocommerce_Refund_And_Exchange_Lite_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -98,18 +97,18 @@ class woocommerce_refund_and_exchange_lite {
 	private function load_dependencies() {
 
 		// The class responsible for orchestrating the actions and filters of the core plugin.
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-woocommerce_refund_and_exchange_lite-loader.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-woocommerce-refund-and-exchange-lite-loader.php';
 
 		// The class responsible for defining internationalization functionality of the plugin.
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-woocommerce_refund_and_exchange_lite-i18n.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-woocommerce-refund-and-exchange-lite-i18n.php';
 
 		// The class responsible for defining all actions that occur in the admin area.
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-woocommerce_refund_and_exchange_lite-admin.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-woocommerce-refund-and-exchange-lite-admin.php';
 
 		// The class responsible for defining all actions that occur in the public-facing side of the site.
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-woocommerce_refund_and_exchange_lite-public.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-woocommerce-refund-and-exchange-lite-public.php';
 
-		$this->loader = new woocommerce_refund_and_exchange_lite_Loader();
+		$this->loader = new Woocommerce_Refund_And_Exchange_Lite_Loader();
 
 		// The class responsible for defining all actions that occur in the onboarding the site data in the admin side of the site.
 		! class_exists( 'Makewebbetter_Onboarding_Helper' ) && require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-makewebbetter-onboarding-helper.php';
@@ -127,7 +126,7 @@ class woocommerce_refund_and_exchange_lite {
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the woocommerce_refund_and_exchange_lite_i18n class in order to set the domain and to register the hook
+	 * Uses the Woocommerce_Refund_And_Exchange_Lite_I18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -135,7 +134,7 @@ class woocommerce_refund_and_exchange_lite {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new woocommerce_refund_and_exchange_lite_i18n();
+		$plugin_i18n = new Woocommerce_Refund_And_Exchange_Lite_I18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 
@@ -159,7 +158,7 @@ class woocommerce_refund_and_exchange_lite {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new woocommerce_refund_and_exchange_lite_Admin( $this->get_woocommerce_refund_and_exchange_lite(), $this->get_version() );
+		$plugin_admin = new Woocommerce_Refund_And_Exchange_Lite_Admin( $this->get_woocommerce_refund_and_exchange_lite(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
@@ -174,11 +173,13 @@ class woocommerce_refund_and_exchange_lite {
 		$this->loader->add_action( 'wp_ajax_nopriv_ced_rnx_manage_stock', $plugin_admin, 'ced_rnx_manage_stock' );
 		$this->loader->add_action( 'woocommerce_refund_created', $plugin_admin, 'ced_rnx_action_woocommerce_order_refunded', 10, 2 );
 		$this->loader->add_action( 'wp_ajax_mwb_wrma_order_messages_save', $plugin_admin, 'mwb_wrma_order_messages_save' );
-		$this->loader->add_action( 'in_plugin_update_message-woo-refund-and-exchange-lite/woocommerce-refund-and-exchange-lite.php', $plugin_admin, 'in_plugin_update_message_callback', 10, 2 );
 		// Add your screen.
 		$this->loader->add_filter( 'mwb_helper_valid_frontend_screens', $plugin_admin, 'add_mwb_frontend_screens' );
 		// Add Deactivation screen.
 		$this->loader->add_filter( 'mwb_deactivation_supported_slug', $plugin_admin, 'add_mwb_deactivation_screens' );
+
+		// Show notice.
+		$this->loader->add_action( 'admin_notices', $plugin_admin, 'mwb_rma_lite_admin_notice' );
 
 	}
 
@@ -191,7 +192,7 @@ class woocommerce_refund_and_exchange_lite {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new woocommerce_refund_and_exchange_lite_Public( $this->get_woocommerce_refund_and_exchange_lite(), $this->get_version() );
+		$plugin_public = new Woocommerce_Refund_And_Exchange_Lite_Public( $this->get_woocommerce_refund_and_exchange_lite(), $this->get_version() );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
@@ -216,7 +217,7 @@ class woocommerce_refund_and_exchange_lite {
 		require_once MWB_REFUND_N_EXCHANGE_LITE_DIRPATH . 'emails/class-wc-rma-messages-email.php';
 
 		// add the email class to the list of email classes that WooCommerce loads.
-		$email_classes['wc_rma_messages_email'] = new WC_Rma_Order_Messages_Email();
+		$email_classes['wc_rma_messages_email'] = new WC_Rma_Messages_Email();
 		return $email_classes;
 	}
 
@@ -244,7 +245,7 @@ class woocommerce_refund_and_exchange_lite {
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since     1.0.0
-	 * @return    woocommerce_refund_and_exchange_lite_Loader    Orchestrates the hooks of the plugin.
+	 * @return    Woocommerce_Refund_And_Exchange_Lite_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
 		return $this->loader;

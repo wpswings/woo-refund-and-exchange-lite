@@ -2,19 +2,19 @@
 /**
  * Exit if accessed directly
  *
- * @package run_woocommerce_refund_and_exchange_lite
+ * @package woocommerce_refund_and_exchange_lite
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$image_src = '';
+$image_src       = '';
 $mwb_rnx_section = '';
-$mwb_rnx_tab = '';
+$mwb_rnx_tab     = '';
 if ( isset( $_GET['section'] ) || isset( $_GET['section'] ) ) {
-	$mwb_rnx_section = sanitize_text_field( wp_unslash( $_GET['section'] ) );
-	$mwb_rnx_tab = sanitize_text_field( wp_unslash( $_GET['tab'] ) );
+	$mwb_rnx_section = isset( $_GET['section'] ) ? sanitize_text_field( wp_unslash( $_GET['section'] ) ) : '';
+	$mwb_rnx_tab     = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : '';
 	if ( 'exchange' == $mwb_rnx_section ) {
 		$image_src = MWB_REFUND_N_EXCHANGE_LITE_URL . '/admin/images/Order-Exchange-icon.png';
 	} elseif ( 'other' == $mwb_rnx_section ) {

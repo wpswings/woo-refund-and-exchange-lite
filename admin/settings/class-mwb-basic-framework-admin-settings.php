@@ -5,17 +5,11 @@
  * @package woocommerce_refund_and_exchange_lite
  */
 
-if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
-	class MwbBasicframeworkAdminSettings {
-
-		protected $loader;
-
+if ( ! class_exists( 'Mwb_Basic_Framework_Admin_Settings' ) ) {
+	/** To register the setting */
+	class Mwb_Basic_Framework_Admin_Settings {
+		/** Constructor */
 		public function __construct() {
-
-			self::loadDependencies();
-		}
-
-		public function loadDependencies() {
 
 			add_action( 'admin_head', array( $this, 'add_current_class_on_rma_menu' ) );
 			add_submenu_page( '', '', '', 'manage_woocommerce', 'ced-rnx-notification', array( $this, 'ced_rnx_notification_callback' ) );
@@ -36,8 +30,8 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 		 * @return void
 		 */
 		public function add_current_class_on_rma_menu() {
-			$get_tab = isset( $_GET['tab'] ) ? $_GET['tab'] : '';
-			$get_section = isset( $_GET['section'] ) ? $_GET['section'] : '';
+			$get_tab     = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : '';
+			$get_section = isset( $_GET['section'] ) ? sanitize_text_field( wp_unslash( $_GET['section'] ) ) : '';
 			if ( 'ced_rnx_setting' === $get_tab ) {
 				?>
 				<script type="text/javascript">
@@ -72,13 +66,14 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 			return $settings_tabs;
 		}
 
+		/** Add some template for pro */
 		public function ced_rnx_settings_tab() {
 			global $current_section;
 			woocommerce_admin_fields( self::ced_rnx_get_settings( $current_section ) );
-			$get_tab = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : '';
-			$get_section = '';           if ( isset( $_GET['section'] ) ) {
+			$get_tab     = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : '';
+			$get_section = '';
+			if ( isset( $_GET['section'] ) ) {
 				$get_section = isset( $_GET['section'] ) ? sanitize_text_field( wp_unslash( $_GET['section'] ) ) : '';
-				$get_section = sanitize_text_field( $get_section );
 				if ( 'refund' !== $get_section ) {
 					include_once MWB_REFUND_N_EXCHANGE_LITE_DIRPATH . 'admin/partials/mwb-rnx-lite-pro-purchase-template.php';
 					?>
@@ -143,15 +138,17 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 						<li class="mwb_lite_header_menu_button"><a href="https://makewebbetter.com/product/woocommerce-rma-return-refund-exchange/" class="" title="" target="_blank">GO PRO NOW</a></li>
 				      </ul>
 			 	  </div>
-				
-			</div>';
+			</div>
+			<div id="backup_notice_div">
+			<span id="backup_notice">Important - On our customer\'s demand we will be updating plugin with some significant changes soon.So its highly recommended to take backup of your present version to <br>avoid any future inconvenience.</span>
+			<span id="delete_notice">X</span></div>';
 			echo '<div class="mwb_lte_nav_bar">';
 			echo '<ul class="subsubsub">';
 
 			$array_keys = array_keys( $sections );
 
 			foreach ( $sections as $id => $label ) {
-				echo '<li><a href="' . esc_url( admin_url( 'admin.php?page=wc-settings&tab=' . $this->id . '&section=' . sanitize_title( $id ) ) ) . '" class="' . ( $current_section == $id ? 'current' : '' ) . '">' . esc_html__( $label ) . '</a> ' . ( end( $array_keys ) == $id ? '' : '|' ) . ' </li>';
+				echo '<li><a href="' . esc_url( admin_url( 'admin.php?page=wc-settings&tab=' . $this->id . '&section=' . sanitize_title( $id ) ) ) . '" class="' . ( $current_section == $id ? 'current' : '' ) . '">' . esc_html( $label ) . '</a> ' . ( end( $array_keys ) == $id ? '' : '|' ) . ' </li>';
 
 			}
 			echo '<li> | <a href="' . esc_url( admin_url() ) . 'admin.php?page=ced-rnx-notification">' . esc_html__( 'Mail Configuration', 'woo-refund-and-exchange-lite' ) . '</a></li>';
@@ -179,7 +176,7 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 			$sections = array(
 				'overview'      => __( 'Overview', 'woo-refund-and-exchange-lite' ),
 				'refund'        => __( 'Refund Products', 'woo-refund-and-exchange-lite' ),
-				'exchange'              => __( 'Exchange Products', 'woo-refund-and-exchange-lite' ),
+				'exchange'      => __( 'Exchange Products', 'woo-refund-and-exchange-lite' ),
 				'other'         => __( 'Common Setting', 'woo-refund-and-exchange-lite' ),
 				'cancel'        => __( 'Cancel Order', 'woo-refund-and-exchange-lite' ),
 				'text_setting'  => __( 'Text Settings', 'woo-refund-and-exchange-lite' ),
@@ -193,8 +190,7 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 		/**
 		 * Section setting
 		 *
-		 * @author MakeWebBetter<webmaster@makewebbetter.com>
-		 * @link http://www.makewebbetter.com/
+		 * @param string $current_section .
 		 */
 		public function ced_rnx_get_settings( $current_section ) {
 
@@ -211,7 +207,7 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 			}
 
 			$statuses = wc_get_order_statuses();
-			$status = $statuses;
+			$status   = $statuses;
 			unset( $status['wc-refund-approved'] );
 			unset( $status['wc-refund-cancelled'] );
 			unset( $status['wc-refund-requested'] );
@@ -220,9 +216,9 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 			$emai_url = admin_url() . 'admin.php?page=wc-settings&tab=email&section=wc_rma_messages_email';
 
 			$button_view = array(
-				'order-page' => __( 'Order Page', 'mwb-woocommerce-rma' ),
-				'My account' => __( 'Order View Page', 'mwb-woocommerce-rma' ),
-				'thank-you-page' => __( 'Thank You Page', 'mwb-woocommerce-rma' ),
+				'order-page' => __( 'Order Page', 'woo-refund-and-exchange-lite' ),
+				'My account' => __( 'Order View Page', 'woo-refund-and-exchange-lite' ),
+				'thank-you-page' => __( 'Thank You Page', 'woo-refund-and-exchange-lite' ),
 			);
 
 			if ( 'refund' == $current_section ) {
@@ -325,7 +321,7 @@ if ( ! class_exists( 'MwbBasicframeworkAdminSettings' ) ) {
 						'desc_tip' => true,
 					),
 					array(
-						'title'         => __( 'Enable Order Messages', 'woo-refund-and-exchange-lite' ),
+						'title'         => __( 'Enable Order Messages', 'woo-refund-and-exchange-lite' ), /* translators: %s: search term */
 						'desc'          => sprintf( __( 'Enable this if you want to allow your customers to message their order related query. To configure order message mails. %s', 'woo-refund-and-exchange-lite' ), '<a href="' . $emai_url . '">Click Here</a>' ),
 						'default'       => 'no',
 						'type'          => 'checkbox',

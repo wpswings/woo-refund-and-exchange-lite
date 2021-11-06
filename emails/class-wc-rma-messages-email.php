@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 0.1
  * @extends \WC_Email
  */
-class WC_Rma_Order_Messages_Email extends WC_Email {
+class WC_Rma_Messages_Email extends WC_Email {
 
 	/**
 	 * Set email defaults
@@ -62,10 +62,10 @@ class WC_Rma_Order_Messages_Email extends WC_Email {
 	public function trigger( $msg, $attachment, $to, $order_id ) {
 		if ( $to ) {
 			$this->setup_locale();
-			$this->receicer   = $to;
-			$this->msg        = $msg;
-			$this->placeholders['{message_date}'] = date( 'M d, Y' );
-			$this->placeholders['{order_id}'] = '#' . $order_id;
+			$this->receicer                       = $to;
+			$this->msg                            = $msg;
+			$this->placeholders['{message_date}'] = gmdate( 'M d, Y' );
+			$this->placeholders['{order_id}']     = '#' . $order_id;
 			$this->send( $this->receicer, $this->get_subject(), $this->get_content(), $this->get_headers(), $attachment );
 		}
 		$this->restore_locale();
@@ -175,4 +175,4 @@ class WC_Rma_Order_Messages_Email extends WC_Email {
 		);
 	}
 
-} // end \WC_Rma_Order_Messages_Email class
+}

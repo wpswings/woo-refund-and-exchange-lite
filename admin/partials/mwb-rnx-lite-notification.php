@@ -93,7 +93,7 @@ if ( isset( $_POST['ced_rnx_noti_save_return'] ) ) {
 		admin.php?page=ced-rnx-notification&amp;tab=exchange"><?php esc_html_e( 'Exchange', 'woo-refund-and-exchange-lite' ); ?></a>
 		<a class="nav-tab <?php echo esc_html( $return_ship_label_setting_active ); ?>" href="<?php esc_url( admin_url() ); ?>admin.php?page=ced-rnx-notification&amp;tab=return_ship_label_setting"><?php esc_html_e( 'Return Ship Label', 'woo-refund-and-exchange-lite' ); ?></a>
 	</nav>
-	<a href="<?php echo esc_html( admin_url( 'admin.php?page=wc-settings&tab=ced_rnx_setting' ) ); ?>"><input type="button" value="<?php esc_html_e( 'GO TO SETTING', 'woo-refund-and-exchange-lite' ); ?>" class="ced-rnx-save-button button button-primary" style="float:right;"></a></div>
+	<a href="<?php echo esc_html( admin_url( 'admin.php?page=wc-settings&tab=ced_rnx_setting&section=refund' ) ); ?>"><input type="button" value="<?php esc_html_e( 'GO TO SETTING', 'woo-refund-and-exchange-lite' ); ?>" class="ced-rnx-save-button button button-primary" style="float:right;"></a></div>
 	<div class="clear ced-rnx-main-section">
 		<?php
 		// Basic Tab of Notification setting.

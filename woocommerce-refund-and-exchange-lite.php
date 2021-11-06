@@ -15,11 +15,11 @@
  * Plugin Name:       Return Refund and Exchange for WooCommerce
  * Plugin URI:        https://wordpress.org/plugins/woo-refund-and-exchange-lite/
  * Description:       WooCommerce Refund and Exchange lite allows users to submit product refund. The plugin provides a dedicated mailing system that would help to communicate better between store owner and customers.This is lite version of Woocommerce Refund And Exchange.
- * Version:           3.1.0
+ * Version:           3.1.3
  * Author:            MakeWebBetter
  * Author URI:        http://makewebbetter.com/
- * WC tested up to:   5.1.0
- * Tested up to:      5.7
+ * WC tested up to:   5.8.0
+ * Tested up to:      5.8.1
  * License:           GPL-3.0+
  * License URI:       http://www.gnu.org/licenses/gpl-3.0.txt
  * Text Domain:       woo-refund-and-exchange-lite
@@ -134,7 +134,7 @@ if ( $activated ) {
 	register_deactivation_hook( __FILE__, 'deactivate_woocommerce_refund_and_exchange_lite' );
 
 	// The core plugin class that is used to define internationalization, admin-specific hooks, and public-facing site hooks.
-	require plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce_refund_and_exchange_lite.php';
+	require plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-refund-and-exchange-lite.php';
 
 	/**
 	 * This function is used for formatting the price seprator
@@ -284,7 +284,7 @@ if ( $activated ) {
 				}
 			}
 		}
-		$date                         = strtotime( date( 'Y-m-d H:i:s' ) );
+		$date                         = strtotime( gmdate( 'Y-m-d H:i:s' ) );
 		$order_msg[ $date ]['sender'] = $sender;
 		$order_msg[ $date ]['msg']    = $msg;
 		$order_msg[ $date ]['files']  = $filename;
@@ -315,7 +315,7 @@ if ( $activated ) {
 	 */
 	function run_woocommerce_refund_and_exchange_lite() {
 
-		$plugin = new woocommerce_refund_and_exchange_lite();
+		$plugin = new Woocommerce_Refund_And_Exchange_Lite();
 		$plugin->run();
 	}
 	run_woocommerce_refund_and_exchange_lite();
@@ -326,44 +326,10 @@ if ( $activated ) {
 	 * @param int $page_id The ID of the post to be translated.
 	 **/
 	function ced_rnx_wpml_translate_post( $page_id ) {
-		if ( function_exists( 'icl_object_id' ) ) {
-			// $lang The language of the translated post (ie 'fr', 'de', etc.).
-			$langs = wpml_get_active_languages();
-			foreach ( $langs as $lang ) {
-				// If the translated page doesn't exist, now create it.
-				if ( icl_object_id( $page_id, 'page', false, $lang['code'] ) == null ) {
-					$page_translated_name = get_post( $page_id )->post_name . ' (-' . $lang['code'] . ')';
-					$page_translated_title = get_post( $page_id )->post_title;
-					// All page stuff.
-					$my_page = array();
-					$my_page['post_name']  = $page_translated_name;
-					$my_page['post_title'] = $page_translated_title;
-					$my_page['post_author'] = 1;
-					$my_page['post_type'] = 'page';
-					$my_page['post_status'] = 'publish';
-					// Insert translated post.
-					$post_translated_id = wp_insert_post( $my_page );
-
-					// Get trid of original post.
-					$trid = wpml_get_content_trid( 'post_' . 'page', $page_id );
-					// Get default language.
-					$default_lang = wpml_get_default_language();
-					// Associate original post and translated post.
-					global $wpdb;
-					$wpdb->update(
-						$wpdb->prefix . 'icl_translations',
-						array(
-							'trid' => $trid,
-							'language_code' => $lang['code'],
-							'source_language_code' => $default_lang,
-						),
-						array( 'element_id' => $post_translated_id )
-					);
-
-				}
-			}
+		if ( has_filter( 'wpml_object_id' ) ) {
+			// If the translated page doesn't exist, now create it.
+			do_action( 'wpml_admin_make_post_duplicates', $page_id );
 		}
-
 	}
 
 	/**
@@ -372,7 +338,7 @@ if ( $activated ) {
 	 * @param int $page_id The ID of the post to be deleted.
 	 */
 	function ced_rnx_delete_wpml_translate_post( $page_id ) {
-		if ( function_exists( 'icl_object_id' ) ) {
+		if ( has_filter( 'wpml_object_id' ) ) {
 			$langs = wpml_get_active_languages();
 			foreach ( $langs as $lang ) {
 				if ( icl_object_id( $page_id, 'page', false, $lang['code'] ) ) {
@@ -383,6 +349,210 @@ if ( $activated ) {
 			}
 		}
 	}
+
+	/**
+	 * This function runs when WordPress completes its upgrade process
+	 * It iterates through each plugin updated to see if ours is included
+	 *
+	 * @param object $upgrader_object .
+	 * @param array  $options .
+	 */
+	function rma_lite_reno_plugin_upgrade_completed( $upgrader_object, $options ) {
+		// The path to our plugin's main file.
+		$our_plugin = plugin_basename( __FILE__ );
+		// If an update has taken place and the updated type is plugins and the plugins element exists.
+		if ( 'update' === $options['action'] && 'plugin' === $options['type'] && isset( $options['plugins'] ) ) {
+			// Iterate through the plugins being updated and check if ours is there.
+			foreach ( $options['plugins'] as $plugin ) {
+				if ( $plugin == $our_plugin ) {
+					// Set a transient to record that our plugin has just been updated.
+					$enable_refund = get_option( 'mwb_wrma_return_enable', false );
+					if ( 'yes' === $enable_refund ) {
+						update_option( 'mwb_rma_refund_enable', 'on' );
+					}
+					$attach_enable = get_option( 'mwb_wrma_return_attach_enable', false );
+					if ( 'yes' === $attach_enable ) {
+						update_option( 'mwb_rma_refund_attachment', 'on' );
+					}
+					$attach_limit = get_option( 'mwb_wrma_refund_attachment_limit', false );
+					if ( ! empty( $attach_limit ) && $attach_limit > 0 ) {
+						update_option( 'mwb_rma_attachment_limit', $attach_limit );
+					}
+					$manage_stock = get_option( 'mwb_wrma_return_request_manage_stock', false );
+					if ( 'yes' === $manage_stock ) {
+						update_option( 'mwb_rma_refund_manage_stock', 'on' );
+					}
+					$show_pages = get_option( 'mwb_wrma_refund_button_view', false );
+					if ( ! empty( $show_pages ) ) {
+						$button_hide = array();
+						if ( ! in_array( 'order-page', $show_pages ) ) {
+							$button_hide[] = 'order-page';
+						}
+						if ( ! in_array( 'My account', $show_pages ) ) {
+							$button_hide[] = 'My account';
+						}
+						if ( ! in_array( 'thank-you-page', $show_pages ) ) {
+							$button_hide[] = 'Checkout';
+						}
+						update_option( 'mwb_rma_refund_button_pages', $button_hide );
+					}
+					$refund_rule_enable = get_option( 'mwb_wrma_refund_rules_editor_enable', false );
+					if ( 'yes' === $refund_rule_enable ) {
+						update_option( 'mwb_rma_refund_rules', 'on' );
+					}
+					$refund_editor = get_option( 'mwb_wrma_return_request_rules_editor', false );
+					if ( ! empty( $refund_editor ) ) {
+						update_option( 'mwb_rma_refund_rules_editor', $refund_editor );
+					}
+					$refund_text = get_option( 'mwb_wrma_return_button_text', false );
+					if ( ! empty( $refund_text ) ) {
+						update_option( 'mwb_rma_refund_button_text', $refund_text );
+					}
+					$refund_desc = get_option( 'mwb_wrma_return_request_description', false );
+					if ( 'yes' === $refund_desc ) {
+						update_option( 'mwb_rma_refund_description', 'on' );
+					}
+					$refund_reason  = get_option( 'ced_rnx_return_predefined_reason', false );
+					$refund_reason1 = get_option( 'mwb_wrma_return_predefined_reason', false );
+					if ( ! empty( $refund_reason1 ) ) {
+						$refund_reason = $refund_reason1;
+					}
+					if ( ! empty( $refund_reason ) ) {
+						$refund_reason = implode( ',', $refund_reason );
+						update_option( 'mwb_rma_refund_reasons', $refund_reason );
+					}
+					$order_msg_enable = get_option( 'mwb_wrma_order_message_view', false );
+					if ( 'yes' === $order_msg_enable ) {
+						update_option( 'mwb_rma_general_om', 'on' );
+					}
+					$order_attach = get_option( 'mwb_wrma_order_message_attachment', false );
+					if ( 'yes' === $order_attach ) {
+						update_option( 'mwb_rma_general_enable_om_attachment', 'on' );
+					}
+					$order_text = get_option( 'mwb_wrma_order_msg_text', false );
+					if ( ! empty( $order_text ) ) {
+						update_option( 'mwb_rma_order_message_button_text', $order_text );
+					}
+
+					// RMA Policies Setting Save.
+					$tax_enable          = get_option( 'mwb_wrma_return_tax_enable', false );
+					$refund_order_status = get_option( 'mwb_wrma_return_order_status', false );
+					$return_days         = get_option( 'mwb_wrma_return_days', false );
+					$refund_order_status = ! empty( $refund_order_status ) ? $refund_order_status : array();
+					$set_policies_arr = array(
+						'mwb_rma_setting' =>
+						array(
+							0 => array(
+								'row_policy'           => 'mwb_rma_maximum_days',
+								'row_functionality'    => 'refund',
+								'row_conditions1'      => 'mwb_rma_less_than',
+								'row_value'            => $return_days,
+								'incase_functionality' => 'incase',
+							),
+							1 => array(
+								'row_functionality'    => 'refund',
+								'row_policy'           => 'mwb_rma_order_status',
+								'row_conditions2'      => 'mwb_rma_equal_to',
+								'row_statuses'         => $refund_order_status,
+								'incase_functionality' => 'incase',
+							),
+						),
+					);
+
+					if ( 'yes' !== $tax_enable ) {
+						unset( $set_policies_arr['mwb_rma_setting'][2] );
+					}
+					update_option( 'policies_setting_option', $set_policies_arr );
+
+					// Refund Request Subject And Content Updation.
+					$subject  = get_option( 'ced_rnx_notification_return_subject', false );
+					$subject1 = get_option( 'mwb_wrma_notification_return_subject', false );
+					if ( ! empty( $subject1 ) ) {
+						$subject = $subject1;
+					}
+					if ( empty( $subject ) ) {
+						$subject = '';
+					}
+					$content  = get_option( 'ced_rnx_notification_return_rcv', false );
+					$content1 = get_option( 'mwb_wrma_notification_return_rcv', false );
+					if ( ! empty( $content1 ) ) {
+						$content = $content1;
+					}
+					if ( empty( $content ) ) {
+						$content = '';
+					}
+					$content            = str_replace( '[', '{', $content );
+					$content            = str_replace( ']', '}', $content );
+					$refund_request_add = array(
+						'enabled'            => 'yes',
+						'subject'            => $subject,
+						'heading'            => '',
+						'additional_content' => $content,
+						'email_type'         => 'html',
+					);
+					update_option( 'woocommerce_mwb_rma_refund_request_email_settings', $refund_request_add );
+
+					// Refund Request Accept Subject And Content Updation.
+					$subject  = get_option( 'ced_rnx_notification_return_approve_subject', false );
+					$subject1 = get_option( 'mwb_wrma_notification_return_approve_subject', false );
+					if ( ! empty( $subject1 ) ) {
+						$subject = $subject1;
+					}
+					if ( empty( $subject ) ) {
+						$subject = '';
+					}
+					$content  = get_option( 'ced_rnx_notification_return_approve', false );
+					$content1 = get_option( 'mwb_wrma_notification_return_approve', false );
+					if ( ! empty( $content1 ) ) {
+						$content = $content1;
+					}
+					if ( empty( $content ) ) {
+						$content = '';
+					}
+					$content                   = str_replace( '[', '{', $content );
+						$content               = str_replace( ']', '}', $content );
+					$refund_request_accept_add = array(
+						'enabled'            => 'yes',
+						'subject'            => $subject,
+						'heading'            => '',
+						'additional_content' => $content,
+						'email_type'         => 'html',
+					);
+					update_option( 'woocommerce_mwb_rma_refund_request_accept_email_settings', $refund_request_accept_add );
+
+					// Refund Request Cancel Subject And Content Updation.
+
+					$subject  = get_option( 'ced_rnx_notification_return_cancel_subject', false );
+					$subject1 = get_option( 'mwb_wrma_notification_return_cancel_subject', false );
+					if ( ! empty( $subject1 ) ) {
+						$subject = $subject1;
+					}
+					if ( empty( $subject ) ) {
+						$subject = '';
+					}
+					$content  = get_option( 'ced_rnx_notification_return_cancel', false );
+					$content1 = get_option( 'mwb_wrma_notification_return_cancel', false );
+					if ( ! empty( $content1 ) ) {
+						$content = $content1;
+					}
+					if ( empty( $content ) ) {
+						$content = '';
+					}
+					$content                   = str_replace( '[', '{', $content );
+					$content                   = str_replace( ']', '}', $content );
+					$refund_request_cancel_add = array(
+						'enabled'            => 'yes',
+						'subject'            => $subject,
+						'heading'            => '',
+						'additional_content' => $content,
+						'email_type'         => 'html',
+					);
+					update_option( 'woocommerce_mwb_rma_refund_request_cancel_email_settings', $refund_request_cancel_add );
+				}
+			}
+		}
+	}
+	add_action( 'upgrader_process_complete', 'rma_lite_reno_plugin_upgrade_completed', 10, 2 );
 } else {
 
 	/**

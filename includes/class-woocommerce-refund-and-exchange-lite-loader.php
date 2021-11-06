@@ -20,7 +20,7 @@
  * @subpackage woocommerce_refund_and_exchange_lite/includes
  * @author     MakeWebBetter <webmaster@makewebbetter.com>
  */
-class woocommerce_refund_and_exchange_lite_Loader {
+class Woocommerce_Refund_And_Exchange_Lite_Loader {
 
 	/**
 	 * The array of actions registered with WordPress.

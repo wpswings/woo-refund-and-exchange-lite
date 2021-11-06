@@ -23,7 +23,7 @@
  * @subpackage woocommerce_refund_and_exchange_lite/includes
  * @author     MakeWebBetter<webmaster@makewebbetter.com>
  */
-class woocommerce_refund_and_exchange_lite_i18n {
+class Woocommerce_Refund_And_Exchange_Lite_I18n {
 
 
 	/**

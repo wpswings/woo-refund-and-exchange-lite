@@ -21,7 +21,7 @@ if ( isset( $_REQUEST['ced-rnx-nonce'] ) ) {
 
 if ( $allowed ) {
 	$subject = '';
-	$reason = '';
+	$reason  = '';
 	if ( isset( $_POST['order_id'] ) ) {
 		$order_id = sanitize_text_field( wp_unslash( $_POST['order_id'] ) );
 	} elseif ( isset( $_GET['order_id'] ) ) {
@@ -51,15 +51,15 @@ if ( $allowed ) {
 				$myaccount_page = get_option( 'woocommerce_myaccount_page_id' );
 				$myaccount_page_url = get_permalink( $myaccount_page );
 				$allowed = false;
-				$reason = __( "This order # $order_id is not associated to your account. <a href='$myaccount_page_url'>Click Here</a>", 'woo-refund-and-exchange-lite' );
-				$reason = apply_filters( 'ced_rnx_return_choose_order', $reason );
+				$reason  = "This order # $order_id is not associated to your account. <a href='$myaccount_page_url'>Click Here</a>";
+				$reason  = apply_filters( 'ced_rnx_return_choose_order', $reason );
 			}
 		}
 	}
 
 	if ( $allowed ) {
 		if ( $allowed ) {
-			$order = wc_get_order( $order_id );
+			$order_obj = wc_get_order( $order_id );
 			// Check enable return.
 			$return_enable = get_option( 'mwb_wrma_return_enable', false );
 
@@ -88,12 +88,12 @@ if ( $allowed ) {
 					}
 				}
 			}
-			$order = wc_get_order( $order_id );
-			$items = $order->get_items();
+			$order_obj = wc_get_order( $order_id );
+			$items = $order_obj->get_items();
 			if ( WC()->version < '3.0.0' ) {
-				$order_date = date_i18n( 'F d, Y', strtotime( $order->order_date ) );
+				$order_date = date_i18n( 'F d, Y', strtotime( $order_obj->order_date ) );
 			} else {
-				$order_date = date_i18n( 'F d, Y', strtotime( $order->get_date_created() ) );
+				$order_date = date_i18n( 'F d, Y', strtotime( $order_obj->get_date_created() ) );
 			}
 			$today_date = date_i18n( 'F d, Y' );
 			$order_date = strtotime( $order_date );
@@ -113,13 +113,13 @@ if ( $allowed ) {
 			}
 
 			if ( $allowed ) {
-				$order = wc_get_order( $order_id );
-				$order_total = $order->get_total();
+				$order_obj = wc_get_order( $order_id );
+				$order_total = $order_obj->get_total();
 
 
 				if ( $allowed ) {
 					$statuses = get_option( 'mwb_wrma_return_order_status', array() );
-					$order_status = 'wc-' . $order->get_status();
+					$order_status = 'wc-' . $order_obj->get_status();
 					if ( ! in_array( $order_status, $statuses ) ) {
 						$allowed = false;
 						$reason = __( 'Update Refund request is disabled.', 'woo-refund-and-exchange-lite' );
@@ -141,8 +141,8 @@ get_header( 'shop' );
 do_action( 'woocommerce_before_main_content' );
 
 if ( $allowed ) {
-	$show_purchase_note    = $order->has_status( apply_filters( 'woocommerce_purchase_note_order_statuses', array( 'completed', 'processing' ) ) );
-	$show_customer_details = is_user_logged_in() && $order->get_user_id() === get_current_user_id();
+	$show_purchase_note    = $order_obj->has_status( apply_filters( 'woocommerce_purchase_note_order_statuses', array( 'completed', 'processing' ) ) );
+	$show_customer_details = is_user_logged_in() && $order_obj->get_user_id() === get_current_user_id();
 
 	?>
 	<div class="woocommerce woocommerce-account ced_rnx_refund_form_wrapper">
@@ -173,7 +173,7 @@ if ( $allowed ) {
 							$in_tax = true;
 						}
 						$mwb_total_actual_price = 0;
-						foreach ( $order->get_items() as $item_id => $item ) {
+						foreach ( $order_obj->get_items() as $item_id => $item ) {
 
 							if ( $item['qty'] > 0 ) {
 								if ( isset( $item['variation_id'] ) && $item['variation_id'] > 0 ) {
@@ -194,7 +194,7 @@ if ( $allowed ) {
 								$thumbnail     = wp_get_attachment_image( $product->get_image_id(), 'thumbnail' );
 								$productdata = wc_get_product( $product_id );
 
-								$ced_product_total = $order->get_line_subtotal( $item, $in_tax );
+								$ced_product_total = $order_obj->get_line_subtotal( $item, $in_tax );
 								$ced_product_qty = $item['qty'];
 								$ced_per_product_price = 0;
 								if ( $ced_product_qty > 0 ) {
@@ -207,7 +207,7 @@ if ( $allowed ) {
 									<?php
 									if ( $show ) {
 
-										$mwb_actual_price = $order->get_item_total( $item, $in_tax );
+										$mwb_actual_price = $order_obj->get_item_total( $item, $in_tax );
 										$mwb_total_price_of_product = $item['qty'] * $mwb_actual_price;
 										$mwb_total_actual_price += $mwb_total_price_of_product;
 									}
@@ -215,7 +215,7 @@ if ( $allowed ) {
 									<td class="product-name">
 									<?php
 										$is_visible        = $product && $product->is_visible();
-										$product_permalink = apply_filters( 'woocommerce_order_item_permalink', $is_visible ? $product->get_permalink( $item ) : '', $item, $order );
+										$product_permalink = apply_filters( 'woocommerce_order_item_permalink', $is_visible ? $product->get_permalink( $item ) : '', $item, $order_obj );
 
 									if ( isset( $thumbnail ) && ! empty( $thumbnail ) ) {
 										echo wp_kses_post( $thumbnail );
@@ -229,24 +229,24 @@ if ( $allowed ) {
 									?>
 										<div class="ced_rnx_product_title">
 										<?php
-										echo apply_filters( 'woocommerce_order_item_name', $product_permalink ? sprintf( '<a href="%s">%s</a>', $product_permalink, $item['name'] ) : $item['name'], $item, $is_visible );// @codingStandardsIgnoreLine
-										echo apply_filters( 'woocommerce_order_item_quantity_html', ' <strong class="product-quantity">' . sprintf( '&times; %s', $item['qty'] ) . '</strong>', $item );// @codingStandardsIgnoreLine
+										echo wp_kses_post( apply_filters( 'woocommerce_order_item_name', $product_permalink ? sprintf( '<a href="%s">%s</a>', $product_permalink, $item['name'] ) : $item['name'], $item, $is_visible ) );
+										echo wp_kses_post( apply_filters( 'woocommerce_order_item_quantity_html', ' <strong class="product-quantity">' . sprintf( '&times; %s', $item['qty'] ) . '</strong>', $item ) );
 
-										do_action( 'woocommerce_order_item_meta_start', $item_id, $item, $order );
+										do_action( 'woocommerce_order_item_meta_start', $item_id, $item, $order_obj );
 										if ( WC()->version < '3.0.0' ) {
-											$order->display_item_meta( $item );
-											$order->display_item_downloads( $item );
+											$order_obj->display_item_meta( $item );
+											$order_obj->display_item_downloads( $item );
 										} else {
 											wc_display_item_meta( $item );
 											wc_display_item_downloads( $item );
 										}
-										do_action( 'woocommerce_order_item_meta_end', $item_id, $item, $order );
+										do_action( 'woocommerce_order_item_meta_end', $item_id, $item, $order_obj );
 										?>
 										<p>
 											<input type="hidden" name="ced_rnx_product_amount" class="ced_rnx_product_amount" value="<?php echo esc_html( $mwb_actual_price ); ?>">
 											<b><?php esc_html_e( 'Price', 'woo-refund-and-exchange-lite' ); ?> :</b> 
 											<?php
-												echo wc_price( $mwb_actual_price ); // phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped
+												echo wp_kses_post( wc_price( $mwb_actual_price ) );
 											if ( true === $in_tax ) {
 												?>
 											<small class="tax_label"><?php esc_html_e( '(incl. tax)', 'woo-refund-and-exchange-lite' ); ?></small>
@@ -261,7 +261,7 @@ if ( $allowed ) {
 									</td>
 									<td class="product-total">
 										<?php
-										echo wc_price( $mwb_total_price_of_product );
+										echo wp_kses_post( wc_price( $mwb_total_price_of_product ) );
 
 										if ( true === $in_tax ) {
 											?>
@@ -283,8 +283,8 @@ if ( $allowed ) {
 						?>
 							<tr>
 								<th scope="row" colspan="2"><?php esc_html_e( 'Total Refund Amount', 'woo-refund-and-exchange-lite' ); ?></th>
-								<td class="ced_rnx_total_amount_wrap"><span id="ced_rnx_total_refund_amount"><?php echo wc_price( $mwb_total_actual_price );/*phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped*/ ?></span>
-								<input type="hidden" name="ced_rnx_total_refund_price" class="ced_rnx_total_refund_price" value="<?php echo esc_html( $mwb_total_actual_price ); ?>">
+								<td class="ced_rnx_total_amount_wrap"><span id="ced_rnx_total_refund_amount"><?php echo wp_kses_post( wc_price( $mwb_total_actual_price ) ); ?></span>
+								<input type="hidden" name="ced_rnx_total_refund_price" class="ced_rnx_total_refund_price" value="<?php echo wp_kses_post( esc_html( $mwb_total_actual_price ) ); ?>">
 									<?php
 									if ( true === $in_tax ) {
 										?>
@@ -427,14 +427,14 @@ if ( $allowed ) {
 
 			if ( isset( $refund_rules_enable ) && 'yes' === $refund_rules_enable ) {
 				if ( isset( $refund_rules ) && ! empty( $refund_rules ) ) {
-					echo $refund_rules; // phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped
+					echo wp_kses_post( $refund_rules ); // phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped
 				}
 			}
 			?>
 			</div>
 			<div class="ced-rnx_customer_detail">
 				<?php
-				wc_get_template( 'order/order-details-customer.php', array( 'order' => $order ) );
+				wc_get_template( 'order/order-details-customer.php', array( 'order' => $order_obj ) );
 				?>
 			</div>
 		</div>

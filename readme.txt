@@ -3,10 +3,10 @@ Contributors: makewebbetter
 Donate link:  https://makewebbetter.com/
 Tags: return,refund, woocommerce,exchange,RMA
 Requires at least: 4.0
-Tested up to: 5.6
+Tested up to: 5.8.1
 WC requires at least: 3.0.0
-WC tested up to: 4.8.0
-Stable tag: 3.0.4
+WC tested up to: 5.8.0
+Stable tag: 3.1.3
 Requires PHP: 5.6
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -18,9 +18,9 @@ Provide an easy refund service and increase customer satisfaction with this Retu
 
 ***HIGHEST-RATED REFUND AND EXCHANGE MANAGEMENT PLUGIN THAT LIFTS CUSTOMER SATISFACTION***
 
-Return Refund and Exchange for WooCommerce lets you create a simple refund management system stuffed with an organized exchange, wallet, cancel features. It saves time on complaints, calls disputes, and the hurdles of managing stock. Customers can request full or partial refunds from their accounts with a justification statement. The whole process goes under a dedicated and streamlined mailing system that keeps both parties on the same note. Ultimately leads to easy returns & increased customer satisfaction.
+Return Refund and Exchange for WooCommerce lets you create a simple refund management system stuffed with the organized refund, exchange, wallet, and cancel order features. It eliminates on-call complaints and helps in managing returned stock. Customers can request full or partial refunds (based on return policy). The whole process goes under a dedicated and streamlined mailing system that keeps both parties on the same note. Ultimately, it leads to high customer satisfaction.
 
-[youtube https://www.youtube.com/watch?v=z0kG75E60TI]
+[youtube https://www.youtube.com/watch?v=z0kG75E60TI&w=560&h=315&rel=0]
 
 
 == WITH THE RETURN REFUND AND EXCHANGE FOR WOOCOMMERCE PLUGIN YOU CAN: ==
@@ -37,7 +37,9 @@ Return Refund and Exchange for WooCommerce lets you create a simple refund manag
 * Create a dedicated mailing system for refund management
 * Add predefined elements in email content with shortcodes
 * Communicate with customers through messages and Emails
-* Admin can add shortcode for order_id in the emails to track down the customer from whom refund and exchange request is made
+* Admin can add the shortcode for order_id in the emails to track down the customer from whom refund and exchange request is made
+* Serve the full RMA features to multilingual buyers (internationally) with *WPML translation*.
+* Manage return and refund features for Cash on delivery(COD) buyers.
 
 
 == WHATâ€™S INCLUDED IN OUR FREE RETURN REFUND AND EXCHANGE FOR WOOCOMMERCE PLUGIN ==
@@ -49,7 +51,7 @@ With our Return Refund and Exchange plugin, merchants can create a dedicated ref
 Merchants can add multiple reasons for a product refund. Customers can select any of these reasons while asking for a refund.
 
 **3)** **Mail Notification For Refund**
-Merchants can notify the customers for different scenarios for the product refund. They can create different emails if a refund request is generated, approved, or canceled. Merchants can add a different subject line and content for every scenario. They can also use Shortcodes to add elements in the email content.
+Merchants can notify the customers of different scenarios for the product refund. They can create different emails if a refund request is generated, approved, or cancelled. Merchants can add a different subject line and content for every scenario. They can also use Shortcodes to add elements to the email content.
 
 **4)** **Efficient Tax Handling**
 With our Refund and Exchange plugin, merchants can handle the tax on the refund products easily. They can simply enable or disable the tax calculation on the refund products by going to the plugin settings and enabling the â€œEnable Taxâ€ option.
@@ -63,6 +65,10 @@ You can select the order status on which a customer can submit a refund request.
 **7)** **Order Related Messages and Email notifications**
 You can allow your customers to send you the order related queries. Furthermore, you can also enable/disable the settings to let your customers add the attachments along with their messages.
 
+**8)** **WPML Compatible**
+Translate the RMA solution into 40+ languages with the WordPress Multilingual (WPML).
+
+
 == PLUGIN MEETS YOUR REQUIREMENT, SO ==
 [**Download Now**](https://downloads.wordpress.org/plugin/woo-refund-and-exchange-lite.zip)
 
@@ -75,7 +81,7 @@ Visit [**Return Refund and Exchange For WooCommerce Documentation**](http://docs
 * Exchange feature
 * Cancel feature
 * Wallet feature
-* Return slip label feature
+* Return ship label feature
 * Full RMA support
 * Partial refund feature
 * Auto accept refund request feature
@@ -85,6 +91,7 @@ Visit [**Return Refund and Exchange For WooCommerce Documentation**](http://docs
 * Integration for return ship label with ShipStation
 * Compatibility with Ultimate WooCommerce Gift Cards
 * Shortcode of product table and the refundable amount for Refund Mails
+* Compatibility with WordPress Multilingual (WPML)
 
 *Make a smart move with Premium Version of [Refund and Exchange](https://makewebbetter.com/product/woocommerce-rma-return-refund-exchange/?utm_source=MWB-RMA-org&utm_medium=MWB-ORG-Page&utm_campaign=MWB-RMA1)*
 
@@ -93,11 +100,15 @@ Visit [**Return Refund and Exchange For WooCommerce Documentation**](http://docs
 * [**RMA For Return Refund & Exchange Frontend demo**](https://demo.makewebbetter.com/woocommerce-rma-for-return-refund-and-exchange/my-account/orders/?visitor=true&utm_source=MWB-RMA-org&utm_medium=MWB-ORG-Page&utm_campaign=MWB-frontend_demo)
 * [**RMA For Return Refund & Exchange Backend demo**](https://demo.makewebbetter.com/woocommerce-rma-for-return-refund-and-exchange/get-your-personal-demo/?utm_source=MWB-RMA-org&utm_medium=MWB-ORG-Page&utm_campaign=MWB-backend_demo)
 
-
 == SUPPORT ==
 
-If you need support or have any question then kindly use our online chat window [here](https://makewebbetter.com/?utm_source=MWB-RMA-org&utm_medium=MWB-org-page&utm_campaign=MWB-RMA-org) or  connect with us then [**Generate a Ticket**](https://makewebbetter.com/submit-query/)
+If you need support or have any questions then kindly use our online chat window [here](https://makewebbetter.com/?utm_source=MWB-RMA-org&utm_medium=MWB-org-page&utm_campaign=MWB-RMA-org) or  connect with us then [**Generate a Ticket**](https://makewebbetter.com/submit-query/)
 
+If our documentation doesn’t contain the solution to your problem, you can visit the [**MakeWebBetter Forums**](https://forums.makewebbetter.com/?utm_source=MWB-rma-org&utm_medium=MWB-org-page&utm_campaign=MWB-rma-org) with your question.
+
+== CONTRIBUTE AND TRANSLATE ==
+
+Return Refund and Exchange For WooCommerce is translated into multiple languages Chinese, Dutch, Russian, Spanish and many more. Help localize Return Refund and Exchange For WooCommerce even further by adding your locale Language.[Click Here](https://translate.wordpress.org/projects/wp-plugins/woo-refund-and-exchange-lite)
 
 == Installation ==
 
@@ -118,21 +129,22 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 == FAQ ==
 
-= How to setup the Refund Products? =
+= How to make the "Refund" button visible on store pages using this plugin? =
 
-Please reach the woocommerce menu -> Refund Exchange Lite Configuration setting -> Click on the Refund Product -> Enable Refund Request setting.
+If you want to see the Refund button then follow these steps. Go to the *WooCommerce -> Settings -> Refund-Exchange lite Setting -> Refund Products* and set the following necessary settings.
 
-= How to place the Refund button in Thank you and My-Account page? =
-
-You can easily go to the Woocommerce -> Settings -> Refund Exchange Lite setting ->Refund Products and set the following points.
-
-1) Enable Refund Request.
-2) Set a maximum number of days.
+1) Enable refund requests.
+2) Set the maximum number of days.
 3) Select the order status in which the order can be refunded.
+4) Select pages to show a refund button.
+
+= How to set up the Refund Products? =
+
+Please reach the *WooCommerce menu -> Refund Exchange Lite Configuration setting -> Click on the Refund Product -> Enable Refund Request setting*.
 
 = How to set the order status for the orders which need to be refunded? =
 
-It's a very easy way, go to the Woocommerce -> Settings ->Refund Exchange Lite setting ->Refund  Products and Select the order status in which the order can be Refund.
+It's very easy to set up. Go to the *WooCommerce -> Settings ->Refund Exchange Lite setting ->Refund Products* and Select the order status in which the order can be Refund.
 
 = How to use a mail configuration setting? =
 
@@ -145,15 +157,71 @@ Yes, customers and admin can communicate while processing a refund request. The 
 
 = How can a customer send an attachment with a refund request? =
 
-When a customer clicks on the refund button then on the refund request form customer will get an option to upload the attachment. Customers can also add more than one attachment in their request.
+When a customer clicks on the refund button then on the refund request form the customer will get an option to upload the attachment. Customers can also add more than one attachment to their request.
 
+= Can the admin limit the no. of attachment for a customer in the order messages? =
+
+Yes, the admin can limit the no. of attachment by going through *WooCommerce -> Settings -> Refund-Exchange lite Setting ->Refund Products -> Enter no. of attachment to send*, then put the no. of attachment you want to receive from your customer.
+
+= Can the admin put some customized refund policy on the refund form? =
+
+Yes, the admin can put a customized refund policy by going to *WooCommerce -> Settings -> Refund-Exchange lite Setting ->Refund Products - > Enable refund rules* and write the refund rules in the rule editor.
+
+= Is there any stock management functionality in this refund management plugin? =
+
+Yes! The plugin automatically manages the stock after every successful refund of the product. Admin can set it by following steps; WooCommerce -> Settings -> Refund-Exchange lite Setting ->Refund Products  -> Enable Manage stock. For then onwards, the refund stock will be automatically managed.
+
+= My question is not listed? =
+
+Please visit the [MakeWebBetter knowledge base](https://support.makewebbetter.com/wordpress-plugins-knowledge-base/category/woocommerce-refund-and-exchange-kb/?utm_source=MWB-rma-org&utm_medium=MWB-ORG&utm_campaign=rma-kb-ORG) for more detailed [documentation](http://docs.makewebbetter.com/woocommerce-refund-and-exchange-lite/?utm_source=MWB-RMA-org&utm_medium=MWB-ORG-Page&utm_campaign=MWB-doc) and [support](https://makewebbetter.com/submit-query/?utm_source=MWB-rma-org&utm_medium=MWB-ORG&utm_campaign=rma-support-ORG).
+
+== Screenshots ==
+
+1. Refund setting.
+2. Order detail and click the refund button.
+3. submit the request.
+4. Refund and manage the account by a merchant.
+5. Customers can send a message to the admin.
+6. Admin can reply to customer messages.
+7. Accept and cancel the refund request by a merchant.
+8. Manage the refunded product Stock.
+9. Send the mail by admin to the customer.
+10. Dedicated mailing system for refund request
+11. Mailing system for refund approved.
+12. Mailing system for refund cancel.
+13. Enable/disable email notification.
 
 == Changelog ==
+
+= 3.1.3 - RELEASED ON 3 NOVEMBER 2021 =
+
+* FIX: Compatible with latest WP and WC
+* FIX: Minor bug
+
+= 3.1.2 - RELEASED ON 27 SEPTEMBER 2021 =
+
+* FIX: Onboarding form
+* FIX: Minor bug
+
+= 3.1.1 - RELEASED ON 18 AUGUST 2021 =
+
+* NEW: Add notices for upcoming RMA renovation plugin
+* FIX: Compatible with latest WP and WC
+* FIX: Minor Bug and Issues Fixes
+
+= 3.1.0 - RELEASED ON 14 APRIL 2021 =
+
+* FIX: Compatible with latest WP(5.7) and WC(5.2.0)
+* NEW: WPML Compatibility
+* NEW: Given setting to show refund button based on added page
+* NEW: Add setting to add attachment limit during refund request
+* FIX: Design issue fixed during mobile view
+* FIX: Minor Bug and Issues Fixes
 
 = 3.0.4 - RELEASED ON 17 DECEMBER 2020 =
 
 * NEW: order_id shortcode for view order msg mails
-* NEW: Video link on Overview tab
+* NEW: Video link on the Overview tab
 * FIX: Compatibility with Latest WP (5.6)
 
 = 3.0.3 - RELEASED ON 13 NOVEMBER 2020 =
@@ -193,40 +261,29 @@ When a customer clicks on the refund button then on the refund request form cust
 * New: Support for WooCommerce 4.3.0
 * New: Support for WordPress 5.4.2
 
-= 2.1.0 â€“ RELEASED ON 18 APRIL 2020 =
+
+= 2.1.0 – RELEASED ON 18 APRIL 2020 =
+
 * New: Support for WooCommerce 4.0.1
 * New: Support for WordPress 5.4
 * New: Customers, Admin communication through messages.
 
-= 2.0.0 â€“ RELEASED ON 24 JANUARY 2020 =
+
+= 2.0.0 – RELEASED ON 24 JANUARY 2020 =
+
+
 * New: Compatibility with Latest WC and WP.
 * Updated in plugin core and updated language
 * Fix: Image save issue in the Mail Configuration setting.
 * Fix: Expiry date issue with a gift card for refund process.
 
 = 1.0.0 =
+
 * First version. 
-
-== Screenshots ==
-
-1. Refund setting.
-2. Order detail and click the refund button.
-3. submit the request.
-4. Refund and manage the account by a merchant.
-5. Customers can send a message to the admin.
-6. Admin can reply to customer messages.
-7. Accept and cancel the refund request by a merchant.
-8. Manage the refunded product Stock.
-9. Send the mail by admin to the customer.
-10. Dedicated mailing system for refund request
-11. Mailing system for refund approved.
-12. Mailing system for refund cancel.
-13. Enable/disable email notification.
 
 == Upgrade Notice ==
 
-= 3.0.4 - RELEASED ON 17 DECEMBER 2020 =
+= 3.1.3 - RELEASED ON 3 NOVEMBER 2021 =
 
-* NEW: Order Id shortcode for view order msg mails
-* NEW: Video link on Overview tab
-* FIX: Compatibility with Latest WP (5.6)
+* FIX: Compatible with latest WP and WC
+* FIX: Minor bug
