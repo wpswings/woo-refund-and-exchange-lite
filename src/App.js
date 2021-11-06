@@ -3,8 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Button, Typography, Container, CircularProgress} from '@material-ui/core';
 import Stepper from './component/Stepper';
 import FirstStep from './component/FirstStep';
-import SecondStep from './component/SecondStep';
-import ThirdStep from './component/ThirdStep';
 import FinalStep from './component/FinalStep';
 import Context from './store/store';
 import axios from 'axios';
@@ -19,20 +17,20 @@ const useStyles = makeStyles((theme) => ({
 function App(props) {
     const [loading, setLoading] = useState(false);
     const [state, setState] = useState({
-        firstName: '',
-        email: '',
-        desc:'',
-        licenseCode: '',
-        age: '',
-        FirstCheckbox:false,
-        checkedA: false,
-        checkedB: false,
-        consetCheck:'yes',
+        checkedRefund: false,
+        checkedOrderMsg: false,
+        checkedOrderMsgEmail:false,
+        checkedExchange: false,
+        checkedCancel: false,
+        checkedCancelProd:false,
+        checkedWallet: false,
+        consetCheck: 'yes',
+        checkedResetLicense:false,
+        licenseCode:'',
     });
-    
     const classes = useStyles();
     const [activeStep, setActiveStep] = useState(0);
-    const steps = [ __( 'General Settings', 'woo-refund-and-exchange-lite' ), __( 'Industry', 'woo-refund-and-exchange-lite' ), __( 'Accept consent', 'woo-refund-and-exchange-lite' ), __( 'Final Step', 'woo-refund-and-exchange-lite' )];
+    const steps = [ __( 'General Settings', 'woo-refund-and-exchange-lite' ), __( 'Final Step', 'woo-refund-and-exchange-lite' )];
 
     
     const onFormFieldHandler = (event) => {
@@ -44,12 +42,8 @@ function App(props) {
             case 0:
                 return (<FirstStep />);
             case 1:
-                return (<SecondStep/>);
+                return (<FinalStep/>);
             case 2:
-                return <ThirdStep />;
-            case 3:
-            return <FinalStep />;
-            case 4:
                 return <h1>{__( 'Thanks for your details', 'woo-refund-and-exchange-lite' )}</h1>;
             default:
                 return __( 'Unknown stepIndex', 'woo-refund-and-exchange-lite' );
@@ -69,7 +63,7 @@ function App(props) {
         const user = {
             ...state,
             'action': 'mwb_standard_save_settings_filter',
-            nonce: frontend_ajax_object.mwb_standard_nonce,   // pass the nonce here
+            nonce: frontend_ajax_object.mwb_standard_nonce,
         };
         
         axios.post(frontend_ajax_object.ajaxurl, qs.stringify(user) )
@@ -78,7 +72,7 @@ function App(props) {
                 console.log( res.data);
                 handleNext();
                 setTimeout(() => {
-                  window.location.href = frontend_ajax_object.redirect_url; 
+                    window.location.href = frontend_ajax_object.redirect_url; 
                     return null;
                 }, 3000);
             }).catch(error=>{

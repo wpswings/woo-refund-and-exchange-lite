@@ -55523,18 +55523,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/index.js");
 /* harmony import */ var _component_Stepper__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./component/Stepper */ "./src/component/Stepper.js");
 /* harmony import */ var _component_FirstStep__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./component/FirstStep */ "./src/component/FirstStep.js");
-/* harmony import */ var _component_SecondStep__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./component/SecondStep */ "./src/component/SecondStep.js");
-/* harmony import */ var _component_ThirdStep__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./component/ThirdStep */ "./src/component/ThirdStep.js");
-/* harmony import */ var _component_FinalStep__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./component/FinalStep */ "./src/component/FinalStep.js");
-/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./store/store */ "./src/store/store.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
-/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_12__);
-
-
+/* harmony import */ var _component_FinalStep__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./component/FinalStep */ "./src/component/FinalStep.js");
+/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./store/store */ "./src/store/store.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_10__);
 
 
 
@@ -55556,19 +55552,20 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__["
 function App(props) {
   const [loading, setLoading] = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false);
   const [state, setState] = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({
-    firstName: '',
-    email: '',
-    desc: '',
-    licenseCode: '',
-    age: '',
-    FirstCheckbox: false,
-    checkedA: false,
-    checkedB: false,
-    consetCheck: 'yes'
+    checkedRefund: false,
+    checkedOrderMsg: false,
+    checkedOrderMsgEmail: false,
+    checkedExchange: false,
+    checkedCancel: false,
+    checkedCancelProd: false,
+    checkedWallet: false,
+    consetCheck: 'yes',
+    checkedResetLicense: false,
+    licenseCode: ''
   });
   const classes = useStyles();
   const [activeStep, setActiveStep] = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(0);
-  const steps = [Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_11__["__"])('General Settings', 'woo-refund-and-exchange-lite'), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_11__["__"])('Industry', 'woo-refund-and-exchange-lite'), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_11__["__"])('Accept consent', 'woo-refund-and-exchange-lite'), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_11__["__"])('Final Step', 'woo-refund-and-exchange-lite')];
+  const steps = [Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__["__"])('General Settings', 'woo-refund-and-exchange-lite'), Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__["__"])('Final Step', 'woo-refund-and-exchange-lite')];
 
   const onFormFieldHandler = event => {
     let value = 'checkbox' === event.target.type ? event.target.checked : event.target.value;
@@ -55583,19 +55580,13 @@ function App(props) {
         return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_component_FirstStep__WEBPACK_IMPORTED_MODULE_5__["default"], null);
 
       case 1:
-        return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_component_SecondStep__WEBPACK_IMPORTED_MODULE_6__["default"], null);
+        return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_component_FinalStep__WEBPACK_IMPORTED_MODULE_6__["default"], null);
 
       case 2:
-        return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_component_ThirdStep__WEBPACK_IMPORTED_MODULE_7__["default"], null);
-
-      case 3:
-        return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_component_FinalStep__WEBPACK_IMPORTED_MODULE_8__["default"], null);
-
-      case 4:
-        return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h1", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_11__["__"])('Thanks for your details', 'woo-refund-and-exchange-lite'));
+        return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h1", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__["__"])('Thanks for your details', 'woo-refund-and-exchange-lite'));
 
       default:
-        return Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_11__["__"])('Unknown stepIndex', 'woo-refund-and-exchange-lite');
+        return Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__["__"])('Unknown stepIndex', 'woo-refund-and-exchange-lite');
     }
   };
 
@@ -55612,10 +55603,9 @@ function App(props) {
     setLoading(true);
     const user = { ...state,
       'action': 'mwb_standard_save_settings_filter',
-      nonce: frontend_ajax_object.mwb_standard_nonce // pass the nonce here
-
+      nonce: frontend_ajax_object.mwb_standard_nonce
     };
-    axios__WEBPACK_IMPORTED_MODULE_10___default.a.post(frontend_ajax_object.ajaxurl, qs__WEBPACK_IMPORTED_MODULE_12___default.a.stringify(user)).then(res => {
+    axios__WEBPACK_IMPORTED_MODULE_8___default.a.post(frontend_ajax_object.ajaxurl, qs__WEBPACK_IMPORTED_MODULE_10___default.a.stringify(user)).then(res => {
       setLoading(false);
       console.log(res.data);
       handleNext();
@@ -55644,7 +55634,7 @@ function App(props) {
     }, "Finish");
   }
 
-  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_store_store__WEBPACK_IMPORTED_MODULE_9__["default"].Provider, {
+  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_store_store__WEBPACK_IMPORTED_MODULE_7__["default"].Provider, {
     value: {
       formFields: state,
       changeHandler: onFormFieldHandler
@@ -55656,7 +55646,7 @@ function App(props) {
     steps: steps
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "mwbHeadingWrap"
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h2", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_11__["__"])('Welcome to Makewebbetter', 'woo-refund-and-exchange-lite')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_11__["__"])('Complete The steps to get started', 'woo-refund-and-exchange-lite'))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["Container"], {
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h2", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__["__"])('Welcome to Makewebbetter', 'woo-refund-and-exchange-lite')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__["__"])('Complete The steps to get started', 'woo-refund-and-exchange-lite'))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["Container"], {
     maxWidth: "sm"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("form", {
     className: "mwbMsf"
@@ -55721,27 +55711,24 @@ function FinalStep(props) {
   }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Bingo! You are all set to take advantage of your business. Lastly, we urge you to allow us collect some', 'woo-refund-and-exchange-lite'), " ", Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("a", {
     href: "https://makewebbetter.com/plugin-usage-tracking/",
     target: "_blank"
-  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('information', 'woo-refund-and-exchange-lite')), " ", Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('in order to improve this plugin and provide better support. If you want, you can dis-allow anytime settings, We never track down your personal data. Promise!', 'woo-refund-and-exchange-lite')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["RadioGroup"], {
-    "aria-label": "gender",
-    name: "consetCheck",
-    value: ctx.formFields['consetCheck'],
-    onChange: ctx.changeHandler,
+  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('information', 'woo-refund-and-exchange-lite')), " ", Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('in order to improve this plugin and provide better support. If you want, you can dis-allow anytime settings, We never track down your personal data. Promise!', 'woo-refund-and-exchange-lite')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["FormControlLabel"], {
+    control: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["Switch"], {
+      checked: ctx.formFields['consetCheck'],
+      onChange: ctx.changeHandler,
+      name: "consetCheck",
+      color: "primary"
+    }),
     className: classes.margin
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["FormControlLabel"], {
-    value: "yes",
-    control: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["Radio"], {
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["FormControlLabel"], {
+    control: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["Switch"], {
+      checked: ctx.formFields['checkedResetLicense'],
+      onChange: ctx.changeHandler,
+      name: "checkedResetLicense",
       color: "primary"
     }),
-    label: "Yes",
-    className: "mwbFormRadio"
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["FormControlLabel"], {
-    value: "no",
-    control: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["Radio"], {
-      color: "primary"
-    }),
-    label: "No",
-    className: "mwbFormRadio"
-  }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["FormControl"], {
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Enable Reset License on the plugin deactivation', 'woo-refund-and-exchange-lite'),
+    className: classes.margin
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["FormControl"], {
     component: "fieldset",
     fullWidth: true,
     className: "fieldsetWrapper"
@@ -55750,7 +55737,7 @@ function FinalStep(props) {
     onChange: ctx.changeHandler,
     id: "licenseCode",
     name: "licenseCode",
-    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Enter your license code'),
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Enter your license code', 'woo-refund-and-exchange-lite'),
     variant: "outlined",
     className: classes.margin
   })));
@@ -55791,115 +55778,77 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__["
 const FirstStep = props => {
   const classes = useStyles();
   const ctx = Object(react__WEBPACK_IMPORTED_MODULE_1__["useContext"])(_store_store__WEBPACK_IMPORTED_MODULE_4__["default"]);
-  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h3", {
-    className: "mwb-title"
-  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Personal Detail', 'woo-refund-and-exchange-lite')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["FormControl"], {
+  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["FormControl"], {
     component: "fieldset",
     fullWidth: true,
     className: "fieldsetWrapper"
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["TextField"], {
-    value: ctx.formFields['firstName'],
-    onChange: ctx.changeHandler,
-    id: "firstName",
-    name: "firstName",
-    label: "First Name",
-    variant: "outlined",
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["FormControlLabel"], {
+    control: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["Switch"], {
+      checked: ctx.formFields['checkedRefund'],
+      onChange: ctx.changeHandler,
+      name: "checkedRefund",
+      color: "primary"
+    }),
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Enable Refund', 'woo-refund-and-exchange-lite'),
     className: classes.margin
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["TextField"], {
-    value: ctx.formFields['email'],
-    onChange: ctx.changeHandler,
-    id: "email",
-    name: "email",
-    label: "Email",
-    variant: "outlined",
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["FormControlLabel"], {
+    control: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["Switch"], {
+      checked: ctx.formFields['checkedOrderMsg'],
+      onChange: ctx.changeHandler,
+      name: "checkedOrderMsg",
+      color: "primary"
+    }),
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Enable Order Message', 'woo-refund-and-exchange-lite'),
     className: classes.margin
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["TextareaAutosize"], {
-    name: "desc",
-    value: ctx.formFields['desc'],
-    onChange: ctx.changeHandler,
-    "aria-label": "minimum height",
-    minRows: 4,
-    placeholder: "Minimum 3 rows",
-    variant: "outlined",
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["FormControlLabel"], {
+    control: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["Switch"], {
+      checked: ctx.formFields['checkedOrderMsgEmail'],
+      onChange: ctx.changeHandler,
+      name: "checkedOrderMsgEmail",
+      color: "primary"
+    }),
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Enable Order Message Related Email', 'woo-refund-and-exchange-lite'),
     className: classes.margin
-  })));
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["FormControlLabel"], {
+    control: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["Switch"], {
+      checked: ctx.formFields['checkedExchange'],
+      onChange: ctx.changeHandler,
+      name: "checkedExchange",
+      color: "primary"
+    }),
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Enable Exchange', 'woo-refund-and-exchange-lite'),
+    className: classes.margin
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["FormControlLabel"], {
+    control: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["Switch"], {
+      checked: ctx.formFields['checkedCancel'],
+      onChange: ctx.changeHandler,
+      name: "checkedCancel",
+      color: "primary"
+    }),
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Enable Cancel Order', 'woo-refund-and-exchange-lite'),
+    className: classes.margin
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["FormControlLabel"], {
+    control: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["Switch"], {
+      checked: ctx.formFields['checkedCancelProd'],
+      onChange: ctx.changeHandler,
+      name: "checkedCancelProd",
+      color: "primary"
+    }),
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Enable Cancel Order\'s Product', 'woo-refund-and-exchange-lite'),
+    className: classes.margin
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["FormControlLabel"], {
+    control: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["Switch"], {
+      checked: ctx.formFields['checkedWallet'],
+      onChange: ctx.changeHandler,
+      name: "checkedWallet",
+      color: "primary"
+    }),
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Enable Wallet', 'woo-refund-and-exchange-lite'),
+    className: classes.margin
+  }));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (FirstStep);
-
-/***/ }),
-
-/***/ "./src/component/SecondStep.js":
-/*!*************************************!*\
-  !*** ./src/component/SecondStep.js ***!
-  \*************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/index.js");
-/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../store/store */ "./src/store/store.js");
-
-
-
-
-
-
-const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__["makeStyles"])({
-  margin: {
-    marginBottom: '20px'
-  }
-});
-
-const SecondStep = props => {
-  const classes = useStyles();
-  const ctx = Object(react__WEBPACK_IMPORTED_MODULE_1__["useContext"])(_store_store__WEBPACK_IMPORTED_MODULE_5__["default"]);
-  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h3", {
-    className: "mwb-title"
-  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Product Setting', 'woo-refund-and-exchange-lite')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["FormControl"], {
-    component: "fieldset",
-    variant: "outlined",
-    fullWidth: true,
-    className: "fieldsetWrapper"
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["InputLabel"], {
-    id: "demo-simple-select-outlined-label"
-  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Age', 'woo-refund-and-exchange-lite')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["Select"], {
-    labelId: "demo-simple-select-outlined-label",
-    name: "age",
-    id: "demo-simple-select-outlined",
-    value: ctx.formFields['age'],
-    onChange: ctx.changeHandler,
-    label: "Age",
-    className: classes.margin
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["MenuItem"], {
-    value: ""
-  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('None', 'woo-refund-and-exchange-lite')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["MenuItem"], {
-    value: 10
-  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Ten', 'woo-refund-and-exchange-lite')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["MenuItem"], {
-    value: 20
-  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Twenty', 'woo-refund-and-exchange-lite')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["MenuItem"], {
-    value: 30
-  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Thirty', 'woo-refund-and-exchange-lite')))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["FormGroup"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["FormControlLabel"], {
-    control: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["Checkbox"], {
-      checked: ctx.formFields['FirstCheckbox'],
-      onChange: ctx.changeHandler,
-      name: "FirstCheckbox",
-      color: "primary"
-    }),
-    label: "Primary",
-    className: "mwbFormLabel"
-  })));
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (SecondStep);
 
 /***/ }),
 
@@ -55928,66 +55877,6 @@ const stepper = props => {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (stepper);
-
-/***/ }),
-
-/***/ "./src/component/ThirdStep.js":
-/*!************************************!*\
-  !*** ./src/component/ThirdStep.js ***!
-  \************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/store */ "./src/store/store.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/index.js");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
-
-
-
-
-
-
-const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__["makeStyles"])({
-  margin: {
-    marginBottom: '20px'
-  }
-});
-
-const ThirdStep = props => {
-  const classes = useStyles();
-  const ctx = Object(react__WEBPACK_IMPORTED_MODULE_1__["useContext"])(_store_store__WEBPACK_IMPORTED_MODULE_2__["default"]);
-  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h3", {
-    className: "mwb-title"
-  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Setting', 'woo-refund-and-exchange-lite')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["FormGroup"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["FormControlLabel"], {
-    control: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["Switch"], {
-      checked: ctx.formFields['checkedA'],
-      onChange: ctx.changeHandler,
-      name: "checkedA",
-      color: "primary"
-    }),
-    label: "General Settings",
-    className: classes.margin
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["FormControlLabel"], {
-    control: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["Switch"], {
-      checked: ctx.formFields['checkedB'],
-      onChange: ctx.changeHandler,
-      name: "checkedB",
-      color: "primary"
-    }),
-    label: "Reset License",
-    className: classes.margin
-  })));
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (ThirdStep);
 
 /***/ }),
 

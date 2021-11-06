@@ -101,7 +101,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		if ( isset( $screen->id ) && 'makewebbetter_page_woo_refund_and_exchange_lite_menu' === $screen->id ) {
 			if ( ! mwb_rma_standard_check_multistep() && mwb_rma_pro_active() ) {
 				// js for the multistep from.
-				$script_path      = '../../build/index.js';
+				$script_path       = '../../build/index.js';
 				$script_asset_path = WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'build/index.asset.php';
 				$script_asset      = file_exists( $script_asset_path )
 					? require $script_asset_path
