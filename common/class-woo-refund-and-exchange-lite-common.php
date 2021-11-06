@@ -412,6 +412,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 		$checked_cancel          = isset( $_POST['checkedCancel'] ) ? sanitize_text_field( wp_unslash( $_POST['checkedCancel'] ) ) : false;
 		$checked_cancel_prod     = isset( $_POST['checkedCancelProd'] ) ? sanitize_text_field( wp_unslash( $_POST['checkedCancelProd'] ) ) : false;
 		$checked_wallet          = isset( $_POST['checkedWallet'] ) ? sanitize_text_field( wp_unslash( $_POST['checkedWallet'] ) ) : false;
+		$checked_cod             = isset( $_POST['checkedCOD'] ) ? sanitize_text_field( wp_unslash( $_POST['checkedCOD'] ) ) : false;
 		$checked_conset          = isset( $_POST['consetCheck'] ) ? sanitize_text_field( wp_unslash( $_POST['consetCheck'] ) ) : false;
 		$checked_reset_license   = isset( $_POST['checkedResetLicense'] ) ? sanitize_text_field( wp_unslash( $_POST['checkedResetLicense'] ) ) : false;
 		$license_code            = isset( $_POST['licenseCode'] ) ? sanitize_text_field( wp_unslash( $_POST['licenseCode'] ) ) : '';
@@ -435,6 +436,9 @@ class Woo_Refund_And_Exchange_Lite_Common {
 		}
 		if ( $checked_wallet ) {
 			update_option( 'mwb_rma_wallet_enable', 'on' );
+		}
+		if ( $checked_cod ) {
+			update_option( 'mwb_rma_hide_rec', 'on' );
 		}
 		if ( $checked_conset ) {
 			update_option( 'wrael_enable_tracking', 'on' );

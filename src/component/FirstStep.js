@@ -90,6 +90,17 @@ const FirstStep = (props) => {
             }
             label={ __( 'Enable Wallet', 'woo-refund-and-exchange-lite' ) }
             className={classes.margin} />
+            <FormControlLabel
+            control={
+            <Switch
+                checked={ctx.formFields['checkedCOD']}
+                onChange={ctx.changeHandler}
+                name="checkedCOD"
+                color="primary"
+            />
+            }
+            label={ __( 'Hide Refund/Exchange/Cancel Button for the Order on the processing and COD', 'woo-refund-and-exchange-lite' ) }
+            className={classes.margin} />
         </FormControl>
     )
 }

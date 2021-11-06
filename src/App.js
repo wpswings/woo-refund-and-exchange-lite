@@ -24,7 +24,8 @@ function App(props) {
         checkedCancel: false,
         checkedCancelProd:false,
         checkedWallet: false,
-        consetCheck: 'yes',
+        checkedCOD : false,
+        consetCheck: true,
         checkedResetLicense:false,
         licenseCode:'',
     });

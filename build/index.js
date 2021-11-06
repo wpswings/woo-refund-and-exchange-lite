@@ -55559,7 +55559,8 @@ function App(props) {
     checkedCancel: false,
     checkedCancelProd: false,
     checkedWallet: false,
-    consetCheck: 'yes',
+    checkedCOD: false,
+    consetCheck: true,
     checkedResetLicense: false,
     licenseCode: ''
   });
@@ -55844,6 +55845,15 @@ const FirstStep = props => {
       color: "primary"
     }),
     label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Enable Wallet', 'woo-refund-and-exchange-lite'),
+    className: classes.margin
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["FormControlLabel"], {
+    control: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["Switch"], {
+      checked: ctx.formFields['checkedCOD'],
+      onChange: ctx.changeHandler,
+      name: "checkedCOD",
+      color: "primary"
+    }),
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Hide Refund/Exchange/Cancel Button for the Order on the processing and COD', 'woo-refund-and-exchange-lite'),
     className: classes.margin
   }));
 };
