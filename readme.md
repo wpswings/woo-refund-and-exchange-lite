@@ -1,4 +1,4 @@
-[![Build Status](https://img.shields.io/travis/twbs/bootstrap/v4-dev.svg)](https://travis-ci.org/twbs/bootstrap) ![Active installs](https://img.shields.io/badge/Active-3000%2B-brightgreen) ![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen) ![WP tested](https://img.shields.io/badge/WP%20tested-5.7.0-brightgreen) ![WC tested](https://img.shields.io/badge/WC%20tested-5.2-brightgreen) ![Requires PHP](https://img.shields.io/badge/Requires%20PHP-5.6-blue)
+[![Build Status](https://img.shields.io/travis/twbs/bootstrap/v4-dev.svg)](https://travis-ci.org/twbs/bootstrap) ![Active installs](https://img.shields.io/badge/Active-3000%2B-brightgreen) ![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen) ![WP tested](https://img.shields.io/badge/WP%20tested-5.8.1-brightgreen) ![WC tested](https://img.shields.io/badge/WC%20tested-5.8.0-brightgreen) ![Requires PHP](https://img.shields.io/badge/Requires%20PHP-5.6-blue)
 # Return Refund and Exchange For WooCommerce
 ![Return Refund and Exchange For WooCommerce](https://ps.w.org/woo-refund-and-exchange-lite/assets/banner-772x250.png?rev=2409881)
 * Contributors: MakeWebBetter
@@ -88,6 +88,12 @@ _Make a smart move with [**Premium Version of Refund and Exchange**](https://mak
 
 ## SUPPORT
 If you need support or have any question then kindly use our online chat window [here](https://makewebbetter.com/?utm_source=MWB-RMA-git&utm_medium=MWB-git-page&utm_campaign=MWB-RMA-git) or connect with us then [Generate a Ticket](https://makewebbetter.com/submit-query/)
+
+If our documentation doesn’t contain the solution to your problem, you can visit the [**MakeWebBetter Forums**](https://forums.makewebbetter.com/?utm_source=MWB-rma-git&utm_medium=MWB-git-page&utm_campaign=MWB-rma-git) with your question.
+
+## CONTRIBUTE AND TRANSLATE
+
+Return Refund and Exchange For WooCommerce is translated into multiple languages Chinese, Dutch, Russian, Spanish and many more. Help localize Return Refund and Exchange For WooCommerce even further by adding your locale Language.[Click Here](https://translate.wordpress.org/projects/wp-plugins/woo-refund-and-exchange-lite)
 
 ### **MORE ABOUT MAKEWEBBETTER**
 
