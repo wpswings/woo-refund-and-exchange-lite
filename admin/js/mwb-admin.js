@@ -45,7 +45,20 @@ jQuery(document).ready(function() {
 			return new MDCSwitch(el);
 		}
 	);
+
+	$( window ).load(function() {
+		// add select2 for multiselect.
+		if ($(document).find(".mwb-defaut-multiselect").length > 0) {
+			$(document)
+			.find(".mwb-defaut-multiselect")
+			.select2();
+		}
+	});
+
+
+	// Add class in plugin submenu
 	$("a[href='admin.php?page=woo_refund_and_exchange_lite_menu']").addClass('submenu-font-size-fix');
+	
 	$(".mwb-password-hidden").click(function() {
 		if ($(".mwb-form__password").attr("type") == "text") {
 			$(".mwb-form__password").attr("type", "password");
@@ -55,6 +68,7 @@ jQuery(document).ready(function() {
 	});
 	$('.mwb_rma_order_statues').select2();
 
+	// Make setting object in js
 	var output_setting = [];
 	function make_register_setting_obj() {
 		let on_setting = [];
@@ -81,7 +95,7 @@ jQuery(document).ready(function() {
 		});
 	}
 	make_register_setting_obj();
-
+	// Function to show correct setting respective selected setting.
 	function show_correct_field(){
 		$.each( $(".mwb_rma_settings"), function() {
 			if( $( this ).val() == '' ) {
@@ -118,7 +132,7 @@ jQuery(document).ready(function() {
 		});
 	}
 	show_correct_field();
-
+	// show correct setting respective selected setting and if remove if setting already is exist and also show an alert.
 	$(document).on( 'change', '.mwb_rma_settings, .mwb_rma_on_functionality', function() {
 		var current_fun = $( this ).parent( '.add_more_rma_policies' ).children( '.mwb_rma_on_functionality' ).val();
 		var current_set = $( this ).parent( '.add_more_rma_policies' ).children( '.mwb_rma_settings' ).val();;
@@ -166,21 +180,17 @@ jQuery(document).ready(function() {
 		output_setting = [];
 		make_register_setting_obj();
 	});
-	$(document).on( 'submit', '#save_policies_setting_form', function(e) {
-		$.each( $(".mwb_rma_settings"), function() {
-			if( $( this ).val() == '' ) {
-				$( this ).parent( '.add_more_rma_policies' ).remove();
-			}
-		});
-	});
+
+	// Replace function.
 	function escapeRegExp(string){
 		return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 	}
 			
-	/* Define functin to find and replace specified term with replacement string */
+	/* Define function to find and replace specified term with replacement string */
 	function replaceAll(str, term, replacement) {
 			return str.replace(new RegExp(escapeRegExp(term), 'g'), replacement);
 	}
+	// Add extra row setting and do the useful functionality.
 	$(document).on( 'click', '#mwb_rma_add_more', function() {
 		var pro_act = wrael_admin_param.check_pro_active;
 		var mwb_rma_get_current_i = $('.add_more_rma_policies').last().children( '.mwb_rma_get_current_i' ).val();
@@ -200,15 +210,15 @@ jQuery(document).ready(function() {
 		show_correct_field();
 		make_register_setting_obj();
 	});
-
+	// Delete selected row.
 	$(document).on( 'click', '.rma_policy_delete', function() {
 		$(this).parent( '.add_more_rma_policies' ).remove();
 		show_correct_field();
 		make_register_setting_obj();
 	});
 
-	// Refund Request Accept functionality start
-	$( ".mwb_rma_return_loader" ).hide();
+	// Refund Request Accept functionality
+	$( ".mwb_rma_return_loader" ).hide(); // Hide the loader in the refund request metabox
 	$( document ).on( 'click', '#mwb_rma_accept_return', function(){
 			$( "#mwb_rma_return_package" ).hide();
 			$( ".mwb_rma_return_loader" ).show();
@@ -237,9 +247,8 @@ jQuery(document).ready(function() {
 			);
 		}
 	);
-	// Refund Request Accept functionality end
 
-	// Refund Request Cancel Functionality start
+	// Refund Request Cancel Functionality
 	$( document ).on( 'click', '#mwb_rma_cancel_return', function(){
 		$( ".mwb_rma_return_loader" ).show();
 		var orderid = $( this ).data( 'orderid' );
@@ -262,9 +271,8 @@ jQuery(document).ready(function() {
 				}
 		});
 	});
-	// Refund Request Cancel Functionality  end
 
-	// Refund Amount functionality start
+	// Refund Amount functionality
 	$( document ).on( 'click', '#mwb_rma_left_amount', function(){
 			$( this ).attr( 'disabled','disabled' );
 			var check_pro_active = wrael_admin_param.check_pro_active;
@@ -317,13 +325,12 @@ jQuery(document).ready(function() {
 			}
 
 	});
-	// Refund Amount functionality end
 
 	// Manage Stock functionality start
-	jQuery( document ).on( 'click', '#mwb_rma_stock_back', function(){
-		jQuery( this ).attr( 'disabled','disabled' );
-		var order_id = jQuery( this ).data( 'orderid' );
-		var type = jQuery( this ).data( 'type' );
+	$( document ).on( 'click', '#mwb_rma_stock_back', function(){
+		$( this ).attr( 'disabled','disabled' );
+		var order_id = $( this ).data( 'orderid' );
+		var type = $( this ).data( 'type' );
 		var data = {
 			action   : 'mwb_rma_manage_stock' ,
 			order_id : order_id ,
@@ -336,12 +343,12 @@ jQuery(document).ready(function() {
 			data: data,
 			dataType :'json',
 			success: function(response) {
-				jQuery( this ).removeAttr( 'disabled' );
+				$( this ).removeAttr( 'disabled' );
 				if (response.result) {
-					jQuery( "#post" ).prepend( '<div class="updated notice notice-success is-dismissible" id="message"><p>' + response.msg + '</p><button class="notice-dismiss" type="button"><span class="screen-reader-text">Dismiss this notice.</span></button></div>' );
-					jQuery( 'html, body' ).animate(
+					$( "#post" ).prepend( '<div class="updated notice notice-success is-dismissible" id="message"><p>' + response.msg + '</p><button class="notice-dismiss" type="button"><span class="screen-reader-text">Dismiss this notice.</span></button></div>' );
+					$( 'html, body' ).animate(
 						{
-							scrollTop: jQuery( "body" ).offset().top
+							scrollTop: $( "body" ).offset().top
 						},
 						2000,
 						"linear",
@@ -355,10 +362,10 @@ jQuery(document).ready(function() {
 						}
 					);
 				} else {
-					jQuery( "#post" ).prepend( '<div id="messege" class="notice notice-error is-dismissible" id="message"><p>' + response.msg + '</p><button class="notice-dismiss" type="button"><span class="screen-reader-text">Dismiss this notice.</span></button></div>' );
-					jQuery( 'html, body' ).animate(
+					$( "#post" ).prepend( '<div id="messege" class="notice notice-error is-dismissible" id="message"><p>' + response.msg + '</p><button class="notice-dismiss" type="button"><span class="screen-reader-text">Dismiss this notice.</span></button></div>' );
+					$( 'html, body' ).animate(
 						{
-							scrollTop: jQuery( "body" ).offset().top
+							scrollTop: jQuer$( "body" ).offset().top
 						},
 						2000,
 						"linear",
@@ -369,6 +376,7 @@ jQuery(document).ready(function() {
 			}
 		});
 	});
+	
 	// Regenerate Api Secret key
 	$( document ).on( 'click', '#mwb_rma_generate_key_setting', function(e){
 		e.preventDefault();
@@ -377,23 +385,14 @@ jQuery(document).ready(function() {
 			security_check	: wrael_admin_param.mwb_rma_nonce
 		};
 		$.ajax(
-			{
-				url: wrael_admin_param.ajaxurl,
-				type: "POST",
-				data: data,
-				dataType :'json',
-				success: function(response) {
-					window.location.reload();
-				}
+		{
+			url: wrael_admin_param.ajaxurl,
+			type: "POST",
+			data: data,
+			dataType :'json',
+			success: function(response) {
+				window.location.reload();
+			}
 		});
-	});
-	// Manage Stock functionality end.
-	$( window ).load(function() {
-		// add select2 for multiselect.
-		if ($(document).find(".mwb-defaut-multiselect").length > 0) {
-			$(document)
-			.find(".mwb-defaut-multiselect")
-			.select2();
-		}
 	});
 });

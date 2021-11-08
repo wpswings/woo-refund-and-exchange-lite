@@ -114,7 +114,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 						),
 						'version'      => filemtime( $script_path ),
 					);
-				$script_url        = WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'build/index.js';
+				$script_url = WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'build/index.js';
 				wp_register_script(
 					'react-app-block',
 					$script_url,
@@ -129,7 +129,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 					array(
 						'ajaxurl'            => admin_url( 'admin-ajax.php' ),
 						'mwb_standard_nonce' => wp_create_nonce( 'ajax-nonce' ),
-						'redirect_url' => admin_url( 'admin.php?page=woo_refund_and_exchange_lite_menu' ),
+						'redirect_url'       => admin_url( 'admin.php?page=woo_refund_and_exchange_lite_menu' ),
 					)
 				);
 				return;

@@ -130,7 +130,7 @@ jQuery( document ).on( 'ready', function(){
 						$("#mwb_rma_return_alert").html( response.msg + ' in ' + '<b><span id="countdownTimer"></span>' + ' seconds</b>' );
 						$(".mwb_rma_return_notification").hide();
 						$('html, body').animate({
-							scrollTop: jQuery(".woocommerce-breadcrumb").offset().top
+							scrollTop: $(".woocommerce-breadcrumb").offset().top
 						}, 800);
 
 						if(typeof response.auto_accept != 'undefined') {
@@ -154,12 +154,13 @@ jQuery( document ).on( 'ready', function(){
 		});
 	});
 
+	// Remove notice on the order message form.
 	$(document).on('click','.mwb_remove_notice_msg',function(e) {
 		e.preventDefault();
 		$('.mwb_order_msg_notice_wrapper').hide();
 	});
 
-	// Send the order message 
+	// Send the order message frontend and backend with same code.
 	$( document ).on( 'click', '#mwb_order_msg_submit', function (e) {
 		e.preventDefault();
 		var up_files = $('#mwb_order_msg_attachment');
@@ -212,7 +213,7 @@ jQuery( document ).on( 'ready', function(){
 		});
 	});
 
-	// Order message refresh
+	// Order message refresh frontend and backend with same code.
 	$('.mwb_order_msg_reload_notice_wrapper').hide();
 	$(document).on('click','.mwb_reload_messages',function(e) {
 		e.preventDefault();
@@ -232,6 +233,8 @@ jQuery( document ).on( 'ready', function(){
 					$('.mwb_order_msg_reload_notice_wrapper').hide();
 			}, 3000);
 	});
+
+	// dismiss send msg frontend and backend with same code.
 	$(document).on('click','.mwb_order_send_msg_dismiss',function(e) {
 		e.preventDefault();
 		$('.mwb_order_msg_notice_wrapper').hide();
