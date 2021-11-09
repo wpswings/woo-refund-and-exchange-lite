@@ -2,13 +2,13 @@
 /**
  * Provide a admin area view for the plugin
  *
- * This file is used to markup the html field for general tab.
+ * This file is used to markup the html field for order message tab.
  *
  * @link       https://makewebbetter.com/
  * @since      1.0.0
  *
- * @package    Woo_Refund_And_Exchange_Lite
- * @subpackage Woo_Refund_And_Exchange_Lite/admin/partials
+ * @package    woo-refund-and-exchange-lite
+ * @subpackage woo-refund-and-exchange-lite/admin/partials
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

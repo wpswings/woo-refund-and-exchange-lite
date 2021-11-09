@@ -2,20 +2,20 @@
 jQuery( document ).on( 'ready', function(){
 	$ = jQuery;
 	// Show refund subject field if other option is selected.
-	var mwb_rma_return_request_subject = $( "#mwb_rma_return_request_subject" ).val();
+	var mwb_rma_return_request_subject = $( '#mwb_rma_return_request_subject' ).val();
 	if (mwb_rma_return_request_subject == null || mwb_rma_return_request_subject == '') {
-		$( "#mwb_rma_return_request_subject_text" ).show();
+		$( '#mwb_rma_return_request_subject_text' ).show();
 	} else {
-		$( "#mwb_rma_return_request_subject_text" ).hide();
+		$( '#mwb_rma_return_request_subject_text' ).hide();
 	}
 
 	// onchange Show refund subject field if other option is selected.
 	$( '#mwb_rma_return_request_subject' ).on( 'click', function(){
 		var reason = $( this ).val();
 		if (reason == null || reason == '') {
-			$( "#mwb_rma_return_request_subject_text" ).show();
+			$( '#mwb_rma_return_request_subject_text' ).show();
 		} else {
-			$( "#mwb_rma_return_request_subject_text" ).hide();
+			$( '#mwb_rma_return_request_subject_text' ).hide();
 		}
 	});
 
@@ -26,14 +26,14 @@ jQuery( document ).on( 'ready', function(){
 		var html = '<div class="add_field_input_div"><input type="file" class="mwb_rma_return_request_files" name="mwb_rma_return_request_files[]"><span class="mwb_rma_delete_field">X</span><br></div>';
 
 		if(count < max ){
-			$( "#mwb_rma_return_request_files" ).append( html );
-			$(document).find(".mwb_rma_return_request_morefiles").data('count', count+1);
+			$( '#mwb_rma_return_request_files' ).append( html );
+			$(document).find('.mwb_rma_return_request_morefiles').data('count', count+1);
 		}
 	});
 	// delete file field on the refund request form.
 	$( document ).on( 'click', '.mwb_rma_delete_field', function(){
-		var count = $(document).find(".mwb_rma_return_request_morefiles").data( 'count' );
-		$(document).find(".mwb_rma_return_request_morefiles").data( 'count', count - 1 );
+		var count = $(document).find('.mwb_rma_return_request_morefiles').data( 'count' );
+		$(document).find('.mwb_rma_return_request_morefiles').data( 'count', count - 1 );
 		$(this).parent( '.add_field_input_div' ).remove();
 	});
 

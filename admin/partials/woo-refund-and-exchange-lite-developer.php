@@ -7,8 +7,8 @@
  * @link       https://makewebbetter.com/
  * @since      1.0.0
  *
- * @package    Woo_Refund_And_Exchange_Lite
- * @subpackage Woo_Refund_And_Exchange_Lite/admin/partials
+ * @package    woo-refund-and-exchange-lite
+ * @subpackage woo-refund-and-exchange-lite/admin/partials
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -40,14 +40,14 @@ $count_public = filtered_array( $wrael_developer_public_hooks );
 				<tbody class="mdc-data-table__content">
 				<?php
 				if ( ! empty( $count_admin ) ) {
-					foreach ( $count_admin as $k => $v ) {
-						if ( isset( $v['action_hook'] ) ) {
+					foreach ( $count_admin as $key => $value ) {
+						if ( isset( $value['action_hook'] ) ) {
 							?>
-						<tr class="mdc-data-table__row"><td class="mdc-data-table__cell"><?php esc_html_e( 'Action Hook', 'woo-refund-and-exchange-lite' ); ?></td><td class="mdc-data-table__cell"><?php echo esc_html( $v['action_hook'] ); ?></td><td class="mdc-data-table__cell"><?php echo esc_html( $v['desc'] ); ?></td></tr>
+						<tr class="mdc-data-table__row"><td class="mdc-data-table__cell"><?php esc_html_e( 'Action Hook', 'woo-refund-and-exchange-lite' ); ?></td><td class="mdc-data-table__cell"><?php echo esc_html( $value['action_hook'] ); ?></td><td class="mdc-data-table__cell"><?php echo esc_html( $value['desc'] ); ?></td></tr>
 							<?php
 						} else {
 							?>
-							<tr class="mdc-data-table__row"><td class="mdc-data-table__cell"><?php esc_html_e( 'Filter Hook', 'woo-refund-and-exchange-lite' ); ?></td><td class="mdc-data-table__cell"><?php echo esc_html( $v['filter_hook'] ); ?></td><td class="mdc-data-table__cell"><?php echo esc_html( $v['desc'] ); ?></td></tr>
+							<tr class="mdc-data-table__row"><td class="mdc-data-table__cell"><?php esc_html_e( 'Filter Hook', 'woo-refund-and-exchange-lite' ); ?></td><td class="mdc-data-table__cell"><?php echo esc_html( $value['filter_hook'] ); ?></td><td class="mdc-data-table__cell"><?php echo esc_html( $value['desc'] ); ?></td></tr>
 							<?php
 						}
 					}
@@ -75,14 +75,14 @@ $count_public = filtered_array( $wrael_developer_public_hooks );
 				<tbody class="mdc-data-table__content">
 				<?php
 				if ( ! empty( $count_public ) ) {
-					foreach ( $count_public as $k => $v ) {
-						if ( isset( $v['action_hook'] ) ) {
+					foreach ( $count_public as $key => $value ) {
+						if ( isset( $value['action_hook'] ) ) {
 							?>
-						<tr class="mdc-data-table__row"><td class="mdc-data-table__cell"><?php esc_html_e( 'Action Hook', 'woo-refund-and-exchange-lite' ); ?></td><td class="mdc-data-table__cell"><?php echo esc_html( $v['action_hook'] ); ?></td><td class="mdc-data-table__cell"><?php echo esc_html( $v['desc'] ); ?></td></tr>
+						<tr class="mdc-data-table__row"><td class="mdc-data-table__cell"><?php esc_html_e( 'Action Hook', 'woo-refund-and-exchange-lite' ); ?></td><td class="mdc-data-table__cell"><?php echo esc_html( $value['action_hook'] ); ?></td><td class="mdc-data-table__cell"><?php echo esc_html( $value['desc'] ); ?></td></tr>
 							<?php
 						} else {
 							?>
-							<tr class="mdc-data-table__row"><td class="mdc-data-table__cell"><?php esc_html_e( 'Filter Hook', 'woo-refund-and-exchange-lite' ); ?></td><td class="mdc-data-table__cell"><?php echo esc_html( $v['filter_hook'] ); ?></td><td class="mdc-data-table__cell"><?php echo esc_html( $v['desc'] ); ?></td></tr>
+							<tr class="mdc-data-table__row"><td class="mdc-data-table__cell"><?php esc_html_e( 'Filter Hook', 'woo-refund-and-exchange-lite' ); ?></td><td class="mdc-data-table__cell"><?php echo esc_html( $value['filter_hook'] ); ?></td><td class="mdc-data-table__cell"><?php echo esc_html( $value['desc'] ); ?></td></tr>
 							<?php
 						}
 					}
@@ -108,19 +108,19 @@ $count_public = filtered_array( $wrael_developer_public_hooks );
 function filtered_array( $argu ) {
 	$count_admin = array();
 	foreach ( $argu as $key => $value ) {
-		foreach ( $value as $k => $originvalue ) {
+		foreach ( $value as $key => $originvalue ) {
 			if ( isset( $originvalue['action_hook'] ) ) {
 				$val                              = explode( "'", $originvalue['action_hook'] );
 				$val                              = $val[1];
-				$count_admin[ $k ]['action_hook'] = $val;
+				$count_admin[ $key ]['action_hook'] = $val;
 			}
 			if ( isset( $originvalue['filter_hook'] ) ) {
 				$val                              = explode( "'", $originvalue['filter_hook'] );
 				$val                              = $val[1];
-				$count_admin[ $k ]['filter_hook'] = $val;
+				$count_admin[ $key ]['filter_hook'] = $val;
 			}
 			$vale                      = str_replace( '//desc - ', '', $originvalue['desc'] );
-			$count_admin[ $k ]['desc'] = $vale;
+			$count_admin[ $key ]['desc'] = $vale;
 		}
 	}
 	return $count_admin;

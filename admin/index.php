@@ -5,8 +5,8 @@
  * @link       https://makewebbetter.com/
  * @since      1.0.0
  *
- * @package    Woo_Refund_And_Exchange_Lite
- * @subpackage Woo_Refund_And_Exchange_Lite/admin
+ * @package    woo-refund-and-exchange-lite
+ * @subpackage woo-refund-and-exchange-lite/admin
  */
 
 // Silence is golden.

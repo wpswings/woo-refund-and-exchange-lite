@@ -5,8 +5,8 @@
  * @link       https://makewebbetter.com/
  * @since      1.0.0
  *
- * @package    Woo_Refund_And_Exchange_Lite
- * @subpackage Woo_Refund_And_Exchange_Lite/public
+ * @package    woo-refund-and-exchange-lite
+ * @subpackage woo-refund-and-exchange-lite/public
  */
 
 /**
@@ -16,8 +16,8 @@
  * enqueue the public-facing stylesheet and JavaScript.
  * namespace woo_refund_and_exchange_lite_public.
  *
- * @package    Woo_Refund_And_Exchange_Lite
- * @subpackage Woo_Refund_And_Exchange_Lite/public
+ * @package    woo-refund-and-exchange-lite
+ * @subpackage woo-refund-and-exchange-lite/public
  */
 class Woo_Refund_And_Exchange_Lite_Public {
 

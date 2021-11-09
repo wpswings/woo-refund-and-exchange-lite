@@ -5,8 +5,8 @@
  * @link  https://makewebbetter.com/
  * @since 1.0.0
  *
- * @package    Woo_Refund_And_Exchange_Lite
- * @subpackage Woo_Refund_And_Exchange_Lite/admin/partials
+ * @package    woo-refund-and-exchange-lite
+ * @subpackage woo-refund-and-exchange-lite/admin/partials
  */
 
 $order_obj      = wc_get_order( $order_id );

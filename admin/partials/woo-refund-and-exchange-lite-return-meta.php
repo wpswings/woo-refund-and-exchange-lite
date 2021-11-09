@@ -1,8 +1,12 @@
 <?php
 /**
- * Exit if accessed directly
+ * The admin-specific functionality of the plugin.
  *
- * @package woocommerce_refund_and_exchange_lite
+ * @link  https://makewebbetter.com/
+ * @since 1.0.0
+ *
+ * @package    woo-refund-and-exchange-lite
+ * @subpackage woo-refund-and-exchange-lite/admin
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

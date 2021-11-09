@@ -7,8 +7,8 @@
  * @link       https://makewebbetter.com/
  * @since      1.0.0
  *
- * @package    Woo_Refund_And_Exchange_Lite
- * @subpackage Woo_Refund_And_Exchange_Lite/package/rest-api/version1
+ * @package    woo-refund-and-exchange-lite
+ * @subpackage woo-refund-and-exchange-lite/package/rest-api/version1
  */
 
 /**
@@ -21,8 +21,8 @@
  * version of the plugin.
  *
  * @since      1.0.0
- * @package    Woo_Refund_And_Exchange_Lite
- * @subpackage Woo_Refund_And_Exchange_Lite/package/rest-api/version1
+ * @package    woo-refund-and-exchange-lite
+ * @subpackage woo-refund-and-exchange-lite/package/rest-api/version1
  * @author     makewebbetter <webmaster@makewebbetter.com>
  */
 class Woo_Refund_And_Exchange_Lite_Rest_Api {

@@ -26,44 +26,41 @@ jQuery(document).ready(function() {
 	$ = jQuery;
 	const MDCText = mdc.textField.MDCTextField;
 	const textField = [].map.call(
-		document.querySelectorAll(".mdc-text-field"),
+		document.querySelectorAll('.mdc-text-field'),
 		function(el) {
 			return new MDCText(el);
 		}
 	);
 	const MDCRipple = mdc.ripple.MDCRipple;
 	const buttonRipple = [].map.call(
-		document.querySelectorAll(".mdc-button"),
+		document.querySelectorAll('.mdc-button'),
 		function(el) {
 			return new MDCRipple(el);
 		}
 	);
 	const MDCSwitch = mdc.switchControl.MDCSwitch;
 	const switchControl = [].map.call(
-		document.querySelectorAll(".mdc-switch"),
+		document.querySelectorAll('.mdc-switch'),
 		function(el) {
 			return new MDCSwitch(el);
 		}
 	);
-
 	$( window ).load(function() {
 		// add select2 for multiselect.
-		if ($(document).find(".mwb-defaut-multiselect").length > 0) {
+		if ($(document).find('.mwb-defaut-multiselect').length > 0) {
 			$(document)
-			.find(".mwb-defaut-multiselect")
+			.find('.mwb-defaut-multiselect')
 			.select2();
 		}
 	});
-
-
 	// Add class in plugin submenu
 	$("a[href='admin.php?page=woo_refund_and_exchange_lite_menu']").addClass('submenu-font-size-fix');
 	
-	$(".mwb-password-hidden").click(function() {
-		if ($(".mwb-form__password").attr("type") == "text") {
-			$(".mwb-form__password").attr("type", "password");
+	$('.mwb-password-hidden').click(function() {
+		if ($('.mwb-form__password').attr('type') == 'text') {
+			$('.mwb-form__password').attr('type', 'password');
 		} else {
-			$(".mwb-form__password").attr("type", "text");
+			$('.mwb-form__password').attr('type', 'text');
 		}
 	});
 	$('.mwb_rma_order_statues').select2();
@@ -72,9 +69,9 @@ jQuery(document).ready(function() {
 	var output_setting = [];
 	function make_register_setting_obj() {
 		let on_setting = [];
-		$.each( $(".add_more_rma_policies"), function() {
-			var fun = $( this ).children( ".mwb_rma_on_functionality" ).val();
-			var set = $( this ).children( ".mwb_rma_settings" ).val();
+		$.each( $('.add_more_rma_policies'), function() {
+			var fun = $( this ).children( '.mwb_rma_on_functionality' ).val();
+			var set = $( this ).children( '.mwb_rma_settings' ).val();
 			var myObj = new Object();
 			myObj.name = fun;
 			myObj.value = set;
@@ -97,7 +94,7 @@ jQuery(document).ready(function() {
 	make_register_setting_obj();
 	// Function to show correct setting respective selected setting.
 	function show_correct_field(){
-		$.each( $(".mwb_rma_settings"), function() {
+		$.each( $('.mwb_rma_settings'), function() {
 			if( $( this ).val() == '' ) {
 				$( this ).parent( '.add_more_rma_policies' ).children( '.mwb_rma_max_number_days' ).hide();
 				$( this ).parent( '.add_more_rma_policies' ).children( '.mwb_rma_conditions1' ).show();
@@ -180,12 +177,10 @@ jQuery(document).ready(function() {
 		output_setting = [];
 		make_register_setting_obj();
 	});
-
 	// Replace function.
 	function escapeRegExp(string){
-		return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-	}
-			
+		return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+	}		
 	/* Define function to find and replace specified term with replacement string */
 	function replaceAll(str, term, replacement) {
 			return str.replace(new RegExp(escapeRegExp(term), 'g'), replacement);
@@ -216,12 +211,11 @@ jQuery(document).ready(function() {
 		show_correct_field();
 		make_register_setting_obj();
 	});
-
 	// Refund Request Accept functionality
-	$( ".mwb_rma_return_loader" ).hide(); // Hide the loader in the refund request metabox
+	$( '.mwb_rma_return_loader' ).hide(); // Hide the loader in the refund request metabox
 	$( document ).on( 'click', '#mwb_rma_accept_return', function(){
-			$( "#mwb_rma_return_package" ).hide();
-			$( ".mwb_rma_return_loader" ).show();
+			$( '#mwb_rma_return_package' ).hide();
+			$( '.mwb_rma_return_loader' ).show();
 			var orderid = $( this ).data( 'orderid' );
 			var date   = $( this ).data( 'date' );
 			var data = {
@@ -233,13 +227,13 @@ jQuery(document).ready(function() {
 			$.ajax(
 				{
 					url: wrael_admin_param.ajaxurl,
-					type: "POST",
+					type: 'POST',
 					data: data,
 					dataType :'json',
 					success: function(response)
 				{
-						$( ".mwb_rma_return_loader" ).hide();
-						$( ".refund-actions .cancel-action" ).hide();
+						$( '.mwb_rma_return_loader' ).hide();
+						$( '.refund-actions .cancel-action' ).hide();
 						window.location.reload();
 
 					}
@@ -247,10 +241,9 @@ jQuery(document).ready(function() {
 			);
 		}
 	);
-
 	// Refund Request Cancel Functionality
 	$( document ).on( 'click', '#mwb_rma_cancel_return', function(){
-		$( ".mwb_rma_return_loader" ).show();
+		$( '.mwb_rma_return_loader' ).show();
 		var orderid = $( this ).data( 'orderid' );
 		var date = $( this ).data( 'date' );
 		var data = {
@@ -262,28 +255,27 @@ jQuery(document).ready(function() {
 		$.ajax(
 			{
 				url: wrael_admin_param.ajaxurl,
-				type: "POST",
+				type: 'POST',
 				data: data,
 				dataType :'json',
 				success: function(response){
-					$( ".mwb_rma_return_loader" ).hide();
+					$( '.mwb_rma_return_loader' ).hide();
 					window.location.reload();
 				}
 		});
 	});
-
 	// Refund Amount functionality
 	$( document ).on( 'click', '#mwb_rma_left_amount', function(){
 			$( this ).attr( 'disabled','disabled' );
 			var check_pro_active = wrael_admin_param.check_pro_active;
 			var order_id = $( this ).data( 'orderid' );
 			var refund_method = $( this ).data( 'refund_method' );
-			var refund_amount = $( ".mwb_rma_total_amount_for_refund" ).val();
+			var refund_amount = $( '.mwb_rma_total_amount_for_refund' ).val();
 
 			if( refund_method == '' || refund_method == 'manual_method' ) {
 				$( 'html, body' ).animate(
 					{
-						scrollTop: $( "#order_shipping_line_items" ).offset().top
+						scrollTop: $( '#order_shipping_line_items' ).offset().top
 					},
 					2000
 				);
@@ -293,10 +285,9 @@ jQuery(document).ready(function() {
 				$( 'div.wc-order-totals-items' ).slideUp();
 				$( '#woocommerce-order-items' ).find( 'div.refund' ).show();
 				$( '.wc-order-edit-line-item .wc-order-edit-line-item-actions' ).hide();
-				//var refund_amount = $( "#mwb_rma_refund_amount" ).val();
-				var refund_reason = $( "#mwb_rma_refund_reason" ).val();
-				$( "#refund_amount" ).val( refund_amount );
-				$( "#refund_reason" ).val( refund_reason );
+				var refund_reason = $( '#mwb_rma_refund_reason' ).val();
+				$( '#refund_amount' ).val( refund_amount );
+				$( '#refund_reason' ).val( refund_reason );
 	
 				var total = accounting.unformat( refund_amount, woocommerce_admin.mon_decimal_point );
 	
@@ -325,7 +316,6 @@ jQuery(document).ready(function() {
 			}
 
 	});
-
 	// Manage Stock functionality start
 	$( document ).on( 'click', '#mwb_rma_stock_back', function(){
 		$( this ).attr( 'disabled','disabled' );
@@ -339,19 +329,19 @@ jQuery(document).ready(function() {
 		};
 		$.ajax({
 			url: wrael_admin_param.ajaxurl,
-			type: "POST",
+			type: 'POST',
 			data: data,
 			dataType :'json',
 			success: function(response) {
 				$( this ).removeAttr( 'disabled' );
 				if (response.result) {
-					$( "#post" ).prepend( '<div class="updated notice notice-success is-dismissible" id="message"><p>' + response.msg + '</p><button class="notice-dismiss" type="button"><span class="screen-reader-text">Dismiss this notice.</span></button></div>' );
+					$( '#post' ).prepend( '<div class="updated notice notice-success is-dismissible" id="message"><p>' + response.msg + '</p><button class="notice-dismiss" type="button"><span class="screen-reader-text">Dismiss this notice.</span></button></div>' );
 					$( 'html, body' ).animate(
 						{
-							scrollTop: $( "body" ).offset().top
+							scrollTop: $( 'body' ).offset().top
 						},
 						2000,
-						"linear",
+						'linear',
 						function(){
 							window.setTimeout(
 								function() {
@@ -362,13 +352,13 @@ jQuery(document).ready(function() {
 						}
 					);
 				} else {
-					$( "#post" ).prepend( '<div id="messege" class="notice notice-error is-dismissible" id="message"><p>' + response.msg + '</p><button class="notice-dismiss" type="button"><span class="screen-reader-text">Dismiss this notice.</span></button></div>' );
+					$( '#post' ).prepend( '<div id="messege" class="notice notice-error is-dismissible" id="message"><p>' + response.msg + '</p><button class="notice-dismiss" type="button"><span class="screen-reader-text">Dismiss this notice.</span></button></div>' );
 					$( 'html, body' ).animate(
 						{
-							scrollTop: jQuer$( "body" ).offset().top
+							scrollTop: jQuer$( 'body' ).offset().top
 						},
 						2000,
-						"linear",
+						'linear',
 						function(){
 						}
 					);
@@ -376,7 +366,6 @@ jQuery(document).ready(function() {
 			}
 		});
 	});
-	
 	// Regenerate Api Secret key
 	$( document ).on( 'click', '#mwb_rma_generate_key_setting', function(e){
 		e.preventDefault();
@@ -387,7 +376,7 @@ jQuery(document).ready(function() {
 		$.ajax(
 		{
 			url: wrael_admin_param.ajaxurl,
-			type: "POST",
+			type: 'POST',
 			data: data,
 			dataType :'json',
 			success: function(response) {

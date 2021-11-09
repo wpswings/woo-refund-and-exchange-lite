@@ -6,8 +6,8 @@
  * @link       https://makewebbetter.com/
  * @since      1.0.0
  *
- * @package    Woo_Refund_And_Exchange_Lite
- * @subpackage Woo_Refund_And_Exchange_Lite/wp-bakery-widgets
+ * @package    woo-refund-and-exchange-lite
+ * @subpackage woo-refund-and-exchange-lite/wp-bakery-widgets
  */
 
 // If this file is called directly, abort .
@@ -24,8 +24,8 @@ if ( ! class_exists( 'Mwb_Rma_Vc_Widgets' ) ) {
 	 * @link       https://makewebbetter.com/
 	 * @since      1.0.0
 	 *
-	 * @package    Woo_Refund_And_Exchange_Lite
-	 * @subpackage Woo_Refund_And_Exchange_Lite/wp-bakery-widgets
+	 * @package    woo-refund-and-exchange-lite
+	 * @subpackage woo-refund-and-exchange-lite/wp-bakery-widgets
 	 */
 	class Mwb_Rma_Vc_Widgets {
 		/** Main constructor */

@@ -7,8 +7,8 @@
  * @link       https://makewebbetter.com/
  * @since      1.0.0
  *
- * @package    Woo_Refund_And_Exchange_Lite
- * @subpackage Woo_Refund_And_Exchange_Lite
+ * @package    woo-refund-and-exchange-lite
+ * @subpackage woo-refund-and-exchange-lite
  */
 
 esc_html_e( 'oops looks like nothing is here', 'woo-refund-and-exchange-lite' );
