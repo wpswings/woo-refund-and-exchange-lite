@@ -84,8 +84,9 @@ if ( isset( $requested_products ) && ! empty( $requested_products ) ) {
 $message       .= '<tr>
 					<th colspan="2" style="border: 1px solid #C7C7C7;">' . esc_html__( 'Refund Total', 'woo-refund-and-exchange-lite' ) . ':</th>
 					<td style="border: 1px solid #C7C7C7;">' . mwb_wrma_format_price( $total, $get_order_currency ) . '</td>
-				</tr>
-			</tbody>
+				</tr>';
+$message        = apply_filters( 'mwb_rma_add_shipping_fee_tr', $message );
+$message       .= '</tbody>
 		</table>
 	</div>
 	<div class="Customer-detail">

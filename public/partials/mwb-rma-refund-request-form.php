@@ -71,7 +71,7 @@ if ( $mwb_wrma_show_sidebar_on_form ) {
 }
 if ( isset( $condition ) && 'yes' === $condition ) {
 	$mwb_refund_wrapper_class = get_option( 'mwb_wrma_refund_form_wrapper_class' );
-	$mwb_return_css           = get_option( 'mwb_wrma_return_custom_css' );
+	$mwb_return_css           = get_option( 'mwb_rma_refund_form_css' );
 	?>
 	<style><?php echo wp_kses_post( $mwb_return_css ); ?></style>
 	<div class="mwb_rma_refund_form_wrapper mwb-rma-form__wrapper <?php echo esc_html( $mwb_refund_wrapper_class ); ?>">

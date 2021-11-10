@@ -14,14 +14,14 @@ jQuery( document ).on( 'ready', function(){
 
 		var rr_subject = $( '#mwb_rma_return_request_subject' ).val();
 			
-		if (rr_subject == '' || rr_subject == null) {
+		if (rr_subject == '' || rr_subject == null ) {
 			rr_subject = $( '#mwb_rma_return_request_subject_text' ).val();
-			if (rr_subject == '' || rr_subject == null) {
+			if (rr_subject == '' || rr_subject == null || ! rr_subject.match(/[[A-Za-z]/i ) ) {
 				alerthtml += '<li>' + wrael_common_param.return_subject_msg + '</li>';
 			}
 		}
 		var rr_reason = $( '.mwb_rma_return_request_reason' ).val();
-		if ( rr_reason == '' ) {
+		if ( rr_reason == '' || rr_reason == null || ! rr_reason.match(/[[A-Za-z]/i ) ) {
 			alerthtml += '<li>' + wrael_common_param.return_reason_msg + '</li>';
 		}
 
