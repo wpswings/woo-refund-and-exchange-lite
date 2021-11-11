@@ -102,7 +102,10 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 					);
 					$get_order_currency = get_woocommerce_currency_symbol( $order_obj->get_currency() );
 					foreach ( $order_obj->get_items() as $item_id => $item ) {
-						if ( $item['qty'] > 0 ) {
+						$item_quantity = $item->get_quantity();
+						$refund_qty    = $order_obj->get_qty_refunded_for_item($item_id);
+						$item_qty      = $item->get_quantity() + $refund_qty;
+						if ( $item_qty > 0 ) {
 							if ( isset( $item['variation_id'] ) && $item['variation_id'] > 0 ) {
 								$variation_id = $item['variation_id'];
 								$product_id   = $item['product_id'];
@@ -113,7 +116,6 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 							// Get Product.
 							apply_filters( 'woocommerce_order_item_product', $item->get_product(), $item );
 							$thumbnail = wp_get_attachment_image( $product->get_image_id(), 'thumbnail' );
-
 							$coupon_discount = get_option( 'mwb_rma_refund_deduct_coupon', 'no' );
 							if ( 'on' === $coupon_discount ) {
 								$tax_inc = $item->get_total() + $item->get_subtotal_tax();
@@ -133,12 +135,8 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 							} elseif ( 'mwb_rma_exclude_tax' === $mwb_rma_check_tax ) {
 								$mwb_actual_price = $tax_exc;
 							}
-							$mwb_total_price_of_product = $item['qty'] * $mwb_actual_price;
-							// Revoke Product Refund.
-							$revoke_ref = apply_filters( 'mwb_rma_revoke_product_refund', $product_id );
-							if ( $revoke_ref ) {
-								$mwb_total_actual_price += $mwb_total_price_of_product;
-							}
+							$mwb_total_price_of_product = $mwb_actual_price;
+
 							$purchase_note = get_post_meta( $product_id, '_purchase_note', true );
 							?>
 							<tr class="mwb_rma_return_column" data-productid="<?php echo esc_html( $product_id ); ?>" data-variationid="<?php echo esc_html( $item['variation_id'] ); ?>" data-itemid="<?php echo esc_html( $item_id ); ?>">
@@ -147,7 +145,7 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 								do_action( 'mwb_rma_add_extra_column_field_value', $item_id, $product_id );
 								?>
 								<td class="product-name">
-									<input type="hidden" name="mwb_rma_product_amount" class="mwb_rma_product_amount" value="<?php echo esc_html( $mwb_actual_price ); ?>">
+									<input type="hidden" name="mwb_rma_product_amount" class="mwb_rma_product_amount" value="<?php echo esc_html( $mwb_actual_price / $item->get_quantity() ); ?>">
 									<div class="mwb-rma-product__wrap">
 										<?php
 										$is_visible        = $product && $product->is_visible();
@@ -187,7 +185,7 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 											<p>
 												<b><?php esc_html_e( 'Price', 'woo-refund-and-exchange-lite' ); ?> :</b> 
 												<?php
-													echo wp_kses_post( mwb_wrma_format_price( $mwb_actual_price, $get_order_currency ) );
+													echo wp_kses_post( mwb_wrma_format_price( $mwb_actual_price / $item->get_quantity(), $get_order_currency ) );
 												if ( 'mwb_rma_inlcude_tax' === $mwb_rma_check_tax ) {
 													?>
 													<small class="tax_label"><?php esc_html_e( '(incl. tax)', 'woo-refund-and-exchange-lite' ); ?></small>
@@ -206,12 +204,12 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 								<?php
 								echo
 								// Refund form Quantity html.
-								apply_filters( 'mwb_rma_change_quanity', sprintf( '<input type="number" disabled value="' . esc_html( $item['qty'] ) . '" class="mwb_rma_return_product_qty" name="mwb_rma_return_product_qty">' ), $item['qty'] );
+								apply_filters( 'mwb_rma_change_quanity', sprintf( '<input type="number" disabled value="' . esc_html( $item_qty ) . '" class="mwb_rma_return_product_qty" name="mwb_rma_return_product_qty">' ), $item_qty );
 								?>
 								</td>
 								<td class="product-total">
 									<?php
-									echo wp_kses_post( mwb_wrma_format_price( $mwb_total_price_of_product, $get_order_currency ) );
+									echo wp_kses_post( mwb_wrma_format_price( $mwb_actual_price / $item->get_quantity(), $get_order_currency ) );
 
 									if ( 'mwb_rma_inlcude_tax' === $mwb_rma_check_tax ) {
 										?>

@@ -326,52 +326,51 @@ if ( ! function_exists( 'mwb_rma_return_req_approve_callback' ) ) {
 		}
 		// Update the status.
 		update_post_meta( $orderid, 'mwb_rma_return_attachment', $request_files );
-		$total_price = 0;
-		$order_obj = wc_get_order( $orderid );
-		// Reduce the order item qty because of return.
+		//$total_price       = 0;
+		$order_obj         = wc_get_order( $orderid );
+		$line_items1       = array();
+		$mwb_rma_check_tax = get_option( $orderid . 'check_tax', false );
+		$coupon_discount   = get_option( 'mwb_rma_refund_deduct_coupon', 'no' );
+		// add refund item related info for wc_create_refund.
 		if ( isset( $product_datas ) && ! empty( $product_datas ) ) {
 			foreach ( $order_obj->get_items() as $item_id => $item ) {
 				$product = apply_filters( 'woocommerce_order_item_product', $order_obj->get_product_from_item( $item ), $item );
 				foreach ( $product_datas as $requested_product ) {
 					if ( $item_id == $requested_product['item_id'] ) {
-						if ( $item['product_id'] == $requested_product['product_id'] || $item['variation_id'] == $requested_product['variation_id']) {
-							$product     = apply_filters( 'woocommerce_order_item_product', $order_obj->get_product_from_item( $item ), $item );
-							$item['qty'] = $item['qty'] - $requested_product['qty'];
-							$args['qty'] = $item['qty'];
-							wc_update_order_item_meta( $item_id, '_qty', $item['qty'] );
-
-							$product = wc_get_product($product->get_id());
-
-							if ( $product->backorders_require_notification() && $product->is_on_backorder( $args['qty'] ) ) {
-								$item->add_meta_data( apply_filters( 'woocommerce_backordered_item_meta_name', __( 'Backordered', 'woocommerce' ) ), $args['qty'] - max( 0, $product->get_stock_quantity() ), true );
+						if ( $item['product_id'] == $requested_product['product_id'] || $item['variation_id'] == $requested_product['variation_id'] ) {
+							$product           = apply_filters( 'woocommerce_order_item_product', $order_obj->get_product_from_item( $item ), $item );
+							if ( 'on' === $coupon_discount ) {
+								$prod_price = $item->get_total();
+							} else {
+								$prod_price = $item->get_subtotal();
 							}
-							$item_data          = $item->get_data();
-							$price_excluded_tax = wc_get_price_excluding_tax($product, array( 'qty' => 1 ));
-							$price_tax_excluded = $item_data['total']/$item_data['quantity'];
-							$args['subtotal']   = $price_excluded_tax*$args['qty'];
-							$args['total']	    = $price_tax_excluded*$args['qty'];
-							$item->set_order_id( $orderid );
-							$item->set_props( $args );
-							$item->save();
-							$total_price += $requested_product['price'] * $requested_product['qty'];
-							/* translators1: product name .
-								* translators2: product qty.
-								*/
-							$order_obj->add_order_note( sprintf( __( '%s %s Item Quantity has been reduce because of the return', 'woo-refund-and-exchange-lite' ), $product->get_name(), $requested_product['qty'] ), false, true );
+							if ( 'mwb_rma_inlcude_tax' === $mwb_rma_check_tax ) {
+								$item_tax                              = $item->get_subtotal_tax() / $item->get_quantity();
+								$line_items1[ $item_id ]['refund_tax'] = array( 1 => $item_tax );
+							} elseif ( 'mwb_rma_exclude_tax' === $mwb_rma_check_tax ) {
+								$prod_price -= $item->get_subtotal_tax();
+							}
+							$line_items1[ $item_id ]['qty']          = $requested_product['qty'];
+							$line_items1[ $item_id ]['refund_total'] = wc_format_decimal( $prod_price * $requested_product['qty'] / $item->get_quantity() );
+							$order_obj->add_order_note( sprintf( __( '%s %s Item Quantity has been reduce because the return', 'woo-refund-and-exchange-lite' ), $product->get_name(), $requested_product['qty'] ), false, true );
 						}
 					}
 				}
 			}
 		}
-		if ( $total_price > 0 ) {
-			$new_fee = new WC_Order_Item_Fee();
-			$new_fee->set_name( esc_attr( 'Refundable Amount' ) );
-			$new_fee->set_total( $total_price );
-			$new_fee->set_tax_class( '' );
-			$new_fee->set_tax_status( 'none' );
-			$new_fee->save();
-			$order_obj->add_item( $new_fee );
+		if ( ! empty( $line_items1 ) ) {
+			wc_create_refund(
+				array(
+					'amount'         => '',
+					'reason'         => esc_html__( 'Added the refund item info', 'woo-refund-and-exchange-lite' ),
+					'order_id'       => $orderid,
+					'line_items'     => $line_items1,
+					'refund_payment' => false,
+					'restock_items'  => apply_filters( 'mwb_rma_auto_restock_item_refund', false, $orderid ),
+				)
+			);
 		}
+
 		$update_item_status = get_post_meta( $orderid, 'mwb_rma_request_made', true );
 		foreach ( get_post_meta( $orderid, 'mwb_rma_return_product', true ) as $key => $value ) {
 			foreach ( $value['products'] as $key => $value ) {
@@ -390,8 +389,6 @@ if ( ! function_exists( 'mwb_rma_return_req_approve_callback' ) ) {
 			// To Send Refund Request Accept Email.
 			do_action( 'mwb_rma_refund_req_accept_email', $orderid );
 		}
-		// Partial Stock Manage.
-		do_action( 'mwb_rma_refund_partial_stock_product', $orderid );
 		$order_obj->update_status( 'wc-return-approved', esc_html__( 'User Request of Refund Product is approved', 'woo-refund-and-exchange-lite' ) );
 		$response             = array();
 		$response['response'] = 'success';

@@ -790,11 +790,13 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	/**
 	 * Update left amount because amount is refunded.
 	 *
-	 * @param int $order_get_id order id.
-	 * @param int $refund_get_id refund order id.
+	 * @param int   $order_get_id order id.
+	 * @param array $args refund data .
 	 */
-	public function mwb_rma_action_woocommerce_order_refunded( $order_get_id, $refund_get_id ) {
-		update_post_meta( $refund_get_id['order_id'], 'mwb_rma_left_amount_done', 'yes' );
+	public function mwb_rma_action_woocommerce_order_refunded( $order_get_id, $args ) {
+		if ( isset( $args['amount'] ) && ! empty( $args['amount'] ) ) {
+			update_post_meta( $args['order_id'], 'mwb_rma_left_amount_done', 'yes' );
+		}
 	}
 
 
