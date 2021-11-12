@@ -31,9 +31,9 @@ $woo_email_url = admin_url() . 'admin.php?page=wc-settings&tab=email';
 	</div>
 </form>
 
-<h6><b>
+<h6>
 <?php
 /* translators: %s: search term */
 echo sprintf( esc_html__( 'To Configure Order Message Email %s.', 'woo-refund-and-exchange-lite' ), '<a href="' . esc_html( $woo_email_url ) . '">Click Here</a>' );
 ?>
-</b></h6>
+</h6>

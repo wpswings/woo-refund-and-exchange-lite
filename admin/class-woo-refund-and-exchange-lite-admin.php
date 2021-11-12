@@ -494,7 +494,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				'options'     => $button_view,
 			),
 			array(
-				'title'   => esc_html__( 'Enable to Manage Stock button', 'woo-refund-and-exchange-lite' ),
+				'title'   => esc_html__( 'Enable to show Manage Stock Button', 'woo-refund-and-exchange-lite' ),
 				'type'    => 'radio-switch',
 				'id'      => 'mwb_rma_refund_manage_stock',
 				'value'   => get_option( 'mwb_rma_refund_manage_stock' ),
@@ -621,7 +621,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		}
 		$mwb_rma_settings_order_message = array(
 			array(
-				'title'   => esc_html__( 'Enable Attachment upload for order messages', 'woo-refund-and-exchange-lite' ),
+				'title'   => esc_html__( 'Enable Attachment', 'woo-refund-and-exchange-lite' ),
 				'type'    => 'radio-switch',
 				'id'      => 'mwb_rma_general_enable_om_attachment',
 				'value'   => get_option( 'mwb_rma_general_enable_om_attachment' ),

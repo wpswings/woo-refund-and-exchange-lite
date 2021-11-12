@@ -1,5 +1,16 @@
 jQuery( document ).on( 'ready', function(){
 	$ = jQuery;
+	// Refund label on the order edit page because refund amount zero.
+	if ( $('#order_refunds').length ){
+		$('#order_refunds').find('.refund').each( function() {
+			var split_str = $(this).find( '.line_cost .view .amount' ).html();
+			var strs_obj  = split_str.split('</span>');
+			var price     = parseFloat(strs_obj[1]);
+			if ( ! price ) {
+				$(this).hide();
+			}
+		});
+	}
 	//Refund request submit
 	$('.mwb_rma_return_notification').hide();
 	$( '#mwb_rma_return_request_form' ).on('submit',function(e){

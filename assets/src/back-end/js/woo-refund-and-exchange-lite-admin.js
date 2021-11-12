@@ -154,6 +154,15 @@ jQuery(document).ready(function() {
 		output_setting = [];
 		make_register_setting_obj();
 	});
+	// Remove due to empty field.
+	$(document).on( 'submit', '#save_policies_setting_form', function(e) {
+		$.each( $(".mwb_rma_settings"), function() {
+			if( $( this ).val() == '' ) {
+				$( this ).parent( '.add_more_rma_policies' ).remove();
+			}
+		});
+	});
+
 	// Replace function.
 	function escapeRegExp(string){
 		return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -256,12 +265,14 @@ jQuery(document).ready(function() {
 					},
 					2000
 				);
-	
+				
 				$( 'div.wc-order-refund-items' ).slideDown();
 				$( 'div.wc-order-data-row-toggle' ).not( 'div.wc-order-refund-items' ).slideUp();
+				//$( '#woocommerce-order-items' ).find( 'div.refund' ).show();
 				$( 'div.wc-order-totals-items' ).slideUp();
-				$( '#woocommerce-order-items' ).find( 'div.refund' ).show();
-				$( '.wc-order-edit-line-item .wc-order-edit-line-item-actions' ).hide();
+				//$( '.wc-order-edit-line-item .wc-order-edit-line-item-actions' ).hide();
+				
+
 				var refund_reason = $( '#mwb_rma_refund_reason' ).val();
 				$( '#refund_amount' ).val( refund_amount );
 				$( '#refund_reason' ).val( refund_reason );

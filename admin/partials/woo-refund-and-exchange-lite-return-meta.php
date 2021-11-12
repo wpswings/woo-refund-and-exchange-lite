@@ -58,65 +58,29 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 					$return_products   = $return_data['products'];
 					foreach ( $line_items as $item_id => $item ) {
 						foreach ( $return_products as $returnkey => $return_product ) {
-							if ( $item_id == $return_product['item_id'] ) {
-								$refund_product_detail = $order_obj->get_meta_data();
-								foreach ( $refund_product_detail as $rpd_value ) {
-									$refund_product_data = $rpd_value->get_data();
-									if ( 'mwb_rma_return_product' === $refund_product_data['key'] ) {
-										$refund_product_values = $refund_product_data['value'];
-										foreach ( $refund_product_values as $rpv_value ) {
-											$refund_product_values1 = $rpv_value['products'];
-											foreach ( $refund_product_values1 as $rpv1_value ) {
-												$refund_product_id     = $rpv1_value['product_id'];
-												$refund_product_var_id = $rpv1_value['variation_id'];
-												if ( $rpv1_value['variation_id'] > 0 ) {
-													if ( ! in_array( $rpv1_value['variation_id'], $pro_id, true ) ) {
-
-														$pro_id[] = $rpv1_value['variation_id'];
-													}
-												} else {
-													if ( ! in_array( $rpv1_value['product_id'], $pro_id, true ) ) {
-
-														$pro_id[] = $rpv1_value['product_id'];
-													}
-												}
-												$get_return_product   = wc_get_product( $refund_product_id );
-												$new_refund_image     = wp_get_attachment_image_src( get_post_thumbnail_id( $refund_product_id ), 'single-post-thumbnail' );
-												$refund_product_new[] = array(
-													'name'         => $get_return_product->get_name(),
-													'sku'          => $get_return_product->get_sku(),
-													'image'        => $new_refund_image[0],
-													'variation_id' => $refund_product_var_id,
-												);
-											}
-										}
-									}
+							if ( $return_product['item_id'] == $item_id ) {
+								if ( $item->get_variation_id() ) {
+									$product_id = $item->get_variation_id();
+								} else {
+									$product_id = $item->get_product_id();
 								}
+								$product = wc_get_product( $product_id );
 								$prod_price      = $return_product['price'];
 								$total_pro_price = $prod_price * $return_product['qty'];
 								?>
 								<tr>
 									<td class="thumb">
-									<?php
-									if ( isset( $refund_product_new[ $returnkey ]['image'] ) && ! empty( $refund_product_new[ $returnkey ]['image'] ) ) {
-										echo '<img src ="' . esc_html( $refund_product_new[ $returnkey ]['image'] ) . '">';
-									}
-									?>
+									<?php echo '<div class="wc-order-item-thumbnail">' . wp_get_attachment_image( $product->get_image_id(), 'thumbnail' ) . '</div>'; ?>
 									</td>
 									<td>
 										<?php
-										if ( isset( $refund_product_new[ $returnkey ]['name'] ) && ! empty( $refund_product_new[ $returnkey ]['name'] ) ) {
-											echo esc_html( $refund_product_new[ $returnkey ]['name'] );
+										echo esc_html( $product->get_name() );
+										if ( ! empty( $product->get_sku() ) ) {
+											echo '<div class="wc-order-item-sku"><strong>' . esc_html__( 'SKU:', 'woo-refund-and-exchange-lite' ) . '</strong> ' . esc_html( $product->get_sku() ) . '</div>';
 										}
-										if ( isset( $refund_product_new[ $returnkey ]['sku'] ) && ! empty( $refund_product_new[ $returnkey ] ) ) {
-											echo '<div class="wc-order-item-sku"><strong>' . esc_html__( 'SKU:', 'woo-refund-and-exchange-lite' ) . '</strong> ' . esc_html( $refund_product_new[ $returnkey ]['sku'] ) . '</div>';
-										}
-										$var_id = $refund_product_new[ $returnkey ]['variation_id'];
-										if ( isset( $var_id ) && ! empty( $var_id ) ) {
+										if ( $item->get_variation_id() ) {
 											echo '<div class="wc-order-item-variation"><strong>' . esc_html__( 'Variation ID:', 'woo-refund-and-exchange-lite' ) . '</strong> ';
-											if ( 0 != $var_id ) {
-												echo esc_html( $var_id );
-											}
+											echo esc_html( $item->get_variation_id() );
 											echo '</div>';
 										}
 										$item_meta = new WC_Order_Item_Product( $item );
@@ -129,7 +93,6 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 								</tr>
 								<?php
 								$total += $total_pro_price;
-
 							}
 						}
 					}

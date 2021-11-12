@@ -359,10 +359,10 @@ if ( ! function_exists( 'mwb_rma_return_req_approve_callback' ) ) {
 			}
 		}
 		if ( ! empty( $line_items1 ) ) {
-			wc_create_refund(
+			$refund = wc_create_refund(
 				array(
 					'amount'         => '',
-					'reason'         => esc_html__( 'Added the refund item info', 'woo-refund-and-exchange-lite' ),
+					'reason'         => esc_html__( 'Added the return item info', 'woo-refund-and-exchange-lite' ),
 					'order_id'       => $orderid,
 					'line_items'     => $line_items1,
 					'refund_payment' => false,
