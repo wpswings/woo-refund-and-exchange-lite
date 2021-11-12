@@ -452,4 +452,23 @@ class Woo_Refund_And_Exchange_Lite_Common {
 		update_option( 'wrael_plugin_standard_multistep_done', 'yes' );
 		wp_send_json( 'yes' );
 	}
+
+	/**
+	 * Hide refund label from order edit page.
+	 */
+	public function mwb_rma_refund_info() {
+		$check_ajax = check_ajax_referer( 'mwb_rma_ajax_security', 'security_check' );
+		if ( $check_ajax ) {
+			if( isset( $_POST['refund_id'] ) && ! empty( $_POST['refund_id'] ) ) {
+				$refund_id  = $_POST['refund_id'];
+				$mwb_refund = get_option( 'mwb_rma_refund_info', array() );
+				if ( in_array( $refund_id, $mwb_refund, false ) ) {
+					echo false;
+				} else {
+					echo true;
+				}
+			}
+		}
+		wp_die();
+	}
 }

@@ -3,12 +3,23 @@ jQuery( document ).on( 'ready', function(){
 	// Refund label on the order edit page because refund amount zero.
 	if ( $('#order_refunds').length ){
 		$('#order_refunds').find('.refund').each( function() {
-			var split_str = $(this).find( '.line_cost .view .amount' ).html();
-			var strs_obj  = split_str.split('</span>');
-			var price     = parseFloat(strs_obj[1]);
-			if ( ! price ) {
-				$(this).hide();
+			var refund_id = $(this).data('order_refund_id');
+			var data = {
+				action	:'mwb_rma_refund_info',
+				refund_id : refund_id,
+				security_check	: wrael_common_param.mwb_rma_nonce
 			}
+			var this_refund = $(this);
+			$.ajax({
+				url: wrael_common_param.ajaxurl, 
+				type: 'POST',             
+				data: data,
+				success: function(response){
+					if( ! response ) {
+						this_refund.hide();
+					}
+				}
+			});
 		});
 	}
 	//Refund request submit
@@ -99,7 +110,7 @@ jQuery( document ).on( 'ready', function(){
 			orderid : orderid,
 			bankdetails : $( '#mwb_rma_bank_details' ).val(),
 			refund_method : refund_method,
-			security_check	: wrael_public_param.mwb_rma_nonce
+			security_check	: wrael_common_param.mwb_rma_nonce
 		}
 
 		var formData = new FormData(this);
