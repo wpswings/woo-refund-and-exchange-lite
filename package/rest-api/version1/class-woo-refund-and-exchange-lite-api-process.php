@@ -50,6 +50,7 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 			$refund_method         = isset( $data['refund_method'] ) ? $data['refund_method'] : '';
 			$mwb_rma_rest_response = array();
 			$order_obj             = wc_get_order( $order_id );
+			$mwb_rma_check_tax     = get_option( $order_id . 'check_tax', false );
 			if ( ! empty( $order_id ) && ! empty( $order_obj ) && ! empty( $reason ) ) {
 				$check_refund = mwb_rma_show_buttons( 'refund', $order_obj );
 				if ( 'yes' === $check_refund ) {
@@ -142,6 +143,9 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 						} elseif ( empty( $products ) ) {
 							$mwb_rma_rest_response['status'] = 404;
 							$mwb_rma_rest_response['data']   = esc_html__( 'Please Provide the data for the products', 'woo-refund-and-exchange-lite' );
+						} elseif ( empty( $products ) ) {
+							$mwb_rma_rest_response['status'] = 404;
+							$mwb_rma_rest_response['data']   = esc_html__( 'Please Provide the data for the products', 'woo-refund-and-exchange-lite' );
 						} else {
 							$products1['products']      = $array_merge;
 							$products1['order_id']      = $order_id;
@@ -222,15 +226,15 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 					$mwb_rma_rest_response['status'] = 404;
 					$mwb_rma_rest_response['data']   = $check_refund;
 				}
+			} elseif ( empty( $order_id ) ) {
+				$mwb_rma_rest_response['status'] = 404;
+				$mwb_rma_rest_response['data']   = esc_html__( 'Please Provide the order id to perform the process', 'woo-refund-and-exchange-lite' );
+			} elseif ( empty( $order_obj ) ) {
+				$mwb_rma_rest_response['status'] = 404;
+				$mwb_rma_rest_response['data']   = esc_html__( 'Please Provide the correct order id to perform the process', 'woo-refund-and-exchange-lite' );
 			} elseif ( empty( $reason ) ) {
 				$mwb_rma_rest_response['status'] = 404;
 				$mwb_rma_rest_response['data']   = esc_html__( 'Please Provide the reason for refund', 'woo-refund-and-exchange-lite' );
-			} elseif ( empty( $products ) ) {
-				$mwb_rma_rest_response['status'] = 404;
-				$mwb_rma_rest_response['data']   = esc_html__( 'Please Provide the data for the products', 'woo-refund-and-exchange-lite' );
-			} else {
-				$mwb_rma_rest_response['status'] = 404;
-				$mwb_rma_rest_response['data']   = esc_html__( 'Please Provide the correct order id to perform the process', 'woo-refund-and-exchange-lite' );
 			}
 			return $mwb_rma_rest_response;
 		}
@@ -276,9 +280,12 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 					$mwb_rma_rest_response['status'] = 404;
 					$mwb_rma_rest_response['data']   = esc_html__( 'You can only accept the refund request when the request has been made earlier', 'woo-refund-and-exchange-lite' );
 				}
-			} else {
+			} elseif ( empty( $order_obj ) ) {
 				$mwb_rma_rest_response['status'] = 404;
 				$mwb_rma_rest_response['data']   = esc_html__( 'Please Provide the correct order id to perform the process', 'woo-refund-and-exchange-lite' );
+			} else {
+				$mwb_rma_rest_response['status'] = 404;
+				$mwb_rma_rest_response['data']   = esc_html__( 'Please Provide the order id to perform the process', 'woo-refund-and-exchange-lite' );
 			}
 			return $mwb_rma_rest_response;
 		}
@@ -324,9 +331,12 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 					$mwb_rma_rest_response['status'] = 404;
 					$mwb_rma_rest_response['data']   = esc_html__( 'You can only perform the refund request cancel when the request request has been made earlier', 'woo-refund-and-exchange-lite' );
 				}
-			} else {
+			} elseif ( empty( $order_obj ) ) {
 				$mwb_rma_rest_response['status'] = 404;
 				$mwb_rma_rest_response['data']   = esc_html__( 'Please Provide the correct order id to perform the process', 'woo-refund-and-exchange-lite' );
+			} else {
+				$mwb_rma_rest_response['status'] = 404;
+				$mwb_rma_rest_response['data']   = esc_html__( 'Please Provide the order id to perform the process', 'woo-refund-and-exchange-lite' );
 			}
 			return $mwb_rma_rest_response;
 		}

@@ -55,7 +55,7 @@ class Woo_Refund_And_Exchange_Lite_Deactivator {
 	 * @param int $page_id The ID of the post to be deleted.
 	 */
 	public static function mwb_rma_delete_wpml_translate_post( $page_id ) {
-		if ( has_filter( 'wpml_object_id' ) ) {
+		if ( has_filter( 'wpml_object_id' ) && function_exists( 'wpml_get_active_languages' ) ) {
 			$langs = wpml_get_active_languages();
 			foreach ( $langs as $lang ) {
 				if ( apply_filters( 'wpml_object_id', $page_id, 'page', false, $lang['code'] ) ) {

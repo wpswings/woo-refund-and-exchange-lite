@@ -168,7 +168,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	public function wrael_options_page() {
 		global $submenu;
 		if ( empty( $GLOBALS['admin_page_hooks']['mwb-plugins'] ) ) {
-			add_menu_page( esc_html__( 'MakeWebBetter', 'woo-refund-and-exchange-lite' ), esc_html__( 'MakeWebBetter', 'woo-refund-and-exchange-lite' ), 'manage_options', 'mwb-plugins', array( $this, 'mwb_plugins_listing_page' ), WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/image/MWB_Grey-01.svg', 15 );
+			add_menu_page( esc_html( 'MakeWebBetter' ), esc_html( 'MakeWebBetter' ), 'manage_options', 'mwb-plugins', array( $this, 'mwb_plugins_listing_page' ), WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/image/MWB_Grey-01.svg', 15 );
 			$wrael_menus =
 			// Add Menu.
 			apply_filters( 'mwb_add_plugins_menus_array', array() );
@@ -203,7 +203,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	 */
 	public function wrael_admin_submenu_page( $menus = array() ) {
 		$menus[] = array(
-			'name'      => esc_html__( 'Return Refund and Exchange for WooCommerce', 'woo-refund-and-exchange-lite' ),
+			'name'      => esc_html( 'Return Refund and Exchange for WooCommerce' ),
 			'slug'      => 'woo_refund_and_exchange_lite_menu',
 			'menu_link' => 'woo_refund_and_exchange_lite_menu',
 			'instance'  => $this,
