@@ -270,6 +270,7 @@ if ( $activated ) {
 	 */
 	function mwb_rma_plugin_deactivate_lite() {
 		deactivate_plugins( plugin_basename( __FILE__ ) );
+		add_action( 'network_admin_notices', 'mwb_rma_plugin_error_notice_lite' );
 		add_action( 'admin_notices', 'mwb_rma_plugin_error_notice_lite' );
 	}
 }
