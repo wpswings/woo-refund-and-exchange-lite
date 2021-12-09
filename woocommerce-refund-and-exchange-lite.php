@@ -45,7 +45,6 @@ if ( function_exists( 'is_multisite' ) && is_multisite() ) {
 		}
 	}
 	$active_plugins = array_merge( $active_plugins, get_site_option( 'active_sitewide_plugins', array() ) );
-	include_once ABSPATH . 'wp-admin/includes/plugin.php';
 	if ( ! in_array( 'woocommerce/woocommerce.php', $active_plugins, true ) ) {
 		$activated = false;
 	}

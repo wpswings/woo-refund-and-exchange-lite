@@ -326,7 +326,6 @@ if ( ! function_exists( 'mwb_rma_return_req_approve_callback' ) ) {
 		}
 		// Update the status.
 		update_post_meta( $orderid, 'mwb_rma_return_attachment', $request_files );
-		//$total_price       = 0;
 		$order_obj         = wc_get_order( $orderid );
 		$line_items1       = array();
 		$mwb_rma_check_tax = get_option( $orderid . 'check_tax', false );
