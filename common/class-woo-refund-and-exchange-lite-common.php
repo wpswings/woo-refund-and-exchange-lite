@@ -293,7 +293,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	/**
 	 *  Multisite compatibility .
 	 *
-	 * @param array $new_site .
+	 * @param object $new_site .
 	 * @return void
 	 */
 	public function mwb_rma_plugin_on_create_blog( $new_site ) {
