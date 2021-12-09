@@ -307,6 +307,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			switch_to_blog( $blog_id );
 			require_once plugin_dir_path( __FILE__ ) . 'includes/class-woo-refund-and-exchange-lite-activator.php';
 			Woo_Refund_And_Exchange_Lite_Activator::mwb_rma_create_pages();
+			update_option( 'wrael_plugin_standard_multistep_done', 'yes' );
 			restore_current_blog();
 		}
 
