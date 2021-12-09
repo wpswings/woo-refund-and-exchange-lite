@@ -305,7 +305,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			$blog_id = $new_site->blog_id;
 			// Switch to newly created site .
 			switch_to_blog( $blog_id );
-			require_once plugin_dir_path( __FILE__ ) . 'includes/class-woo-refund-and-exchange-lite-activator.php';
+			require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'includes/class-woo-refund-and-exchange-lite-activator.php';
 			Woo_Refund_And_Exchange_Lite_Activator::mwb_rma_create_pages();
 			update_option( 'wrael_plugin_standard_multistep_done', 'yes' );
 			restore_current_blog();
