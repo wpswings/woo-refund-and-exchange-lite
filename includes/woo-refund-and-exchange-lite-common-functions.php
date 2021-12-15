@@ -93,14 +93,14 @@ if ( ! function_exists( 'mwb_rma_show_buttons' ) ) {
 							if ( isset( $value['row_statuses'] ) && in_array( 'wc-' . $order->get_status(), $value['row_statuses'], true ) ) {
 								$show_button = 'yes';
 							} else {
-								$show_button = ucfirst( $func ) . esc_html__( ' request can\'t make on this order.', 'woo-refund-and-exchange-lite' );
+								$show_button = ucfirst( $func ) . esc_html__( ' request can not make on this order.', 'woo-refund-and-exchange-lite' );
 								break;
 							}
 						} elseif ( $value['row_conditions2'] && 'mwb_rma_not_equal_to' === $value['row_conditions2'] ) {
 							if ( isset( $value['row_statuses'] ) && ! in_array( 'wc-' . $order->get_status(), $value['row_statuses'], true ) ) {
 								$show_button = 'yes';
 							} else {
-								$show_button = ucfirst( $func ) . esc_html__( ' request can\'t make on this order.', 'woo-refund-and-exchange-lite' );
+								$show_button = ucfirst( $func ) . esc_html__( ' request can not make on this order.', 'woo-refund-and-exchange-lite' );
 								break;
 							}
 						}
