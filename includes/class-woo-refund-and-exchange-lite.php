@@ -409,12 +409,12 @@ class Woo_Refund_And_Exchange_Lite {
 			'name'      => 'woo-refund-and-exchange-lite-refund-policies',
 			'file_path' => WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/woo-refund-and-exchange-lite-policies.php',
 		);
-		$wrael_default_tabs = apply_filters( 'mwb_rma_plugin_admin_settings_tabs_addon_after', $wrael_default_tabs );
 		$wrael_default_tabs['woo-refund-and-exchange-lite-order-message'] = array(
 			'title'     => esc_html__( 'Order Message', 'woo-refund-and-exchange-lite' ),
 			'name'      => 'woo-refund-and-exchange-lite-order-message',
 			'file_path' => WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/woo-refund-and-exchange-lite-order-message.php',
 		);
+		$wrael_default_tabs = apply_filters( 'mwb_rma_plugin_admin_settings_tabs_addon_after', $wrael_default_tabs );
 		$wrael_default_tabs['woo-refund-and-exchange-lite-developer']     = array(
 			'title'     => esc_html__( 'Developer', 'woo-refund-and-exchange-lite' ),
 			'name'      => 'woo-refund-and-exchange-lite-developer',

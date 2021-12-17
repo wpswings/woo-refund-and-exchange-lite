@@ -509,6 +509,12 @@ if ( ! function_exists( 'mwb_rma_standard_check_multistep' ) ) {
 		if ( ! empty( $mwb_standard_check ) ) {
 			$bool = true;
 		}
+		$check_refund   = get_option( 'mwb_rma_refund_enable', false );
+		$check_refund2  = get_option( 'mwb_wrma_return_enable', false );
+		$check_exchange = get_option( 'mwb_rma_exchange_enable', false );
+		if ( $check_refund || $check_exchange || $check_refund2 ) {
+			$bool = true;
+		}
 		$bool = apply_filters('mwb_standard_multistep_done', $bool );
 		return $bool;
 	}

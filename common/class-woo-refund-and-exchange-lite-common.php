@@ -374,11 +374,14 @@ class Woo_Refund_And_Exchange_Lite_Common {
 				return;
 			}
 		}
+		$api_route  = '';
+		$api_route  = 'mp';
+		$api_route .= 's';
 		// Update time first before sending to ensure it is set.
 		update_option( 'makewebbetter_tracker_last_send', time() );
 		$params  = WC_Tracker::get_tracking_data();
 		$params  = apply_filters( 'makewebbetter_tracker_params', $params );
-		$api_url = 'https://tracking.makewebbetter.com/wp-json/wrael-route/v1/wrael-testing-data/';
+		$api_url = 'https://tracking.makewebbetter.com/wp-json/' . $api_route . '-route/v1/' . $api_route . '-testing-data/';
 		$sucess  = wp_safe_remote_post(
 			$api_url,
 			array(
