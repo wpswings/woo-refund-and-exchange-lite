@@ -45,14 +45,12 @@ jQuery(document).ready(function() {
 			return new MDCSwitch(el);
 		}
 	);
-	$( window ).load(function() {
-		// add select2 for multiselect.
-		if ($(document).find('.mwb-defaut-multiselect').length > 0) {
-			$(document)
-			.find('.mwb-defaut-multiselect')
-			.select2();
-		}
-	});
+	// add select2 for multiselect.
+	if ($(document).find('.mwb-defaut-multiselect').length > 0) {
+		$(document)
+		.find('.mwb-defaut-multiselect')
+		.select2();
+	}
 	// Add class in plugin submenu
 	$("a[href='admin.php?page=woo_refund_and_exchange_lite_menu']").addClass('submenu-font-size-fix');
 	
@@ -239,8 +237,8 @@ jQuery(document).ready(function() {
 					type: 'POST',
 					data: data,
 					dataType :'json',
-					success: function(response)
-				{
+					success: function(response) {
+						console.log(response);
 						$( '.mwb_rma_return_loader' ).hide();
 						$( '.refund-actions .cancel-action' ).hide();
 						window.location.reload();

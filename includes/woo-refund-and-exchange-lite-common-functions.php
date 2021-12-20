@@ -18,7 +18,7 @@ if ( ! function_exists( 'mwb_rma_show_buttons' ) ) {
 	 * @param object $order is the order object.
 	 */
 	function mwb_rma_show_buttons( $func, $order ) {
-		$show_button          = 'no';
+		$show_button          = 'yes';
 		$setting_saved        = get_option( 'policies_setting_option', array() );
 		$check                = get_option( 'mwb_rma_' . $func . '_enable', false );
 		$get_specific_setting = array();
@@ -40,9 +40,6 @@ if ( ! function_exists( 'mwb_rma_show_buttons' ) ) {
 			$check_tax_handling = strpos( wp_json_encode( $get_specific_setting ), 'mwb_rma_tax_handling' ) > 0 ? true : false;
 			if ( ! $check_tax_handling ) {
 				update_option( $order->get_id() . 'check_tax', '' );
-			}
-			if ( empty( $get_specific_settings ) ) {
-				$show_button = 'yes';
 			}
 			if ( ! empty( $get_specific_setting ) ) {
 				foreach ( $get_specific_setting as $key => $value ) {
@@ -337,7 +334,7 @@ if ( ! function_exists( 'mwb_rma_return_req_approve_callback' ) ) {
 				foreach ( $product_datas as $requested_product ) {
 					if ( $item_id == $requested_product['item_id'] ) {
 						if ( $item['product_id'] == $requested_product['product_id'] || $item['variation_id'] == $requested_product['variation_id'] ) {
-							$product           = apply_filters( 'woocommerce_order_item_product', $order_obj->get_product_from_item( $item ), $item );
+							$product = apply_filters( 'woocommerce_order_item_product', $order_obj->get_product_from_item( $item ), $item );
 							if ( 'on' === $coupon_discount ) {
 								$prod_price = $item->get_total();
 							} else {
@@ -360,7 +357,7 @@ if ( ! function_exists( 'mwb_rma_return_req_approve_callback' ) ) {
 		if ( ! empty( $line_items1 ) ) {
 			$refund = wc_create_refund(
 				array(
-					'amount'         => '',
+					'amount'         => 0,
 					'reason'         => esc_html__( 'Added the return item info', 'woo-refund-and-exchange-lite' ),
 					'order_id'       => $orderid,
 					'line_items'     => $line_items1,

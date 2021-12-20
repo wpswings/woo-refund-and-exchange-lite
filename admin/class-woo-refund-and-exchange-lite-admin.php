@@ -764,7 +764,6 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				$products = get_post_meta( $orderid, 'mwb_rma_return_product', true );
 				$response = mwb_rma_return_req_approve_callback( $orderid, $products );
 				echo wp_json_encode( $response );
-
 			}
 		}
 		wp_die();
@@ -880,10 +879,10 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 						unset( $value['mwb_rma_setting'][ $setting_index ] );
 					}
 				}
+				// Policies Setting Saving.
+				$value = apply_filters( 'mwb_rma_policies_setting', $value );
 				update_option( 'policies_setting_option', $value );
 			}
-			// Policies Setting Saving.
-			do_action( 'mwb_rma_policies_setting', $value );
 			$mwb_rma_error_text = esc_html__( 'Settings saved !', 'woo-refund-and-exchange-lite' );
 			$wrael_mwb_rma_obj->mwb_rma_plug_admin_notice( $mwb_rma_error_text, 'success2' );
 		}

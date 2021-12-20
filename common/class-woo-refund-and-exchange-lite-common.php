@@ -178,10 +178,9 @@ class Woo_Refund_And_Exchange_Lite_Common {
 				update_post_meta( $order_id, 'mwb_rma_bank_details', $_POST['bankdetails'] );
 			}
 			$refund_method  = isset( $_POST['refund_method'] ) ? sanitize_text_field( wp_unslash( $_POST['refund_method'] ) ) : '';
-			$refund_method  = apply_filters( 'mwb_rma_refund_method_wallet', $refund_method );
 			$wallet_enabled = get_option( 'mwb_rma_wallet_enable', 'no' );
 			$refund_method  = get_option( 'mwb_rma_refund_method', 'no' );
-			if ( mwb_rma_pro_active() && 'on' === $wallet_enabled && ( 'on' !== $refund_method || empty( $refund_method ) ) ) {
+			if ( mwb_rma_pro_active() && 'on' === $wallet_enabled && 'on' !== $refund_method ) {
 				$refund_method = 'wallet_method';
 			}
 			$products1 = $_POST;
