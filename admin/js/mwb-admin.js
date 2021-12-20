@@ -242,7 +242,6 @@ jQuery(document).ready(function() {
 						$( '.mwb_rma_return_loader' ).hide();
 						$( '.refund-actions .cancel-action' ).hide();
 						window.location.reload();
-
 					}
 				}
 			);
