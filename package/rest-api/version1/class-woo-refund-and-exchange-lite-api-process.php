@@ -20,8 +20,8 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 	 * This is used to define the functions and data manipulation for custom endpoints.
 	 *
 	 * @since      1.0.0
-	 * @package    Hydroshop_Api_Management
-	 * @subpackage Hydroshop_Api_Management/includes
+	 * @package    woo-refund-and-exchange-lite
+	 * @subpackage woo-refund-and-exchange-lite/includes
 	 * @author     MakeWebBetter <makewebbetter.com>
 	 */
 	class Woo_Refund_And_Exchange_Lite_Api_Process {
@@ -119,15 +119,15 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 						if ( ! $flag ) {
 							$mwb_rma_rest_response['message'] = 'error';
 							$mwb_rma_rest_response['status']  = 404;
-							$mwb_rma_rest_response['data']    = esc_html__( 'Return Request Already has been made and accpeted for the items you have given', 'woo-refund-and-exchange-lite' );
+							$mwb_rma_rest_response['data']    = esc_html__( 'Return Request Already has been made and accepted for the items you have given', 'woo-refund-and-exchange-lite' );
 						} elseif ( ! $qty_flag ) {
 							$mwb_rma_rest_response['message'] = 'error';
 							$mwb_rma_rest_response['status']  = 404;
-							$mwb_rma_rest_response['data']    = esc_html__( 'Quanity given for items is greater than the order\'s items quantity', 'woo-refund-and-exchange-lite' );
+							$mwb_rma_rest_response['data']    = esc_html__( 'Quantity given for items is greater than the order\'s items quantity', 'woo-refund-and-exchange-lite' );
 						} elseif ( ! $item_flag ) {
 							$mwb_rma_rest_response['message'] = 'error';
 							$mwb_rma_rest_response['status']  = 404;
-							$mwb_rma_rest_response['data']    = esc_html__( 'These item id does not belongs to the order', 'woo-refund-and-exchange-lite' );
+							$mwb_rma_rest_response['data']    = esc_html__( 'These item id does not belong to the order', 'woo-refund-and-exchange-lite' );
 						} elseif ( ! $invalid_item ) {
 							$mwb_rma_rest_response['message'] = 'error';
 							$mwb_rma_rest_response['status']  = 404;
@@ -139,7 +139,7 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 						} elseif ( ! $json_validate ) {
 							$mwb_rma_rest_response['message'] = 'error';
 							$mwb_rma_rest_response['status']  = 404;
-							$mwb_rma_rest_response['data']    = esc_html__( 'Products given by you dosn\'t a valid json format', 'woo-refund-and-exchange-lite' );
+							$mwb_rma_rest_response['data']    = esc_html__( 'Products are given by you doesn\'t a valid json format', 'woo-refund-and-exchange-lite' );
 						} elseif ( empty( $products ) ) {
 							$mwb_rma_rest_response['status'] = 404;
 							$mwb_rma_rest_response['data']   = esc_html__( 'Please Provide the data for the products', 'woo-refund-and-exchange-lite' );
@@ -211,7 +211,7 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 						if ( $flag_refund_made ) {
 							$mwb_rma_rest_response['message'] = 'error';
 							$mwb_rma_rest_response['status']  = 404;
-							$mwb_rma_rest_response['data']    = esc_html__( 'Return Request Already has been made and accpeted', 'woo-refund-and-exchange-lite' );
+							$mwb_rma_rest_response['data']    = esc_html__( 'Return Request Already has been made and accepted', 'woo-refund-and-exchange-lite' );
 						} elseif ( ! empty( $mwb_rma_resultsdata ) ) {
 							$mwb_rma_rest_response['message'] = 'success';
 							$mwb_rma_rest_response['status']  = 200;

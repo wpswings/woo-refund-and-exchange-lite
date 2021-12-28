@@ -2,7 +2,7 @@
 /**
  * Exit if accessed directly
  *
- * @package woocommerce_refund_and_exchange_lite
+ * @package woo-refund-and-exchange-lite
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -81,7 +81,7 @@ $order_id  = $order_obj->get_id();
 		<form id="mwb_order_new_msg_form" method="post" enctype="multipart/form-data" action="">
 			<input type="hidden" value="admin" id="order_msg_type" name="order_msg_type">	
 			<div class="mwb_order_msg_title"><h4 class="mwb-order-heading"><?php esc_html_e( 'Add a message', 'woo-refund-and-exchange-lite' ); ?></h4></div>
-				<textarea id="mwb_order_new_msg" name="mwb_order_new_msg" placeholder="<?php esc_html_e( 'Write a message you want to sent to the Customer.', 'woo-refund-and-exchange-lite' ); ?>" maxlength="10000" rows="2"></textarea>
+				<textarea id="mwb_order_new_msg" name="mwb_order_new_msg" placeholder="<?php esc_html_e( 'Write a message you want to send to the Customer.', 'woo-refund-and-exchange-lite' ); ?>" maxlength="10000" rows="2"></textarea>
 			<div class="mwb-order-msg__attachment-lable">
 				<label for="mwb_order_msg_attachment"> <?php esc_html_e( 'Attach file', 'woo-refund-and-exchange-lite' ); ?>:</label>
 			</div>

@@ -55608,14 +55608,12 @@ function App(props) {
     };
     axios__WEBPACK_IMPORTED_MODULE_8___default.a.post(frontend_ajax_object.ajaxurl, qs__WEBPACK_IMPORTED_MODULE_10___default.a.stringify(user)).then(res => {
       setLoading(false);
-      console.log(res.data);
       handleNext();
       setTimeout(() => {
         window.location.href = frontend_ajax_object.redirect_url;
         return null;
       }, 3000);
-    }).catch(error => {
-      console.log(error);
+    }).catch(error => {    
     });
   };
 

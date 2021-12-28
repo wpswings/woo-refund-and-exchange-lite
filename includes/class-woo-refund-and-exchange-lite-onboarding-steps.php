@@ -696,7 +696,7 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 		$response = $this->mwb_rma_hic_post( $url, $form_data, $headers );
 
 		if ( 200 == $response['status_code'] ) {
-			$result            = wp_json_decode( $response['response'], true );
+			$result            = is_array( wp_json_decode( $response['response'], true ) ) ? map_deep( wp_json_decode( $response['response'], true ),'sanitize_text_field' ):sanitize_text_field( wp_json_decode( $response['response'], true ));
 			$result['success'] = true;
 		} else {
 			$result = $response;

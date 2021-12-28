@@ -130,7 +130,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 						}
 
 						$source_path = sanitize_text_field( wp_unslash( $_FILES['mwb_rma_return_request_files']['tmp_name'][ $i ] ) );
-						$target_path = $directory . '/' . $order_id . '-' . sanitize_text_field( wp_unslash( $_FILES['mwb_rma_return_request_files']['name'][ $i ] ) );
+						$target_path = $directory . '/' . $order_id . '-' . isset( $_FILES['mwb_rma_return_request_files']['name'][ $i ] ) ? sanitize_text_field( wp_unslash( $_FILES['mwb_rma_return_request_files']['name'][ $i ] ) ) : '';
 
 						$filename[] = $order_id . '-' . sanitize_text_field( wp_unslash( $_FILES['mwb_rma_return_request_files']['name'][ $i ] ) );
 						move_uploaded_file( $source_path, $target_path );
@@ -175,7 +175,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			$order_id = isset( $_POST['orderid'] ) ? sanitize_text_field( wp_unslash( $_POST['orderid'] ) ) : '';
 			$re_bank  = get_option( 'mwb_rma_refund_manually_de', false );
 			if ( 'on' === $re_bank && ! empty( $_POST['bankdetails'] ) ) {
-				update_post_meta( $order_id, 'mwb_rma_bank_details', $_POST['bankdetails'] );
+				update_post_meta( $order_id, 'mwb_rma_bank_details', sanitize_text_field( wp_unslash( $_POST['bankdetails'] ) ) );
 			}
 			$refund_method  = isset( $_POST['refund_method'] ) ? sanitize_text_field( wp_unslash( $_POST['refund_method'] ) ) : '';
 			$wallet_enabled = get_option( 'mwb_rma_wallet_enable', 'no' );
@@ -406,8 +406,8 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	 */
 	public function mwb_rma_standard_save_settings_filter() {
 		check_ajax_referer( 'ajax-nonce', 'nonce' );
-		unset($_POST['action']);
-		unset($_POST['nonce']);
+		unset( $_POST['action'] );
+		unset( $_POST['nonce'] );
 		$checked_refund          = isset( $_POST['checkedRefund'] ) ? sanitize_text_field( wp_unslash( $_POST['checkedRefund'] ) ) : false;
 		$checked_order_msg       = isset( $_POST['checkedOrderMsg'] ) ? sanitize_text_field( wp_unslash( $_POST['checkedOrderMsg'] ) ) : false;
 		$checked_order_msg_email = isset( $_POST['checkedOrderMsgEmail'] ) ? sanitize_text_field( wp_unslash( $_POST['checkedOrderMsgEmail'] ) ) : false;
@@ -462,8 +462,8 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	public function mwb_rma_refund_info() {
 		$check_ajax = check_ajax_referer( 'mwb_rma_ajax_security', 'security_check' );
 		if ( $check_ajax ) {
-			if( isset( $_POST['refund_id'] ) && ! empty( $_POST['refund_id'] ) ) {
-				$refund_id  = $_POST['refund_id'];
+			if ( isset( $_POST['refund_id'] ) && ! empty( $_POST['refund_id'] ) ) {
+				$refund_id  = sanitize_text_field( wp_unslash( $_POST['refund_id'] ) );
 				$mwb_refund = get_option( 'mwb_rma_refund_info', array() );
 				if ( in_array( $refund_id, $mwb_refund, false ) ) {
 					echo false;

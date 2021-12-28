@@ -238,7 +238,6 @@ jQuery(document).ready(function() {
 					data: data,
 					dataType :'json',
 					success: function(response) {
-						console.log(response);
 						$( '.mwb_rma_return_loader' ).hide();
 						$( '.refund-actions .cancel-action' ).hide();
 						window.location.reload();
@@ -288,9 +287,7 @@ jQuery(document).ready(function() {
 				
 				$( 'div.wc-order-refund-items' ).slideDown();
 				$( 'div.wc-order-data-row-toggle' ).not( 'div.wc-order-refund-items' ).slideUp();
-				//$( '#woocommerce-order-items' ).find( 'div.refund' ).show();
 				$( 'div.wc-order-totals-items' ).slideUp();
-				//$( '.wc-order-edit-line-item .wc-order-edit-line-item-actions' ).hide();
 				
 
 				var refund_reason = $( '#mwb_rma_refund_reason' ).val();

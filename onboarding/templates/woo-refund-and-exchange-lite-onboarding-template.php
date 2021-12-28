@@ -7,8 +7,8 @@
  * @link       https://makewebbetter.com
  * @since      1.0.0
  *
- * @package    Makewebbetter_Onboarding
- * @subpackage Makewebbetter_Onboarding/admin/onboarding
+ * @package    woo-refund-and-exchange-lite
+ * @subpackage woo-refund-and-exchange-lite/onboarding
  */
 
 global $wrael_mwb_rma_obj;

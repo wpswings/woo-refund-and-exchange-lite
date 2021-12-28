@@ -348,7 +348,7 @@ if ( ! function_exists( 'mwb_rma_return_req_approve_callback' ) ) {
 							}
 							$line_items1[ $item_id ]['qty']          = $requested_product['qty'];
 							$line_items1[ $item_id ]['refund_total'] = wc_format_decimal( $prod_price * $requested_product['qty'] / $item->get_quantity() );
-							$order_obj->add_order_note( sprintf( __( '%s %s Item Quantity has been reduce because the return', 'woo-refund-and-exchange-lite' ), $product->get_name(), $requested_product['qty'] ), false, true );
+							$order_obj->add_order_note( sprintf( __( '%1$s %2$s Item Quantity has been reduce because the return', 'woo-refund-and-exchange-lite' ), $product->get_name(), $requested_product['qty'] ), false, true ); //phpcs:ignore
 						}
 					}
 				}
@@ -438,7 +438,7 @@ if ( ! function_exists( 'mwb_rma_return_req_cancel_callback' ) ) {
 			do_action( 'mwb_rma_refund_req_cancel_email', $orderid );
 		}
 		$order_obj = wc_get_order( $orderid );
-		$order_obj->update_status( 'wc-return-cancelled', esc_html__( 'User Request of Refund Product is cancel', 'woo-refund-and-exchange-lite' ) );
+		$order_obj->update_status( 'wc-return-cancelled', esc_html__( 'User Request of Refund Product is canceled', 'woo-refund-and-exchange-lite' ) );
 		$response             = array();
 		$response['response'] = 'success';
 		return $response;
@@ -490,9 +490,9 @@ if ( ! function_exists( 'mwb_json_validate' ) ) {
 				break;
 		}
 
-		if ( $error !== '' ) {
+		if ( '' !== $error ) {
 			// throw the Exception or exit // or whatever :) .
-			exit( $error );
+			exit( esc_html( $error ) );
 		}
 		// everything is OK .
 		return $result;
@@ -512,7 +512,7 @@ if ( ! function_exists( 'mwb_rma_standard_check_multistep' ) ) {
 		if ( $check_refund || $check_exchange || $check_refund2 ) {
 			$bool = true;
 		}
-		$bool = apply_filters('mwb_standard_multistep_done', $bool );
+		$bool = apply_filters( 'mwb_standard_multistep_done', $bool );
 		return $bool;
 	}
 }

@@ -423,7 +423,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 					foreach ( $wrael_genaral_settings as $wrael_genaral_setting ) {
 						if ( isset( $wrael_genaral_setting['id'] ) && '' !== $wrael_genaral_setting['id'] ) {
 							if ( isset( $_POST[ $wrael_genaral_setting['id'] ] ) ) {
-								$setting = wp_unslash( $_POST[ $wrael_genaral_setting['id'] ] );
+								$setting = sanitize_text_field( wp_unslash( $_POST[ $wrael_genaral_setting['id'] ] ) );
 								if ( 'textarea' === $wrael_genaral_setting['type'] || 'text' === $wrael_genaral_setting['type'] ) {
 									$setting = trim( preg_replace( '/\s\s+/', ' ', $setting ) );
 								}

@@ -40,7 +40,7 @@ if ( isset( $order_id ) && ! empty( $order_id ) ) {
 			<div class="mwb_order_msg_title">
 				<h4><?php esc_html_e( 'Add a message', 'woo-refund-and-exchange-lite' ); ?></h4>
 			</div>
-			<textarea id="mwb_order_new_msg" name="mwb_order_new_msg" placeholder="<?php esc_html_e( 'Write a message you want to sent to the Shop Manager.', 'woo-refund-and-exchange-lite' ); ?>" rows="6" maxlength='10000' required ></textarea>
+			<textarea id="mwb_order_new_msg" name="mwb_order_new_msg" placeholder="<?php esc_html_e( 'Write a message you want to send to the Shop Manager.', 'woo-refund-and-exchange-lite' ); ?>" rows="6" maxlength='10000' required ></textarea>
 			<div class="mwb-order-msg-attachment-wrapper mwb_rma_flex">
 				<div class="mwb-order-attachment">
 					<?php if ( isset( $upload_attach ) && 'on' === $upload_attach ) : ?>

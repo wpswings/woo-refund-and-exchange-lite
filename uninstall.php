@@ -21,7 +21,7 @@
  * @link       https://makewebbetter.com/
  * @since      1.0.0
  *
- * @package    Woo_Refund_And_Exchange_Lite
+ * @package    woo-refund-and-exchange-lite
  */
 
 // If uninstall not called from WordPress, then exit.

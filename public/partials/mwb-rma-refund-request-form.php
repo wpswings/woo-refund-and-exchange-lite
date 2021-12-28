@@ -103,7 +103,7 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 					$get_order_currency = get_woocommerce_currency_symbol( $order_obj->get_currency() );
 					foreach ( $order_obj->get_items() as $item_id => $item ) {
 						$item_quantity = $item->get_quantity();
-						$refund_qty    = $order_obj->get_qty_refunded_for_item($item_id);
+						$refund_qty    = $order_obj->get_qty_refunded_for_item( $item_id );
 						$item_qty      = $item->get_quantity() + $refund_qty;
 						if ( $item_qty > 0 ) {
 							if ( isset( $item['variation_id'] ) && $item['variation_id'] > 0 ) {
@@ -135,7 +135,7 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 							} elseif ( 'mwb_rma_exclude_tax' === $mwb_rma_check_tax ) {
 								$mwb_actual_price = $tax_exc;
 							}
-							$mwb_total_price_of_product = $mwb_actual_price;
+							$mwb_total_actual_price += $mwb_actual_price * $item_qty;
 
 							$purchase_note = get_post_meta( $product_id, '_purchase_note', true );
 							?>
@@ -202,8 +202,7 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 								</td>
 								<td class="product-quantity">
 								<?php
-								echo
-								// Refund form Quantity html.
+								echo // Refund form Quantity html.
 								apply_filters( 'mwb_rma_change_quanity', sprintf( '<input type="number" disabled value="' . esc_html( $item_qty ) . '" class="mwb_rma_return_product_qty" name="mwb_rma_return_product_qty">' ), $item_qty );
 								?>
 								</td>
@@ -236,7 +235,7 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 					}
 					?>
 					<tr>
-						<th scope="row" colspan="<?php echo mwb_rma_pro_active() ? '3' : '2' ?>"><?php esc_html_e( 'Total Refund Amount', 'woo-refund-and-exchange-lite' ); ?></th>
+						<th scope="row" colspan="<?php echo mwb_rma_pro_active() ? '3' : '2'; ?>"><?php esc_html_e( 'Total Refund Amount', 'woo-refund-and-exchange-lite' ); ?></th>
 						<td class="mwb_rma_total_amount_wrap"><span id="mwb_rma_total_refund_amount"><?php echo wp_kses_post( mwb_wrma_format_price( $mwb_total_actual_price, $get_order_currency ) ); ?></span>
 						<input type="hidden" name="mwb_rma_total_refund_price" class="mwb_rma_total_refund_price" value="<?php echo esc_html( $mwb_total_actual_price ); ?>">
 							<?php
@@ -319,7 +318,7 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 						<?php
 						$predefined_return_reason_placeholder = get_option( 'mwb_rma_refund_reason_placeholder', false );
 						if ( empty( $predefined_return_reason_placeholder ) ) {
-							$predefined_return_reason_placeholder = esc_html__( 'Write you description for refund', 'woo-refund-and-exchange-lite' );
+							$predefined_return_reason_placeholder = esc_html__( 'Write you description for a refund', 'woo-refund-and-exchange-lite' );
 						}
 						?>
 						<textarea name="mwb_rma_return_request_reason" cols="40" style="height: 222px;" class="mwb_rma_return_request_reason" maxlength='10000' placeholder="<?php echo esc_html( $predefined_return_reason_placeholder ); ?>"><?php echo ! empty( $rr_reason ) ? esc_html( $rr_reason ) : ''; ?></textarea>
