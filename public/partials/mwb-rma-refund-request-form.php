@@ -202,8 +202,9 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 								</td>
 								<td class="product-quantity">
 								<?php
+								$qty_html = '<input type="number" disabled value="' . esc_html( $item_qty ) . '" class="mwb_rma_return_product_qty" name="mwb_rma_return_product_qty">';
 								echo // Refund form Quantity html.
-								apply_filters( 'mwb_rma_change_quanity', sprintf( '<input type="number" disabled value="' . esc_html( $item_qty ) . '" class="mwb_rma_return_product_qty" name="mwb_rma_return_product_qty">' ), $item_qty );
+								apply_filters( 'mwb_rma_change_quanity', $qty_html, $item_qty );
 								?>
 								</td>
 								<td class="product-total">

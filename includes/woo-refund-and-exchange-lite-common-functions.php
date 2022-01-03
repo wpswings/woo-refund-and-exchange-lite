@@ -348,7 +348,8 @@ if ( ! function_exists( 'mwb_rma_return_req_approve_callback' ) ) {
 							}
 							$line_items1[ $item_id ]['qty']          = $requested_product['qty'];
 							$line_items1[ $item_id ]['refund_total'] = wc_format_decimal( $prod_price * $requested_product['qty'] / $item->get_quantity() );
-							$order_obj->add_order_note( sprintf( __( '%1$s %2$s Item Quantity has been reduce because the return', 'woo-refund-and-exchange-lite' ), $product->get_name(), $requested_product['qty'] ), false, true ); //phpcs:ignore
+							// translators: %1$s: product name, %2$s: product qty.
+							$order_obj->add_order_note( sprintf( __( '%1$s %2$s Item Quantity has been reduce because the return', 'woo-refund-and-exchange-lite' ), $product->get_name(), $requested_product['qty'] ), false, true );
 						}
 					}
 				}

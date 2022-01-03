@@ -13,11 +13,11 @@
  *
  * @wordpress-plugin
  * Plugin Name:       Return Refund and Exchange for WooCommerce
- * Plugin URI:        https://makewebbetter.com/product/woo-refund-and-exchange-lite/
+ * Plugin URI:        https://wpswing.com/product/woo-refund-and-exchange-lite/
  * Description:       WooCommerce Refund and Exchange lite allows users to submit product refund. The plugin provides a dedicated mailing system that would help to communicate better between store owner and customers.This is lite version of Woocommerce Refund And Exchange.
  * Version:           4.0.0
- * Author:            makewebbetter
- * Author URI:        https://makewebbetter.com/
+ * Author:            WPSwing
+ * Author URI:        https://wpswing.com/
  * Text Domain:       woo-refund-and-exchange-lite
  * Domain Path:       /languages
  *
