@@ -15,8 +15,8 @@
  * Plugin Name:       Return Refund and Exchange for WooCommerce
  * Plugin URI:        https://wordpress.org/plugins/woo-refund-and-exchange-lite/
  * Description:       WooCommerce Refund and Exchange lite allows users to submit product refund. The plugin provides a dedicated mailing system that would help to communicate better between store owner and customers.This is lite version of Woocommerce Refund And Exchange.
- * Version:           3.1.3
- * Author:            MakeWebBetter
+ * Version:           3.1.4
+ * Author:            WP Swings
  * Author URI:        http://makewebbetter.com/
  * WC tested up to:   5.8.0
  * Tested up to:      5.8.1
@@ -553,6 +553,61 @@ if ( $activated ) {
 		}
 	}
 	add_action( 'upgrader_process_complete', 'rma_lite_reno_plugin_upgrade_completed', 10, 2 );
+
+	/**
+	 * Migration to new domain notice.
+	 *
+	 * @param string $plugin_file Path to the plugin file relative to the plugins directory.
+	 * @param array  $plugin_data An array of plugin data.
+	 * @param string $status Status filter currently applied to the plugin list.
+	 */
+	function rma_lite_upgrade_notice( $plugin_file, $plugin_data, $status ) {
+
+		?>
+		<tr class="plugin-update-tr active notice-warning notice-alt">
+			<td colspan="4" class="plugin-update colspanchange">
+				<div class="notice notice-error inline update-message notice-alt">
+					<div class='ppec-notice-title ppec-notice-section'>
+						<p><strong>IMPORTANT NOTICE-</strong></p>
+					</div>
+					<div class='ppec-notice-content ppec-notice-section'>
+						<p>From this update[here]onwards, the plugin and its support will be handled by WP Swings. WP Swings is just our improvised and rebranded version with all quality solutions and help being the same, so no worries at your end.</p>
+						<p>Please connect with us for all setup, support, and update related queries without hesitation.</p>
+					</div>
+				</div>
+			</td>
+		</tr>
+		<?php
+
+	}
+	add_action( 'after_plugin_row_' . plugin_basename( __FILE__ ), 'rma_lite_upgrade_notice', 0, 3 );
+
+	add_action( 'admin_notices', 'rma_lite_upgrade_notice1' );
+
+	/**
+	 * Migration to new domain notice.
+	 */
+	function rma_lite_upgrade_notice1() {
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended
+		$tab = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : '';
+
+		if ( 'ced_rnx_setting' === $tab ) {
+
+			?>
+			<div class="notice notice-info is-dismissible">
+					<p>
+						<strong><?php esc_html_e( 'IMPORTANT NOTICE-', 'coupon-referral-program' ); ?></strong>
+					</p>
+					<p>
+						<?php esc_html_e( 'From this update[here]onwards, the plugin and its support will be handled by WP Swings. WP Swings is just our improvised and rebranded version with all quality solutions and help being the same, so no worries at your end.', 'coupon-referral-program' ); ?></p>
+					<p>
+					<?php esc_html_e( 'Please connect with us for all setup, support, and update related queries without hesitation.', 'coupon-referral-program' ); ?></p>
+					</p>
+
+				</div>
+			<?php
+		}
+	}
 } else {
 
 	/**
