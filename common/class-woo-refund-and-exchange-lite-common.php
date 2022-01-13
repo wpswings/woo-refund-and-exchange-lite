@@ -464,8 +464,9 @@ class Woo_Refund_And_Exchange_Lite_Common {
 		if ( $check_ajax ) {
 			if ( isset( $_POST['refund_id'] ) && ! empty( $_POST['refund_id'] ) ) {
 				$refund_id  = sanitize_text_field( wp_unslash( $_POST['refund_id'] ) );
-				$mwb_refund = get_option( 'mwb_rma_refund_info', array() );
-				if ( in_array( $refund_id, $mwb_refund, false ) ) {
+				$order_id   = sanitize_text_field( wp_unslash( $_POST['order_id'] ) );
+				$mwb_refund = get_post_meta( $order_id, 'mwb_rma_refund_info', true );
+				if ( is_array( $mwb_refund ) && in_array( $refund_id, $mwb_refund ) ) {
 					echo false;
 				} else {
 					echo true;

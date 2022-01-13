@@ -5,9 +5,11 @@ jQuery( document ).on( 'ready', function(){
 		if ( jQuery('#order_refunds').length ){
 			jQuery('#order_refunds').find('.refund').each( function() {
 				var refund_id = jQuery(this).data('order_refund_id');
+				var post_id   = jQuery( '#post_ID' ).val();
 				var data = {
 					action	:'mwb_rma_refund_info',
 					refund_id : refund_id,
+					order_id : post_id,
 					security_check	: wrael_common_param.mwb_rma_nonce
 				}
 				var this_refund = jQuery(this);
@@ -16,6 +18,7 @@ jQuery( document ).on( 'ready', function(){
 					type: 'POST',             
 					data: data,
 					success: function(response){
+						console.log(response);
 						if( ! response ) {
 							this_refund.hide();
 						}

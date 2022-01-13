@@ -366,9 +366,12 @@ if ( ! function_exists( 'mwb_rma_return_req_approve_callback' ) ) {
 					'restock_items'  => apply_filters( 'mwb_rma_auto_restock_item_refund', false, $orderid ),
 				)
 			);
-			$mwb_refund = get_option( 'mwb_rma_refund_info', array() );
+			$mwb_refund = get_post_meta( $orderid, 'mwb_rma_refund_info', true );
+			if ( empty( $mwb_refund ) ) {
+				$mwb_refund = array();
+			}
 			$mwb_refund[] = $refund->get_id();
-			update_option( 'mwb_rma_refund_info', $mwb_refund );
+			update_post_meta( $orderid, 'mwb_rma_refund_info', $mwb_refund );
 		}
 
 		$update_item_status = get_post_meta( $orderid, 'mwb_rma_request_made', true );
