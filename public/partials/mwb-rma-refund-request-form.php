@@ -319,7 +319,7 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 						<?php
 						$predefined_return_reason_placeholder = get_option( 'mwb_rma_refund_reason_placeholder', false );
 						if ( empty( $predefined_return_reason_placeholder ) ) {
-							$predefined_return_reason_placeholder = esc_html__( 'Write you description for a refund', 'woo-refund-and-exchange-lite' );
+							$predefined_return_reason_placeholder = esc_html__( 'Write your description for a refund', 'woo-refund-and-exchange-lite' );
 						}
 						?>
 						<textarea name="mwb_rma_return_request_reason" cols="40" style="height: 222px;" class="mwb_rma_return_request_reason" maxlength='10000' placeholder="<?php echo esc_html( $predefined_return_reason_placeholder ); ?>"><?php echo ! empty( $rr_reason ) ? esc_html( $rr_reason ) : ''; ?></textarea>

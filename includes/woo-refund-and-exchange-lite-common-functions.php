@@ -439,7 +439,7 @@ if ( ! function_exists( 'mwb_rma_return_req_cancel_callback' ) ) {
 			do_action( 'mwb_rma_refund_req_cancel_email', $orderid );
 		}
 		$order_obj = wc_get_order( $orderid );
-		$order_obj->update_status( 'wc-return-cancelled', esc_html__( 'User Request of Refund Product is canceled', 'woo-refund-and-exchange-lite' ) );
+		$order_obj->update_status( 'wc-return-cancelled', esc_html__( 'User Request of Refund Product is cancelled', 'woo-refund-and-exchange-lite' ) );
 		$response             = array();
 		$response['response'] = 'success';
 		return $response;
