@@ -18,8 +18,8 @@
  * Version:           3.1.4
  * Author:            WP Swings
  * Author URI:        http://wpswings.com/
- * WC tested up to:   5.8.0
- * Tested up to:      5.8.1
+ * WC tested up to:   6.0.0
+ * Tested up to:      5.8.3
  * License:           GPL-3.0+
  * License URI:       http://www.gnu.org/licenses/gpl-3.0.txt
  * Text Domain:       woo-refund-and-exchange-lite
