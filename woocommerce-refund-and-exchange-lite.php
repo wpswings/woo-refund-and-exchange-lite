@@ -191,8 +191,8 @@ if ( $activated ) {
 		if ( strpos( $file, 'woocommerce-refund-and-exchange-lite.php' ) !== false ) {
 
 			$row_meta = array(
-				'docs'  => '<a target="_blank" style="color:#FFF;background:linear-gradient(to right,#7a28ff 0,#00a1ff 100%);padding:5px;border-radius:6px;" href="https://docs.makewebbetter.com/woocommerce-refund-and-exchange-lite">' . esc_html__( 'Go to Docs', 'woo-refund-and-exchange-lite' ) . '</a>',
-				'goPro' => '<a target="_blank" style="color:#FFF;background:linear-gradient(to right,#7a28ff 0,#00a1ff 100%);padding:5px;border-radius:6px;" href="https://makewebbetter.com/product/woocommerce-rma-return-refund-exchange/"><strong>' . esc_html__( 'Go Premium', 'woo-refund-and-exchange-lite' ) . '</strong></a>',
+				'docs'  => '<a target="_blank" style="color:#FFF;background:linear-gradient(to right,#7a28ff 0,#00a1ff 100%);padding:5px;border-radius:6px;" href="https://docs.wpswings.com/woo-refund-and-exchange-lite/?utm_source=wpswings-rma-doc&utm_medium=rma-org-page&utm_campaign=rma-doc">' . esc_html__( 'Go to Docs', 'woo-refund-and-exchange-lite' ) . '</a>',
+				'goPro' => '<a target="_blank" style="color:#FFF;background:linear-gradient(to right,#7a28ff 0,#00a1ff 100%);padding:5px;border-radius:6px;" href="https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro?utm_source=wpswings-rma-pro&utm_medium=rma-org-backend&utm_campaign=go-pro"><strong>' . esc_html__( 'Go Premium', 'woo-refund-and-exchange-lite' ) . '</strong></a>',
 			);
 
 			return array_merge( $links, $row_meta );

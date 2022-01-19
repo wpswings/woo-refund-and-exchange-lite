@@ -128,14 +128,14 @@ if ( ! class_exists( 'Mwb_Basic_Framework_Admin_Settings' ) ) {
 				      	  <a href="https://translate.wordpress.org/projects/wp-plugins/woo-refund-and-exchange-lite/" target="_blank"><b class="mwb_translate_link">' . esc_html__( 'Start translating this plugin in your language', 'woo-refund-and-exchange-lite' ) . '</b></a>
 						</li>
 				      	<li>
-				      	  <a href="https://makewebbetter.com/contact-us/" target="_blank">
+				      	  <a href="https://wpswings.com/submit-query/?utm_source=wpswings-rma-support&utm_medium=rma-org-backend&utm_campaign=support" target="_blank">
 						  <span class="dashicons dashicons-phone"></span></a>
 						</li>
 						<li>
-						  <a href="https://docs.makewebbetter.com/woocommerce-refund-and-exchange-lite/?utm_source=MWB-RMA-org&utm_medium=MWB-ORG-Page&utm_campaign=MWB-doc" target="_blank">
+						  <a href="https://docs.wpswings.com/woo-refund-and-exchange-lite/?utm_source=wpswings-rma-doc&utm_medium=rma-org-page&utm_campaign=rma-doc" target="_blank">
 						   <span class="dashicons dashicons-media-document"></span></a>
 						</li>
-						<li class="mwb_lite_header_menu_button"><a href="https://makewebbetter.com/product/woocommerce-rma-return-refund-exchange/" class="" title="" target="_blank">GO PRO NOW</a></li>
+						<li class="mwb_lite_header_menu_button"><a href="https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro?utm_source=wpswings-rma-pro&utm_medium=rma-org-backend&utm_campaign=go-pro" class="" title="" target="_blank">GO PRO NOW</a></li>
 				      </ul>
 			 	  </div>
 			</div>
