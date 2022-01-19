@@ -62,7 +62,7 @@ if ( 'overview' == $mwb_rnx_section && 'ced_rnx_setting' == $mwb_rnx_tab || '' =
 				?>
 			<h2 class="ced-purchase-heading"><?php esc_html_e( 'Please Purchase Our Premium version for this feature and also for some more exciting feature.', 'woo-refund-and-exchange-lite' ); ?></h2>
 			<div class="ced-rnx-purchase-conetnt">
-				<a class="ced-rnx-news-button ced-prcchase-button" href="https://makewebbetter.com/product/woocommerce-rma-return-refund-exchange/" target="_blank"> <?php esc_html_e( 'Get it now', 'woo-refund-and-exchange-lite' ); ?>
+				<a class="ced-rnx-news-button ced-prcchase-button" href="https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro?utm_source=wpswings-rma-pro&utm_medium=rma-org-backend&utm_campaign=go-pro" target="_blank"> <?php esc_html_e( 'Get it now', 'woo-refund-and-exchange-lite' ); ?>
 			</a>
 			</div>
 		</div>

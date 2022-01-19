@@ -392,7 +392,7 @@ if ( isset( $_POST['ced_rnx_noti_save_return'] ) ) {
 		?>
 	<div class="ced-rnx-sidebar">
 		<div class="ced-rnx-sidebar-inner">
-			<a href="https://makewebbetter.com/product/woocommerce-rma-return-refund-exchange/" target="_blank" class="ced0sidebar-button">
+			<a href="https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro?utm_source=wpswings-rma-pro&utm_medium=rma-org-backend&utm_campaign=go-pro" target="_blank" class="ced0sidebar-button">
 				<img src="<?php echo esc_url( MWB_REFUND_N_EXCHANGE_LITE_URL . '/admin/images/Side_Banner.png' ); ?>">
 			</a>
 		</div>
