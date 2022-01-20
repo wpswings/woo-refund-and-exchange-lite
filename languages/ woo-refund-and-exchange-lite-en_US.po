@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Return Refund and Exchange for Woocommerce 3.1.4\n"
-"POT-Creation-Date: 2022-01-20 18:50+0530\n"
-"PO-Revision-Date: 2022-01-20 18:50+0530\n"
+"POT-Creation-Date: 2022-01-20 19:29+0530\n"
+"PO-Revision-Date: 2022-01-20 19:29+0530\n"
 "Last-Translator: \n"
 "Language-Team: WP Swings\n"
 "Language: en_US\n"
@@ -849,25 +849,25 @@ msgstr ""
 msgid "Attach files: "
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:171
+#: woocommerce-refund-and-exchange-lite.php:173
 msgid "Settings"
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:194
+#: woocommerce-refund-and-exchange-lite.php:196
 msgid "Go to Docs"
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:195
+#: woocommerce-refund-and-exchange-lite.php:197
 msgid "Go Premium"
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:636
+#: woocommerce-refund-and-exchange-lite.php:638
 msgid ""
 "Woocommerce is not activated, Please activate Woocommerce first to install "
 "WooCommerce Refund and Exchange Lite."
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:655
+#: woocommerce-refund-and-exchange-lite.php:657
 msgid ""
 "WooCommerce RMA | Return-Refund-Exchange is activated so you did not need to "
 "install WooCommerce Refund and Exchange Lite because the Main version "
