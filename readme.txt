@@ -26,7 +26,7 @@ Return Refund and Exchange for WooCommerce lets you create a simple refund manag
 ***
 >**IMPORTANT NOTICE:**
 
->_**From this update Version 1.2.4 onwards, the plugin and its support will be handled by [**WP Swings**](https://wpswings.com/?utm_source=wpswings-official&utm_medium=rma-org-page&utm_campaign=official).**_
+>_**From this update Version 3.1.4 onwards, the plugin and its support will be handled by [**WP Swings**](https://wpswings.com/?utm_source=wpswings-official&utm_medium=rma-org-page&utm_campaign=official).**_
 
 >_**WP Swings is just our improvised and rebranded version with all quality solutions and help being the same, so no worries at your end. Please [**connect with us**](https://wpswings.com/contact-us/?utm_source=wpswings-rma-pro-notice&utm_medium=rma-org-page&utm_campaign=notice) for all setup, support, and update related queries without hesitation."**_
 ***
