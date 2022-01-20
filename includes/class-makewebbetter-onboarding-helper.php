@@ -901,9 +901,7 @@ class Makewebbetter_Onboarding_Helper {
 
 		$url = 'submissions/v3/integration/submit/' . self::$portal_id . '/' . $form_id;
 
-		$headers = array(
-			'Content-Type' => 'application/json',
-		);
+		$headers   = 'Content-Type: application/json';
 		$form_data = json_encode(
 			array(
 				'fields' => $form_data,
