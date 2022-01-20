@@ -17,7 +17,7 @@
  * Description:       WooCommerce Refund and Exchange lite allows users to submit product refund. The plugin provides a dedicated mailing system that would help to communicate better between store owner and customers.This is lite version of Woocommerce Refund And Exchange.
  * Version:           3.1.4
  * Author:            WP Swings
- * Author URI:        http://wpswings.com/
+ * Author URI:        https://wpswings.com/?utm_source=wpswings-official&utm_medium=rma-org-page&utm_campaign=wpswings-official
  * WC tested up to:   6.0.0
  * Tested up to:      5.8.3
  * License:           GPL-3.0+
