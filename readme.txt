@@ -1,5 +1,5 @@
 === Return Refund and Exchange For WooCommerce ===
-Contributors: wpswings
+Contributors: WP Swings
 Donate link:  https://wpswings.com/
 Tags: return,refund, woocommerce,exchange,RMA
 Requires at least: 4.0
@@ -117,7 +117,7 @@ If you need support or have any questions then kindly use our online chat window
 
 == CONTRIBUTE AND TRANSLATE ==
 
-Return Refund and Exchange For WooCommerce is translated into multiple languages Chinese, Dutch, Russian, Spanish and many more. Help localize Return Refund and Exchange For WooCommerce even further by adding your locale Language.[Click Here](https://translate.wordpress.org/projects/wp-plugins/woo-refund-and-exchange-lite)
+Return Refund and Exchange For WooCommerce is translated into multiple languages Chinese, Dutch, Russian, Spanish and many more. Help localize Return Refund and Exchange For WooCommerce even further by adding your locale Language. [Click Here](https://translate.wordpress.org/projects/wp-plugins/woo-refund-and-exchange-lite)
 
 == Installation ==
 
@@ -200,7 +200,7 @@ Yes! The plugin automatically manages the stock after every successful refund of
 
 = 3.1.4 - RELEASED ON 20 JANUARY 2022 =
 
-* New: Notice display of current version for WP Swings.
+* New: Notice display of current version for [**WP Swings**](https://wpswings.com/?utm_source=wpswings-official&utm_medium=rma-org-page&utm_campaign=official).
 * New: Minor Bug fixes
 * New: Compatible with latest WP and WC 
 
@@ -293,5 +293,6 @@ Yes! The plugin automatically manages the stock after every successful refund of
 
 = 3.1.4 - RELEASED ON 20 JANUARY 2022 =
 
+* New: Notice display of current version for [**WP Swings**](https://wpswings.com/?utm_source=wpswings-official&utm_medium=rma-org-page&utm_campaign=official).
 * FIX: Compatible with latest WP and WC
 * FIX: Other minor bugs in the plug-in
