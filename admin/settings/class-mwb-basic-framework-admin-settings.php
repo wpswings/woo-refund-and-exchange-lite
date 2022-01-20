@@ -128,7 +128,7 @@ if ( ! class_exists( 'Mwb_Basic_Framework_Admin_Settings' ) ) {
 				      	  <a href="https://translate.wordpress.org/projects/wp-plugins/woo-refund-and-exchange-lite/" target="_blank"><b class="mwb_translate_link">' . esc_html__( 'Start translating this plugin in your language', 'woo-refund-and-exchange-lite' ) . '</b></a>
 						</li>
 				      	<li>
-				      	  <a href="https://wpswings.com/contact-us/" target="_blank">
+				      	  <a href="https://wpswings.com/submit-query/?utm_source=wpswings-rma-support&utm_medium=rma-org-backend&utm_campaign=support/" target="_blank">
 						  <span class="dashicons dashicons-phone"></span></a>
 						</li>
 						<li>
