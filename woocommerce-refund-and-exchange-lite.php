@@ -7,7 +7,7 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              http://makewebbetter.com/
+ * @link              http://wpswings.com/
  * @since             1.0.0
  * @package           woocommerce_refund_and_exchange_lite
  *
