@@ -34,7 +34,7 @@ if ( empty( $pagenow ) || 'plugins.php' != $pagenow ) {
 				</a>
 			</div>
 			<h3 class="mwb-on-boarding-heading"></h3>
-			<p class="mwb-on-boarding-desc"><?php esc_html_e( 'May we have a little info about why you are deactivating?', 'woo-refund-and-exchange-lite' ); ?></p>
+			<p class="mwb-on-boarding-desc"><?php esc_html_e( 'May we have a little info about why you are deactivating?', 'woo-gift-cards-lite' ); ?></p>
 			<form action="#" method="post" class="mwb-on-boarding-form">
 				<?php foreach ( $form_fields as $key => $field_attr ) : ?>
 					<?php $this->render_field_html( $field_attr, 'deactivating' ); ?>
@@ -44,7 +44,7 @@ if ( empty( $pagenow ) || 'plugins.php' != $pagenow ) {
 					<input type="submit" class="mwb-on-boarding-submit mwb-on-boarding-verify " value="SUBMIT AND DEACTIVATE">
 				</div>
 				<div class="mwb-on-boarding-form-no_thanks">
-					<a href="javascript:void(0);" class="mwb-deactivation-no_thanks"><?php esc_html_e( 'Skip and Deactivate Now', 'woo-refund-and-exchange-lite' ); ?></a>
+					<a href="javascript:void(0);" class="mwb-deactivation-no_thanks"><?php esc_html_e( 'Skip and Deactivate Now', 'woo-gift-cards-lite' ); ?></a>
 				</div>
 				</div>
 			</form>

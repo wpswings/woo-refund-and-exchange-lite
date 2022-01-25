@@ -15,7 +15,7 @@
  * Plugin Name:       Return Refund and Exchange for WooCommerce
  * Plugin URI:        https://wordpress.org/plugins/woo-refund-and-exchange-lite/
  * Description:       WooCommerce Refund and Exchange lite allows users to submit product refund. The plugin provides a dedicated mailing system that would help to communicate better between store owner and customers.This is lite version of Woocommerce Refund And Exchange.
- * Version:           3.1.4
+ * Version:           3.1.0
  * Author:            WP Swings
  * Author URI:        https://wpswings.com/?utm_source=wpswings-official&utm_medium=rma-org-page&utm_campaign=wpswings-official
  * Requires at least:       4.4
@@ -570,11 +570,11 @@ if ( $activated ) {
 			<td colspan="4" class="plugin-update colspanchange">
 				<div class="notice notice-success inline update-message notice-alt">
 					<div class='wps-notice-title wps-notice-section'>
-						<p><strong>IMPORTANT NOTICE:</strong></p>
+						<p><strong><?php esc_html_e( 'IMPORTANT NOTICE', 'woo-refund-and-exchange-lite' ); ?>:</strong></p>
 					</div>
 					<div class='wps-notice-content wps-notice-section'>
-						<p>From this update <strong>Version 3.1.4</strong> onwards, the plugin and its support will be handled by <strong>WP Swings</strong>.</p><p><strong>WP Swings</strong> is just our improvised and rebranded version with all quality solutions and help being the same, so no worries at your end.
-						Please connect with us for all setup, support, and update related queries without hesitation.</p>
+						<p><?php esc_html_e( 'From this update', 'mwb-woocommerce-rma' ); ?> <strong><?php esc_html_e( 'Version', 'woo-refund-and-exchange-lite' ); ?> 3.1.4</strong> <?php esc_html_e( 'onwards, the plugin and its support will be handled by', 'woo-refund-and-exchange-lite' ); ?> <strong>WP Swings</strong>.</p><p><strong>WP Swings</strong> <?php esc_html_e( 'is just our improvised and rebranded version with all quality solutions and help being the same, so no worries at your end.', 'woo-refund-and-exchange-lite' ); ?>
+						<?php esc_html_e( 'Please connect with us for all setup, support, and update related queries without hesitation', 'woo-refund-and-exchange-lite' ); ?>.</p>
 					</div>
 				</div>
 			</td>
@@ -605,11 +605,11 @@ if ( $activated ) {
 				<td colspan="4" class="plugin-update colspanchange">
 					<div class="notice notice-success update-message notice-alt">
 						<div class='wps-notice-title wps-notice-section'>
-							<p><strong>IMPORTANT NOTICE:</strong></p>
+							<p><strong><?php esc_html_e( 'IMPORTANT NOTICE', 'woo-refund-and-exchange-lite' ); ?>:</strong></p>
 						</div>
 						<div class='wps-notice-content wps-notice-section'>
-							<p>From this update <strong>Version 3.1.4</strong> onwards, the plugin and its support will be handled by <strong>WP Swings</strong>.</p><p><strong>WP Swings</strong> is just our improvised and rebranded version with all quality solutions and help being the same, so no worries at your end.
-							Please connect with us for all setup, support, and update related queries without hesitation.</p>
+							<p><?php esc_html_e( 'From this update', 'mwb-woocommerce-rma' ); ?> <strong><?php esc_html_e( 'Version', 'woo-refund-and-exchange-lite' ); ?> 3.1.4</strong> <?php esc_html_e( 'onwards, the plugin and its support will be handled by', 'woo-refund-and-exchange-lite' ); ?> <strong>WP Swings</strong>.</p><p><strong>WP Swings</strong> <?php esc_html_e( 'is just our improvised and rebranded version with all quality solutions and help being the same, so no worries at your end.', 'woo-refund-and-exchange-lite' ); ?>
+							<?php esc_html_e( 'Please connect with us for all setup, support, and update related queries without hesitation', 'woo-refund-and-exchange-lite' ); ?>.</p>
 						</div>
 					</div>
 				</td>

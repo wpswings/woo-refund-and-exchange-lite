@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Return Refund and Exchange for Woocommerce 3.1.4\n"
-"POT-Creation-Date: 2022-01-25 16:13+0530\n"
+"POT-Creation-Date: 2022-01-25 16:40+0530\n"
 "PO-Revision-Date: 2021-04-02 10:47+0530\n"
 "Last-Translator: \n"
 "Language-Team: WP Swings\n"
@@ -860,6 +860,40 @@ msgstr ""
 
 #: woocommerce-refund-and-exchange-lite.php:197
 msgid "Go Premium"
+msgstr ""
+
+#: woocommerce-refund-and-exchange-lite.php:573
+#: woocommerce-refund-and-exchange-lite.php:608
+msgid "IMPORTANT NOTICE"
+msgstr ""
+
+#: woocommerce-refund-and-exchange-lite.php:576
+#: woocommerce-refund-and-exchange-lite.php:611
+msgid "From this update"
+msgstr ""
+
+#: woocommerce-refund-and-exchange-lite.php:576
+#: woocommerce-refund-and-exchange-lite.php:611
+msgid "Version"
+msgstr ""
+
+#: woocommerce-refund-and-exchange-lite.php:576
+#: woocommerce-refund-and-exchange-lite.php:611
+msgid "onwards, the plugin and its support will be handled by"
+msgstr ""
+
+#: woocommerce-refund-and-exchange-lite.php:576
+#: woocommerce-refund-and-exchange-lite.php:611
+msgid ""
+"is just our improvised and rebranded version with all quality solutions and "
+"help being the same, so no worries at your end."
+msgstr ""
+
+#: woocommerce-refund-and-exchange-lite.php:577
+#: woocommerce-refund-and-exchange-lite.php:612
+msgid ""
+"Please connect with us for all setup, support, and update related queries "
+"without hesitation"
 msgstr ""
 
 #: woocommerce-refund-and-exchange-lite.php:638
