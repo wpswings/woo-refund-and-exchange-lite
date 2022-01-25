@@ -905,13 +905,4 @@ class Woocommerce_Refund_And_Exchange_Lite_Admin {
 
 		return $valid_screens;
 	}
-	/** Show plugin Backup notice. */
-	public function mwb_rma_lite_admin_notice() {
-		global $pagenow;
-		if ( 'plugins.php' === $pagenow ) {
-			echo '<div class="notice notice-info is-dismissible">
-				 <p>Important - On our customer\'s demand we will be updating the plugin with some significant changes soon. So it\'s highly recommended to take backup of the Return Refund and Exchange for WooCommerce to avoid any future inconvenience.</p>
-			 </div>';
-		}
-	}
 }
