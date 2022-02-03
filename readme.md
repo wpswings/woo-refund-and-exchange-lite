@@ -1,17 +1,30 @@
-[![Build Status](https://img.shields.io/travis/twbs/bootstrap/v4-dev.svg)](https://travis-ci.org/twbs/bootstrap) ![Active installs](https://img.shields.io/badge/Active-3000%2B-brightgreen) ![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen) ![WP tested](https://img.shields.io/badge/WP%20tested-5.8.1-brightgreen) ![WC tested](https://img.shields.io/badge/WC%20tested-5.8.0-brightgreen) ![Requires PHP](https://img.shields.io/badge/Requires%20PHP-5.6-blue)
-# Return Refund and Exchange For WooCommerce
-![Return Refund and Exchange For WooCommerce](https://ps.w.org/woo-refund-and-exchange-lite/assets/banner-772x250.png?rev=2409881)
-* Contributors: MakeWebBetter
-* Author URI: https://makewebbetter.com/
+
+[![Build Status](https://img.shields.io/travis/twbs/bootstrap/v4-dev.svg)](https://travis-ci.org/twbs/bootstrap) ![Active installs](https://img.shields.io/badge/Active-3000%2B-brightgreen) ![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen) ![WP tested](https://img.shields.io/badge/WP%20tested-5.9-brightgreen) ![WC tested](https://img.shields.io/badge/WC%20tested-6.1.1-brightgreen) ![Requires PHP](https://img.shields.io/badge/Requires%20PHP-5.6-blue)
+# Return Refund and Exchange for WooCommerce
+![Return Refund and Exchange For WooCommerce](https://ps.w.org/woo-refund-and-exchange-lite/assets/banner-772x250.png?rev=2672154
+)
+* Contributors: WP Swings
+* Author URI: [**WP Swings**](https://wpswings.com/?utm_source=wpswings-official&utm_medium=rma-github-page&utm_campaign=wpswings-official)
 * Tags: return, refund, woocommerce, exchange, RMA, woocommerce RMA, RMA for return refund and exchange
 * License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 # Description
-_HIGHEST-RATED REFUND AND EXCHANGE MANAGEMENT PLUGIN THAT LIFTS CUSTOMER SATISFACTION._
 
-**Return Refund and Exchange for WooCommerce** lets you create a simple refund management system stuffed with the organized refund, exchange, wallet, and cancel order features. It eliminates on-call complaints and helps in managing returned stock. Customers can request full or partial refunds (based on return policy). The whole process goes under a dedicated and streamlined mailing system that keeps both parties on the same note. Ultimately, it leads to high customer satisfaction.
+**HIGHEST-RATED REFUND AND EXCHANGE MANAGEMENT PLUGIN THAT LIFTS CUSTOMER SATISFACTION.**
+
+[**Return Refund and Exchange for WooCommerce**](https://wordpress.org/plugins/woo-refund-and-exchange-lite/) lets you create a simple refund management system stuffed with the organized refund, exchange, wallet, and cancel order features. It eliminates on-call complaints and helps in managing returned stock. Customers can request full or partial refunds (based on return policy). The whole process goes under a dedicated and streamlined mailing system that keeps both parties on the same note. Ultimately, it leads to high customer satisfaction.
 
 [Return Refund and Exchange for WooCommerce Free Version Demo Video 2020](https://youtu.be/z0kG75E60TI)
+
+
+***
+>**IMPORTANT NOTICE:**
+
+>_**From this update Version 3.1.4 onwards, the plugin and its support will be handled by [**WP Swings**](https://wpswings.com/?utm_source=wpswings-official&utm_medium=rma-github-page&utm_campaign=wpswings-official).**_
+
+>_**WP Swings is just our improvised and rebranded version with all quality solutions and help being the same, so no worries at your end. Please [**connect with us**](https://wpswings.com/contact-us/?utm_source=wpswings-rma-pro-notice&utm_medium=rma-github-page&utm_campaign=notice) for all setup, support, and update related queries without hesitation."**_
+***
+
 
 ## WITH THE RETURN REFUND AND EXCHANGE FOR WOOCOMMERCE PLUGIN YOU CAN:
 - Return an order after delivery
@@ -29,6 +42,10 @@ _HIGHEST-RATED REFUND AND EXCHANGE MANAGEMENT PLUGIN THAT LIFTS CUSTOMER SATISFA
 - Admin can add the shortcode for order_id in the emails to track down the customer from whom refund and exchange request is made
 - Serve the full RMA features to multilingual buyers (internationally) with WPML translation.
 - Manage return and refund features for Cash on delivery(COD) buyers.
+
+##  PLUGIN MEETS YOUR REQUIREMENT, SO ##
+
+[**Download Now**](https://downloads.wordpress.org/plugin/woo-refund-and-exchange-lite.zip)
 
 ## WHAT’S INCLUDED IN OUR FREE RETURN REFUND AND EXCHANGE FOR WOOCOMMERCE PLUGIN
 
@@ -56,10 +73,16 @@ You can allow your customers to send you the order related queries. Furthermore,
 ### 8)  WPML Compatible
 Translate the RMA solution into 40+ languages with the WordPress Multilingual (WPML).
 
-**PLUGIN MEETS YOUR REQUIREMENT, SO**
-[**Download Now**](https://downloads.wordpress.org/plugin/woo-refund-and-exchange-lite.3.1.0.zip)
 
-Visit [**Return Refund and Exchange For WooCommerce Documentation**](http://docs.makewebbetter.com/woocommerce-refund-and-exchange-lite/?utm_source=MWB-RMA-git&utm_medium=MWB-git-Page&utm_campaign=MWB-doc) and learn more about the features and working of the plugin.
+Visit [**Return Refund and Exchange For WooCommerce Documentation**](http://docs.wpswings.com/woocommerce-refund-and-exchange-lite/?utm_source=wpswings-rma-doc&utm_medium=rma-github-page&utm_campaign=rma-pro) and learn more about the features and working of the plugin.
+
+Check out [**Return Refund and Exchange For WooCommerce Knowledge Base**](https://support.wpswings.com/wordpress-plugins-knowledge-base/category/rma-return-refund-exchange-for-woocommerce/?utm_source=wpswings-rma-kb&utm_medium=rma-github-page&utm_campaign=kb)
+
+## LIVE DEMO OF RETURN REFUND AND EXCHANGE FOR WOOCOMMERCE PLUGIN
+
+* [**Return Refund & Exchange Frontend Demo**](https://demo.wpswings.com/rma-return-refund-exchange-for-woocommerce-pro/my-account/orders/?utm_source=wpswings-rma-demo&utm_medium=rma-github-page&utm_campaign=frontend-demo)
+
+* [**Return Refund & Exchange Backend Demo**](https://demo.wpswings.com/rma-return-refund-exchange-for-woocommerce-pro/get-your-personal-demo/?utm_source=wpswings-rma-demo&utm_medium=rma-github-page&utm_campaign=backend-demo)
 
 ## WHAT PREMIUM VERSION RETURN REFUND AND EXCHANGE FOR WOOCOMMERCE OFFERS
 - Refund policy feature
@@ -79,27 +102,24 @@ Visit [**Return Refund and Exchange For WooCommerce Documentation**](http://docs
 - Shortcode of product table and the refundable amount for Refund Mails
 - Compatibility with WordPress Multilingual (WPML)
 
-_Make a smart move with [**Premium Version of Refund and Exchange**](https://makewebbetter.com/product/woocommerce-rma-return-refund-exchange/?utm_source=MWB-RMA-git&utm_medium=MWB-git-Page&utm_campaign=MWB-RMA1)_
+_Make a smart move with [**Premium Version of Refund and Exchange**](https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma-pro&utm_medium=rma-github-page&utm_campaign=premium-plugin)_
 
-## LIVE DEMO OF PREMIUM VERSION
-[**RMA For Return Refund & Exchange Frontend demo**](https://demo.makewebbetter.com/woocommerce-rma-for-return-refund-and-exchange/my-account/orders/?visitor=true&utm_source=MWB-RMA-git&utm_medium=MWB-git-Page&utm_campaign=MWB-frontend_demo)
+## DOCUMENTATION OF PREMIUM VERSION
 
-[**RMA For Return Refund & Exchange Backend demo**](https://demo.makewebbetter.com/woocommerce-rma-for-return-refund-and-exchange/get-your-personal-demo/?utm_source=MWB-RMA-git&utm_medium=MWB-git-Page&utm_campaign=MWB-backend_demo)
+* [**Return Refund & Exchange for WooCommerce Documentation**](https://docs.wpswings.com/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma-doc&utm_medium=rma-github-page&utm_campaign=rma-doc)
 
 ## SUPPORT
-If you need support or have any question then kindly use our online chat window [here](https://makewebbetter.com/?utm_source=MWB-RMA-git&utm_medium=MWB-git-page&utm_campaign=MWB-RMA-git) or connect with us then [Generate a Ticket](https://makewebbetter.com/submit-query/)
 
-If our documentation doesn’t contain the solution to your problem, you can visit the [**MakeWebBetter Forums**](https://forums.makewebbetter.com/?utm_source=MWB-rma-git&utm_medium=MWB-git-page&utm_campaign=MWB-rma-git) with your question.
+If you need support or have any question then kindly use our online chat window [here](https://wpswings.com/?utm_source=wpswings-official&utm_medium=rma-github-page&utm_campaign=wpswings-official) or connect with us then [Generate a Ticket](https://wpswings.com/submit-query/?utm_source=wpswings-generate-ticket&utm_medium=rma-github-page&utm_campaign=generate-ticket)
 
 ## CONTRIBUTE AND TRANSLATE
 
-Return Refund and Exchange For WooCommerce is translated into multiple languages Chinese, Dutch, Russian, Spanish and many more. Help localize Return Refund and Exchange For WooCommerce even further by adding your locale Language.[Click Here](https://translate.wordpress.org/projects/wp-plugins/woo-refund-and-exchange-lite)
+Return Refund and Exchange For WooCommerce is translated into multiple languages Chinese, Dutch, Russian, Spanish and many more. Help localize Return Refund and Exchange For WooCommerce even further by adding your locale Language. [Click Here](https://translate.wordpress.org/projects/wp-plugins/woo-refund-and-exchange-lite)
 
-### **MORE ABOUT MAKEWEBBETTER**
+### **MORE ABOUT WP Swings**
 
-- [**Our Official Website**](https://makewebbetter.com/?utm_source=MWB-upsell-git&utm_medium=MWB-git&utm_campaign=git)
-- [**Follow us on Facebook Page**](https://www.facebook.com/makewebbetter)
-- [**Tweet us on @MakeWebBetter**](https://twitter.com/makewebbetter)
-- [**Visit our LinkedIn Account**](https://www.linkedin.com/company/makewebbetter)
-- [**Subscribe To Our YouTube Channel**](https://www.youtube.com/channel/UC7nYNf0JETOwW3GOD_EW2Ag)
-- [**Follow Our SlideShare**](https://www.slideshare.net/MakeWebBetter)
+
+- [**Our Official Website**](https://wpswings.com/?utm_source=wpswings-official&utm_medium=rma-github-page&utm_campaign=wpswings-official)
+- [**Follow us on Facebook Page**](https://www.facebook.com/wpswings)
+- [**Tweet us on @WP Swings**](https://twitter.com/wpswings)
+- [**Visit our LinkedIn Account**](https://www.linkedin.com/company/77072505/admin/)

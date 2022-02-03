@@ -7,7 +7,7 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              http://makewebbetter.com/
+ * @link              http://wpswings.com/
  * @since             1.0.0
  * @package           woocommerce_refund_and_exchange_lite
  *
@@ -15,11 +15,13 @@
  * Plugin Name:       Return Refund and Exchange for WooCommerce
  * Plugin URI:        https://wordpress.org/plugins/woo-refund-and-exchange-lite/
  * Description:       WooCommerce Refund and Exchange lite allows users to submit product refund. The plugin provides a dedicated mailing system that would help to communicate better between store owner and customers.This is lite version of Woocommerce Refund And Exchange.
- * Version:           3.1.3
- * Author:            MakeWebBetter
- * Author URI:        http://makewebbetter.com/
- * WC tested up to:   5.8.0
- * Tested up to:      5.8.1
+ * Version:           3.1.4
+ * Author:            WP Swings
+ * Author URI:        https://wpswings.com/?utm_source=wpswings-official&utm_medium=rma-org-page&utm_campaign=wpswings-official
+ * Requires at least:       4.4
+ * Tested up to:            5.9
+ * WC requires at least:    3.0.0
+ * WC tested up to:         6.1.1
  * License:           GPL-3.0+
  * License URI:       http://www.gnu.org/licenses/gpl-3.0.txt
  * Text Domain:       woo-refund-and-exchange-lite
@@ -191,8 +193,8 @@ if ( $activated ) {
 		if ( strpos( $file, 'woocommerce-refund-and-exchange-lite.php' ) !== false ) {
 
 			$row_meta = array(
-				'docs'  => '<a target="_blank" style="color:#FFF;background:linear-gradient(to right,#7a28ff 0,#00a1ff 100%);padding:5px;border-radius:6px;" href="https://docs.makewebbetter.com/woocommerce-refund-and-exchange-lite">' . esc_html__( 'Go to Docs', 'woo-refund-and-exchange-lite' ) . '</a>',
-				'goPro' => '<a target="_blank" style="color:#FFF;background:linear-gradient(to right,#7a28ff 0,#00a1ff 100%);padding:5px;border-radius:6px;" href="https://makewebbetter.com/product/woocommerce-rma-return-refund-exchange/"><strong>' . esc_html__( 'Go Premium', 'woo-refund-and-exchange-lite' ) . '</strong></a>',
+				'docs'  => '<a target="_blank" style="color:#FFF;background:linear-gradient(to right,#7a28ff 0,#00a1ff 100%);padding:5px;border-radius:6px;" href="https://docs.wpswings.com/woo-refund-and-exchange-lite/?utm_source=wpswings-rma-doc&utm_medium=rma-org-page&utm_campaign=rma-doc">' . esc_html__( 'Go to Docs', 'woo-refund-and-exchange-lite' ) . '</a>',
+				'goPro' => '<a target="_blank" style="color:#FFF;background:linear-gradient(to right,#7a28ff 0,#00a1ff 100%);padding:5px;border-radius:6px;" href="https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro?utm_source=wpswings-rma-pro&utm_medium=rma-org-backend&utm_campaign=go-pro"><strong>' . esc_html__( 'Go Premium', 'woo-refund-and-exchange-lite' ) . '</strong></a>',
 			);
 
 			return array_merge( $links, $row_meta );
@@ -338,7 +340,7 @@ if ( $activated ) {
 	 * @param int $page_id The ID of the post to be deleted.
 	 */
 	function ced_rnx_delete_wpml_translate_post( $page_id ) {
-		if ( has_filter( 'wpml_object_id' ) ) {
+		if ( has_filter( 'wpml_object_id' ) && function_exists( 'wpml_get_active_languages' ) ) {
 			$langs = wpml_get_active_languages();
 			foreach ( $langs as $lang ) {
 				if ( icl_object_id( $page_id, 'page', false, $lang['code'] ) ) {
@@ -553,6 +555,73 @@ if ( $activated ) {
 		}
 	}
 	add_action( 'upgrader_process_complete', 'rma_lite_reno_plugin_upgrade_completed', 10, 2 );
+
+	/**
+	 * Migration to new domain notice.
+	 *
+	 * @param string $plugin_file Path to the plugin file relative to the plugins directory.
+	 * @param array  $plugin_data An array of plugin data.
+	 * @param string $status Status filter currently applied to the plugin list.
+	 */
+	function rma_lite_upgrade_notice( $plugin_file, $plugin_data, $status ) {
+
+		?>
+		<tr class="plugin-update-tr active notice-warning notice-alt">
+			<td colspan="4" class="plugin-update colspanchange">
+				<div class="notice notice-success inline update-message notice-alt">
+					<div class='wps-notice-title wps-notice-section'>
+						<p><strong><?php esc_html_e( 'IMPORTANT NOTICE', 'woo-refund-and-exchange-lite' ); ?>:</strong></p>
+					</div>
+					<div class='wps-notice-content wps-notice-section'>
+						<p><?php esc_html_e( 'From this update', 'mwb-woocommerce-rma' ); ?> <strong><?php esc_html_e( 'Version', 'woo-refund-and-exchange-lite' ); ?> 3.1.4</strong> <?php esc_html_e( 'onwards, the plugin and its support will be handled by', 'woo-refund-and-exchange-lite' ); ?> <strong>WP Swings</strong>.</p><p><strong>WP Swings</strong> <?php esc_html_e( 'is just our improvised and rebranded version with all quality solutions and help being the same, so no worries at your end.', 'woo-refund-and-exchange-lite' ); ?>
+						<?php esc_html_e( 'Please connect with us for all setup, support, and update related queries without hesitation', 'woo-refund-and-exchange-lite' ); ?>.</p>
+					</div>
+				</div>
+			</td>
+		</tr>
+		<style>
+			.wps-notice-section > p:before {
+				content: none;
+			}
+		</style>
+		<?php
+
+	}
+	add_action( 'after_plugin_row_' . plugin_basename( __FILE__ ), 'rma_lite_upgrade_notice', 0, 3 );
+
+	add_action( 'admin_notices', 'rma_lite_upgrade_notice1' );
+
+	/**
+	 * Migration to new domain notice.
+	 */
+	function rma_lite_upgrade_notice1() {
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended
+		$tab = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : '';
+
+		if ( 'ced_rnx_setting' === $tab ) {
+
+			?>
+			<tr class="plugin-update-tr active notice-warning notice-alt">
+				<td colspan="4" class="plugin-update colspanchange">
+					<div class="notice notice-success update-message notice-alt">
+						<div class='wps-notice-title wps-notice-section'>
+							<p><strong><?php esc_html_e( 'IMPORTANT NOTICE', 'woo-refund-and-exchange-lite' ); ?>:</strong></p>
+						</div>
+						<div class='wps-notice-content wps-notice-section'>
+							<p><?php esc_html_e( 'From this update', 'mwb-woocommerce-rma' ); ?> <strong><?php esc_html_e( 'Version', 'woo-refund-and-exchange-lite' ); ?> 3.1.4</strong> <?php esc_html_e( 'onwards, the plugin and its support will be handled by', 'woo-refund-and-exchange-lite' ); ?> <strong>WP Swings</strong>.</p><p><strong>WP Swings</strong> <?php esc_html_e( 'is just our improvised and rebranded version with all quality solutions and help being the same, so no worries at your end.', 'woo-refund-and-exchange-lite' ); ?>
+							<?php esc_html_e( 'Please connect with us for all setup, support, and update related queries without hesitation', 'woo-refund-and-exchange-lite' ); ?>.</p>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<style>
+				.wps-notice-section > p:before {
+					content: none;
+				}
+			</style>
+			<?php
+		}
+	}
 } else {
 
 	/**
