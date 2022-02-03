@@ -240,10 +240,62 @@ if ( ! function_exists( 'mwb_rma_save_return_request_callback' ) ) {
 			$item_id = get_post_meta( $order_id, 'mwb_rma_request_made', true );
 		}
 		$item_ids = array();
+		// Gift Card Code Compatibility.
+		$gift_card_product = false;
+		$gift_item_id      = '';
+		$exp_flag          = false;
 		if ( isset( $products1['products'] ) && ! empty( $products1['products'] ) && is_array( $products1['products'] ) ) {
 			foreach ( $products1['products'] as $post_key => $post_value ) {
 				$item_id[ $post_value['item_id'] ] = 'pending';
 				$item_ids[]                        = $post_value['item_id'];
+
+				// Giftcard compatibility code.
+				$product_id = $post_value['product_id'];
+
+				$product_types = wp_get_object_terms( $product_id, 'product_type' );
+				if ( isset( $product_types[0] ) ) {
+					$product_type = $product_types[0]->slug;
+					if ( 'wgm_gift_card' === $product_type || 'gw_gift_card' === $product_type ) {
+						$gift_card_product = true;
+						$gift_item_id      = $post_value['item_id'];
+					}
+				}
+			}
+		}
+		if ( $gift_card_product && ! empty( $gift_item_id ) ) {
+
+			$coupon = get_post_meta( $order_id, $order_id . '#' . $gift_item_id, true );
+
+			$couponcode = $coupon[0];
+
+			$coupons = new WC_Coupon( $couponcode );
+
+			$usage_count = $coupons->usage_count;
+
+			$exp_date = $coupons->get_data();
+			if ( isset( $exp_date['date_expires'] ) && ! empty( $exp_date['date_expires'] ) ) {
+				$expiry_date   = $exp_date['date_expires']->date( 'd M Y H:i:s' );
+				$now_date      = date_i18n( wc_date_format(), time() ) . ' ' . date_i18n( wc_time_format(), time() );
+				$todaydatetime = strtotime( $now_date );
+				$expdatetime   = strtotime( $expiry_date );
+				$diff          = $expdatetime - $todaydatetime;
+				if ( $diff < 0 ) {
+					$exp_flag = true;
+				}
+			}
+
+			if ( $exp_flag ) {
+				$response['flag'] = false;
+				$response['msg']  = esc_html__( 'Your Giftcard has been expired so you can not proceed with the exchange. Thanks', 'mwb-woocommerce-rma' );
+
+				return $response;
+			}
+
+			if ( ! empty( $usage_count ) ) {
+				$response['flag'] = false;
+				$response['msg']  = esc_html__( 'Your Giftcard has been used so you can not proceed with the exchange. Thanks', 'mwb-woocommerce-rma' );
+
+				return $response;
 			}
 		}
 		update_post_meta( $order_id, 'mwb_rma_request_made', $item_id );

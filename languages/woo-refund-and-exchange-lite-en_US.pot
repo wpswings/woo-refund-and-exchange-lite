@@ -2,14 +2,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: woo-refund-and-exchange-lite 4.0.0\n"
-"POT-Creation-Date: 2022-01-13 16:40+0530\n"
+"POT-Creation-Date: 2022-02-03 14:34+0530\n"
 "PO-Revision-Date: 2021-08-21 11:15+0530\n"
 "Last-Translator: \n"
 "Language-Team: MakeWebBetter\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.3\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Language: en_US\n"
@@ -879,30 +879,42 @@ msgstr ""
 msgid "Refund request is already made and accepted"
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:283
+#: includes/woo-refund-and-exchange-lite-common-functions.php:289
+msgid ""
+"Your Giftcard has been expired so you can not proceed with the exchange. "
+"Thanks"
+msgstr ""
+
+#: includes/woo-refund-and-exchange-lite-common-functions.php:296
+msgid ""
+"Your Giftcard has been used so you can not proceed with the exchange. "
+"Thanks"
+msgstr ""
+
+#: includes/woo-refund-and-exchange-lite-common-functions.php:335
 msgid "User Request to refund product"
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:287
+#: includes/woo-refund-and-exchange-lite-common-functions.php:339
 msgid ""
 "Refund request placed successfully. You have received a notification mail "
 "regarding this. You will redirect to the My Account Page"
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:352
+#: includes/woo-refund-and-exchange-lite-common-functions.php:404
 #, php-format
 msgid "%1$s %2$s Item Quantity has been reduce because the return"
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:362
+#: includes/woo-refund-and-exchange-lite-common-functions.php:414
 msgid "Added the return item info"
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:392
+#: includes/woo-refund-and-exchange-lite-common-functions.php:447
 msgid "User Request of Refund Product is approved"
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:442
+#: includes/woo-refund-and-exchange-lite-common-functions.php:497
 msgid "User Request of Refund Product is cancelled"
 msgstr ""
 
