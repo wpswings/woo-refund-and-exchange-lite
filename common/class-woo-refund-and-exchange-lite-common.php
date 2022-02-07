@@ -457,22 +457,23 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	}
 
 	/**
-	 * Hide refund label from order edit page.
+	 * Used to Remove the 0 amount refund
+	 *
+	 * @param array  $results .
+	 * @param object $args .
+	 * @return results
 	 */
-	public function mwb_rma_refund_info() {
-		$check_ajax = check_ajax_referer( 'mwb_rma_ajax_security', 'security_check' );
-		if ( $check_ajax ) {
-			if ( isset( $_POST['refund_id'] ) && ! empty( $_POST['refund_id'] ) ) {
-				$refund_id  = sanitize_text_field( wp_unslash( $_POST['refund_id'] ) );
-				$order_id   = sanitize_text_field( wp_unslash( $_POST['order_id'] ) );
-				$mwb_refund = get_post_meta( $order_id, 'mwb_rma_refund_info', true );
-				if ( is_array( $mwb_refund ) && in_array( $refund_id, $mwb_refund ) ) {
-					echo false;
-				} else {
-					echo true;
+	public function mwb_rma_woocommerce_get_order_item_totals( $results, $args ) {
+		$mwb_refund = get_post_meta( $args['parent'], 'mwb_rma_refund_info', true );
+		foreach ( $results as $key => $value ) {
+			$object_type   = $value->type;
+			$refund_amount = floatval( $value->amount );
+			if ( ! empty( $object_type ) && empty( $refund_amount ) && 'shop_order_refund' === $value->type ) {
+				if ( is_array( $mwb_refund ) && ! empty( $mwb_refund ) && in_array( $value->id, $mwb_refund, true ) ) {
+					unset( $results[ $key ] );
 				}
 			}
 		}
-		wp_die();
+		return $results;
 	}
 }

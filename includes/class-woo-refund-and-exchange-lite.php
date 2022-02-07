@@ -287,8 +287,8 @@ class Woo_Refund_And_Exchange_Lite {
 		if ( self::is_enbale_usage_tracking() ) {
 			$this->loader->add_action( 'makewebbetter_tracker_send_event', $wrael_plugin_common, 'wrael_makewebbetter_tracker_send_event' );
 		}
-		// Hide refund lable from frontend.
-		$this->loader->add_action( 'wp_ajax_mwb_rma_refund_info', $wrael_plugin_common, 'mwb_rma_refund_info' );
+		// Used to remove the refund 0 amount .
+		$this->loader->add_filter( 'woocommerce_order_query', $wrael_plugin_common, 'mwb_rma_woocommerce_get_order_item_totals', 10, 2 );
 	}
 
 	/**

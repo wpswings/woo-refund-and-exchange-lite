@@ -1,33 +1,5 @@
 jQuery( document ).on( 'ready', function(){
 	$ = jQuery;
-	// Refund label on the order edit page because refund amount zero.
-	function mwb_rma_fix_refund_label() {
-		if ( jQuery('#order_refunds').length ){
-			jQuery('#order_refunds').find('.refund').each( function() {
-				var refund_id = jQuery(this).data('order_refund_id');
-				var post_id   = jQuery( '#post_ID' ).val();
-				var data = {
-					action	:'mwb_rma_refund_info',
-					refund_id : refund_id,
-					order_id : post_id,
-					security_check	: wrael_common_param.mwb_rma_nonce
-				}
-				var this_refund = jQuery(this);
-				jQuery.ajax({
-					url: wrael_common_param.ajaxurl, 
-					type: 'POST',             
-					data: data,
-					success: function(response){
-						console.log(response);
-						if( ! response ) {
-							this_refund.hide();
-						}
-					}
-				});
-			});
-		}
-	}
-	mwb_rma_fix_refund_label();
 	//Refund request submit
 	$('.mwb_rma_return_notification').hide();
 	$( '#mwb_rma_return_request_form' ).on('submit',function(e){
