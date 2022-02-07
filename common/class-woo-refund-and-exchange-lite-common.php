@@ -466,11 +466,13 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	public function mwb_rma_woocommerce_get_order_item_totals( $results, $args ) {
 		$mwb_refund = get_post_meta( $args['parent'], 'mwb_rma_refund_info', true );
 		foreach ( $results as $key => $value ) {
-			$object_type   = $value->type;
-			$refund_amount = floatval( $value->amount );
-			if ( ! empty( $object_type ) && empty( $refund_amount ) && 'shop_order_refund' === $value->type ) {
-				if ( is_array( $mwb_refund ) && ! empty( $mwb_refund ) && in_array( $value->id, $mwb_refund, true ) ) {
-					unset( $results[ $key ] );
+			if ( isset( $value->type ) && isset( $value->amount ) ) {
+				$object_type   = $value->type;
+				$refund_amount = floatval( $value->amount );
+				if ( ! empty( $object_type ) && empty( $refund_amount ) && 'shop_order_refund' === $value->type ) {
+					if ( is_array( $mwb_refund ) && ! empty( $mwb_refund ) && in_array( $value->id, $mwb_refund, true ) ) {
+						unset( $results[ $key ] );
+					}
 				}
 			}
 		}
