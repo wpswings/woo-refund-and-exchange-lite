@@ -1,5 +1,4 @@
-
-[![Build Status](https://img.shields.io/travis/twbs/bootstrap/v4-dev.svg)](https://travis-ci.org/twbs/bootstrap) ![Active installs](https://img.shields.io/badge/Active-3000%2B-brightgreen) ![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen) ![WP tested](https://img.shields.io/badge/WP%20tested-5.9-brightgreen) ![WC tested](https://img.shields.io/badge/WC%20tested-6.1.1-brightgreen) ![Requires PHP](https://img.shields.io/badge/Requires%20PHP-5.6-blue)
+[![Build Status](https://img.shields.io/travis/twbs/bootstrap/v4-dev.svg)](https://travis-ci.org/twbs/bootstrap) ![Active installs](https://img.shields.io/badge/Active-3000%2B-brightgreen) ![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen) ![WP tested](https://img.shields.io/badge/WP%20tested-5.8.3-brightgreen) ![WC tested](https://img.shields.io/badge/WC%20tested-6.0.0-brightgreen) ![Requires PHP](https://img.shields.io/badge/Requires%20PHP-5.6-blue)
 # Return Refund and Exchange for WooCommerce
 ![Return Refund and Exchange For WooCommerce](https://ps.w.org/woo-refund-and-exchange-lite/assets/banner-772x250.png?rev=2672154
 )
@@ -80,7 +79,7 @@ Check out [**Return Refund and Exchange For WooCommerce Knowledge Base**](https:
 
 ## LIVE DEMO OF RETURN REFUND AND EXCHANGE FOR WOOCOMMERCE PLUGIN
 
-* [**Return Refund & Exchange Frontend Demo**](https://demo.wpswings.com/rma-return-refund-exchange-for-woocommerce-pro/my-account/orders/?utm_source=wpswings-rma-demo&utm_medium=rma-github-page&utm_campaign=frontend-demo)
+* [**Return Refund & Exchange Frontend Demo**](https://demo.wpswings.com/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma-demo&utm_medium=rma-github-page&utm_campaign=demo)
 
 * [**Return Refund & Exchange Backend Demo**](https://demo.wpswings.com/rma-return-refund-exchange-for-woocommerce-pro/get-your-personal-demo/?utm_source=wpswings-rma-demo&utm_medium=rma-github-page&utm_campaign=backend-demo)
 
@@ -118,8 +117,11 @@ Return Refund and Exchange For WooCommerce is translated into multiple languages
 
 ### **MORE ABOUT WP Swings**
 
-
 - [**Our Official Website**](https://wpswings.com/?utm_source=wpswings-official&utm_medium=rma-github-page&utm_campaign=wpswings-official)
 - [**Follow us on Facebook Page**](https://www.facebook.com/wpswings)
 - [**Tweet us on @WP Swings**](https://twitter.com/wpswings)
 - [**Visit our LinkedIn Account**](https://www.linkedin.com/company/77072505/admin/)
+
+
+
+
