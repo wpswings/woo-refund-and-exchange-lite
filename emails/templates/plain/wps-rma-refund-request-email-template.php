@@ -2,7 +2,7 @@
 /**
  * RMA Order Message email
  *
- * This template can be overridden by copying it to yourtheme/woocommerce/emails/mwb-rma-messages-emial-template.php.
+ * This template can be overridden by copying it to yourtheme/woocommerce/emails/wps-rma-messages-emial-template.php.
  *
  * @package    woo_refund_and_exchange_lite
  */

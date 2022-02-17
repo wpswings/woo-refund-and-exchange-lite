@@ -7,17 +7,17 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link    https://makewebbetter.com/
+ * @link    https://wpswings.com/
  * @since   1.0.0
  * @package woo-refund-and-exchange-lite
  *
  * @wordpress-plugin
  * Plugin Name:       Return Refund and Exchange for WooCommerce
- * Plugin URI:        https://makewebbetter.com/product/woo-refund-and-exchange-lite/
- * Description:       WooCommerce Refund and Exchange lite allows users to submit product refund. The plugin provides a dedicated mailing system that would help to communicate better between store owner and customers.This is lite version of Woocommerce Refund And Exchange.
+ * Plugin URI:        https://wordpress.org/plugins/woo-refund-and-exchange-lite/
+ * Description:       Return Refund and Exchange for WooCommerce allows users to submit product refund. The plugin provides a dedicated mailing system that would help to communicate better between store owner and customers.This is lite version of Woocommerce Refund And Exchange.
  * Version:           4.0.0
  * Author:            WP Swings
- * Author URI:        https://makewebbetter.com/
+ * Author URI:        https://wpswings.com/?utm_source=wpswings-official&utm_medium=rma-org-page&utm_campaign=wpswings-official
  * Text Domain:       woo-refund-and-exchange-lite
  * Domain Path:       /languages
  *
@@ -63,12 +63,12 @@ if ( $activated ) {
 		woo_refund_and_exchange_lite_constants( 'WOO_REFUND_AND_EXCHANGE_LITE_VERSION', '4.0.0' );
 		woo_refund_and_exchange_lite_constants( 'WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH', plugin_dir_path( __FILE__ ) );
 		woo_refund_and_exchange_lite_constants( 'WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL', plugin_dir_url( __FILE__ ) );
-		woo_refund_and_exchange_lite_constants( 'WOO_REFUND_AND_EXCHANGE_LITE_SERVER_URL', 'https://makewebbetter.com' );
+		woo_refund_and_exchange_lite_constants( 'WOO_REFUND_AND_EXCHANGE_LITE_SERVER_URL', 'https://wpswings.com' );
 		woo_refund_and_exchange_lite_constants( 'WOO_REFUND_AND_EXCHANGE_LITE_ITEM_REFERENCE', 'Woo Refund And Exchange Lite' );
 	}
 
 	/**
-	 * Define mwb-site update feature.
+	 * Define wps-site update feature.
 	 *
 	 * @since 1.0.0
 	 */
@@ -78,7 +78,7 @@ if ( $activated ) {
 		}
 
 		if ( ! defined( 'WOO_REFUND_AND_EXCHANGE_LITE_LICENSE_SERVER_URL' ) ) {
-			define( 'WOO_REFUND_AND_EXCHANGE_LITE_LICENSE_SERVER_URL', 'https://makewebbetter.com' );
+			define( 'WOO_REFUND_AND_EXCHANGE_LITE_LICENSE_SERVER_URL', 'https://wpswings.com' );
 		}
 
 		if ( ! defined( 'WOO_REFUND_AND_EXCHANGE_LITE_ITEM_REFERENCE' ) ) {
@@ -110,20 +110,20 @@ if ( $activated ) {
 	function activate_woo_refund_and_exchange_lite( $network_wide ) {
 		include_once plugin_dir_path( __FILE__ ) . 'includes/class-woo-refund-and-exchange-lite-activator.php';
 		Woo_Refund_And_Exchange_Lite_Activator::woo_refund_and_exchange_lite_activate( $network_wide );
-		$mwb_rma_active_plugin = get_option( 'mwb_all_plugins_active', false );
-		if ( is_array( $mwb_rma_active_plugin ) && ! empty( $mwb_rma_active_plugin ) ) {
-			$mwb_rma_active_plugin['woo-refund-and-exchange-lite'] = array(
+		$wps_rma_active_plugin = get_option( 'wps_all_plugins_active', false );
+		if ( is_array( $wps_rma_active_plugin ) && ! empty( $wps_rma_active_plugin ) ) {
+			$wps_rma_active_plugin['woo-refund-and-exchange-lite'] = array(
 				'plugin_name' => esc_html__( 'Woo Refund And Exchange Lite', 'woo-refund-and-exchange-lite' ),
 				'active'      => '1',
 			);
 		} else {
-			$mwb_rma_active_plugin                                 = array();
-			$mwb_rma_active_plugin['woo-refund-and-exchange-lite'] = array(
+			$wps_rma_active_plugin                                 = array();
+			$wps_rma_active_plugin['woo-refund-and-exchange-lite'] = array(
 				'plugin_name' => esc_html__( 'Woo Refund And Exchange Lite', 'woo-refund-and-exchange-lite' ),
 				'active'      => '1',
 			);
 		}
-		update_option( 'mwb_all_plugins_active', $mwb_rma_active_plugin );
+		update_option( 'wps_all_plugins_active', $wps_rma_active_plugin );
 	}
 
 	/**
@@ -135,15 +135,15 @@ if ( $activated ) {
 	function deactivate_woo_refund_and_exchange_lite( $network_wide ) {
 		include_once plugin_dir_path( __FILE__ ) . 'includes/class-woo-refund-and-exchange-lite-deactivator.php';
 		Woo_Refund_And_Exchange_Lite_Deactivator::woo_refund_and_exchange_lite_deactivate( $network_wide );
-		$mwb_rma_deactive_plugin = get_option( 'mwb_all_plugins_active', false );
-		if ( is_array( $mwb_rma_deactive_plugin ) && ! empty( $mwb_rma_deactive_plugin ) ) {
-			foreach ( $mwb_rma_deactive_plugin as $mwb_rma_deactive_key => $mwb_rma_deactive ) {
-				if ( 'woo-refund-and-exchange-lite' === $mwb_rma_deactive_key ) {
-					$mwb_rma_deactive_plugin[ $mwb_rma_deactive_key ]['active'] = '0';
+		$wps_rma_deactive_plugin = get_option( 'wps_all_plugins_active', false );
+		if ( is_array( $wps_rma_deactive_plugin ) && ! empty( $wps_rma_deactive_plugin ) ) {
+			foreach ( $wps_rma_deactive_plugin as $wps_rma_deactive_key => $wps_rma_deactive ) {
+				if ( 'woo-refund-and-exchange-lite' === $wps_rma_deactive_key ) {
+					$wps_rma_deactive_plugin[ $wps_rma_deactive_key ]['active'] = '0';
 				}
 			}
 		}
-		update_option( 'mwb_all_plugins_active', $mwb_rma_deactive_plugin );
+		update_option( 'wps_all_plugins_active', $wps_rma_deactive_plugin );
 	}
 
 	register_activation_hook( __FILE__, 'activate_woo_refund_and_exchange_lite' );
@@ -168,11 +168,11 @@ if ( $activated ) {
 	function run_woo_refund_and_exchange_lite() {
 		define_woo_refund_and_exchange_lite_constants();
 		auto_update_woo_refund_and_exchange_lite();
-		$wrael_plugin_standard = new Woo_Refund_And_Exchange_Lite();
-		$wrael_plugin_standard->wrael_run();
-		$GLOBALS['wrael_mwb_rma_obj'] = $wrael_plugin_standard;
+		$wps_rma_plugin_standard = new Woo_Refund_And_Exchange_Lite();
+		$wps_rma_plugin_standard->wrael_run();
+		$GLOBALS['wrael_wps_rma_obj'] = $wps_rma_plugin_standard;
 		if ( function_exists( 'vc_lean_map' ) ) {
-			include_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'wp-bakery-widgets/class-mwb-rma-vc-widgets.php';
+			include_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'wp-bakery-widgets/class-wps-rma-vc-widgets.php';
 		}
 		include_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'includes/woo-refund-and-exchange-lite-common-functions.php';
 
@@ -204,14 +204,14 @@ if ( $activated ) {
 	 */
 	function woo_refund_and_exchange_lite_custom_settings_at_plugin_tab( $links_array, $plugin_file_name ) {
 		if ( strpos( $plugin_file_name, basename( __FILE__ ) ) ) {
-			$links_array[] = '<a href="https://docs.makewebbetter.com/woocommerce-refund-and-exchange-lite" target="_blank"><img src="' . esc_html( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL ) . 'admin/image/Documentation.svg" class="mwb-info-img" alt="documentation image">' . esc_html__( 'Documentation', 'woo-refund-and-exchange-lite' ) . '</a>';
-			$links_array[] = '<a href="https://makewebbetter.com/contact-us/" target="_blank"><img src="' . esc_html( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL ) . 'admin/image/Support.svg" class="mwb-info-img" alt="support image">' . esc_html__( 'Support', 'woo-refund-and-exchange-lite' ) . '</a>';
+			$links_array[] = '<a href="https://docs.wpswings.com/woo-refund-and-exchange-lite/?utm_source=wpswings-rma-doc&utm_medium=rma-org-page&utm_campaign=rma-doc/" target="_blank"><img src="' . esc_html( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL ) . 'admin/image/Documentation.svg" class="wps-info-img" alt="documentation image">' . esc_html__( 'Documentation', 'woo-refund-and-exchange-lite' ) . '</a>';
+			$links_array[] = '<a href="https://wpswings.com/submit-query/?utm_source=wpswings-rma-support&utm_medium=rma-org-backend&utm_campaign=support/" target="_blank"><img src="' . esc_html( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL ) . 'admin/image/Support.svg" class="wps-info-img" alt="support image">' . esc_html__( 'Support', 'woo-refund-and-exchange-lite' ) . '</a>';
 		}
 		return $links_array;
 	}
 	add_filter( 'plugin_row_meta', 'woo_refund_and_exchange_lite_custom_settings_at_plugin_tab', 10, 2 );
 
-	add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'mwb_rma_lite_settings_link' );
+	add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'wps_rma_lite_settings_link' );
 
 	/**
 	 * Settings tab of the plugin.
@@ -220,11 +220,11 @@ if ( $activated ) {
 	 * @param array $links array of the links.
 	 * @since    1.0.0
 	 */
-	function mwb_rma_lite_settings_link( $links ) {
+	function wps_rma_lite_settings_link( $links ) {
 
-		if ( ! is_plugin_active( 'woocommerce-rma-for-return-refund-and-exchange/mwb-woocommerce-rma.php' ) ) {
+		if ( ! is_plugin_active( 'woocommerce-rma-for-return-refund-and-exchange/wps-woocommerce-rma.php' ) ) {
 
-			$links['goPro'] = '<a style="color:#FFF;background:linear-gradient(to right,#7a28ff 0,#00a1ff 100%);padding:5px;border-radius:6px;" target="_blank" href="https://makewebbetter.com/product/woocommerce-rma-return-refund-exchange/">' . esc_html__( 'GO PREMIUM', 'woo-refund-and-exchange-lite' ) . '</a>';
+			$links['goPro'] = '<a style="color:#FFF;background:linear-gradient(to right,#7a28ff 0,#00a1ff 100%);padding:5px;border-radius:6px;" target="_blank" href="https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro?utm_source=wpswings-rma-pro&utm_medium=rma-org-backend&utm_campaign=go-pro">' . esc_html__( 'GO PREMIUM', 'woo-refund-and-exchange-lite' ) . '</a>';
 		}
 
 		return $links;
@@ -233,20 +233,19 @@ if ( $activated ) {
 	/**
 	 * Function to restore the setting
 	 */
-	function mwb_rma_lite_setting_restore() {
-		$check_if_refund_exist = get_option( 'mwb_wrma_return_enable', false );
-		$check_key_exist       = get_option( 'mwb_rma_lite_setting_restore', false );
-		if ( ! $check_key_exist && $check_if_refund_exist && function_exists( 'mwb_rma_lite_migrate_settings' ) ) {
-			mwb_rma_lite_migrate_settings();
-			update_option( 'mwb_rma_lite_setting_restore', true );
+	function wps_rma_lite_setting_restore() {
+		$check_key_exist = get_option( 'wps_rma_lite_setting_restore', false );
+		if ( ! $check_key_exist && function_exists( 'wps_rma_lite_migrate_settings' ) ) {
+			wps_rma_lite_migrate_settings();
+			update_option( 'wps_rma_lite_setting_restore', true );
 		}
 	}
-	register_activation_hook( __FILE__, 'mwb_rma_lite_setting_restore' );
+	register_activation_hook( __FILE__, 'wps_rma_lite_setting_restore' );
 } else {
 	/**
 	 * Show warning message if woocommerce is not install
 	 */
-	function mwb_rma_plugin_error_notice_lite() {
+	function wps_rma_plugin_error_notice_lite() {
 		?>
 		<div class="error notice is-dismissible">
 			<p><?php esc_html_e( 'Woocommerce is not activated, Please activate Woocommerce first to install WooCommerce Refund and Exchange Lite.', 'woo-refund-and-exchange-lite' ); ?></p>
@@ -256,20 +255,20 @@ if ( $activated ) {
 		</style>
 		<?php
 	}
-	add_action( 'admin_init', 'mwb_rma_plugin_deactivate_lite' );
+	add_action( 'admin_init', 'wps_rma_plugin_deactivate_lite' );
 
 
 	/**
 	 * Call Admin notices
 	 *
 	 * @name ced_rnx_plugin_deactivate_lite()
-	 * @author MakeWebBetter<webmaster@makewebbetter.com>
-	 * @link http://www.makewebbetter.com/
+	 * @author Wp Swings<webmaster@wpswings.com>
+	 * @link http://www.wpswings.com/
 	 */
-	function mwb_rma_plugin_deactivate_lite() {
+	function wps_rma_plugin_deactivate_lite() {
 		deactivate_plugins( plugin_basename( __FILE__ ) );
-		add_action( 'network_admin_notices', 'mwb_rma_plugin_error_notice_lite' );
-		add_action( 'admin_notices', 'mwb_rma_plugin_error_notice_lite' );
+		add_action( 'network_admin_notices', 'wps_rma_plugin_error_notice_lite' );
+		add_action( 'admin_notices', 'wps_rma_plugin_error_notice_lite' );
 	}
 }
 

@@ -2,14 +2,14 @@
 /**
  * Template for Accept email.
  *
- * @link  https://makewebbetter.com/
+ * @link  https://wpswings.com/
  * @since 1.0.0
  *
  * @package    woo-refund-and-exchange-lite
  * @subpackage woo-refund-and-exchange-lite/admin/partials
  */
 
-$products = get_post_meta( $order_id, 'mwb_rma_return_product', true );
+$products = get_post_meta( $order_id, 'wps_rma_return_product', true );
 if ( isset( $products ) && ! empty( $products ) ) {
 	foreach ( $products as $date => $product ) {
 		if ( 'complete' === $product['status'] ) {
@@ -23,7 +23,7 @@ if ( isset( $products ) && ! empty( $products ) ) {
 	}
 }
 $message            =
-'<div class="mwb_rma_refund_accept_email>
+'<div class="wps_rma_refund_accept_email>
     <div class="header">
         <h2>' . esc_html__( 'Your Refund Request is Approved', 'woo-refund-and-exchange-lite' ) . '</h2>
     </div>
@@ -67,7 +67,7 @@ if ( isset( $requested_products ) && ! empty( $requested_products ) ) {
 					$message .= '<tr><td style="border: 1px solid #C7C7C7;">' . $item['name'] . '<br>';
 					$message .= '<small>' . $item_meta_html . '</small></td>
 								<td style="border: 1px solid #C7C7C7;">' . $item['qty'] . '</td>
-								<td style="border: 1px solid #C7C7C7;">' . mwb_wrma_format_price( $requested_product['price'] * $requested_product['qty'], $get_order_currency ) . '</td>
+								<td style="border: 1px solid #C7C7C7;">' . wps_wrma_format_price( $requested_product['price'] * $requested_product['qty'], $get_order_currency ) . '</td>
 								</tr>';
 				}
 			}
@@ -75,10 +75,10 @@ if ( isset( $requested_products ) && ! empty( $requested_products ) ) {
 	}
 }
 // Add some extra <tr> in the table for refund approve mail.
-$message        = apply_filters( 'mwb_rma_extend_extra_field_table_approve_email', $message );
+$message        = apply_filters( 'wps_rma_extend_extra_field_table_approve_email', $message );
 $message       .= '<tr>
 					<th colspan="2" style="border: 1px solid #C7C7C7;">' . esc_html__( 'Refund Total', 'woo-refund-and-exchange-lite' ) . ':</th>
-					<td style="border: 1px solid #C7C7C7;">' . mwb_wrma_format_price( $total, $get_order_currency ) . '</td>
+					<td style="border: 1px solid #C7C7C7;">' . wps_wrma_format_price( $total, $get_order_currency ) . '</td>
 				</tr>
 			</tbody>
 		</table>
@@ -106,5 +106,5 @@ $message       .= '<tr>
     </div>
 </div>';
 $attachment     = array();
-$customer_email = WC()->mailer()->emails['mwb_rma_refund_request_accept_email'];
+$customer_email = WC()->mailer()->emails['wps_rma_refund_request_accept_email'];
 $customer_email->trigger( $message, $attachment, $order_obj->get_billing_email(), $order_id );

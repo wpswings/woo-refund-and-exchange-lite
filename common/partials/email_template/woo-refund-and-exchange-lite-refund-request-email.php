@@ -2,14 +2,14 @@
 /**
  * The refund request email template.
  *
- * @link       https://makewebbetter.com/
+ * @link       https://wpswings.com/
  * @since      1.0.0
  *
  * @package    woo-refund-and-exchange-lite
  * @subpackage woo-refund-and-exchange-lite/common
  */
 
-$products     = get_post_meta( $order_id, 'mwb_rma_return_product', true );
+$products     = get_post_meta( $order_id, 'wps_rma_return_product', true );
 $rr_subject   = '';
 $rr_reason    = '';
 $product_data = '';
@@ -28,7 +28,7 @@ if ( isset( $products ) && ! empty( $products ) ) {
 }
 $rr_reason          = ! empty( $rr_reason ) ? $rr_reason : esc_html__( 'No Reason', 'woo-refund-and-exchange-lite' );
 $message            =
-'<stlye></stlye><div class="mwb_rma_refund_req_mail">
+'<stlye></stlye><div class="wps_rma_refund_req_mail">
 	<div class="header">
 		<h2>' . $rr_subject . '</h2>
 	</div>
@@ -74,7 +74,7 @@ if ( isset( $requested_products ) && ! empty( $requested_products ) ) {
 					$message .= '<tr><td style="border: 1px solid #C7C7C7;">' . $item['name'] . '<br>';
 					$message .= '<small>' . $item_meta_html . '</small></td>
 								<td style="border: 1px solid #C7C7C7;">' . $item['qty'] . '</td>
-								<td style="border: 1px solid #C7C7C7;">' . mwb_wrma_format_price( $requested_product['price'] * $requested_product['qty'], $get_order_currency ) . '</td>
+								<td style="border: 1px solid #C7C7C7;">' . wps_wrma_format_price( $requested_product['price'] * $requested_product['qty'], $get_order_currency ) . '</td>
 								</tr>';
 				}
 			}
@@ -83,9 +83,9 @@ if ( isset( $requested_products ) && ! empty( $requested_products ) ) {
 }
 $message       .= '<tr>
 					<th colspan="2" style="border: 1px solid #C7C7C7;">' . esc_html__( 'Refund Total', 'woo-refund-and-exchange-lite' ) . ':</th>
-					<td style="border: 1px solid #C7C7C7;">' . mwb_wrma_format_price( $total, $get_order_currency ) . '</td>
+					<td style="border: 1px solid #C7C7C7;">' . wps_wrma_format_price( $total, $get_order_currency ) . '</td>
 				</tr>';
-$message        = apply_filters( 'mwb_rma_add_shipping_fee_tr', $message );
+$message        = apply_filters( 'wps_rma_add_shipping_fee_tr', $message );
 $message       .= '</tbody>
 		</table>
 	</div>
@@ -113,9 +113,9 @@ $message       .= '</tbody>
 </div>';
 $attachment     = array();
 $to             = get_option( 'admin_email' );
-$admin_email    = WC()->mailer()->emails['mwb_rma_refund_request_email'];
-$restrict_mail1 = apply_filters( 'mwb_rma_restrict_refund_request_user_mail', true );
-$restrict_mail2 = apply_filters( 'mwb_rma_restrict_refund_request_admin_mail', true );
+$admin_email    = WC()->mailer()->emails['wps_rma_refund_request_email'];
+$restrict_mail1 = apply_filters( 'wps_rma_restrict_refund_request_user_mail', true );
+$restrict_mail2 = apply_filters( 'wps_rma_restrict_refund_request_admin_mail', true );
 if ( $restrict_mail2 ) {
 	$admin_email->trigger( $message, $attachment, $to, $order_id );
 }

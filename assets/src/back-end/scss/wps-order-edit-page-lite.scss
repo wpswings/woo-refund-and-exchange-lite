@@ -1,52 +1,52 @@
 /*BACKEND CSS*/
 
 /*common-css*/
-.mwb_rma_flex{
+.wps_rma_flex{
     display: flex;
     flex-wrap: wrap;
 }
 
 /*Edit order page*/
-#mwb_rma_order_refund #mwb_rma_return_meta_wrapper td {
+#wps_rma_order_refund #wps_rma_return_meta_wrapper td {
     width: 20%;
     text-align: center;
     border-bottom: 1px solid #eeeeee;
     padding: 10px 0;
 }
-#mwb_rma_return_meta_wrapper > table > thead > tr > th {
+#wps_rma_return_meta_wrapper > table > thead > tr > th {
     padding-bottom: 10px;
     border-bottom: 1px solid #eeeeee;
 }
-#mwb_rma_order_refund #mwb_rma_return_meta_wrapper td img  {
+#wps_rma_order_refund #wps_rma_return_meta_wrapper td img  {
 	width: 80px;
     height: auto;
 }  
-#mwb_rma_return_meta_wrapper > table {
+#wps_rma_return_meta_wrapper > table {
 	width: 100%;
 }
-.mwb_rma_refund_pd-top {
+.wps_rma_refund_pd-top {
 	padding-top: 10px; 
 }
 
 
-/*mwb_rma_order_msg_history*/
-#mwb_rma_order_msg_history .mwb_reload_messages {
+/*wps_rma_order_msg_history*/
+#wps_rma_order_msg_history .wps_reload_messages {
 	display: inline-block;
     width: 16px;
     margin-left: 10px;
     vertical-align: middle;
 }
-#mwb_rma_order_msg_history .mwb_reload_messages img {
+#wps_rma_order_msg_history .wps_reload_messages img {
 	width: 100%;
 }
-.mwb_admin_order_msg_history_container{
+.wps_admin_order_msg_history_container{
     padding: 15px;
     border: solid darkgrey 1px;
     overflow-y: auto;
     max-height: 400px;
     min-height: 110px;
 }
-.mwb-order-msg__row {
+.wps-order-msg__row {
     margin-bottom: 30px;
     border: 1px solid #dddddd;
     padding-top: 27px;
@@ -56,7 +56,7 @@
     width: auto;
     word-wrap: break-word;
 }
-.mwb_order_messages .mwb_order_msg_sender {
+.wps_order_messages .wps_order_msg_sender {
     background-color: #4f62b9;
     color: #ffffff;
     display: inline-block; 
@@ -65,7 +65,7 @@
     padding: 8px 52px 8px 30px;
     position: relative;
 }
-.mwb_order_messages .mwb_order_msg_sender:before {
+.wps_order_messages .wps_order_msg_sender:before {
     position: absolute;
     content: "";
     top: -11px;
@@ -77,36 +77,36 @@
     border-right: 22px solid transparent;
     transform: rotate(90deg);
 }
-.mwb_order_messages_info {
+.wps_order_messages_info {
     justify-content: space-between;
     align-items: center;
 }  
-span.mwb_order_msg_date {
+span.wps_order_msg_date {
     font-size: 16px;
     display: block;
     margin-top: 10px;
     padding-left: 30px;
     color: #1f1f1f;
 }
-.mwb-loader-icon {
+.wps-loader-icon {
     animation: spin 1s infinite linear;
     transition: all .3s;
     transition-timing-function: ease-in;
 }
-.mwb_order_msg_detail_container {
+.wps_order_msg_detail_container {
     padding: 20px 0 20px 30px;
 }
-.mwb_order_msg_attach_container {
+.wps_order_msg_attach_container {
     padding-left: 30px;
 }
-.mwb_order_msg_attachments_title {
+.wps_order_msg_attachments_title {
     padding-bottom: 8px;
 }
-.mwb_rma_admin_order_msg_wrapper textarea {
+.wps_rma_admin_order_msg_wrapper textarea {
     width: 100%;
     min-height: 230px;
 }
-.mwb_order_msg_notice_wrapper {
+.wps_order_msg_notice_wrapper {
     color: #fff;
     border-radius: 5px;
     display: none;
@@ -118,43 +118,43 @@ span.mwb_order_msg_date {
     margin-top: 30px;
     background: #64CD83;
 }
-.mwb_order_msg_notice_wrapper p {
+.wps_order_msg_notice_wrapper p {
     margin: 0px;
     font-size: 16px;
 }
-.mwb_order_msg_notice_wrapper a {
+.wps_order_msg_notice_wrapper a {
     color: #ffffff;
     text-decoration: none;
 }
-.mwb-order-msg__attachment-lable {
+.wps-order-msg__attachment-lable {
     margin-top: 15px;
 }
-.mwb-order-msg-attachment-wrapper {
+.wps-order-msg-attachment-wrapper {
     justify-content: space-between;
 }
 /*new-css*/
-.mwb_order_msg_sub_container {
+.wps_order_msg_sub_container {
     display: flex;
     flex-wrap: wrap;
 }
-.mwb-order-msg__row {
+.wps-order-msg__row {
     width: 100%;
     max-width: calc(50% - 40px);
 }
-.mwb-order-msg__row:nth-child(2n-1) {
+.wps-order-msg__row:nth-child(2n-1) {
     margin-right: 10px;
 }
-.mwb-order-msg__row:nth-child(2n) {
+.wps-order-msg__row:nth-child(2n) {
     margin-left: 10px;
 }
-.wmb-order-admin__msg-container .mwb_order_msg_sender {
+.wmb-order-admin__msg-container .wps_order_msg_sender {
     background-color: #71b02f;
 }
-.mwb_rma_order_msg_wrapper textarea {
+.wps_rma_order_msg_wrapper textarea {
     width: 100%;
 }
 
-#mwb_order_msg_submit {
+#wps_order_msg_submit {
     background: #374585;
     border: 1px solid #374585;
     color: #fff;
@@ -165,30 +165,30 @@ span.mwb_order_msg_date {
 
 /*media-query*/
 @media only screen and (max-width: 575px) {
-    .mwb-order-msg__row {
+    .wps-order-msg__row {
         max-width: 100%;
     }
-    .mwb-order-msg__row:nth-child(2n-1), 
-    .mwb-order-msg__row:nth-child(2n) {
+    .wps-order-msg__row:nth-child(2n-1), 
+    .wps-order-msg__row:nth-child(2n) {
         margin-right: 0;
     }
 }
 @media only screen and (max-width: 480px){
-    .mwb_order_messages_info{       
+    .wps_order_messages_info{       
         flex-direction: column;
         align-items: flex-start;
     }
-    span.mwb_order_msg_date{
+    span.wps_order_msg_date{
         margin-top: 15px;
         padding-left: 15px;
     }
-    .mwb_order_msg_detail_container {
+    .wps_order_msg_detail_container {
         padding: 15px 0 15px 15px;
     }
-    .mwb_order_msg_attach_container{
+    .wps_order_msg_attach_container{
         padding-left: 15px;
     }
-    .mwb_order_messages .mwb_order_msg_sender:before{
+    .wps_order_messages .wps_order_msg_sender:before{
         right: 7px;
     }
     .wc-wp-version-gte-53 .select2-container .select2-search--inline .select2-search__field,
@@ -206,12 +206,12 @@ span.mwb_order_msg_date {
     .woocommerce-feature-enabled-activity-panels #woocommerce-order-downloads .buttons .select2-container{
        width: 100% !important; 
     }
-    .wp-admin .mwb-order-msg-btn {
+    .wp-admin .wps-order-msg-btn {
         margin-top: 20px;
     }
 }
 
-div.mwb_order_msg_single_attachment a .mwb_order_msg_attachment_thumbnail {
+div.wps_order_msg_single_attachment a .wps_order_msg_attachment_thumbnail {
     border: 1px solid black;
     border-radius: 3px;
     max-width: 60px;
@@ -221,7 +221,7 @@ div.mwb_order_msg_single_attachment a .mwb_order_msg_attachment_thumbnail {
     padding: 5px;
 }
 
-div.mwb_order_msg_single_attachment a .mwb_order_msg_attachment_thumbnail{
+div.wps_order_msg_single_attachment a .wps_order_msg_attachment_thumbnail{
     margin-left: 0 !important;
     margin-right: 0 !important;
 }

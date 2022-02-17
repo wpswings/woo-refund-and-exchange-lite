@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 0.1
  * @extends \WC_Email
  */
-class Mwb_Rma_Order_Messages_Email extends WC_Email {
+class Wps_Rma_Order_Messages_Email extends WC_Email {
 	/**
 	 * Set email defaults
 	 *
@@ -23,7 +23,7 @@ class Mwb_Rma_Order_Messages_Email extends WC_Email {
 	 */
 	public function __construct() {
 		// set ID, this simply needs to be a unique name.
-		$this->id = 'mwb_rma_order_messages_email';
+		$this->id = 'wps_rma_order_messages_email';
 
 		// this is the title in WooCommerce Email settings.
 		$this->title = 'RMA Order Messages';
@@ -36,8 +36,8 @@ class Mwb_Rma_Order_Messages_Email extends WC_Email {
 		$this->subject = 'New message has been received';
 
 		// these define the locations of the templates that this email should use, we'll just use the new order template since this email is similar.
-		$this->template_html  = 'mwb-rma-messages-email-template.php';
-		$this->template_plain = 'plain/mwb-rma-messages-email-template.php';
+		$this->template_html  = 'wps-rma-messages-email-template.php';
+		$this->template_plain = 'plain/wps-rma-messages-email-template.php';
 		$this->template_base  = WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'emails/templates/';
 		$this->placeholders   = array(
 			'{site_title}'   => $this->get_blogname(),

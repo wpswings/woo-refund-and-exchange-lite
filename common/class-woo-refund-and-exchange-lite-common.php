@@ -2,7 +2,7 @@
 /**
  * The common functionality of the plugin.
  *
- * @link       https://makewebbetter.com/
+ * @link       https://wpswings.com/
  * @since      1.0.0
  *
  * @package    woo-refund-and-exchange-lite
@@ -64,7 +64,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	 * @since    1.0.0
 	 */
 	public function wrael_common_enqueue_scripts() {
-		$pro_active = mwb_rma_pro_active();
+		$pro_active = wps_rma_pro_active();
 		if ( get_current_user_id() > 0 ) {
 			$myaccount_page     = get_option( 'woocommerce_myaccount_page_id' );
 			$myaccount_page_url = get_permalink( $myaccount_page );
@@ -78,7 +78,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			'wrael_common_param',
 			array(
 				'ajaxurl'               => admin_url( 'admin-ajax.php' ),
-				'mwb_rma_nonce'         => wp_create_nonce( 'mwb_rma_ajax_security' ),
+				'wps_rma_nonce'         => wp_create_nonce( 'wps_rma_ajax_security' ),
 				'return_subject_msg'    => esc_html__( 'Please Enter Refund Subject.', 'woo-refund-and-exchange-lite' ),
 				'return_reason_msg'     => esc_html__( 'Please Enter Refund Reason.', 'woo-refund-and-exchange-lite' ),
 				'return_select_product' => esc_html__( 'Please Select Product to refund.', 'woo-refund-and-exchange-lite' ),
@@ -96,48 +96,48 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	 *
 	 * @param array $email_classes email classes.
 	 */
-	public function mwb_rma_woocommerce_emails( $email_classes ) {
+	public function wps_rma_woocommerce_emails( $email_classes ) {
 		// include our order message email class.
-		require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'emails/class-mwb-rma-order-messages-email.php';
-		require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'emails/class-mwb-rma-refund-request-email.php';
-		require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'emails/class-mwb-rma-refund-request-accept-email.php';
-		require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'emails/class-mwb-rma-refund-request-cancel-email.php';
+		require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'emails/class-wps-rma-order-messages-email.php';
+		require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'emails/class-wps-rma-refund-request-email.php';
+		require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'emails/class-wps-rma-refund-request-accept-email.php';
+		require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'emails/class-wps-rma-refund-request-cancel-email.php';
 		// add the email class to the list of email classes that WooCommerce loads.
 
-		$email_classes['mwb_rma_order_messages_email']        = new Mwb_Rma_Order_Messages_Email();
-		$email_classes['mwb_rma_refund_request_email']        = new Mwb_Rma_Refund_Request_Email();
-		$email_classes['mwb_rma_refund_request_accept_email'] = new Mwb_Rma_Refund_Request_Accept_Email();
-		$email_classes['mwb_rma_refund_request_cancel_email'] = new Mwb_Rma_Refund_Request_Cancel_Email();
+		$email_classes['wps_rma_order_messages_email']        = new Wps_Rma_Order_Messages_Email();
+		$email_classes['wps_rma_refund_request_email']        = new Wps_Rma_Refund_Request_Email();
+		$email_classes['wps_rma_refund_request_accept_email'] = new Wps_Rma_Refund_Request_Accept_Email();
+		$email_classes['wps_rma_refund_request_cancel_email'] = new Wps_Rma_Refund_Request_Cancel_Email();
 		return $email_classes;
 	}
 
 	/**
 	 * This function is to save return request Attachment
 	 */
-	public function mwb_rma_order_return_attach_files() {
-		$check_ajax = check_ajax_referer( 'mwb_rma_ajax_security', 'security_check' );
+	public function wps_rma_order_return_attach_files() {
+		$check_ajax = check_ajax_referer( 'wps_rma_ajax_security', 'security_check' );
 
 		if ( $check_ajax ) {
-			if ( isset( $_FILES['mwb_rma_return_request_files'] ) && isset( $_FILES['mwb_rma_return_request_files']['tmp_name'] ) && isset( $_FILES['mwb_rma_return_request_files']['name'] ) ) {
+			if ( isset( $_FILES['wps_rma_return_request_files'] ) && isset( $_FILES['wps_rma_return_request_files']['tmp_name'] ) && isset( $_FILES['wps_rma_return_request_files']['name'] ) ) {
 				$filename = array();
-				$order_id = isset( $_POST['mwb_rma_return_request_order'] ) ? sanitize_text_field( wp_unslash( $_POST['mwb_rma_return_request_order'] ) ) : sanitize_text_field( wp_unslash( $_POST['mwb_rma_return_request_order'] ) );
-				$count    = count( $_FILES['mwb_rma_return_request_files']['tmp_name'] );
+				$order_id = isset( $_POST['wps_rma_return_request_order'] ) ? sanitize_text_field( wp_unslash( $_POST['wps_rma_return_request_order'] ) ) : sanitize_text_field( wp_unslash( $_POST['wps_rma_return_request_order'] ) );
+				$count    = count( $_FILES['wps_rma_return_request_files']['tmp_name'] );
 				for ( $i = 0; $i < $count; $i++ ) {
-					if ( isset( $_FILES['mwb_rma_return_request_files']['tmp_name'][ $i ] ) ) {
+					if ( isset( $_FILES['wps_rma_return_request_files']['tmp_name'][ $i ] ) ) {
 						$directory = ABSPATH . 'wp-content/attachment';
 						if ( ! file_exists( $directory ) ) {
 							mkdir( $directory, 0755, true );
 						}
 
-						$source_path = sanitize_text_field( wp_unslash( $_FILES['mwb_rma_return_request_files']['tmp_name'][ $i ] ) );
-						$target_path = $directory . '/' . $order_id . '-' . isset( $_FILES['mwb_rma_return_request_files']['name'][ $i ] ) ? sanitize_text_field( wp_unslash( $_FILES['mwb_rma_return_request_files']['name'][ $i ] ) ) : '';
+						$source_path = sanitize_text_field( wp_unslash( $_FILES['wps_rma_return_request_files']['tmp_name'][ $i ] ) );
+						$target_path = $directory . '/' . $order_id . '-' . isset( $_FILES['wps_rma_return_request_files']['name'][ $i ] ) ? sanitize_text_field( wp_unslash( $_FILES['wps_rma_return_request_files']['name'][ $i ] ) ) : '';
 
-						$filename[] = $order_id . '-' . sanitize_text_field( wp_unslash( $_FILES['mwb_rma_return_request_files']['name'][ $i ] ) );
+						$filename[] = $order_id . '-' . sanitize_text_field( wp_unslash( $_FILES['wps_rma_return_request_files']['name'][ $i ] ) );
 						move_uploaded_file( $source_path, $target_path );
 					}
 				}
 
-				$request_files = get_post_meta( $order_id, 'mwb_rma_return_attachment', true );
+				$request_files = get_post_meta( $order_id, 'wps_rma_return_attachment', true );
 
 				$pending = true;
 				if ( isset( $request_files ) && ! empty( $request_files ) ) {
@@ -159,7 +159,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 					$request_files[ $date ]['status'] = 'pending';
 				}
 
-				update_post_meta( $order_id, 'mwb_rma_return_attachment', $request_files );
+				update_post_meta( $order_id, 'wps_rma_return_attachment', $request_files );
 				echo 'success';
 			}
 			wp_die();
@@ -169,22 +169,22 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	/**
 	 * This function is to save return request.
 	 */
-	public function mwb_rma_save_return_request() {
-		$check_ajax = check_ajax_referer( 'mwb_rma_ajax_security', 'security_check' );
-		if ( $check_ajax && current_user_can( 'mwb-rma-refund-request' ) ) {
+	public function wps_rma_save_return_request() {
+		$check_ajax = check_ajax_referer( 'wps_rma_ajax_security', 'security_check' );
+		if ( $check_ajax && current_user_can( 'wps-rma-refund-request' ) ) {
 			$order_id = isset( $_POST['orderid'] ) ? sanitize_text_field( wp_unslash( $_POST['orderid'] ) ) : '';
-			$re_bank  = get_option( 'mwb_rma_refund_manually_de', false );
+			$re_bank  = get_option( 'wps_rma_refund_manually_de', false );
 			if ( 'on' === $re_bank && ! empty( $_POST['bankdetails'] ) ) {
-				update_post_meta( $order_id, 'mwb_rma_bank_details', sanitize_text_field( wp_unslash( $_POST['bankdetails'] ) ) );
+				update_post_meta( $order_id, 'wps_rma_bank_details', sanitize_text_field( wp_unslash( $_POST['bankdetails'] ) ) );
 			}
 			$refund_method  = isset( $_POST['refund_method'] ) ? sanitize_text_field( wp_unslash( $_POST['refund_method'] ) ) : '';
-			$wallet_enabled = get_option( 'mwb_rma_wallet_enable', 'no' );
-			$refund_method  = get_option( 'mwb_rma_refund_method', 'no' );
-			if ( mwb_rma_pro_active() && 'on' === $wallet_enabled && 'on' !== $refund_method ) {
+			$wallet_enabled = get_option( 'wps_rma_wallet_enable', 'no' );
+			$refund_method  = get_option( 'wps_rma_refund_method', 'no' );
+			if ( wps_rma_pro_active() && 'on' === $wallet_enabled && 'on' !== $refund_method ) {
 				$refund_method = 'wallet_method';
 			}
 			$products1 = $_POST;
-			$response  = mwb_rma_save_return_request_callback( $order_id, $refund_method, $products1 );
+			$response  = wps_rma_save_return_request_callback( $order_id, $refund_method, $products1 );
 			echo wp_json_encode( $response );
 			wp_die();
 		}
@@ -193,7 +193,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	/**
 	 * This function is to add custom order status for return
 	 */
-	public function mwb_rma_register_custom_order_status() {
+	public function wps_rma_register_custom_order_status() {
 		register_post_status(
 			'wc-return-requested',
 			array(
@@ -227,57 +227,57 @@ class Woo_Refund_And_Exchange_Lite_Common {
 				'label_count'               => _n_noop( 'Refund Cancelled <span class="count">(%s)</span>', 'Refund Cancelled <span class="count">(%s)</span>', 'woo-refund-and-exchange-lite' ),
 			)
 		);
-		do_action( 'mwb_rma_register_custom_order_status' );
+		do_action( 'wps_rma_register_custom_order_status' );
 	}
 
 	/**
 	 * This function is to register custom order status
 	 *
-	 * @param array $mwb_rma_order_statuses .
+	 * @param array $wps_rma_order_statuses .
 	 */
-	public function mwb_rma_add_custom_order_status( $mwb_rma_order_statuses ) {
-		$mwb_rma_new_order_statuses = array();
-		foreach ( $mwb_rma_order_statuses as $mwb_rma_key => $mwb_rma_status ) {
+	public function wps_rma_add_custom_order_status( $wps_rma_order_statuses ) {
+		$wps_rma_new_order_statuses = array();
+		foreach ( $wps_rma_order_statuses as $wps_rma_key => $wps_rma_status ) {
 
-			$mwb_rma_new_order_statuses[ $mwb_rma_key ] = $mwb_rma_status;
+			$wps_rma_new_order_statuses[ $wps_rma_key ] = $wps_rma_status;
 
-			if ( 'wc-completed' === $mwb_rma_key ) {
-				$mwb_rma_new_order_statuses['wc-return-requested'] = esc_html__( 'Refund Requested', 'woo-refund-and-exchange-lite' );
-				$mwb_rma_new_order_statuses['wc-return-approved']  = esc_html__( 'Refund Approved', 'woo-refund-and-exchange-lite' );
-				$mwb_rma_new_order_statuses['wc-return-cancelled'] = esc_html__( 'Refund Cancelled', 'woo-refund-and-exchange-lite' );
-				$mwb_rma_new_order_statuses                        = apply_filters( 'mwb_rma_add_custom_order_status', $mwb_rma_new_order_statuses );
+			if ( 'wc-completed' === $wps_rma_key ) {
+				$wps_rma_new_order_statuses['wc-return-requested'] = esc_html__( 'Refund Requested', 'woo-refund-and-exchange-lite' );
+				$wps_rma_new_order_statuses['wc-return-approved']  = esc_html__( 'Refund Approved', 'woo-refund-and-exchange-lite' );
+				$wps_rma_new_order_statuses['wc-return-cancelled'] = esc_html__( 'Refund Cancelled', 'woo-refund-and-exchange-lite' );
+				$wps_rma_new_order_statuses                        = apply_filters( 'wps_rma_add_custom_order_status', $wps_rma_new_order_statuses );
 			}
 		}
-		return $mwb_rma_new_order_statuses;
+		return $wps_rma_new_order_statuses;
 	}
 
 	/**
 	 * Add capabilities for userrole
 	 */
-	public function mwb_rma_role_capability() {
-		$mwb_rma_customer_role = get_role( 'customer' );
-		$mwb_rma_customer_role->add_cap( 'mwb-rma-refund-request', true );
+	public function wps_rma_role_capability() {
+		$wps_rma_customer_role = get_role( 'customer' );
+		$wps_rma_customer_role->add_cap( 'wps-rma-refund-request', true );
 
-		$mwb_rma_customer_role = get_role( 'administrator' );
-		$mwb_rma_customer_role->add_cap( 'mwb-rma-refund-request', true );
-		$mwb_rma_customer_role->add_cap( 'mwb-rma-refund-approve', true );
-		$mwb_rma_customer_role->add_cap( 'mwb-rma-refund-cancel', true );
-		$mwb_rma_customer_role->add_cap( 'mwb-rma-refund-manage-stock', true );
-		$mwb_rma_customer_role->add_cap( 'mwb-rma-refund-amount', true );
+		$wps_rma_customer_role = get_role( 'administrator' );
+		$wps_rma_customer_role->add_cap( 'wps-rma-refund-request', true );
+		$wps_rma_customer_role->add_cap( 'wps-rma-refund-approve', true );
+		$wps_rma_customer_role->add_cap( 'wps-rma-refund-cancel', true );
+		$wps_rma_customer_role->add_cap( 'wps-rma-refund-manage-stock', true );
+		$wps_rma_customer_role->add_cap( 'wps-rma-refund-amount', true );
 
-		$mwb_rma_customer_role = get_role( 'editor' );
-		$mwb_rma_customer_role->add_cap( 'mwb-rma-refund-request', true );
-		$mwb_rma_customer_role->add_cap( 'mwb-rma-refund-approve', true );
-		$mwb_rma_customer_role->add_cap( 'mwb-rma-refund-cancel', true );
-		$mwb_rma_customer_role->add_cap( 'mwb-rma-refund-manage-stock', true );
-		$mwb_rma_customer_role->add_cap( 'mwb-rma-refund-amount', true );
+		$wps_rma_customer_role = get_role( 'editor' );
+		$wps_rma_customer_role->add_cap( 'wps-rma-refund-request', true );
+		$wps_rma_customer_role->add_cap( 'wps-rma-refund-approve', true );
+		$wps_rma_customer_role->add_cap( 'wps-rma-refund-cancel', true );
+		$wps_rma_customer_role->add_cap( 'wps-rma-refund-manage-stock', true );
+		$wps_rma_customer_role->add_cap( 'wps-rma-refund-amount', true );
 
-		$mwb_rma_customer_role = get_role( 'shop_manager' );
-		$mwb_rma_customer_role->add_cap( 'mwb-rma-refund-request', true );
-		$mwb_rma_customer_role->add_cap( 'mwb-rma-refund-approve', true );
-		$mwb_rma_customer_role->add_cap( 'mwb-rma-refund-cancel', true );
-		$mwb_rma_customer_role->add_cap( 'mwb-rma-refund-manage-stock', true );
-		$mwb_rma_customer_role->add_cap( 'mwb-rma-refund-amount', true );
+		$wps_rma_customer_role = get_role( 'shop_manager' );
+		$wps_rma_customer_role->add_cap( 'wps-rma-refund-request', true );
+		$wps_rma_customer_role->add_cap( 'wps-rma-refund-approve', true );
+		$wps_rma_customer_role->add_cap( 'wps-rma-refund-cancel', true );
+		$wps_rma_customer_role->add_cap( 'wps-rma-refund-manage-stock', true );
+		$wps_rma_customer_role->add_cap( 'wps-rma-refund-amount', true );
 	}
 
 	/**
@@ -285,7 +285,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	 *
 	 * @param string $order_id .
 	 */
-	public function mwb_rma_refund_req_email( $order_id ) {
+	public function wps_rma_refund_req_email( $order_id ) {
 		include_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php';
 	}
 
@@ -295,7 +295,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	 * @param object $new_site .
 	 * @return void
 	 */
-	public function mwb_rma_plugin_on_create_blog( $new_site ) {
+	public function wps_rma_plugin_on_create_blog( $new_site ) {
 		if ( ! function_exists( 'is_plugin_active_for_network' ) ) {
 			require_once ABSPATH . '/wp-admin/includes/plugin.php';
 		}
@@ -305,8 +305,8 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			// Switch to newly created site .
 			switch_to_blog( $blog_id );
 			require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'includes/class-woo-refund-and-exchange-lite-activator.php';
-			Woo_Refund_And_Exchange_Lite_Activator::mwb_rma_create_pages();
-			update_option( 'wrael_plugin_standard_multistep_done', 'yes' );
+			Woo_Refund_And_Exchange_Lite_Activator::wps_rma_create_pages();
+			update_option( 'wps_rma_plugin_standard_multistep_done', 'yes' );
 			restore_current_blog();
 		}
 
@@ -317,7 +317,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	 *
 	 * @param string $order_id .
 	 */
-	public function mwb_rma_refund_req_accept_email( $order_id ) {
+	public function wps_rma_refund_req_accept_email( $order_id ) {
 		include_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php';
 	}
 
@@ -326,14 +326,14 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	 *
 	 * @param string $order_id .
 	 */
-	public function mwb_rma_refund_req_cancel_email( $order_id ) {
+	public function wps_rma_refund_req_cancel_email( $order_id ) {
 		include_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-cancel-email.php';
 	}
 	/**
 	 * Save order message from admin side.
 	 */
-	public function mwb_rma_order_messages_save() {
-		$check_ajax = check_ajax_referer( 'mwb_rma_ajax_security', 'security_check' );
+	public function wps_rma_order_messages_save() {
+		$check_ajax = check_ajax_referer( 'wps_rma_ajax_security', 'security_check' );
 		if ( $check_ajax ) {
 			$msg      = isset( $_POST['msg'] ) ? filter_input( INPUT_POST, 'msg' ) : '';
 			$msg_type = isset( $_POST['order_msg_type'] ) ? filter_input( INPUT_POST, 'order_msg_type' ) : '';
@@ -345,7 +345,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			} else {
 				$sender = 'Customer';
 			}
-			$flag = mwb_rma_lite_send_order_msg_callback( $order_id, $msg, $sender, $to );
+			$flag = wps_rma_lite_send_order_msg_callback( $order_id, $msg, $sender, $to );
 			echo esc_html( $flag );
 			wp_die();
 		}
@@ -356,19 +356,19 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	 *
 	 * @param boolean $override .
 	 */
-	public function wrael_makewebbetter_tracker_send_event( $override = false ) {
+	public function wps_rma_tracker_send_event( $override = false ) {
 		require WC()->plugin_path() . '/includes/class-wc-tracker.php';
 
-		$last_send = get_option( 'makewebbetter_tracker_last_send' );
-		if ( ! apply_filters( 'makewebbetter_tracker_send_override', $override ) ) {
+		$last_send = get_option( 'wps_rma_tracker_last_send' );
+		if ( ! apply_filters( 'wpswings_tracker_send_override', $override ) ) {
 			// Send a maximum of once per week by default.
-			$last_send = $this->mwb_wrael_last_send_time();
-			if ( $last_send && $last_send > apply_filters( 'makewebbetter_tracker_last_send_interval', strtotime( '-1 week' ) ) ) {
+			$last_send = $this->wps_wrael_last_send_time();
+			if ( $last_send && $last_send > apply_filters( 'wpswings_tracker_last_send_interval', strtotime( '-1 week' ) ) ) {
 				return;
 			}
 		} else {
 			// Make sure there is at least a 1 hour delay between override sends, we don't want duplicate calls due to double clicking links.
-			$last_send = $this->mwb_wrael_last_send_time();
+			$last_send = $this->wps_wrael_last_send_time();
 			if ( $last_send && $last_send > strtotime( '-1 hours' ) ) {
 				return;
 			}
@@ -377,10 +377,10 @@ class Woo_Refund_And_Exchange_Lite_Common {
 		$api_route  = 'mp';
 		$api_route .= 's';
 		// Update time first before sending to ensure it is set.
-		update_option( 'makewebbetter_tracker_last_send', time() );
+		update_option( 'wps_rma_tracker_last_send', time() );
 		$params  = WC_Tracker::get_tracking_data();
-		$params  = apply_filters( 'makewebbetter_tracker_params', $params );
-		$api_url = 'https://tracking.makewebbetter.com/wp-json/' . $api_route . '-route/v1/' . $api_route . '-testing-data/';
+		$params  = apply_filters( 'wpswings_tracker_params', $params );
+		$api_url = 'https://tracking.wpswings.com/wp-json/' . $api_route . '-route/v1/' . $api_route . '-testing-data/';
 		$sucess  = wp_safe_remote_post(
 			$api_url,
 			array(
@@ -393,18 +393,18 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	/**
 	 * Get the updated time.
 	 *
-	 * @name mwb_wrael_last_send_time
+	 * @name wps_wrael_last_send_time
 	 *
 	 * @since 1.0.0
 	 */
-	public function mwb_wrael_last_send_time() {
-		return apply_filters( 'makewebbetter_tracker_last_send_time', get_option( 'makewebbetter_tracker_last_send', false ) );
+	public function wps_wrael_last_send_time() {
+		return apply_filters( 'wpswings_tracker_last_send_time', get_option( 'wpswings_tracker_last_send', false ) );
 	}
 
 	/**
 	 * Update the option for settings from the multistep form.
 	 */
-	public function mwb_rma_standard_save_settings_filter() {
+	public function wps_rma_standard_save_settings_filter() {
 		check_ajax_referer( 'ajax-nonce', 'nonce' );
 		unset( $_POST['action'] );
 		unset( $_POST['nonce'] );
@@ -420,28 +420,28 @@ class Woo_Refund_And_Exchange_Lite_Common {
 		$checked_reset_license   = isset( $_POST['checkedResetLicense'] ) ? sanitize_text_field( wp_unslash( $_POST['checkedResetLicense'] ) ) : false;
 		$license_code            = isset( $_POST['licenseCode'] ) ? sanitize_text_field( wp_unslash( $_POST['licenseCode'] ) ) : '';
 		if ( $checked_refund ) {
-			update_option( 'mwb_rma_refund_enable', 'on' );
+			update_option( 'wps_rma_refund_enable', 'on' );
 		}
 		if ( $checked_order_msg ) {
-			update_option( 'mwb_rma_general_om', 'on' );
+			update_option( 'wps_rma_general_om', 'on' );
 		}
 		if ( $checked_order_msg_email ) {
-			update_option( 'mwb_rma_order_email', 'on' );
+			update_option( 'wps_rma_order_email', 'on' );
 		}
 		if ( $checked_exchange ) {
-			update_option( 'mwb_rma_exchange_enable', 'on' );
+			update_option( 'wps_rma_exchange_enable', 'on' );
 		}
 		if ( $checked_cancel ) {
-			update_option( 'mwb_rma_cancel_enable', 'on' );
+			update_option( 'wps_rma_cancel_enable', 'on' );
 		}
 		if ( $checked_cancel_prod ) {
-			update_option( 'mwb_rma_cancel_product', 'on' );
+			update_option( 'wps_rma_cancel_product', 'on' );
 		}
 		if ( $checked_wallet ) {
-			update_option( 'mwb_rma_wallet_enable', 'on' );
+			update_option( 'wps_rma_wallet_enable', 'on' );
 		}
 		if ( $checked_cod ) {
-			update_option( 'mwb_rma_hide_rec', 'on' );
+			update_option( 'wps_rma_hide_rec', 'on' );
 		}
 		if ( $checked_conset ) {
 			update_option( 'wrael_enable_tracking', 'on' );
@@ -449,10 +449,10 @@ class Woo_Refund_And_Exchange_Lite_Common {
 		if ( $checked_reset_license ) {
 			update_option( 'mwr_radio_reset_license', 'on' );
 		}
-		if ( ! empty( $license_code ) && function_exists( 'mwb_rma_license_activate' ) ) {
-			mwb_rma_license_activate( $license_code );
+		if ( ! empty( $license_code ) && function_exists( 'wps_rma_license_activate' ) ) {
+			wps_rma_license_activate( $license_code );
 		}
-		update_option( 'wrael_plugin_standard_multistep_done', 'yes' );
+		update_option( 'wps_rma_plugin_standard_multistep_done', 'yes' );
 		wp_send_json( 'yes' );
 	}
 
@@ -463,14 +463,14 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	 * @param object $args .
 	 * @return results
 	 */
-	public function mwb_rma_woocommerce_get_order_item_totals( $results, $args ) {
-		$mwb_refund = get_post_meta( $args['parent'], 'mwb_rma_refund_info', true );
+	public function wps_rma_woocommerce_get_order_item_totals( $results, $args ) {
+		$wps_refund = get_post_meta( $args['parent'], 'wps_rma_refund_info', true );
 		foreach ( $results as $key => $value ) {
 			if ( isset( $value->type ) && isset( $value->amount ) ) {
 				$object_type   = $value->type;
 				$refund_amount = floatval( $value->amount );
 				if ( ! empty( $object_type ) && empty( $refund_amount ) && 'shop_order_refund' === $value->type ) {
-					if ( is_array( $mwb_refund ) && ! empty( $mwb_refund ) && in_array( $value->id, $mwb_refund, true ) ) {
+					if ( is_array( $wps_refund ) && ! empty( $wps_refund ) && in_array( $value->id, $wps_refund, true ) ) {
 						unset( $results[ $key ] );
 					}
 				}

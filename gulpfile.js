@@ -102,7 +102,7 @@ function css()
     './assets/src/front-end/scss/main.scss',
   ])
   .pipe(plumber())
-  .pipe(concat('mwb-public.css'))
+  .pipe(concat('woo-refund-and-exchange-lite-public.css'))
   .pipe(sass({ outputStyle: "expanded" }))
   .pipe(gulp.dest("public/css"))
   .pipe(postcss([autoprefixer(), combineMediaQuery()]))
@@ -121,7 +121,7 @@ function cssBackend()
     'assets/src/back-end/scss/main.scss',
   ])
   .pipe(plumber())
-  .pipe(concat('mwb-admin.css'))
+  .pipe(concat('woo-refund-and-exchange-lite-admin.css'))
   .pipe(sass({ outputStyle: "expanded" }))
   .pipe(gulp.dest("admin/css"))
   .pipe(postcss([autoprefixer(), combineMediaQuery()]))
@@ -137,10 +137,10 @@ function cssOrderEditBackend()
 {
   return gulp
   .src([
-    'assets/src/back-end/scss/mwb-order-edit-page-lite.scss',
+    'assets/src/back-end/scss/woo-refund-and-exchange-lite-order-edit-page.scss',
   ])
   .pipe(plumber())
-  .pipe(concat('mwb-order-edit-page-lite.css'))
+  .pipe(concat('woo-refund-and-exchange-lite-order-edit-page-lite.css'))
   .pipe(sass({ outputStyle: "expanded" }))
   .pipe(gulp.dest("admin/css"))
   .pipe(postcss([autoprefixer(), combineMediaQuery()]))
@@ -161,7 +161,7 @@ function scripts()
     'assets/src/front-end/js/**/*',
     ])
     .pipe(plumber())
-    .pipe(concat('mwb-public.js'))
+    .pipe(concat('woo-refund-and-exchange-lite-public.js'))
     .pipe(gulp.dest('public/js'))
     .pipe(terser())
     .pipe(rename({ suffix: '.min' }))
@@ -180,7 +180,7 @@ function scriptsBackend()
 
     ])
     .pipe(plumber())
-    .pipe(concat('mwb-admin.js'))
+    .pipe(concat('wps-admin.js'))
     .pipe(gulp.dest('admin/js'))
     .pipe(terser())
     .pipe(rename({ suffix: '.min' }))

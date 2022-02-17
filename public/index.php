@@ -2,7 +2,7 @@
 /**
  * Silence is golden.
  *
- * @link https://makewebbetter.com/
+ * @link https://wpswings.com/
  * @since 1.0.0
  * @package    woo-refund-and-exchange-lite
  */

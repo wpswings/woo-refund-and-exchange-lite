@@ -9,8 +9,8 @@
 #add_more_rma_policies_clone {
     display: none;
 }
-/*mwb form group breaker css*/
-.mwb-form-group__breaker {
+/*wps form group breaker css*/
+.wps-form-group__breaker {
     padding: 15px 0 15px 30px;
     background-color: #e5f4fe;
     margin-left: -32px;
@@ -56,8 +56,8 @@
 .add_more_rma_policies select + span{
     margin-right: 30px;
 }
-.admin-bar #save_policies_setting_form #mwb_rma_add_more,
-.admin-bar #save_policies_setting_form .mwb_rma_save_settings{
+.admin-bar #save_policies_setting_form #wps_rma_add_more,
+.admin-bar #save_policies_setting_form .wps_rma_save_settings{
     font-size: 14px;
     padding: 16px 25px;
     display: inline-block;
@@ -69,10 +69,10 @@
     letter-spacing: 0.25px;
     line-height: 16px;
 }
-.admin-bar #save_policies_setting_form input.mwb_rma_save_settings {
+.admin-bar #save_policies_setting_form input.wps_rma_save_settings {
     margin-left: 10px;
 }
-.admin-bar #save_policies_setting_form .mwb_rma_policy_condition{
+.admin-bar #save_policies_setting_form .wps_rma_policy_condition{
     min-width: 180px;
 }
 .admin-bar #save_policies_setting_form input.rma_policy_delete{
@@ -87,15 +87,15 @@
 #save_policies_setting_form .select2-container .select2-selection--multiple{
     min-height: 50px;
 }
-#save_policies_setting_form input.mwb_rma_max_number_days, 
-#save_policies_setting_form .mwb_rma_tax_handling,
+#save_policies_setting_form input.wps_rma_max_number_days, 
+#save_policies_setting_form .wps_rma_tax_handling,
 #save_policies_setting_form .select2.select2-container.select2-container--default {
     max-width: 180px;
     min-width: 180px;
 }
 /*Refund tab form css*/
-.mwb-wrael-gen-section-form .mwb-form-group .mwb-form-group__control .mwb-form-select .mdl-textfield__label,
-.mwb-wrael-gen-section-form .mdc-text-field+.mdc-text-field-helper-line{
+.wps-wrael-gen-section-form .wps-form-group .wps-form-group__control .wps-form-select .mdl-textfield__label,
+.wps-wrael-gen-section-form .mdc-text-field+.mdc-text-field-helper-line{
     padding-left: 0;
     padding-top: 5px;
 }
@@ -108,18 +108,18 @@
     font-size: 11px;
 }
 /*overview*/
-.mwb-overview__wrapper .mwb-overview__content .mwb-overview__keywords .mwb-overview__keywords-item .mwb-overview__keywords-card {
+.wps-overview__wrapper .wps-overview__content .wps-overview__keywords .wps-overview__keywords-item .wps-overview__keywords-card {
     text-align: center;
 }
-.mwb-section .mwb-overview__wrapper .mwb-overview__content .mwb-overview__keywords .mwb-overview__keywords-item .mwb-overview__keywords-card .mwb-overview__keywords-text .mwb-overview__keywords-heading{
+.wps-section .wps-overview__wrapper .wps-overview__content .wps-overview__keywords .wps-overview__keywords-item .wps-overview__keywords-card .wps-overview__keywords-text .wps-overview__keywords-heading{
     font-size: 22px;
     line-height: 32px;
 }
-.mwb-form-group__breaker{
+.wps-form-group__breaker{
     font-size: 25px;
 }
 
-.mwb_admin_order_msg_history_title .mwb_order_heading .reload-icon {
+.wps_admin_order_msg_history_title .wps_order_heading .reload-icon {
     width: 30px; 
 }
 
@@ -138,10 +138,10 @@
     }	
 }
 @media only screen and (max-width: 520px) {
-    .mwb-section .mwb-overview__wrapper .mwb-overview__content .mwb-overview__keywords{
+    .wps-section .wps-overview__wrapper .wps-overview__content .wps-overview__keywords{
         flex-direction: column;
     }
-    .mwb-section .mwb-overview__wrapper .mwb-overview__content .mwb-overview__keywords .mwb-overview__keywords-item{
+    .wps-section .wps-overview__wrapper .wps-overview__content .wps-overview__keywords .wps-overview__keywords-item{
         flex: 0 0 100%;
         max-width: 100%;
     }

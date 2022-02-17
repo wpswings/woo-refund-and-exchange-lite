@@ -2,7 +2,7 @@
 /**
  * The public-facing functionality of the plugin.
  *
- * @link       https://makewebbetter.com/
+ * @link       https://wpswings.com/
  * @since      1.0.0
  *
  * @package    woo-refund-and-exchange-lite
@@ -58,7 +58,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 	 */
 	public function wrael_public_enqueue_styles() {
 
-		wp_enqueue_style( $this->plugin_name, WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'public/css/mwb-public.min.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'public/css/woo-refund-and-exchange-lite-public.min.css', array(), $this->version, 'all' );
 
 	}
 
@@ -68,14 +68,14 @@ class Woo_Refund_And_Exchange_Lite_Public {
 	 * @since    1.0.0
 	 */
 	public function wrael_public_enqueue_scripts() {
-		$pro_active = mwb_rma_pro_active();
-		wp_register_script( $this->plugin_name, WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'public/js/mwb-public.min.js', array( 'jquery' ), $this->version, false );
+		$pro_active = wps_rma_pro_active();
+		wp_register_script( $this->plugin_name, WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'public/js/woo-refund-and-exchange-lite-public.min.js', array( 'jquery' ), $this->version, false );
 		wp_localize_script(
 			$this->plugin_name,
 			'wrael_public_param',
 			array(
 				'ajaxurl'               => admin_url( 'admin-ajax.php' ),
-				'mwb_rma_nonce'         => wp_create_nonce( 'mwb_rma_ajax_security' ),
+				'wps_rma_nonce'         => wp_create_nonce( 'wps_rma_ajax_security' ),
 				'return_subject_msg'    => esc_html__( 'Please enter refund subject.', 'woo-refund-and-exchange-lite' ),
 				'return_reason_msg'     => esc_html__( 'Please enter refund reason.', 'woo-refund-and-exchange-lite' ),
 				'return_select_product' => esc_html__( 'Please select product to refund.', 'woo-refund-and-exchange-lite' ),
@@ -92,44 +92,44 @@ class Woo_Refund_And_Exchange_Lite_Public {
 	 * @param array  $actions is current order action.
 	 * @param object $order is a current order.
 	 */
-	public function mwb_rma_refund_button( $actions, $order ) {
-		$show_refund_button = mwb_rma_show_buttons( 'refund', $order );
-		$view_msg           = get_option( 'mwb_rma_general_om', 'no' );
-		$mwb_rma_return     = get_option( 'mwb_rma_refund_enable', false );
-		$refund_hide        = get_option( 'mwb_rma_refund_button_pages', false );
+	public function wps_rma_refund_button( $actions, $order ) {
+		$show_refund_button = wps_rma_show_buttons( 'refund', $order );
+		$view_msg           = get_option( 'wps_rma_general_om', 'no' );
+		$wps_rma_return     = get_option( 'wps_rma_refund_enable', false );
+		$refund_hide        = get_option( 'wps_rma_refund_button_pages', false );
 		if ( isset( $view_msg ) && 'on' === $view_msg ) {
-			$order_msg_button_text = get_option( 'mwb_rma_order_message_button_text', false );
+			$order_msg_button_text = get_option( 'wps_rma_order_message_button_text', false );
 			if ( isset( $order_msg_button_text ) && ! empty( $order_msg_button_text ) ) {
 				$order_msg_button_text = $order_msg_button_text;
 			} else {
 				$order_msg_button_text = esc_html__( 'View Order Messages', 'woo-refund-and-exchange-lite' );
 			}
-			$mwb_rma_view_order_msg_page_id = get_option( 'mwb_rma_view_order_msg_page_id', true );
-			$msg_url                        = get_permalink( $mwb_rma_view_order_msg_page_id );
+			$wps_rma_view_order_msg_page_id = get_option( 'wps_rma_view_order_msg_page_id', true );
+			$msg_url                        = get_permalink( $wps_rma_view_order_msg_page_id );
 			$msg_url                        = add_query_arg( 'order_id', $order->get_id(), $msg_url );
-			$msg_url                        = wp_nonce_url( $msg_url, 'mwb_rma_nonce', 'mwb_rma_nonce' );
+			$msg_url                        = wp_nonce_url( $msg_url, 'wps_rma_nonce', 'wps_rma_nonce' );
 			$actions['view_msg']['url']     = $msg_url;
 			$actions['view_msg']['name']    = $order_msg_button_text;
 		}
 
 		$refund_will_made =
 		// Refund Will made or not bool.
-		apply_filters( 'mwb_rma_refund_will_made', true, $order->get_id() );
+		apply_filters( 'wps_rma_refund_will_made', true, $order->get_id() );
 		$show_on_pages = true;
 		if ( ! empty( $refund_hide ) && in_array( 'order-page', $refund_hide, true ) ) {
 			$show_on_pages = false;
 		}
-		if ( $mwb_rma_return && $refund_will_made && $show_on_pages && 'yes' === $show_refund_button ) {
-			$return_button_text = get_option( 'mwb_rma_refund_button_text', false );
+		if ( $wps_rma_return && $refund_will_made && $show_on_pages && 'yes' === $show_refund_button ) {
+			$return_button_text = get_option( 'wps_rma_refund_button_text', false );
 			if ( isset( $return_button_text ) && ! empty( $return_button_text ) ) {
 				$return_button_text = $return_button_text;
 			} else {
 				$return_button_text = esc_html__( 'Refund', 'woo-refund-and-exchange-lite' );
 			}
-				$mwb_rma_return_request_form_page_id = get_option( 'mwb_rma_return_request_form_page_id' );
-				$return_url                          = get_permalink( $mwb_rma_return_request_form_page_id );
+				$wps_rma_return_request_form_page_id = get_option( 'wps_rma_return_request_form_page_id' );
+				$return_url                          = get_permalink( $wps_rma_return_request_form_page_id );
 				$return_url                          = add_query_arg( 'order_id', $order->get_id(), $return_url );
-				$return_url                          = wp_nonce_url( $return_url, 'mwb_rma_nonce', 'mwb_rma_nonce' );
+				$return_url                          = wp_nonce_url( $return_url, 'wps_rma_nonce', 'wps_rma_nonce' );
 				$actions['return']['url']            = $return_url;
 				$actions['return']['name']           = $return_button_text;
 		}
@@ -141,23 +141,23 @@ class Woo_Refund_And_Exchange_Lite_Public {
 	 *
 	 * @param object $order is current order.
 	 */
-	public function mwb_rma_return_button_and_details( $order ) {
+	public function wps_rma_return_button_and_details( $order ) {
 		global $wp;
-		$condition          = mwb_rma_show_buttons( 'refund', $order );
+		$condition          = wps_rma_show_buttons( 'refund', $order );
 		$get_order_currency = get_woocommerce_currency_symbol( $order->get_currency() );
 
 		// View order message code start.
-		$mwb_rma_view_order_msg_page_id    = get_option( 'mwb_rma_view_order_msg_page_id', true );
-		$view_order_msg_url                = get_permalink( $mwb_rma_view_order_msg_page_id );
+		$wps_rma_view_order_msg_page_id    = get_option( 'wps_rma_view_order_msg_page_id', true );
+		$view_order_msg_url                = get_permalink( $wps_rma_view_order_msg_page_id );
 		$view_order_msg_url                = add_query_arg( 'order_id', $order->get_id(), $view_order_msg_url );
-		$view_order_msg_url                = wp_nonce_url( $view_order_msg_url, 'mwb_rma_nonce', 'mwb_rma_nonce' );
-		$mwb_rma_order_message_button_text = get_option( 'mwb_rma_order_message_button_text', false );
-		if ( ! empty( $mwb_rma_order_message_button_text ) ) {
-			$mwb_rma_order_message_button_text = $mwb_rma_order_message_button_text;
+		$view_order_msg_url                = wp_nonce_url( $view_order_msg_url, 'wps_rma_nonce', 'wps_rma_nonce' );
+		$wps_rma_order_message_button_text = get_option( 'wps_rma_order_message_button_text', false );
+		if ( ! empty( $wps_rma_order_message_button_text ) ) {
+			$wps_rma_order_message_button_text = $wps_rma_order_message_button_text;
 		} else {
-			$mwb_rma_order_message_button_text = esc_html__( 'View Order Message', 'woo-refund-and-exchange-lite' );
+			$wps_rma_order_message_button_text = esc_html__( 'View Order Message', 'woo-refund-and-exchange-lite' );
 		}
-		$view_msg     = get_option( 'mwb_rma_general_om', 'no' );
+		$view_msg     = get_option( 'wps_rma_general_om', 'no' );
 		$redirect_uri = isset( $_SERVER['REQUEST_URI'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '';
 		if ( isset( $redirect_uri ) ) {
 			if ( isset( $view_msg ) && 'on' === $view_msg ) {
@@ -165,7 +165,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 				<form action="<?php echo esc_html( add_query_arg( 'order_id', $order->get_id(), $view_order_msg_url ) ); ?>" method="post">
 					<input type="hidden" value="<?php echo esc_html( $order->get_id() ); ?>" name="order_id">
 					<p>
-						<input type="submit" class="btn button" value="<?php echo esc_html( $mwb_rma_order_message_button_text ); ?>">
+						<input type="submit" class="btn button" value="<?php echo esc_html( $wps_rma_order_message_button_text ); ?>">
 					</p>
 				</form>
 				<?php
@@ -177,21 +177,21 @@ class Woo_Refund_And_Exchange_Lite_Public {
 
 		$refund_will_made =
 		// Refund Will made or not bool.
-		apply_filters( 'mwb_rma_refund_will_made', true, $order->get_id() );
-		$mwb_rma_return_request_form_page_id = get_option( 'mwb_rma_return_request_form_page_id', true );
+		apply_filters( 'wps_rma_refund_will_made', true, $order->get_id() );
+		$wps_rma_return_request_form_page_id = get_option( 'wps_rma_return_request_form_page_id', true );
 		if ( $refund_will_made && 'yes' === $condition ) {
-			$return_button_text = get_option( 'mwb_rma_refund_button_text', false );
-			$return_button_view = get_option( 'mwb_rma_refund_button_pages', false );
+			$return_button_text = get_option( 'wps_rma_refund_button_text', false );
+			$return_button_view = get_option( 'wps_rma_refund_button_pages', false );
 			if ( isset( $return_button_text ) && ! empty( $return_button_text ) ) {
 				$return_button_text = $return_button_text;
 			} else {
 				$return_button_text = esc_html__( 'Refund', 'woo-refund-and-exchange-lite' );
 			}
-			$page_id            = $mwb_rma_return_request_form_page_id;
+			$page_id            = $wps_rma_return_request_form_page_id;
 			$return_url         = get_permalink( $page_id );
 			$return_url         = add_query_arg( 'order_id', $order->get_id(), $return_url );
-			$return_url         = wp_nonce_url( $return_url, 'mwb_rma_nonce', 'mwb_rma_nonce' );
-			$refund_button_view = get_option( 'mwb_rma_refund_button_pages', false );
+			$return_url         = wp_nonce_url( $return_url, 'wps_rma_nonce', 'wps_rma_nonce' );
+			$refund_button_view = get_option( 'wps_rma_refund_button_pages', false );
 			if ( empty( $return_button_view ) ) {
 				$refund_button_view = array( 'none' );
 			}
@@ -207,7 +207,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 		// Show Refund button functionality end.
 
 		// show return Product Details on order view page start.
-		$product_datas = get_post_meta( $order->get_id(), 'mwb_rma_return_product', true );
+		$product_datas = get_post_meta( $order->get_id(), 'wps_rma_return_product', true );
 		if ( isset( $product_datas ) && ! empty( $product_datas ) ) {
 			?>
 			<h2><?php esc_html_e( 'Refund Requested Product', 'woo-refund-and-exchange-lite' ); ?></h2>
@@ -230,9 +230,9 @@ class Woo_Refund_And_Exchange_Lite_Public {
 							<?php
 							$line_items = $order->get_items();
 							if ( is_array( $line_items ) && ! empty( $line_items ) ) {
-								update_post_meta( $order->get_id(), 'mwb_rma_refund_new_line_items', $line_items );
+								update_post_meta( $order->get_id(), 'wps_rma_refund_new_line_items', $line_items );
 							}
-							$line_items = get_post_meta( $order->get_id(), 'mwb_rma_refund_new_line_items', true );
+							$line_items = get_post_meta( $order->get_id(), 'wps_rma_refund_new_line_items', true );
 							// Return Products.
 							$return_products = $product_data['products'];
 							foreach ( $line_items as $item_id => $item ) {
@@ -271,7 +271,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 												</td>
 												<td class="product-total">
 												<?php
-													echo wp_kses_post( mwb_wrma_format_price( $return_product['price'] * $return_product['qty'], $get_order_currency ) );
+													echo wp_kses_post( wps_wrma_format_price( $return_product['price'] * $return_product['qty'], $get_order_currency ) );
 												?>
 												</td>
 											</tr>
@@ -283,25 +283,25 @@ class Woo_Refund_And_Exchange_Lite_Public {
 							?>
 							<?php
 							// To show extra row in the order view refund request table.
-							do_action( 'mwb_rma_add_extra_fields_row', $order->get_id() );
+							do_action( 'wps_rma_add_extra_fields_row', $order->get_id() );
 							?>
 							<tr>
 								<th scope="row"><?php esc_html_e( 'Refund Amount', 'woo-refund-and-exchange-lite' ); ?></th>
-								<th><?php echo wp_kses_post( mwb_wrma_format_price( $product_data['amount'], $get_order_currency ) ); ?></th>
+								<th><?php echo wp_kses_post( wps_wrma_format_price( $product_data['amount'], $get_order_currency ) ); ?></th>
 							</tr>
 						</tbody>
 					</table>
 					<?php
 					if ( 'pending' === $product_data['status'] ) {
-						$page_id    = $mwb_rma_return_request_form_page_id;
+						$page_id    = $wps_rma_return_request_form_page_id;
 						$return_url = get_permalink( $page_id );
 						$return_url = add_query_arg( 'order_id', $order->get_id(), $return_url );
-						$return_url = wp_nonce_url( $return_url, 'mwb_rma_nonce', 'mwb_rma_nonce' );
+						$return_url = wp_nonce_url( $return_url, 'wps_rma_nonce', 'wps_rma_nonce' );
 						?>
 							<form action="<?php echo esc_html( $return_url ); ?>" method="post">
 								<input type="hidden" value="<?php echo esc_html( $order->get_id() ); ?>" name="order_id">
 								<p>
-									<input type="submit" class="btn button" value="<?php esc_html_e( 'Update Request', 'woo-refund-and-exchange-lite' ); ?>" name="mwb_mra_return_request">
+									<input type="submit" class="btn button" value="<?php esc_html_e( 'Update Request', 'woo-refund-and-exchange-lite' ); ?>" name="wps_mra_return_request">
 								</p>
 							</form>
 							<?php
@@ -335,50 +335,50 @@ class Woo_Refund_And_Exchange_Lite_Public {
 	 *
 	 * @param array $template .
 	 */
-	public function mwb_rma_product_return_template( $template ) {
-		$mwb_rma_return_request_form_page_id = get_option( 'mwb_rma_return_request_form_page_id' );
+	public function wps_rma_product_return_template( $template ) {
+		$wps_rma_return_request_form_page_id = get_option( 'wps_rma_return_request_form_page_id' );
 		if ( has_filter( 'wpml_object_id' ) ) {
-			$ro_pageid = apply_filters( 'wpml_object_id', $mwb_rma_return_request_form_page_id, 'page', false, ICL_LANGUAGE_CODE );
+			$ro_pageid = apply_filters( 'wpml_object_id', $wps_rma_return_request_form_page_id, 'page', false, ICL_LANGUAGE_CODE );
 		}
-		if ( ( ( '' !== $mwb_rma_return_request_form_page_id ) && is_page( $mwb_rma_return_request_form_page_id ) ) || ( isset( $ro_pageid ) && is_page( $ro_pageid ) ) ) {
-			$get_id = get_option( 'mwb_rma_refund_page' );
+		if ( ( ( '' !== $wps_rma_return_request_form_page_id ) && is_page( $wps_rma_return_request_form_page_id ) ) || ( isset( $ro_pageid ) && is_page( $ro_pageid ) ) ) {
+			$get_id = get_option( 'wps_rma_refund_page' );
 			if ( function_exists( 'vc_lean_map' ) && ! empty( $get_id ) ) {
-				if ( isset( $_GET['mwb_rma_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['mwb_rma_nonce'] ) ), 'mwb_rma_nonce' ) && isset( $_GET['order_id'] ) ) {
+				if ( isset( $_GET['wps_rma_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['wps_rma_nonce'] ) ), 'wps_rma_nonce' ) && isset( $_GET['order_id'] ) ) {
 					$url           = get_permalink( $get_id );
 					$order_id      = sanitize_text_field( wp_unslash( $_GET['order_id'] ) );
-					$mwb_rma_nonce = sanitize_text_field( wp_unslash( $_GET['mwb_rma_nonce'] ) );
+					$wps_rma_nonce = sanitize_text_field( wp_unslash( $_GET['wps_rma_nonce'] ) );
 					$args          = array(
 						'order_id'      => $order_id,
-						'mwb_rma_nonce' => $mwb_rma_nonce,
+						'wps_rma_nonce' => $wps_rma_nonce,
 					);
 					$url = add_query_arg( $args, $url );
 					wp_safe_redirect( $url );
 				}
 			}
-			$new_template = esc_html( WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH ) . 'public/partials/mwb-rma-refund-request-form.php';
+			$new_template = esc_html( WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH ) . 'public/partials/wps-rma-refund-request-form.php';
 			$template     = $new_template;
 		}
 
-		$mwb_rma_view_order_msg_page_id = get_option( 'mwb_rma_view_order_msg_page_id' );
+		$wps_rma_view_order_msg_page_id = get_option( 'wps_rma_view_order_msg_page_id' );
 		if ( has_filter( 'wpml_object_id' ) ) {
-			$ro_pageid1 = apply_filters( 'wpml_object_id', $mwb_rma_view_order_msg_page_id, 'page', false, ICL_LANGUAGE_CODE );
+			$ro_pageid1 = apply_filters( 'wpml_object_id', $wps_rma_view_order_msg_page_id, 'page', false, ICL_LANGUAGE_CODE );
 		}
-		if ( ( '' !== $mwb_rma_view_order_msg_page_id ) && ( is_page( $mwb_rma_view_order_msg_page_id ) ) || ( isset( $ro_pageid1 ) && is_page( $ro_pageid1 ) ) ) {
-			$get_id = get_option( 'mwb_rma_order_msg_page' );
+		if ( ( '' !== $wps_rma_view_order_msg_page_id ) && ( is_page( $wps_rma_view_order_msg_page_id ) ) || ( isset( $ro_pageid1 ) && is_page( $ro_pageid1 ) ) ) {
+			$get_id = get_option( 'wps_rma_order_msg_page' );
 			if ( function_exists( 'vc_lean_map' ) && ! empty( $get_id ) ) {
-				if ( isset( $_GET['mwb_rma_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['mwb_rma_nonce'] ) ), 'mwb_rma_nonce' ) && isset( $_GET['order_id'] ) ) {
+				if ( isset( $_GET['wps_rma_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['wps_rma_nonce'] ) ), 'wps_rma_nonce' ) && isset( $_GET['order_id'] ) ) {
 					$url           = get_permalink( $get_id );
 					$order_id      = sanitize_text_field( wp_unslash( $_GET['order_id'] ) );
-					$mwb_rma_nonce = sanitize_text_field( wp_unslash( $_GET['mwb_rma_nonce'] ) );
+					$wps_rma_nonce = sanitize_text_field( wp_unslash( $_GET['wps_rma_nonce'] ) );
 					$args          = array(
 						'order_id'      => $order_id,
-						'mwb_rma_nonce' => $mwb_rma_nonce,
+						'wps_rma_nonce' => $wps_rma_nonce,
 					);
 					$url = add_query_arg( $args, $url );
 					wp_safe_redirect( $url );
 				}
 			}
-			$new_template = esc_html( WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH ) . 'public/partials/mwb-rma-view-order-msg.php';
+			$new_template = esc_html( WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH ) . 'public/partials/wps-rma-view-order-msg.php';
 			$template     = $new_template;
 		}
 		return $template;

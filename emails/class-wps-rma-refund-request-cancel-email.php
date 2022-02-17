@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 0.1
  * @extends \WC_Email
  */
-class Mwb_Rma_Refund_Request_Cancel_Email extends WC_Email {
+class Wps_Rma_Refund_Request_Cancel_Email extends WC_Email {
 	/**
 	 * Set email defaults
 	 *
@@ -23,21 +23,21 @@ class Mwb_Rma_Refund_Request_Cancel_Email extends WC_Email {
 	 */
 	public function __construct() {
 		// set ID, this simply needs to be a unique name.
-		$this->id = 'mwb_rma_refund_request_cancel_email';
+		$this->id = 'wps_rma_refund_request_cancel_email';
 
 		// this is the title in WooCommerce Email settings.
 		$this->title = 'RMA Refund Request Cancel Email';
 		// this is the description in WooCommerce email settings.
 		$shortcodes        = '{site_title}, {site_address}, {site_url}, {message_date}, {order_id}';
-		$this->description = 'Admin to Customer Refund Request Cancel Emails<h1>These are shorcodes available for the custom email</h1><br><span>' . apply_filters( 'mwb_rma_refund_shortcode', $shortcodes ) . '</span></b>';
+		$this->description = 'Admin to Customer Refund Request Cancel Emails<h1>These are shorcodes available for the custom email</h1><br><span>' . apply_filters( 'wps_rma_refund_shortcode', $shortcodes ) . '</span></b>';
 
 		// these are the default heading and subject lines that can be overridden using the settings.
 		$this->heading = 'RMA Refund Request Email';
 		$this->subject = 'New message has been received';
 
 		// these define the locations of the templates that this email should use, we'll just use the new order template since this email is similar.
-		$this->template_html  = 'mwb-rma-refund-request-cancel-email-template.php';
-		$this->template_plain = 'mwb-rma-refund-request-cancel-email-template.php';
+		$this->template_html  = 'wps-rma-refund-request-cancel-email-template.php';
+		$this->template_plain = 'wps-rma-refund-request-cancel-email-template.php';
 		$this->template_base  = WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'emails/templates/';
 		$this->placeholders   = array(
 			'{site_title}'       => $this->get_blogname(),
@@ -66,7 +66,7 @@ class Mwb_Rma_Refund_Request_Cancel_Email extends WC_Email {
 			$this->placeholders['{message_date}'] = gmdate( 'M d, Y' );
 			$this->placeholders['{order_id}']     = '#' . $order_id;
 			$placeholder                          = $this->placeholders;
-			$this->placeholders                   = apply_filters( 'mwb_rma_shortcode_extend', $placeholder, $order_id );
+			$this->placeholders                   = apply_filters( 'wps_rma_shortcode_extend', $placeholder, $order_id );
 			$this->send( $this->receicer, $this->get_subject(), $this->get_content(), $this->get_headers(), $attachment );
 		}
 		$this->restore_locale();
@@ -186,4 +186,4 @@ class Mwb_Rma_Refund_Request_Cancel_Email extends WC_Email {
 		);
 	}
 
-} // end \MWB_Rma_Order_Messages_Email class
+} // end \WPS_Rma_Order_Messages_Email class

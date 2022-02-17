@@ -4,7 +4,7 @@
  *
  * This file is used to markup the html field for overview.
  *
- * @link       https://makewebbetter.com/
+ * @link       https://wpswings.com/
  * @since      1.0.0
  *
  * @package    woo-refund-and-exchange-lite
@@ -13,12 +13,12 @@
 
 ?>
 
-<div class="mwb-overview__wrapper">
-	<div class="mwb-overview__banner">
+<div class="wps-overview__wrapper">
+	<div class="wps-overview__banner">
 		<img src="<?php echo esc_html( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL ); ?>admin/image/banner.png" alt="Overview banner image">
 	</div>
-	<div class="mwb-overview__content">
-		<div class="mwb-overview__content-description">
+	<div class="wps-overview__content">
+		<div class="wps-overview__content-description">
 			<h2><?php echo esc_html_e( 'What Is Woo Refund And Exchange Lite?', 'woo-refund-and-exchange-lite' ); ?></h2>
 			<p>
 				<?php
@@ -37,15 +37,15 @@
 			</p>
 		</div>
 		<h2> <?php esc_html_e( 'The Free Plugin Benefits', 'woo-refund-and-exchange-lite' ); ?></h2>
-		<div class="mwb-overview__keywords">
-			<div class="mwb-overview__keywords-item">
-				<div class="mwb-overview__keywords-card">
-					<div class="mwb-overview__keywords-image">
+		<div class="wps-overview__keywords">
+			<div class="wps-overview__keywords-item">
+				<div class="wps-overview__keywords-card">
+					<div class="wps-overview__keywords-image">
 						<img src="<?php echo esc_html( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/image/Connect-via-Messages.png' ); ?>" alt="AConnect-via-Messages image">
 					</div>
-					<div class="mwb-overview__keywords-text">
-						<h3 class="mwb-overview__keywords-heading"><?php echo esc_html_e( ' Connect via Messages ', 'woo-refund-and-exchange-lite' ); ?></h3>
-						<p class="mwb-overview__keywords-description">
+					<div class="wps-overview__keywords-text">
+						<h3 class="wps-overview__keywords-heading"><?php echo esc_html_e( ' Connect via Messages ', 'woo-refund-and-exchange-lite' ); ?></h3>
+						<p class="wps-overview__keywords-description">
 							<?php
 							esc_html_e( 'Allow customers to send you messages in the refund panel.', 'woo-refund-and-exchange-lite' );
 							?>
@@ -53,14 +53,14 @@
 					</div>
 				</div>
 			</div>
-			<div class="mwb-overview__keywords-item">
-				<div class="mwb-overview__keywords-card">
-					<div class="mwb-overview__keywords-image">
+			<div class="wps-overview__keywords-item">
+				<div class="wps-overview__keywords-card">
+					<div class="wps-overview__keywords-image">
 						<img src="<?php echo esc_html( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/image/Allow-And-Set-Attachments-Limit.png' ); ?>" alt="Allow-And-Set-Attachments-Limit image">
 					</div>
-					<div class="mwb-overview__keywords-text">
-						<h3 class="mwb-overview__keywords-heading"><?php echo esc_html_e( ' Allow And Set Attachments Limit ', 'woo-refund-and-exchange-lite' ); ?></h3>
-						<p class="mwb-overview__keywords-description">
+					<div class="wps-overview__keywords-text">
+						<h3 class="wps-overview__keywords-heading"><?php echo esc_html_e( ' Allow And Set Attachments Limit ', 'woo-refund-and-exchange-lite' ); ?></h3>
+						<p class="wps-overview__keywords-description">
 							<?php
 							esc_html_e( 'Admin can allow and set a limit to the number of attachments on the refund request form.', 'woo-refund-and-exchange-lite' );
 							?>
@@ -68,14 +68,14 @@
 					</div>
 				</div>
 			</div>
-			<div class="mwb-overview__keywords-item">
-				<div class="mwb-overview__keywords-card">
-					<div class="mwb-overview__keywords-image">
+			<div class="wps-overview__keywords-item">
+				<div class="wps-overview__keywords-card">
+					<div class="wps-overview__keywords-image">
 						<img src="<?php echo esc_html( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/image/Set-Return-Refund-Conditions.png' ); ?>" alt="Set-Return-Refund-Conditions image">
 					</div>
-					<div class="mwb-overview__keywords-text">
-						<h3 class="mwb-overview__keywords-heading"><?php echo esc_html_e( ' Set Return Refund Conditions ', 'woo-refund-and-exchange-lite' ); ?></h3>
-						<p class="mwb-overview__keywords-description">
+					<div class="wps-overview__keywords-text">
+						<h3 class="wps-overview__keywords-heading"><?php echo esc_html_e( ' Set Return Refund Conditions ', 'woo-refund-and-exchange-lite' ); ?></h3>
+						<p class="wps-overview__keywords-description">
 							<?php
 							esc_html_e( 'Admin can set conditions for the refund process.', 'woo-refund-and-exchange-lite' );
 							?>
@@ -83,14 +83,14 @@
 					</div>
 				</div>
 			</div>
-			<div class="mwb-overview__keywords-item">
-				<div class="mwb-overview__keywords-card">
-					<div class="mwb-overview__keywords-image">
+			<div class="wps-overview__keywords-item">
+				<div class="wps-overview__keywords-card">
+					<div class="wps-overview__keywords-image">
 						<img src="<?php echo esc_html( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/image/Send-Email-Notification.png' ); ?>" alt="Send-Email-Notification image">
 					</div>
-					<div class="mwb-overview__keywords-text">
-						<h3 class="mwb-overview__keywords-heading"><?php echo esc_html_e( ' Send Email Notification' ); ?></h3>
-						<p class="mwb-overview__keywords-description">
+					<div class="wps-overview__keywords-text">
+						<h3 class="wps-overview__keywords-heading"><?php echo esc_html_e( ' Send Email Notification' ); ?></h3>
+						<p class="wps-overview__keywords-description">
 							<?php
 							esc_html_e( 'Set emails to notify each performing step during the refund process.', 'woo-refund-and-exchange-lite' );
 							?>
@@ -98,14 +98,14 @@
 					</div>
 				</div>
 			</div>
-			<div class="mwb-overview__keywords-item">
-				<div class="mwb-overview__keywords-card">
-					<div class="mwb-overview__keywords-image">
+			<div class="wps-overview__keywords-item">
+				<div class="wps-overview__keywords-card">
+					<div class="wps-overview__keywords-image">
 						<img src="<?php echo esc_html( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/image/Manage-Product-Returns.png' ); ?>" alt="Manage-Product-Returns image">
 					</div>
-					<div class="mwb-overview__keywords-text">
-						<h3 class="mwb-overview__keywords-heading"><?php echo esc_html_e( ' Manage Product Returns ', 'woo-refund-and-exchange-lite' ); ?></h3>
-						<p class="mwb-overview__keywords-description">
+					<div class="wps-overview__keywords-text">
+						<h3 class="wps-overview__keywords-heading"><?php echo esc_html_e( ' Manage Product Returns ', 'woo-refund-and-exchange-lite' ); ?></h3>
+						<p class="wps-overview__keywords-description">
 							<?php
 							esc_html_e( 'Provide a complete refund system with the manage stock and the refund amount', 'woo-refund-and-exchange-lite' );
 							?>

@@ -2,7 +2,7 @@
 /**
  * Fired during plugin deactivation
  *
- * @link  https://makewebbetter.com/
+ * @link  https://wpswings.com/
  * @since 1.0.0
  *
  * @package    woo-refund-and-exchange-lite
@@ -41,11 +41,11 @@ class Woo_Refund_And_Exchange_Lite_Deactivator {
 			// Uninstall the plugin for all these sites.
 			foreach ( $site_ids as $site_id ) {
 				switch_to_blog( $site_id );
-				self::mwb_rma_delete_pages();
+				self::wps_rma_delete_pages();
 				restore_current_blog();
 			}
 		} else {
-			self::mwb_rma_delete_pages();
+			self::wps_rma_delete_pages();
 		}
 	}
 
@@ -54,7 +54,7 @@ class Woo_Refund_And_Exchange_Lite_Deactivator {
 	 *
 	 * @param int $page_id The ID of the post to be deleted.
 	 */
-	public static function mwb_rma_delete_wpml_translate_post( $page_id ) {
+	public static function wps_rma_delete_wpml_translate_post( $page_id ) {
 		if ( has_filter( 'wpml_object_id' ) && function_exists( 'wpml_get_active_languages' ) ) {
 			$langs = wpml_get_active_languages();
 			foreach ( $langs as $lang ) {
@@ -70,17 +70,17 @@ class Woo_Refund_And_Exchange_Lite_Deactivator {
 	/**
 	 * Function to deletepages.
 	 */
-	public static function mwb_rma_delete_pages() {
+	public static function wps_rma_delete_pages() {
 		// Delete created pages.
-		$page_id = get_option( 'mwb_rma_return_request_form_page_id' );
-		self::mwb_rma_delete_wpml_translate_post( $page_id );  // Delete tranlated pages.
+		$page_id = get_option( 'wps_rma_return_request_form_page_id' );
+		self::wps_rma_delete_wpml_translate_post( $page_id );  // Delete tranlated pages.
 		wp_delete_post( $page_id );
-		delete_option( 'mwb_rma_return_request_form_page_id' );
+		delete_option( 'wps_rma_return_request_form_page_id' );
 
-		$page_id = get_option( 'mwb_rma_view_order_msg_page_id' );
-		self::mwb_rma_delete_wpml_translate_post( $page_id ); // Delete tranlated pages.
+		$page_id = get_option( 'wps_rma_view_order_msg_page_id' );
+		self::wps_rma_delete_wpml_translate_post( $page_id ); // Delete tranlated pages.
 		wp_delete_post( $page_id );
-		delete_option( 'mwb_rma_view_order_msg_page_id' );
+		delete_option( 'wps_rma_view_order_msg_page_id' );
 	}
 
 }

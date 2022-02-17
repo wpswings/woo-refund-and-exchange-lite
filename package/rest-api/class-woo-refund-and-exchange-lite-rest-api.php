@@ -4,7 +4,7 @@
  *
  * A class definition that includes api's endpoints and functions used across the plugin
  *
- * @link       https://makewebbetter.com/
+ * @link       https://wpswings.com/
  * @since      1.0.0
  *
  * @package    woo-refund-and-exchange-lite
@@ -23,7 +23,7 @@
  * @since      1.0.0
  * @package    woo-refund-and-exchange-lite
  * @subpackage woo-refund-and-exchange-lite/package/rest-api/version1
- * @author     makewebbetter <webmaster@makewebbetter.com>
+ * @author     wpswings <webmaster@wpswings.com>
  */
 class Woo_Refund_And_Exchange_Lite_Rest_Api {
 
@@ -72,14 +72,14 @@ class Woo_Refund_And_Exchange_Lite_Rest_Api {
 	 * @since    1.0.0
 	 * @access   private
 	 */
-	public function mwb_rma_add_endpoint() {
+	public function wps_rma_add_endpoint() {
 		register_rest_route(
 			'rma',
 			'refund-request',
 			array(
 				'methods'             => 'POST',
-				'callback'            => array( $this, 'mwb_rma_refund_request_callback' ),
-				'permission_callback' => array( $this, 'mwb_rma_default_permission_check' ),
+				'callback'            => array( $this, 'wps_rma_refund_request_callback' ),
+				'permission_callback' => array( $this, 'wps_rma_default_permission_check' ),
 			)
 		);
 		register_rest_route(
@@ -87,8 +87,8 @@ class Woo_Refund_And_Exchange_Lite_Rest_Api {
 			'refund-request-accept',
 			array(
 				'methods'             => 'POST',
-				'callback'            => array( $this, 'mwb_rma_refund_request_accept_callback' ),
-				'permission_callback' => array( $this, 'mwb_rma_default_permission_check' ),
+				'callback'            => array( $this, 'wps_rma_refund_request_accept_callback' ),
+				'permission_callback' => array( $this, 'wps_rma_default_permission_check' ),
 			)
 		);
 		register_rest_route(
@@ -96,8 +96,8 @@ class Woo_Refund_And_Exchange_Lite_Rest_Api {
 			'refund-request-cancel',
 			array(
 				'methods'             => 'POST',
-				'callback'            => array( $this, 'mwb_rma_refund_request_cancel_callback' ),
-				'permission_callback' => array( $this, 'mwb_rma_default_permission_check' ),
+				'callback'            => array( $this, 'wps_rma_refund_request_cancel_callback' ),
+				'permission_callback' => array( $this, 'wps_rma_default_permission_check' ),
 			)
 		);
 	}
@@ -110,18 +110,18 @@ class Woo_Refund_And_Exchange_Lite_Rest_Api {
 	 * @return Array $result   return rest response to server from where the endpoint hits.
 	 * @since    1.0.0
 	 */
-	public function mwb_rma_default_permission_check( $request ) {
+	public function wps_rma_default_permission_check( $request ) {
 		$request_params  = $request->get_params();
-		$mwb_secretkey   = isset( $request_params['secret_key'] ) ? $request_params['secret_key'] : '';
-		$secret_key      = get_option( 'mwb_rma_secret_key', true );
-		$api_enable      = get_option( 'mwb_rma_enable_api', true );
-		$mwb_secret_code = '';
+		$wps_secretkey   = isset( $request_params['secret_key'] ) ? $request_params['secret_key'] : '';
+		$secret_key      = get_option( 'wps_rma_secret_key', true );
+		$api_enable      = get_option( 'wps_rma_enable_api', true );
+		$wps_secret_code = '';
 		if ( 'on' === $api_enable ) {
-			$mwb_secret_code = ! empty( $secret_key ) ? $secret_key : '';
+			$wps_secret_code = ! empty( $secret_key ) ? $secret_key : '';
 		}
-		if ( '' === $mwb_secretkey ) {
+		if ( '' === $wps_secretkey ) {
 			return false;
-		} elseif ( trim( $mwb_secret_code ) === trim( $mwb_secretkey ) ) {
+		} elseif ( trim( $wps_secret_code ) === trim( $wps_secretkey ) ) {
 			return true;
 		} else {
 			return false;
@@ -133,19 +133,19 @@ class Woo_Refund_And_Exchange_Lite_Rest_Api {
 	 * Begins execution of api endpoint.
 	 *
 	 * @param array $request All information related with the api request containing in this array.
-	 * @return array $mwb_rma_response   return rest response to server from where the endpoint hits.
+	 * @return array $wps_rma_response   return rest response to server from where the endpoint hits.
 	 * @since    1.0.0
 	 */
-	public function mwb_rma_refund_request_callback( $request ) {
+	public function wps_rma_refund_request_callback( $request ) {
 		require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php';
-		$mwb_rma_api_obj     = new Woo_Refund_And_Exchange_Lite_Api_Process();
-		$mwb_rma_resultsdata = $mwb_rma_api_obj->mwb_rma_refund_request_process( $request );
-		if ( is_array( $mwb_rma_resultsdata ) && isset( $mwb_rma_resultsdata['status'] ) && 200 == $mwb_rma_resultsdata['status'] ) {
-			$mwb_rma_response = new WP_REST_Response( $mwb_rma_resultsdata, 200 );
+		$wps_rma_api_obj     = new Woo_Refund_And_Exchange_Lite_Api_Process();
+		$wps_rma_resultsdata = $wps_rma_api_obj->wps_rma_refund_request_process( $request );
+		if ( is_array( $wps_rma_resultsdata ) && isset( $wps_rma_resultsdata['status'] ) && 200 == $wps_rma_resultsdata['status'] ) {
+			$wps_rma_response = new WP_REST_Response( $wps_rma_resultsdata, 200 );
 		} else {
-			$mwb_rma_response = new WP_REST_Response( $mwb_rma_resultsdata, 404 );
+			$wps_rma_response = new WP_REST_Response( $wps_rma_resultsdata, 404 );
 		}
-		return $mwb_rma_response;
+		return $wps_rma_response;
 	}
 
 
@@ -153,37 +153,37 @@ class Woo_Refund_And_Exchange_Lite_Rest_Api {
 	 * Begins execution of api endpoint.
 	 *
 	 * @param array $request All information related with the api request containing in this array.
-	 * @return array $mwb_rma_response   return rest response to server from where the endpoint hits.
+	 * @return array $wps_rma_response   return rest response to server from where the endpoint hits.
 	 * @since    1.0.0
 	 */
-	public function mwb_rma_refund_request_accept_callback( $request ) {
+	public function wps_rma_refund_request_accept_callback( $request ) {
 		require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php';
-		$mwb_rma_api_obj     = new Woo_Refund_And_Exchange_Lite_Api_Process();
-		$mwb_rma_resultsdata = $mwb_rma_api_obj->mwb_rma_refund_request_accept_process( $request );
-		if ( is_array( $mwb_rma_resultsdata ) && isset( $mwb_rma_resultsdata['status'] ) && 200 == $mwb_rma_resultsdata['status'] ) {
-			$mwb_rma_response = new WP_REST_Response( $mwb_rma_resultsdata, 200 );
+		$wps_rma_api_obj     = new Woo_Refund_And_Exchange_Lite_Api_Process();
+		$wps_rma_resultsdata = $wps_rma_api_obj->wps_rma_refund_request_accept_process( $request );
+		if ( is_array( $wps_rma_resultsdata ) && isset( $wps_rma_resultsdata['status'] ) && 200 == $wps_rma_resultsdata['status'] ) {
+			$wps_rma_response = new WP_REST_Response( $wps_rma_resultsdata, 200 );
 		} else {
-			$mwb_rma_response = new WP_REST_Response( $mwb_rma_resultsdata, 404 );
+			$wps_rma_response = new WP_REST_Response( $wps_rma_resultsdata, 404 );
 		}
-		return $mwb_rma_response;
+		return $wps_rma_response;
 	}
 
 		/**
 		 * Begins execution of api endpoint.
 		 *
 		 * @param array $request All information related with the api request containing in this array.
-		 * @return array $mwb_rma_response   return rest response to server from where the endpoint hits.
+		 * @return array $wps_rma_response   return rest response to server from where the endpoint hits.
 		 * @since    1.0.0
 		 */
-	public function mwb_rma_refund_request_cancel_callback( $request ) {
+	public function wps_rma_refund_request_cancel_callback( $request ) {
 		require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php';
-		$mwb_rma_api_obj     = new Woo_Refund_And_Exchange_Lite_Api_Process();
-		$mwb_rma_resultsdata = $mwb_rma_api_obj->mwb_rma_refund_request_cancel_process( $request );
-		if ( is_array( $mwb_rma_resultsdata ) && isset( $mwb_rma_resultsdata['status'] ) && 200 == $mwb_rma_resultsdata['status'] ) {
-			$mwb_rma_response = new WP_REST_Response( $mwb_rma_resultsdata, 200 );
+		$wps_rma_api_obj     = new Woo_Refund_And_Exchange_Lite_Api_Process();
+		$wps_rma_resultsdata = $wps_rma_api_obj->wps_rma_refund_request_cancel_process( $request );
+		if ( is_array( $wps_rma_resultsdata ) && isset( $wps_rma_resultsdata['status'] ) && 200 == $wps_rma_resultsdata['status'] ) {
+			$wps_rma_response = new WP_REST_Response( $wps_rma_resultsdata, 200 );
 		} else {
-			$mwb_rma_response = new WP_REST_Response( $mwb_rma_resultsdata, 404 );
+			$wps_rma_response = new WP_REST_Response( $wps_rma_resultsdata, 404 );
 		}
-		return $mwb_rma_response;
+		return $wps_rma_response;
 	}
 }

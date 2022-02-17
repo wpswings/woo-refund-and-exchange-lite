@@ -2,7 +2,7 @@
 /**
  * The admin-specific on-boarding functionality of the plugin.
  *
- * @link       https://makewebbetter.com
+ * @link       https://wpswings.com
  * @since      1.0.0
  *
  * @package     woo_refund_and_exchange_lite
@@ -40,7 +40,7 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 	 * @since 1.0.0
 	 * @var string base url of API.
 	 */
-	private $mwb_rma_base_url = 'https://api.hsforms.com/';
+	private $wps_rma_base_url = 'https://api.hsforms.com/';
 
 	/**
 	 * Portal id of hubspot api for woo-refund-and-exchange-lite.
@@ -48,7 +48,7 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 	 * @since 1.0.0
 	 * @var string Portal id.
 	 */
-	private static $mwb_rma_portal_id = '6493626';
+	private static $wps_rma_portal_id = '6493626';
 
 	/**
 	 * Form id of hubspot api for woo-refund-and-exchange-lite.
@@ -56,7 +56,7 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 	 * @since 1.0.0
 	 * @var string Form id.
 	 */
-	private static $mwb_rma_onboarding_form_id = 'd94dcb10-c9c1-4155-a9ad-35354f2c3b52';
+	private static $wps_rma_onboarding_form_id = 'd94dcb10-c9c1-4155-a9ad-35354f2c3b52';
 
 	/**
 	 * Form id of hubspot api for woo-refund-and-exchange-lite.
@@ -64,39 +64,39 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 	 * @since 1.0.0
 	 * @var string Form id.
 	 */
-	private static $mwb_rma_deactivation_form_id = '329ffc7a-0e8c-4e11-8b41-960815c31f8d';
+	private static $wps_rma_deactivation_form_id = '329ffc7a-0e8c-4e11-8b41-960815c31f8d';
 
 	/**
 	 * Define some variables for woo-refund-and-exchange-lite.
 	 *
 	 * @since 1.0.0
-	 * @var string $mwb_rma_plugin_name plugin name.
+	 * @var string $wps_rma_plugin_name plugin name.
 	 */
-	private static $mwb_rma_plugin_name;
+	private static $wps_rma_plugin_name;
 
 	/**
 	 * Define some variables for woo-refund-and-exchange-lite.
 	 *
 	 * @since 1.0.0
-	 * @var string $mwb_rma_plugin_name_label plugin name text.
+	 * @var string $wps_rma_plugin_name_label plugin name text.
 	 */
-	private static $mwb_rma_plugin_name_label;
+	private static $wps_rma_plugin_name_label;
 
 	/**
 	 * Define some variables for woo-refund-and-exchange-lite.
 	 *
-	 * @var string $mwb_rma_store_name store name.
+	 * @var string $wps_rma_store_name store name.
 	 * @since 1.0.0
 	 */
-	private static $mwb_rma_store_name;
+	private static $wps_rma_store_name;
 
 	/**
 	 * Define some variables for woo-refund-and-exchange-lite.
 	 *
 	 * @since 1.0.0
-	 * @var string $mwb_rma_store_url store url.
+	 * @var string $wps_rma_store_url store url.
 	 */
-	private static $mwb_rma_store_url;
+	private static $wps_rma_store_url;
 
 	/**
 	 * Define the onboarding functionality of the plugin.
@@ -107,26 +107,26 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
-		self::$mwb_rma_store_name        = get_bloginfo( 'name' );
-		self::$mwb_rma_store_url         = home_url();
-		self::$mwb_rma_plugin_name       = 'woo-refund-and-exchange-lite';
-		self::$mwb_rma_plugin_name_label = 'WooCommerce Refund and Exchange Lite';
+		self::$wps_rma_store_name        = get_bloginfo( 'name' );
+		self::$wps_rma_store_url         = home_url();
+		self::$wps_rma_plugin_name       = 'woo-refund-and-exchange-lite';
+		self::$wps_rma_plugin_name_label = 'WooCommerce Refund and Exchange Lite';
 
-		add_action( 'admin_enqueue_scripts', array( $this, 'mwb_rma_onboarding_enqueue_styles' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'mwb_rma_onboarding_enqueue_scripts' ) );
-		add_action( 'admin_footer', array( $this, 'mwb_rma_add_onboarding_popup_screen' ) );
-		add_action( 'admin_footer', array( $this, 'mwb_rma_add_deactivation_popup_screen' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'wps_rma_onboarding_enqueue_styles' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'wps_rma_onboarding_enqueue_scripts' ) );
+		add_action( 'admin_footer', array( $this, 'wps_rma_add_onboarding_popup_screen' ) );
+		add_action( 'admin_footer', array( $this, 'wps_rma_add_deactivation_popup_screen' ) );
 
-		add_filter( 'mwb_rma_on_boarding_form_fields', array( $this, 'mwb_rma_add_on_boarding_form_fields' ) );
-		add_filter( 'mwb_rma_deactivation_form_fields', array( $this, 'mwb_rma_add_deactivation_form_fields' ) );
+		add_filter( 'wps_rma_on_boarding_form_fields', array( $this, 'wps_rma_add_on_boarding_form_fields' ) );
+		add_filter( 'wps_rma_deactivation_form_fields', array( $this, 'wps_rma_add_deactivation_form_fields' ) );
 
 		// Ajax to send data.
-		add_action( 'wp_ajax_mwb_rma_send_onboarding_data', array( $this, 'mwb_rma_send_onboarding_data' ) );
-		add_action( 'wp_ajax_nopriv_mwb_rma_send_onboarding_data', array( $this, 'mwb_rma_send_onboarding_data' ) );
+		add_action( 'wp_ajax_wps_rma_send_onboarding_data', array( $this, 'wps_rma_send_onboarding_data' ) );
+		add_action( 'wp_ajax_nopriv_wps_rma_send_onboarding_data', array( $this, 'wps_rma_send_onboarding_data' ) );
 
 		// Ajax to Skip popup.
-		add_action( 'wp_ajax_wrael_skip_onboarding_popup', array( $this, 'mwb_rma_skip_onboarding_popup' ) );
-		add_action( 'wp_ajax_nopriv_wrael_skip_onboarding_popup', array( $this, 'mwb_rma_skip_onboarding_popup' ) );
+		add_action( 'wp_ajax_wrael_skip_onboarding_popup', array( $this, 'wps_rma_skip_onboarding_popup' ) );
+		add_action( 'wp_ajax_nopriv_wrael_skip_onboarding_popup', array( $this, 'wps_rma_skip_onboarding_popup' ) );
 
 	}
 
@@ -153,29 +153,29 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 	 * This function is provided for demonstration purposes only.
 	 *
 	 * An instance of this class should be passed to the run() function
-	 * defined in Makewebbetter_Onboarding_Loader as all of the hooks are defined
+	 * defined in WPSwings_Onboarding_Loader as all of the hooks are defined
 	 * in that particular class.
 	 *
-	 * The Makewebbetter_Onboarding_Loader will then create the relationship
+	 * The WPSwings_Onboarding_Loader will then create the relationship
 	 * between the defined hooks and the functions defined in this
 	 * class.
 	 */
-	public function mwb_rma_onboarding_enqueue_styles() {
+	public function wps_rma_onboarding_enqueue_styles() {
 		global $pagenow;
 		$is_valid = false;
 		if ( ! $is_valid && 'plugins.php' === $pagenow ) {
 			$is_valid = true;
 		}
-		if ( $this->mwb_rma_valid_page_screen_check() || $is_valid ) {
+		if ( $this->wps_rma_valid_page_screen_check() || $is_valid ) {
 			// comment the line of code Only when your plugin doesn't uses the Select2.
-			wp_enqueue_style( 'mwb-wrael-onboarding-select2-style', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/select-2/woo-refund-and-exchange-lite-select2.css', array(), time(), 'all' );
+			wp_enqueue_style( 'wps-wrael-onboarding-select2-style', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/select-2/woo-refund-and-exchange-lite-select2.css', array(), time(), 'all' );
 
-			wp_enqueue_style( 'mwb-wrael-meterial-css', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/material-design/material-components-web.min.css', array(), time(), 'all' );
-			wp_enqueue_style( 'mwb-wrael-meterial-css2', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/material-design/material-components-v5.0-web.min.css', array(), time(), 'all' );
-			wp_enqueue_style( 'mwb-wrael-meterial-lite', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/material-design/material-lite.min.css', array(), time(), 'all' );
-			wp_enqueue_style( 'mwb-wrael-meterial-icons-css', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/material-design/icon.css', array(), time(), 'all' );
+			wp_enqueue_style( 'wps-wrael-meterial-css', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/material-design/material-components-web.min.css', array(), time(), 'all' );
+			wp_enqueue_style( 'wps-wrael-meterial-css2', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/material-design/material-components-v5.0-web.min.css', array(), time(), 'all' );
+			wp_enqueue_style( 'wps-wrael-meterial-lite', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/material-design/material-lite.min.css', array(), time(), 'all' );
+			wp_enqueue_style( 'wps-wrael-meterial-icons-css', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/material-design/icon.css', array(), time(), 'all' );
 
-			wp_enqueue_style( 'mwb-wrael-onboarding-style', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'onboarding/css/woo-refund-and-exchange-lite-onboarding.css', array(), time(), 'all' );
+			wp_enqueue_style( 'wps-wrael-onboarding-style', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'onboarding/css/woo-refund-and-exchange-lite-onboarding.css', array(), time(), 'all' );
 
 		}
 	}
@@ -184,40 +184,40 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 	 * This function is provided for demonstration purposes only.
 	 *
 	 * An instance of this class should be passed to the run() function
-	 * defined in Makewebbetter_Onboarding_Loader as all of the hooks are defined
+	 * defined in WPSwings_Onboarding_Loader as all of the hooks are defined
 	 * in that particular class.
 	 *
-	 * The Makewebbetter_Onboarding_Loader will then create the relationship
+	 * The WPSwings_Onboarding_Loader will then create the relationship
 	 * between the defined hooks and the functions defined in this
 	 * class.
 	 */
-	public function mwb_rma_onboarding_enqueue_scripts() {
+	public function wps_rma_onboarding_enqueue_scripts() {
 		global $pagenow;
 		$is_valid = false;
 		if ( ! $is_valid && 'plugins.php' === $pagenow ) {
 			$is_valid = true;
 		}
-		if ( $this->mwb_rma_valid_page_screen_check() || $is_valid ) {
+		if ( $this->wps_rma_valid_page_screen_check() || $is_valid ) {
 
-			wp_enqueue_script( 'mwb-wrael-onboarding-select2-js', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/select-2/woo-refund-and-exchange-lite-select2.js', array( 'jquery' ), '1.0.0', false );
+			wp_enqueue_script( 'wps-wrael-onboarding-select2-js', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/select-2/woo-refund-and-exchange-lite-select2.js', array( 'jquery' ), '1.0.0', false );
 
-			wp_enqueue_script( 'mwb-wrael-metarial-js', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/material-design/material-components-web.min.js', array(), time(), false );
-			wp_enqueue_script( 'mwb-wrael-metarial-js2', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/material-design/material-components-v5.0-web.min.js', array(), time(), false );
-			wp_enqueue_script( 'mwb-wrael-metarial-lite', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/material-design/material-lite.min.js', array(), time(), false );
+			wp_enqueue_script( 'wps-wrael-metarial-js', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/material-design/material-components-web.min.js', array(), time(), false );
+			wp_enqueue_script( 'wps-wrael-metarial-js2', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/material-design/material-components-v5.0-web.min.js', array(), time(), false );
+			wp_enqueue_script( 'wps-wrael-metarial-lite', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/material-design/material-lite.min.js', array(), time(), false );
 
-			wp_enqueue_script( 'mwb-wrael-onboarding-scripts', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'onboarding/js/woo-refund-and-exchange-lite-onboarding.js', array( 'jquery', 'mwb-wrael-onboarding-select2-js', 'mwb-wrael-metarial-js', 'mwb-wrael-metarial-js2', 'mwb-wrael-metarial-lite' ), time(), true );
+			wp_enqueue_script( 'wps-wrael-onboarding-scripts', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'onboarding/js/woo-refund-and-exchange-lite-onboarding.js', array( 'jquery', 'wps-wrael-onboarding-select2-js', 'wps-wrael-metarial-js', 'wps-wrael-metarial-js2', 'wps-wrael-metarial-lite' ), time(), true );
 
 			$wrael_current_slug = ! empty( explode( '/', plugin_basename( __FILE__ ) ) ) ? explode( '/', plugin_basename( __FILE__ ) )[0] : '';
 			wp_localize_script(
-				'mwb-wrael-onboarding-scripts',
-				'mwb_rma_onboarding',
+				'wps-wrael-onboarding-scripts',
+				'wps_rma_onboarding',
 				array(
 					'ajaxurl'                      => admin_url( 'admin-ajax.php' ),
-					'wrael_auth_nonce'             => wp_create_nonce( 'mwb_rma_onboarding_nonce' ),
+					'wrael_auth_nonce'             => wp_create_nonce( 'wps_rma_onboarding_nonce' ),
 					'wrael_current_screen'         => $pagenow,
 					'wrael_current_supported_slug' =>
 					// desc - filter for trial.
-					apply_filters( 'mwb_rma_deactivation_supported_slug', array( $wrael_current_slug ) ),
+					apply_filters( 'wps_rma_deactivation_supported_slug', array( $wrael_current_slug ) ),
 				)
 			);
 		}
@@ -228,8 +228,8 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 	 *
 	 * @since    1.0.0
 	 */
-	public function mwb_rma_add_onboarding_popup_screen() {
-		if ( $this->mwb_rma_valid_page_screen_check() && $this->mwb_rma_show_onboarding_popup_check() ) {
+	public function wps_rma_add_onboarding_popup_screen() {
+		if ( $this->wps_rma_valid_page_screen_check() && $this->wps_rma_show_onboarding_popup_check() ) {
 			require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'onboarding/templates/woo-refund-and-exchange-lite-onboarding-template.php';
 		}
 	}
@@ -239,7 +239,7 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 	 *
 	 * @since    1.0.0
 	 */
-	public function mwb_rma_add_deactivation_popup_screen() {
+	public function wps_rma_add_deactivation_popup_screen() {
 
 		global $pagenow;
 		if ( ! empty( $pagenow ) && 'plugins.php' === $pagenow ) {
@@ -252,9 +252,9 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 	 *
 	 * @since    1.0.0
 	 */
-	public function mwb_rma_skip_onboarding_popup() {
+	public function wps_rma_skip_onboarding_popup() {
 
-		$get_skipped_timstamp = update_option( 'mwb_rma_onboarding_data_skipped', time() );
+		$get_skipped_timstamp = update_option( 'wps_rma_onboarding_data_skipped', time() );
 		echo wp_json_encode( 'true' );
 		wp_die();
 	}
@@ -265,7 +265,7 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 	 *
 	 * @since    1.0.0
 	 */
-	public function mwb_rma_add_on_boarding_form_fields() {
+	public function wps_rma_add_on_boarding_form_fields() {
 
 		$current_user = wp_get_current_user();
 		if ( ! empty( $current_user ) ) {
@@ -297,7 +297,7 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 			 */
 
 			rand() => array(
-				'id'          => 'mwb-wrael-monthly-revenue',
+				'id'          => 'wps-wrael-monthly-revenue',
 				'title'       => esc_html__( 'What is your monthly revenue?', 'woo-refund-and-exchange-lite' ),
 				'type'        => 'radio',
 				'description' => '',
@@ -316,7 +316,7 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 			),
 
 			rand() => array(
-				'id'          => 'mwb_rma_industry_type',
+				'id'          => 'wps_rma_industry_type',
 				'title'       => esc_html__( 'What industry defines your business?', 'woo-refund-and-exchange-lite' ),
 				'type'        => 'select',
 				'name'        => 'industry_type_',
@@ -353,7 +353,7 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 			),
 
 			rand() => array(
-				'id'          => 'mwb-wrael-onboard-email',
+				'id'          => 'wps-wrael-onboard-email',
 				'title'       => esc_html__( 'What is the best email address to contact you?', 'woo-refund-and-exchange-lite' ),
 				'type'        => 'email',
 				'description' => '',
@@ -365,7 +365,7 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 			),
 
 			rand() => array(
-				'id'          => 'mwb-wrael-onboard-number',
+				'id'          => 'wps-wrael-onboard-number',
 				'title'       => esc_html__( 'What is your contact number?', 'woo-refund-and-exchange-lite' ),
 				'type'        => 'text',
 				'description' => '',
@@ -377,49 +377,49 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 			),
 
 			rand() => array(
-				'id'          => 'mwb-wrael-store-name',
+				'id'          => 'wps-wrael-store-name',
 				'title'       => '',
 				'description' => '',
 				'type'        => 'hidden',
 				'name'        => 'company',
 				'placeholder' => '',
-				'value'       => self::$mwb_rma_store_name,
+				'value'       => self::$wps_rma_store_name,
 				'required'    => '',
 				'class'       => '',
 			),
 
 			rand() => array(
-				'id'          => 'mwb-wrael-store-url',
+				'id'          => 'wps-wrael-store-url',
 				'title'       => '',
 				'description' => '',
 				'type'        => 'hidden',
 				'name'        => 'website',
 				'placeholder' => '',
-				'value'       => self::$mwb_rma_store_url,
+				'value'       => self::$wps_rma_store_url,
 				'required'    => '',
 				'class'       => '',
 			),
 
 			rand() => array(
-				'id'          => 'mwb-wrael-show-counter',
+				'id'          => 'wps-wrael-show-counter',
 				'title'       => '',
 				'description' => '',
 				'type'        => 'hidden',
 				'placeholder' => '',
-				'name'        => 'mwb-wrael-show-counter',
-				'value'       => get_option( 'mwb_rma_onboarding_data_sent', 'not-sent' ),
+				'name'        => 'wps-wrael-show-counter',
+				'value'       => get_option( 'wps_rma_onboarding_data_sent', 'not-sent' ),
 				'required'    => '',
 				'class'       => '',
 			),
 
 			rand() => array(
-				'id'          => 'mwb-wrael-plugin-name',
+				'id'          => 'wps-wrael-plugin-name',
 				'title'       => '',
 				'description' => '',
 				'type'        => 'hidden',
 				'placeholder' => '',
 				'name'        => 'org_plugin_name',
-				'value'       => self::$mwb_rma_plugin_name,
+				'value'       => self::$wps_rma_plugin_name,
 				'required'    => '',
 				'class'       => '',
 			),
@@ -434,7 +434,7 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 	 *
 	 * @since    1.0.0
 	 */
-	public function mwb_rma_add_deactivation_form_fields() {
+	public function wps_rma_add_deactivation_form_fields() {
 
 		$current_user = wp_get_current_user();
 		if ( ! empty( $current_user ) ) {
@@ -460,7 +460,7 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 			 */
 
 			rand() => array(
-				'id'          => 'mwb-wrael-deactivation-reason',
+				'id'          => 'wps-wrael-deactivation-reason',
 				'title'       => '',
 				'description' => '',
 				'type'        => 'radio',
@@ -481,7 +481,7 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 			),
 
 			rand() => array(
-				'id'          => 'mwb-wrael-deactivation-reason-text',
+				'id'          => 'wps-wrael-deactivation-reason-text',
 				'title'       => esc_html__( 'Let us know why you are deactivating WooCommerce Refund and Exchange Lite so we can improve the plugin', 'woo-refund-and-exchange-lite' ),
 				'type'        => 'textarea',
 				'description' => '',
@@ -489,11 +489,11 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 				'placeholder' => esc_html__( 'Reason', 'woo-refund-and-exchange-lite' ),
 				'value'       => '',
 				'required'    => '',
-				'class'       => 'mwb-keep-hidden',
+				'class'       => 'wps-keep-hidden',
 			),
 
 			rand() => array(
-				'id'          => 'mwb-wrael-admin-email',
+				'id'          => 'wps-wrael-admin-email',
 				'title'       => '',
 				'description' => '',
 				'type'        => 'hidden',
@@ -505,31 +505,31 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 			),
 
 			rand() => array(
-				'id'          => 'mwb-wrael-store-name',
+				'id'          => 'wps-wrael-store-name',
 				'title'       => '',
 				'description' => '',
 				'type'        => 'hidden',
 				'placeholder' => '',
 				'name'        => 'company',
-				'value'       => self::$mwb_rma_store_name,
+				'value'       => self::$wps_rma_store_name,
 				'required'    => '',
 				'class'       => '',
 			),
 
 			rand() => array(
-				'id'          => 'mwb-wrael-store-url',
+				'id'          => 'wps-wrael-store-url',
 				'title'       => '',
 				'description' => '',
 				'type'        => 'hidden',
 				'name'        => 'website',
 				'placeholder' => '',
-				'value'       => self::$mwb_rma_store_url,
+				'value'       => self::$wps_rma_store_url,
 				'required'    => '',
 				'class'       => '',
 			),
 
 			rand() => array(
-				'id'          => 'mwb-wrael-plugin-name',
+				'id'          => 'wps-wrael-plugin-name',
 				'title'       => '',
 				'description' => '',
 				'type'        => 'hidden',
@@ -550,9 +550,9 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 	 *
 	 * @since    1.0.0
 	 */
-	public function mwb_rma_send_onboarding_data() {
+	public function wps_rma_send_onboarding_data() {
 
-		check_ajax_referer( 'mwb_rma_onboarding_nonce', 'nonce' );
+		check_ajax_referer( 'wps_rma_onboarding_nonce', 'nonce' );
 
 		$form_data = ! empty( $_POST['form_data'] ) ? json_decode( sanitize_text_field( wp_unslash( $_POST['form_data'] ) ) ) : '';
 
@@ -562,7 +562,7 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 
 			foreach ( $form_data as $key => $input ) {
 
-				if ( 'mwb-wrael-show-counter' === $input->name ) {
+				if ( 'wps-wrael-show-counter' === $input->name ) {
 					continue;
 				}
 
@@ -613,9 +613,9 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 
 			if ( ! empty( $formatted_data ) && is_array( $formatted_data ) ) {
 
-				unset( $formatted_data['mwb-wrael-show-counter'] );
+				unset( $formatted_data['wps-wrael-show-counter'] );
 
-				$result = $this->mwb_rma_handle_form_submission_for_hubspot( $formatted_data, $action_type );
+				$result = $this->wps_rma_handle_form_submission_for_hubspot( $formatted_data, $action_type );
 			}
 		} catch ( Exception $e ) {
 
@@ -624,7 +624,7 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 		}
 
 		if ( ! empty( $action_type ) && 'onboarding' === $action_type ) {
-			$get_skipped_timstamp = update_option( 'mwb_rma_onboarding_data_sent', 'sent' );
+			$get_skipped_timstamp = update_option( 'wps_rma_onboarding_data_sent', 'sent' );
 		}
 
 		echo wp_json_encode( $formatted_data );
@@ -639,7 +639,7 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 	 * @param      string $action_type Type of action.
 	 * @since    1.0.0
 	 */
-	protected function mwb_rma_handle_form_submission_for_hubspot( $submission = false, $action_type = 'onboarding' ) {
+	protected function wps_rma_handle_form_submission_for_hubspot( $submission = false, $action_type = 'onboarding' ) {
 
 		if ( 'onboarding' === $action_type ) {
 			array_push(
@@ -651,7 +651,7 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 			);
 		}
 
-		$result = $this->mwb_rma_hubwoo_submit_form( $submission, $action_type );
+		$result = $this->wps_rma_hubwoo_submit_form( $submission, $action_type );
 
 		if ( true == $result['success'] ) {
 			return true;
@@ -668,15 +668,15 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 	 * @param      string $action_type    type of action.
 	 * @since       1.0.0
 	 */
-	protected function mwb_rma_hubwoo_submit_form( $form_data = array(), $action_type = 'onboarding' ) {
+	protected function wps_rma_hubwoo_submit_form( $form_data = array(), $action_type = 'onboarding' ) {
 
 		if ( 'onboarding' === $action_type ) {
-			$form_id = self::$mwb_rma_onboarding_form_id;
+			$form_id = self::$wps_rma_onboarding_form_id;
 		} else {
-			$form_id = self::$mwb_rma_deactivation_form_id;
+			$form_id = self::$wps_rma_deactivation_form_id;
 		}
 
-		$url = 'submissions/v3/integration/submit/' . self::$mwb_rma_portal_id . '/' . $form_id;
+		$url = 'submissions/v3/integration/submit/' . self::$wps_rma_portal_id . '/' . $form_id;
 
 		$headers = array(
 			'Content-Type' => 'application/json',
@@ -686,14 +686,14 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 			array(
 				'fields'  => $form_data,
 				'context' => array(
-					'pageUri'   => self::$mwb_rma_store_url,
-					'pageName'  => self::$mwb_rma_store_name,
-					'ipAddress' => $this->mwb_rma_get_client_ip(),
+					'pageUri'   => self::$wps_rma_store_url,
+					'pageName'  => self::$wps_rma_store_name,
+					'ipAddress' => $this->wps_rma_get_client_ip(),
 				),
 			)
 		);
 
-		$response = $this->mwb_rma_hic_post( $url, $form_data, $headers );
+		$response = $this->wps_rma_hic_post( $url, $form_data, $headers );
 
 		if ( 200 == $response['status_code'] ) {
 			$result            = is_array( wp_json_decode( $response['response'], true ) ) ? map_deep( wp_json_decode( $response['response'], true ), 'sanitize_text_field' ) : sanitize_text_field( wp_json_decode( $response['response'], true ) );
@@ -713,8 +713,8 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 	 * @param   array  $post_params    form data that need to be send.
 	 * @param   array  $headers    data that must be included in header for request.
 	 */
-	private function mwb_rma_hic_post( $endpoint, $post_params, $headers ) {
-		$url      = $this->mwb_rma_base_url . $endpoint;
+	private function wps_rma_hic_post( $endpoint, $post_params, $headers ) {
+		$url      = $this->wps_rma_base_url . $endpoint;
 		$request  = array(
 			'method'      => 'POST',
 			'timeout'     => 45,
@@ -748,7 +748,7 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 	 *
 	 * @since    1.0.0
 	 */
-	public function mwb_rma_get_client_ip() {
+	public function wps_rma_get_client_ip() {
 		$ipaddress = '';
 		if ( getenv( 'HTTP_CLIENT_IP' ) ) {
 			$ipaddress = getenv( 'HTTP_CLIENT_IP' );
@@ -773,14 +773,14 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 	 *
 	 * @since    1.0.0
 	 */
-	public function mwb_rma_valid_page_screen_check() {
-		$mwb_rma_screen  = get_current_screen();
-		$mwb_rma_is_flag = false;
-		if ( isset( $mwb_rma_screen->id ) && 'makewebbetter_page_woo_refund_and_exchange_lite_menu' === $mwb_rma_screen->id ) {
-			$mwb_rma_is_flag = true;
+	public function wps_rma_valid_page_screen_check() {
+		$wps_rma_screen  = get_current_screen();
+		$wps_rma_is_flag = false;
+		if ( isset( $wps_rma_screen->id ) && 'wp-swings_page_woo_refund_and_exchange_lite_menu' === $wps_rma_screen->id ) {
+			$wps_rma_is_flag = true;
 		}
 
-		return $mwb_rma_is_flag;
+		return $wps_rma_is_flag;
 	}
 
 	/**
@@ -788,25 +788,25 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 	 *
 	 * @since    1.0.0
 	 */
-	public function mwb_rma_show_onboarding_popup_check() {
+	public function wps_rma_show_onboarding_popup_check() {
 
-		$mwb_rma_is_already_sent = get_option( 'mwb_rma_onboarding_data_sent', false );
+		$wps_rma_is_already_sent = get_option( 'wps_rma_onboarding_data_sent', false );
 
 		// Already submitted the data.
-		if ( ! empty( $mwb_rma_is_already_sent ) && 'sent' === $mwb_rma_is_already_sent ) {
+		if ( ! empty( $wps_rma_is_already_sent ) && 'sent' === $wps_rma_is_already_sent ) {
 			return false;
 		}
 
-		$mwb_rma_get_skipped_timstamp = get_option( 'mwb_rma_onboarding_data_skipped', false );
-		if ( ! empty( $mwb_rma_get_skipped_timstamp ) ) {
+		$wps_rma_get_skipped_timstamp = get_option( 'wps_rma_onboarding_data_skipped', false );
+		if ( ! empty( $wps_rma_get_skipped_timstamp ) ) {
 
-			$mwb_rma_next_show = strtotime( '+2 days', $mwb_rma_get_skipped_timstamp );
+			$wps_rma_next_show = strtotime( '+2 days', $wps_rma_get_skipped_timstamp );
 
-			$mwb_rma_current_time = time();
+			$wps_rma_current_time = time();
 
-			$mwb_rma_time_diff = $mwb_rma_next_show - $mwb_rma_current_time;
+			$wps_rma_time_diff = $wps_rma_next_show - $wps_rma_current_time;
 
-			if ( 0 < $mwb_rma_time_diff ) {
+			if ( 0 < $wps_rma_time_diff ) {
 				return false;
 			}
 		}

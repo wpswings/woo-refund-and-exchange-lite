@@ -2,7 +2,7 @@
 /**
  * The public-facing functionality of the plugin for return request form.
  *
- * @link       https://makewebbetter.com/
+ * @link       https://wpswings.com/
  * @since      1.0.0
  *
  * @package    woo-refund-and-exchange-lite
@@ -18,7 +18,7 @@ if ( ! is_user_logged_in() ) {
 } else {
 	$guest_user = false;
 }
-if ( isset( $_GET['mwb_rma_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['mwb_rma_nonce'] ) ), 'mwb_rma_nonce' ) && isset( $_GET['order_id'] ) && ( $guest_user || current_user_can( 'mwb-rma-refund-request' ) ) ) {
+if ( isset( $_GET['wps_rma_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['wps_rma_nonce'] ) ), 'wps_rma_nonce' ) && isset( $_GET['order_id'] ) && ( $guest_user || current_user_can( 'wps-rma-refund-request' ) ) ) {
 	$order_id = sanitize_text_field( wp_unslash( $_GET['order_id'] ) );
 } else {
 	$order_id = '';
@@ -27,7 +27,7 @@ $allowed = 'yes';
 if ( ! empty( $order_id ) ) {
 	$order_obj = wc_get_order( $order_id );
 	if ( ! empty( $order_obj ) ) {
-		$condition = mwb_rma_show_buttons( 'refund', $order_obj );
+		$condition = wps_rma_show_buttons( 'refund', $order_obj );
 	} else {
 		$condition = esc_html__( 'Please give the correct order id', 'woo-refund-and-exchange-lite' );
 	}
@@ -44,7 +44,7 @@ if ( isset( $condition ) && 'yes' === $condition && isset( $order_id ) && ! empt
 		}
 	}
 }
-$products = get_post_meta( $order_id, 'mwb_rma_return_product', true );
+$products = get_post_meta( $order_id, 'wps_rma_return_product', true );
 // Get pending return request.
 if ( isset( $products ) && ! empty( $products ) ) {
 	foreach ( $products as $date => $product ) {
@@ -62,30 +62,30 @@ if ( isset( $products ) && ! empty( $products ) ) {
 get_header( 'shop' );
 
 
-$mwb_wrma_show_sidebar_on_form =
+$wps_wrma_show_sidebar_on_form =
 // Side show/hide on refund request form.
-apply_filters( 'mwb_rma_refund_form_sidebar', true );
-if ( $mwb_wrma_show_sidebar_on_form ) {
+apply_filters( 'wps_rma_refund_form_sidebar', true );
+if ( $wps_wrma_show_sidebar_on_form ) {
 	// Before Main Content.
 	do_action( 'woocommerce_before_main_content' );
 }
 if ( isset( $condition ) && 'yes' === $condition ) {
-	$mwb_refund_wrapper_class = get_option( 'mwb_wrma_refund_form_wrapper_class' );
-	$mwb_return_css           = get_option( 'mwb_rma_refund_form_css' );
+	$wps_refund_wrapper_class = get_option( 'wps_wrma_refund_form_wrapper_class' );
+	$wps_return_css           = get_option( 'wps_rma_refund_form_css' );
 	?>
-	<style><?php echo wp_kses_post( $mwb_return_css ); ?></style>
-	<div class="mwb_rma_refund_form_wrapper mwb-rma-form__wrapper <?php echo esc_html( $mwb_refund_wrapper_class ); ?>">
-		<div id="mwb_rma_return_request_container" class="mwb-rma-form__header">
-			<h1 class="mwb-rma-form__heading"><?php esc_html_e( 'Order\'s Product Refund Request Form', 'woo-refund-and-exchange-lite' ); ?></h1>
+	<style><?php echo wp_kses_post( $wps_return_css ); ?></style>
+	<div class="wps_rma_refund_form_wrapper wps-rma-form__wrapper <?php echo esc_html( $wps_refund_wrapper_class ); ?>">
+		<div id="wps_rma_return_request_container" class="wps-rma-form__header">
+			<h1 class="wps-rma-form__heading"><?php esc_html_e( 'Order\'s Product Refund Request Form', 'woo-refund-and-exchange-lite' ); ?></h1>
 		</div>
-		<ul id="mwb_rma_return_alert" ></ul>
-		<div class="mwb_rma_product_table_wrapper mwb-rma-product__table-wrapper">
-			<table class="mwb-rma-product__table">
+		<ul id="wps_rma_return_alert" ></ul>
+		<div class="wps_rma_product_table_wrapper wps-rma-product__table-wrapper">
+			<table class="wps-rma-product__table">
 				<thead >
 					<tr>
 						<?php
 						// Add extra field in the thead of the table.
-						do_action( 'mwb_rma_add_extra_column_refund_form', $order_id );
+						do_action( 'wps_rma_add_extra_column_refund_form', $order_id );
 						?>
 						<th><?php esc_html_e( 'Product', 'woo-refund-and-exchange-lite' ); ?></th>
 						<th><?php esc_html_e( 'Quantity', 'woo-refund-and-exchange-lite' ); ?></th>
@@ -94,8 +94,8 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 				</thead>
 				<tbody>
 					<?php
-					$mwb_total_actual_price = 0;
-					$mwb_rma_check_tax      = get_option( $order_id . 'check_tax', false );
+					$wps_total_actual_price = 0;
+					$wps_rma_check_tax      = get_option( $order_id . 'check_tax', false );
 					$show_purchase_note     = $order_obj->has_status(
 					// Purchases note on the order.
 						apply_filters( 'woocommerce_purchase_note_order_statuses', array( 'completed', 'processing' ) )
@@ -116,7 +116,7 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 							// Get Product.
 							apply_filters( 'woocommerce_order_item_product', $item->get_product(), $item );
 							$thumbnail = wp_get_attachment_image( $product->get_image_id(), 'thumbnail' );
-							$coupon_discount = get_option( 'mwb_rma_refund_deduct_coupon', 'no' );
+							$coupon_discount = get_option( 'wps_rma_refund_deduct_coupon', 'no' );
 							if ( 'on' === $coupon_discount ) {
 								$tax_inc = $item->get_total() + $item->get_subtotal_tax();
 								$tax_exc = $item->get_total() - $item->get_subtotal_tax();
@@ -124,29 +124,29 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 								$tax_inc = $item->get_subtotal() + $item->get_subtotal_tax();
 								$tax_exc = $item->get_subtotal() - $item->get_subtotal_tax();
 							}
-							if ( empty( $mwb_rma_check_tax ) ) {
+							if ( empty( $wps_rma_check_tax ) ) {
 								if ( 'on' === $coupon_discount ) {
-									$mwb_actual_price = $item->get_total();
+									$wps_actual_price = $item->get_total();
 								} else {
-									$mwb_actual_price = $item->get_subtotal();
+									$wps_actual_price = $item->get_subtotal();
 								}
-							} elseif ( 'mwb_rma_inlcude_tax' === $mwb_rma_check_tax ) {
-								$mwb_actual_price = $tax_inc;
-							} elseif ( 'mwb_rma_exclude_tax' === $mwb_rma_check_tax ) {
-								$mwb_actual_price = $tax_exc;
+							} elseif ( 'wps_rma_inlcude_tax' === $wps_rma_check_tax ) {
+								$wps_actual_price = $tax_inc;
+							} elseif ( 'wps_rma_exclude_tax' === $wps_rma_check_tax ) {
+								$wps_actual_price = $tax_exc;
 							}
-							$mwb_total_actual_price += $mwb_actual_price * $item_qty;
+							$wps_total_actual_price += $wps_actual_price * $item_qty;
 
 							$purchase_note = get_post_meta( $product_id, '_purchase_note', true );
 							?>
-							<tr class="mwb_rma_return_column" data-productid="<?php echo esc_html( $product_id ); ?>" data-variationid="<?php echo esc_html( $item['variation_id'] ); ?>" data-itemid="<?php echo esc_html( $item_id ); ?>">
+							<tr class="wps_rma_return_column" data-productid="<?php echo esc_html( $product_id ); ?>" data-variationid="<?php echo esc_html( $item['variation_id'] ); ?>" data-itemid="<?php echo esc_html( $item_id ); ?>">
 								<?php
 								// To show extra column field value in the tbody.
-								do_action( 'mwb_rma_add_extra_column_field_value', $item_id, $product_id );
+								do_action( 'wps_rma_add_extra_column_field_value', $item_id, $product_id );
 								?>
 								<td class="product-name">
-									<input type="hidden" name="mwb_rma_product_amount" class="mwb_rma_product_amount" value="<?php echo esc_html( $mwb_actual_price / $item->get_quantity() ); ?>">
-									<div class="mwb-rma-product__wrap">
+									<input type="hidden" name="wps_rma_product_amount" class="wps_rma_product_amount" value="<?php echo esc_html( $wps_actual_price / $item->get_quantity() ); ?>">
+									<div class="wps-rma-product__wrap">
 										<?php
 										$is_visible        = $product && $product->is_visible();
 										$product_permalink =
@@ -161,7 +161,7 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 											<?php
 										}
 										?>
-										<div class="mwb_rma_product_title mwb-rma__product-title">
+										<div class="wps_rma_product_title wps-rma__product-title">
 											<?php
 											// Woo Order Item Name.
 											$o_n = apply_filters( 'woocommerce_order_item_name', $product_permalink ? sprintf( '<a href="%s">%s</a>', $product_permalink, $item['name'] ) : $item['name'], $item, $is_visible );
@@ -185,12 +185,12 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 											<p>
 												<b><?php esc_html_e( 'Price', 'woo-refund-and-exchange-lite' ); ?> :</b> 
 												<?php
-													echo wp_kses_post( mwb_wrma_format_price( $mwb_actual_price / $item->get_quantity(), $get_order_currency ) );
-												if ( 'mwb_rma_inlcude_tax' === $mwb_rma_check_tax ) {
+													echo wp_kses_post( wps_wrma_format_price( $wps_actual_price / $item->get_quantity(), $get_order_currency ) );
+												if ( 'wps_rma_inlcude_tax' === $wps_rma_check_tax ) {
 													?>
 													<small class="tax_label"><?php esc_html_e( '(incl. tax)', 'woo-refund-and-exchange-lite' ); ?></small>
 													<?php
-												} elseif ( 'mwb_rma_exclude_tax' === $mwb_rma_check_tax ) {
+												} elseif ( 'wps_rma_exclude_tax' === $wps_rma_check_tax ) {
 													?>
 														<small class="tax_label"><?php esc_html_e( '(excl. tax)', 'woo-refund-and-exchange-lite' ); ?></small>
 														<?php
@@ -202,20 +202,20 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 								</td>
 								<td class="product-quantity">
 								<?php
-								$qty_html = '<input type="number" disabled value="' . esc_html( $item_qty ) . '" class="mwb_rma_return_product_qty" name="mwb_rma_return_product_qty">';
+								$qty_html = '<input type="number" disabled value="' . esc_html( $item_qty ) . '" class="wps_rma_return_product_qty" name="wps_rma_return_product_qty">';
 								echo // Refund form Quantity html.
-								apply_filters( 'mwb_rma_change_quanity', $qty_html, $item_qty );
+								apply_filters( 'wps_rma_change_quanity', $qty_html, $item_qty );
 								?>
 								</td>
 								<td class="product-total">
 									<?php
-									echo wp_kses_post( mwb_wrma_format_price( $mwb_actual_price / $item->get_quantity(), $get_order_currency ) );
+									echo wp_kses_post( wps_wrma_format_price( $wps_actual_price / $item->get_quantity(), $get_order_currency ) );
 
-									if ( 'mwb_rma_inlcude_tax' === $mwb_rma_check_tax ) {
+									if ( 'wps_rma_inlcude_tax' === $wps_rma_check_tax ) {
 										?>
 										<small class="tax_label"><?php esc_html_e( '(incl. tax)', 'woo-refund-and-exchange-lite' ); ?></small>
 										<?php
-									} elseif ( 'mwb_rma_exclude_tax' === $mwb_rma_check_tax ) {
+									} elseif ( 'wps_rma_exclude_tax' === $wps_rma_check_tax ) {
 										?>
 											<small class="tax_label"><?php esc_html_e( '(excl. tax)', 'woo-refund-and-exchange-lite' ); ?></small>
 											<?php
@@ -236,15 +236,15 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 					}
 					?>
 					<tr>
-						<th scope="row" colspan="<?php echo mwb_rma_pro_active() ? '3' : '2'; ?>"><?php esc_html_e( 'Total Refund Amount', 'woo-refund-and-exchange-lite' ); ?></th>
-						<td class="mwb_rma_total_amount_wrap"><span id="mwb_rma_total_refund_amount"><?php echo wp_kses_post( mwb_wrma_format_price( $mwb_total_actual_price, $get_order_currency ) ); ?></span>
-						<input type="hidden" name="mwb_rma_total_refund_price" class="mwb_rma_total_refund_price" value="<?php echo esc_html( $mwb_total_actual_price ); ?>">
+						<th scope="row" colspan="<?php echo wps_rma_pro_active() ? '3' : '2'; ?>"><?php esc_html_e( 'Total Refund Amount', 'woo-refund-and-exchange-lite' ); ?></th>
+						<td class="wps_rma_total_amount_wrap"><span id="wps_rma_total_refund_amount"><?php echo wp_kses_post( wps_wrma_format_price( $wps_total_actual_price, $get_order_currency ) ); ?></span>
+						<input type="hidden" name="wps_rma_total_refund_price" class="wps_rma_total_refund_price" value="<?php echo esc_html( $wps_total_actual_price ); ?>">
 							<?php
-							if ( 'mwb_rma_inlcude_tax' === $mwb_rma_check_tax ) {
+							if ( 'wps_rma_inlcude_tax' === $wps_rma_check_tax ) {
 								?>
 								<small class="tax_label"><?php esc_html_e( '(incl. tax)', 'woo-refund-and-exchange-lite' ); ?></small>
 								<?php
-							} elseif ( 'mwb_rma_exclude_tax' === $mwb_rma_check_tax ) {
+							} elseif ( 'wps_rma_exclude_tax' === $wps_rma_check_tax ) {
 								?>
 									<small class="tax_label"><?php esc_html_e( '(excl. tax)', 'woo-refund-and-exchange-lite' ); ?></small>
 									<?php
@@ -254,28 +254,28 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 					</tr>
 				</tbody>
 			</table>
-			<div class="mwb_rma_return_notification_checkbox" style="display:none"><img src="<?php echo esc_html( esc_url( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL ) ); ?>public/images/loading.gif" width="40px"></div>
+			<div class="wps_rma_return_notification_checkbox" style="display:none"><img src="<?php echo esc_html( esc_url( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL ) ); ?>public/images/loading.gif" width="40px"></div>
 		</div>
 		<?php
-		$predefined_return_reason = get_option( 'mwb_rma_refund_reasons', '' );
+		$predefined_return_reason = get_option( 'wps_rma_refund_reasons', '' );
 		$predefined_return_reason = explode( ',', $predefined_return_reason );
 		?>
-		<div class="mwb-rma-refund-request__row mwb-rma-row__pd">
-			<div class="mwb-rma-col">
+		<div class="wps-rma-refund-request__row wps-rma-row__pd">
+			<div class="wps-rma-col">
 				<?php
 
 				// Add someting after table on the refund request form.
-				do_action( 'mwb_rma_after_table', $order_id );
-				$re_bank = get_option( 'mwb_rma_refund_manually_de', false );
+				do_action( 'wps_rma_after_table', $order_id );
+				$re_bank = get_option( 'wps_rma_refund_manually_de', false );
 				if ( 'on' === $re_bank ) {
 					?>
 					<div id="bank_details">
-					<textarea name="" class="mwb_rma_bank_details" rows=4 id="mwb_rma_bank_details" maxlength="1000" placeholder="<?php esc_html_e( 'Please Enter the bank details for manual refund', 'woo-refund-and-exchange-lite' ); ?>"></textarea>
+					<textarea name="" class="wps_rma_bank_details" rows=4 id="wps_rma_bank_details" maxlength="1000" placeholder="<?php esc_html_e( 'Please Enter the bank details for manual refund', 'woo-refund-and-exchange-lite' ); ?>"></textarea>
 					</div>
 					<?php
 				}
 				?>
-				<div class="mwb_rma_subject_dropdown mwb-rma-subject__dropdown">
+				<div class="wps_rma_subject_dropdown wps-rma-subject__dropdown">
 					<div>
 						<label>
 							<b>
@@ -285,7 +285,7 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 							</b>
 						</label>
 					</div>
-					<select name="mwb_rma_return_request_subject" id="mwb_rma_return_request_subject">
+					<select name="wps_rma_return_request_subject" id="wps_rma_return_request_subject">
 						<?php
 						if ( ! empty( $predefined_return_reason[0] ) ) {
 							foreach ( $predefined_return_reason as $predefine_reason ) {
@@ -299,14 +299,14 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 						<option value=""><?php esc_html_e( 'Other', 'woo-refund-and-exchange-lite' ); ?></option>
 					</select>
 				</div>
-				<div class="mwb_rma_other_subject">
-					<input type="text" name="ced_rnx_return_request_subject" class="mwb_rma_return_request_subject_text" id="mwb_rma_return_request_subject_text" maxlength="5000" placeholder="<?php esc_html_e( 'Write your refund reason', 'woo-refund-and-exchange-lite' ); ?>">
+				<div class="wps_rma_other_subject">
+					<input type="text" name="ced_rnx_return_request_subject" class="wps_rma_return_request_subject_text" id="wps_rma_return_request_subject_text" maxlength="5000" placeholder="<?php esc_html_e( 'Write your refund reason', 'woo-refund-and-exchange-lite' ); ?>">
 				</div>
 				<?php
-				$predefined_return_desc = get_option( 'mwb_rma_refund_description', false );
+				$predefined_return_desc = get_option( 'wps_rma_refund_description', false );
 				if ( isset( $predefined_return_desc ) && 'on' === $predefined_return_desc ) {
 					?>
-					<div class="mwb_rma_reason_description">
+					<div class="wps_rma_reason_description">
 						<div>	
 							<label>
 								<b>
@@ -317,39 +317,39 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 							</label>
 						</div>
 						<?php
-						$predefined_return_reason_placeholder = get_option( 'mwb_rma_refund_reason_placeholder', false );
+						$predefined_return_reason_placeholder = get_option( 'wps_rma_refund_reason_placeholder', false );
 						if ( empty( $predefined_return_reason_placeholder ) ) {
 							$predefined_return_reason_placeholder = esc_html__( 'Write your description for a refund', 'woo-refund-and-exchange-lite' );
 						}
 						?>
-						<textarea name="mwb_rma_return_request_reason" cols="40" style="height: 222px;" class="mwb_rma_return_request_reason" maxlength='10000' placeholder="<?php echo esc_html( $predefined_return_reason_placeholder ); ?>"><?php echo ! empty( $rr_reason ) ? esc_html( $rr_reason ) : ''; ?></textarea>
+						<textarea name="wps_rma_return_request_reason" cols="40" style="height: 222px;" class="wps_rma_return_request_reason" maxlength='10000' placeholder="<?php echo esc_html( $predefined_return_reason_placeholder ); ?>"><?php echo ! empty( $rr_reason ) ? esc_html( $rr_reason ) : ''; ?></textarea>
 					</div>
 					<?php
 				}
 				?>
 				<?php
 				// Add something above attachment on the refund request form.
-				do_action( 'mwb_rma_above_the_attachment' );
+				do_action( 'wps_rma_above_the_attachment' );
 				?>
-				<form action="" method="post" id="mwb_rma_return_request_form" data-orderid="<?php echo esc_html( $order_id ); ?>" enctype="multipart/form-data">
+				<form action="" method="post" id="wps_rma_return_request_form" data-orderid="<?php echo esc_html( $order_id ); ?>" enctype="multipart/form-data">
 					<?php
-					$return_attachment = get_option( 'mwb_rma_refund_attachment', false );
-					$attach_limit      = get_option( 'mwb_rma_attachment_limit', '15' );
+					$return_attachment = get_option( 'wps_rma_refund_attachment', false );
+					$attach_limit      = get_option( 'wps_rma_attachment_limit', '15' );
 					if ( empty( $attach_limit ) ) {
 						$attach_limit = 5;
 					}
 					if ( isset( $return_attachment ) && ! empty( $return_attachment ) ) {
 						if ( 'on' === $return_attachment ) {
 							?>
-							<div class="mwb_rma_attach_files">
+							<div class="wps_rma_attach_files">
 								<label><b><?php esc_html_e( 'Attach Files:', 'woo-refund-and-exchange-lite' ); ?></b></label>
 								<p>
-									<span id="mwb_rma_return_request_files">
-									<input type="hidden" name="mwb_rma_return_request_order" value="<?php echo esc_html( $order_id ); ?>">
-									<input type="hidden" name="action" value="mwb_rma_refund_upload_files">
-									<input type="file" name="mwb_rma_return_request_files[]" class="mwb_rma_return_request_files">
+									<span id="wps_rma_return_request_files">
+									<input type="hidden" name="wps_rma_return_request_order" value="<?php echo esc_html( $order_id ); ?>">
+									<input type="hidden" name="action" value="wps_rma_refund_upload_files">
+									<input type="file" name="wps_rma_return_request_files[]" class="wps_rma_return_request_files">
 									</span>
-									<div><input type="button" value="<?php esc_html_e( 'Add More', 'woo-refund-and-exchange-lite' ); ?>" class="mwb_rma_return_request_morefiles" data-count="1" data-max="<?php echo esc_html( $attach_limit ); ?>"></div>
+									<div><input type="button" value="<?php esc_html_e( 'Add More', 'woo-refund-and-exchange-lite' ); ?>" class="wps_rma_return_request_morefiles" data-count="1" data-max="<?php echo esc_html( $attach_limit ); ?>"></div>
 									<i><?php esc_html_e( 'Only .png, .jpeg extension file is approved.', 'woo-refund-and-exchange-lite' ); ?></i>
 								</p>
 							</div>
@@ -358,17 +358,17 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 					}
 					?>
 					<div>
-						<input type="submit" name="mwb_rma_return_request_submit" value="<?php esc_html_e( 'Submit Request', 'woo-refund-and-exchange-lite' ); ?>" class="button btn">
-						<div class="mwb_rma_return_notification"><img src="<?php echo esc_html( esc_url( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL ) ); ?>public/images/loading.gif" width="40px"></div>
+						<input type="submit" name="wps_rma_return_request_submit" value="<?php esc_html_e( 'Submit Request', 'woo-refund-and-exchange-lite' ); ?>" class="button btn">
+						<div class="wps_rma_return_notification"><img src="<?php echo esc_html( esc_url( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL ) ); ?>public/images/loading.gif" width="40px"></div>
 					</div>
 				</form>
 			</div>
 				<?php
-				$refund_rules_enable = get_option( 'mwb_rma_refund_rules', 'no' );
-				$refund_rules        = get_option( 'mwb_rma_refund_rules_editor', '' );
+				$refund_rules_enable = get_option( 'wps_rma_refund_rules', 'no' );
+				$refund_rules        = get_option( 'wps_rma_refund_rules_editor', '' );
 				if ( isset( $refund_rules_enable ) && 'on' === $refund_rules_enable && ! empty( $refund_rules ) ) {
 					?>
-					<div class="mwb-rma-col mwb_rma_flex">        
+					<div class="wps-rma-col wps_rma_flex">        
 						<div>
 							<?php
 								echo wp_kses_post( $refund_rules );
@@ -379,7 +379,7 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 				}
 				?>
 		</div>
-		<div class="mwb_rma_customer_detail">
+		<div class="wps_rma_customer_detail">
 			<?php
 			wc_get_template( 'order/order-details-customer.php', array( 'order' => $order_obj ) );
 			?>
@@ -393,10 +393,10 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 		echo esc_html__( 'Refund Request Can\'t make on this order', 'woo-refund-and-exchange-lite' );
 	}
 }
-$mwb_wrma_show_sidebar_on_form =
+$wps_wrma_show_sidebar_on_form =
 // Side show/hide on refund request form.
-apply_filters( 'mwb_rma_refund_form_sidebar', true );
-if ( $mwb_wrma_show_sidebar_on_form ) {
+apply_filters( 'wps_rma_refund_form_sidebar', true );
+if ( $wps_wrma_show_sidebar_on_form ) {
 	// Woo Main Content.
 	do_action( 'woocommerce_after_main_content' );
 }

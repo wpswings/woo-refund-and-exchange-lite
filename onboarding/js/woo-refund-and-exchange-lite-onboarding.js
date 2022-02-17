@@ -13,16 +13,16 @@ jQuery(document).ready(function($) {
         return new MDCSwitch(el);
     });
 
-    var mwb_deactivation_skip_button_id = mwb_rma_onboarding.wrael_current_supported_slug[0] + "-no_thanks_deactive";
-    var mwb_onboarding_popup_id = mwb_rma_onboarding.wrael_current_supported_slug[0] + "-onboarding_popup";
+    var wps_deactivation_skip_button_id = wps_rma_onboarding.wrael_current_supported_slug[0] + "-no_thanks_deactive";
+    var wps_onboarding_popup_id = wps_rma_onboarding.wrael_current_supported_slug[0] + "-onboarding_popup";
 
 
     var dialog = "";
     if ($('.woo-refund-and-exchange-lite').length > 0 ){
-        if ('admin.php' == mwb_rma_onboarding.wrael_current_screen) {
-            dialog = mdc.dialog.MDCDialog.attachTo(document.querySelector('.' + mwb_rma_onboarding.wrael_current_supported_slug[0]));
-        } else if ('plugins.php' == mwb_rma_onboarding.wrael_current_screen) {
-            dialog = mdc.dialog.MDCDialog.attachTo(document.querySelector('#' + mwb_onboarding_popup_id));   
+        if ('admin.php' == wps_rma_onboarding.wrael_current_screen) {
+            dialog = mdc.dialog.MDCDialog.attachTo(document.querySelector('.' + wps_rma_onboarding.wrael_current_supported_slug[0]));
+        } else if ('plugins.php' == wps_rma_onboarding.wrael_current_screen) {
+            dialog = mdc.dialog.MDCDialog.attachTo(document.querySelector('#' + wps_onboarding_popup_id));   
         }
     }
     /*if device is mobile*/
@@ -38,105 +38,105 @@ jQuery(document).ready(function($) {
     });
 
     // On click of deactivate.
-    if ('plugins.php' == mwb_rma_onboarding.wrael_current_screen) {
+    if ('plugins.php' == wps_rma_onboarding.wrael_current_screen) {
 
         // Add Deactivation id to all deactivation links.
-        mwb_rma_embed_id_to_deactivation_urls();
-        mwb_rma_add_deactivate_slugs_callback(mwb_rma_onboarding.wrael_current_supported_slug);
+        wps_rma_embed_id_to_deactivation_urls();
+        wps_rma_add_deactivate_slugs_callback(wps_rma_onboarding.wrael_current_supported_slug);
 
         jQuery(document).on('change', '.wrael-on-boarding-radio-field', function(e) {
 
             e.preventDefault();
             if ('other' == jQuery(this).attr('id')) {
-                jQuery('#deactivation-reason-text').removeClass('mwb-wrael-keep-hidden');
+                jQuery('#deactivation-reason-text').removeClass('wps-wrael-keep-hidden');
             } else {
-                jQuery('#deactivation-reason-text').addClass('mwb-wrael-keep-hidden');
+                jQuery('#deactivation-reason-text').addClass('wps-wrael-keep-hidden');
             }
         });
     } else {
-        // Show Popup after 1 second of entering into the MWB pagescreen.
-        if (jQuery('#mwb-wrael-show-counter').length > 0 && jQuery('#mwb-wrael-show-counter').val() == 'not-sent') {
-            setTimeout(mwb_rma_show_onboard_popup(), 1000);
+        // Show Popup after 1 second of entering into the WPS pagescreen.
+        if (jQuery('#wps-wrael-show-counter').length > 0 && jQuery('#wps-wrael-show-counter').val() == 'not-sent') {
+            setTimeout(wps_rma_show_onboard_popup(), 1000);
         }
     }
 
     /* Close Button Click */
-    jQuery(document).on('click', '.mwb-wrael-on-boarding-close-btn a', function(e) {
+    jQuery(document).on('click', '.wps-wrael-on-boarding-close-btn a', function(e) {
         e.preventDefault();
-        mwb_rma_hide_onboard_popup();
+        wps_rma_hide_onboard_popup();
     });
 
     /* Skip and deactivate. */
-    jQuery(document).on('click', '#' + mwb_deactivation_skip_button_id, function(e) {
+    jQuery(document).on('click', '#' + wps_deactivation_skip_button_id, function(e) {
 
         window.location.replace(deactivate_url);
-        mwb_rma_hide_onboard_popup();
+        wps_rma_hide_onboard_popup();
     });
 
     /* Skip For a day. */
-    jQuery(document).on('click', '.mwb-wrael-on-boarding-no_thanks', function(e) {
+    jQuery(document).on('click', '.wps-wrael-on-boarding-no_thanks', function(e) {
         jQuery.ajax({
             type: 'post',
             dataType: 'json',
-            url: mwb_rma_onboarding.ajaxurl,
+            url: wps_rma_onboarding.ajaxurl,
             data: {
-                nonce: mwb_rma_onboarding.wrael_auth_nonce,
+                nonce: wps_rma_onboarding.wrael_auth_nonce,
                 action: 'wrael_skip_onboarding_popup',
             },
             success: function(msg) {
-                mwb_rma_hide_onboard_popup();
+                wps_rma_hide_onboard_popup();
             }
         });
 
     });
 
     /* Submitting Form */
-    jQuery(document).on('submit', 'form.mwb-wrael-on-boarding-form', function(e) {
+    jQuery(document).on('submit', 'form.wps-wrael-on-boarding-form', function(e) {
 
         e.preventDefault();
-        var form_data = JSON.stringify(jQuery('form.mwb-wrael-on-boarding-form').serializeArray());
+        var form_data = JSON.stringify(jQuery('form.wps-wrael-on-boarding-form').serializeArray());
 
         jQuery.ajax({
             type: 'post',
             dataType: 'json',
-            url: mwb_rma_onboarding.ajaxurl,
+            url: wps_rma_onboarding.ajaxurl,
             data: {
-                nonce: mwb_rma_onboarding.wrael_auth_nonce,
-                action: 'mwb_rma_send_onboarding_data',
+                nonce: wps_rma_onboarding.wrael_auth_nonce,
+                action: 'wps_rma_send_onboarding_data',
                 form_data: form_data,
             },
             success: function(msg) {
-                if ('plugins.php' == mwb_rma_onboarding.wrael_current_screen) {
+                if ('plugins.php' == wps_rma_onboarding.wrael_current_screen) {
                     window.location.replace(deactivate_url);
                 }
-                mwb_rma_hide_onboard_popup();
+                wps_rma_hide_onboard_popup();
             }
         });
     });
 
     /* Open Popup */
-    function mwb_rma_show_onboard_popup() {
+    function wps_rma_show_onboard_popup() {
         dialog.open();
         if (!jQuery('body').hasClass('mobile-device')) {
-            jQuery('body').addClass('mwb-on-boarding-wrapper-control');
+            jQuery('body').addClass('wps-on-boarding-wrapper-control');
         }
     }
 
     /* Close Popup */
-    function mwb_rma_hide_onboard_popup() {
-        // jQuery( '.mwb-on-boarding-wrapper-background' ).removeClass( 'onboard-popup-show' );
-		// jQuery( '.mwb-onboarding-section' ).hide();
+    function wps_rma_hide_onboard_popup() {
+        // jQuery( '.wps-on-boarding-wrapper-background' ).removeClass( 'onboard-popup-show' );
+		// jQuery( '.wps-onboarding-section' ).hide();
         // const dialog = mdc.dialog.MDCDialog.attachTo(document.querySelector('.mdc-dialog'));
         dialog.close();
         if (!jQuery('body').hasClass('mobile-device')) {
-            jQuery('body').removeClass('mwb-on-boarding-wrapper-control');
+            jQuery('body').removeClass('wps-on-boarding-wrapper-control');
         }
     }
 
 
 
-    /* Apply deactivate in all the MWB plugins. */
-    function mwb_rma_add_deactivate_slugs_callback(all_slugs) {
+    /* Apply deactivate in all the WPS plugins. */
+    function wps_rma_add_deactivate_slugs_callback(all_slugs) {
 
         for (var i = all_slugs.length - 1; i >= 0; i--) {
 
@@ -147,16 +147,16 @@ jQuery(document).ready(function($) {
                 plugin_name = jQuery(this).attr('aria-label');
                 plugin_name = plugin_name.replace('Deactivate ', '');
                 jQuery('#plugin-name').val(plugin_name);
-                jQuery('.mwb-wrael-on-boarding-heading').text(plugin_name + ' Feedback');
-                var placeholder = jQuery('#mwb-wrael-deactivation-reason-text').attr('placeholder');
-                jQuery('#mwb-wrael-deactivation-reason-text').attr('placeholder', placeholder.replace('{plugin-name}', plugin_name));
-                mwb_rma_show_onboard_popup();
+                jQuery('.wps-wrael-on-boarding-heading').text(plugin_name + ' Feedback');
+                var placeholder = jQuery('#wps-wrael-deactivation-reason-text').attr('placeholder');
+                jQuery('#wps-wrael-deactivation-reason-text').attr('placeholder', placeholder.replace('{plugin-name}', plugin_name));
+                wps_rma_show_onboard_popup();
             });
         }
     }
 
     /* Add deactivate id in all the plugins links. */
-    function mwb_rma_embed_id_to_deactivation_urls() {
+    function wps_rma_embed_id_to_deactivation_urls() {
         jQuery('a').each(function() {
             if ('Deactivate' == jQuery(this).text() && 0 < jQuery(this).attr('href').search('action=deactivate')) {
                 if ('undefined' == typeof jQuery(this).attr('id')) {

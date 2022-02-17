@@ -215,21 +215,21 @@ msgstr ""
 #: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:38
 #: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:45
 #: public/class-woo-refund-and-exchange-lite-public.php:225
-#: public/partials/mwb-rma-refund-request-form.php:90
+#: public/partials/wps-rma-refund-request-form.php:90
 msgid "Product"
 msgstr ""
 
 #: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:39
 #: admin/partials/woo-refund-and-exchange-lite-return-meta.php:47
 #: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:46
-#: public/partials/mwb-rma-refund-request-form.php:91
+#: public/partials/wps-rma-refund-request-form.php:91
 msgid "Quantity"
 msgstr ""
 
 #: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:40
 #: admin/partials/woo-refund-and-exchange-lite-return-meta.php:46
 #: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:47
-#: public/partials/mwb-rma-refund-request-form.php:186
+#: public/partials/wps-rma-refund-request-form.php:186
 msgid "Price"
 msgstr ""
 
@@ -317,22 +317,22 @@ msgid "Public Hooks"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-order-message-meta.php:23
-#: public/partials/mwb-rma-view-order-msg.php:61
+#: public/partials/wps-rma-view-order-msg.php:61
 msgid "Messages Refreshed Successfully"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-order-message-meta.php:28
-#: public/partials/mwb-rma-view-order-msg.php:65
+#: public/partials/wps-rma-view-order-msg.php:65
 msgid "Message History"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-order-message-meta.php:39
-#: public/partials/mwb-rma-view-order-msg.php:75
+#: public/partials/wps-rma-view-order-msg.php:75
 msgid "Customer"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-order-message-meta.php:39
-#: public/partials/mwb-rma-view-order-msg.php:75
+#: public/partials/wps-rma-view-order-msg.php:75
 msgid "Shop Manager"
 msgstr ""
 
@@ -341,7 +341,7 @@ msgid "Attachment:"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-order-message-meta.php:83
-#: public/partials/mwb-rma-view-order-msg.php:41
+#: public/partials/wps-rma-view-order-msg.php:41
 msgid "Add a message"
 msgstr ""
 
@@ -354,7 +354,7 @@ msgid "Attach file"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-order-message-meta.php:91
-#: public/partials/mwb-rma-view-order-msg.php:55
+#: public/partials/wps-rma-view-order-msg.php:55
 msgid "Send"
 msgstr ""
 
@@ -558,7 +558,7 @@ msgstr ""
 #: admin/partials/woo-refund-and-exchange-lite-return-meta.php:48
 #: admin/partials/woo-refund-and-exchange-lite-return-meta.php:104
 #: public/class-woo-refund-and-exchange-lite-public.php:226
-#: public/partials/mwb-rma-refund-request-form.php:92
+#: public/partials/wps-rma-refund-request-form.php:92
 msgid "Total"
 msgstr ""
 
@@ -577,10 +577,10 @@ msgid "Refund Amount"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-return-meta.php:122
-#: emails/class-mwb-rma-order-messages-email.php:151
-#: emails/class-mwb-rma-refund-request-accept-email.php:154
-#: emails/class-mwb-rma-refund-request-cancel-email.php:150
-#: emails/class-mwb-rma-refund-request-email.php:156
+#: emails/class-wps-rma-order-messages-email.php:151
+#: emails/class-wps-rma-refund-request-accept-email.php:154
+#: emails/class-wps-rma-refund-request-cancel-email.php:150
+#: emails/class-wps-rma-refund-request-email.php:156
 msgid "Subject"
 msgstr ""
 
@@ -684,91 +684,91 @@ msgstr ""
 msgid "Reason of Refund"
 msgstr ""
 
-#: emails/class-mwb-rma-order-messages-email.php:103
+#: emails/class-wps-rma-order-messages-email.php:103
 msgid "Your {site_title} order {order_id} message from {message_date}"
 msgstr ""
 
-#: emails/class-mwb-rma-order-messages-email.php:110
+#: emails/class-wps-rma-order-messages-email.php:110
 msgid "Thank you"
 msgstr ""
 
-#: emails/class-mwb-rma-order-messages-email.php:142
-#: emails/class-mwb-rma-refund-request-accept-email.php:145
-#: emails/class-mwb-rma-refund-request-cancel-email.php:141
-#: emails/class-mwb-rma-refund-request-email.php:147
+#: emails/class-wps-rma-order-messages-email.php:142
+#: emails/class-wps-rma-refund-request-accept-email.php:145
+#: emails/class-wps-rma-refund-request-cancel-email.php:141
+#: emails/class-wps-rma-refund-request-email.php:147
 #, php-format
 msgid "Available placeholders: %s"
 msgstr ""
 
-#: emails/class-mwb-rma-order-messages-email.php:159
-#: emails/class-mwb-rma-refund-request-accept-email.php:162
-#: emails/class-mwb-rma-refund-request-cancel-email.php:158
-#: emails/class-mwb-rma-refund-request-email.php:164
+#: emails/class-wps-rma-order-messages-email.php:159
+#: emails/class-wps-rma-refund-request-accept-email.php:162
+#: emails/class-wps-rma-refund-request-cancel-email.php:158
+#: emails/class-wps-rma-refund-request-email.php:164
 msgid "Heading"
 msgstr ""
 
-#: emails/class-mwb-rma-order-messages-email.php:173
-#: emails/class-mwb-rma-refund-request-accept-email.php:185
-#: emails/class-mwb-rma-refund-request-cancel-email.php:181
-#: emails/class-mwb-rma-refund-request-email.php:187
+#: emails/class-wps-rma-order-messages-email.php:173
+#: emails/class-wps-rma-refund-request-accept-email.php:185
+#: emails/class-wps-rma-refund-request-cancel-email.php:181
+#: emails/class-wps-rma-refund-request-email.php:187
 msgid "Plain text"
 msgstr ""
 
-#: emails/class-mwb-rma-order-messages-email.php:174
-#: emails/class-mwb-rma-refund-request-accept-email.php:186
-#: emails/class-mwb-rma-refund-request-cancel-email.php:182
-#: emails/class-mwb-rma-refund-request-email.php:188
+#: emails/class-wps-rma-order-messages-email.php:174
+#: emails/class-wps-rma-refund-request-accept-email.php:186
+#: emails/class-wps-rma-refund-request-cancel-email.php:182
+#: emails/class-wps-rma-refund-request-email.php:188
 msgid "HTML"
 msgstr ""
 
-#: emails/class-mwb-rma-order-messages-email.php:175
-#: emails/class-mwb-rma-refund-request-accept-email.php:187
-#: emails/class-mwb-rma-refund-request-cancel-email.php:183
-#: emails/class-mwb-rma-refund-request-email.php:189
+#: emails/class-wps-rma-order-messages-email.php:175
+#: emails/class-wps-rma-refund-request-accept-email.php:187
+#: emails/class-wps-rma-refund-request-cancel-email.php:183
+#: emails/class-wps-rma-refund-request-email.php:189
 msgid "Multipart"
 msgstr ""
 
-#: emails/class-mwb-rma-refund-request-accept-email.php:106
+#: emails/class-wps-rma-refund-request-accept-email.php:106
 msgid ""
 "Refund Request Accept for order {order_id} message from {message_date}"
 msgstr ""
 
-#: emails/class-mwb-rma-refund-request-accept-email.php:113
+#: emails/class-wps-rma-refund-request-accept-email.php:113
 msgid "Refund Request Accept Email"
 msgstr ""
 
-#: emails/class-mwb-rma-refund-request-accept-email.php:170
-#: emails/class-mwb-rma-refund-request-cancel-email.php:166
-#: emails/class-mwb-rma-refund-request-email.php:172
+#: emails/class-wps-rma-refund-request-accept-email.php:170
+#: emails/class-wps-rma-refund-request-cancel-email.php:166
+#: emails/class-wps-rma-refund-request-email.php:172
 msgid "Custom Email"
 msgstr ""
 
-#: emails/class-mwb-rma-refund-request-accept-email.php:171
-#: emails/class-mwb-rma-refund-request-cancel-email.php:167
-#: emails/class-mwb-rma-refund-request-email.php:173
+#: emails/class-wps-rma-refund-request-accept-email.php:171
+#: emails/class-wps-rma-refund-request-cancel-email.php:167
+#: emails/class-wps-rma-refund-request-email.php:173
 msgid "If N/A then default email will send."
 msgstr ""
 
-#: emails/class-mwb-rma-refund-request-accept-email.php:173
-#: emails/class-mwb-rma-refund-request-cancel-email.php:169
-#: emails/class-mwb-rma-refund-request-email.php:175
+#: emails/class-wps-rma-refund-request-accept-email.php:173
+#: emails/class-wps-rma-refund-request-cancel-email.php:169
+#: emails/class-wps-rma-refund-request-email.php:175
 msgid "N/A"
 msgstr ""
 
-#: emails/class-mwb-rma-refund-request-cancel-email.php:103
+#: emails/class-wps-rma-refund-request-cancel-email.php:103
 msgid ""
 "Refund Request Cancel for order {order_id} message from {message_date}"
 msgstr ""
 
-#: emails/class-mwb-rma-refund-request-cancel-email.php:110
+#: emails/class-wps-rma-refund-request-cancel-email.php:110
 msgid "Refund Request Cancel Email"
 msgstr ""
 
-#: emails/class-mwb-rma-refund-request-email.php:107
+#: emails/class-wps-rma-refund-request-email.php:107
 msgid "Refund Request for order {order_id} message from {message_date}"
 msgstr ""
 
-#: emails/class-mwb-rma-refund-request-email.php:114
+#: emails/class-wps-rma-refund-request-email.php:114
 msgid "Refund Request Email"
 msgstr ""
 
@@ -842,7 +842,7 @@ msgid ""
 msgstr ""
 
 #: includes/index.php:11 index.php:14 public/index.php:10
-#: wp-bakery-widgets/class-mwb-rma-vc-widgets.php:16
+#: wp-bakery-widgets/class-wps-rma-vc-widgets.php:16
 msgid "oops looks like nothing is here"
 msgstr ""
 
@@ -1081,83 +1081,83 @@ msgstr ""
 msgid "Above product Refund request is canceled on"
 msgstr ""
 
-#: public/partials/mwb-rma-refund-request-form.php:32
+#: public/partials/wps-rma-refund-request-form.php:32
 msgid "Please give the correct order id"
 msgstr ""
 
-#: public/partials/mwb-rma-refund-request-form.php:79
+#: public/partials/wps-rma-refund-request-form.php:79
 msgid "Order's Product Refund Request Form"
 msgstr ""
 
-#: public/partials/mwb-rma-refund-request-form.php:191
-#: public/partials/mwb-rma-refund-request-form.php:216
-#: public/partials/mwb-rma-refund-request-form.php:245
+#: public/partials/wps-rma-refund-request-form.php:191
+#: public/partials/wps-rma-refund-request-form.php:216
+#: public/partials/wps-rma-refund-request-form.php:245
 msgid "(incl. tax)"
 msgstr ""
 
-#: public/partials/mwb-rma-refund-request-form.php:195
-#: public/partials/mwb-rma-refund-request-form.php:220
-#: public/partials/mwb-rma-refund-request-form.php:249
+#: public/partials/wps-rma-refund-request-form.php:195
+#: public/partials/wps-rma-refund-request-form.php:220
+#: public/partials/wps-rma-refund-request-form.php:249
 msgid "(excl. tax)"
 msgstr ""
 
-#: public/partials/mwb-rma-refund-request-form.php:239
+#: public/partials/wps-rma-refund-request-form.php:239
 msgid "Total Refund Amount"
 msgstr ""
 
-#: public/partials/mwb-rma-refund-request-form.php:273
+#: public/partials/wps-rma-refund-request-form.php:273
 msgid "Please Enter the bank details for manual refund"
 msgstr ""
 
-#: public/partials/mwb-rma-refund-request-form.php:283
+#: public/partials/wps-rma-refund-request-form.php:283
 msgid "Subject of Refund Request :"
 msgstr ""
 
-#: public/partials/mwb-rma-refund-request-form.php:299
+#: public/partials/wps-rma-refund-request-form.php:299
 msgid "Other"
 msgstr ""
 
-#: public/partials/mwb-rma-refund-request-form.php:303
+#: public/partials/wps-rma-refund-request-form.php:303
 msgid "Write your refund reason"
 msgstr ""
 
-#: public/partials/mwb-rma-refund-request-form.php:314
+#: public/partials/wps-rma-refund-request-form.php:314
 msgid "Description for Refund Reason :"
 msgstr ""
 
-#: public/partials/mwb-rma-refund-request-form.php:322
+#: public/partials/wps-rma-refund-request-form.php:322
 msgid "Write your description for a refund"
 msgstr ""
 
-#: public/partials/mwb-rma-refund-request-form.php:345
+#: public/partials/wps-rma-refund-request-form.php:345
 msgid "Attach Files:"
 msgstr ""
 
-#: public/partials/mwb-rma-refund-request-form.php:352
+#: public/partials/wps-rma-refund-request-form.php:352
 msgid "Add More"
 msgstr ""
 
-#: public/partials/mwb-rma-refund-request-form.php:353
+#: public/partials/wps-rma-refund-request-form.php:353
 msgid "Only .png, .jpeg extension file is approved."
 msgstr ""
 
-#: public/partials/mwb-rma-refund-request-form.php:361
+#: public/partials/wps-rma-refund-request-form.php:361
 msgid "Submit Request"
 msgstr ""
 
-#: public/partials/mwb-rma-refund-request-form.php:393
+#: public/partials/wps-rma-refund-request-form.php:393
 msgid "Refund Request Can't make on this order"
 msgstr ""
 
-#: public/partials/mwb-rma-view-order-msg.php:43
+#: public/partials/wps-rma-view-order-msg.php:43
 msgid "Write a message you want to send to the Shop Manager."
 msgstr ""
 
-#: public/partials/mwb-rma-view-order-msg.php:47
+#: public/partials/wps-rma-view-order-msg.php:47
 msgid "Attach file: "
 msgstr ""
 
-#: public/partials/mwb-rma-view-order-msg.php:90
+#: public/partials/wps-rma-view-order-msg.php:90
 msgid "Attachment :"
 msgstr ""
 
@@ -1180,23 +1180,23 @@ msgid ""
 "install WooCommerce Refund and Exchange Lite."
 msgstr ""
 
-#: wp-bakery-widgets/class-mwb-rma-vc-widgets.php:47
+#: wp-bakery-widgets/class-wps-rma-vc-widgets.php:47
 msgid "Refund Form"
 msgstr ""
 
-#: wp-bakery-widgets/class-mwb-rma-vc-widgets.php:48
+#: wp-bakery-widgets/class-wps-rma-vc-widgets.php:48
 msgid "Add Refund Form into your page"
 msgstr ""
 
-#: wp-bakery-widgets/class-mwb-rma-vc-widgets.php:50
-#: wp-bakery-widgets/class-mwb-rma-vc-widgets.php:60
+#: wp-bakery-widgets/class-wps-rma-vc-widgets.php:50
+#: wp-bakery-widgets/class-wps-rma-vc-widgets.php:60
 msgid "RMA FORMS"
 msgstr ""
 
-#: wp-bakery-widgets/class-mwb-rma-vc-widgets.php:57
+#: wp-bakery-widgets/class-wps-rma-vc-widgets.php:57
 msgid "Order Message Form"
 msgstr ""
 
-#: wp-bakery-widgets/class-mwb-rma-vc-widgets.php:58
+#: wp-bakery-widgets/class-wps-rma-vc-widgets.php:58
 msgid "Add Order Message Form into your page"
 msgstr ""

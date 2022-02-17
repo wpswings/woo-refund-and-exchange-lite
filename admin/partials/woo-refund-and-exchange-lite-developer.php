@@ -4,7 +4,7 @@
  *
  * This file is used to list all the hooks and filter with their descriptions.
  *
- * @link       https://makewebbetter.com/
+ * @link       https://wpswings.com/
  * @since      1.0.0
  *
  * @package    woo-refund-and-exchange-lite
@@ -14,7 +14,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-global $wrael_mwb_rma_obj;
+global $wrael_wps_rma_obj;
 $wrael_developer_admin_hooks =
 // Admin Hooks.
 apply_filters( 'wrael_developer_admin_hooks_array', array() );
@@ -26,9 +26,9 @@ $count_public = filtered_array( $wrael_developer_public_hooks );
 ?>
 <!--  template file for admin settings. -->
 <div class="wrael-section-wrap">
-	<div class="mwb-col-wrap">
+	<div class="wps-col-wrap">
 		<div id="admin-hooks-listing" class="table-responsive mdc-data-table">
-			<table class="mwb-wrael-table mdc-data-table__table mwb-table"  id="mwb-wrael-wp">
+			<table class="wps-wrael-table mdc-data-table__table wps-table"  id="wps-wrael-wp">
 				<thead>
 				<tr><th class="mdc-data-table__header-cell"><?php esc_html_e( 'Admin Hooks', 'woo-refund-and-exchange-lite' ); ?></th></tr>
 				<tr>
@@ -61,9 +61,9 @@ $count_public = filtered_array( $wrael_developer_public_hooks );
 			</table>
 		</div>
 	</div>
-	<div class="mwb-col-wrap">
+	<div class="wps-col-wrap">
 		<div id="public-hooks-listing" class="table-responsive mdc-data-table">
-			<table class="mwb-wrael-table mdc-data-table__table mwb-table" id="mwb-wrael-sys">
+			<table class="wps-wrael-table mdc-data-table__table wps-table" id="wps-wrael-sys">
 				<thead>
 				<tr><th class="mdc-data-table__header-cell"><?php esc_html_e( 'Public Hooks', 'woo-refund-and-exchange-lite' ); ?></th></tr>
 				<tr>

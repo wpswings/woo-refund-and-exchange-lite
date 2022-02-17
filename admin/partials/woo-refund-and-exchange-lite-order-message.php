@@ -4,7 +4,7 @@
  *
  * This file is used to markup the html field for order message tab.
  *
- * @link       https://makewebbetter.com/
+ * @link       https://wpswings.com/
  * @since      1.0.0
  *
  * @package    woo-refund-and-exchange-lite
@@ -14,19 +14,19 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-global $wrael_mwb_rma_obj;
+global $wrael_wps_rma_obj;
 $wrael_order_message_settings =
 // Order Message Setting Array.
-apply_filters( 'mwb_rma_order_message_settings_array', array() );
+apply_filters( 'wps_rma_order_message_settings_array', array() );
 $woo_email_url = admin_url() . 'admin.php?page=wc-settings&tab=email';
 ?>
 <!--  template file for admin settings. -->
-<form action="" method="POST" class="mwb-wrael-gen-section-form">
+<form action="" method="POST" class="wps-wrael-gen-section-form">
 	<div class="wrael-secion-wrap">
 		<?php
-		$wrael_order_message_settings = $wrael_mwb_rma_obj->mwb_rma_plug_generate_html( $wrael_order_message_settings );
+		$wrael_order_message_settings = $wrael_wps_rma_obj->wps_rma_plug_generate_html( $wrael_order_message_settings );
 		echo esc_html( $wrael_order_message_settings );
-		wp_nonce_field( 'admin_save_data', 'mwb_tabs_nonce' );
+		wp_nonce_field( 'admin_save_data', 'wps_tabs_nonce' );
 		?>
 	</div>
 </form>

@@ -4,7 +4,7 @@
  *
  * This file is used to markup the html field for general tab.
  *
- * @link       https://makewebbetter.com/
+ * @link       https://wpswings.com/
  * @since      1.0.0
  *
  * @package    woo-refund-and-exchange-lite
@@ -14,21 +14,21 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-global $wrael_mwb_rma_obj;
-$mwb_rma_refund_html =
+global $wrael_wps_rma_obj;
+$wps_rma_refund_html =
 // Refund Setting Array.
-apply_filters( 'mwb_rma_refund_settings_array', array() );
-$woo_request_email_url = admin_url() . 'admin.php?page=wc-settings&tab=email&section=mwb_rma_refund_request_email';
-$woo_accept_email_url  = admin_url() . 'admin.php?page=wc-settings&tab=email&section=mwb_rma_refund_request_accept_email';
-$woo_cancel_email_url  = admin_url() . 'admin.php?page=wc-settings&tab=email&section=mwb_rma_refund_request_cancel_email';
+apply_filters( 'wps_rma_refund_settings_array', array() );
+$woo_request_email_url = admin_url() . 'admin.php?page=wc-settings&tab=email&section=wps_rma_refund_request_email';
+$woo_accept_email_url  = admin_url() . 'admin.php?page=wc-settings&tab=email&section=wps_rma_refund_request_accept_email';
+$woo_cancel_email_url  = admin_url() . 'admin.php?page=wc-settings&tab=email&section=wps_rma_refund_request_cancel_email';
 ?>
 <!--  template file for admin settings. -->
-<form action="" method="POST" class="mwb-wrael-gen-section-form">
+<form action="" method="POST" class="wps-wrael-gen-section-form">
 	<div class="wrael-secion-wrap">
 		<?php
-		$mwb_rma_refund_html = $wrael_mwb_rma_obj->mwb_rma_plug_generate_html( $mwb_rma_refund_html );
-		echo esc_html( $mwb_rma_refund_html );
-		wp_nonce_field( 'admin_save_data', 'mwb_tabs_nonce' );
+		$wps_rma_refund_html = $wrael_wps_rma_obj->wps_rma_plug_generate_html( $wps_rma_refund_html );
+		echo esc_html( $wps_rma_refund_html );
+		wp_nonce_field( 'admin_save_data', 'wps_tabs_nonce' );
 		?>
 	</div>
 </form>

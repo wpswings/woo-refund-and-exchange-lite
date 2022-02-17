@@ -1,4 +1,4 @@
-(window["webpackJsonp_MWB_Boilerplate"] = window["webpackJsonp_MWB_Boilerplate"] || []).push([["style-index"],{
+(window["webpackJsonp_WPS_Boilerplate"] = window["webpackJsonp_WPS_Boilerplate"] || []).push([["style-index"],{
 
 /***/ "./src/style.css":
 /*!***********************!*\
@@ -157,7 +157,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
 /******/
-/******/ 	var jsonpArray = window["webpackJsonp_MWB_Boilerplate"] = window["webpackJsonp_MWB_Boilerplate"] || [];
+/******/ 	var jsonpArray = window["webpackJsonp_WPS_Boilerplate"] = window["webpackJsonp_WPS_Boilerplate"] || [];
 /******/ 	var oldJsonpFunction = jsonpArray.push.bind(jsonpArray);
 /******/ 	jsonpArray.push = webpackJsonpCallback;
 /******/ 	jsonpArray = jsonpArray.slice();
@@ -19618,7 +19618,7 @@ function handleContainer(containerInfo, props) {
 
   if (!props.disableScrollLock) {
     if (isOverflowing(container)) {
-      // Compute the size before applying overflow hidden to avoid any scroll jumps.
+      // Compute the size before applying overflow hidden to avoid any scroll jurraefw.
       var scrollbarSize = Object(_utils_getScrollbarSize__WEBPACK_IMPORTED_MODULE_3__["default"])();
       restoreStyle.push({
         value: container.style.paddingRight,
@@ -55603,8 +55603,8 @@ function App(props) {
     e.preventDefault();
     setLoading(true);
     const user = { ...state,
-      'action': 'mwb_standard_save_settings_filter',
-      nonce: frontend_ajax_object.mwb_standard_nonce
+      'action': 'wps_standard_save_settings_filter',
+      nonce: frontend_ajax_object.wps_standard_nonce
     };
     axios__WEBPACK_IMPORTED_MODULE_8___default.a.post(frontend_ajax_object.ajaxurl, qs__WEBPACK_IMPORTED_MODULE_10___default.a.stringify(user)).then(res => {
       setLoading(false);
@@ -55639,22 +55639,22 @@ function App(props) {
       changeHandler: onFormFieldHandler
     }
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
-    className: "mwbMsfWrapper"
+    className: "wpsMsfWrapper"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_component_Stepper__WEBPACK_IMPORTED_MODULE_4__["default"], {
     activeStep: activeStep,
     steps: steps
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
-    className: "mwbHeadingWrap"
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h2", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__["__"])('Welcome to Makewebbetter', 'woo-refund-and-exchange-lite')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__["__"])('Complete The steps to get started', 'woo-refund-and-exchange-lite'))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["Container"], {
+    className: "wpsHeadingWrap"
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h2", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__["__"])('Welcome to WP Swings', 'woo-refund-and-exchange-lite')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_9__["__"])('Complete The steps to get started', 'woo-refund-and-exchange-lite'))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["Container"], {
     maxWidth: "sm"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("form", {
-    className: "mwbMsf"
+    className: "wpsMsf"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["Typography"], {
     className: classes.instructions
   }, loading ? Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["CircularProgress"], {
-    className: "mwbCircularProgress"
+    className: "wpsCircularProgress"
   }) : getStepContent(activeStep)), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
-    className: "mwbButtonWrap"
+    className: "wpsButtonWrap"
   }, activeStep !== steps.length && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["Button"], {
     disabled: activeStep === 0,
     onClick: handleBack,
@@ -55706,9 +55706,9 @@ function FinalStep(props) {
     className: "fieldsetWrapper"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["FormLabel"], {
     component: "legend",
-    className: "mwbFormLabel"
+    className: "wpsFormLabel"
   }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Bingo! You are all set to take advantage of your business. Lastly, we urge you to allow us collect some', 'woo-refund-and-exchange-lite'), " ", Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("a", {
-    href: "https://makewebbetter.com/plugin-usage-tracking/",
+    href: "https://wpswings.com/plugin-usage-tracking/",
     target: "_blank"
   }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('information', 'woo-refund-and-exchange-lite')), " ", Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('in order to improve this plugin and provide better support. If you want, you can dis-allow anytime settings, We never track down your personal data. Promise!', 'woo-refund-and-exchange-lite')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["FormControlLabel"], {
     control: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["Switch"], {
@@ -55878,7 +55878,7 @@ __webpack_require__.r(__webpack_exports__);
 const stepper = props => {
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["Stepper"], {
     activeStep: props.activeStep,
-    className: "mwbStepper"
+    className: "wpsStepper"
   }, props.steps.map(label => Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["Step"], {
     key: label
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["StepLabel"], null, label))));

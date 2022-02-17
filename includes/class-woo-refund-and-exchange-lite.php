@@ -5,7 +5,7 @@
  * A class definition that includes attributes and functions used across both the
  * public-facing side of the site and the admin area.
  *
- * @link  https://makewebbetter.com/
+ * @link  https://wpswings.com/
  * @since 1.0.0
  *
  * @package    woo-refund-and-exchange-lite
@@ -178,10 +178,10 @@ class Woo_Refund_And_Exchange_Lite {
 	 *
 	 * @since 1.0.0
 	 */
-	private function mwb_saved_notice_hook_name() {
-		$mwb_plugin_name                            = ! empty( explode( '/', plugin_basename( __FILE__ ) ) ) ? explode( '/', plugin_basename( __FILE__ ) )[0] : '';
-		$mwb_plugin_settings_saved_notice_hook_name = $mwb_plugin_name . '_settings_saved_notice';
-		return $mwb_plugin_settings_saved_notice_hook_name;
+	private function wps_saved_notice_hook_name() {
+		$wps_plugin_name                            = ! empty( explode( '/', plugin_basename( __FILE__ ) ) ) ? explode( '/', plugin_basename( __FILE__ ) )[0] : '';
+		$wps_plugin_settings_saved_notice_hook_name = $wps_plugin_name . '_settings_saved_notice';
+		return $wps_plugin_settings_saved_notice_hook_name;
 	}
 
 	/**
@@ -198,38 +198,38 @@ class Woo_Refund_And_Exchange_Lite {
 
 		// Add settings menu for Woo Refund And Exchange Lite.
 		$this->loader->add_action( 'admin_menu', $wrael_plugin_admin, 'wrael_options_page' );
-		$this->loader->add_action( 'admin_menu', $wrael_plugin_admin, 'mwb_rma_remove_default_submenu', 50 );
+		$this->loader->add_action( 'admin_menu', $wrael_plugin_admin, 'wps_rma_remove_default_submenu', 50 );
 
 		// All admin actions and filters after License Validation goes here.
-		$this->loader->add_filter( 'mwb_add_plugins_menus_array', $wrael_plugin_admin, 'wrael_admin_submenu_page', 15 );
+		$this->loader->add_filter( 'wps_add_plugins_menus_array', $wrael_plugin_admin, 'wrael_admin_submenu_page', 15 );
 		$this->loader->add_filter( 'wrael_general_settings_array', $wrael_plugin_admin, 'wrael_admin_general_settings_page', 10 );
 
 		// Saving tab settings.
-		$this->loader->add_action( 'mwb_rma_settings_saved_notice', $wrael_plugin_admin, 'wrael_admin_save_tab_settings' );
+		$this->loader->add_action( 'wps_rma_settings_saved_notice', $wrael_plugin_admin, 'wrael_admin_save_tab_settings' );
 
 		// Developer's Hook Listing.
-		$this->loader->add_action( 'wrael_developer_admin_hooks_array', $wrael_plugin_admin, 'mwb_developer_admin_hooks_listing' );
-		$this->loader->add_action( 'wrael_developer_public_hooks_array', $wrael_plugin_admin, 'mwb_developer_public_hooks_listing' );
+		$this->loader->add_action( 'wrael_developer_admin_hooks_array', $wrael_plugin_admin, 'wps_developer_admin_hooks_listing' );
+		$this->loader->add_action( 'wrael_developer_public_hooks_array', $wrael_plugin_admin, 'wps_developer_public_hooks_listing' );
 
 		// Register settings.
-		$this->loader->add_filter( 'mwb_rma_refund_settings_array', $wrael_plugin_admin, 'mwb_rma_refund_settings_page', 10 );
-		$this->loader->add_filter( 'mwb_rma_order_message_settings_array', $wrael_plugin_admin, 'mwb_rma_order_message_settings_page', 10 );
-		$this->loader->add_filter( 'mwb_rma_api_settings_array', $wrael_plugin_admin, 'mwb_rma_api_settings_page', 10 );
+		$this->loader->add_filter( 'wps_rma_refund_settings_array', $wrael_plugin_admin, 'wps_rma_refund_settings_page', 10 );
+		$this->loader->add_filter( 'wps_rma_order_message_settings_array', $wrael_plugin_admin, 'wps_rma_order_message_settings_page', 10 );
+		$this->loader->add_filter( 'wps_rma_api_settings_array', $wrael_plugin_admin, 'wps_rma_api_settings_page', 10 );
 
 		// Add metaboxes.
-		$this->loader->add_action( 'add_meta_boxes', $wrael_plugin_admin, 'mwb_wrma_add_metaboxes' );
+		$this->loader->add_action( 'add_meta_boxes', $wrael_plugin_admin, 'wps_wrma_add_metaboxes' );
 
 		// Ajax hooks.
-		$this->loader->add_action( 'wp_ajax_mwb_rma_return_req_approve', $wrael_plugin_admin, 'mwb_rma_return_req_approve' );
-		$this->loader->add_action( 'wp_ajax_mwb_rma_return_req_cancel', $wrael_plugin_admin, 'mwb_rma_return_req_cancel' );
-		$this->loader->add_action( 'wp_ajax_mwb_rma_manage_stock', $wrael_plugin_admin, 'mwb_rma_manage_stock' );
-		$this->loader->add_action( 'wp_ajax_mwb_rma_api_secret_key', $wrael_plugin_admin, 'mwb_rma_api_secret_key' );
+		$this->loader->add_action( 'wp_ajax_wps_rma_return_req_approve', $wrael_plugin_admin, 'wps_rma_return_req_approve' );
+		$this->loader->add_action( 'wp_ajax_wps_rma_return_req_cancel', $wrael_plugin_admin, 'wps_rma_return_req_cancel' );
+		$this->loader->add_action( 'wp_ajax_wps_rma_manage_stock', $wrael_plugin_admin, 'wps_rma_manage_stock' );
+		$this->loader->add_action( 'wp_ajax_wps_rma_api_secret_key', $wrael_plugin_admin, 'wps_rma_api_secret_key' );
 
 		// Update Refund Created amount.
-		$this->loader->add_action( 'woocommerce_refund_created', $wrael_plugin_admin, 'mwb_rma_action_woocommerce_order_refunded', 10, 2 );
+		$this->loader->add_action( 'woocommerce_refund_created', $wrael_plugin_admin, 'wps_rma_action_woocommerce_order_refunded', 10, 2 );
 
 		// Save policies setting.
-		$this->loader->add_action( 'mwb_rma_settings_saved_notice', $wrael_plugin_admin, 'mwb_rma_save_policies_setting' );
+		$this->loader->add_action( 'wps_rma_settings_saved_notice', $wrael_plugin_admin, 'wps_rma_save_policies_setting' );
 	}
 
 	/**
@@ -247,48 +247,48 @@ class Woo_Refund_And_Exchange_Lite {
 		$this->loader->add_action( 'admin_enqueue_scripts', $wrael_plugin_common, 'wrael_common_enqueue_scripts' );
 
 		// license validation.
-		$this->loader->add_action( 'wp_ajax_mwb_rma_validate_license_key', $wrael_plugin_common, 'mwb_rma_validate_license_key' );
+		$this->loader->add_action( 'wp_ajax_wps_rma_validate_license_key', $wrael_plugin_common, 'wps_rma_validate_license_key' );
 
 		// Add the RMA Email.
-		$this->loader->add_filter( 'woocommerce_email_classes', $wrael_plugin_common, 'mwb_rma_woocommerce_emails' );
+		$this->loader->add_filter( 'woocommerce_email_classes', $wrael_plugin_common, 'wps_rma_woocommerce_emails' );
 
 		// Save atachment on the refund request form.
-		$this->loader->add_action( 'wp_ajax_mwb_rma_return_upload_files', $wrael_plugin_common, 'mwb_rma_order_return_attach_files' );
-		$this->loader->add_action( 'wp_ajax_nopriv_mwb_rma_return_upload_files', $wrael_plugin_common, 'mwb_rma_order_return_attach_files' );
+		$this->loader->add_action( 'wp_ajax_wps_rma_return_upload_files', $wrael_plugin_common, 'wps_rma_order_return_attach_files' );
+		$this->loader->add_action( 'wp_ajax_nopriv_wps_rma_return_upload_files', $wrael_plugin_common, 'wps_rma_order_return_attach_files' );
 
 		// Save Return Request.
-		$this->loader->add_action( 'wp_ajax_mwb_rma_save_return_request', $wrael_plugin_common, 'mwb_rma_save_return_request' );
-		$this->loader->add_action( 'wp_ajax_nopriv_mwb_rma_save_return_request', $wrael_plugin_common, 'mwb_rma_save_return_request' );
+		$this->loader->add_action( 'wp_ajax_wps_rma_save_return_request', $wrael_plugin_common, 'wps_rma_save_return_request' );
+		$this->loader->add_action( 'wp_ajax_nopriv_wps_rma_save_return_request', $wrael_plugin_common, 'wps_rma_save_return_request' );
 
 		// Add custom order status.
-		$this->loader->add_action( 'init', $wrael_plugin_common, 'mwb_rma_register_custom_order_status' );
-		$this->loader->add_filter( 'wc_order_statuses', $wrael_plugin_common, 'mwb_rma_add_custom_order_status' );
+		$this->loader->add_action( 'init', $wrael_plugin_common, 'wps_rma_register_custom_order_status' );
+		$this->loader->add_filter( 'wc_order_statuses', $wrael_plugin_common, 'wps_rma_add_custom_order_status' );
 
 		// add capabilities, priority must be after the initial role.
-		$this->loader->add_action( 'init', $wrael_plugin_common, 'mwb_rma_role_capability', 11 );
+		$this->loader->add_action( 'init', $wrael_plugin_common, 'wps_rma_role_capability', 11 );
 
 		// Send Emails.
-		$this->loader->add_action( 'mwb_rma_refund_req_email', $wrael_plugin_common, 'mwb_rma_refund_req_email', 10 );
+		$this->loader->add_action( 'wps_rma_refund_req_email', $wrael_plugin_common, 'wps_rma_refund_req_email', 10 );
 
 		// Multisite compatibility.
-		$this->loader->add_action( 'wp_initialize_site', $wrael_plugin_common, 'mwb_rma_plugin_on_create_blog', 900 );
+		$this->loader->add_action( 'wp_initialize_site', $wrael_plugin_common, 'wps_rma_plugin_on_create_blog', 900 );
 
 		// Send Email.
-		$this->loader->add_action( 'mwb_rma_refund_req_accept_email', $wrael_plugin_common, 'mwb_rma_refund_req_accept_email', 10 );
-		$this->loader->add_action( 'mwb_rma_refund_req_cancel_email', $wrael_plugin_common, 'mwb_rma_refund_req_cancel_email', 10 );
+		$this->loader->add_action( 'wps_rma_refund_req_accept_email', $wrael_plugin_common, 'wps_rma_refund_req_accept_email', 10 );
+		$this->loader->add_action( 'wps_rma_refund_req_cancel_email', $wrael_plugin_common, 'wps_rma_refund_req_cancel_email', 10 );
 
 		// send order messages.
-		$this->loader->add_action( 'wp_ajax_mwb_rma_order_messages_save', $wrael_plugin_common, 'mwb_rma_order_messages_save' );
-		$this->loader->add_action( 'wp_ajax_nopriv_mwb_rma_order_messages_save', $wrael_plugin_common, 'mwb_rma_order_messages_save' );
+		$this->loader->add_action( 'wp_ajax_wps_rma_order_messages_save', $wrael_plugin_common, 'wps_rma_order_messages_save' );
+		$this->loader->add_action( 'wp_ajax_nopriv_wps_rma_order_messages_save', $wrael_plugin_common, 'wps_rma_order_messages_save' );
 
 		// Save ajax request for the plugin's multistep.
-		$this->loader->add_action( 'wp_ajax_mwb_standard_save_settings_filter', $wrael_plugin_common, 'mwb_rma_standard_save_settings_filter' );
-		$this->loader->add_action( 'wp_ajax_nopriv_mwb_standard_save_settings_filter', $wrael_plugin_common, 'mwb_rma_standard_save_settings_filter' );
+		$this->loader->add_action( 'wp_ajax_wps_standard_save_settings_filter', $wrael_plugin_common, 'wps_rma_standard_save_settings_filter' );
+		$this->loader->add_action( 'wp_ajax_nopriv_wps_standard_save_settings_filter', $wrael_plugin_common, 'wps_rma_standard_save_settings_filter' );
 		if ( self::is_enbale_usage_tracking() ) {
-			$this->loader->add_action( 'makewebbetter_tracker_send_event', $wrael_plugin_common, 'wrael_makewebbetter_tracker_send_event' );
+			$this->loader->add_action( 'wpswings_tracker_send_event', $wrael_plugin_common, 'wps_rma_tracker_send_event' );
 		}
 		// Used to remove the refund 0 amount .
-		$this->loader->add_filter( 'woocommerce_order_query', $wrael_plugin_common, 'mwb_rma_woocommerce_get_order_item_totals', 10, 2 );
+		$this->loader->add_filter( 'woocommerce_order_query', $wrael_plugin_common, 'wps_rma_woocommerce_get_order_item_totals', 10, 2 );
 	}
 
 	/**
@@ -304,11 +304,11 @@ class Woo_Refund_And_Exchange_Lite {
 		$this->loader->add_action( 'wp_enqueue_scripts', $wrael_plugin_public, 'wrael_public_enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $wrael_plugin_public, 'wrael_public_enqueue_scripts' );
 
-		$this->loader->add_filter( 'woocommerce_my_account_my_orders_actions', $wrael_plugin_public, 'mwb_rma_refund_button', 10, 2 );
-		$this->loader->add_action( 'woocommerce_order_details_after_order_table', $wrael_plugin_public, 'mwb_rma_return_button_and_details' );
+		$this->loader->add_filter( 'woocommerce_my_account_my_orders_actions', $wrael_plugin_public, 'wps_rma_refund_button', 10, 2 );
+		$this->loader->add_action( 'woocommerce_order_details_after_order_table', $wrael_plugin_public, 'wps_rma_return_button_and_details' );
 
 		// template include.
-		$this->loader->add_filter( 'template_include', $wrael_plugin_public, 'mwb_rma_product_return_template' );
+		$this->loader->add_filter( 'template_include', $wrael_plugin_public, 'wps_rma_product_return_template' );
 
 	}
 
@@ -320,7 +320,7 @@ class Woo_Refund_And_Exchange_Lite {
 	 */
 	private function woo_refund_and_exchange_lite_api_hooks() {
 		$wrael_plugin_api = new Woo_Refund_And_Exchange_Lite_Rest_Api( $this->wrael_get_plugin_name(), $this->wrael_get_version() );
-		$this->loader->add_action( 'rest_api_init', $wrael_plugin_api, 'mwb_rma_add_endpoint' );
+		$this->loader->add_action( 'rest_api_init', $wrael_plugin_api, 'wps_rma_add_endpoint' );
 
 	}
 
@@ -387,11 +387,11 @@ class Woo_Refund_And_Exchange_Lite {
 	}
 
 	/**
-	 * Predefined default mwb_rma_plug tabs.
+	 * Predefined default wps_rma_plug tabs.
 	 *
 	 * @return Array An key=>value pair of Woo Refund And Exchange Lite tabs.
 	 */
-	public function mwb_rma_plug_default_tabs() {
+	public function wps_rma_plug_default_tabs() {
 		$wrael_default_tabs = array();
 		$wrael_default_tabs['woo-refund-and-exchange-lite-general'] = array(
 			'title'     => esc_html__( 'General', 'woo-refund-and-exchange-lite' ),
@@ -403,7 +403,7 @@ class Woo_Refund_And_Exchange_Lite {
 			'name'      => 'woo-refund-and-exchange-lite-refund',
 			'file_path' => WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/woo-refund-and-exchange-lite-refund.php',
 		);
-		$wrael_default_tabs = apply_filters( 'mwb_rma_plugin_admin_settings_tabs_addon_before', $wrael_default_tabs );
+		$wrael_default_tabs = apply_filters( 'wps_rma_plugin_admin_settings_tabs_addon_before', $wrael_default_tabs );
 		$wrael_default_tabs['woo-refund-and-exchange-lite-policies'] = array(
 			'title'     => esc_html__( 'RMA Policies', 'woo-refund-and-exchange-lite' ),
 			'name'      => 'woo-refund-and-exchange-lite-refund-policies',
@@ -414,7 +414,7 @@ class Woo_Refund_And_Exchange_Lite {
 			'name'      => 'woo-refund-and-exchange-lite-order-message',
 			'file_path' => WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/woo-refund-and-exchange-lite-order-message.php',
 		);
-		$wrael_default_tabs = apply_filters( 'mwb_rma_plugin_admin_settings_tabs_addon_after', $wrael_default_tabs );
+		$wrael_default_tabs = apply_filters( 'wps_rma_plugin_admin_settings_tabs_addon_after', $wrael_default_tabs );
 		$wrael_default_tabs['woo-refund-and-exchange-lite-developer']     = array(
 			'title'     => esc_html__( 'Developer', 'woo-refund-and-exchange-lite' ),
 			'name'      => 'woo-refund-and-exchange-lite-developer',
@@ -430,7 +430,7 @@ class Woo_Refund_And_Exchange_Lite {
 			'name'      => 'woo-refund-and-exchange-lite-overview',
 			'file_path' => WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/woo-refund-and-exchange-lite-overview.php',
 		);
-		$wrael_default_tabs = apply_filters( 'mwb_rma_plugin_standard_admin_settings_tabs', $wrael_default_tabs );
+		$wrael_default_tabs = apply_filters( 'wps_rma_plugin_standard_admin_settings_tabs', $wrael_default_tabs );
 		return $wrael_default_tabs;
 	}
 
@@ -441,7 +441,7 @@ class Woo_Refund_And_Exchange_Lite {
 	 * @param string $path   path file for inclusion.
 	 * @param array  $params parameters to pass to the file for access.
 	 */
-	public function mwb_rma_plug_load_template( $path, $params = array() ) {
+	public function wps_rma_plug_load_template( $path, $params = array() ) {
 
 		// $wrael_file_path = WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . $path;
 
@@ -452,7 +452,7 @@ class Woo_Refund_And_Exchange_Lite {
 
 			/* translators: %s: file path */
 			$wrael_notice = sprintf( esc_html__( 'Unable to locate file at location "%s". Some features may not work properly in this plugin. Please contact us!', 'woo-refund-and-exchange-lite' ), $path );
-			$this->mwb_rma_plug_admin_notice( $wrael_notice, 'error' );
+			$this->wps_rma_plug_admin_notice( $wrael_notice, 'error' );
 		}
 	}
 
@@ -463,7 +463,7 @@ class Woo_Refund_And_Exchange_Lite {
 	 * @param string $type        notice type, accepted values - error/update/update-nag.
 	 * @since 1.0.0
 	 */
-	public static function mwb_rma_plug_admin_notice( $wrael_message, $type = 'error' ) {
+	public static function wps_rma_plug_admin_notice( $wrael_message, $type = 'error' ) {
 
 		$wrael_classes = 'notice ';
 
@@ -501,7 +501,7 @@ class Woo_Refund_And_Exchange_Lite {
 	 * @param string $wrael_components html to display.
 	 * @since 1.0.0
 	 */
-	public function mwb_rma_plug_generate_html( $wrael_components = array() ) {
+	public function wps_rma_plug_generate_html( $wrael_components = array() ) {
 		if ( is_array( $wrael_components ) && ! empty( $wrael_components ) ) {
 			foreach ( $wrael_components as $wrael_component ) {
 				if ( ! empty( $wrael_component['type'] ) && ! empty( $wrael_component['id'] ) ) {
@@ -512,11 +512,11 @@ class Woo_Refund_And_Exchange_Lite {
 						case 'email':
 						case 'text':
 							?>
-						<div class="mwb-form-group mwb-wrael-<?php echo esc_attr( $wrael_component['type'] ); ?>">
-							<div class="mwb-form-group__label">
-								<label for="<?php echo esc_attr( $wrael_component['id'] ); ?>" class="mwb-form-label"><?php echo ( isset( $wrael_component['title'] ) ? esc_html( $wrael_component['title'] ) : '' ); ?></label>
+						<div class="wps-form-group wps-wrael-<?php echo esc_attr( $wrael_component['type'] ); ?>">
+							<div class="wps-form-group__label">
+								<label for="<?php echo esc_attr( $wrael_component['id'] ); ?>" class="wps-form-label"><?php echo ( isset( $wrael_component['title'] ) ? esc_html( $wrael_component['title'] ) : '' ); ?></label>
 							</div>
-							<div class="mwb-form-group__control">
+							<div class="wps-form-group__control">
 								<label class="mdc-text-field mdc-text-field--outlined">
 									<span class="mdc-notched-outline">
 										<span class="mdc-notched-outline__leading"></span>
@@ -546,7 +546,7 @@ class Woo_Refund_And_Exchange_Lite {
 									>
 								</label>
 								<div class="mdc-text-field-helper-line">
-									<div class="mdc-text-field-helper-text--persistent mwb-helper-text" id="" aria-hidden="true"><?php echo ( isset( $wrael_component['description'] ) ? esc_attr( $wrael_component['description'] ) : '' ); ?></div>
+									<div class="mdc-text-field-helper-text--persistent wps-helper-text" id="" aria-hidden="true"><?php echo ( isset( $wrael_component['description'] ) ? esc_attr( $wrael_component['description'] ) : '' ); ?></div>
 								</div>
 							</div>
 						</div>
@@ -555,11 +555,11 @@ class Woo_Refund_And_Exchange_Lite {
 
 						case 'password':
 							?>
-						<div class="mwb-form-group">
-							<div class="mwb-form-group__label">
-								<label for="<?php echo esc_attr( $wrael_component['id'] ); ?>" class="mwb-form-label"><?php echo ( isset( $wrael_component['title'] ) ? esc_html( $wrael_component['title'] ) : '' ); ?></label>
+						<div class="wps-form-group">
+							<div class="wps-form-group__label">
+								<label for="<?php echo esc_attr( $wrael_component['id'] ); ?>" class="wps-form-label"><?php echo ( isset( $wrael_component['title'] ) ? esc_html( $wrael_component['title'] ) : '' ); ?></label>
 							</div>
-							<div class="mwb-form-group__control">
+							<div class="wps-form-group__control">
 								<label class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-trailing-icon">
 									<span class="mdc-notched-outline">
 										<span class="mdc-notched-outline__leading"></span>
@@ -568,17 +568,17 @@ class Woo_Refund_And_Exchange_Lite {
 										<span class="mdc-notched-outline__trailing"></span>
 									</span>
 									<input 
-									class="mdc-text-field__input <?php echo ( isset( $wrael_component['class'] ) ? esc_attr( $wrael_component['class'] ) : '' ); ?> mwb-form__password" 
+									class="mdc-text-field__input <?php echo ( isset( $wrael_component['class'] ) ? esc_attr( $wrael_component['class'] ) : '' ); ?> wps-form__password" 
 									name="<?php echo ( isset( $wrael_component['name'] ) ? esc_html( $wrael_component['name'] ) : esc_html( $wrael_component['id'] ) ); ?>"
 									id="<?php echo esc_attr( $wrael_component['id'] ); ?>"
 									type="<?php echo esc_attr( $wrael_component['type'] ); ?>"
 									value="<?php echo ( isset( $wrael_component['value'] ) ? esc_attr( $wrael_component['value'] ) : '' ); ?>"
 									placeholder="<?php echo ( isset( $wrael_component['placeholder'] ) ? esc_attr( $wrael_component['placeholder'] ) : '' ); ?>"
 									>
-									<i class="material-icons mdc-text-field__icon mdc-text-field__icon--trailing mwb-password-hidden" tabindex="0" role="button">visibility</i>
+									<i class="material-icons mdc-text-field__icon mdc-text-field__icon--trailing wps-password-hidden" tabindex="0" role="button">visibility</i>
 								</label>
 								<div class="mdc-text-field-helper-line">
-									<div class="mdc-text-field-helper-text--persistent mwb-helper-text" id="" aria-hidden="true"><?php echo ( isset( $wrael_component['description'] ) ? esc_attr( $wrael_component['description'] ) : '' ); ?></div>
+									<div class="mdc-text-field-helper-text--persistent wps-helper-text" id="" aria-hidden="true"><?php echo ( isset( $wrael_component['description'] ) ? esc_attr( $wrael_component['description'] ) : '' ); ?></div>
 								</div>
 							</div>
 						</div>
@@ -587,11 +587,11 @@ class Woo_Refund_And_Exchange_Lite {
 
 						case 'textarea':
 							?>
-						<div class="mwb-form-group">
-							<div class="mwb-form-group__label">
-								<label class="mwb-form-label" for="<?php echo esc_attr( $wrael_component['id'] ); ?>"><?php echo ( isset( $wrael_component['title'] ) ? esc_html( $wrael_component['title'] ) : '' ); ?></label>
+						<div class="wps-form-group">
+							<div class="wps-form-group__label">
+								<label class="wps-form-label" for="<?php echo esc_attr( $wrael_component['id'] ); ?>"><?php echo ( isset( $wrael_component['title'] ) ? esc_html( $wrael_component['title'] ) : '' ); ?></label>
 							</div>
-							<div class="mwb-form-group__control">
+							<div class="wps-form-group__control">
 								<label class="mdc-text-field mdc-text-field--outlined mdc-text-field--textarea"      for="text-field-hero-input">
 									<span class="mdc-notched-outline">
 										<span class="mdc-notched-outline__leading"></span>
@@ -612,12 +612,12 @@ class Woo_Refund_And_Exchange_Lite {
 						case 'select':
 						case 'multiselect':
 							?>
-						<div class="mwb-form-group">
-							<div class="mwb-form-group__label">
-								<label class="mwb-form-label" for="<?php echo esc_attr( $wrael_component['id'] ); ?>"><?php echo ( isset( $wrael_component['title'] ) ? esc_html( $wrael_component['title'] ) : '' ); ?></label>
+						<div class="wps-form-group">
+							<div class="wps-form-group__label">
+								<label class="wps-form-label" for="<?php echo esc_attr( $wrael_component['id'] ); ?>"><?php echo ( isset( $wrael_component['title'] ) ? esc_html( $wrael_component['title'] ) : '' ); ?></label>
 							</div>
-							<div class="mwb-form-group__control">
-								<div class="mwb-form-select">
+							<div class="wps-form-group__control">
+								<div class="wps-form-select">
 									<select id="<?php echo esc_attr( $wrael_component['id'] ); ?>" name="<?php echo ( isset( $wrael_component['name'] ) ? esc_html( $wrael_component['name'] ) : esc_html( $wrael_component['id'] ) ); ?><?php echo ( 'multiselect' === $wrael_component['type'] ) ? '[]' : ''; ?>" id="<?php echo esc_attr( $wrael_component['id'] ); ?>" class="mdl-textfield__input <?php echo ( isset( $wrael_component['class'] ) ? esc_attr( $wrael_component['class'] ) : '' ); ?>" <?php echo 'multiselect' === $wrael_component['type'] ? 'multiple="multiple"' : ''; ?> >
 							<?php
 							foreach ( $wrael_component['options'] as $wrael_key => $wrael_val ) {
@@ -647,11 +647,11 @@ class Woo_Refund_And_Exchange_Lite {
 
 						case 'checkbox':
 							?>
-						<div class="mwb-form-group">
-							<div class="mwb-form-group__label">
-								<label for="<?php echo esc_attr( $wrael_component['id'] ); ?>" class="mwb-form-label"><?php echo ( isset( $wrael_component['title'] ) ? esc_html( $wrael_component['title'] ) : '' ); ?></label>
+						<div class="wps-form-group">
+							<div class="wps-form-group__label">
+								<label for="<?php echo esc_attr( $wrael_component['id'] ); ?>" class="wps-form-label"><?php echo ( isset( $wrael_component['title'] ) ? esc_html( $wrael_component['title'] ) : '' ); ?></label>
 							</div>
-							<div class="mwb-form-group__control mwb-pl-4">
+							<div class="wps-form-group__control wps-pl-4">
 								<div class="mdc-form-field">
 									<div class="mdc-checkbox">
 										<input 
@@ -679,12 +679,12 @@ class Woo_Refund_And_Exchange_Lite {
 
 						case 'radio':
 							?>
-						<div class="mwb-form-group">
-							<div class="mwb-form-group__label">
-								<label for="<?php echo esc_attr( $wrael_component['id'] ); ?>" class="mwb-form-label"><?php echo ( isset( $wrael_component['title'] ) ? esc_html( $wrael_component['title'] ) : '' ); ?></label>
+						<div class="wps-form-group">
+							<div class="wps-form-group__label">
+								<label for="<?php echo esc_attr( $wrael_component['id'] ); ?>" class="wps-form-label"><?php echo ( isset( $wrael_component['title'] ) ? esc_html( $wrael_component['title'] ) : '' ); ?></label>
 							</div>
-							<div class="mwb-form-group__control mwb-pl-4">
-								<div class="mwb-flex-col">
+							<div class="wps-form-group__control wps-pl-4">
+								<div class="wps-flex-col">
 							<?php
 							foreach ( $wrael_component['options'] as $wrael_radio_key => $wrael_radio_val ) {
 								?>
@@ -717,11 +717,11 @@ class Woo_Refund_And_Exchange_Lite {
 						case 'radio-switch':
 							?>
 
-						<div class="mwb-form-group">
-							<div class="mwb-form-group__label">
-								<label for="" class="mwb-form-label"><?php echo ( isset( $wrael_component['title'] ) ? esc_html( $wrael_component['title'] ) : '' ); ?></label>
+						<div class="wps-form-group">
+							<div class="wps-form-group__label">
+								<label for="" class="wps-form-label"><?php echo ( isset( $wrael_component['title'] ) ? esc_html( $wrael_component['title'] ) : '' ); ?></label>
 							</div>
-							<div class="mwb-form-group__control">
+							<div class="wps-form-group__control">
 								<div>
 									<div class="mdc-switch">
 										<div class="mdc-switch__track"></div>
@@ -742,7 +742,7 @@ class Woo_Refund_And_Exchange_Lite {
 									</div>
 								</div>
 								<div class="mdc-text-field-helper-line">
-									<div class="mdc-text-field-helper-text--persistent mwb-helper-text" id="" aria-hidden="true"><?php echo ( isset( $wrael_component['description'] ) ? esc_attr( $wrael_component['description'] ) : '' ); ?></div>
+									<div class="mdc-text-field-helper-text--persistent wps-helper-text" id="" aria-hidden="true"><?php echo ( isset( $wrael_component['description'] ) ? esc_attr( $wrael_component['description'] ) : '' ); ?></div>
 								</div>
 							</div>
 						</div>
@@ -751,8 +751,8 @@ class Woo_Refund_And_Exchange_Lite {
 
 						case 'button':
 							?>
-						<div class="mwb-form-group">
-							<div class="mwb-form-group__control">
+						<div class="wps-form-group">
+							<div class="wps-form-group__control">
 								<button class="mdc-button mdc-button--raised" name= "<?php echo ( isset( $wrael_component['name'] ) ? esc_html( $wrael_component['name'] ) : esc_html( $wrael_component['id'] ) ); ?>"
 									id="<?php echo esc_attr( $wrael_component['id'] ); ?>"> <span class="mdc-button__ripple"></span>
 									<span class="mdc-button__label <?php echo ( isset( $wrael_component['class'] ) ? esc_attr( $wrael_component['class'] ) : '' ); ?>"><?php echo ( isset( $wrael_component['button_text'] ) ? esc_html( $wrael_component['button_text'] ) : '' ); ?></span>
@@ -765,11 +765,11 @@ class Woo_Refund_And_Exchange_Lite {
 
 						case 'multi':
 							?>
-							<div class="mwb-form-group mwb-wrael-<?php echo esc_attr( $wrael_component['type'] ); ?>">
-								<div class="mwb-form-group__label">
-									<label for="<?php echo esc_attr( $wrael_component['id'] ); ?>" class="mwb-form-label"><?php echo ( isset( $wrael_component['title'] ) ? esc_html( $wrael_component['title'] ) : '' ); ?></label>
+							<div class="wps-form-group wps-wrael-<?php echo esc_attr( $wrael_component['type'] ); ?>">
+								<div class="wps-form-group__label">
+									<label for="<?php echo esc_attr( $wrael_component['id'] ); ?>" class="wps-form-label"><?php echo ( isset( $wrael_component['title'] ) ? esc_html( $wrael_component['title'] ) : '' ); ?></label>
 									</div>
-									<div class="mwb-form-group__control">
+									<div class="wps-form-group__control">
 							<?php
 							foreach ( $wrael_component['value'] as $component ) {
 								?>
@@ -794,7 +794,7 @@ class Woo_Refund_And_Exchange_Lite {
 											</label>
 							<?php } ?>
 									<div class="mdc-text-field-helper-line">
-										<div class="mdc-text-field-helper-text--persistent mwb-helper-text" id="" aria-hidden="true"><?php echo ( isset( $wrael_component['description'] ) ? esc_attr( $wrael_component['description'] ) : '' ); ?></div>
+										<div class="mdc-text-field-helper-text--persistent wps-helper-text" id="" aria-hidden="true"><?php echo ( isset( $wrael_component['description'] ) ? esc_attr( $wrael_component['description'] ) : '' ); ?></div>
 									</div>
 								</div>
 							</div>
@@ -804,11 +804,11 @@ class Woo_Refund_And_Exchange_Lite {
 						case 'date':
 						case 'file':
 							?>
-							<div class="mwb-form-group mwb-wrael-<?php echo esc_attr( $wrael_component['type'] ); ?>">
-								<div class="mwb-form-group__label">
-									<label for="<?php echo esc_attr( $wrael_component['id'] ); ?>" class="mwb-form-label"><?php echo ( isset( $wrael_component['title'] ) ? esc_html( $wrael_component['title'] ) : '' ); ?></label>
+							<div class="wps-form-group wps-wrael-<?php echo esc_attr( $wrael_component['type'] ); ?>">
+								<div class="wps-form-group__label">
+									<label for="<?php echo esc_attr( $wrael_component['id'] ); ?>" class="wps-form-label"><?php echo ( isset( $wrael_component['title'] ) ? esc_html( $wrael_component['title'] ) : '' ); ?></label>
 								</div>
-								<div class="mwb-form-group__control">
+								<div class="wps-form-group__control">
 									<label>
 										<input 
 										class="<?php echo ( isset( $wrael_component['class'] ) ? esc_attr( $wrael_component['class'] ) : '' ); ?>" 
@@ -820,7 +820,7 @@ class Woo_Refund_And_Exchange_Lite {
 										>
 									</label>
 									<div class="mdc-text-field-helper-line">
-										<div class="mdc-text-field-helper-text--persistent mwb-helper-text" id="" aria-hidden="true"><?php echo ( isset( $wrael_component['description'] ) ? esc_attr( $wrael_component['description'] ) : '' ); ?></div>
+										<div class="mdc-text-field-helper-text--persistent wps-helper-text" id="" aria-hidden="true"><?php echo ( isset( $wrael_component['description'] ) ? esc_attr( $wrael_component['description'] ) : '' ); ?></div>
 									</div>
 								</div>
 							</div>
@@ -843,8 +843,22 @@ class Woo_Refund_And_Exchange_Lite {
 							break;
 						case 'breaker':
 							?>
-							<div class="mwb-form-group__breaker">
+							<div class="wps-form-group__breaker">
 							<span><b><?php echo ( isset( $wrael_component['name'] ) ? esc_html( $wrael_component['name'] ) : esc_html( $wrael_component['id'] ) ); ?></span></b>
+							</div>
+							<?php
+							break;
+						case 'wp_editor':
+							?>
+							<div class="wps-form-group">
+								<div class="wps-form-group__label">
+									<label class="wps-form-label" for="<?php echo esc_attr( $wrael_component['id'] ); ?>"><?php echo ( isset( $wrael_component['title'] ) ? esc_html( $wrael_component['title'] ) : '' ); ?></label>
+								</div>
+								<div class="wps-form-group__control">
+									<span class="mdc-text-field__resizer">
+											<?php echo wp_kses_post( wp_editor( $wrael_component['value'], esc_attr( $wrael_component['id'] ), array( 'editor_height' => 200 ) ) ); ?>
+									</span>
+								</div>
 							</div>
 							<?php
 							break;
