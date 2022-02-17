@@ -128,11 +128,11 @@ class Woo_Refund_And_Exchange_Lite_Common {
 						if ( ! file_exists( $directory ) ) {
 							mkdir( $directory, 0755, true );
 						}
-
+						$file_name   = isset( $_FILES['wps_rma_return_request_files']['name'][ $i ] ) ? sanitize_text_field( wp_unslash( $_FILES['wps_rma_return_request_files']['name'][ $i ] ) ) : '';
 						$source_path = sanitize_text_field( wp_unslash( $_FILES['wps_rma_return_request_files']['tmp_name'][ $i ] ) );
-						$target_path = $directory . '/' . $order_id . '-' . isset( $_FILES['wps_rma_return_request_files']['name'][ $i ] ) ? sanitize_text_field( wp_unslash( $_FILES['wps_rma_return_request_files']['name'][ $i ] ) ) : '';
+						$target_path = $directory . '/' . $order_id . '-' . $file_name;
 
-						$filename[] = $order_id . '-' . sanitize_text_field( wp_unslash( $_FILES['wps_rma_return_request_files']['name'][ $i ] ) );
+						$filename[] = $order_id . '-' . $file_name;
 						move_uploaded_file( $source_path, $target_path );
 					}
 				}

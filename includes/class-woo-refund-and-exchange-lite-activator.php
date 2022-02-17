@@ -36,18 +36,37 @@ class Woo_Refund_And_Exchange_Lite_Activator {
 			$blog_ids = $wpdb->get_col( "SELECT blog_id FROM $wpdb->blogs" );
 			foreach ( $blog_ids as $blog_id ) {
 				switch_to_blog( $blog_id );
+
+				// Create Pages.
 				self::wps_rma_create_pages();
+
 				// Schedule event to send data to wpswings.
 				wp_clear_scheduled_hook( 'wpswings_tracker_send_event' );
 				wp_schedule_event( time() + 10, apply_filters( 'wpswings_tracker_event_recurrence', 'daily' ), 'wpswings_tracker_send_event' );
+
+				// Setting And DB Migration Code.
+				$check_key_exist = get_option( 'wps_rma_lite_setting_restore', false );
+				if ( ! $check_key_exist && function_exists( 'wps_rma_lite_migrate_settings' ) ) {
+					wps_rma_lite_migrate_settings();
+					update_option( 'wps_rma_lite_setting_restore', true );
+				}
+
 				restore_current_blog();
 			}
 		} else {
-			// Activated on a single site, in a multi-site or on a single site.
+			// Create Pages.
 			self::wps_rma_create_pages();
+
 			// Schedule event to send data to wpswings.
 			wp_clear_scheduled_hook( 'wpswings_tracker_send_event' );
 			wp_schedule_event( time() + 10, apply_filters( 'wpswings_tracker_event_recurrence', 'daily' ), 'wpswings_tracker_send_event' );
+
+			// Setting And DB Migration Code.
+			$check_key_exist = get_option( 'wps_rma_lite_setting_restore', false );
+			if ( ! $check_key_exist && function_exists( 'wps_rma_lite_migrate_settings' ) ) {
+				wps_rma_lite_migrate_settings();
+				update_option( 'wps_rma_lite_setting_restore', true );
+			}
 		}
 	}
 

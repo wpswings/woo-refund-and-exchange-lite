@@ -229,18 +229,6 @@ if ( $activated ) {
 
 		return $links;
 	}
-
-	/**
-	 * Function to restore the setting
-	 */
-	function wps_rma_lite_setting_restore() {
-		$check_key_exist = get_option( 'wps_rma_lite_setting_restore', false );
-		if ( ! $check_key_exist && function_exists( 'wps_rma_lite_migrate_settings' ) ) {
-			wps_rma_lite_migrate_settings();
-			update_option( 'wps_rma_lite_setting_restore', true );
-		}
-	}
-	register_activation_hook( __FILE__, 'wps_rma_lite_setting_restore' );
 } else {
 	/**
 	 * Show warning message if woocommerce is not install

@@ -130,7 +130,7 @@ jQuery( document ).on( 'ready', function(){
 						$('#wps_rma_return_alert').html( response.msg + ' in ' + '<b><span id="countdownTimer"></span>' + ' seconds</b>' );
 						$('.wps_rma_return_notification').hide();
 						$('html, body').animate({
-							scrollTop: $('.woocommerce-breadcrumb').offset().top
+							scrollTop: $('#wps_rma_return_request_container').offset().top
 						}, 800);
 
 						if(typeof response.auto_accept != 'undefined') {
