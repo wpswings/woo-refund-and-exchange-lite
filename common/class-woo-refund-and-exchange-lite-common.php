@@ -72,7 +72,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			$myaccount_page_url = '';
 			$myaccount_page_url = apply_filters( 'myaccount_page_url', $myaccount_page_url );
 		}
-		wp_register_script( $this->plugin_name . 'common', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'common/js/woo-refund-and-exchange-lite-common.min.js', array( 'jquery' ), $this->version, false );
+		wp_register_script( $this->plugin_name . 'common', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'common/js/woo-refund-and-exchange-lite-common.js', array( 'jquery' ), $this->version, false );
 		wp_localize_script(
 			$this->plugin_name . 'common',
 			'wrael_common_param',

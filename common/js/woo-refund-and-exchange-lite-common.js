@@ -180,9 +180,11 @@ jQuery( document ).on( 'ready', function(){
 		var form_data = new FormData();
 
 		// Read selected files
-		var totalfiles = up_files[0].files.length;
-		for (var index = 0; index < totalfiles; index++) {
-					form_data.append('wps_order_msg_attachment[]', up_files[0].files[index]);
+		if ( up_files[0] ) {
+			var totalfiles = up_files[0].files.length;
+			for (var index = 0; index < totalfiles; index++) {
+						form_data.append('wps_order_msg_attachment[]', up_files[0].files[index]);
+			}
 		}
 		form_data.append( 'action', 'wps_rma_order_messages_save' );
 		form_data.append( 'msg', msg );

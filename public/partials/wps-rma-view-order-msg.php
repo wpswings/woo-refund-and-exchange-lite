@@ -68,7 +68,7 @@ if ( isset( $order_id ) && ! empty( $order_id ) ) {
 			</div>
 			<div class="wps_order_msg_sub_container">
 				<?php
-				$wps_order_messages = get_post_meta( $order_id, 'mwb_cutomer_order_msg', true );
+				$wps_order_messages = get_post_meta( $order_id, 'wps_cutomer_order_msg', true );
 				if ( isset( $wps_order_messages ) && is_array( $wps_order_messages ) && ! empty( $wps_order_messages ) ) {
 					foreach ( array_reverse( $wps_order_messages ) as $o_key => $o_val ) {
 						foreach ( $o_val as $om_key => $om_val ) {

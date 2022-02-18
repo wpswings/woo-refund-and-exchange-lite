@@ -166,7 +166,7 @@ if ( ! function_exists( 'wps_rma_lite_send_order_msg_callback' ) ) {
 		$order_msg[ $date ]['sender'] = $sender;
 		$order_msg[ $date ]['msg']    = $msg;
 		$order_msg[ $date ]['files']  = $filename;
-		$get_msg                      = get_option( $order_id . '-wps_cutomer_order_msg', array() );
+		$get_msg                      = get_post_meta( $order_id, 'wps_cutomer_order_msg', true );
 		$msg_count                    = get_post_meta( $order_id, 'wps_order_msg_count', 0 );
 		if ( isset( $get_msg ) && ! empty( $get_msg ) ) {
 			array_push( $get_msg, $order_msg );
@@ -174,7 +174,7 @@ if ( ! function_exists( 'wps_rma_lite_send_order_msg_callback' ) ) {
 			$get_msg = array();
 			array_push( $get_msg, $order_msg );
 		}
-		update_post_meta( $order_id, 'mwb_cutomer_order_msg', $get_msg );
+		update_post_meta( $order_id, 'wps_cutomer_order_msg', $get_msg );
 		$restrict_mail =
 		// Allow/Disallow Email.
 		apply_filters( 'wps_rma_restrict_order_msg_mails', false );
@@ -481,7 +481,7 @@ if ( ! function_exists( 'wps_rma_return_req_cancel_callback' ) ) {
 			}
 		}
 		// Update the status.
-		update_post_meta( $orderid, 'ced_rnx_return_attachment', $request_files );
+		update_post_meta( $orderid, 'wps_rma_return_attachment', $request_files );
 
 		// Send the cancel refund request email to customer.
 
@@ -759,20 +759,21 @@ if ( ! function_exists( 'wps_rma_lite_migrate_settings' ) ) {
 		);
 		update_option( 'woocommerce_wps_rma_refund_request_cancel_email_settings', $refund_request_cancel_add );
 
-		$query = new WC_Order_Query(
+		$orders = get_posts(
 			array(
-				'limit'  => -1,
-				'order'  => 'DESC',
-				'return' => 'ids',
+				'numberposts' => -1,
+				'post_type'   => 'shop_order',
+				'fields'      => 'ids', // return only ids.
+				'order'       => 'ASC',
 			)
 		);
-		$orders = $query->get_orders();
 		if ( ! empty( $orders ) ) {
-			foreach ( $orders as $key => $order_id ) {
+			foreach ( $orders as $key => $order ) {
+				$order_id = $order->ID;
 				if ( ! empty( $order_id ) ) {
 					$get_messages = get_option( $order_id . '-mwb_cutomer_order_msg', array() );
 					if ( ! empty( $get_messages ) ) {
-						update_post_meta( $order_id, 'mwb_cutomer_order_msg', $get_messages );
+						update_post_meta( $order_id, 'wps_cutomer_order_msg', $get_messages );
 					}
 				}
 			}
@@ -784,17 +785,20 @@ if ( ! function_exists( 'wps_rma_lite_migrate_settings' ) ) {
 		);
 
 		foreach ( $post_meta_keys as $key => $meta_keys ) {
-			$posts = new WC_Order_Query(
+
+			$orders = get_posts(
 				array(
-					'limit'    => -1,
-					'order'    => 'DESC',
-					'return'   => 'ids',
-					'meta_key' => $post_meta_keys, //phpcs:ignore
+					'numberposts' => -1,
+					'post_status' => 'publish',
+					'fields'      => 'ids', // return only ids.
+					'meta_key'    => $meta_keys, //phpcs:ignore
+					'post_type'   => 'shop_order',
+					'order'       => 'ASC',
 				)
 			);
-			$orders = $posts->get_orders();
 			if ( ! empty( $orders ) ) {
-				foreach ( $orders as $key => $order_id ) {
+				foreach ( $orders as $key => $order ) {
+					$order_id = $order->ID;
 					if ( ! empty( $order_id ) ) {
 						$value   = get_post_meta( $order_id, $meta_keys, true );
 						$new_key = str_replace( 'ced_rnx', 'wps_rma', $meta_keys );
