@@ -1,11 +1,11 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: woo-refund-and-exchange-lite 4.0.0\n"
-"POT-Creation-Date: 2022-02-03 14:34+0530\n"
+"Project-Id-Version: Return Refund and Exchange for WooCommerce 4.0.0\n"
+"POT-Creation-Date: 2022-02-18 18:34+0530\n"
 "PO-Revision-Date: 2021-08-21 11:15+0530\n"
 "Last-Translator: \n"
-"Language-Team: MakeWebBetter\n"
+"Language-Team: WP Swings\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -30,8 +30,8 @@ msgstr ""
 #: admin/class-woo-refund-and-exchange-lite-admin.php:514
 #: admin/class-woo-refund-and-exchange-lite-admin.php:553
 #: admin/class-woo-refund-and-exchange-lite-admin.php:574
-#: admin/class-woo-refund-and-exchange-lite-admin.php:630
-#: admin/class-woo-refund-and-exchange-lite-admin.php:686
+#: admin/class-woo-refund-and-exchange-lite-admin.php:627
+#: admin/class-woo-refund-and-exchange-lite-admin.php:683
 msgid "YES"
 msgstr ""
 
@@ -43,8 +43,8 @@ msgstr ""
 #: admin/class-woo-refund-and-exchange-lite-admin.php:515
 #: admin/class-woo-refund-and-exchange-lite-admin.php:554
 #: admin/class-woo-refund-and-exchange-lite-admin.php:575
-#: admin/class-woo-refund-and-exchange-lite-admin.php:631
-#: admin/class-woo-refund-and-exchange-lite-admin.php:687
+#: admin/class-woo-refund-and-exchange-lite-admin.php:628
+#: admin/class-woo-refund-and-exchange-lite-admin.php:684
 msgid "NO"
 msgstr ""
 
@@ -61,9 +61,9 @@ msgid "Enable to Show Bank Details Field For Manual Refund"
 msgstr ""
 
 #: admin/class-woo-refund-and-exchange-lite-admin.php:381
-#: admin/class-woo-refund-and-exchange-lite-admin.php:605
-#: admin/class-woo-refund-and-exchange-lite-admin.php:667
-#: admin/class-woo-refund-and-exchange-lite-admin.php:708
+#: admin/class-woo-refund-and-exchange-lite-admin.php:602
+#: admin/class-woo-refund-and-exchange-lite-admin.php:664
+#: admin/class-woo-refund-and-exchange-lite-admin.php:705
 msgid "Save Setting"
 msgstr ""
 
@@ -72,7 +72,7 @@ msgid "Id of some field is missing"
 msgstr ""
 
 #: admin/class-woo-refund-and-exchange-lite-admin.php:447
-#: admin/class-woo-refund-and-exchange-lite-admin.php:886
+#: admin/class-woo-refund-and-exchange-lite-admin.php:883
 msgid "Settings saved !"
 msgstr ""
 
@@ -89,7 +89,7 @@ msgid "Thank You Page"
 msgstr ""
 
 #: admin/class-woo-refund-and-exchange-lite-admin.php:481
-#: admin/class-woo-refund-and-exchange-lite-admin.php:618
+#: admin/class-woo-refund-and-exchange-lite-admin.php:615
 msgid "Default"
 msgstr ""
 
@@ -102,7 +102,7 @@ msgid "Enable to show Manage Stock Button"
 msgstr ""
 
 #: admin/class-woo-refund-and-exchange-lite-admin.php:508
-#: admin/class-woo-refund-and-exchange-lite-admin.php:624
+#: admin/class-woo-refund-and-exchange-lite-admin.php:621
 msgid "Enable Attachment"
 msgstr ""
 
@@ -142,66 +142,62 @@ msgstr ""
 msgid "Refund Rules Editor"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:586
-msgid "Write the Refund Rules( HTML + CSS )"
-msgstr ""
-
-#: admin/class-woo-refund-and-exchange-lite-admin.php:590
+#: admin/class-woo-refund-and-exchange-lite-admin.php:587
 msgid "Select The Page To Redirect"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:644
+#: admin/class-woo-refund-and-exchange-lite-admin.php:641
 msgid "Order Message Button Text"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:649
+#: admin/class-woo-refund-and-exchange-lite-admin.php:646
 msgid "Enter Order Message Button Text"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:653
+#: admin/class-woo-refund-and-exchange-lite-admin.php:650
 msgid "Select the Page to Redirect"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:680
+#: admin/class-woo-refund-and-exchange-lite-admin.php:677
 msgid "Enable API"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:691
+#: admin/class-woo-refund-and-exchange-lite-admin.php:688
 msgid "Secret Key"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:697
+#: admin/class-woo-refund-and-exchange-lite-admin.php:694
 msgid "Please Generate the Secret Key"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:702
+#: admin/class-woo-refund-and-exchange-lite-admin.php:699
 msgid "Generate Key"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:743
+#: admin/class-woo-refund-and-exchange-lite-admin.php:740
 msgid "Refund Requested Products"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:750
+#: admin/class-woo-refund-and-exchange-lite-admin.php:747
 msgid "Order Message History"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:842
+#: admin/class-woo-refund-and-exchange-lite-admin.php:839
 msgid "Product Stock is updated Successfully."
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:844
+#: admin/class-woo-refund-and-exchange-lite-admin.php:841
 #, php-format
 msgid "%s Product Stock is updated Successfully."
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:847
+#: admin/class-woo-refund-and-exchange-lite-admin.php:844
 msgid ""
 "Product Stock is not updated as manage stock setting of product is "
 "disable."
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:849
+#: admin/class-woo-refund-and-exchange-lite-admin.php:846
 #, php-format
 msgid ""
 "%s Product Stock is not updated as manage stock setting of product is "
@@ -443,7 +439,7 @@ msgid ""
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-policies.php:37
-#: admin/partials/woo-refund-and-exchange-lite-policies.php:109
+#: admin/partials/woo-refund-and-exchange-lite-policies.php:106
 #: includes/class-woo-refund-and-exchange-lite.php:402
 #: public/class-woo-refund-and-exchange-lite-public.php:127
 #: public/class-woo-refund-and-exchange-lite-public.php:188
@@ -451,27 +447,27 @@ msgid "Refund"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-policies.php:45
-#: admin/partials/woo-refund-and-exchange-lite-policies.php:118
+#: admin/partials/woo-refund-and-exchange-lite-policies.php:115
 msgid "InCase: If"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-policies.php:52
-#: admin/partials/woo-refund-and-exchange-lite-policies.php:125
+#: admin/partials/woo-refund-and-exchange-lite-policies.php:122
 msgid "Choose Option"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-policies.php:53
-#: admin/partials/woo-refund-and-exchange-lite-policies.php:126
+#: admin/partials/woo-refund-and-exchange-lite-policies.php:123
 msgid "Maximum Days"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-policies.php:54
-#: admin/partials/woo-refund-and-exchange-lite-policies.php:127
+#: admin/partials/woo-refund-and-exchange-lite-policies.php:124
 msgid "Order Stauses"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-policies.php:55
-#: admin/partials/woo-refund-and-exchange-lite-policies.php:128
+#: admin/partials/woo-refund-and-exchange-lite-policies.php:125
 msgid "Tax Handling"
 msgstr ""
 
@@ -480,51 +476,51 @@ msgid "Is"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-policies.php:64
-#: admin/partials/woo-refund-and-exchange-lite-policies.php:137
+#: admin/partials/woo-refund-and-exchange-lite-policies.php:134
 msgid "Less than"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-policies.php:65
-#: admin/partials/woo-refund-and-exchange-lite-policies.php:138
+#: admin/partials/woo-refund-and-exchange-lite-policies.php:135
 msgid "Greater than"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-policies.php:66
-#: admin/partials/woo-refund-and-exchange-lite-policies.php:139
+#: admin/partials/woo-refund-and-exchange-lite-policies.php:136
 msgid "Less than equal to"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-policies.php:67
-#: admin/partials/woo-refund-and-exchange-lite-policies.php:140
+#: admin/partials/woo-refund-and-exchange-lite-policies.php:137
 msgid "Greater than equal to"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-policies.php:70
-#: admin/partials/woo-refund-and-exchange-lite-policies.php:143
+#: admin/partials/woo-refund-and-exchange-lite-policies.php:140
 msgid "Equal to"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-policies.php:71
-#: admin/partials/woo-refund-and-exchange-lite-policies.php:144
+#: admin/partials/woo-refund-and-exchange-lite-policies.php:141
 msgid "Not Equal to"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-policies.php:73
-#: admin/partials/woo-refund-and-exchange-lite-policies.php:146
+#: admin/partials/woo-refund-and-exchange-lite-policies.php:143
 msgid "Enter the max number of days for refund"
 msgstr ""
 
-#: admin/partials/woo-refund-and-exchange-lite-policies.php:87
-#: admin/partials/woo-refund-and-exchange-lite-policies.php:163
+#: admin/partials/woo-refund-and-exchange-lite-policies.php:84
+#: admin/partials/woo-refund-and-exchange-lite-policies.php:160
 msgid "Include Tax"
 msgstr ""
 
-#: admin/partials/woo-refund-and-exchange-lite-policies.php:88
-#: admin/partials/woo-refund-and-exchange-lite-policies.php:164
+#: admin/partials/woo-refund-and-exchange-lite-policies.php:85
+#: admin/partials/woo-refund-and-exchange-lite-policies.php:161
 msgid "Exclude Tax"
 msgstr ""
 
-#: admin/partials/woo-refund-and-exchange-lite-policies.php:135
+#: admin/partials/woo-refund-and-exchange-lite-policies.php:132
 msgid "is"
 msgstr ""
 
@@ -806,7 +802,7 @@ msgstr ""
 msgid "Reason"
 msgstr ""
 
-#: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:731
+#: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:729
 msgid "Unexpected Error Occured"
 msgstr ""
 
@@ -879,42 +875,42 @@ msgstr ""
 msgid "Refund request is already made and accepted"
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:289
+#: includes/woo-refund-and-exchange-lite-common-functions.php:288
 msgid ""
 "Your Giftcard has been expired so you can not proceed with the exchange. "
 "Thanks"
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:296
+#: includes/woo-refund-and-exchange-lite-common-functions.php:295
 msgid ""
 "Your Giftcard has been used so you can not proceed with the exchange. "
 "Thanks"
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:335
+#: includes/woo-refund-and-exchange-lite-common-functions.php:334
 msgid "User Request to refund product"
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:339
+#: includes/woo-refund-and-exchange-lite-common-functions.php:338
 msgid ""
 "Refund request placed successfully. You have received a notification mail "
 "regarding this. You will redirect to the My Account Page"
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:404
+#: includes/woo-refund-and-exchange-lite-common-functions.php:403
 #, php-format
 msgid "%1$s %2$s Item Quantity has been reduce because the return"
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:414
+#: includes/woo-refund-and-exchange-lite-common-functions.php:413
 msgid "Added the return item info"
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:447
+#: includes/woo-refund-and-exchange-lite-common-functions.php:446
 msgid "User Request of Refund Product is approved"
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:497
+#: includes/woo-refund-and-exchange-lite-common-functions.php:496
 msgid "User Request of Refund Product is cancelled"
 msgstr ""
 
@@ -927,7 +923,7 @@ msgid "Skip and Deactivate Now"
 msgstr ""
 
 #: onboarding/templates/woo-refund-and-exchange-lite-onboarding-template.php:35
-msgid "Welcome to MakeWebBetter"
+msgid "Welcome to WP Swings"
 msgstr ""
 
 #: onboarding/templates/woo-refund-and-exchange-lite-onboarding-template.php:36
@@ -1174,7 +1170,7 @@ msgstr ""
 msgid "GO PREMIUM"
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:252
+#: woocommerce-refund-and-exchange-lite.php:239
 msgid ""
 "Woocommerce is not activated, Please activate Woocommerce first to "
 "install WooCommerce Refund and Exchange Lite."
