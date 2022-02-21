@@ -137,10 +137,10 @@ function cssOrderEditBackend()
 {
   return gulp
   .src([
-    'assets/src/back-end/scss/woo-refund-and-exchange-lite-order-edit-page.scss',
+    'assets/src/back-end/scss/wps-order-edit-page-lite.scss',
   ])
   .pipe(plumber())
-  .pipe(concat('woo-refund-and-exchange-lite-order-edit-page-lite.css'))
+  .pipe(concat('wps-order-edit-page-lite.scss.css'))
   .pipe(sass({ outputStyle: "expanded" }))
   .pipe(gulp.dest("admin/css"))
   .pipe(postcss([autoprefixer(), combineMediaQuery()]))
@@ -180,7 +180,7 @@ function scriptsBackend()
 
     ])
     .pipe(plumber())
-    .pipe(concat('wps-admin.js'))
+    .pipe(concat('woo-refund-and-exchange-lite-admin.js'))
     .pipe(gulp.dest('admin/js'))
     .pipe(terser())
     .pipe(rename({ suffix: '.min' }))

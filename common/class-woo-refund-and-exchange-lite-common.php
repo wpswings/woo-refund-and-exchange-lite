@@ -72,7 +72,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			$myaccount_page_url = '';
 			$myaccount_page_url = apply_filters( 'myaccount_page_url', $myaccount_page_url );
 		}
-		wp_register_script( $this->plugin_name . 'common', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'common/js/woo-refund-and-exchange-lite-common.js', array( 'jquery' ), $this->version, false );
+		wp_register_script( $this->plugin_name . 'common', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'common/js/woo-refund-and-exchange-lite-common.min.js', array( 'jquery' ), $this->version, false );
 		wp_localize_script(
 			$this->plugin_name . 'common',
 			'wrael_common_param',
@@ -177,10 +177,10 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			if ( 'on' === $re_bank && ! empty( $_POST['bankdetails'] ) ) {
 				update_post_meta( $order_id, 'wps_rma_bank_details', sanitize_text_field( wp_unslash( $_POST['bankdetails'] ) ) );
 			}
-			$refund_method  = isset( $_POST['refund_method'] ) ? sanitize_text_field( wp_unslash( $_POST['refund_method'] ) ) : '';
-			$wallet_enabled = get_option( 'wps_rma_wallet_enable', 'no' );
-			$refund_method  = get_option( 'wps_rma_refund_method', 'no' );
-			if ( wps_rma_pro_active() && 'on' === $wallet_enabled && 'on' !== $refund_method ) {
+			$refund_method        = isset( $_POST['refund_method'] ) ? sanitize_text_field( wp_unslash( $_POST['refund_method'] ) ) : '';
+			$wallet_enabled       = get_option( 'wps_rma_wallet_enable', 'no' );
+			$refund_method_check  = get_option( 'wps_rma_refund_method', 'no' );
+			if ( wps_rma_pro_active() && 'on' === $wallet_enabled && 'on' !== $refund_method_check ) {
 				$refund_method = 'wallet_method';
 			}
 			$products1 = $_POST;
@@ -464,12 +464,15 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	 * @return results
 	 */
 	public function wps_rma_woocommerce_get_order_item_totals( $results, $args ) {
+
+		if ( is_admin() || ! is_account_page() ) {
+			return $results;
+		}
 		$wps_refund = get_post_meta( $args['parent'], 'wps_rma_refund_info', true );
 		foreach ( $results as $key => $value ) {
-			if ( isset( $value->type ) && isset( $value->amount ) ) {
-				$object_type   = $value->type;
+			if ( 'shop_order_refund' === $value->type ) {
 				$refund_amount = floatval( $value->amount );
-				if ( ! empty( $object_type ) && empty( $refund_amount ) && 'shop_order_refund' === $value->type ) {
+				if ( empty( $refund_amount ) ) {
 					if ( is_array( $wps_refund ) && ! empty( $wps_refund ) && in_array( $value->id, $wps_refund, true ) ) {
 						unset( $results[ $key ] );
 					}

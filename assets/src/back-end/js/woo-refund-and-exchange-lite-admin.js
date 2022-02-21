@@ -1,6 +1,34 @@
 
 jQuery(document).ready(function() {
 	$ = jQuery;
+	// Refund label on the order edit page because refund amount zero.
+	function wps_rma_fix_refund_label() {
+		if ( jQuery('#order_refunds').length ){
+			jQuery('#order_refunds').find('.refund').each( function() {
+				var refund_id = jQuery(this).data('order_refund_id');
+				var post_id   = jQuery( '#post_ID' ).val();
+				var data = {
+					action	:'wps_rma_refund_info',
+					refund_id : refund_id,
+					order_id : post_id,
+					security_check	: wrael_admin_param.wps_rma_nonce
+				}
+				var this_refund = jQuery(this);
+				jQuery.ajax({
+					url: wrael_admin_param.ajaxurl, 
+					type: 'POST',             
+					data: data,
+					success: function(response){
+						if ( response ) {
+							this_refund.hide();
+						}
+					}
+				});
+			});
+		}
+	}
+	wps_rma_fix_refund_label();
+	
 	const MDCText = mdc.textField.MDCTextField;
 	const textField = [].map.call(
 		document.querySelectorAll('.mdc-text-field'),
@@ -112,7 +140,7 @@ jQuery(document).ready(function() {
 		if( current_set != '' && current_set != null ) {
 			output_setting.forEach(function(item) {
 				if( current_fun == item.name && item.value != null &&  $.inArray( current_set, item.value ) != -1 ) {
-					alert('Policy already exist');
+					alert(wrael_admin_param.wps_policy_already_exist);
 					current_set_obj.parent( '.add_more_rma_policies' ).remove();
 				}
 			});
@@ -248,55 +276,60 @@ jQuery(document).ready(function() {
 	});
 	// Refund Amount functionality
 	$( document ).on( 'click', '#wps_rma_left_amount', function(){
-			$( this ).attr( 'disabled','disabled' );
-			var check_pro_active = wrael_admin_param.check_pro_active;
-			var order_id = $( this ).data( 'orderid' );
-			var refund_method = $( this ).data( 'refund_method' );
-			var refund_amount = $( '.wps_rma_total_amount_for_refund' ).val();
-
-			if( refund_method == '' || refund_method == 'manual_method' ) {
-				$( 'html, body' ).animate(
-					{
-						scrollTop: $( '#order_shipping_line_items' ).offset().top
-					},
-					2000
-				);
-				
-				$( 'div.wc-order-refund-items' ).slideDown();
-				$( 'div.wc-order-data-row-toggle' ).not( 'div.wc-order-refund-items' ).slideUp();
-				$( 'div.wc-order-totals-items' ).slideUp();
-				
-
-				var refund_reason = $( '#wps_rma_refund_reason' ).val();
-				$( '#refund_amount' ).val( refund_amount );
-				$( '#refund_reason' ).val( refund_reason );
-	
-				var total = accounting.unformat( refund_amount, woocommerce_admin.mon_decimal_point );
-	
-				$( 'button .wc-order-refund-amount .amount' ).text(
-					accounting.formatMoney(
-						total,
+		$( this ).attr( 'disabled','disabled' );
+		var order_id = $( this ).data( 'orderid' );
+		var refund_method = $( this ).data( 'refund_method' );
+		var refund_amount = $( '.wps_rma_total_amount_for_refund' ).val();
+		$( '.wps_rma_return_loader' ).show();
+		var data = {
+			action:'wps_rma_refund_amount',
+			order_id:order_id,
+			refund_method:refund_method,
+			refund_amount:refund_amount,
+			security_check	:wrael_admin_param.wps_rma_nonce	
+		};
+		$.ajax({
+			url: mwr_admin_param.ajaxurl, 
+			type: 'POST',  
+			data: data,
+			dataType :'json',	
+			success: function(response) {
+				$( '.wps_rma_return_loader' ).show();
+				if ( response.refund_method == '' || response.refund_method == 'manual_method' ) {
+					$( 'html, body' ).animate(
 						{
-							symbol:    woocommerce_admin_meta_boxes.currency_format_symbol,
-							decimal:   woocommerce_admin_meta_boxes.currency_format_decimal_sep,
-							thousand:  woocommerce_admin_meta_boxes.currency_format_thousand_sep,
-							precision: woocommerce_admin_meta_boxes.currency_format_num_decimals,
-							format:    woocommerce_admin_meta_boxes.currency_format
-						}
-					)
-				);
-			} else {
-				if( check_pro_active ) {
-					if ( typeof wps_rma_refund_method_wallet == 'function') {
-						var response = wps_rma_refund_method_wallet( order_id, refund_amount );
-						if( response ) {
-							window.location.reload();
-						}
-					}
+							scrollTop: $( '#order_shipping_line_items' ).offset().top
+						},
+						2000
+					);
+					
+					$( 'div.wc-order-refund-items' ).slideDown();
+					$( 'div.wc-order-data-row-toggle' ).not( 'div.wc-order-refund-items' ).slideUp();
+					$( 'div.wc-order-totals-items' ).slideUp();
+	
+					var refund_reason = $( '#wps_rma_refund_reason' ).val();
+					$( '#refund_amount' ).val( refund_amount );
+					$( '#refund_reason' ).val( refund_reason );
+		
+					var total = accounting.unformat( refund_amount, woocommerce_admin.mon_decimal_point );
+		
+					$( 'button .wc-order-refund-amount .amount' ).text(
+						accounting.formatMoney(
+							total,
+							{
+								symbol:    woocommerce_admin_meta_boxes.currency_format_symbol,
+								decimal:   woocommerce_admin_meta_boxes.currency_format_decimal_sep,
+								thousand:  woocommerce_admin_meta_boxes.currency_format_thousand_sep,
+								precision: woocommerce_admin_meta_boxes.currency_format_num_decimals,
+								format:    woocommerce_admin_meta_boxes.currency_format
+							}
+						)
+					);
+				} else {
+					window.location.reload();
 				}
-
 			}
-
+		});
 	});
 	// Manage Stock functionality start
 	$( document ).on( 'click', '#wps_rma_stock_back', function(){

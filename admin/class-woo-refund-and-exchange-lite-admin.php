@@ -98,6 +98,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	public function wrael_admin_enqueue_scripts( $hook ) {
 		$screen     = get_current_screen();
 		$pro_active = wps_rma_pro_active();
+
 		if ( isset( $screen->id ) && 'wp-swings_page_woo_refund_and_exchange_lite_menu' === $screen->id ) {
 			if ( ! wps_rma_standard_check_multistep() && wps_rma_pro_active() ) {
 				// js for the multistep from.
@@ -150,10 +151,10 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				array(
 					'ajaxurl'                    => admin_url( 'admin-ajax.php' ),
 					'reloadurl'                  => admin_url( 'admin.php?page=woo_refund_and_exchange_lite_menu' ),
-					'wrael_gen_tab_enable'       => get_option( 'wrael_radio_switch_demo' ),
 					'wps_rma_nonce'              => wp_create_nonce( 'wps_rma_ajax_seurity' ),
 					'wrael_admin_param_location' => ( admin_url( 'admin.php' ) . '?page=woo_refund_and_exchange_lite_menu&wrael_tab=woo-refund-and-exchange-lite-general' ),
 					'check_pro_active'           => esc_html( $pro_active ),
+					'wps_policy_already_exist'   => esc_html__( 'Policy already exist', 'woo-refund-and-exchange-lite' ),
 				)
 			);
 			wp_enqueue_script( $this->plugin_name . 'admin-js' );
@@ -784,15 +785,26 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	}
 
 	/**
-	 * Update left amount because amount is refunded.
-	 *
-	 * @param int   $order_get_id order id.
-	 * @param array $args refund data .
+	 * Refund Amount.
 	 */
-	public function wps_rma_action_woocommerce_order_refunded( $order_get_id, $args ) {
-		if ( isset( $args['amount'] ) && ! empty( $args['amount'] ) ) {
-			update_post_meta( $args['order_id'], 'wps_rma_left_amount_done', 'yes' );
+	public function wps_rma_refund_amount() {
+		$check_ajax = check_ajax_referer( 'wps_rma_ajax_seurity', 'security_check' );
+		if ( $check_ajax ) {
+			$refund_method = isset( $_POST['refund_method'] ) ? sanitize_text_field( wp_unslash( $_POST['refund_method'] ) ) : '';
+			$order_id      = isset( $_POST['order_id'] ) ? sanitize_text_field( wp_unslash( $_POST['order_id'] ) ) : '';
+			$response      = array();
+			if ( '' == $refund_method || 'manual_method' === $refund_method ) {
+				$response['refund_method'] = 'manual_method';
+				update_post_meta( $order_id, 'refundable_amount', '0' );
+				update_post_meta( $order_id, 'refund_amount_refunded', '1' );
+			} else {
+				do_action( 'wps_rma_refund_price', $_POST );
+				$response['refund_method'] = 'wallet_method';
+			}
+			update_post_meta( $order_id, 'wps_rma_left_amount_done', 'yes' );
 		}
+		echo json_encode( $response );
+		wp_die();
 	}
 
 
@@ -895,5 +907,24 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			update_option( 'wps_rma_secret_key', $value );
 			return 'success';
 		}
+	}
+
+	/**
+	 * Hide refund label from order edit page.
+	 * Used to Remove the 0 amount refund .
+	 */
+	public function wps_rma_refund_info() {
+		$check_ajax = check_ajax_referer( 'wps_rma_ajax_seurity', 'security_check' );
+		if ( $check_ajax ) {
+			if ( isset( $_POST['refund_id'] ) && isset( $_POST['order_id'] ) && ! empty( $_POST['refund_id'] ) && ! empty( $_POST['order_id'] ) ) {
+				$refund_id  = sanitize_text_field( wp_unslash( $_POST['refund_id'] ) );
+				$order_id   = sanitize_text_field( wp_unslash( $_POST['order_id'] ) );
+				$mwb_refund = get_post_meta( $order_id, 'wps_rma_refund_info', true );
+				if ( is_array( $mwb_refund ) && in_array( $refund_id, $mwb_refund ) ) {
+					echo true;
+				}
+			}
+		}
+		wp_die();
 	}
 }

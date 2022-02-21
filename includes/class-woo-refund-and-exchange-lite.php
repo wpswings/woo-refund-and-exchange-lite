@@ -225,11 +225,12 @@ class Woo_Refund_And_Exchange_Lite {
 		$this->loader->add_action( 'wp_ajax_wps_rma_manage_stock', $wrael_plugin_admin, 'wps_rma_manage_stock' );
 		$this->loader->add_action( 'wp_ajax_wps_rma_api_secret_key', $wrael_plugin_admin, 'wps_rma_api_secret_key' );
 
-		// Update Refund Created amount.
-		$this->loader->add_action( 'woocommerce_refund_created', $wrael_plugin_admin, 'wps_rma_action_woocommerce_order_refunded', 10, 2 );
-
 		// Save policies setting.
 		$this->loader->add_action( 'wps_rma_settings_saved_notice', $wrael_plugin_admin, 'wps_rma_save_policies_setting' );
+
+		$this->loader->add_action( 'wp_ajax_wps_rma_refund_info', $wrael_plugin_admin, 'wps_rma_refund_info' );
+
+		$this->loader->add_action( 'wp_ajax_wps_rma_refund_amount', $wrael_plugin_admin, 'wps_rma_refund_amount' );
 	}
 
 	/**
