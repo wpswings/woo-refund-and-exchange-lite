@@ -209,7 +209,7 @@ table.wps-rma-product__table:not(.has-background) tbody tr:nth-child(2n) td, fie
 }
 
 .wps-rma-form__wrapper .wps-rma-col.wps_rma_flex {
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 
 .wps-rma-form__wrapper .wps_rma_other_subject {
