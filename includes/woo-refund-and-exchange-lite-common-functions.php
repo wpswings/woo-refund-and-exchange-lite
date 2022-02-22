@@ -668,9 +668,6 @@ if ( ! function_exists( 'wps_rma_lite_migrate_settings' ) ) {
 				),
 			),
 		);
-		if ( 'yes' !== $tax_enable ) {
-			unset( $set_policies_arr['wps_rma_setting'][2] );
-		}
 		update_option( 'policies_setting_option', $set_policies_arr );
 
 		// Refund Request Subject And Content Updation.
