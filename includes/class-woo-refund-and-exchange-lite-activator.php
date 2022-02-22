@@ -86,13 +86,10 @@ class Woo_Refund_And_Exchange_Lite_Activator {
 		}
 
 		// Pages will create.
-		$email                       = get_option( 'admin_email', false );
-		$admin                       = get_user_by( 'email', $email );
-		$admin_id                    = $admin->ID;
 		$wps_rma_return_request_form = array(
-			'post_author' => $admin_id,
-			'post_name'   => 'refund-request-form',
-			'post_title'  => 'Refund Request Form',
+			'post_author' => 1,
+			'post_name'   => esc_html__( 'refund-request-form', 'woo-refund-and-exchange-lite' ),
+			'post_title'  => esc_html__( 'Refund Request Form', 'woo-refund-and-exchange-lite' ),
 			'post_type'   => 'page',
 			'post_status' => 'publish',
 
@@ -106,9 +103,9 @@ class Woo_Refund_And_Exchange_Lite_Activator {
 		}
 
 		$wps_rma_view_order_msg_form = array(
-			'post_author' => $admin_id,
-			'post_name'   => 'view-order-msg',
-			'post_title'  => 'View Order Messages',
+			'post_author' => 1,
+			'post_name'   => esc_html__( 'view-order-msg', 'woo-refund-and-exchange-lite' ),
+			'post_title'  => esc_html__( 'View Order Messages', 'woo-refund-and-exchange-lite' ),
 			'post_type'   => 'page',
 			'post_status' => 'publish',
 

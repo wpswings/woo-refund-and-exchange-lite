@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Return Refund and Exchange for WooCommerce 4.0.0\n"
-"POT-Creation-Date: 2022-02-22 14:40+0530\n"
-"PO-Revision-Date: 2022-02-22 14:40+0530\n"
+"POT-Creation-Date: 2022-02-22 18:10+0530\n"
+"PO-Revision-Date: 2022-02-22 18:10+0530\n"
 "Last-Translator: \n"
 "Language-Team: WP Swings\n"
 "Language: en_US\n"
@@ -767,6 +767,23 @@ msgstr ""
 msgid "Refund Request Email"
 msgstr ""
 
+#: includes/class-woo-refund-and-exchange-lite-activator.php:91
+msgid "refund-request-form"
+msgstr ""
+
+#: includes/class-woo-refund-and-exchange-lite-activator.php:92
+msgid "Refund Request Form"
+msgstr ""
+
+#: includes/class-woo-refund-and-exchange-lite-activator.php:107
+msgid "view-order-msg"
+msgstr ""
+
+#: includes/class-woo-refund-and-exchange-lite-activator.php:108
+#: public/class-woo-refund-and-exchange-lite-public.php:105
+msgid "View Order Messages"
+msgstr ""
+
 #: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:301
 msgid "What is your monthly revenue?"
 msgstr ""
@@ -1044,10 +1061,6 @@ msgstr ""
 
 #: public/class-woo-refund-and-exchange-lite-public.php:81
 msgid "Please select product to refund."
-msgstr ""
-
-#: public/class-woo-refund-and-exchange-lite-public.php:105
-msgid "View Order Messages"
 msgstr ""
 
 #: public/class-woo-refund-and-exchange-lite-public.php:158
