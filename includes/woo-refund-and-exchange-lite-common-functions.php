@@ -754,18 +754,17 @@ if ( ! function_exists( 'wps_rma_lite_migrate_settings' ) ) {
 			'email_type'         => 'html',
 		);
 		update_option( 'woocommerce_wps_rma_refund_request_cancel_email_settings', $refund_request_cancel_add );
-
 		$orders = get_posts(
 			array(
 				'numberposts' => -1,
 				'post_type'   => 'shop_order',
 				'fields'      => 'ids', // return only ids.
 				'order'       => 'ASC',
+				'post_status' => 'any',
 			)
 		);
 		if ( ! empty( $orders ) ) {
-			foreach ( $orders as $key => $order ) {
-				$order_id = $order->ID;
+			foreach ( $orders as $order_id ) {
 				if ( ! empty( $order_id ) ) {
 					$get_messages = get_option( $order_id . '-mwb_cutomer_order_msg', array() );
 					if ( ! empty( $get_messages ) ) {
@@ -779,7 +778,6 @@ if ( ! function_exists( 'wps_rma_lite_migrate_settings' ) ) {
 			'ced_rnx_return_product',
 			'ced_rnx_return_attachment',
 		);
-
 		foreach ( $post_meta_keys as $key => $meta_keys ) {
 
 			$orders = get_posts(
@@ -790,11 +788,11 @@ if ( ! function_exists( 'wps_rma_lite_migrate_settings' ) ) {
 					'meta_key'    => $meta_keys, //phpcs:ignore
 					'post_type'   => 'shop_order',
 					'order'       => 'ASC',
+					'post_status' => 'any',
 				)
 			);
 			if ( ! empty( $orders ) ) {
-				foreach ( $orders as $key => $order ) {
-					$order_id = $order->ID;
+				foreach ( $orders as $order_id ) {
 					if ( ! empty( $order_id ) ) {
 						$value   = get_post_meta( $order_id, $meta_keys, true );
 						$new_key = str_replace( 'ced_rnx', 'wps_rma', $meta_keys );
