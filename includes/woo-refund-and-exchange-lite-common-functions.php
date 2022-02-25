@@ -754,6 +754,11 @@ if ( ! function_exists( 'wps_rma_lite_migrate_settings' ) ) {
 			'email_type'         => 'html',
 		);
 		update_option( 'woocommerce_wps_rma_refund_request_cancel_email_settings', $refund_request_cancel_add );
+	}
+}
+if ( ! function_exists( 'wps_rma_lite_post_meta_data_migrate' ) ) {
+	/** Post Meta Data Migrate */
+	function wps_rma_lite_post_meta_data_migrate() {
 		$orders = get_posts(
 			array(
 				'numberposts' => -1,

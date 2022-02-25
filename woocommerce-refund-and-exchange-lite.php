@@ -22,9 +22,9 @@
  * Domain Path:       /languages
  *
  * Requires at least: 4.6
- * Tested up to: 5.9
+ * Tested up to: 5.9.1
  * WC requires at least: 4.0
- * WC tested up to: 6.2.0
+ * WC tested up to: 6.2.1
  *
  * License:           GNU General Public License v3.0
  * License URI:       http://www.gnu.org/licenses/gpl-3.0.html
@@ -228,6 +228,107 @@ if ( $activated ) {
 		}
 
 		return $links;
+	}
+
+	/** Function to migrate to settings and data */
+	function wps_rma_lite_migrate_settings_and_data() {
+		global $wpdb;
+		// Check if the plugin has been activated on the network.
+		if ( is_multisite() && $network_wide ) {
+			// Get all blogs in the network and activate plugins on each one.
+			$blog_ids = $wpdb->get_col( "SELECT blog_id FROM $wpdb->blogs" );
+			foreach ( $blog_ids as $blog_id ) {
+				switch_to_blog( $blog_id );
+
+				// Setting And DB Migration Code.
+				$check_key_exist = get_option( 'wps_rma_lite_setting_restore', false );
+				if ( ! $check_key_exist && function_exists( 'wps_rma_lite_migrate_settings' ) ) {
+					wps_rma_lite_migrate_settings();
+					wps_rma_lite_post_meta_data_migrate();
+					update_option( 'wps_rma_lite_setting_restore', true );
+				}
+
+				restore_current_blog();
+			}
+		} else {
+
+			// Setting And DB Migration Code.
+			$check_key_exist = get_option( 'wps_rma_lite_setting_restore', false );
+			if ( ! $check_key_exist && function_exists( 'wps_rma_lite_migrate_settings' ) ) {
+				wps_rma_lite_migrate_settings();
+				wps_rma_lite_post_meta_data_migrate();
+				update_option( 'wps_rma_lite_setting_restore', true );
+			}
+		}
+
+	}
+	add_action( 'admin_init', 'wps_rma_lite_migrate_settings_and_data' );
+
+	/**
+	 * Migration to new domain notice.
+	 *
+	 * @param string $plugin_file Path to the plugin file relative to the plugins directory.
+	 * @param array  $plugin_data An array of plugin data.
+	 * @param string $status Status filter currently applied to the plugin list.
+	 */
+	function wps_rma_lite_upgrade_notice( $plugin_file, $plugin_data, $status ) {
+
+		?>
+		<tr class="plugin-update-tr active notice-warning notice-alt">
+			<td colspan="4" class="plugin-update colspanchange">
+				<div class="notice notice-success inline update-message notice-alt">
+					<div class='wps-notice-title wps-notice-section'>
+						<p><strong><?php esc_html_e( 'IMPORTANT NOTICE', 'woo-refund-and-exchange-lite' ); ?>:</strong></p>
+					</div>
+					<div class='wps-notice-content wps-notice-section'>
+						<p><?php esc_html_e( 'From this update', 'mwb-woocommerce-rma' ); ?> <strong><?php esc_html_e( 'Version', 'woo-refund-and-exchange-lite' ); ?> 3.1.4</strong> <?php esc_html_e( 'onwards, the plugin and its support will be handled by', 'woo-refund-and-exchange-lite' ); ?> <strong>WP Swings</strong>.</p><p><strong>WP Swings</strong> <?php esc_html_e( 'is just our improvised and rebranded version with all quality solutions and help being the same, so no worries at your end.', 'woo-refund-and-exchange-lite' ); ?>
+						<?php esc_html_e( 'Please connect with us for all setup, support, and update related queries without hesitation', 'woo-refund-and-exchange-lite' ); ?>.</p>
+					</div>
+				</div>
+			</td>
+		</tr>
+		<style>
+			.wps-notice-section > p:before {
+				content: none;
+			}
+		</style>
+		<?php
+
+	}
+	add_action( 'after_plugin_row_' . plugin_basename( __FILE__ ), 'wps_rma_lite_upgrade_notice', 0, 3 );
+
+	add_action( 'admin_notices', 'wps_rma_lite_upgrade_notice1' );
+
+	/**
+	 * Migration to new domain notice.
+	 */
+	function wps_rma_lite_upgrade_notice1() {
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended
+		$page = isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '';
+
+		if ( 'woo_refund_and_exchange_lite_menu' === $page ) {
+
+			?>
+			<tr class="plugin-update-tr active notice-warning notice-alt">
+				<td colspan="4" class="plugin-update colspanchange">
+					<div class="notice notice-success update-message notice-alt">
+						<div class='wps-notice-title wps-notice-section'>
+							<p><strong><?php esc_html_e( 'IMPORTANT NOTICE', 'woo-refund-and-exchange-lite' ); ?>:</strong></p>
+						</div>
+						<div class='wps-notice-content wps-notice-section'>
+							<p><?php esc_html_e( 'From this update', 'mwb-woocommerce-rma' ); ?> <strong><?php esc_html_e( 'Version', 'woo-refund-and-exchange-lite' ); ?> 3.1.4</strong> <?php esc_html_e( 'onwards, the plugin and its support will be handled by', 'woo-refund-and-exchange-lite' ); ?> <strong>WP Swings</strong>.</p><p><strong>WP Swings</strong> <?php esc_html_e( 'is just our improvised and rebranded version with all quality solutions and help being the same, so no worries at your end.', 'woo-refund-and-exchange-lite' ); ?>
+							<?php esc_html_e( 'Please connect with us for all setup, support, and update related queries without hesitation', 'woo-refund-and-exchange-lite' ); ?>.</p>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<style>
+				.wps-notice-section > p:before {
+					content: none;
+				}
+			</style>
+			<?php
+		}
 	}
 } else {
 	/**

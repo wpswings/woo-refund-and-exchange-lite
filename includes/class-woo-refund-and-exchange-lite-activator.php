@@ -44,13 +44,6 @@ class Woo_Refund_And_Exchange_Lite_Activator {
 				wp_clear_scheduled_hook( 'wpswings_tracker_send_event' );
 				wp_schedule_event( time() + 10, apply_filters( 'wpswings_tracker_event_recurrence', 'daily' ), 'wpswings_tracker_send_event' );
 
-				// Setting And DB Migration Code.
-				$check_key_exist = get_option( 'wps_rma_lite_setting_restore', false );
-				if ( ! $check_key_exist && function_exists( 'wps_rma_lite_migrate_settings' ) ) {
-					wps_rma_lite_migrate_settings();
-					update_option( 'wps_rma_lite_setting_restore', true );
-				}
-
 				restore_current_blog();
 			}
 		} else {
@@ -61,12 +54,6 @@ class Woo_Refund_And_Exchange_Lite_Activator {
 			wp_clear_scheduled_hook( 'wpswings_tracker_send_event' );
 			wp_schedule_event( time() + 10, apply_filters( 'wpswings_tracker_event_recurrence', 'daily' ), 'wpswings_tracker_send_event' );
 
-			// Setting And DB Migration Code.
-			$check_key_exist = get_option( 'wps_rma_lite_setting_restore', false );
-			if ( ! $check_key_exist && function_exists( 'wps_rma_lite_migrate_settings' ) ) {
-				wps_rma_lite_migrate_settings();
-				update_option( 'wps_rma_lite_setting_restore', true );
-			}
 		}
 	}
 
