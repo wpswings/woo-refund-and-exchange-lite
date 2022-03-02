@@ -234,7 +234,7 @@ if ( $activated ) {
 	function wps_rma_lite_migrate_settings_and_data() {
 		global $wpdb;
 		// Check if the plugin has been activated on the network.
-		if ( is_multisite() && $network_wide ) {
+		if ( function_exists( 'is_multisite' ) && is_multisite() ) {
 			// Get all blogs in the network and activate plugins on each one.
 			$blog_ids = $wpdb->get_col( "SELECT blog_id FROM $wpdb->blogs" );
 			foreach ( $blog_ids as $blog_id ) {
