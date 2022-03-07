@@ -260,7 +260,7 @@ if ( $activated ) {
 				update_option( 'wps_rma_lite_setting_restore', true );
 			}
 		}
-
+		deactivate_plugins( 'woocommerce-rma-for-return-refund-and-exchange/mwb-woocommerce-rma.php' );
 	}
 	add_action( 'admin_init', 'wps_rma_lite_migrate_settings_and_data' );
 
