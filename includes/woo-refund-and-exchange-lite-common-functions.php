@@ -782,7 +782,7 @@ if ( ! function_exists( 'wps_rma_lite_post_meta_data_migrate' ) ) {
 			'ced_rnx_request_made',
 			'ced_rnx_return_product',
 			'ced_rnx_return_attachment',
-			'mwb_wrma_return_product'
+			'mwb_wrma_return_product',
 		);
 		foreach ( $post_meta_keys as $key => $meta_keys ) {
 

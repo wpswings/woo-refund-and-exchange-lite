@@ -581,7 +581,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			'type'  => 'wp_editor',
 			'id'    => 'wps_rma_refund_rules_editor',
 			'value' => get_option( 'wps_rma_refund_rules_editor' ),
-			'class' => 'wrael-text-class'
+			'class' => 'wrael-text-class',
 		);
 		if ( function_exists( 'vc_lean_map' ) ) {
 			$wps_rma_settings_refund[] = array(

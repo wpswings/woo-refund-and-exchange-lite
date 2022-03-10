@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Return Refund and Exchange for WooCommerce 4.0.0\n"
-"POT-Creation-Date: 2022-03-10 11:21+0530\n"
-"PO-Revision-Date: 2022-03-10 11:21+0530\n"
+"POT-Creation-Date: 2022-03-10 15:58+0530\n"
+"PO-Revision-Date: 2022-03-10 15:58+0530\n"
 "Last-Translator: \n"
 "Language-Team: WP Swings\n"
 "Language: en_US\n"
@@ -646,30 +646,30 @@ msgstr ""
 msgid "Please Enter a Message."
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:205
+#: common/class-woo-refund-and-exchange-lite-common.php:213
 #, php-format
 msgid "Refund Requested <span class=\"count\">(%s)</span>"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:216
+#: common/class-woo-refund-and-exchange-lite-common.php:224
 #, php-format
 msgid "Refund Approved <span class=\"count\">(%s)</span>"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:227
+#: common/class-woo-refund-and-exchange-lite-common.php:235
 #, php-format
 msgid "Refund Cancelled <span class=\"count\">(%s)</span>"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:245
+#: common/class-woo-refund-and-exchange-lite-common.php:261
 msgid "Refund Requested"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:246
+#: common/class-woo-refund-and-exchange-lite-common.php:262
 msgid "Refund Approved"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:247
+#: common/class-woo-refund-and-exchange-lite-common.php:263
 msgid "Refund Cancelled"
 msgstr ""
 
@@ -1180,41 +1180,41 @@ msgstr ""
 msgid "GO PREMIUM"
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:299
-#: woocommerce-refund-and-exchange-lite.php:334
+#: woocommerce-refund-and-exchange-lite.php:298
+#: woocommerce-refund-and-exchange-lite.php:333
 msgid "IMPORTANT NOTICE"
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:302
-#: woocommerce-refund-and-exchange-lite.php:337
+#: woocommerce-refund-and-exchange-lite.php:301
+#: woocommerce-refund-and-exchange-lite.php:336
 msgid "From this update"
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:302
-#: woocommerce-refund-and-exchange-lite.php:337
+#: woocommerce-refund-and-exchange-lite.php:301
+#: woocommerce-refund-and-exchange-lite.php:336
 msgid "Version"
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:302
-#: woocommerce-refund-and-exchange-lite.php:337
+#: woocommerce-refund-and-exchange-lite.php:301
+#: woocommerce-refund-and-exchange-lite.php:336
 msgid "onwards, the plugin and its support will be handled by"
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:302
-#: woocommerce-refund-and-exchange-lite.php:337
+#: woocommerce-refund-and-exchange-lite.php:301
+#: woocommerce-refund-and-exchange-lite.php:336
 msgid ""
 "is just our improvised and rebranded version with all quality solutions and "
 "help being the same, so no worries at your end."
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:303
-#: woocommerce-refund-and-exchange-lite.php:338
+#: woocommerce-refund-and-exchange-lite.php:302
+#: woocommerce-refund-and-exchange-lite.php:337
 msgid ""
 "Please connect with us for all setup, support, and update related queries "
 "without hesitation"
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:358
+#: woocommerce-refund-and-exchange-lite.php:357
 msgid ""
 "Woocommerce is not activated, Please activate Woocommerce first to install "
 "WooCommerce Refund and Exchange Lite."
