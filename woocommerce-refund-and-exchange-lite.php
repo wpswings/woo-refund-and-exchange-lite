@@ -243,6 +243,15 @@ if ( $activated ) {
 				// Setting And DB Migration Code.
 				$check_key_exist = get_option( 'wps_rma_lite_setting_restore', false );
 				if ( ! $check_key_exist && function_exists( 'wps_rma_lite_migrate_settings' ) ) {
+					$page_id = get_option( 'ced_rnx_return_request_form_page_id' );
+					wp_delete_post( $page_id );
+					delete_option( 'ced_rnx_return_request_form_page_id' );
+					$page_id = get_option( 'ced_rnx_view_order_msg_page_id' );
+					wp_delete_post( $page_id );
+					delete_option( 'ced_rnx_view_order_msg_page_id' );
+					include_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'includes/class-woo-refund-and-exchange-lite-activator.php';
+					$activator_class_obj = new Woo_Refund_And_Exchange_Lite_Activator();
+					$activator_class_obj::wps_rma_create_pages();
 					wps_rma_lite_migrate_settings();
 					wps_rma_lite_post_meta_data_migrate();
 					update_option( 'wps_rma_lite_setting_restore', true );
@@ -255,6 +264,15 @@ if ( $activated ) {
 			// Setting And DB Migration Code.
 			$check_key_exist = get_option( 'wps_rma_lite_setting_restore', false );
 			if ( ! $check_key_exist && function_exists( 'wps_rma_lite_migrate_settings' ) ) {
+				$page_id = get_option( 'ced_rnx_return_request_form_page_id' );
+				wp_delete_post( $page_id );
+				delete_option( 'ced_rnx_return_request_form_page_id' );
+				$page_id = get_option( 'ced_rnx_view_order_msg_page_id' );
+				wp_delete_post( $page_id );
+				delete_option( 'ced_rnx_view_order_msg_page_id' );
+				include_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'includes/class-woo-refund-and-exchange-lite-activator.php';
+				$activator_class_obj = new Woo_Refund_And_Exchange_Lite_Activator();
+				$activator_class_obj::wps_rma_create_pages();
 				wps_rma_lite_migrate_settings();
 				wps_rma_lite_post_meta_data_migrate();
 				update_option( 'wps_rma_lite_setting_restore', true );
