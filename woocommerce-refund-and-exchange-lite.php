@@ -260,7 +260,6 @@ if ( $activated ) {
 				restore_current_blog();
 			}
 		} else {
-
 			// Setting And DB Migration Code.
 			$check_key_exist = get_option( 'wps_rma_lite_setting_restore', false );
 			if ( ! $check_key_exist && function_exists( 'wps_rma_lite_migrate_settings' ) ) {

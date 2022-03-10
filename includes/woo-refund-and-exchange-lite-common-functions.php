@@ -782,6 +782,7 @@ if ( ! function_exists( 'wps_rma_lite_post_meta_data_migrate' ) ) {
 			'ced_rnx_request_made',
 			'ced_rnx_return_product',
 			'ced_rnx_return_attachment',
+			'mwb_wrma_return_product'
 		);
 		foreach ( $post_meta_keys as $key => $meta_keys ) {
 
@@ -801,6 +802,10 @@ if ( ! function_exists( 'wps_rma_lite_post_meta_data_migrate' ) ) {
 					if ( ! empty( $order_id ) ) {
 						$value   = get_post_meta( $order_id, $meta_keys, true );
 						$new_key = str_replace( 'ced_rnx', 'wps_rma', $meta_keys );
+						if ( 'mwb_wrma_return_product' === $meta_keys ) {
+							$new_key = 'wps_rma_return_product';
+							$value   = get_post_meta( $order_id, 'mwb_wrma_return_product', true );
+						}
 						if ( ! empty( $value ) ) {
 							update_post_meta( $order_id, $new_key, $value );
 						}
