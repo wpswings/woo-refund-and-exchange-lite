@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Return Refund and Exchange for WooCommerce 4.0.0\n"
-"POT-Creation-Date: 2022-03-12 09:34+0530\n"
+"POT-Creation-Date: 2022-03-12 11:22+0530\n"
 "PO-Revision-Date: 2021-08-21 11:15+0530\n"
 "Last-Translator: \n"
 "Language-Team: WP Swings\n"
@@ -1187,41 +1187,41 @@ msgstr ""
 msgid "GO PREMIUM"
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:312
-#: woocommerce-refund-and-exchange-lite.php:347
+#: woocommerce-refund-and-exchange-lite.php:322
+#: woocommerce-refund-and-exchange-lite.php:357
 msgid "IMPORTANT NOTICE"
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:315
-#: woocommerce-refund-and-exchange-lite.php:350
+#: woocommerce-refund-and-exchange-lite.php:325
+#: woocommerce-refund-and-exchange-lite.php:360
 msgid "From this update"
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:315
-#: woocommerce-refund-and-exchange-lite.php:350
+#: woocommerce-refund-and-exchange-lite.php:325
+#: woocommerce-refund-and-exchange-lite.php:360
 msgid "Version"
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:315
-#: woocommerce-refund-and-exchange-lite.php:350
+#: woocommerce-refund-and-exchange-lite.php:325
+#: woocommerce-refund-and-exchange-lite.php:360
 msgid "onwards, the plugin and its support will be handled by"
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:315
-#: woocommerce-refund-and-exchange-lite.php:350
+#: woocommerce-refund-and-exchange-lite.php:325
+#: woocommerce-refund-and-exchange-lite.php:360
 msgid ""
 "is just our improvised and rebranded version with all quality solutions "
 "and help being the same, so no worries at your end."
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:316
-#: woocommerce-refund-and-exchange-lite.php:351
+#: woocommerce-refund-and-exchange-lite.php:326
+#: woocommerce-refund-and-exchange-lite.php:361
 msgid ""
 "Please connect with us for all setup, support, and update related queries "
 "without hesitation"
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:371
+#: woocommerce-refund-and-exchange-lite.php:381
 msgid ""
 "Woocommerce is not activated, Please activate Woocommerce first to "
 "install WooCommerce Refund and Exchange Lite."

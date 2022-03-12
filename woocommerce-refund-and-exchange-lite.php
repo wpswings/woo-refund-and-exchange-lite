@@ -250,6 +250,12 @@ if ( $activated ) {
 					$page_id = get_option( 'ced_rnx_view_order_msg_page_id' );
 					wp_delete_post( $page_id );
 					delete_option( 'ced_rnx_view_order_msg_page_id' );
+					$mwb_wrma_pages = get_option( 'mwb_wrma_pages' );
+					$page_id = $mwb_wrma_pages['pages']['mwb_return_from'];
+					wp_delete_post( $page_id );
+					$page_id = $mwb_wrma_pages['pages']['mwb_view_order_msg'];
+					wp_delete_post( $page_id );
+					delete_option( 'mwb_wrma_pages' );
 
 					include_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'includes/class-woo-refund-and-exchange-lite-activator.php';
 					$activator_class_obj = new Woo_Refund_And_Exchange_Lite_Activator();
@@ -277,7 +283,11 @@ if ( $activated ) {
 				$page_id = get_option( 'ced_rnx_view_order_msg_page_id' );
 				wp_delete_post( $page_id );
 				delete_option( 'ced_rnx_view_order_msg_page_id' );
-
+				$mwb_wrma_pages = get_option( 'mwb_wrma_pages' );
+				$page_id        = $mwb_wrma_pages['pages']['mwb_return_from'];
+				wp_delete_post( $page_id );
+				$page_id = $mwb_wrma_pages['pages']['mwb_view_order_msg'];
+				wp_delete_post( $page_id );
 				include_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'includes/class-woo-refund-and-exchange-lite-activator.php';
 				$activator_class_obj = new Woo_Refund_And_Exchange_Lite_Activator();
 				$activator_class_obj::wps_rma_create_pages();
