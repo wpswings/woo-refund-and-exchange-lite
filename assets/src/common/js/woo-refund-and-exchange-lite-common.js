@@ -21,7 +21,7 @@ jQuery( document ).on( 'ready', function(){
 			}
 		}
 		var rr_reason = $( '.wps_rma_return_request_reason' ).val();
-		if ( rr_reason == '' || rr_reason == null || ! rr_reason.match(/[[A-Za-z]/i ) ) {
+		if ( typeof( rr_reason ) !== 'undefined' && ( rr_reason == '' || rr_reason == null || ! rr_reason.match(/[[A-Za-z]/i ) ) ) {
 			alerthtml += '<li>' + wrael_common_param.return_reason_msg + '</li>';
 		}
 

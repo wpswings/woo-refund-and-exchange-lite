@@ -225,7 +225,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			)
 		);
 		register_post_status(
-			$wps_rma_status_fix_for_pro[1],
+			$wps_rma_status_fix_for_pro[2],
 			array(
 				'label'                     => 'Refund Cancelled',
 				'public'                    => true,
@@ -486,7 +486,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 		}
 		$wps_refund = get_post_meta( $args['parent'], 'wps_rma_refund_info', true );
 		foreach ( $results as $key => $value ) {
-			if ( 'shop_order_refund' === $value->type ) {
+			if ( is_object( $value ) && 'shop_order_refund' === $value->type ) {
 				$refund_amount = floatval( $value->amount );
 				if ( empty( $refund_amount ) ) {
 					if ( is_array( $wps_refund ) && ! empty( $wps_refund ) && in_array( $value->id, $wps_refund, true ) ) {
