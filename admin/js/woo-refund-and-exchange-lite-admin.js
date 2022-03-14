@@ -311,7 +311,7 @@ jQuery(document).ready(function() {
 			security_check	:wrael_admin_param.wps_rma_nonce	
 		};
 		$.ajax({
-			url: mwr_admin_param.ajaxurl, 
+			url: wrael_admin_param.ajaxurl, 
 			type: 'POST',  
 			data: data,
 			dataType :'json',	
