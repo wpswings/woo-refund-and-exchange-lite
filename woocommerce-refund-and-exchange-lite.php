@@ -22,9 +22,9 @@
  * Domain Path:       /languages
  *
  * Requires at least: 4.6
- * Tested up to: 5.9.1
+ * Tested up to: 5.9.2
  * WC requires at least: 4.0
- * WC tested up to: 6.2.1
+ * WC tested up to: 6.3.1
  *
  * License:           GNU General Public License v3.0
  * License URI:       http://www.gnu.org/licenses/gpl-3.0.html
@@ -256,6 +256,14 @@ if ( $activated ) {
 					$page_id = $mwb_wrma_pages['pages']['mwb_view_order_msg'];
 					wp_delete_post( $page_id );
 					delete_option( 'mwb_wrma_pages' );
+
+					$page_id = get_option( 'wps_rma_return_request_form_page_id' );
+					wp_delete_post( $page_id );
+					delete_option( 'wps_rma_return_request_form_page_id' );
+
+					$page_id = get_option( 'wps_rma_view_order_msg_page_id' );
+					wp_delete_post( $page_id );
+					delete_option( 'wps_rma_view_order_msg_page_id' );
 
 					include_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'includes/class-woo-refund-and-exchange-lite-activator.php';
 					$activator_class_obj = new Woo_Refund_And_Exchange_Lite_Activator();
