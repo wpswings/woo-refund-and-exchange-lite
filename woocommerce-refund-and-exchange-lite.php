@@ -222,7 +222,7 @@ if ( $activated ) {
 	 */
 	function wps_rma_lite_settings_link( $links ) {
 
-		if ( ! is_plugin_active( 'woocommerce-rma-for-return-refund-and-exchange/wps-woocommerce-rma.php' ) ) {
+		if ( ! is_plugin_active( 'rma-return-refund-exchange-for-woocommerce-pro/rma-return-refund-exchange-for-woocommerce-pro.php' ) ) {
 
 			$links['goPro'] = '<a style="color:#FFF;background:linear-gradient(to right,#7a28ff 0,#00a1ff 100%);padding:5px;border-radius:6px;" target="_blank" href="https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro?utm_source=wpswings-rma-pro&utm_medium=rma-org-backend&utm_campaign=go-pro">' . esc_html__( 'GO PREMIUM', 'woo-refund-and-exchange-lite' ) . '</a>';
 		}
