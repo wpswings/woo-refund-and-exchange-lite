@@ -124,9 +124,6 @@ jQuery(document).ready(function($) {
 
     /* Close Popup */
     function wps_rma_hide_onboard_popup() {
-        // jQuery( '.wps-on-boarding-wrapper-background' ).removeClass( 'onboard-popup-show' );
-		// jQuery( '.wps-onboarding-section' ).hide();
-        // const dialog = mdc.dialog.MDCDialog.attachTo(document.querySelector('.mdc-dialog'));
         dialog.close();
         if (!jQuery('body').hasClass('mobile-device')) {
             jQuery('body').removeClass('wps-on-boarding-wrapper-control');

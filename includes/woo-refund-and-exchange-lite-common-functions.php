@@ -285,14 +285,14 @@ if ( ! function_exists( 'wps_rma_save_return_request_callback' ) ) {
 
 			if ( $exp_flag ) {
 				$response['flag'] = false;
-				$response['msg']  = esc_html__( 'Your Giftcard has been expired so you can not proceed with the exchange. Thanks', 'wps-woocommerce-rma' );
+				$response['msg']  = esc_html__( 'Your Giftcard has been expired so you can not proceed with the exchange. Thanks', 'woo-refund-and-exchange-lite' );
 
 				return $response;
 			}
 
 			if ( ! empty( $usage_count ) ) {
 				$response['flag'] = false;
-				$response['msg']  = esc_html__( 'Your Giftcard has been used so you can not proceed with the exchange. Thanks', 'wps-woocommerce-rma' );
+				$response['msg']  = esc_html__( 'Your Giftcard has been used so you can not proceed with the exchange. Thanks', 'woo-refund-and-exchange-lite' );
 
 				return $response;
 			}

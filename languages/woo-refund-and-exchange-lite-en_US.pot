@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Return Refund and Exchange for WooCommerce 4.0.0\n"
-"POT-Creation-Date: 2022-03-14 13:47+0530\n"
+"POT-Creation-Date: 2022-03-15 11:30+0530\n"
 "PO-Revision-Date: 2021-08-21 11:15+0530\n"
 "Last-Translator: \n"
 "Language-Team: WP Swings\n"
@@ -973,11 +973,11 @@ msgid "These item id does not belong to the order"
 msgstr ""
 
 #: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:134
-msgid "Please give the item ids which needs to be refund"
+msgid "Please give the item ids which needs to be refunded"
 msgstr ""
 
 #: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:138
-msgid "Please give the item qty which needs to be refund"
+msgid "Please give the item qty which needs to be refunded"
 msgstr ""
 
 #: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:142
@@ -1087,11 +1087,8 @@ msgid "Update Request"
 msgstr ""
 
 #: public/class-woo-refund-and-exchange-lite-public.php:314
-msgid "Above product Refund request is approved on"
-msgstr ""
-
 #: public/class-woo-refund-and-exchange-lite-public.php:323
-msgid "Above product Refund request is canceled on"
+msgid "The above product Refund request is cancelled on"
 msgstr ""
 
 #: public/partials/wps-rma-refund-request-form.php:32

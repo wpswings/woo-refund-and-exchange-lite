@@ -131,11 +131,11 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 						} elseif ( ! $invalid_item ) {
 							$wps_rma_rest_response['message'] = 'error';
 							$wps_rma_rest_response['status']  = 404;
-							$wps_rma_rest_response['data']    = esc_html__( 'Please give the item ids which needs to be refund', 'woo-refund-and-exchange-lite' );
+							$wps_rma_rest_response['data']    = esc_html__( 'Please give the item ids which needs to be refunded', 'woo-refund-and-exchange-lite' );
 						} elseif ( ! $invalid_qty ) {
 							$wps_rma_rest_response['message'] = 'error';
 							$wps_rma_rest_response['status']  = 404;
-							$wps_rma_rest_response['data']    = esc_html__( 'Please give the item qty which needs to be refund', 'woo-refund-and-exchange-lite' );
+							$wps_rma_rest_response['data']    = esc_html__( 'Please give the item qty which needs to be refunded', 'woo-refund-and-exchange-lite' );
 						} elseif ( ! $json_validate ) {
 							$wps_rma_rest_response['message'] = 'error';
 							$wps_rma_rest_response['status']  = 404;
