@@ -204,7 +204,7 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 								<?php
 								$qty_html = '<input type="number" disabled value="' . esc_html( $item_qty ) . '" class="wps_rma_return_product_qty" name="wps_rma_return_product_qty">';
 								echo // Refund form Quantity html.
-								apply_filters( 'wps_rma_change_quanity', $qty_html, $item_qty );
+								apply_filters( 'wps_rma_change_quanity', $qty_html, $item_qty ); // phpcs:ignore
 								?>
 								</td>
 								<td class="product-total">
