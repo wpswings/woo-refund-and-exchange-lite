@@ -15,6 +15,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	exit(); // Exit if accessed directly.
 }
+
+/**
+ * Provide a admin area view for the plugin
+ *
+ * This file is used to markup the admin-facing aspects of the plugin.
+ *
+ * @link       https://makewebbetter.com
+ * @since      1.0.0
+ *
+ * @package    One_Click_Upsell_Addon
+ * @subpackage One_Click_Upsell_Addon/admin/partials
+ */
+
+?>
+
+<?php
 if ( ! wps_rma_standard_check_multistep() && wps_rma_pro_active() ) {
 	?>
 	<div id="react-app"></div>

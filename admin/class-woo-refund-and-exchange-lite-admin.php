@@ -144,6 +144,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			wp_enqueue_script( 'wps-wrael-datatable', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/datatables.net/js/jquery.dataTables.min.js', array(), time(), false );
 			wp_enqueue_script( 'wps-wrael-datatable-btn', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/datatables.net/buttons/dataTables.buttons.min.js', array(), time(), false );
 			wp_enqueue_script( 'wps-wrael-datatable-btn-2', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/datatables.net/buttons/buttons.html5.min.js', array(), time(), false );
+			wp_enqueue_script( $this->plugin_name . '-swal', plugin_dir_url( __FILE__ ) . 'js/wps-rma-swal.js', array( 'jquery' ), $this->version, false );
 			wp_register_script( $this->plugin_name . 'admin-js', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/js/woo-refund-and-exchange-lite-admin.min.js', array( 'jquery', 'wps-wrael-select2', 'wps-wrael-metarial-js', 'wps-wrael-metarial-js2', 'wps-wrael-metarial-lite' ), $this->version, false );
 			wp_localize_script(
 				$this->plugin_name . 'admin-js',
@@ -155,6 +156,12 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 					'wrael_admin_param_location' => ( admin_url( 'admin.php' ) . '?page=woo_refund_and_exchange_lite_menu&wrael_tab=woo-refund-and-exchange-lite-general' ),
 					'check_pro_active'           => esc_html( $pro_active ),
 					'wps_policy_already_exist'   => esc_html__( 'Policy already exist', 'woo-refund-and-exchange-lite' ),
+					// Migration Code.
+					'wps_rma_callback'             => 'wps_rma_ajax_callbacks',
+					'wps_rma_pending_orders'       => $this->wps_rma_get_count( 'pending', 'result', 'orders' ),
+					'wps_rma_pending_orders_count' => $this->wps_rma_get_count( 'pending', 'count', 'orders' ),
+					'wps_rma_pending_users'        => $this->wps_rma_get_count( 'pending', 'result', 'users' ),
+					'wps_rma_pending_users_count'  => $this->wps_rma_get_count( 'pending', 'count', 'users' ),
 				)
 			);
 			wp_enqueue_script( $this->plugin_name . 'admin-js' );
@@ -926,5 +933,172 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			}
 		}
 		wp_die();
+	}
+	/**
+	 * Ajax Call back.
+	 */
+	public function wps_rma_ajax_callbacks() {
+		check_ajax_referer( 'wps_rma_ajax_seurity', 'nonce' );
+		$event = ! empty( $_POST['event'] ) ? sanitize_text_field( wp_unslash( $_POST['event'] ) ) : '';
+		if ( method_exists( $this, $event ) ) {
+			$data = $this->$event( $_POST );
+		} else {
+			$data = esc_html__( 'method not found', 'woo-refund-and-exchange-lite' );
+		}
+		echo wp_json_encode( $data );
+		wp_die();
+	}
+
+	/**
+	 * Import order callback.
+	 *
+	 * @param array $posted_data The $_POST data.
+	 */
+	public function wps_rma_import_single_order( $posted_data = array() ) {
+		$orders = ! empty( $posted_data['orders'] ) ? $posted_data['orders'] : array();
+
+		if ( empty( $orders ) ) {
+			return array();
+		}
+
+		// Remove this order from request.
+		foreach ( $orders as $key => $order ) {
+			$order_id = ! empty( $order['post_id'] ) ? $order['post_id'] : false;
+			unset( $orders[ $key ] );
+			break;
+		}
+
+		// Attempt for one order.
+		if ( ! empty( $order_id ) ) {
+
+			try {
+
+				$post_meta_keys = array(
+					'ced_rnx_request_made',
+					'ced_rnx_return_product',
+					'ced_rnx_return_attachment',
+					'mwb_wrma_return_product',
+				);
+				foreach ( $post_meta_keys as $key => $meta_keys ) {
+
+					if ( ! empty( $order_id ) ) {
+						$value   = get_post_meta( $order_id, $meta_keys, true );
+						$new_key = str_replace( 'ced_rnx', 'wps_rma', $meta_keys );
+						if ( 'mwb_wrma_return_product' === $meta_keys ) {
+							$new_key = 'wps_rma_return_product';
+							$value   = get_post_meta( $order_id, 'mwb_wrma_return_product', true );
+						}
+						if ( ! empty( $value ) ) {
+							update_post_meta( $order_id, $new_key, $value );
+							delete_post_meta( $order_id, $meta_keys );
+							update_post_meta( $order_id, 'copy_' . $meta_keys, $value );
+						}
+					}
+				}
+				$get_messages = get_option( $order_id . '-mwb_cutomer_order_msg', array() );
+				if ( ! empty( $get_messages ) ) {
+					update_post_meta( $order_id, 'wps_cutomer_order_msg', $get_messages );
+				}
+
+				$return_data = get_post_meta( $order_id, 'mwb_wrma_return_product', true );
+				$status_fix  = update_option( 'wps_rma_change_status_for_pro', false );
+				if ( ! $status_fix && ! empty( $return_data ) ) {
+					update_option( 'wps_rma_change_status_for_pro', true );
+				}
+				do_action( 'wps_rma_postmeta_data_migrate_for_pro', $order_id );
+
+				update_post_meta( $order_id, 'wps_rma_migrated', true );
+			} catch ( \Throwable $th ) {
+				wp_die( esc_html( $th->getMessage() ) );
+			}
+		}
+		return compact( 'orders' );
+	}
+
+	/**
+	 * Import order callback.
+	 *
+	 * @param array $user_data The $_POST data.
+	 */
+	public function wps_rma_import_single_user( $user_data = array() ) {
+
+		$users = ! empty( $user_data['users'] ) ? $user_data['users'] : array();
+
+		if ( empty( $users ) ) {
+			return array();
+		}
+
+		// Remove this user from request.
+		foreach ( $users as $key => $user ) {
+			$user_id = ! empty( $user['user_id'] ) ? $user['user_id'] : false;
+			unset( $users[ $key ] );
+			break;
+		}
+
+		// Attempt for one order.
+		if ( ! empty( $user_id ) ) {
+
+			try {
+				$new_value = get_user_meta( $user_id, 'mwb_wrma_refund_wallet_coupon', true );
+				if ( ! empty( $new_value ) ) {
+					$new_key = str_replace( 'mwb_', 'wps_', 'mwb_wrma_refund_wallet_coupon' );
+					update_user_meta( $user_id, $new_key, $new_value );
+					delete_user_meta( $user_id, 'mwb_wrma_refund_wallet_coupon' );
+					update_user_meta( $user_id, 'copy_mwb_wrma_refund_wallet_coupon', $new_value );
+				}
+				update_user_meta( $user_id, 'wps_rma_migrated', true );
+
+			} catch ( \Throwable $th ) {
+				wp_die( esc_html( $th->getMessage() ) );
+			}
+		}
+		return compact( 'users' );
+	}
+
+	/**
+	 * Get Count
+	 *
+	 * @param string  $status .
+	 * @param string  $action .
+	 * @param boolean $type .
+	 * @return $result .
+	 */
+	public function wps_rma_get_count( $status = 'all', $action = 'count', $type = false ) {
+		if ( 'orders' === $type ) {
+			switch ( $status ) {
+				case 'pending':
+					$sql = "SELECT (`post_id`) FROM `wp_postmeta` WHERE `meta_key` LIKE 'ced_rnx_request_made' OR `meta_key` LIKE 'ced_rnx_return_product' OR `meta_key` OR 'ced_rnx_return_attachment' OR `meta_key` LIKE 'mwb_wrma_return_product'";
+					break;
+				default:
+					$sql = false;
+					break;
+			}
+		} elseif ( 'users' === $type ) {
+			switch ( $status ) {
+				case 'pending':
+					$sql = "SELECT (`user_id`) FROM `wp_usermeta` WHERE `meta_key` = 'mwb_wrma_refund_wallet_coupon'";
+					break;
+
+				default:
+					$sql = false;
+					break;
+			}
+		}
+		if ( 'orders' === $type ) {
+			$sql = apply_filters( 'wps_rma_pro_get_pro_data', $sql );
+		}
+
+		if ( empty( $sql ) ) {
+			return 0;
+		}
+
+		global $wpdb;
+		$result = $wpdb->get_results( $sql, ARRAY_A ); // @codingStandardsIgnoreLine.
+
+		if ( 'count' === $action ) {
+			$result = ! empty( $result ) ? count( $result ) : 0;
+		}
+
+		return $result;
 	}
 }

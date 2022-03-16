@@ -241,9 +241,47 @@ if ( $activated ) {
 				switch_to_blog( $blog_id );
 
 				// Setting And DB Migration Code.
-				$check_key_exist = get_option( 'wps_rma_lite_setting_restore', false );
 				$check_return    = get_option( 'mwb_wrma_return_enable', 'not_exist' );
-				if ( ! $check_key_exist && 'not_exist' !== $check_return ) {
+				if ( 'not_exist' !== $check_return ) {
+					if ( ! get_option( 'wps_rma_lite_pages_migrate', false ) ) {
+						$page_id = get_option( 'ced_rnx_return_request_form_page_id' );
+						wp_delete_post( $page_id );
+						delete_option( 'ced_rnx_return_request_form_page_id' );
+						$page_id = get_option( 'ced_rnx_view_order_msg_page_id' );
+						wp_delete_post( $page_id );
+						delete_option( 'ced_rnx_view_order_msg_page_id' );
+						$mwb_wrma_pages = get_option( 'mwb_wrma_pages' );
+						if ( isset( $mwb_wrma_pages['pages']['mwb_return_from'] ) ) {
+							$page_id = $mwb_wrma_pages['pages']['mwb_return_from'];
+							wp_delete_post( $page_id );
+						}
+						if ( isset( $mwb_wrma_pages['pages']['mwb_view_order_msg'] ) ) {
+							$page_id = $mwb_wrma_pages['pages']['mwb_view_order_msg'];
+							wp_delete_post( $page_id );
+						}
+						include_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'includes/class-woo-refund-and-exchange-lite-activator.php';
+						$activator_class_obj = new Woo_Refund_And_Exchange_Lite_Activator();
+						$activator_class_obj::wps_rma_create_pages();
+						update_option( 'wps_rma_lite_pages_migrate', true );
+					}
+
+					if ( function_exists( 'wps_rma_lite_migrate_settings' ) && ! get_option( 'wps_rma_lite_settings_migrate', false ) ) {
+						wps_rma_lite_migrate_settings();
+						update_option( 'wps_rma_lite_settings_migrate', true );
+					}
+					if ( function_exists( 'wps_rma_lite_post_meta_data_migrate' ) && ! get_option( 'wps_rma_lite_post_meta_data_migrate', false ) ) {
+						wps_rma_lite_post_meta_data_migrate();
+						update_option( 'wps_rma_lite_post_meta_data_migrate', true );
+					}
+				}
+
+				restore_current_blog();
+			}
+		} else {
+			// Setting And DB Migration Code.
+			$check_return    = get_option( 'mwb_wrma_return_enable', 'not_exist' );
+			if ( 'not_exist' !== $check_return ) {
+				if ( ! get_option( 'wps_rma_lite_pages_migrate', false ) ) {
 					$page_id = get_option( 'ced_rnx_return_request_form_page_id' );
 					wp_delete_post( $page_id );
 					delete_option( 'ced_rnx_return_request_form_page_id' );
@@ -251,67 +289,29 @@ if ( $activated ) {
 					wp_delete_post( $page_id );
 					delete_option( 'ced_rnx_view_order_msg_page_id' );
 					$mwb_wrma_pages = get_option( 'mwb_wrma_pages' );
-					$page_id = $mwb_wrma_pages['pages']['mwb_return_from'];
-					wp_delete_post( $page_id );
-					$page_id = $mwb_wrma_pages['pages']['mwb_view_order_msg'];
-					wp_delete_post( $page_id );
-					delete_option( 'mwb_wrma_pages' );
-
-					$page_id = get_option( 'wps_rma_return_request_form_page_id' );
-					wp_delete_post( $page_id );
-					delete_option( 'wps_rma_return_request_form_page_id' );
-
-					$page_id = get_option( 'wps_rma_view_order_msg_page_id' );
-					wp_delete_post( $page_id );
-					delete_option( 'wps_rma_view_order_msg_page_id' );
-
+					if ( isset( $mwb_wrma_pages['pages']['mwb_return_from'] ) ) {
+						$page_id = $mwb_wrma_pages['pages']['mwb_return_from'];
+						wp_delete_post( $page_id );
+					}
+					if ( isset( $mwb_wrma_pages['pages']['mwb_view_order_msg'] ) ) {
+						$page_id = $mwb_wrma_pages['pages']['mwb_view_order_msg'];
+						wp_delete_post( $page_id );
+					}
 					include_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'includes/class-woo-refund-and-exchange-lite-activator.php';
 					$activator_class_obj = new Woo_Refund_And_Exchange_Lite_Activator();
 					$activator_class_obj::wps_rma_create_pages();
-
-					if ( function_exists( 'wps_rma_lite_migrate_settings' ) ) {
-						wps_rma_lite_migrate_settings();
-					}
-					if ( function_exists( 'wps_rma_lite_post_meta_data_migrate' ) ) {
-						wps_rma_lite_post_meta_data_migrate();
-					}
-					update_option( 'wps_rma_lite_setting_restore', true );
+					update_option( 'wps_rma_lite_pages_migrate', true );
 				}
 
-				restore_current_blog();
-			}
-		} else {
-			// Setting And DB Migration Code.
-			$check_key_exist = get_option( 'wps_rma_lite_setting_restore', false );
-			$check_return    = get_option( 'mwb_wrma_return_enable', 'not_exist' );
-			if ( ! $check_key_exist && 'not_exist' !== $check_return ) {
-				$page_id = get_option( 'ced_rnx_return_request_form_page_id' );
-				wp_delete_post( $page_id );
-				delete_option( 'ced_rnx_return_request_form_page_id' );
-				$page_id = get_option( 'ced_rnx_view_order_msg_page_id' );
-				wp_delete_post( $page_id );
-				delete_option( 'ced_rnx_view_order_msg_page_id' );
-				$mwb_wrma_pages = get_option( 'mwb_wrma_pages' );
-				$page_id        = $mwb_wrma_pages['pages']['mwb_return_from'];
-				wp_delete_post( $page_id );
-				$page_id = $mwb_wrma_pages['pages']['mwb_view_order_msg'];
-				wp_delete_post( $page_id );
-				include_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'includes/class-woo-refund-and-exchange-lite-activator.php';
-				$activator_class_obj = new Woo_Refund_And_Exchange_Lite_Activator();
-				$activator_class_obj::wps_rma_create_pages();
-
-				if ( function_exists( 'wps_rma_lite_migrate_settings' ) ) {
+				if ( function_exists( 'wps_rma_lite_migrate_settings' ) && ! get_option( 'wps_rma_lite_settings_migrate', false ) ) {
 					wps_rma_lite_migrate_settings();
+					update_option( 'wps_rma_lite_settings_migrate', true );
 				}
-				if ( function_exists( 'wps_rma_lite_post_meta_data_migrate' ) ) {
-					wps_rma_lite_post_meta_data_migrate();
-				}
-				update_option( 'wps_rma_lite_setting_restore', true );
 			}
 		}
 		deactivate_plugins( 'woocommerce-rma-for-return-refund-and-exchange/mwb-woocommerce-rma.php' );
 	}
-	add_action( 'admin_init', 'wps_rma_lite_migrate_settings_and_data' );
+	add_action( 'admin_init', 'wps_rma_lite_migrate_settings_and_data', 10 );
 
 	/**
 	 * Migration to new domain notice.
@@ -330,9 +330,18 @@ if ( $activated ) {
 						<p><strong><?php esc_html_e( 'IMPORTANT NOTICE', 'woo-refund-and-exchange-lite' ); ?>:</strong></p>
 					</div>
 					<div class='wps-notice-content wps-notice-section'>
-						<p><?php esc_html_e( 'From this update', 'woo-refund-and-exchange-lite' ); ?> <strong><?php esc_html_e( 'Version', 'woo-refund-and-exchange-lite' ); ?> 3.1.4</strong> <?php esc_html_e( 'onwards, the plugin and its support will be handled by', 'woo-refund-and-exchange-lite' ); ?> <strong>WP Swings</strong>.</p><p><strong>WP Swings</strong> <?php esc_html_e( 'is just our improvised and rebranded version with all quality solutions and help being the same, so no worries at your end.', 'woo-refund-and-exchange-lite' ); ?>
+						<p><?php esc_html_e( 'From the update', 'woo-refund-and-exchange-lite' ); ?> <strong><?php esc_html_e( 'Version', 'woo-refund-and-exchange-lite' ); ?> 3.1.4</strong> <?php esc_html_e( 'onwards, the plugin and its support will be handled by', 'woo-refund-and-exchange-lite' ); ?> <strong>WP Swings</strong>.</p><p><strong>WP Swings</strong> <?php esc_html_e( 'is just our improvised and rebranded version with all quality solutions and help being the same, so no worries at your end.', 'woo-refund-and-exchange-lite' ); ?>
 						<?php esc_html_e( 'Please connect with us for all setup, support, and update related queries without hesitation', 'woo-refund-and-exchange-lite' ); ?>.</p>
 					</div>
+				</div>
+			</td>
+		</tr>
+		<tr class="plugin-update-tr active notice-warning notice-alt">
+			<td  colspan="4" class="plugin-update colspanchange">
+				<div class="notice notice-warning inline update-message notice-alt">
+					<p>
+						<?php esc_html_e( 'Heads up, We highly recommend Also Update Lastest RMA Return Refund & Exchange for WooCommerce Pro Plugin. The latest update includes some substantial changes across different areas of the plugin.', 'woo-refund-and-exchange-lite' ); ?>
+					</p>
 				</div>
 			</td>
 		</tr>
@@ -358,22 +367,22 @@ if ( $activated ) {
 		if ( 'woo_refund_and_exchange_lite_menu' === $page ) {
 
 			?>
-			<tr class="plugin-update-tr active notice-warning notice-alt">
+			<tr class="plugin-update-tr active notice-error notice-alt">
 				<td colspan="4" class="plugin-update colspanchange">
-					<div class="notice notice-success update-message notice-alt">
+					<div class="notice notice-error update-message notice-alt">
 						<div class='wps-notice-title wps-notice-section'>
 							<p><strong><?php esc_html_e( 'IMPORTANT NOTICE', 'woo-refund-and-exchange-lite' ); ?>:</strong></p>
 						</div>
 						<div class='wps-notice-content wps-notice-section'>
-							<p><?php esc_html_e( 'From this update', 'woo-refund-and-exchange-lite' ); ?> <strong><?php esc_html_e( 'Version', 'woo-refund-and-exchange-lite' ); ?> 3.1.4</strong> <?php esc_html_e( 'onwards, the plugin and its support will be handled by', 'woo-refund-and-exchange-lite' ); ?> <strong>WP Swings</strong>.</p><p><strong>WP Swings</strong> <?php esc_html_e( 'is just our improvised and rebranded version with all quality solutions and help being the same, so no worries at your end.', 'woo-refund-and-exchange-lite' ); ?>
-							<?php esc_html_e( 'Please connect with us for all setup, support, and update related queries without hesitation', 'woo-refund-and-exchange-lite' ); ?>.</p>
+							<?php esc_html_e( 'Please click on the Start Migration button so that all of the data migrate. We have Made some changes in our plugin.', 'woo-refund-and-exchange-lite' ); ?>.</p>
+							<p><button class="button" id="wps_rma_migration_start-button"><?php esc_html_e( 'Start Migration', 'woo-refund-and-exchange-lite' ); ?></button></p>
 						</div>
 					</div>
 				</td>
 			</tr>
 			<style>
-				.wps-notice-section > p:before {
-					content: none;
+				.wps-notice-section p:before {
+					display:  none ! important;
 				}
 			</style>
 			<?php

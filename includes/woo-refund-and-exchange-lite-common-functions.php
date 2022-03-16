@@ -336,7 +336,7 @@ if ( ! function_exists( 'wps_rma_save_return_request_callback' ) ) {
 				'wc-refund-requested',
 				'wc-refund-approved',
 				'wc-refund-cancelled',
-			),
+			)
 		);
 		$order->update_status( $wps_rma_status_fix_for_pro[0], esc_html__( 'User Request to refund product', 'woo-refund-and-exchange-lite' ) );
 
@@ -456,7 +456,7 @@ if ( ! function_exists( 'wps_rma_return_req_approve_callback' ) ) {
 				'wc-refund-requested',
 				'wc-refund-approved',
 				'wc-refund-cancelled',
-			),
+			)
 		);
 		$order_obj->update_status( $wps_rma_status_fix_for_pro[1], esc_html__( 'User Request of Refund Product is approved', 'woo-refund-and-exchange-lite' ) );
 		$response             = array();
@@ -514,7 +514,7 @@ if ( ! function_exists( 'wps_rma_return_req_cancel_callback' ) ) {
 				'wc-refund-requested',
 				'wc-refund-approved',
 				'wc-refund-cancelled',
-			),
+			)
 		);
 		$order_obj->update_status( $wps_rma_status_fix_for_pro[2], esc_html__( 'User Request of Refund Product is cancelled', 'woo-refund-and-exchange-lite' ) );
 		$response             = array();
@@ -837,4 +837,48 @@ if ( ! function_exists( 'wps_rma_lite_post_meta_data_migrate' ) ) {
 			}
 		}
 	}
+}
+/**
+ * Order count.
+ *
+ * @param string $type type.
+ * @param string $action action.
+ * @since    1.0.0
+ */
+function get_count( $status = 'all', $action = 'count', $type = false ) {
+
+	if ( 'orders' === $type ) {
+		switch ( $status ) {
+			case 'pending':
+				$sql = "SELECT (`post_id`) FROM `wp_postmeta` WHERE `meta_key` LIKE '%ced_rnx_request_made%' OR `meta_key` LIKE '%ced_rnx_return_product%' OR `meta_key` OR '%ced_rnx_return_attachment%' OR `meta_key` LIKE '%mwb_wrma_return_product%' LIMIT 5";
+				break;
+			default:
+				$sql = false;
+				break;
+		}
+	} elseif ( 'users' === $type ) {
+		switch ( $status ) {
+			case 'pending':
+				$sql = "SELECT (`user_id`) FROM `wp_usermeta` WHERE `meta_key` = 'mwb_wrma_refund_wallet_coupon' LIMIT 5";
+				break;
+
+			default:
+				$sql = false;
+				break;
+		}
+	}
+
+	if ( empty( $sql ) ) {
+		return 0;
+	}
+
+	global $wpdb;
+	$result = $wpdb->get_results( $sql, ARRAY_A ); // @codingStandardsIgnoreLine.
+
+	if ( 'count' === $action ) {
+		$result = ! empty( $result ) ? count( $result ) : 0;
+	}
+	// $result = ! empty( $result ) ? count( $result ) : 0;
+
+	return $result;
 }

@@ -200,7 +200,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 				'wc-refund-requested',
 				'wc-refund-approved',
 				'wc-refund-cancelled',
-			),
+			)
 		);
 		register_post_status(
 			$wps_rma_status_fix_for_pro[0],
@@ -256,7 +256,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 						'wc-refund-requested',
 						'wc-refund-approved',
 						'wc-refund-cancelled',
-					),
+					)
 				);
 				$wps_rma_new_order_statuses[ $wps_rma_status_fix_for_pro[0] ] = esc_html__( 'Refund Requested', 'woo-refund-and-exchange-lite' );
 				$wps_rma_new_order_statuses[ $wps_rma_status_fix_for_pro[1] ] = esc_html__( 'Refund Approved', 'woo-refund-and-exchange-lite' );
