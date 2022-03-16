@@ -342,6 +342,7 @@ if ( $activated ) {
 					<p>
 						<?php esc_html_e( 'Heads up, We highly recommend Also Update Lastest RMA Return Refund & Exchange for WooCommerce Pro Plugin. The latest update includes some substantial changes across different areas of the plugin.', 'woo-refund-and-exchange-lite' ); ?>
 					</p>
+					<b><h6><?php esc_html_e( 'Please click', 'woo-refund-and-exchange-lite' ) ?><a href="<?php echo esc_attr( admin_url( 'admin.php' ) . '?page=woo_refund_and_exchange_lite_menu&wrael_tab=woo-refund-and-exchange-lite-general' ); ?>"> here </a><?php esc_html_e( 'to goto the Migration Page.', 'woo-refund-and-exchange-lite' ); ?></h6></b>
 				</div>
 			</td>
 		</tr>
@@ -374,7 +375,7 @@ if ( $activated ) {
 							<p><strong><?php esc_html_e( 'IMPORTANT NOTICE', 'woo-refund-and-exchange-lite' ); ?>:</strong></p>
 						</div>
 						<div class='wps-notice-content wps-notice-section'>
-							<?php esc_html_e( 'Please click on the Start Migration button so that all of the data migrate. We have Made some changes in our plugin.', 'woo-refund-and-exchange-lite' ); ?>.</p>
+							<?php esc_html_e( 'Please click on the Start Migration button so that all of the data migrate. We have Made some changes in our plugin', 'woo-refund-and-exchange-lite' ); ?>.</p>
 							<p><button class="button" id="wps_rma_migration_start-button"><?php esc_html_e( 'Start Migration', 'woo-refund-and-exchange-lite' ); ?></button></p>
 						</div>
 					</div>

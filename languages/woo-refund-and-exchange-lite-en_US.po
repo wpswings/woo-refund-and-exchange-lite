@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Return Refund and Exchange for WooCommerce 4.0.0\n"
-"POT-Creation-Date: 2022-03-16 21:54+0530\n"
-"PO-Revision-Date: 2022-03-16 21:54+0530\n"
+"POT-Creation-Date: 2022-03-16 22:07+0530\n"
+"PO-Revision-Date: 2022-03-16 22:07+0530\n"
 "Last-Translator: \n"
 "Language-Team: WP Swings\n"
 "Language: en_US\n"
@@ -1184,7 +1184,7 @@ msgid "GO PREMIUM"
 msgstr ""
 
 #: woocommerce-refund-and-exchange-lite.php:330
-#: woocommerce-refund-and-exchange-lite.php:374
+#: woocommerce-refund-and-exchange-lite.php:375
 msgid "IMPORTANT NOTICE"
 msgstr ""
 
@@ -1219,17 +1219,25 @@ msgid ""
 "substantial changes across different areas of the plugin."
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:377
-msgid ""
-"Please click on the Start Migration button so that all of the data migrate. "
-"We have Made some changes in our plugin."
+#: woocommerce-refund-and-exchange-lite.php:345
+msgid "Please click"
+msgstr ""
+
+#: woocommerce-refund-and-exchange-lite.php:345
+msgid "to goto the Migration Page."
 msgstr ""
 
 #: woocommerce-refund-and-exchange-lite.php:378
+msgid ""
+"Please click on the Start Migration button so that all of the data migrate. "
+"We have Made some changes in our plugin"
+msgstr ""
+
+#: woocommerce-refund-and-exchange-lite.php:379
 msgid "Start Migration"
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:398
+#: woocommerce-refund-and-exchange-lite.php:399
 msgid ""
 "Woocommerce is not activated, Please activate Woocommerce first to install "
 "WooCommerce Refund and Exchange Lite."
