@@ -492,7 +492,7 @@ jQuery(document).ready( function($) {
 						Swal.showLoading()
 					}
 				});
-				//startImportUsers( rma_pending_users );
+				startImportUsers( rma_pending_users );
 			}
 		}, function(error) {
 			console.error(error);
