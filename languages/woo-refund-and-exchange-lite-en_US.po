@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Return Refund and Exchange for WooCommerce 4.0.0\n"
-"POT-Creation-Date: 2022-03-16 22:07+0530\n"
-"PO-Revision-Date: 2022-03-16 22:07+0530\n"
+"POT-Creation-Date: 2022-03-17 13:10+0530\n"
+"PO-Revision-Date: 2022-03-17 13:10+0530\n"
 "Last-Translator: \n"
 "Language-Team: WP Swings\n"
 "Language: en_US\n"
@@ -1214,17 +1214,16 @@ msgstr ""
 
 #: woocommerce-refund-and-exchange-lite.php:343
 msgid ""
-"Heads up, We highly recommend Also Update Lastest RMA Return Refund & "
-"Exchange for WooCommerce Pro Plugin. The latest update includes some "
-"substantial changes across different areas of the plugin."
+"Heads up, The latest update includes some substantial changes across "
+"different areas of the plugin."
 msgstr ""
 
 #: woocommerce-refund-and-exchange-lite.php:345
-msgid "Please click"
+msgid "Please Click"
 msgstr ""
 
 #: woocommerce-refund-and-exchange-lite.php:345
-msgid "to goto the Migration Page."
+msgid "To Goto the Migration Page and Run the Migration Functionality."
 msgstr ""
 
 #: woocommerce-refund-and-exchange-lite.php:378

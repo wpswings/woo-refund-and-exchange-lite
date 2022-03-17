@@ -340,9 +340,9 @@ if ( $activated ) {
 			<td  colspan="4" class="plugin-update colspanchange">
 				<div class="notice notice-warning inline update-message notice-alt">
 					<p>
-						<?php esc_html_e( 'Heads up, We highly recommend Also Update Lastest RMA Return Refund & Exchange for WooCommerce Pro Plugin. The latest update includes some substantial changes across different areas of the plugin.', 'woo-refund-and-exchange-lite' ); ?>
+						<?php esc_html_e( 'Heads up, The latest update includes some substantial changes across different areas of the plugin.', 'woo-refund-and-exchange-lite' ); ?>
 					</p>
-					<b><h6><?php esc_html_e( 'Please click', 'woo-refund-and-exchange-lite' ) ?><a href="<?php echo esc_attr( admin_url( 'admin.php' ) . '?page=woo_refund_and_exchange_lite_menu&wrael_tab=woo-refund-and-exchange-lite-general' ); ?>"> here </a><?php esc_html_e( 'to goto the Migration Page.', 'woo-refund-and-exchange-lite' ); ?></h6></b>
+					<p><b><?php esc_html_e( 'Please Click', 'woo-refund-and-exchange-lite' ) ?><a href="<?php echo esc_attr( admin_url( 'admin.php' ) . '?page=woo_refund_and_exchange_lite_menu&wrael_tab=woo-refund-and-exchange-lite-general' ); ?>"> here </a><?php esc_html_e( 'To Goto the Migration Page and Run the Migration Functionality.', 'woo-refund-and-exchange-lite' ); ?></b></p>
 				</div>
 			</td>
 		</tr>
