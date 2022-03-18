@@ -478,7 +478,12 @@ jQuery(document).ready( function($) {
 		}).then(
 		function( orders ) {
 			orders = JSON.parse( orders ).orders;
-			count = Object.keys(orders).length;
+			if ( jQuery.isEmptyObject(orders) ) {
+				count = 0;
+			} else {
+				count = Object.keys(orders).length;
+			}
+			
 			jQuery('.order-progress-report').text( count + ' are left to import' );
 			if( ! jQuery.isEmptyObject(orders) ) {
 				startImport(orders);
@@ -507,7 +512,11 @@ jQuery(document).ready( function($) {
 		}).then(
 		function( users ) {
 			users = JSON.parse( users ).users;
-			count = Object.keys(users).length;
+			if ( jQuery.isEmptyObject(users) ) {
+				count = 0;
+			} else {
+				count = Object.keys(users).length;
+			}
 			jQuery('.order-progress-report').text( count + ' are left to import' );
 			if( ! jQuery.isEmptyObject(users) ) {
 				startImportUsers(users);
