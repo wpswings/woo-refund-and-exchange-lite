@@ -981,6 +981,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 					'ced_rnx_return_attachment',
 					'mwb_wrma_return_product',
 				);
+				$post_meta_keys = apply_filters( 'wps_rma_pro_orders_data_keys', $post_meta_keys );
 				foreach ( $post_meta_keys as $key => $meta_keys ) {
 
 					if ( ! empty( $order_id ) ) {
@@ -993,9 +994,9 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 						}
 						if ( ! empty( $value ) ) {
 							update_post_meta( $order_id, $new_key, $value );
-							delete_post_meta( $order_id, $meta_keys );
 							update_post_meta( $order_id, 'copy_' . $meta_keys, $value );
 						}
+						delete_post_meta( $order_id, $meta_keys );
 					}
 				}
 
@@ -1004,7 +1005,6 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				if ( ! $status_fix && ! empty( $return_data ) ) {
 					update_option( 'wps_rma_change_status_for_pro', true );
 				}
-				do_action( 'wps_rma_postmeta_data_migrate_for_pro', $order_id );
 
 				update_post_meta( $order_id, 'wps_rma_migrated', true );
 			} catch ( \Throwable $th ) {
@@ -1042,9 +1042,9 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				if ( ! empty( $new_value ) ) {
 					$new_key = str_replace( 'mwb', 'wps', 'mwb_wrma_refund_wallet_coupon' );
 					update_user_meta( $user_id, $new_key, $new_value );
-					delete_user_meta( $user_id, 'mwb_wrma_refund_wallet_coupon' );
 					update_user_meta( $user_id, 'copy_mwb_wrma_refund_wallet_coupon', $new_value );
 				}
+				delete_user_meta( $user_id, 'mwb_wrma_refund_wallet_coupon' );
 				update_user_meta( $user_id, 'wps_rma_migrated', true );
 
 			} catch ( \Throwable $th ) {
@@ -1084,8 +1084,8 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				$get_messages = get_option( $order_id . '-mwb_cutomer_order_msg', array() );
 				if ( ! empty( $get_messages ) ) {
 					update_post_meta( $order_id, 'wps_cutomer_order_msg', $get_messages );
-					delete_option( $order_id . '-mwb_cutomer_order_msg' );
 				}
+				delete_option( $order_id . '-mwb_cutomer_order_msg' );
 				update_user_meta( $order_id, 'wps_rma_migrated', true );
 
 			} catch ( \Throwable $th ) {
@@ -1108,6 +1108,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			switch ( $status ) {
 				case 'pending':
 					$sql = "SELECT (`post_id`) FROM `wp_postmeta` WHERE `meta_key` LIKE 'ced_rnx_request_made' OR `meta_key` LIKE 'ced_rnx_return_product' OR `meta_key` OR 'ced_rnx_return_attachment' OR `meta_key` LIKE 'mwb_wrma_return_product'";
+					$sql = apply_filters( 'wps_rma_pro_orders_data', $sql );
 					break;
 				default:
 					$sql = false;
@@ -1133,9 +1134,6 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 					$sql = false;
 					break;
 			}
-		}
-		if ( 'orders' === $type ) {
-			$sql = apply_filters( 'wps_rma_pro_get_pro_data', $sql );
 		}
 
 		if ( empty( $sql ) ) {
