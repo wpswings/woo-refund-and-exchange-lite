@@ -412,12 +412,15 @@ jQuery(document).ready( function($) {
 	const rma_pending_users  = wrael_admin_param.wps_rma_pending_users;
 	const rma_pending_users_count  = wrael_admin_param.wps_rma_pending_users_count;
 
+	const rma_pending_order_msgs = wrael_admin_param.wps_rma_pending_order_msgs
+	const rma_pending_order_msgs_count = wrael_admin_param.wps_rma_pending_order_msgs_count
+	// console.log(wrael_admin_param);
 	/* Close Button Click */
 	jQuery( document ).on( 'click','#wps_rma_migration_start-button',function(e){
 		e.preventDefault();
 		Swal.fire({
 			icon: 'warning',
-			title: 'We Have got ' + pending_orders_count + ' Orders Data<br/> And ' + rma_pending_users_count + ' Users Data',
+			title: 'We Have got ' + pending_orders_count + ' Orders Data,<br/> '+ rma_pending_order_msgs_count +' Order Messages Data And ' + rma_pending_users_count + ' Users Data',
 			text: 'Click to start Migration',
 			footer: 'Please do not reload/close this page until prompted',
 			showCloseButton: true,
@@ -433,9 +436,9 @@ jQuery(document).ready( function($) {
 			if (result.isConfirmed) {
 
 				Swal.fire({
-					title   : 'Orders Data are being imported!',
+					title   : 'Orders Data are being migrated!',
 					html    : 'Do not reload/close this tab.',
-					footer  : '<span class="order-progress-report">' + pending_orders_count + ' are left to import',
+					footer  : '<span class="order-progress-report">' + pending_orders_count + ' are left to migrate',
 					didOpen: () => {
 						Swal.showLoading()
 					}
@@ -462,15 +465,49 @@ jQuery(document).ready( function($) {
 				count = Object.keys(orders).length;
 			}
 			
-			jQuery('.order-progress-report').text( count + ' are left to import' );
+			jQuery('.order-progress-report').text( count + ' are left to migrate' );
 			if( ! jQuery.isEmptyObject(orders) ) {
 				startImport(orders);
 			} else {
 				// All orders imported!
 				Swal.fire({
-					title   : 'Users Data are being imported!',
+					title   : 'Order Messages Data are being migrated!',
 					html    : 'Do not reload/close this tab.',
-					footer  : '<span class="order-progress-report">' + rma_pending_users_count + ' are left to import',
+					footer  : '<span class="order-progress-report">' + rma_pending_order_msgs_count + ' are left to migrate',
+					didOpen: () => {
+						Swal.showLoading()
+					}
+				});
+				startOrderMsgs( rma_pending_order_msgs );
+			}
+		}, function(error) {
+			console.error(error);
+		});
+	}
+
+	const startOrderMsgs = ( order_msgs ) => {
+		var event   = 'wps_rma_import_single_order_msg';
+		var request = { action, event, nonce, order_msgs };
+		jQuery.post( ajaxUrl , request ).done(function( response ){
+			order_msgs = JSON.parse( response );
+		}).then(
+		function( order_msgs ) {
+			order_msgs = JSON.parse( order_msgs ).order_msgs;
+			if ( jQuery.isEmptyObject(order_msgs) ) {
+				count = 0;
+			} else {
+				count = Object.keys(order_msgs).length;
+			}
+			
+			jQuery('.order-progress-report').text( count + ' are left to migrate' );
+			if( ! jQuery.isEmptyObject(order_msgs) ) {
+				startOrderMsgs(order_msgs);
+			} else {
+				// All orders imported!
+				Swal.fire({
+					title   : 'Users Data are being migrated!',
+					html    : 'Do not reload/close this tab.',
+					footer  : '<span class="order-progress-report">' + rma_pending_users_count + ' are left to migrate',
 					didOpen: () => {
 						Swal.showLoading()
 					}
@@ -495,7 +532,7 @@ jQuery(document).ready( function($) {
 			} else {
 				count = Object.keys(users).length;
 			}
-			jQuery('.order-progress-report').text( count + ' are left to import' );
+			jQuery('.order-progress-report').text( count + ' are left to migrate' );
 			if( ! jQuery.isEmptyObject(users) ) {
 				startImportUsers(users);
 			} else {

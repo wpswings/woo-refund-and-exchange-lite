@@ -157,11 +157,13 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 					'check_pro_active'           => esc_html( $pro_active ),
 					'wps_policy_already_exist'   => esc_html__( 'Policy already exist', 'woo-refund-and-exchange-lite' ),
 					// Migration Code.
-					'wps_rma_callback'             => 'wps_rma_ajax_callbacks',
-					'wps_rma_pending_orders'       => $this->wps_rma_get_count( 'pending', 'result', 'orders' ),
-					'wps_rma_pending_orders_count' => $this->wps_rma_get_count( 'pending', 'count', 'orders' ),
-					'wps_rma_pending_users'        => $this->wps_rma_get_count( 'pending', 'result', 'users' ),
-					'wps_rma_pending_users_count'  => $this->wps_rma_get_count( 'pending', 'count', 'users' ),
+					'wps_rma_callback'                 => 'wps_rma_ajax_callbacks',
+					'wps_rma_pending_orders'           => $this->wps_rma_get_count( 'pending', 'result', 'orders' ),
+					'wps_rma_pending_orders_count'     => $this->wps_rma_get_count( 'pending', 'count', 'orders' ),
+					'wps_rma_pending_users'            => $this->wps_rma_get_count( 'pending', 'result', 'users' ),
+					'wps_rma_pending_users_count'      => $this->wps_rma_get_count( 'pending', 'count', 'users' ),
+					'wps_rma_pending_order_msgs'       => $this->wps_rma_get_count( 'pending', 'result', 'order_messages' ),
+					'wps_rma_pending_order_msgs_count' => $this->wps_rma_get_count( 'pending', 'count', 'order_messages' ),
 				)
 			);
 			wp_enqueue_script( $this->plugin_name . 'admin-js' );
@@ -995,10 +997,6 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 						}
 					}
 				}
-				$get_messages = get_option( $order_id . '-mwb_cutomer_order_msg', array() );
-				if ( ! empty( $get_messages ) ) {
-					update_post_meta( $order_id, 'wps_cutomer_order_msg', $get_messages );
-				}
 
 				$return_data = get_post_meta( $order_id, 'mwb_wrma_return_product', true );
 				$status_fix  = update_option( 'wps_rma_change_status_for_pro', false );
@@ -1056,6 +1054,47 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	}
 
 	/**
+	 * Import order messages callback.
+	 *
+	 * @param array $order_msgs_data The $_POST data.
+	 */
+	public function wps_rma_import_single_order_msg( $order_msgs_data = array() ) {
+
+		$order_msgs = ! empty( $order_msgs_data['order_msgs'] ) ? $order_msgs_data['order_msgs'] : array();
+
+		if ( empty( $order_msgs ) ) {
+			return array();
+		}
+		// Remove this user from request.
+		foreach ( $order_msgs as $key => $order_msg ) {
+			$order_id = ! empty( $order_msg['option_name'] ) ? $order_msg['option_name'] : false;
+
+			if ( ! empty( $order_id ) ) {
+				$order_id = explode( '-', $order_id )[0];
+			}
+			unset( $order_msgs[ $key ] );
+			break;
+		}
+
+		// Attempt for one order.
+		if ( ! empty( $order_id ) ) {
+
+			try {
+				$get_messages = get_option( $order_id . '-mwb_cutomer_order_msg', array() );
+				if ( ! empty( $get_messages ) ) {
+					update_post_meta( $order_id, 'wps_cutomer_order_msg', $get_messages );
+					delete_option( $order_id . '-mwb_cutomer_order_msg' );
+				}
+				update_user_meta( $order_id, 'wps_rma_migrated', true );
+
+			} catch ( \Throwable $th ) {
+				wp_die( esc_html( $th->getMessage() ) );
+			}
+		}
+		return compact( 'order_msgs' );
+	}
+
+	/**
 	 * Get Count
 	 *
 	 * @param string  $status .
@@ -1077,6 +1116,16 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			switch ( $status ) {
 				case 'pending':
 					$sql = "SELECT (`user_id`) FROM `wp_usermeta` WHERE `meta_key` = 'mwb_wrma_refund_wallet_coupon'";
+					break;
+
+				default:
+					$sql = false;
+					break;
+			}
+		} elseif ( 'order_messages' === $type ) {
+			switch ( $status ) {
+				case 'pending':
+					$sql = "SELECT * FROM `wp_options` WHERE `option_name` LIKE '%mwb_cutomer_order_msg%'";
 					break;
 
 				default:
@@ -1111,9 +1160,10 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 
 		if ( 'woo_refund_and_exchange_lite_menu' === $page ) {
 
-			$wps_rma_pending_orders_count = $this->wps_rma_get_count( 'pending', 'count', 'orders' );
-			$wps_rma_pending_users_count  = $this->wps_rma_get_count( 'pending', 'count', 'users' );
-			if ( ! empty( $wps_rma_pending_orders_count ) || ! empty( $wps_rma_pending_users_count ) ) {
+			$wps_rma_pending_orders_count     = $this->wps_rma_get_count( 'pending', 'count', 'orders' );
+			$wps_rma_pending_users_count      = $this->wps_rma_get_count( 'pending', 'count', 'users' );
+			$wps_rma_pending_order_msgs_count = $this->wps_rma_get_count( 'pending', 'count', 'order_messages' );
+			if ( ! empty( $wps_rma_pending_orders_count ) || ! empty( $wps_rma_pending_users_count ) || ! empty( $wps_rma_pending_order_msgs_count ) ) {
 				?>
 			<tr class="plugin-update-tr active notice-error notice-alt">
 				<td colspan="4" class="plugin-update colspanchange">
