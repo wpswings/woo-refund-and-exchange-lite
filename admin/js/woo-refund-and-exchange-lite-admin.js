@@ -439,8 +439,8 @@ jQuery(document).ready( function($) {
 		e.preventDefault();
 		Swal.fire({
 			icon: 'warning',
-			title: 'We Have got ' + pending_orders_count + ' Orders<br/> And ' + rma_pending_users_count + ' Users Data',
-			text: 'Click to start Migrate',
+			title: 'We Have got ' + pending_orders_count + ' Orders Data<br/> And ' + rma_pending_users_count + ' Users Data',
+			text: 'Click to start Migration',
 			footer: 'Please do not reload/close this page until prompted',
 			showCloseButton: true,
 			showCancelButton: true,
@@ -455,7 +455,7 @@ jQuery(document).ready( function($) {
 			if (result.isConfirmed) {
 
 				Swal.fire({
-					title   : 'Orders are being imported!',
+					title   : 'Orders Data are being imported!',
 					html    : 'Do not reload/close this tab.',
 					footer  : '<span class="order-progress-report">' + pending_orders_count + ' are left to import',
 					didOpen: () => {
@@ -490,7 +490,7 @@ jQuery(document).ready( function($) {
 			} else {
 				// All orders imported!
 				Swal.fire({
-					title   : 'Users are being imported!',
+					title   : 'Users Data are being imported!',
 					html    : 'Do not reload/close this tab.',
 					footer  : '<span class="order-progress-report">' + rma_pending_users_count + ' are left to import',
 					didOpen: () => {

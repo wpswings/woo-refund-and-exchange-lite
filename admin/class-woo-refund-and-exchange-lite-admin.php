@@ -1041,7 +1041,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			try {
 				$new_value = get_user_meta( $user_id, 'mwb_wrma_refund_wallet_coupon', true );
 				if ( ! empty( $new_value ) ) {
-					$new_key = str_replace( 'mwb_', 'wps_', 'mwb_wrma_refund_wallet_coupon' );
+					$new_key = str_replace( 'mwb', 'wps', 'mwb_wrma_refund_wallet_coupon' );
 					update_user_meta( $user_id, $new_key, $new_value );
 					delete_user_meta( $user_id, 'mwb_wrma_refund_wallet_coupon' );
 					update_user_meta( $user_id, 'copy_mwb_wrma_refund_wallet_coupon', $new_value );
@@ -1100,5 +1100,41 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		}
 
 		return $result;
+	}
+
+	/**
+	 * Migration to new domain notice.
+	 */
+	public function wps_rma_lite_upgrade_notice1() {
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended
+		$page = isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '';
+
+		if ( 'woo_refund_and_exchange_lite_menu' === $page ) {
+
+			$wps_rma_pending_orders_count = $this->wps_rma_get_count( 'pending', 'count', 'orders' );
+			$wps_rma_pending_users_count  = $this->wps_rma_get_count( 'pending', 'count', 'users' );
+			if ( ! empty( $wps_rma_pending_orders_count ) || ! empty( $wps_rma_pending_users_count ) ) {
+				?>
+			<tr class="plugin-update-tr active notice-error notice-alt">
+				<td colspan="4" class="plugin-update colspanchange">
+					<div class="notice notice-error update-message notice-alt">
+						<div class='wps-notice-title wps-notice-section'>
+							<p><strong><?php esc_html_e( 'IMPORTANT NOTICE', 'woo-refund-and-exchange-lite' ); ?>:</strong></p>
+						</div>
+						<div class='wps-notice-content wps-notice-section'>
+							<?php esc_html_e( 'Please click on the Start Migration button so that all of the data migrate. We have Made some changes in our plugin', 'woo-refund-and-exchange-lite' ); ?>.</p>
+							<p><button class="button" id="wps_rma_migration_start-button"><?php esc_html_e( 'Start Migration', 'woo-refund-and-exchange-lite' ); ?></button></p>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<style>
+				.wps-notice-section p:before {
+					display:  none ! important;
+				}
+			</style>
+				<?php
+			}
+		}
 	}
 }

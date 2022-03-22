@@ -342,7 +342,7 @@ if ( $activated ) {
 					<p>
 						<?php esc_html_e( 'Heads up, The latest update includes some substantial changes across different areas of the plugin.', 'woo-refund-and-exchange-lite' ); ?>
 					</p>
-					<p><b><?php esc_html_e( 'Please Click', 'woo-refund-and-exchange-lite' ) ?><a href="<?php echo esc_attr( admin_url( 'admin.php' ) . '?page=woo_refund_and_exchange_lite_menu&wrael_tab=woo-refund-and-exchange-lite-general' ); ?>"> here </a><?php esc_html_e( 'To Goto the Migration Page and Run the Migration Functionality.', 'woo-refund-and-exchange-lite' ); ?></b></p>
+					<p><b><?php esc_html_e( 'Please Click', 'woo-refund-and-exchange-lite' ) ?><a href="<?php echo esc_attr( admin_url( 'admin.php' ) . '?page=woo_refund_and_exchange_lite_menu&wrael_tab=woo-refund-and-exchange-lite-general' ); ?>"> here </a><?php esc_html_e( 'To Goto the Migration Page and Click button to the Start Migration', 'woo-refund-and-exchange-lite' ); ?>.</b></p>
 				</div>
 			</td>
 		</tr>
@@ -355,40 +355,6 @@ if ( $activated ) {
 
 	}
 	add_action( 'after_plugin_row_' . plugin_basename( __FILE__ ), 'wps_rma_lite_upgrade_notice', 0, 3 );
-
-	add_action( 'admin_notices', 'wps_rma_lite_upgrade_notice1' );
-
-	/**
-	 * Migration to new domain notice.
-	 */
-	function wps_rma_lite_upgrade_notice1() {
-		// phpcs:disable WordPress.Security.NonceVerification.Recommended
-		$page = isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '';
-
-		if ( 'woo_refund_and_exchange_lite_menu' === $page ) {
-
-			?>
-			<tr class="plugin-update-tr active notice-error notice-alt">
-				<td colspan="4" class="plugin-update colspanchange">
-					<div class="notice notice-error update-message notice-alt">
-						<div class='wps-notice-title wps-notice-section'>
-							<p><strong><?php esc_html_e( 'IMPORTANT NOTICE', 'woo-refund-and-exchange-lite' ); ?>:</strong></p>
-						</div>
-						<div class='wps-notice-content wps-notice-section'>
-							<?php esc_html_e( 'Please click on the Start Migration button so that all of the data migrate. We have Made some changes in our plugin', 'woo-refund-and-exchange-lite' ); ?>.</p>
-							<p><button class="button" id="wps_rma_migration_start-button"><?php esc_html_e( 'Start Migration', 'woo-refund-and-exchange-lite' ); ?></button></p>
-						</div>
-					</div>
-				</td>
-			</tr>
-			<style>
-				.wps-notice-section p:before {
-					display:  none ! important;
-				}
-			</style>
-			<?php
-		}
-	}
 } else {
 	/**
 	 * Show warning message if woocommerce is not install
