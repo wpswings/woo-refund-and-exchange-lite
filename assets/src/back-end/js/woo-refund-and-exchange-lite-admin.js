@@ -446,7 +446,7 @@ jQuery(document).ready( function($) {
 				startImport( pending_orders );
 
 			} else if (result.isDismissed) {
-			  Swal.fire('Import Stopped', '', 'info');
+			  Swal.fire('Migration Stopped', '', 'info');
 			}
 		})
 	});
