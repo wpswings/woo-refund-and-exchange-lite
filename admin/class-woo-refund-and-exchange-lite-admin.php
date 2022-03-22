@@ -986,6 +986,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 					if ( ! empty( $order_id ) ) {
 						$value   = get_post_meta( $order_id, $meta_keys, true );
 						$new_key = str_replace( 'ced_rnx', 'wps_rma', $meta_keys );
+						$new_key = str_replace( 'mwb', 'wps', $new_key );
 						if ( 'mwb_wrma_return_product' === $meta_keys ) {
 							$new_key = 'wps_rma_return_product';
 							$value   = get_post_meta( $order_id, 'mwb_wrma_return_product', true );
