@@ -216,7 +216,7 @@ if ( $activated ) {
 	/**
 	 * Settings tab of the plugin.
 	 *
-	 * @name rewardeem_woocommerce_points_rewards_settings_link
+	 * @name wps_rma_lite_settings_link
 	 * @param array $links array of the links.
 	 * @since    1.0.0
 	 */
@@ -313,6 +313,25 @@ if ( $activated ) {
 	}
 	add_action( 'admin_init', 'wps_rma_lite_migrate_settings_and_data', 10 );
 
+	add_action( 'activated_plugin', 'wps_rma_org_redirect_on_settings' );
+
+	if ( ! function_exists( 'wps_rma_org_redirect_on_settings' ) ) {
+		/**
+		 * This function is used to check plugin.
+		 *
+		 * @name wps_rma_org_redirect_on_settings
+		 * @param string $plugin plugin.
+		 * @since 1.0.3
+		 */
+		function wps_rma_org_redirect_on_settings( $plugin ) {
+			if ( plugin_basename( __FILE__ ) === $plugin ) {
+				$general_settings_url = admin_url( 'admin.php?page=woo_refund_and_exchange_lite_menu' );
+				wp_safe_redirect( $general_settings_url );
+				exit();
+			}
+		}
+	}
+
 	/**
 	 * Migration to new domain notice.
 	 *
@@ -360,6 +379,7 @@ if ( $activated ) {
 	 * Show warning message if woocommerce is not install
 	 */
 	function wps_rma_plugin_error_notice_lite() {
+
 		?>
 		<div class="error notice is-dismissible">
 			<p><?php esc_html_e( 'Woocommerce is not activated, Please activate Woocommerce first to install WooCommerce Refund and Exchange Lite.', 'woo-refund-and-exchange-lite' ); ?></p>

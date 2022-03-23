@@ -53,7 +53,6 @@ class Woo_Refund_And_Exchange_Lite_Activator {
 			// Schedule event to send data to wpswings.
 			wp_clear_scheduled_hook( 'wpswings_tracker_send_event' );
 			wp_schedule_event( time() + 10, apply_filters( 'wpswings_tracker_event_recurrence', 'daily' ), 'wpswings_tracker_send_event' );
-
 		}
 	}
 
