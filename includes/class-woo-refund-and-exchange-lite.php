@@ -235,6 +235,8 @@ class Woo_Refund_And_Exchange_Lite {
 		$this->loader->add_action( 'wp_ajax_wps_rma_ajax_callbacks', $wrael_plugin_admin, 'wps_rma_ajax_callbacks' );
 
 		$this->loader->add_action( 'admin_notices', $wrael_plugin_admin, 'wps_rma_lite_upgrade_notice1' );
+
+		$this->loader->add_action( 'admin_menu', $wrael_plugin_admin, 'wps_rma_lite_admin_menus' );
 	}
 
 	/**

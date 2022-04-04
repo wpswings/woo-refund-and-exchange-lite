@@ -1186,4 +1186,24 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			}
 		}
 	}
+
+	/** Add submenu in woocommerce setting */
+	public function wps_rma_lite_admin_menus() {
+		global $submenu;
+		$permalink = admin_url( 'admin.php?page=woo_refund_and_exchange_lite_menu' );
+		// phpcs:disable
+		$active_plugins          = get_option( 'active_plugins', array() );
+		$setting_name = '';
+		if ( in_array( 'woocommerce-rma-for-return-refund-and-exchange/mwb-woocommerce-rma.php', $active_plugins, true ) ) {
+			$setting_name = __( 'RMA Configuration', 'woo-refund-and-exchange-lite' );
+		} else {
+			$setting_name = __( 'Refund-Exchange Lite', 'woo-refund-and-exchange-lite' );
+		}
+		$submenu['woocommerce'][] = array(
+			'<div id="wps_wrma_config_menu">' . $setting_name . '</div>',
+			'manage_options',
+			$permalink,
+		);
+		// phpcs:enable
+	}
 }
