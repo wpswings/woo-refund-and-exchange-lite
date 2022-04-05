@@ -136,7 +136,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				return;
 			}
 		}
-		if ( isset( $screen->id ) && 'wp-swings_page_woo_refund_and_exchange_lite_menu' === $screen->id || 'shop_order' === $screen->id ) {
+		if ( isset( $screen->id ) && 'wp-swings_page_woo_refund_and_exchange_lite_menu' === $screen->id || 'shop_order' === $screen->id || 'plugins' === $screen->id ) {
 			wp_enqueue_script( 'wps-wrael-select2', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/select-2/woo-refund-and-exchange-lite-select2.js', array( 'jquery' ), time(), false );
 			wp_enqueue_script( 'wps-wrael-metarial-js', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/material-design/material-components-web.min.js', array(), time(), false );
 			wp_enqueue_script( 'wps-wrael-metarial-js2', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/material-design/material-components-v5.0-web.min.js', array(), time(), false );
@@ -1164,33 +1164,34 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	 */
 	public function wps_rma_lite_upgrade_notice1() {
 		// phpcs:disable WordPress.Security.NonceVerification.Recommended
-		$page = isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '';
-
-		if ( 'woo_refund_and_exchange_lite_menu' === $page ) {
+		$page   = isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '';
+		$screen = get_current_screen();
+		if ( 'woo_refund_and_exchange_lite_menu' === $page || ( isset( $screen->id ) && 'plugins' === $screen->id ) ) {
 
 			$wps_rma_pending_orders_count     = $this->wps_rma_get_count( 'pending', 'count', 'orders' );
 			$wps_rma_pending_users_count      = $this->wps_rma_get_count( 'pending', 'count', 'users' );
 			$wps_rma_pending_order_msgs_count = $this->wps_rma_get_count( 'pending', 'count', 'order_messages' );
 			if ( ! empty( $wps_rma_pending_orders_count ) || ! empty( $wps_rma_pending_users_count ) || ! empty( $wps_rma_pending_order_msgs_count ) ) {
 				?>
-			<tr class="plugin-update-tr active notice-error notice-alt">
-				<td colspan="4" class="plugin-update colspanchange">
-					<div class="notice notice-error update-message notice-alt">
-						<div class='wps-notice-title wps-notice-section'>
-							<p><strong><?php esc_html_e( 'IMPORTANT NOTICE', 'woo-refund-and-exchange-lite' ); ?>:</strong></p>
+				<tr class="plugin-update-tr active notice-error notice-alt">
+					<td colspan="4" class="plugin-update colspanchange">
+						<div class="notice notice-error update-message notice-alt">
+							<div class='wps-notice-title wps-notice-section'>
+								<p><strong><?php esc_html_e( 'IMPORTANT NOTICE', 'woo-refund-and-exchange-lite' ); ?>:</strong></p>
+								<p><?php esc_html_e( 'Heads up, The latest update includes some substantial changes across different areas of the plugin', 'woo-refund-and-exchange-lite' ); ?></p>
+							</div>
+							<div class='wps-notice-content wps-notice-section'>
+								<?php esc_html_e( 'Please click on the Start Migration button so that all of the data migrate. We have Made some changes in our plugin', 'woo-refund-and-exchange-lite' ); ?>.</p>
+								<p><button class="button" id="wps_rma_migration_start-button"><?php esc_html_e( 'Start Migration', 'woo-refund-and-exchange-lite' ); ?></button></p>
+							</div>
 						</div>
-						<div class='wps-notice-content wps-notice-section'>
-							<?php esc_html_e( 'Please click on the Start Migration button so that all of the data migrate. We have Made some changes in our plugin', 'woo-refund-and-exchange-lite' ); ?>.</p>
-							<p><button class="button" id="wps_rma_migration_start-button"><?php esc_html_e( 'Start Migration', 'woo-refund-and-exchange-lite' ); ?></button></p>
-						</div>
-					</div>
-				</td>
-			</tr>
-			<style>
-				.wps-notice-section p:before {
-					display:  none ! important;
-				}
-			</style>
+					</td>
+				</tr>
+				<style>
+					.wps-notice-section p:before {
+						display:  none ! important;
+					}
+				</style>
 				<?php
 			}
 		}
