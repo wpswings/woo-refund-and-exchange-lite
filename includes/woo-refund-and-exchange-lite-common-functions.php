@@ -817,12 +817,14 @@ if ( ! function_exists( 'wps_rma_lite_post_meta_data_migrate' ) ) {
 		}
 	}
 }
+
 /**
  * Order count.
  *
- * @param string $type type.
- * @param string $action action.
- * @since    1.0.0
+ * @param string  $status .
+ * @param string  $action .
+ * @param boolean $type .
+ * @return $count
  */
 function get_count( $status = 'all', $action = 'count', $type = false ) {
 

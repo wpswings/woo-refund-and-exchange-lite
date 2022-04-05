@@ -360,7 +360,11 @@ if ( $activated ) {
 					<p>
 						<?php esc_html_e( 'Heads up, The latest update includes some substantial changes across different areas of the plugin.', 'woo-refund-and-exchange-lite' ); ?>
 					</p>
-					<p><b><?php esc_html_e( 'Please Click', 'woo-refund-and-exchange-lite' ) ?><a href="<?php echo esc_attr( admin_url( 'admin.php' ) . '?page=woo_refund_and_exchange_lite_menu&wrael_tab=woo-refund-and-exchange-lite-general' ); ?>"> here </a><?php esc_html_e( 'To Goto the Migration Page and Click button to the Start Migration', 'woo-refund-and-exchange-lite' ); ?>.</b></p>
+					<p><b>
+						<?php esc_html_e( 'Please Click', 'woo-refund-and-exchange-lite' ); ?>
+						<a href="<?php echo esc_attr( admin_url( 'admin.php?page=woo_refund_and_exchange_lite_menu&wrael_tab=woo-refund-and-exchange-lite-general' ) . '' ); ?>"> here </a>
+						<?php esc_html_e( 'To Goto the Migration Page and Click button to the Start Migration', 'woo-refund-and-exchange-lite' ); ?>.
+					</b></p>
 				</div>
 			</td>
 		</tr>

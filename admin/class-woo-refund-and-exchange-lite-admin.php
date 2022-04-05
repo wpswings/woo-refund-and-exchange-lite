@@ -440,10 +440,10 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 								if ( 'wps_rma_refund_rules_editor' === $wrael_genaral_setting['id'] ) {
 									update_option( 'wps_rma_refund_rules_editor', wp_kses_post( wp_unslash( $_POST[ $wrael_genaral_setting['id'] ] ) ) );
 								} else {
-									update_option( $wrael_genaral_setting['id'], is_array( $_POST[ $wrael_genaral_setting['id'] ] ) ? $this->wps_sanitize_array( $_POST[ $wrael_genaral_setting['id'] ] ) : stripslashes( sanitize_text_field( wp_unslash( $_POST[ $wrael_genaral_setting['id'] ] ) ) ) );
+									update_option( sanitize_text_field( wp_unslash( $wrael_genaral_setting['id'] ) ), is_array( $_POST[ $wrael_genaral_setting['id'] ] ) ? $this->wps_sanitize_array( wp_unslash( $_POST[ $wrael_genaral_setting['id'] ] ) ) : stripslashes( sanitize_text_field( wp_unslash( $_POST[ $wrael_genaral_setting['id'] ] ) ) ) );
 								}
 							} else {
-								update_option( $wrael_genaral_setting['id'], '' );
+								update_option( sanitize_text_field( wp_unslash( $wrael_genaral_setting['id'] ) ), '' );
 							}
 						} else {
 							$wps_rma_gen_flag = true;
