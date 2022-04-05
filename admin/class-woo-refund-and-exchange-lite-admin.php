@@ -433,14 +433,14 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 					foreach ( $wrael_genaral_settings as $wrael_genaral_setting ) {
 						if ( isset( $wrael_genaral_setting['id'] ) && '' !== $wrael_genaral_setting['id'] ) {
 							if ( isset( $_POST[ $wrael_genaral_setting['id'] ] ) ) {
-								$setting = sanitize_text_field( wp_unslash( $_POST[ $wrael_genaral_setting['id'] ] ) );
 								if ( 'textarea' === $wrael_genaral_setting['type'] || 'text' === $wrael_genaral_setting['type'] ) {
+									$setting = sanitize_text_field( wp_unslash( $_POST[ $wrael_genaral_setting['id'] ] ) );
 									$setting = trim( preg_replace( '/\s\s+/', ' ', $setting ) );
 								}
 								if ( 'wps_rma_refund_rules_editor' === $wrael_genaral_setting['id'] ) {
 									update_option( 'wps_rma_refund_rules_editor', wp_kses_post( wp_unslash( $_POST[ $wrael_genaral_setting['id'] ] ) ) );
 								} else {
-									update_option( $wrael_genaral_setting['id'], is_array( $setting ) ? $this->wps_sanitize_array( $setting ) : stripslashes( sanitize_text_field( wp_unslash( $setting ) ) ) );
+									update_option( $wrael_genaral_setting['id'], is_array( $_POST[ $wrael_genaral_setting['id'] ] ) ? $this->wps_sanitize_array( $_POST[ $wrael_genaral_setting['id'] ] ) : stripslashes( sanitize_text_field( wp_unslash( $_POST[ $wrael_genaral_setting['id'] ] ) ) ) );
 								}
 							} else {
 								update_option( $wrael_genaral_setting['id'], '' );
@@ -657,12 +657,12 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		);
 		if ( function_exists( 'vc_lean_map' ) ) {
 			$wps_rma_settings_order_message[] = array(
-				'title'       => esc_html__( 'Select the Page to Redirect', 'woo-refund-and-exchange-lite' ),
-				'type'        => 'select',
-				'id'          => 'wps_rma_order_msg_page',
-				'value'       => get_option( 'wps_rma_order_msg_page' ),
-				'class'       => 'wrael-textarea-class',
-				'options'     => $get_pages,
+				'title'   => esc_html__( 'Select the Page to Redirect', 'woo-refund-and-exchange-lite' ),
+				'type'    => 'select',
+				'id'      => 'wps_rma_order_msg_page',
+				'value'   => get_option( 'wps_rma_order_msg_page' ),
+				'class'   => 'wrael-textarea-class',
+				'options' => $get_pages,
 			);
 		}
 		$wps_rma_settings_order_message =
