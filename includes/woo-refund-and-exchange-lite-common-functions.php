@@ -331,7 +331,7 @@ if ( ! function_exists( 'wps_rma_save_return_request_callback' ) ) {
 		}
 		do_action( 'wps_rma_do_something_on_refund', $order_id, $item_ids );
 
-		$order->update_status( 'wc-refund-requested', esc_html__( 'User Request to refund product', 'woo-refund-and-exchange-lite' ) );
+		$order->update_status( 'wc-return-requested', esc_html__( 'User Request to refund product', 'woo-refund-and-exchange-lite' ) );
 
 		$response['auto_accept'] = apply_filters( 'wps_rma_auto_accept_refund', false );
 		$response['flag']        = true;
@@ -444,7 +444,7 @@ if ( ! function_exists( 'wps_rma_return_req_approve_callback' ) ) {
 			do_action( 'wps_rma_refund_req_accept_email', $orderid );
 		}
 
-		$order_obj->update_status( 'wc-refund-approved', esc_html__( 'User Request of Refund Product is approved', 'woo-refund-and-exchange-lite' ) );
+		$order_obj->update_status( 'wc-return-approved', esc_html__( 'User Request of Refund Product is approved', 'woo-refund-and-exchange-lite' ) );
 		$response             = array();
 		$response['response'] = 'success';
 		return $response;
@@ -495,7 +495,7 @@ if ( ! function_exists( 'wps_rma_return_req_cancel_callback' ) ) {
 		}
 		$order_obj = wc_get_order( $orderid );
 
-		$order_obj->update_status( 'wc-refund-cancelled', esc_html__( 'User Request of Refund Product is cancelled', 'woo-refund-and-exchange-lite' ) );
+		$order_obj->update_status( 'wc-return-cancelled', esc_html__( 'User Request of Refund Product is cancelled', 'woo-refund-and-exchange-lite' ) );
 		$response             = array();
 		$response['response'] = 'success';
 		return $response;
