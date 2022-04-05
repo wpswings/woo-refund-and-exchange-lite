@@ -330,15 +330,8 @@ if ( ! function_exists( 'wps_rma_save_return_request_callback' ) ) {
 			do_action( 'wps_rma_refund_req_email', $order_id );
 		}
 		do_action( 'wps_rma_do_something_on_refund', $order_id, $item_ids );
-		$wps_rma_status_fix_for_pro = apply_filters(
-			'wps_rma_status_fix_for_pro',
-			array(
-				'wc-refund-requested',
-				'wc-refund-approved',
-				'wc-refund-cancelled',
-			)
-		);
-		$order->update_status( $wps_rma_status_fix_for_pro[0], esc_html__( 'User Request to refund product', 'woo-refund-and-exchange-lite' ) );
+
+		$order->update_status( 'wc-refund-requested', esc_html__( 'User Request to refund product', 'woo-refund-and-exchange-lite' ) );
 
 		$response['auto_accept'] = apply_filters( 'wps_rma_auto_accept_refund', false );
 		$response['flag']        = true;
@@ -450,15 +443,8 @@ if ( ! function_exists( 'wps_rma_return_req_approve_callback' ) ) {
 			// To Send Refund Request Accept Email.
 			do_action( 'wps_rma_refund_req_accept_email', $orderid );
 		}
-		$wps_rma_status_fix_for_pro = apply_filters(
-			'wps_rma_status_fix_for_pro',
-			array(
-				'wc-refund-requested',
-				'wc-refund-approved',
-				'wc-refund-cancelled',
-			)
-		);
-		$order_obj->update_status( $wps_rma_status_fix_for_pro[1], esc_html__( 'User Request of Refund Product is approved', 'woo-refund-and-exchange-lite' ) );
+
+		$order_obj->update_status( 'wc-refund-approved', esc_html__( 'User Request of Refund Product is approved', 'woo-refund-and-exchange-lite' ) );
 		$response             = array();
 		$response['response'] = 'success';
 		return $response;
@@ -508,15 +494,8 @@ if ( ! function_exists( 'wps_rma_return_req_cancel_callback' ) ) {
 			do_action( 'wps_rma_refund_req_cancel_email', $orderid );
 		}
 		$order_obj = wc_get_order( $orderid );
-		$wps_rma_status_fix_for_pro = apply_filters(
-			'wps_rma_status_fix_for_pro',
-			array(
-				'wc-refund-requested',
-				'wc-refund-approved',
-				'wc-refund-cancelled',
-			)
-		);
-		$order_obj->update_status( $wps_rma_status_fix_for_pro[2], esc_html__( 'User Request of Refund Product is cancelled', 'woo-refund-and-exchange-lite' ) );
+
+		$order_obj->update_status( 'wc-refund-cancelled', esc_html__( 'User Request of Refund Product is cancelled', 'woo-refund-and-exchange-lite' ) );
 		$response             = array();
 		$response['response'] = 'success';
 		return $response;

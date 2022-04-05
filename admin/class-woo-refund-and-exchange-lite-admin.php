@@ -999,11 +999,20 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 						delete_post_meta( $order_id, $meta_keys );
 					}
 				}
-
-				$return_data = get_post_meta( $order_id, 'mwb_wrma_return_product', true );
-				$status_fix  = update_option( 'wps_rma_change_status_for_pro', false );
-				if ( ! $status_fix && ! empty( $return_data ) ) {
-					update_option( 'wps_rma_change_status_for_pro', true );
+				$wps_get_post = get_post( $order_id );
+				$args         = array();
+				if ( ! empty( $wps_get_post ) ) {
+					foreach ( $wps_get_post as $key => $value ) {
+						if ( 'post_status' === $key ) {
+							$value        = str_replace( 'wc-refund-cancelled', 'wc-return-cancelled', $value );
+							$value        = str_replace( 'wc-refund-approved', 'wc-return-approved', $value );
+							$value        = str_replace( 'wc-refund-requested', 'wc-return-requested', $value );
+							$args[ $key ] = $value;
+						} else {
+							$args[ $key ] = $value;
+						}
+					}
+					wp_update_post( $args );
 				}
 
 				update_post_meta( $order_id, 'wps_rma_migrated', true );

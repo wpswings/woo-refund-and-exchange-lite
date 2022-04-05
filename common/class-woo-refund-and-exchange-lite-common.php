@@ -194,16 +194,9 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	 * This function is to add custom order status for return
 	 */
 	public function wps_rma_register_custom_order_status() {
-		$wps_rma_status_fix_for_pro = apply_filters(
-			'wps_rma_status_fix_for_pro',
-			array(
-				'wc-refund-requested',
-				'wc-refund-approved',
-				'wc-refund-cancelled',
-			)
-		);
+
 		register_post_status(
-			$wps_rma_status_fix_for_pro[0],
+			'wc-refund-requested',
 			array(
 				'label'                     => 'Refund Requested',
 				'public'                    => true,
@@ -214,7 +207,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			)
 		);
 		register_post_status(
-			$wps_rma_status_fix_for_pro[1],
+			'wc-refund-approved',
 			array(
 				'label'                     => 'Refund Approved',
 				'public'                    => true,
@@ -225,7 +218,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			)
 		);
 		register_post_status(
-			$wps_rma_status_fix_for_pro[2],
+			'wc-refund-cancelled',
 			array(
 				'label'                     => 'Refund Cancelled',
 				'public'                    => true,
@@ -250,17 +243,10 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			$wps_rma_new_order_statuses[ $wps_rma_key ] = $wps_rma_status;
 
 			if ( 'wc-completed' === $wps_rma_key ) {
-				$wps_rma_status_fix_for_pro = apply_filters(
-					'wps_rma_status_fix_for_pro',
-					array(
-						'wc-refund-requested',
-						'wc-refund-approved',
-						'wc-refund-cancelled',
-					)
-				);
-				$wps_rma_new_order_statuses[ $wps_rma_status_fix_for_pro[0] ] = esc_html__( 'Refund Requested', 'woo-refund-and-exchange-lite' );
-				$wps_rma_new_order_statuses[ $wps_rma_status_fix_for_pro[1] ] = esc_html__( 'Refund Approved', 'woo-refund-and-exchange-lite' );
-				$wps_rma_new_order_statuses[ $wps_rma_status_fix_for_pro[2] ] = esc_html__( 'Refund Cancelled', 'woo-refund-and-exchange-lite' );
+
+				$wps_rma_new_order_statuses['wc-refund-requested'] = esc_html__( 'Refund Requested', 'woo-refund-and-exchange-lite' );
+				$wps_rma_new_order_statuses['wc-refund-approved']  = esc_html__( 'Refund Approved', 'woo-refund-and-exchange-lite' );
+				$wps_rma_new_order_statuses['wc-refund-cancelled'] = esc_html__( 'Refund Cancelled', 'woo-refund-and-exchange-lite' );
 				$wps_rma_new_order_statuses                        = apply_filters( 'wps_rma_add_custom_order_status', $wps_rma_new_order_statuses );
 			}
 		}
