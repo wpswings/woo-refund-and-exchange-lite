@@ -2,13 +2,11 @@
 /**
  * Provide a admin area view for the plugin
  *
- * This file is used to markup the html field for general tab.
- *
- * @link       https://makewebbetter.com/
+ * @link       https://wpswings.com/
  * @since      1.0.0
  *
- * @package    woocommerce_refund_and_exchange_lite
- * @subpackage woocommerce_refund_and_exchange_lite/admin
+ * @package    woo-refund-and-exchange-lite
+ * @subpackage woo-refund-and-exchange-lite/admin
  */
 
-esc_html_e( 'oops looks like nothing is here', 'woo-refund-and-exchange-lite' );
+// Silence is golden.

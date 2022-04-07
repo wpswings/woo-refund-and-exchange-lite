@@ -5,8 +5,8 @@ Tags: return, refund, woocommerce, exchange, RMA
 Requires at least: 4.0
 Tested up to: 5.9
 WC requires at least: 3.0.0
-WC tested up to: 6.1.1
-Stable tag: 3.1.4
+WC tested up to: 6.2.0
+Stable tag: 4.0.0
 Requires PHP: 5.6
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -306,4 +306,3 @@ Yes! The plugin automatically manages the stock after every successful refund of
 * New: Notice display of current version for [**WP Swings**](https://wpswings.com/?utm_source=wpswings-official&utm_medium=rma-org-page&utm_campaign=official).
 * FIX: Compatible with latest WP and WC
 * FIX: Other minor bugs in the plug-in
-

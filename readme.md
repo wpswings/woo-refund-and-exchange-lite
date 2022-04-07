@@ -121,7 +121,3 @@ Return Refund and Exchange For WooCommerce is translated into multiple languages
 - [**Follow us on Facebook Page**](https://www.facebook.com/wpswings)
 - [**Tweet us on @WP Swings**](https://twitter.com/wpswings)
 - [**Visit our LinkedIn Account**](https://www.linkedin.com/company/77072505/admin/)
-
-
-
-
