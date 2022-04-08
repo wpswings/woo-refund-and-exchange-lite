@@ -15,7 +15,7 @@
  * Plugin Name:       Return Refund and Exchange for WooCommerce
  * Plugin URI:        https://wordpress.org/plugins/woo-refund-and-exchange-lite/
  * Description:       Return Refund and Exchange for WooCommerce allows users to submit product refund. The plugin provides a dedicated mailing system that would help to communicate better between store owner and customers.This is lite version of Woocommerce Refund And Exchange. <a target="_blank" href="https://wpswings.com/woocommerce-plugins/?utm_source=wpswings-rma-plugin&utm_medium=rma-org-backend&utm_campaign=plugins">Elevate your e-commerce store by exploring more on WP Swings</a>
- * Version:           4.0.0
+ * Version:           4.0.1
  * Author:            WP Swings
  * Author URI:        https://wpswings.com/?utm_source=wpswings-official&utm_medium=rma-org-page&utm_campaign=wpswings-official
  * Text Domain:       woo-refund-and-exchange-lite
@@ -60,7 +60,7 @@ if ( $activated ) {
 	 * @since 1.0.0
 	 */
 	function define_woo_refund_and_exchange_lite_constants() {
-		woo_refund_and_exchange_lite_constants( 'WOO_REFUND_AND_EXCHANGE_LITE_VERSION', '4.0.0' );
+		woo_refund_and_exchange_lite_constants( 'WOO_REFUND_AND_EXCHANGE_LITE_VERSION', '4.0.1' );
 		woo_refund_and_exchange_lite_constants( 'WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH', plugin_dir_path( __FILE__ ) );
 		woo_refund_and_exchange_lite_constants( 'WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL', plugin_dir_url( __FILE__ ) );
 		woo_refund_and_exchange_lite_constants( 'WOO_REFUND_AND_EXCHANGE_LITE_SERVER_URL', 'https://wpswings.com' );
