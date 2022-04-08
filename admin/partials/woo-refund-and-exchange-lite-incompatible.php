@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 include_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/class-woo-refund-and-exchange-lite-admin.php';
-$wrael_plugin_admin               = new Woo_Refund_And_Exchange_Lite_Admin( ' Return Refund and Exchange for WooCommerce', '5.0.1' );
+$wrael_plugin_admin               = new Woo_Refund_And_Exchange_Lite_Admin( 'Return Refund and Exchange for WooCommerce', '4.0.1' );
 $wps_rma_pending_orders_count     = $wrael_plugin_admin->wps_rma_get_count( 'pending', 'count', 'orders' );
 $wps_rma_pending_users_count      = $wrael_plugin_admin->wps_rma_get_count( 'pending', 'count', 'users' );
 $wps_rma_pending_order_msgs_count = $wrael_plugin_admin->wps_rma_get_count( 'pending', 'count', 'order_messages' );

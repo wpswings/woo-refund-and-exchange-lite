@@ -567,18 +567,16 @@ jQuery(document).ready( function($) {
 			console.error(error);
 		});
 	}
-
-	var wps_rma_migration_success = function() {
-	
-		if ( pending_orders_count != 0 && rma_pending_users_count != 0 && rma_pending_order_msgs_count != 0 ) {
-			jQuery( "#wps_rma_migration_start-button" ).click();
-			jQuery( "#wps_rma_migration_start-button" ).show();
-		}else{
-			jQuery( "#wps_rma_migration_start-button" ).hide();
-			
-		}
-	
-	}
-
 	// End of scripts.
 });
+
+var wps_rma_migration_success = function() {
+	
+	if ( wrael_admin_param.wps_rma_pending_orders_count != 0 && wrael_admin_param.wps_rma_pending_users_count != 0 && wrael_admin_param.wps_rma_pending_order_msgs_count != 0 ) {
+		jQuery( "#wps_rma_migration_start-button" ).click();
+		jQuery( "#wps_rma_migration_start-button" ).show();
+	}else{
+		jQuery( "#wps_rma_migration_start-button" ).hide();
+		
+	}
+}

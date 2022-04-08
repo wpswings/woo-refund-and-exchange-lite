@@ -330,53 +330,6 @@ if ( $activated ) {
 			}
 		}
 	}
-
-	/**
-	 * Migration to new domain notice.
-	 *
-	 * @param string $plugin_file Path to the plugin file relative to the plugins directory.
-	 * @param array  $plugin_data An array of plugin data.
-	 * @param string $status Status filter currently applied to the plugin list.
-	 */
-	function wps_rma_lite_upgrade_notice( $plugin_file, $plugin_data, $status ) {
-		?>
-
-		<tr class="plugin-update-tr active notice-warning notice-alt">
-			<td colspan="4" class="plugin-update colspanchange">
-				<div class="notice notice-success inline update-message notice-alt">
-					<div class='wps-notice-title wps-notice-section'>
-						<p><strong><?php esc_html_e( 'IMPORTANT NOTICE', 'woo-refund-and-exchange-lite' ); ?>:</strong></p>
-					</div>
-					<div class='wps-notice-content wps-notice-section'>
-						<p><?php esc_html_e( 'From the update', 'woo-refund-and-exchange-lite' ); ?> <strong><?php esc_html_e( 'Version', 'woo-refund-and-exchange-lite' ); ?> 3.1.4</strong> <?php esc_html_e( 'onwards, the plugin and its support will be handled by', 'woo-refund-and-exchange-lite' ); ?> <strong>WP Swings</strong>.</p><p><strong>WP Swings</strong> <?php esc_html_e( 'is just our improvised and rebranded version with all quality solutions and help being the same, so no worries at your end.', 'woo-refund-and-exchange-lite' ); ?>
-						<?php esc_html_e( 'Please connect with us for all setup, support, and update related queries without hesitation', 'woo-refund-and-exchange-lite' ); ?>.</p>
-					</div>
-				</div>
-			</td>
-		</tr>
-		<tr class="plugin-update-tr active notice-warning notice-alt">
-			<td  colspan="4" class="plugin-update colspanchange">
-				<div class="notice notice-warning inline update-message notice-alt">
-					<p>
-						<?php esc_html_e( 'Heads up, The latest update includes some substantial changes across different areas of the plugin.', 'woo-refund-and-exchange-lite' ); ?>
-					</p>
-					<p><b>
-						<?php esc_html_e( 'Please Click', 'woo-refund-and-exchange-lite' ); ?>
-						<a href="<?php echo esc_attr( admin_url( 'admin.php?page=woo_refund_and_exchange_lite_menu&wrael_tab=woo-refund-and-exchange-lite-general' ) . '' ); ?>"> here </a>
-						<?php esc_html_e( 'To Goto the Migration Page to the Start Migration', 'woo-refund-and-exchange-lite' ); ?>.
-					</b></p>
-				</div>
-			</td>
-		</tr>
-		<style>
-			.wps-notice-section > p:before {
-				content: none;
-			}
-		</style>
-		<?php
-
-	}
-	add_action( 'after_plugin_row_' . plugin_basename( __FILE__ ), 'wps_rma_lite_upgrade_notice', 0, 3 );
 } else {
 	/**
 	 * Show warning message if woocommerce is not install
