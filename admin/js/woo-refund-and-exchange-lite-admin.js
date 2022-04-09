@@ -436,7 +436,7 @@ jQuery(document).ready( function($) {
 
 	const rma_pending_order_msgs = wrael_admin_param.wps_rma_pending_order_msgs
 	const rma_pending_order_msgs_count = wrael_admin_param.wps_rma_pending_order_msgs_count
-	// console.log(wrael_admin_param);
+
 	/* Close Button Click */
 	jQuery( document ).on( 'click','#wps_rma_migration_start-button',function(e){
 		e.preventDefault();
@@ -567,6 +567,16 @@ jQuery(document).ready( function($) {
 			console.error(error);
 		});
 	}
-
 	// End of scripts.
 });
+
+var wps_rma_migration_success = function() {
+	
+	if ( wrael_admin_param.wps_rma_pending_orders_count != 0 && wrael_admin_param.wps_rma_pending_users_count != 0 && wrael_admin_param.wps_rma_pending_order_msgs_count != 0 ) {
+		jQuery( "#wps_rma_migration_start-button" ).click();
+		jQuery( "#wps_rma_migration_start-button" ).show();
+	}else{
+		jQuery( "#wps_rma_migration_start-button" ).hide();
+		
+	}
+}
