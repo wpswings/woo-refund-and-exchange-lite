@@ -108,7 +108,7 @@ The refund request for gift cards can be successfully initiated only if these co
 - Compatibility with WordPress Multilingual (WPML)
 
 ### TAKE ADVANTAGE OF EXCLUSIVE FEATURES OF WOOCOMMERCE RMA PLUGIN
-> Note:  Get[**RMA Return Refund & Exchange For WooCommerce Pro**](https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma-pro&utm_medium=rma-github-page&utm_campaign=premium-plugin)_
+> Note:  Get [**RMA Return Refund & Exchange For WooCommerce Pro**](https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma-pro&utm_medium=rma-github-page&utm_campaign=premium-plugin)_
 
 ### DOCUMENTATION OF PREMIUM VERSION
 
