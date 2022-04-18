@@ -14,7 +14,7 @@
  * @wordpress-plugin
  * Plugin Name:       Return Refund and Exchange for WooCommerce
  * Plugin URI:        https://wordpress.org/plugins/woo-refund-and-exchange-lite/
- * Description:       Return Refund and Exchange for WooCommerce allows users to submit product refund. The plugin provides a dedicated mailing system that would help to communicate better between store owner and customers.This is lite version of Woocommerce Refund And Exchange. <a target="_blank" href="https://wpswings.com/woocommerce-plugins/?utm_source=wpswings-rma-plugin&utm_medium=rma-org-backend&utm_campaign=plugins">Elevate your e-commerce store by exploring more on WP Swings</a>
+ * Description:       Return Refund and Exchange for WooCommerce allows users to submit product refund. The plugin provides a dedicated mailing system that would help to communicate better between store owner and customers.This is lite version of WooCommerce Refund And Exchange. <a target="_blank" href="https://wpswings.com/woocommerce-plugins/?utm_source=wpswings-rma-plugin&utm_medium=rma-org-backend&utm_campaign=plugins">Elevate your e-commerce store by exploring more on WP Swings</a>
  * Version:           4.0.2
  * Author:            WP Swings
  * Author URI:        https://wpswings.com/?utm_source=wpswings-official&utm_medium=rma-org-page&utm_campaign=wpswings-official
@@ -24,7 +24,7 @@
  * Requires at least: 4.6
  * Tested up to: 5.9.3
  * WC requires at least: 4.0
- * WC tested up to: 6.3.1
+ * WC tested up to: 6.4.1
  *
  * License:           GNU General Public License v3.0
  * License URI:       http://www.gnu.org/licenses/gpl-3.0.html
