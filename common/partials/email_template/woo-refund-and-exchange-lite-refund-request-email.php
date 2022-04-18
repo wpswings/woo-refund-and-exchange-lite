@@ -112,7 +112,7 @@ $message       .= '</tbody>
 	</div>
 </div>';
 $attachment     = array();
-$to             = get_option( 'admin_email' );
+$to             =  get_option( 'woocommerce_email_from_address', get_option( 'admin_email' ) );
 $admin_email    = WC()->mailer()->emails['wps_rma_refund_request_email'];
 $restrict_mail1 = apply_filters( 'wps_rma_restrict_refund_request_user_mail', true );
 $restrict_mail2 = apply_filters( 'wps_rma_restrict_refund_request_admin_mail', true );

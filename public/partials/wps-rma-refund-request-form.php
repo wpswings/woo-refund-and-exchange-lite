@@ -36,7 +36,7 @@ $rr_subject = '';
 $rr_reason  = '';
 if ( isset( $condition ) && 'yes' === $condition && isset( $order_id ) && ! empty( $order_id ) && ! empty( $order_obj ) ) {
 	$order_customer_id = get_post_meta( $order_id, '_customer_user', true );
-	if ( get_current_user_id() > 0 ) {
+	if ( ! current_user_can( 'wps-rma-refund-request' ) ) {
 		if ( get_current_user_id() != $order_customer_id ) {
 			$myaccount_page     = get_option( 'woocommerce_myaccount_page_id' );
 			$myaccount_page_url = get_permalink( $myaccount_page );
@@ -388,7 +388,7 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 	<?php
 } else {
 	if ( isset( $condition ) ) {
-		echo esc_html( $condition );
+		echo wp_kses_post( $condition );
 	} else {
 		echo esc_html__( 'Refund Request Can\'t make on this order', 'woo-refund-and-exchange-lite' );
 	}

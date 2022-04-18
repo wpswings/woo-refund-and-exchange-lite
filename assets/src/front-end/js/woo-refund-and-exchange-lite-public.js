@@ -36,12 +36,16 @@ jQuery( document ).on( 'ready', function(){
 		$(document).find('.wps_rma_return_request_morefiles').data( 'count', count - 1 );
 		$(this).parent( '.add_field_input_div' ).remove();
 	});
+	var check_refund_method = wrael_public_param.check_refund_method;
+	var check_refund_manually = wrael_public_param.wps_refund_manually;
 
 	// show the bank details field on selected refund method.
 	var wps_wrma_refund_method = $('input[name=wps_wrma_refund_method]:checked').val();
 	if ('' !== wps_wrma_refund_method && 'manual_method' === wps_wrma_refund_method ) {
 		$( '#bank_details' ).show();
 	} else if( ! wrael_public_param.check_pro_active ) {
+		$( '#bank_details' ).show();
+	} else if ( wrael_public_param.check_pro_active && 'on' != check_refund_method && 'on' == check_refund_manually ) {
 		$( '#bank_details' ).show();
 	} else {
 		$( '#bank_details' ).hide();

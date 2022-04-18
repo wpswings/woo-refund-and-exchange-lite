@@ -535,7 +535,7 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 				'type'        => 'hidden',
 				'placeholder' => '',
 				'name'        => 'org_plugin_name',
-				'value'       => '',
+				'value'       => self::$wps_rma_plugin_name,
 				'required'    => '',
 				'class'       => '',
 			),

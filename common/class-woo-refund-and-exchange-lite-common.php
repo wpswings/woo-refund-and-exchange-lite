@@ -258,28 +258,36 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	 */
 	public function wps_rma_role_capability() {
 		$wps_rma_customer_role = get_role( 'customer' );
-		$wps_rma_customer_role->add_cap( 'wps-rma-refund-request', true );
+		if ( ! empty( $wps_rma_customer_role ) ) {
+			$wps_rma_customer_role->add_cap( 'wps-rma-refund-request', true );
+		}
 
 		$wps_rma_customer_role = get_role( 'administrator' );
-		$wps_rma_customer_role->add_cap( 'wps-rma-refund-request', true );
-		$wps_rma_customer_role->add_cap( 'wps-rma-refund-approve', true );
-		$wps_rma_customer_role->add_cap( 'wps-rma-refund-cancel', true );
-		$wps_rma_customer_role->add_cap( 'wps-rma-refund-manage-stock', true );
-		$wps_rma_customer_role->add_cap( 'wps-rma-refund-amount', true );
+		if ( ! empty( $wps_rma_customer_role ) ) {
+			$wps_rma_customer_role->add_cap( 'wps-rma-refund-request', true );
+			$wps_rma_customer_role->add_cap( 'wps-rma-refund-approve', true );
+			$wps_rma_customer_role->add_cap( 'wps-rma-refund-cancel', true );
+			$wps_rma_customer_role->add_cap( 'wps-rma-refund-manage-stock', true );
+			$wps_rma_customer_role->add_cap( 'wps-rma-refund-amount', true );
+		}
 
 		$wps_rma_customer_role = get_role( 'editor' );
-		$wps_rma_customer_role->add_cap( 'wps-rma-refund-request', true );
-		$wps_rma_customer_role->add_cap( 'wps-rma-refund-approve', true );
-		$wps_rma_customer_role->add_cap( 'wps-rma-refund-cancel', true );
-		$wps_rma_customer_role->add_cap( 'wps-rma-refund-manage-stock', true );
-		$wps_rma_customer_role->add_cap( 'wps-rma-refund-amount', true );
+		if ( ! empty( $wps_rma_customer_role ) ) {
+			$wps_rma_customer_role->add_cap( 'wps-rma-refund-request', true );
+			$wps_rma_customer_role->add_cap( 'wps-rma-refund-approve', true );
+			$wps_rma_customer_role->add_cap( 'wps-rma-refund-cancel', true );
+			$wps_rma_customer_role->add_cap( 'wps-rma-refund-manage-stock', true );
+			$wps_rma_customer_role->add_cap( 'wps-rma-refund-amount', true );
+		}
 
 		$wps_rma_customer_role = get_role( 'shop_manager' );
-		$wps_rma_customer_role->add_cap( 'wps-rma-refund-request', true );
-		$wps_rma_customer_role->add_cap( 'wps-rma-refund-approve', true );
-		$wps_rma_customer_role->add_cap( 'wps-rma-refund-cancel', true );
-		$wps_rma_customer_role->add_cap( 'wps-rma-refund-manage-stock', true );
-		$wps_rma_customer_role->add_cap( 'wps-rma-refund-amount', true );
+		if ( ! empty( $wps_rma_customer_role ) ) {
+			$wps_rma_customer_role->add_cap( 'wps-rma-refund-request', true );
+			$wps_rma_customer_role->add_cap( 'wps-rma-refund-approve', true );
+			$wps_rma_customer_role->add_cap( 'wps-rma-refund-cancel', true );
+			$wps_rma_customer_role->add_cap( 'wps-rma-refund-manage-stock', true );
+			$wps_rma_customer_role->add_cap( 'wps-rma-refund-amount', true );
+		}
 	}
 
 	/**
