@@ -676,7 +676,7 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 			$form_id = self::$wps_rma_deactivation_form_id;
 		}
 
-		$url = 'submissions/v3/integration/submit/' . self::$wps_rma_portal_id . '/' . $form_id;
+		$url = 'submissions/v3/integration/submit/' . self::$wps_rma_portal_id . '/' . $form_id;	
 
 		$headers = 'Content-Type: application/json';
 
@@ -690,7 +690,6 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 				),
 			)
 		);
-
 		$response = $this->wps_rma_hic_post( $url, $form_data, $headers );
 
 		if ( 200 == $response['status_code'] ) {
@@ -724,6 +723,7 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 			'cookies'     => array(),
 		);
 		$response = wp_remote_post( $url, $request );
+
 		if ( is_wp_error( $response ) ) {
 			$status_code = 500;
 			$response    = esc_html__( 'Unexpected Error Occured', 'woo-refund-and-exchange-lite' );

@@ -1229,7 +1229,6 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	 */
 	public function wps_rma_lite_upgrade_notice( $plugin_file, $plugin_data, $status ) {
 		?>
-
 		<tr class="plugin-update-tr active notice-warning notice-alt">
 			<td colspan="4" class="plugin-update colspanchange">
 				<div class="notice notice-success inline update-message notice-alt">
@@ -1243,35 +1242,31 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				</div>
 			</td>
 		</tr>
-		<tr class="plugin-update-tr active notice-warning notice-alt">
-			<td  colspan="4" class="plugin-update colspanchange">
-				<div class="notice notice-warning inline update-message notice-alt">
-					<p>
-						<?php esc_html_e( 'Heads up, The latest update includes some substantial changes across different areas of the plugin.', 'woo-refund-and-exchange-lite' ); ?>
-					</p>
-					<?php
-					$wps_rma_pending_orders_count     = $this->wps_rma_get_count( 'pending', 'count', 'orders' );
-					$wps_rma_pending_users_count      = $this->wps_rma_get_count( 'pending', 'count', 'users' );
-					$wps_rma_pending_order_msgs_count = $this->wps_rma_get_count( 'pending', 'count', 'order_messages' );
-					if ( ! empty( $wps_rma_pending_orders_count ) || ! empty( $wps_rma_pending_users_count ) || ! empty( $wps_rma_pending_order_msgs_count ) ) {
-						?>
-					<p><b>
-						<?php esc_html_e( 'Please Click', 'woo-refund-and-exchange-lite' ); ?>
-						<a href="<?php echo esc_attr( admin_url( 'admin.php?page=woo_refund_and_exchange_lite_menu&wrael_tab=woo-refund-and-exchange-lite-general' ) . '' ); ?>"> here </a>
-						<?php esc_html_e( 'To Goto the Migration Page to the Start Migration', 'woo-refund-and-exchange-lite' ); ?>.
-					</b></p>
-						<?php
-					}
-					?>
-				</div>
-			</td>
-		</tr>
+		<?php
+		$wps_rma_pending_orders_count     = $this->wps_rma_get_count( 'pending', 'count', 'orders' );
+		$wps_rma_pending_users_count      = $this->wps_rma_get_count( 'pending', 'count', 'users' );
+		$wps_rma_pending_order_msgs_count = $this->wps_rma_get_count( 'pending', 'count', 'order_messages' );
+		if ( ! empty( $wps_rma_pending_orders_count ) || ! empty( $wps_rma_pending_users_count ) || ! empty( $wps_rma_pending_order_msgs_count ) ) {
+			?>
+			<tr class="plugin-update-tr active notice-warning notice-alt">
+				<td  colspan="4" class="plugin-update colspanchange">
+					<div class="notice notice-warning inline update-message notice-alt">	
+						<p><b>
+							<?php esc_html_e( 'Please Click', 'woo-refund-and-exchange-lite' ); ?>
+							<a href="<?php echo esc_attr( admin_url( 'admin.php?page=woo_refund_and_exchange_lite_menu&wrael_tab=woo-refund-and-exchange-lite-general' ) . '' ); ?>"> here </a>
+							<?php esc_html_e( 'To Goto the Migration Page to the Start Migration', 'woo-refund-and-exchange-lite' ); ?>.
+						</b></p>
+					</div>
+				</td>
+			</tr>
+			<?php
+		}
+		?>
 		<style>
 			.wps-notice-section > p:before {
 				content: none;
 			}
 		</style>
 		<?php
-
 	}
 }
