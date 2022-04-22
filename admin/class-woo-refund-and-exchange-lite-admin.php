@@ -1202,6 +1202,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 
 	/** Add submenu in woocommerce setting */
 	public function wps_rma_lite_admin_menus() {
+
 		global $submenu;
 		$permalink = admin_url( 'admin.php?page=woo_refund_and_exchange_lite_menu' );
 		// phpcs:disable

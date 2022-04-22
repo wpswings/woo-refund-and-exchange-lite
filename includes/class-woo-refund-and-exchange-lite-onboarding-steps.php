@@ -109,8 +109,8 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 	public function __construct() {
 		self::$wps_rma_store_name        = get_bloginfo( 'name' );
 		self::$wps_rma_store_url         = home_url();
-		self::$wps_rma_plugin_name       = 'woo-refund-and-exchange-lite';
-		self::$wps_rma_plugin_name_label = 'RETURN REFUND AND EXCHANGE FOR WOOCOMMERCE';
+		self::$wps_rma_plugin_name       = 'Return Refund and Exchange for WooCommerce';
+		self::$wps_rma_plugin_name_label = 'Return Refund and Exchange for WooCommerce';
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'wps_rma_onboarding_enqueue_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'wps_rma_onboarding_enqueue_scripts' ) );
