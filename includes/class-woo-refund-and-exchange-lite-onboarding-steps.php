@@ -110,7 +110,7 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 		self::$wps_rma_store_name        = get_bloginfo( 'name' );
 		self::$wps_rma_store_url         = home_url();
 		self::$wps_rma_plugin_name       = 'woo-refund-and-exchange-lite';
-		self::$wps_rma_plugin_name_label = 'WooCommerce Refund and Exchange Lite';
+		self::$wps_rma_plugin_name_label = 'RETURN REFUND AND EXCHANGE FOR WOOCOMMERCE';
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'wps_rma_onboarding_enqueue_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'wps_rma_onboarding_enqueue_scripts' ) );
@@ -229,6 +229,7 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 	 * @since    1.0.0
 	 */
 	public function wps_rma_add_onboarding_popup_screen() {
+
 		if ( $this->wps_rma_valid_page_screen_check() && $this->wps_rma_show_onboarding_popup_check() ) {
 			require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'onboarding/templates/woo-refund-and-exchange-lite-onboarding-template.php';
 		}

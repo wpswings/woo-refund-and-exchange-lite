@@ -95,7 +95,6 @@ jQuery(document).ready(function($) {
 
         e.preventDefault();
         var form_data = JSON.stringify(jQuery('form.wps-wrael-on-boarding-form').serializeArray());
-
         jQuery.ajax({
             type: 'post',
             dataType: 'json',

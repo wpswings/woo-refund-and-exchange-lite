@@ -1228,21 +1228,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	 * @param string $status Status filter currently applied to the plugin list.
 	 */
 	public function wps_rma_lite_upgrade_notice( $plugin_file, $plugin_data, $status ) {
-		?>
-		<tr class="plugin-update-tr active notice-warning notice-alt">
-			<td colspan="4" class="plugin-update colspanchange">
-				<div class="notice notice-success inline update-message notice-alt">
-					<div class='wps-notice-title wps-notice-section'>
-						<p><strong><?php esc_html_e( 'IMPORTANT NOTICE', 'woo-refund-and-exchange-lite' ); ?>:</strong></p>
-					</div>
-					<div class='wps-notice-content wps-notice-section'>
-						<p><?php esc_html_e( 'From the update', 'woo-refund-and-exchange-lite' ); ?> <strong><?php esc_html_e( 'Version', 'woo-refund-and-exchange-lite' ); ?> 3.1.4</strong> <?php esc_html_e( 'onwards, the plugin and its support will be handled by', 'woo-refund-and-exchange-lite' ); ?> <strong>WP Swings</strong>.</p><p><strong>WP Swings</strong> <?php esc_html_e( 'is just our improvised and rebranded version with all quality solutions and help being the same, so no worries at your end.', 'woo-refund-and-exchange-lite' ); ?>
-						<?php esc_html_e( 'Please connect with us for all setup, support, and update related queries without hesitation', 'woo-refund-and-exchange-lite' ); ?>.</p>
-					</div>
-				</div>
-			</td>
-		</tr>
-		<?php
+
 		$wps_rma_pending_orders_count     = $this->wps_rma_get_count( 'pending', 'count', 'orders' );
 		$wps_rma_pending_users_count      = $this->wps_rma_get_count( 'pending', 'count', 'users' );
 		$wps_rma_pending_order_msgs_count = $this->wps_rma_get_count( 'pending', 'count', 'order_messages' );
