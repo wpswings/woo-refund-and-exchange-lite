@@ -19,7 +19,7 @@ $wrael_plugin_admin               = new Woo_Refund_And_Exchange_Lite_Admin( 'Ret
 $wps_rma_pending_orders_count     = $wrael_plugin_admin->wps_rma_get_count( 'pending', 'count', 'orders' );
 $wps_rma_pending_users_count      = $wrael_plugin_admin->wps_rma_get_count( 'pending', 'count', 'users' );
 $wps_rma_pending_order_msgs_count = $wrael_plugin_admin->wps_rma_get_count( 'pending', 'count', 'order_messages' );
-if ( $wps_rma_pending_orders_count != 0 || $wps_rma_pending_users_count != 0 || $wps_rma_pending_order_msgs_count != 0 ) {
+if ( 0 !== $wps_rma_pending_orders_count || 0 !== $wps_rma_pending_users_count || 0 !== $wps_rma_pending_order_msgs_count ) {
 
 		$wps_par_global_custom_css = 'const triggerError = () => {
 		swal({

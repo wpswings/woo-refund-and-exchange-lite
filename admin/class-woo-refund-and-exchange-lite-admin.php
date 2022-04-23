@@ -86,7 +86,6 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		if ( isset( $screen->id ) && 'shop_order' === $screen->id ) {
 			wp_enqueue_style( $this->plugin_name, WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/css/woo-refund-and-exchange-lite-order-edit-page.min.css', array(), $this->version, 'all' );
 		}
-
 	}
 
 	/**
@@ -183,6 +182,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			$wrael_menus =
 			// Add Sub Menu.
 			apply_filters( 'wps_add_plugins_menus_array', array() );
+
 			if ( is_array( $wrael_menus ) && ! empty( $wrael_menus ) ) {
 				foreach ( $wrael_menus as $wrael_key => $wrael_value ) {
 					add_submenu_page( 'wps-plugins', $wrael_value['name'], $wrael_value['name'], 'manage_options', $wrael_value['menu_link'], array( $wrael_value['instance'], $wrael_value['function'] ) );
