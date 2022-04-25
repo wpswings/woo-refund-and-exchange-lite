@@ -202,9 +202,18 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 								</td>
 								<td class="product-quantity">
 								<?php
+								$allow_html = array(
+									'input' => array(
+										'type'     => array(),
+										'value'    => array(),
+										'class'    => array(),
+										'name'     => array(),
+										'disabled' => array(),
+									),
+								);
 								$qty_html = '<input type="number" disabled value="' . esc_html( $item_qty ) . '" class="wps_rma_return_product_qty" name="wps_rma_return_product_qty">';
 								echo // Refund form Quantity html.
-								apply_filters( 'wps_rma_change_quanity', $qty_html, $item_qty ); // phpcs:ignore
+								wp_kses( apply_filters( 'wps_rma_change_quanity', $qty_html, $item_qty ), $allow_html ); // phpcs:ignore
 								?>
 								</td>
 								<td class="product-total">
