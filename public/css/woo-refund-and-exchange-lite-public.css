@@ -406,15 +406,6 @@ a.wps_order_send_msg_dismiss {
 
 .wps-order-msg__row {
   width: 100%;
-  max-width: calc(50% - 10px);
-}
-
-.wps-order-msg__row:nth-child(2n-1) {
-  margin-right: 10px;
-}
-
-.wps-order-msg__row:nth-child(2n) {
-  margin-left: 10px;
 }
 
 .wmb-order-admin__msg-container .wps_order_msg_sender {

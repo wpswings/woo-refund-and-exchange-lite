@@ -139,14 +139,14 @@ span.wps_order_msg_date {
 }
 .wps-order-msg__row {
     width: 100%;
-    max-width: calc(50% - 40px);
+    // max-width: calc(50% - 40px);
 }
-.wps-order-msg__row:nth-child(2n-1) {
-    margin-right: 10px;
-}
-.wps-order-msg__row:nth-child(2n) {
-    margin-left: 10px;
-}
+// .wps-order-msg__row:nth-child(2n-1) {
+//     margin-right: 10px;
+// }
+// .wps-order-msg__row:nth-child(2n) {
+//     margin-left: 10px;
+// }
 .wmb-order-admin__msg-container .wps_order_msg_sender {
     background-color: #71b02f;
 }
