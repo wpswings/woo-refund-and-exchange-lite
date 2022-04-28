@@ -84,7 +84,6 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			wp_enqueue_style( 'wps-datatable-css', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/datatables/media/css/jquery.dataTables.min.css', array(), $this->version, 'all' );
 		}
 		if ( isset( $screen->id ) && 'shop_order' === $screen->id ) {
-			// wp_enqueue_style( $this->plugin_name, WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/css/woo-refund-and-exchange-lite-order-edit-page.min.css', array(), $this->version, 'all' );
 			wp_enqueue_style( $this->plugin_name, WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/css/wps-order-edit-page-lite.scss.min.css', array(), $this->version, 'all' );
 		}
 	}
@@ -439,7 +438,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 									$setting = sanitize_text_field( wp_unslash( $_POST[ $wrael_genaral_setting['id'] ] ) );
 									$setting = trim( preg_replace( '/\s\s+/', ' ', $setting ) );
 								}
-								if ( 'wps_rma_refund_rules_editor' === $wrael_genaral_setting['id']  ) {
+								if ( 'wps_rma_refund_rules_editor' === $wrael_genaral_setting['id'] ) {
 									update_option( 'wps_rma_refund_rules_editor', wp_kses_post( wp_unslash( $_POST[ $wrael_genaral_setting['id'] ] ) ) );
 								} elseif ( 'wps_rma_refund_form_css' === $wrael_genaral_setting['id'] ) {
 									update_option( 'wps_rma_refund_form_css', wp_kses_post( wp_unslash( $_POST[ $wrael_genaral_setting['id'] ] ) ) );

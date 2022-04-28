@@ -38,4 +38,3 @@ if ( 0 !== $wps_rma_pending_orders_count || 0 !== $wps_rma_pending_users_count |
 	wp_enqueue_script( 'wps_rma_incompatible_css' );
 	wp_add_inline_script( 'wps_rma_incompatible_css', $wps_par_global_custom_css );
 }
-?>

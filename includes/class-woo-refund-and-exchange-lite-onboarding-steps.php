@@ -677,7 +677,7 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 			$form_id = self::$wps_rma_deactivation_form_id;
 		}
 
-		$url = 'submissions/v3/integration/submit/' . self::$wps_rma_portal_id . '/' . $form_id;	
+		$url = 'submissions/v3/integration/submit/' . self::$wps_rma_portal_id . '/' . $form_id;
 
 		$headers = 'Content-Type: application/json';
 
