@@ -1204,9 +1204,6 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 
 	/** Add submenu in woocommerce setting */
 	public function wps_rma_lite_admin_menus() {
-
-		global $submenu;
-		$permalink = admin_url( 'admin.php?page=woo_refund_and_exchange_lite_menu' );
 		// phpcs:disable
 		$active_plugins          = get_option( 'active_plugins', array() );
 		$setting_name = '';
@@ -1215,12 +1212,20 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		} else {
 			$setting_name = __( 'Refund-Exchange Lite', 'woo-refund-and-exchange-lite' );
 		}
-		$submenu['woocommerce'][] = array(
-			'<div id="wps_wrma_config_menu">' . $setting_name . '</div>',
-			'manage_options',
-			$permalink,
-		);
+		add_submenu_page( 'woocommerce', $setting_name, $setting_name, 'manage_options', 'woo-refund-and-exchange-lite', array( $this, 'wps_rma_addsubmenu_woocommerce' ) );
 		// phpcs:enable
+	}
+
+	/**
+	 * This function is used to add submenu of subscription inside woocommerce.
+	 *
+	 * @since 1.2.0
+	 * @return void
+	 */
+	public function wps_rma_addsubmenu_woocommerce() {
+		$permalink = admin_url( 'admin.php?page=woo_refund_and_exchange_lite_menu' );
+		wp_safe_redirect( $permalink );
+		exit;
 	}
 
 	/**
