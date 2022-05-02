@@ -1157,7 +1157,14 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 
 		global $wpdb;
 
-		$result = $wpdb->get_results( $sql, ARRAY_A ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
+		wp_cache_delete( 'wps_rma_migration_keys' );
+
+		if ( empty( wp_cache_get( 'wps_rma_migration_keys' ) ) ) {
+
+			$result = $wpdb->get_results( $sql, ARRAY_A ); // phpcs:ignore
+
+			wp_cache_set( 'wps_rma_migration_keys', $result );
+		}
 
 		if ( 'count' === $action ) {
 			$result = ! empty( $result ) ? count( $result ) : 0;
