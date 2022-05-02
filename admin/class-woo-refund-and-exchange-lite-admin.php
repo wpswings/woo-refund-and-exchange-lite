@@ -1154,10 +1154,11 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		if ( empty( $sql ) ) {
 			return 0;
 		}
-		// phpcs:disable
+
 		global $wpdb;
-		$result = $wpdb->get_results( $sql, ARRAY_A );
-		// phpcs:enable
+
+		$result = $wpdb->get_results( $sql, ARRAY_A ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
+
 		if ( 'count' === $action ) {
 			$result = ! empty( $result ) ? count( $result ) : 0;
 		}
