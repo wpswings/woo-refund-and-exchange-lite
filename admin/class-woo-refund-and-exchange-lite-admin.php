@@ -1147,7 +1147,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 							'limit'    => - 1,
 							'meta_key' => $post_meta_keys, // phpcs:ignore
 							'return'   => 'ids',
-						),
+						)
 					);
 					break;
 				default:
@@ -1162,7 +1162,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 							'limit'    => - 1,
 							'meta_key' => 'mwb_wrma_refund_wallet_coupon', // phpcs:ignore
 							'fields'   => array( 'ID' ),
-						),
+						)
 					);
 					break;
 
