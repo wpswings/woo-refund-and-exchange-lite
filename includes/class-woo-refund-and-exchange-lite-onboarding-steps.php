@@ -109,8 +109,8 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 	public function __construct() {
 		self::$wps_rma_store_name        = get_bloginfo( 'name' );
 		self::$wps_rma_store_url         = home_url();
-		self::$wps_rma_plugin_name       = 'woo-refund-and-exchange-lite';
-		self::$wps_rma_plugin_name_label = 'WooCommerce Refund and Exchange Lite';
+		self::$wps_rma_plugin_name       = 'Return Refund and Exchange for WooCommerce';
+		self::$wps_rma_plugin_name_label = 'Return Refund and Exchange for WooCommerce';
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'wps_rma_onboarding_enqueue_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'wps_rma_onboarding_enqueue_scripts' ) );
@@ -229,6 +229,7 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 	 * @since    1.0.0
 	 */
 	public function wps_rma_add_onboarding_popup_screen() {
+
 		if ( $this->wps_rma_valid_page_screen_check() && $this->wps_rma_show_onboarding_popup_check() ) {
 			require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'onboarding/templates/woo-refund-and-exchange-lite-onboarding-template.php';
 		}
@@ -535,7 +536,7 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 				'type'        => 'hidden',
 				'placeholder' => '',
 				'name'        => 'org_plugin_name',
-				'value'       => '',
+				'value'       => self::$wps_rma_plugin_name,
 				'required'    => '',
 				'class'       => '',
 			),
@@ -690,7 +691,6 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 				),
 			)
 		);
-
 		$response = $this->wps_rma_hic_post( $url, $form_data, $headers );
 
 		if ( 200 == $response['status_code'] ) {
@@ -724,6 +724,7 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 			'cookies'     => array(),
 		);
 		$response = wp_remote_post( $url, $request );
+
 		if ( is_wp_error( $response ) ) {
 			$status_code = 500;
 			$response    = esc_html__( 'Unexpected Error Occured', 'woo-refund-and-exchange-lite' );

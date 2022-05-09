@@ -537,9 +537,10 @@ jQuery(document).ready( function($) {
 				startImportUsers(users);
 			} else {
 				// All users imported!
-				Swal.fire({
-					title   : 'All of the Data are Migrated successfully!',
-				});
+				// Swal.fire({
+				// 	title   : 'All of the Data are Migrated successfully!',
+				// });
+				window.location.reload();
 			}
 		}, function(error) {
 			console.error(error);
@@ -550,7 +551,7 @@ jQuery(document).ready( function($) {
 
 var wps_rma_migration_success = function() {
 	
-	if ( wrael_admin_param.wps_rma_pending_orders_count != 0 && wrael_admin_param.wps_rma_pending_users_count != 0 && wrael_admin_param.wps_rma_pending_order_msgs_count != 0 ) {
+	if ( wrael_admin_param.wps_rma_pending_orders_count != 0 || wrael_admin_param.wps_rma_pending_users_count != 0 || wrael_admin_param.wps_rma_pending_order_msgs_count != 0 ) {
 		jQuery( "#wps_rma_migration_start-button" ).click();
 		jQuery( "#wps_rma_migration_start-button" ).show();
 	}else{

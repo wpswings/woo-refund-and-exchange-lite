@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 echo esc_html( $email_heading ) . "\n\n";
 
 $message    = $msg;
-$admin_mail = get_option( 'admin_email' );
+$admin_mail = get_option( 'woocommerce_email_from_address', get_option( 'admin_email' ) );
 if ( $to === $admin_mail && ( ! empty( $additional_content ) || empty( $additional_content ) ) ) {
 	echo wp_kses_post( $message );
 } else {

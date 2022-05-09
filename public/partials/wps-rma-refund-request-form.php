@@ -36,7 +36,7 @@ $rr_subject = '';
 $rr_reason  = '';
 if ( isset( $condition ) && 'yes' === $condition && isset( $order_id ) && ! empty( $order_id ) && ! empty( $order_obj ) ) {
 	$order_customer_id = get_post_meta( $order_id, '_customer_user', true );
-	if ( get_current_user_id() > 0 ) {
+	if ( ! current_user_can( 'wps-rma-refund-request' ) ) {
 		if ( get_current_user_id() != $order_customer_id ) {
 			$myaccount_page     = get_option( 'woocommerce_myaccount_page_id' );
 			$myaccount_page_url = get_permalink( $myaccount_page );
@@ -136,8 +136,8 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 								$wps_actual_price = $tax_exc;
 							}
 							$wps_total_actual_price += $wps_actual_price * $item_qty;
-
-							$purchase_note = get_post_meta( $product_id, '_purchase_note', true );
+							$price                   = apply_filters( 'formatted_woocommerce_price', number_format( $wps_actual_price / $item->get_quantity(), wc_get_price_decimals(), wc_get_price_decimal_separator(), wc_get_price_thousand_separator() ), $wps_actual_price / $item->get_quantity(), wc_get_price_decimals(), wc_get_price_decimal_separator(), wc_get_price_thousand_separator() );
+							$purchase_note           = get_post_meta( $product_id, '_purchase_note', true );
 							?>
 							<tr class="wps_rma_return_column" data-productid="<?php echo esc_html( $product_id ); ?>" data-variationid="<?php echo esc_html( $item['variation_id'] ); ?>" data-itemid="<?php echo esc_html( $item_id ); ?>">
 								<?php
@@ -145,7 +145,7 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 								do_action( 'wps_rma_add_extra_column_field_value', $item_id, $product_id );
 								?>
 								<td class="product-name">
-									<input type="hidden" name="wps_rma_product_amount" class="wps_rma_product_amount" value="<?php echo esc_html( $wps_actual_price / $item->get_quantity() ); ?>">
+									<input type="hidden" name="wps_rma_product_amount" class="wps_rma_product_amount" value="<?php echo esc_html( $price ); ?>">
 									<div class="wps-rma-product__wrap">
 										<?php
 										$is_visible        = $product && $product->is_visible();
@@ -202,9 +202,18 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 								</td>
 								<td class="product-quantity">
 								<?php
+								$allow_html = array(
+									'input' => array(
+										'type'     => array(),
+										'value'    => array(),
+										'class'    => array(),
+										'name'     => array(),
+										'disabled' => array(),
+									),
+								);
 								$qty_html = '<input type="number" disabled value="' . esc_html( $item_qty ) . '" class="wps_rma_return_product_qty" name="wps_rma_return_product_qty">';
 								echo // Refund form Quantity html.
-								apply_filters( 'wps_rma_change_quanity', $qty_html, $item_qty ); // phpcs:ignore
+								wp_kses( apply_filters( 'wps_rma_change_quanity', $qty_html, $item_qty ), $allow_html ); // phpcs:ignore
 								?>
 								</td>
 								<td class="product-total">
@@ -388,7 +397,7 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 	<?php
 } else {
 	if ( isset( $condition ) ) {
-		echo esc_html( $condition );
+		echo wp_kses_post( $condition );
 	} else {
 		echo esc_html__( 'Refund Request Can\'t make on this order', 'woo-refund-and-exchange-lite' );
 	}

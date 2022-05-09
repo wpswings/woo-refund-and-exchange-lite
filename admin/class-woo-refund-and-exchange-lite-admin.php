@@ -84,9 +84,8 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			wp_enqueue_style( 'wps-datatable-css', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/datatables/media/css/jquery.dataTables.min.css', array(), $this->version, 'all' );
 		}
 		if ( isset( $screen->id ) && 'shop_order' === $screen->id ) {
-			wp_enqueue_style( $this->plugin_name, WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/css/woo-refund-and-exchange-lite-order-edit-page.min.css', array(), $this->version, 'all' );
+			wp_enqueue_style( $this->plugin_name, WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/css/wps-order-edit-page-lite.scss.min.css', array(), $this->version, 'all' );
 		}
-
 	}
 
 	/**
@@ -183,6 +182,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			$wrael_menus =
 			// Add Sub Menu.
 			apply_filters( 'wps_add_plugins_menus_array', array() );
+
 			if ( is_array( $wrael_menus ) && ! empty( $wrael_menus ) ) {
 				foreach ( $wrael_menus as $wrael_key => $wrael_value ) {
 					add_submenu_page( 'wps-plugins', $wrael_value['name'], $wrael_value['name'], 'manage_options', $wrael_value['menu_link'], array( $wrael_value['instance'], $wrael_value['function'] ) );
@@ -440,8 +440,10 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 								}
 								if ( 'wps_rma_refund_rules_editor' === $wrael_genaral_setting['id'] ) {
 									update_option( 'wps_rma_refund_rules_editor', wp_kses_post( wp_unslash( $_POST[ $wrael_genaral_setting['id'] ] ) ) );
+								} elseif ( 'wps_rma_refund_form_css' === $wrael_genaral_setting['id'] ) {
+									update_option( 'wps_rma_refund_form_css', wp_kses_post( wp_unslash( $_POST[ $wrael_genaral_setting['id'] ] ) ) );
 								} else {
-									update_option( sanitize_text_field( wp_unslash( $wrael_genaral_setting['id'] ) ), is_array( $_POST[ $wrael_genaral_setting['id'] ] ) ? $this->wps_sanitize_array( wp_unslash( $_POST[ $wrael_genaral_setting['id'] ] ) ) : stripslashes( sanitize_text_field( wp_unslash( $_POST[ $wrael_genaral_setting['id'] ] ) ) ) );
+									update_option( sanitize_text_field( wp_unslash( $wrael_genaral_setting['id'] ) ), is_array( $_POST[ $wrael_genaral_setting['id'] ] ) ? map_deep( wp_unslash( $_POST[ $wrael_genaral_setting['id'] ] ), 'sanitize_text_field' ) : stripslashes( sanitize_text_field( wp_unslash( $_POST[ $wrael_genaral_setting['id'] ] ) ) ) );
 								}
 							} else {
 								update_option( sanitize_text_field( wp_unslash( $wrael_genaral_setting['id'] ) ), '' );
@@ -966,7 +968,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 
 		// Remove this order from request.
 		foreach ( $orders as $key => $order ) {
-			$order_id = ! empty( $order['post_id'] ) ? $order['post_id'] : false;
+			$order_id = ! empty( $order ) ? $order : false;
 			unset( $orders[ $key ] );
 			break;
 		}
@@ -1042,7 +1044,8 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 
 		// Remove this user from request.
 		foreach ( $users as $key => $user ) {
-			$user_id = ! empty( $user['user_id'] ) ? $user['user_id'] : false;
+
+			$user_id = ! empty( $user['ID'] ) ? $user['ID'] : false;
 			unset( $users[ $key ] );
 			break;
 		}
@@ -1121,40 +1124,77 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		if ( 'orders' === $type ) {
 			switch ( $status ) {
 				case 'pending':
-					$sql = "SELECT (`post_id`) FROM `{$wpdb->prefix}postmeta` WHERE `meta_key` LIKE 'ced_rnx_request_made' OR `meta_key` LIKE 'ced_rnx_return_product' OR `meta_key` OR 'ced_rnx_return_attachment' OR `meta_key` LIKE 'mwb_wrma_return_product' OR `meta_key` LIKE 'mwb_return_label_attachment_exchange_path' OR `meta_key` LIKE 'mwb_wrma_exchange_attachment' OR `meta_key` OR 'mwb_return_label_attachment_name' OR `meta_key` LIKE 'mwb_wrma_return_attachment_error' OR `meta_key` LIKE 'mwb_wrma_exchange_product' OR `meta_key` LIKE 'mwb_wrma_exchange_order' OR `meta_key` LIKE 'mwb_wrma_exchange_attachment_error' OR `meta_key` LIKE 'mwb_return_label_attachment_exchange_name' OR `meta_key` LIKE 'mwb_return_label_attachment_path' OR `meta_key` LIKE 'mwb_wrma_return_product'";
+					$post_meta_keys = array(
+						'ced_rnx_request_made',
+						'ced_rnx_return_product',
+						'ced_rnx_return_attachment',
+						'mwb_wrma_return_product',
+						'mwb_return_label_attachment_exchange_path',
+						'mwb_wrma_exchange_attachment',
+						'mwb_return_label_attachment_name',
+						'mwb_wrma_return_attachment_error',
+						'mwb_wrma_exchange_product',
+						'mwb_wrma_exchange_order',
+						'mwb_wrma_exchange_attachment_error',
+						'mwb_return_label_attachment_exchange_name',
+						'mwb_return_label_attachment_path',
+						'mwb_wrma_return_label_link',
+						'mwb_wrma_return_product',
+					);
+					$result = wc_get_orders(
+						array(
+							'type'     => 'shop_order',
+							'limit'    => - 1,
+							'meta_key' => $post_meta_keys, // phpcs:ignore
+							'return'   => 'ids',
+						)
+					);
 					break;
 				default:
-					$sql = false;
+					$result = false;
 					break;
 			}
 		} elseif ( 'users' === $type ) {
 			switch ( $status ) {
 				case 'pending':
-					$sql = "SELECT (`user_id`) FROM `{$wpdb->prefix}usermeta` WHERE `meta_key` = 'mwb_wrma_refund_wallet_coupon'";
+					$result = get_users(
+						array(
+							'limit'    => - 1,
+							'meta_key' => 'mwb_wrma_refund_wallet_coupon', // phpcs:ignore
+							'fields'   => array( 'ID' ),
+						)
+					);
 					break;
 
 				default:
-					$sql = false;
+					$result = false;
 					break;
 			}
 		} elseif ( 'order_messages' === $type ) {
 			switch ( $status ) {
 				case 'pending':
-					$sql = "SELECT * FROM `{$wpdb->prefix}options` WHERE `option_name` LIKE '%mwb_cutomer_order_msg%'";
+					$option_result = wp_load_alloptions();
+					$result        = array();
+					foreach ( $option_result as $option_key => $option_value ) {
+						if ( similar_text( 'mwb_cutomer_order_msg', $option_key ) === 21 ) {
+							$array_val = array(
+								'option_name'  => $option_key,
+								'option_value' => $option_value,
+							);
+							$result[]  = $array_val;
+						}
+					}
 					break;
 
 				default:
-					$sql = false;
+					$result = false;
 					break;
 			}
 		}
 
-		if ( empty( $sql ) ) {
+		if ( empty( $result ) ) {
 			return 0;
 		}
-
-		global $wpdb;
-		$result = $wpdb->get_results( $sql, ARRAY_A ); // @codingStandardsIgnoreLine.
 
 		if ( 'count' === $action ) {
 			$result = ! empty( $result ) ? count( $result ) : 0;
@@ -1202,8 +1242,6 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 
 	/** Add submenu in woocommerce setting */
 	public function wps_rma_lite_admin_menus() {
-		global $submenu;
-		$permalink = admin_url( 'admin.php?page=woo_refund_and_exchange_lite_menu' );
 		// phpcs:disable
 		$active_plugins          = get_option( 'active_plugins', array() );
 		$setting_name = '';
@@ -1212,12 +1250,20 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		} else {
 			$setting_name = __( 'Refund-Exchange Lite', 'woo-refund-and-exchange-lite' );
 		}
-		$submenu['woocommerce'][] = array(
-			'<div id="wps_wrma_config_menu">' . $setting_name . '</div>',
-			'manage_options',
-			$permalink,
-		);
+		add_submenu_page( 'woocommerce', $setting_name, $setting_name, 'manage_options', 'woo-refund-and-exchange-lite', array( $this, 'wps_rma_addsubmenu_woocommerce' ) );
 		// phpcs:enable
+	}
+
+	/**
+	 * This function is used to add submenu of subscription inside woocommerce.
+	 *
+	 * @since 1.2.0
+	 * @return void
+	 */
+	public function wps_rma_addsubmenu_woocommerce() {
+		$permalink = admin_url( 'admin.php?page=woo_refund_and_exchange_lite_menu' );
+		wp_safe_redirect( $permalink );
+		exit;
 	}
 
 	/**
@@ -1228,50 +1274,31 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	 * @param string $status Status filter currently applied to the plugin list.
 	 */
 	public function wps_rma_lite_upgrade_notice( $plugin_file, $plugin_data, $status ) {
-		?>
 
-		<tr class="plugin-update-tr active notice-warning notice-alt">
-			<td colspan="4" class="plugin-update colspanchange">
-				<div class="notice notice-success inline update-message notice-alt">
-					<div class='wps-notice-title wps-notice-section'>
-						<p><strong><?php esc_html_e( 'IMPORTANT NOTICE', 'woo-refund-and-exchange-lite' ); ?>:</strong></p>
+		$wps_rma_pending_orders_count     = $this->wps_rma_get_count( 'pending', 'count', 'orders' );
+		$wps_rma_pending_users_count      = $this->wps_rma_get_count( 'pending', 'count', 'users' );
+		$wps_rma_pending_order_msgs_count = $this->wps_rma_get_count( 'pending', 'count', 'order_messages' );
+		if ( ! empty( $wps_rma_pending_orders_count ) || ! empty( $wps_rma_pending_users_count ) || ! empty( $wps_rma_pending_order_msgs_count ) ) {
+			?>
+			<tr class="plugin-update-tr active notice-warning notice-alt">
+				<td  colspan="4" class="plugin-update colspanchange">
+					<div class="notice notice-warning inline update-message notice-alt">	
+						<p><b>
+							<?php esc_html_e( 'Please Click', 'woo-refund-and-exchange-lite' ); ?>
+							<a href="<?php echo esc_attr( admin_url( 'admin.php?page=woo_refund_and_exchange_lite_menu&wrael_tab=woo-refund-and-exchange-lite-general' ) . '' ); ?>"> here </a>
+							<?php esc_html_e( 'To Goto the Migration Page to the Start Migration', 'woo-refund-and-exchange-lite' ); ?>.
+						</b></p>
 					</div>
-					<div class='wps-notice-content wps-notice-section'>
-						<p><?php esc_html_e( 'From the update', 'woo-refund-and-exchange-lite' ); ?> <strong><?php esc_html_e( 'Version', 'woo-refund-and-exchange-lite' ); ?> 3.1.4</strong> <?php esc_html_e( 'onwards, the plugin and its support will be handled by', 'woo-refund-and-exchange-lite' ); ?> <strong>WP Swings</strong>.</p><p><strong>WP Swings</strong> <?php esc_html_e( 'is just our improvised and rebranded version with all quality solutions and help being the same, so no worries at your end.', 'woo-refund-and-exchange-lite' ); ?>
-						<?php esc_html_e( 'Please connect with us for all setup, support, and update related queries without hesitation', 'woo-refund-and-exchange-lite' ); ?>.</p>
-					</div>
-				</div>
-			</td>
-		</tr>
-		<tr class="plugin-update-tr active notice-warning notice-alt">
-			<td  colspan="4" class="plugin-update colspanchange">
-				<div class="notice notice-warning inline update-message notice-alt">
-					<p>
-						<?php esc_html_e( 'Heads up, The latest update includes some substantial changes across different areas of the plugin.', 'woo-refund-and-exchange-lite' ); ?>
-					</p>
-					<?php
-					$wps_rma_pending_orders_count     = $this->wps_rma_get_count( 'pending', 'count', 'orders' );
-					$wps_rma_pending_users_count      = $this->wps_rma_get_count( 'pending', 'count', 'users' );
-					$wps_rma_pending_order_msgs_count = $this->wps_rma_get_count( 'pending', 'count', 'order_messages' );
-					if ( ! empty( $wps_rma_pending_orders_count ) || ! empty( $wps_rma_pending_users_count ) || ! empty( $wps_rma_pending_order_msgs_count ) ) {
-						?>
-					<p><b>
-						<?php esc_html_e( 'Please Click', 'woo-refund-and-exchange-lite' ); ?>
-						<a href="<?php echo esc_attr( admin_url( 'admin.php?page=woo_refund_and_exchange_lite_menu&wrael_tab=woo-refund-and-exchange-lite-general' ) . '' ); ?>"> here </a>
-						<?php esc_html_e( 'To Goto the Migration Page to the Start Migration', 'woo-refund-and-exchange-lite' ); ?>.
-					</b></p>
-						<?php
-					}
-					?>
-				</div>
-			</td>
-		</tr>
+				</td>
+			</tr>
+			<?php
+		}
+		?>
 		<style>
 			.wps-notice-section > p:before {
 				content: none;
 			}
 		</style>
 		<?php
-
 	}
 }

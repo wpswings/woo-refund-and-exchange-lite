@@ -193,6 +193,7 @@ if ( ! function_exists( 'wps_wrma_format_price' ) ) {
 	 * @param string $currency_symbol .
 	 */
 	function wps_wrma_format_price( $price, $currency_symbol ) {
+		$price           = apply_filters( 'formatted_woocommerce_price', number_format( $price, wc_get_price_decimals(), wc_get_price_decimal_separator(), wc_get_price_thousand_separator() ), $price, wc_get_price_decimals(), wc_get_price_decimal_separator(), wc_get_price_thousand_separator() );
 		$price           = apply_filters( 'wps_rma_price_change_everywhere', $price );
 		$currency_pos    = get_option( 'woocommerce_currency_pos' );
 		switch ( $currency_pos ) {
@@ -818,48 +819,3 @@ if ( ! function_exists( 'wps_rma_lite_post_meta_data_migrate' ) ) {
 	}
 }
 
-/**
- * Order count.
- *
- * @param string  $status .
- * @param string  $action .
- * @param boolean $type .
- * @return $count
- */
-function get_count( $status = 'all', $action = 'count', $type = false ) {
-
-	if ( 'orders' === $type ) {
-		switch ( $status ) {
-			case 'pending':
-				$sql = "SELECT (`post_id`) FROM `wp_postmeta` WHERE `meta_key` LIKE '%ced_rnx_request_made%' OR `meta_key` LIKE '%ced_rnx_return_product%' OR `meta_key` OR '%ced_rnx_return_attachment%' OR `meta_key` LIKE '%mwb_wrma_return_product%' LIMIT 5";
-				break;
-			default:
-				$sql = false;
-				break;
-		}
-	} elseif ( 'users' === $type ) {
-		switch ( $status ) {
-			case 'pending':
-				$sql = "SELECT (`user_id`) FROM `wp_usermeta` WHERE `meta_key` = 'mwb_wrma_refund_wallet_coupon' LIMIT 5";
-				break;
-
-			default:
-				$sql = false;
-				break;
-		}
-	}
-
-	if ( empty( $sql ) ) {
-		return 0;
-	}
-
-	global $wpdb;
-	$result = $wpdb->get_results( $sql, ARRAY_A ); // @codingStandardsIgnoreLine.
-
-	if ( 'count' === $action ) {
-		$result = ! empty( $result ) ? count( $result ) : 0;
-	}
-	// $result = ! empty( $result ) ? count( $result ) : 0;
-
-	return $result;
-}

@@ -49,46 +49,46 @@
   box-sizing: border-box;
 }
 
-textarea, input[type=text],
-input[type=number],
-input[type=email], input[type=tel],
-input[type=url], input[type=password],
-input[type=search], .input-text {
+.wps-rma-form__wrapper textarea, .wps-rma-form__wrapper input[type=text],
+.wps-rma-form__wrapper input[type=number],
+.wps-rma-form__wrapper input[type=email], .wps-rma-form__wrapper input[type=tel],
+.wps-rma-form__wrapper input[type=url], .wps-rma-form__wrapper input[type=password],
+.wps-rma-form__wrapper input[type=search], .wps-rma-form__wrapper .input-text {
   background-color: transparent !important;
   border: 1px solid #ccc !important;
   box-shadow: none !important;
   padding: 10px 14px;
 }
 
-input[type=text]:focus,
-input[type=number]:focus,
-input[type=email]:focus,
-input[type=tel]:focus,
-input[type=url]:focus,
-.wps_order_msg_sub_containerinput[type=password]:focus,
-input[type=search]:focus,
-textarea:focus,
-a:focus,
+.wps-rma-form__wrapper input[type=text]:focus,
+.wps-rma-form__wrapper input[type=number]:focus,
+.wps-rma-form__wrapper input[type=email]:focus,
+.wps-rma-form__wrapper input[type=tel]:focus,
+.wps-rma-form__wrapper input[type=url]:focus,
+.wps_order_msg_sub_container input[type=password]:focus,
+.wps-rma-form__wrapper input[type=search]:focus,
+.wps-rma-form__wrapper textarea:focus,
+.wps-rma-form__wrapper a:focus,
 .input-text:focus {
   outline: none !important;
 }
 
-label {
+.wps-rma-form__wrapper label {
   margin-bottom: 8px;
   display: inline-block;
   line-height: 1.2;
 }
 
-h4 {
+.wps-rma-form__wrapper h4 {
   font-size: 18px !important;
 }
 
-.wps_rma_flex {
+.wps-rma-form__wrapper .wps_rma_flex {
   display: flex;
   flex-wrap: wrap;
 }
 
-select {
+.wps-rma-form__wrapper select {
   padding: 10px 14px;
 }
 
@@ -406,15 +406,6 @@ a.wps_order_send_msg_dismiss {
 
 .wps-order-msg__row {
   width: 100%;
-  max-width: calc(50% - 10px);
-}
-
-.wps-order-msg__row:nth-child(2n-1) {
-  margin-right: 10px;
-}
-
-.wps-order-msg__row:nth-child(2n) {
-  margin-left: 10px;
 }
 
 .wmb-order-admin__msg-container .wps_order_msg_sender {
