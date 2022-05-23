@@ -136,7 +136,6 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 								$wps_actual_price = $tax_exc;
 							}
 							$wps_total_actual_price += $wps_actual_price * $item_qty;
-							$price                   = apply_filters( 'formatted_woocommerce_price', number_format( $wps_actual_price / $item->get_quantity(), wc_get_price_decimals(), wc_get_price_decimal_separator(), wc_get_price_thousand_separator() ), $wps_actual_price / $item->get_quantity(), wc_get_price_decimals(), wc_get_price_decimal_separator(), wc_get_price_thousand_separator() );
 							$purchase_note           = get_post_meta( $product_id, '_purchase_note', true );
 							?>
 							<tr class="wps_rma_return_column" data-productid="<?php echo esc_html( $product_id ); ?>" data-variationid="<?php echo esc_html( $item['variation_id'] ); ?>" data-itemid="<?php echo esc_html( $item_id ); ?>">
@@ -145,7 +144,7 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 								do_action( 'wps_rma_add_extra_column_field_value', $item_id, $product_id );
 								?>
 								<td class="product-name">
-									<input type="hidden" name="wps_rma_product_amount" class="wps_rma_product_amount" value="<?php echo esc_html( $price ); ?>">
+									<input type="hidden" name="wps_rma_product_amount" class="wps_rma_product_amount" value="<?php echo esc_html( $wps_actual_price / $item->get_quantity() ); ?>">
 									<div class="wps-rma-product__wrap">
 										<?php
 										$is_visible        = $product && $product->is_visible();

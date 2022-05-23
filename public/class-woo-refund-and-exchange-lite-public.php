@@ -313,7 +313,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 						$format       = get_option( 'date_format' );
 						$approve_date = date_format( $appdate, $format );
 						?>
-							<p><b><?php esc_html_e( 'The above product Refund request is cancelled on', 'woo-refund-and-exchange-lite' ); ?> <?php echo esc_html( $approve_date ); ?>.</b></p>
+							<p><b><?php esc_html_e( 'The above product Refund request is approved on', 'woo-refund-and-exchange-lite' ); ?> <?php echo esc_html( $approve_date ); ?>.</b></p>
 							<?php
 					}
 
