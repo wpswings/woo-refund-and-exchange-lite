@@ -392,7 +392,7 @@ class Woo_Refund_And_Exchange_Lite {
 	 */
 	public static function is_enbale_usage_tracking() {
 		$check_is_enable = get_option( 'wrael_enable_tracking', false );
-		return ! empty( $check_is_enable ) ? true : false;
+		return 'on' === $check_is_enable ? true : false;
 	}
 
 	/**

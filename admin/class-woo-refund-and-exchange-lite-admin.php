@@ -179,6 +179,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		global $submenu;
 		if ( empty( $GLOBALS['admin_page_hooks']['wps-plugins'] ) ) {
 			add_menu_page( esc_html( 'WP Swings' ), esc_html( 'WP Swings' ), 'manage_options', 'wps-plugins', array( $this, 'wps_plugins_listing_page' ), WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/image/WPS_Grey.png', 15 );
+			add_submenu_page( 'wps-plugins', 'Home', 'Home', 'manage_options', 'home', array( $this, 'wps_rma_welcome_callback_function' ) );
 			$wrael_menus =
 			// Add Sub Menu.
 			apply_filters( 'wps_add_plugins_menus_array', array() );
@@ -188,7 +189,30 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 					add_submenu_page( 'wps-plugins', $wrael_value['name'], $wrael_value['name'], 'manage_options', $wrael_value['menu_link'], array( $wrael_value['instance'], $wrael_value['function'] ) );
 				}
 			}
+		} else {
+			$is_home = false;
+			if ( ! empty( $submenu['wps-plugins'] ) ) {
+				foreach ( $submenu['wps-plugins'] as $key => $value ) {
+					if ( 'Home' === $value[0] ) {
+						$is_home = true;
+					}
+				}
+				if ( ! $is_home ) {
+					add_submenu_page( 'wps-plugins', 'Home', 'Home', 'manage_options', 'home', array( $this, 'wps_rma_welcome_callback_function' ), 1 );
+				}
+			}
 		}
+	}
+
+	/**
+	 *
+	 * Adding the default menu into the WordPress menu
+	 *
+	 * @name wpswings_callback_function
+	 * @since 4.0.3
+	 */
+	public function wps_rma_welcome_callback_function() {
+		include WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/woo-refund-and-exchange-lite-welcome.php';
 	}
 
 	/**

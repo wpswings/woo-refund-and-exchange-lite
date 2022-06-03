@@ -352,6 +352,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			$to       = $order->get_billing_email();
 			if ( 'admin' === $msg_type ) {
 				$sender = 'Shop Manager';
+				$to     = get_option( 'woocommerce_email_from_address', get_option( 'admin_email' ) );
 			} else {
 				$sender = 'Customer';
 			}
