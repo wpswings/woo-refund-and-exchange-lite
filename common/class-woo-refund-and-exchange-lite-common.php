@@ -476,16 +476,16 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	 */
 	public function wps_rma_woocommerce_get_order_item_totals( $results, $args ) {
 
-		if ( is_admin() || ! is_account_page() ) {
-			return $results;
-		}
-		$wps_refund = get_post_meta( $args['parent'], 'wps_rma_refund_info', true );
-		foreach ( $results as $key => $value ) {
-			if ( is_object( $value ) && 'shop_order_refund' === $value->get_type() ) {
-				$refund_amount = floatval( $value->get_amount() );
-				if ( empty( $refund_amount ) ) {
-					if ( is_array( $wps_refund ) && ! empty( $wps_refund ) && in_array( $value->get_id(), $wps_refund, true ) ) {
-						unset( $results[ $key ] );
+		if ( is_account_page() || ( function_exists( 'get_current_screen' ) && isset( get_current_screen()->id ) && 'shop_order' === get_current_screen()->id ) ) {
+			$wps_refund = get_post_meta( $args['parent'], 'wps_rma_refund_info', true );
+
+			foreach ( $results as $key => $value ) {
+				if ( is_object( $value ) && 'shop_order_refund' === $value->get_type() ) {
+					$refund_amount = floatval( $value->get_amount() );
+					if ( empty( $refund_amount ) ) {
+						if ( is_array( $wps_refund ) && ! empty( $wps_refund ) && in_array( $value->get_id(), $wps_refund, true ) ) {
+							unset( $results[ $key ] );
+						}
 					}
 				}
 			}

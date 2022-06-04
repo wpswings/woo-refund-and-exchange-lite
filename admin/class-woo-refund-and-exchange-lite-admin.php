@@ -134,6 +134,24 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				);
 				return;
 			}
+			wp_register_script( $this->plugin_name . 'migration-admin-js', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/js/woo-refund-and-exchange-lite-migration-admin.js', array( 'jquery' ), $this->version, false );
+			wp_localize_script(
+				$this->plugin_name . 'migration-admin-js',
+				'wrael_admin_migration_param',
+				array(
+					// Migration Code.
+					'wps_rma_callback'                 => 'wps_rma_ajax_callbacks',
+					'wps_rma_pending_orders'           => $this->wps_rma_get_count( 'pending', 'result', 'orders' ),
+					'wps_rma_pending_orders_count'     => $this->wps_rma_get_count( 'pending', 'count', 'orders' ),
+					'wps_rma_pending_users'            => $this->wps_rma_get_count( 'pending', 'result', 'users' ),
+					'wps_rma_pending_users_count'      => $this->wps_rma_get_count( 'pending', 'count', 'users' ),
+					'wps_rma_pending_order_msgs'       => $this->wps_rma_get_count( 'pending', 'result', 'order_messages' ),
+					'wps_rma_pending_order_msgs_count' => $this->wps_rma_get_count( 'pending', 'count', 'order_messages' ),
+				)
+			);
+			wp_enqueue_script( $this->plugin_name . 'migration-admin-js' );
+			wp_enqueue_script( $this->plugin_name . '-swal', plugin_dir_url( __FILE__ ) . 'js/wps-rma-swal.js', array( 'jquery' ), $this->version, false );
+			wp_enqueue_script( $this->plugin_name . '-swal2', plugin_dir_url( __FILE__ ) . 'js/wps-rma-swal2.js', array( 'jquery' ), $this->version, false );
 		}
 		if ( isset( $screen->id ) && 'wp-swings_page_woo_refund_and_exchange_lite_menu' === $screen->id || 'shop_order' === $screen->id || 'plugins' === $screen->id ) {
 			wp_enqueue_script( 'wps-wrael-select2', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/select-2/woo-refund-and-exchange-lite-select2.js', array( 'jquery' ), time(), false );
@@ -154,19 +172,9 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 					'wrael_admin_param_location' => admin_url( 'admin.php?page=woo_refund_and_exchange_lite_menu&wrael_tab=woo-refund-and-exchange-lite-general' ),
 					'check_pro_active'           => esc_html( $pro_active ),
 					'wps_policy_already_exist'   => esc_html__( 'Policy already exist', 'woo-refund-and-exchange-lite' ),
-					// Migration Code.
-					'wps_rma_callback'                 => 'wps_rma_ajax_callbacks',
-					'wps_rma_pending_orders'           => $this->wps_rma_get_count( 'pending', 'result', 'orders' ),
-					'wps_rma_pending_orders_count'     => $this->wps_rma_get_count( 'pending', 'count', 'orders' ),
-					'wps_rma_pending_users'            => $this->wps_rma_get_count( 'pending', 'result', 'users' ),
-					'wps_rma_pending_users_count'      => $this->wps_rma_get_count( 'pending', 'count', 'users' ),
-					'wps_rma_pending_order_msgs'       => $this->wps_rma_get_count( 'pending', 'result', 'order_messages' ),
-					'wps_rma_pending_order_msgs_count' => $this->wps_rma_get_count( 'pending', 'count', 'order_messages' ),
 				)
 			);
 			wp_enqueue_script( $this->plugin_name . 'admin-js' );
-			wp_enqueue_script( $this->plugin_name . '-swal', plugin_dir_url( __FILE__ ) . 'js/wps-rma-swal.js', array( 'jquery' ), $this->version, false );
-			wp_enqueue_script( $this->plugin_name . '-swal2', plugin_dir_url( __FILE__ ) . 'js/wps-rma-swal2.js', array( 'jquery' ), $this->version, false );
 		}
 	}
 
@@ -946,24 +954,6 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	}
 
 	/**
-	 * Hide refund label from order edit page.
-	 * Used to Remove the 0 amount refund .
-	 */
-	public function wps_rma_refund_info() {
-		$check_ajax = check_ajax_referer( 'wps_rma_ajax_seurity', 'security_check' );
-		if ( $check_ajax ) {
-			if ( isset( $_POST['refund_id'] ) && isset( $_POST['order_id'] ) && ! empty( $_POST['refund_id'] ) && ! empty( $_POST['order_id'] ) ) {
-				$refund_id  = sanitize_text_field( wp_unslash( $_POST['refund_id'] ) );
-				$order_id   = sanitize_text_field( wp_unslash( $_POST['order_id'] ) );
-				$mwb_refund = get_post_meta( $order_id, 'wps_rma_refund_info', true );
-				if ( is_array( $mwb_refund ) && in_array( $refund_id, $mwb_refund ) ) {
-					echo true;
-				}
-			}
-		}
-		wp_die();
-	}
-	/**
 	 * Ajax Call back.
 	 */
 	public function wps_rma_ajax_callbacks() {
@@ -1144,7 +1134,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	 * @return $result .
 	 */
 	public function wps_rma_get_count( $status = 'all', $action = 'count', $type = false ) {
-		global $wpdb;
+
 		if ( 'orders' === $type ) {
 			switch ( $status ) {
 				case 'pending':
@@ -1221,7 +1211,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		}
 
 		if ( 'count' === $action ) {
-			$result = ! empty( $result ) ? count( $result ) : 0;
+			$result = ! empty( $result ) ? count( $result ) : 1;
 		}
 
 		return $result;

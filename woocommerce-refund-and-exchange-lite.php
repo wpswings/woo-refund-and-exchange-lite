@@ -347,4 +347,3 @@ if ( $activated ) {
 		add_action( 'admin_notices', 'wps_rma_plugin_error_notice_lite' );
 	}
 }
-
