@@ -1211,7 +1211,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		}
 
 		if ( 'count' === $action ) {
-			$result = ! empty( $result ) ? count( $result ) : 1;
+			$result = ! empty( $result ) ? count( $result ) : 0;
 		}
 
 		return $result;
