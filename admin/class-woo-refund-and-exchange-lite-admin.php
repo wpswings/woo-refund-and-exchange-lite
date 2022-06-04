@@ -140,7 +140,9 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				'wrael_admin_migration_param',
 				array(
 					// Migration Code.
+					'ajaxurl'                          => admin_url( 'admin-ajax.php' ),
 					'wps_rma_callback'                 => 'wps_rma_ajax_callbacks',
+					'wps_rma_nonce'                    => wp_create_nonce( 'wps_rma_ajax_seurity' ),
 					'wps_rma_pending_orders'           => $this->wps_rma_get_count( 'pending', 'result', 'orders' ),
 					'wps_rma_pending_orders_count'     => $this->wps_rma_get_count( 'pending', 'count', 'orders' ),
 					'wps_rma_pending_users'            => $this->wps_rma_get_count( 'pending', 'result', 'users' ),

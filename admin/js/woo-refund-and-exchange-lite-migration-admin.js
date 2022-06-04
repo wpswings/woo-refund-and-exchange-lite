@@ -1,17 +1,17 @@
 // Migration code
 jQuery(document).ready( function($) {
 
-	const ajaxUrl  		 = wrael_admin_param.ajaxurl;
-	const nonce    		 = wrael_admin_param.wps_rma_nonce;
-	const action          = wrael_admin_param.wps_rma_callback;
+	const ajaxUrl  		 = wrael_admin_migration_param.ajaxurl;
+	const nonce    		 = wrael_admin_migration_param.wps_rma_nonce;
+	const action          = wrael_admin_migration_param.wps_rma_callback;
 	
-	const pending_orders  = wrael_admin_param.wps_rma_pending_orders;
-	const pending_orders_count  = wrael_admin_param.wps_rma_pending_orders_count;
-	const rma_pending_users  = wrael_admin_param.wps_rma_pending_users;
-	const rma_pending_users_count  = wrael_admin_param.wps_rma_pending_users_count;
+	const pending_orders  = wrael_admin_migration_param.wps_rma_pending_orders;
+	const pending_orders_count  = wrael_admin_migration_param.wps_rma_pending_orders_count;
+	const rma_pending_users  = wrael_admin_migration_param.wps_rma_pending_users;
+	const rma_pending_users_count  = wrael_admin_migration_param.wps_rma_pending_users_count;
 
-	const rma_pending_order_msgs = wrael_admin_param.wps_rma_pending_order_msgs
-	const rma_pending_order_msgs_count = wrael_admin_param.wps_rma_pending_order_msgs_count
+	const rma_pending_order_msgs = wrael_admin_migration_param.wps_rma_pending_order_msgs
+	const rma_pending_order_msgs_count = wrael_admin_migration_param.wps_rma_pending_order_msgs_count
 
 	/* Close Button Click */
 	jQuery( document ).on( 'click','#wps_rma_migration_start-button',function(e){
@@ -149,7 +149,7 @@ jQuery(document).ready( function($) {
 
 var wps_rma_migration_success = function() {
 	
-	if ( wrael_admin_param.wps_rma_pending_orders_count != 0 || wrael_admin_param.wps_rma_pending_users_count != 0 || wrael_admin_param.wps_rma_pending_order_msgs_count != 0 ) {
+	if ( wrael_admin_migration_param.wps_rma_pending_orders_count != 0 || wrael_admin_migration_param.wps_rma_pending_users_count != 0 || wrael_admin_migration_param.wps_rma_pending_order_msgs_count != 0 ) {
 		jQuery( "#wps_rma_migration_start-button" ).click();
 		jQuery( "#wps_rma_migration_start-button" ).show();
 	}else{
