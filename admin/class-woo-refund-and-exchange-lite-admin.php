@@ -1019,7 +1019,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				}
 				$wps_get_post = get_post( $order_id );
 				if ( ! empty( $wps_get_post ) && isset( $wps_get_post->post_status ) && in_array( $wps_get_post->post_status, array( 'wc-refund-cancelled', 'wc-refund-approved', 'wc-refund-requested' ), true ) ) {
-					$value                     = str_replace( 'wc-refund-cancelled', 'wc-return-cancelled', $value );
+					$value                     = str_replace( 'wc-refund-cancelled', 'wc-return-cancelled', $wps_get_post->post_status );
 					$value                     = str_replace( 'wc-refund-approved', 'wc-return-approved', $value );
 					$value                     = str_replace( 'wc-refund-requested', 'wc-return-requested', $value );
 					$wps_get_post->post_status = $value;
