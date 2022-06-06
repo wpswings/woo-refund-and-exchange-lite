@@ -1107,7 +1107,6 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 					update_post_meta( $order_id, 'wps_cutomer_order_msg', $get_messages );
 				}
 				delete_option( $order_id . '-mwb_cutomer_order_msg' );
-				update_user_meta( $order_id, 'wps_rma_migrated', true );
 
 			} catch ( \Throwable $th ) {
 				wp_die( esc_html( $th->getMessage() ) );
@@ -1146,13 +1145,46 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 						'mwb_wrma_return_label_link',
 						'mwb_wrma_return_product',
 					);
+					register_post_status(
+						'wc-refund-requested',
+						array(
+							'label'                     => 'Refund Requested',
+							'public'                    => true,
+							'exclude_from_search'       => false,
+							'show_in_admin_all_list'    => true,
+							'show_in_admin_status_list' => true, /* translators: %s: search term */
+							'label_count'               => _n_noop( 'Refund Requested <span class="count">(%s)</span>', 'Refund Requested <span class="count">(%s)</span>', 'woo-refund-and-exchange-lite' ),
+						)
+					);
+					register_post_status(
+						'wc-refund-approved',
+						array(
+							'label'                     => 'Refund Approved',
+							'public'                    => true,
+							'exclude_from_search'       => false,
+							'show_in_admin_all_list'    => true,
+							'show_in_admin_status_list' => true, /* translators: %s: search term */
+							'label_count'               => _n_noop( 'Refund Approved <span class="count">(%s)</span>', 'Refund Approved <span class="count">(%s)</span>', 'woo-refund-and-exchange-lite' ),
+						)
+					);
+					register_post_status(
+						'wc-refund-cancelled',
+						array(
+							'label'                     => 'Refund Cancelled',
+							'public'                    => true,
+							'exclude_from_search'       => false,
+							'show_in_admin_all_list'    => true,
+							'show_in_admin_status_list' => true, /* translators: %s: search term */
+							'label_count'               => _n_noop( 'Refund Cancelled <span class="count">(%s)</span>', 'Refund Cancelled <span class="count">(%s)</span>', 'woo-refund-and-exchange-lite' ),
+						)
+					);
 					$result = wc_get_orders(
 						array(
-							'type'        => 'shop_order',
-							'numberposts'       => - 1,
-							'meta_key'    => $post_meta_keys, // phpcs:ignore
-							'status' => array( 'publish', 'draft', 'trash', 'wc-pending', 'wc-processing', 'wc-on-hold', 'wc-completed', 'wc-cancelled', 'wc-refunded', 'wc-failed', 'wc-refund-requested', 'wc-refund-approved', 'wc-refund-cancelled', 'wc-exchange-request', 'wc-exchange-approve', 'wc-exchange-cancel', 'wc-partial-cancel', 'wc-return-requested', 'wc-return-approved', 'wc-return-cancelled' ),
-							'return'      => 'ids',
+							'type'     => 'shop_order',
+							'limit'    => - 1,
+							'meta_key' => $post_meta_keys, // phpcs:ignore
+							'status'   => array( 'publish', 'draft', 'trash', 'wc-pending', 'wc-processing', 'wc-on-hold', 'wc-completed', 'wc-cancelled', 'wc-refunded', 'wc-failed', 'wc-refund-requested', 'wc-refund-approved', 'wc-refund-cancelled', 'wc-exchange-request', 'wc-exchange-approve', 'wc-exchange-cancel', 'wc-partial-cancel', 'wc-return-requested', 'wc-return-approved', 'wc-return-cancelled' ),
+							'return'   => 'ids',
 						)
 					);
 					break;
@@ -1184,8 +1216,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 					foreach ( $option_result as $option_key => $option_value ) {
 						if ( similar_text( 'mwb_cutomer_order_msg', $option_key ) === 21 ) {
 							$array_val = array(
-								'option_name'  => $option_key,
-								'option_value' => $option_value,
+								'option_name' => $option_key,
 							);
 							$result[]  = $array_val;
 						}
