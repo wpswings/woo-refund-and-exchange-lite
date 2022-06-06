@@ -70,7 +70,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			);
 			return;
 		}
-		if ( isset( $screen->id ) && 'wp-swings_page_woo_refund_and_exchange_lite_menu' === $screen->id ) {
+		if ( isset( $screen->id ) && 'wp-swings_page_woo_refund_and_exchange_lite_menu' === $screen->id || 'wp-swings_page_home' === $screen->id ) {
 
 			wp_enqueue_style( 'wps-wrael-select2-css', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/select-2/woo-refund-and-exchange-lite-select2.css', array(), time(), 'all' );
 
@@ -155,7 +155,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			wp_enqueue_script( $this->plugin_name . '-swal', plugin_dir_url( __FILE__ ) . 'js/wps-rma-swal.js', array( 'jquery' ), $this->version, false );
 			wp_enqueue_script( $this->plugin_name . '-swal2', plugin_dir_url( __FILE__ ) . 'js/wps-rma-swal2.js', array( 'jquery' ), $this->version, false );
 		}
-		if ( isset( $screen->id ) && 'wp-swings_page_woo_refund_and_exchange_lite_menu' === $screen->id || 'shop_order' === $screen->id || 'plugins' === $screen->id ) {
+		if ( isset( $screen->id ) && 'wp-swings_page_woo_refund_and_exchange_lite_menu' === $screen->id || 'shop_order' === $screen->id || 'plugins' === $screen->id || 'wp-swings_page_home' === $screen->id ) {
 			wp_enqueue_script( 'wps-wrael-select2', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/select-2/woo-refund-and-exchange-lite-select2.js', array( 'jquery' ), time(), false );
 			wp_enqueue_script( 'wps-wrael-metarial-js', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/material-design/material-components-web.min.js', array(), time(), false );
 			wp_enqueue_script( 'wps-wrael-metarial-js2', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/material-design/material-components-v5.0-web.min.js', array(), time(), false );
@@ -395,20 +395,6 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				),
 			),
 		);
-		$wrael_settings_general =
-		// To extend the general setting.
-		apply_filters( 'wps_rma_general_setting_extend', $wrael_settings_general );
-		$wrael_settings_general[] = array(
-			'title'   => esc_html__( 'Enable Tracking', 'woo-refund-and-exchange-lite' ),
-			'type'    => 'radio-switch',
-			'id'      => 'wrael_enable_tracking',
-			'value'   => get_option( 'wrael_enable_tracking' ),
-			'class'   => 'wrael-radio-switch-class',
-			'options' => array(
-				'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
-				'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
-			),
-		);
 		$wrael_settings_general[] = array(
 			'title'   => esc_html__( 'Enable to Show Bank Details Field For Manual Refund', 'woo-refund-and-exchange-lite' ),
 			'type'    => 'radio-switch',
@@ -420,6 +406,9 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 			),
 		);
+		$wrael_settings_general   =
+		// To extend the general setting.
+		apply_filters( 'wps_rma_general_setting_extend', $wrael_settings_general );
 		$wrael_settings_general[] = array(
 			'type'        => 'button',
 			'id'          => 'wps_rma_save_general_setting',
@@ -1159,10 +1148,11 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 					);
 					$result = wc_get_orders(
 						array(
-							'type'     => 'shop_order',
-							'limit'    => - 1,
-							'meta_key' => $post_meta_keys, // phpcs:ignore
-							'return'   => 'ids',
+							'type'        => 'shop_order',
+							'numberposts'       => - 1,
+							'meta_key'    => $post_meta_keys, // phpcs:ignore
+							'status' => array( 'publish', 'draft', 'trash', 'wc-pending', 'wc-processing', 'wc-on-hold', 'wc-completed', 'wc-cancelled', 'wc-refunded', 'wc-failed', 'wc-refund-requested', 'wc-refund-approved', 'wc-refund-cancelled', 'wc-exchange-request', 'wc-exchange-approve', 'wc-exchange-cancel', 'wc-partial-cancel', 'wc-return-requested', 'wc-return-approved', 'wc-return-cancelled' ),
+							'return'      => 'ids',
 						)
 					);
 					break;

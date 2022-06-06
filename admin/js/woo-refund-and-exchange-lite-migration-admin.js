@@ -13,6 +13,7 @@ jQuery(document).ready( function($) {
 	const rma_pending_order_msgs = wrael_admin_migration_param.wps_rma_pending_order_msgs
 	const rma_pending_order_msgs_count = wrael_admin_migration_param.wps_rma_pending_order_msgs_count
 
+	console.log(pending_orders	);
 	/* Close Button Click */
 	jQuery( document ).on( 'click','#wps_rma_migration_start-button',function(e){
 		e.preventDefault();
