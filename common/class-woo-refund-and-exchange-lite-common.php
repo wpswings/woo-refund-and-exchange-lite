@@ -484,6 +484,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 					$refund_amount = floatval( $value->get_amount() );
 					if ( empty( $refund_amount ) ) {
 						if ( is_array( $wps_refund ) && ! empty( $wps_refund ) && in_array( $value->get_id(), $wps_refund, true ) ) {
+
 							unset( $results[ $key ] );
 						}
 					}

@@ -135,10 +135,6 @@ jQuery(document).ready( function($) {
 			if( ! jQuery.isEmptyObject(users) ) {
 				startImportUsers(users);
 			} else {
-				// All users imported!
-				// Swal.fire({
-				// 	title   : 'All of the Data are Migrated successfully!',
-				// });
 				window.location.reload();
 			}
 		}, function(error) {
