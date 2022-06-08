@@ -196,6 +196,10 @@ div.wps_order_msg_single_attachment a .wps_order_msg_attachment_thumbnail {
   margin-right: 0 !important;
 }
 
+#wps_rma_stock_button_wrapper {
+  margin-top: 5px;
+}
+
 @media only screen and (max-width: 575px) {
   .wps-order-msg__row {
     max-width: 100%;

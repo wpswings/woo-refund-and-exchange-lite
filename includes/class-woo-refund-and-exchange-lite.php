@@ -228,8 +228,6 @@ class Woo_Refund_And_Exchange_Lite {
 		// Save policies setting.
 		$this->loader->add_action( 'wps_rma_settings_saved_notice', $wrael_plugin_admin, 'wps_rma_save_policies_setting' );
 
-		$this->loader->add_action( 'wp_ajax_wps_rma_refund_info', $wrael_plugin_admin, 'wps_rma_refund_info' );
-
 		$this->loader->add_action( 'wp_ajax_wps_rma_refund_amount', $wrael_plugin_admin, 'wps_rma_refund_amount' );
 
 		$this->loader->add_action( 'wp_ajax_wps_rma_ajax_callbacks', $wrael_plugin_admin, 'wps_rma_ajax_callbacks' );
@@ -392,7 +390,7 @@ class Woo_Refund_And_Exchange_Lite {
 	 */
 	public static function is_enbale_usage_tracking() {
 		$check_is_enable = get_option( 'wrael_enable_tracking', false );
-		return ! empty( $check_is_enable ) ? true : false;
+		return 'on' === $check_is_enable ? true : false;
 	}
 
 	/**

@@ -130,7 +130,6 @@ if ( ! function_exists( 'wps_rma_lite_send_order_msg_callback' ) ) {
 	 * @link http://www.wpswings.com/
 	 */
 	function wps_rma_lite_send_order_msg_callback( $order_id, $msg, $sender, $to ) {
-		$flag       = false;
 		$filename   = array();
 		$attachment = array();
 		if ( isset( $_FILES['wps_order_msg_attachment']['tmp_name'] ) && ! empty( $_FILES['wps_order_msg_attachment']['tmp_name'] ) ) {
@@ -146,18 +145,16 @@ if ( ! function_exists( 'wps_rma_lite_send_order_msg_callback' ) ) {
 						if ( ! file_exists( $directory ) ) {
 							mkdir( $directory, 0755, true );
 						}
-						$sourcepath             = sanitize_text_field( wp_unslash( $_FILES['wps_order_msg_attachment']['tmp_name'][ $i ] ) );
-						$f_name                 = isset( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ? sanitize_text_field( wp_unslash( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ) : '';
-						$targetpath             = $directory . '/' . $order_id . '-' . $f_name;
-						$attachment[ $i ]       = $targetpath;
-						$filename[ $i ]['name'] = isset( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ? sanitize_text_field( wp_unslash( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ) : '';
-						$file_type              = isset( $_FILES['wps_order_msg_attachment']['type'][ $i ] ) ? sanitize_text_field( wp_unslash( $_FILES['wps_order_msg_attachment']['type'][ $i ] ) ) : '';
+						$sourcepath       = sanitize_text_field( wp_unslash( $_FILES['wps_order_msg_attachment']['tmp_name'][ $i ] ) );
+						$f_name           = isset( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ? sanitize_text_field( wp_unslash( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ) : '';
+						$targetpath       = $directory . '/' . $order_id . '-' . $f_name;
+						$file_type        = isset( $_FILES['wps_order_msg_attachment']['type'][ $i ] ) ? sanitize_text_field( wp_unslash( $_FILES['wps_order_msg_attachment']['type'][ $i ] ) ) : '';
 						if ( 'image/png' === $file_type || 'image/jpeg' === $file_type || 'image/jpg' === $file_type ) {
 							$filename[ $i ] ['img'] = true;
-						} else {
-							$filename[ $i ]['img'] = false;
+							$filename[ $i ]['name'] = isset( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ? sanitize_text_field( wp_unslash( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ) : '';
+							$attachment[ $i ]       = $targetpath;
+							move_uploaded_file( $sourcepath, $targetpath );
 						}
-						move_uploaded_file( $sourcepath, $targetpath );
 					}
 				}
 			}

@@ -113,15 +113,14 @@ jQuery( document ).on( 'ready', function(){
 					success: function(response) 
 					{
 						// Start redirect page countdown on refund request form
-						if ( window.location.href.indexOf('refund-request-form') > -1 ) {
-							var timeleft = 10;
-							var downloadTimer = setInterval(function(){
-								if(timeleft >= 0){
-									$('#countdownTimer').html( timeleft );
-								}
-								timeleft -= 1;
-							}, 1000);
-						}
+						var timeleft = 10;
+						var downloadTimer = setInterval(function(){
+							if(timeleft >= 0){
+								$('#countdownTimer').html( timeleft );
+							}
+							timeleft -= 1;
+						}, 1000);
+
 						// Start redirect page countdown on refund request form
 						$('#wps_rma_return_alert').removeClass('woocommerce-error');
 						$('#wps_rma_return_alert').addClass('woocommerce-message');

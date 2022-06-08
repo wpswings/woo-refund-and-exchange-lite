@@ -1,40 +1,40 @@
-=== Return Refund and Exchange For WooCommerce ===
-Contributors: WP Swings
+=== Return Refund and Exchange For WooCommerce - Create A Simple Warranty Management System RMA with Exchange, Wallet & Cancel Order Features ===
+Contributors: wpswings
 Donate link: https://wpswings.com/
-Tags: return, refund, woocommerce, exchange, RMA
-Requires at least: 4.0
-Tested up to: 5.9
-WC requires at least: 3.0.0
-WC tested up to: 6.2.0
-Stable tag: 4.0.0
+Tags: return, rma plugin, product return system, woocommerce, warranty
+Requires at least: 4.6
+Tested up to: 6.0.0
+WC requires at least: 4.0
+WC tested up to: 6.5.1
+Stable tag: 4.0.3
 Requires PHP: 5.6
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 
-Provide an easy refund service and increase customer satisfaction with this Return and Refund Management plugin.
+Provide an easy refund service and increase customer satisfaction with WooCommerce Return Refund and Exchange Warranty Management Plugin.
+
 
 == Description ==
 
-***HIGHEST-RATED REFUND AND EXCHANGE MANAGEMENT PLUGIN THAT LIFTS CUSTOMER SATISFACTION***
+**HIGHEST-RATED REFUND AND EXCHANGE MANAGEMENT PLUGIN THAT LIFTS CUSTOMER SATISFACTION. GET RETURN, REFUND AND EXCHANGE RMA PLUGIN TO CREATE A SIMPLE WARRANTY MANAGEMENT SYSTEM WITH EXCHANGE, WALLET AND CANCEL ORDER FEATURES**
 
-Return Refund and Exchange for WooCommerce lets you create a simple refund management system stuffed with the organized refund, exchange, wallet, and cancel order features. It eliminates on-call complaints and helps in managing returned stock. Customers can request full or partial refunds (based on return policy). The whole process goes under a dedicated and streamlined mailing system that keeps both parties on the same note. Ultimately, it leads to high customer satisfaction.
+Return Refund and Exchange for WooCommerce lets you create a simple warranty management system stuffed with the organized refund, exchange, wallet, and cancel order features. It eliminates on-call complaints and helps in managing returned stock. Customers can request full or partial refunds (based on return policy). The whole process goes under a dedicated and streamlined mailing system that keeps both parties on the same note. Ultimately, it leads to high customer satisfaction.
 
 ***
 >**IMPORTANT NOTICE:**
 
->_**From this update Version 3.1.4 onwards, the plugin and its support will be handled by [**WP Swings**](https://wpswings.com/?utm_source=wpswings-official&utm_medium=rma-org-page&utm_campaign=official).**_
+>_**From this update Version 3.1.4 onwards, the RMA plugin and its support will be handled by [**WP Swings**](https://wpswings.com/?utm_source=wpswings-official&utm_medium=rma-org-page&utm_campaign=official).**_
 
 >_**WP Swings is just our improvised and rebranded version with all quality solutions and help being the same, so no worries at your end. Please [**connect with us**](https://wpswings.com/contact-us/?utm_source=wpswings-rma-pro-notice&utm_medium=rma-org-page&utm_campaign=notice) for all setup, support, and update related queries without hesitation."**_
-
 
 ***
 [youtube https://www.youtube.com/watch?v=z0kG75E60TI&w=560&h=315&rel=0]
 
 
-== WITH THE RETURN REFUND AND EXCHANGE FOR WOOCOMMERCE PLUGIN YOU CAN: ==
+== WITH THE WOOCOMMERCE REFUND AND EXCHANGE WITH RMA PLUGIN YOU CAN: ==
 
-* Return an order after delivery
+* Return an order after delivery 
 * Easily handle the tax on the refund products
 * Allow customers to add a reason for a refund
 * Set multiple reasons for a product refund
@@ -43,12 +43,12 @@ Return Refund and Exchange for WooCommerce lets you create a simple refund manag
 * Customize the refund button text
 * Set the time period for refund request generation
 * Enable refund requests for selected order statuses
-* Create a dedicated mailing system for refund management
+* Create a dedicated mailing system for warranty management
 * Add predefined elements in email content with shortcodes
 * Communicate with customers through messages and Emails
 * Admin can add the shortcode for order_id in the emails to track down the customer from whom refund and exchange request is made
 * Serve the full RMA features to multilingual buyers (internationally) with *WPML translation*.
-* Manage return and refund features for Cash on delivery(COD) buyers.
+* Manage woocommerce returns and exchanges features for Cash on delivery(COD) buyers.
 
 == PLUGIN MEETS YOUR REQUIREMENT, SO ==
 [**Download Now**](https://downloads.wordpress.org/plugin/woo-refund-and-exchange-lite.zip)
@@ -86,29 +86,35 @@ Check out [**Return Refund and Exchange For WooCommerce Knowledge Base**](https:
 
 == LIVE DEMO OF RETURN REFUND AND EXCHANGE FOR WOOCOMMERCE ==
 
-* [**Return Refund & Exchange For WooCommerce Frontend Demo**](https://demo.wpswings.com/rma-return-refund-exchange-for-woocommerce-pro/my-account/orders/?visitor=true&utm_source=wpswings-rma-demo&utm_medium=rma-org-page&utm_campaign=frontend-demo)
+* [**Return Refund & Exchange For WooCommerce Frontend Demo**](https://demo.wpswings.com/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma-demo&utm_medium=rma-org-page&utm_campaign=frontend-demo)
 
 * [**Return Refund & Exchange For WooCommerce Backend demo**](https://demo.wpswings.com/rma-return-refund-exchange-for-woocommerce-pro/get-your-personal-demo/?utm_source=wpswings-rma-demo&utm_medium=rma-org-page&utm_campaign=backend-demo)
 
+== PLUGIN COMPATIBILITIES ==
 
-== WHAT PREMIUM VERSION RETURN REFUND AND EXCHANGE FOR WOOCOMMERCE OFFERS ==
+* The Simple RMA Management plugin is compatible with the [**Ultimate Gift Cards For WooCommerce**](https://wordpress.org/plugins/woo-gift-cards-lite/) and [**Gift Cards For WooCommerce Pro**](https://wpswings.com/product/gift-cards-for-woocommerce-pro/?utm_source=wpswings-gc-pro&utm_medium=rma-org-page&utm_campaign=gc-pro). Admin can now provide refund functionality on gift cards to its users. But for the practical implementation users are required to fulfill two conditions i.e. the expiration period of the gift card shouldn’t be achieved and its usability should be equal to zero.
+
+* The RMA Plugin is compatible with the WordPress Multilingual (WPML) plugin for localization of the plugin’s strings.
+
+== WHAT PREMIUM VERSION WOOCOMMERCE REFUND AND EXCHANGE WITH RMA OFFERS ==
 
 * Refund policy feature
 * Order Product Selection feature for Refund/Exchange
 * Exchange feature
 * Cancel feature
+* Product Warranty Management
 * Wallet feature
 * Return ship label feature
-* Full RMA support
+* Full RMA support 
 * Partial refund feature
 * Auto accept refund request feature
 * Refund exchange feature for guest users
 * Minimum order amount feature
 * Product category disable the feature
 * Integration for return ship label with ShipStation
-* Compatibility with Ultimate WooCommerce Gift Cards
 * Shortcode of product table and the refundable amount for Refund Mails
 * Compatibility with WordPress Multilingual (WPML)
+* Compatibility with [**Wallet System for WooCommerce**](https://wordpress.org/plugins/wallet-system-for-woocommerce/) & [**Wallet System for WooCommerce Pro**](https://wpswings.com/product/wallet-system-for-woocommerce-pro/?utm_source=wpswings-wallet-pro&utm_medium=rma-org-page&utm_campaign=wallet-pro).
 
 == TAKE ADVANTAGE OF EXCLUSIVE FEATURES OF WOOCOMMERCE RMA PLUGIN == 
 
@@ -137,7 +143,7 @@ In the search field type "Return Refund and Exchange For WooCommerce" and click 
 
 = Manual installation =
 
-The manual installation method involves downloading our Return Refund and Exchange For WooCommerce and uploading it to your webserver via your favorite FTP application. The WordPress contains [instructions on how to do this here](https://wordpress.org/support/article/managing-plugins/#manual-plugin-installation).
+The manual installation method involves downloading our Return Refund and Exchange For WooCommerce and uploading it to your web server via your favorite FTP application. The WordPress contains [instructions on how to do this here](https://wordpress.org/support/article/managing-plugins/#manual-plugin-installation).
 
 = Updating =
 
@@ -146,47 +152,49 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 == FAQ ==
 
-= How to make the "Refund" button visible on store pages using this plugin? =
+= How to make the "Refund" button visible on store pages using the Warranty management system plugin? =
 
-If you want to see the Refund button then follow these steps. Go to the *WooCommerce -> Settings -> Refund-Exchange lite Setting -> Refund Products* and set the following necessary settings.
+If you want to view the Refund button, then follow these steps. 
+Navigate towards **WP Swings -> Refund-Exchange lite Setting -> General Setting -> Enable Refund** and set the following necessary settings in RMA Policies Tab.
 
-1) Enable refund requests.
-2) Set the maximum number of days.
-3) Select the order status in which the order can be refunded.
-4) Select pages to show a refund button.
+1) Set the maximum number of days.
+2) Select the order status in which the order can be refunded.
+3) Set the taxes if you’re using any.
 
-= How to set up the Refund Products? =
-
-Please reach the *WooCommerce menu -> Refund Exchange Lite Configuration setting -> Click on the Refund Product -> Enable Refund Request setting*.
-
-= How to set the order status for the orders which need to be refunded? =
-
-It's very easy to set up. Go to the *WooCommerce -> Settings ->Refund Exchange Lite setting ->Refund Products* and Select the order status in which the order can be Refund.
-
-= How to use a mail configuration setting? =
-
-1) Refund Exchange Lite Setting -> Mail configuration -> Basic setting -> Set header.  
-2) Refund Exchange Lite Setting -> Mail configuration ->Refund ->and then fill in all details.
-
-= Can a customer and admin communicate while processing a refund request? =
-
-Yes, customers and admin can communicate while processing a refund request. The whole process goes under a dedicated and streamlined system which would help to keep both the parties on the same note.
 
 = How can a customer send an attachment with a refund request? =
 
-When a customer clicks on the refund button then on the refund request form the customer will get an option to upload the attachment. Customers can also add more than one attachment to their request.
+When a customer selects the refund button, he or she will be given the option to upload an attachment to the refund request form. Customers can also attach multiple files to their requests.
 
 = Can the admin limit the no. of attachment for a customer in the order messages? =
 
-Yes, the admin can limit the no. of attachment by going through *WooCommerce -> Settings -> Refund-Exchange lite Setting ->Refund Products -> Enter no. of attachment to send*, then put the no. of attachment you want to receive from your customer.
+Yes, the admin can limit the number of attachments by going through **WP Swings -> Refund-Exchange lite Setting -> Refund Tab  ->** Enable Attachment and Enter the number of attachments in the attachment box given below to enable attachment setting.
+
+
+= How to set the order status for the orders which need to be refunded? =
+
+It’s very easy to set up. Head towards the **WP Swings -> Refund-Exchange lite Setting -> RMA Policies Tab  ->** and Select the order status in which the order can be refunded.
+
+= How to use a mail configuration setting in RMA Plugin? =
+
+Please go to the **WP Swings -> Refund-Exchange lite Setting -> Refund Tab  ->** and in the most below you will get all the emails to
+Configure for you accordingly.
+
+= Can a customer and admin communicate while processing a refund request? =
+
+Yes, customers and admin can communicate while processing a refund request through the order messages which you can configure from the **WP Swings -> Refund-Exchange lite Setting -> Order Message Tab**.
 
 = Can the admin put some customized refund policy on the refund form? =
 
-Yes, the admin can put a customized refund policy by going to *WooCommerce -> Settings -> Refund-Exchange lite Setting ->Refund Products - > Enable refund rules* and write the refund rules in the rule editor.
+Yes, the admin can put a customized refund policy by going to **WP Swings -> Refund-Exchange lite Setting-> Refund Tab ->** and in the Appearance section please enable the refund rules and put your policies there accordingly.
 
 = Is there any stock management functionality in this refund management plugin? =
 
-Yes! The plugin automatically manages the stock after every successful refund of the product. Admin can set it by following steps; WooCommerce -> Settings -> Refund-Exchange lite Setting ->Refund Products  -> Enable Manage stock. For then onwards, the refund stock will be automatically managed.
+Yes! The plugin automatically manages the stock after every successful refund of the product. Admin can set it by following steps - **WP Swings -> Refund-Exchange lite Setting-> Refund Tab->**. Enable to show Manage Stock Button -> then admin can manage the stock from the WooCommerce orders section accordingly.
+
+= Is there any plugin that is compatible with Return Refund & Exchange for WooCommerce? =
+
+The RMA plugin is compatible with the [**WooCommerce Gift Cards**](https://wordpress.org/plugins/woo-gift-cards-lite/) and [**Gift Cards For WooCommerce Pro**](https://wpswings.com/product/gift-cards-for-woocommerce-pro/?utm_source=wpswings-gc-pro&utm_medium=rma-org-page&utm_campaign=gc-pro). Admin can now provide refund functionality on gift cards to its users. But for the practical implementation users are required to fulfill two conditions i.e. the expiration period of the gift card shouldn’t be achieved and its usability should be equal to zero.
 
 == Screenshots ==
 
@@ -206,103 +214,104 @@ Yes! The plugin automatically manages the stock after every successful refund of
 
 == Changelog ==
 
-= 3.1.4 - RELEASED ON 03 FEBRUARY 2022 =
+= 4.0.3 - RELEASED ON 8 JUNE 2022 =
+* New: Latest WP and WC Compatibility
+* Fix: Minor Bug 
 
+
+= 4.0.2 - RELEASED ON 9 MAY 2022 =
+* New: Latest WP and WC Compatibility
+* Fix: Bug fixes
+
+= 4.0.1 - RELEASED ON 9 APRIL 2022 =
+* Fix: Minor Bug
+
+= 4.0.0 - RELEASED ON 5 APRIL 2022 =
+* New: Some substantial changes across different areas of the plugin.
+* New: Added Migrator for existing users to import all old plugin data .
+* New: Compatible with latest WP and WC
+* Fix: Minor Bug
+
+
+= 3.1.4 - Released on 03 February 2022 =
 * New: Change author from MakeWebBetter to WP Swings
 * New: Notice display of current version for [**WP Swings**](https://wpswings.com/?utm_source=wpswings-official&utm_medium=rma-org-page&utm_campaign=official).
 * New: Minor Bug fixes
 * New: Compatible with latest WP and WC 
 
-= 3.1.3 - RELEASED ON 5 NOVEMBER 2021 =
+= 3.1.3 - Released on 5 November 2021 =
+* Fix: Compatible with latest WP and WC
+* Fix: Minor bug
 
-* FIX: Compatible with latest WP and WC
-* FIX: Minor bug
+= 3.1.2 - Released on 27 September 2021 =
+* Fix: Onboarding form
+* Fix: Minor bug
 
-= 3.1.2 - RELEASED ON 27 SEPTEMBER 2021 =
+= 3.1.1 - Released on 18 August 2021 =
+* New: Add notices for upcoming RMA renovation plugin
+* Fix: Compatible with latest WP and WC
+* Fix: Minor Bug and Issues Fixes
 
-* FIX: Onboarding form
-* FIX: Minor bug
+= 3.1.0 - Released on 14 April 2021 =
+* Fix: Compatible with latest WP(5.7) and WC(5.2.0)
+* New: WPML Compatibility
+* New: Given setting to show refund button based on added page
+* New: Add setting to add attachment limit during refund request
+* Fix: Design issue fixed during mobile view
+* Fix: Minor Bug and Issues Fixes
 
-= 3.1.1 - RELEASED ON 18 AUGUST 2021 =
+= 3.0.4 - Released on 17 December 2020 =
+* New: order_id shortcode for view order msg mails
+* New: Video link on the Overview tab
+* Fix: Compatibility with Latest WP (5.6)
 
-* NEW: Add notices for upcoming RMA renovation plugin
-* FIX: Compatible with latest WP and WC
-* FIX: Minor Bug and Issues Fixes
-
-= 3.1.0 - RELEASED ON 14 APRIL 2021 =
-
-* FIX: Compatible with latest WP(5.7) and WC(5.2.0)
-* NEW: WPML Compatibility
-* NEW: Given setting to show refund button based on added page
-* NEW: Add setting to add attachment limit during refund request
-* FIX: Design issue fixed during mobile view
-* FIX: Minor Bug and Issues Fixes
-
-= 3.0.4 - RELEASED ON 17 DECEMBER 2020 =
-
-* NEW: order_id shortcode for view order msg mails
-* NEW: Video link on the Overview tab
-* FIX: Compatibility with Latest WP (5.6)
-
-= 3.0.3 - RELEASED ON 13 NOVEMBER 2020 =
-
+= 3.0.3 - Released on 13 November 2020 =
 * Fix: Minor Bug Fixes
 * Fix: Update in Plugin Core
 
-= 3.0.2 - RELEASED ON 10 NOVEMBER 2020 =
-
+= 3.0.2 - Released on 10 November 2020 =
 * Fix: Compatibility with latest WP(5.5.3) and WC(4.7.0)
 * Fix: Update in Plugin Core
 
-= 3.0.1 - RELEASED ON 30 OCTOBER 2020 =
-
+= 3.0.1 - Released on 30 October 2020 =
 * Fix: Some CSS issue with WP images
 * Fix: Compatibility with Latest WP and WC(4.7.0)
 
-= 3.0.0 - RELEASED ON 11 SEPTEMBER 2020 =
-
+= 3.0.0 - Released on 11 September 2020 =
 * New: Overview Tab for plugin explanation
 * New: Functionality to change the text of Refund button from admin end
 * New: Functionality to change the text of View Order Message button from admin end
 * New: Email notification for message conversation.
 * Fix: Text change for order status and Refund request sent
-* FIX: Hide refund button  for guest Users
+* Fix: Hide refund button  for guest Users
 * Fix: Refund rule editor display issue
-* FIX: Incorrect Notification when activating premium
+* Fix: Incorrect Notification when activating premium
 
-= 2.1.2 – RELEASED ON 21 JULY 2020 =
-
-* Important: Your translation might be lost please take a backup of your language translations before the update.
+= 2.1.2 - Released on 21 July 2020 =
+* Important: Your translation might be lost. Please take a backup of your language translations before the update.
 * New: Support for WooCommerce 4.3.0
 * New: Support for WordPress 5.4.2
 
-= 2.1.1 – RELEASED ON 15 JULY 2020 =
-
+= 2.1.1 - Released on 15 July 2020 =
 * New: Support for WooCommerce 4.3.0
 * New: Support for WordPress 5.4.2
 
-= 2.1.0 – RELEASED ON 18 APRIL 2020 =
-
+= 2.1.0 - Released on 18 April 2020 =
 * New: Support for WooCommerce 4.0.1
 * New: Support for WordPress 5.4
 * New: Customers, Admin communication through messages.
 
-= 2.0.0 – RELEASED ON 24 JANUARY 2020 =
-
+= 2.0.0 - Released on 24 January 2020 =
 * New: Compatibility with Latest WC and WP.
 * Updated in plugin core and updated language
 * Fix: Image save issue in the Mail Configuration setting.
 * Fix: Expiry date issue with a gift card for refund process.
 
 = 1.0.0 =
-
 * First version. 
 
 == Upgrade Notice ==
 
-= 3.1.4 - RELEASED ON 03 FEBRUARY 2022 =
-
-* New: Change author from MakeWebBetter to WP Swings
-* New: Notice display of current version for [**WP Swings**](https://wpswings.com/?utm_source=wpswings-official&utm_medium=rma-org-page&utm_campaign=official).
-* FIX: Compatible with latest WP and WC
-* FIX: Other minor bugs in the plug-in
+= 4.0.3 - RELEASED ON 8 JUNE 2022 =
+* New: Latest WP and WC Compatibility
+* Fix: Minor Bug
