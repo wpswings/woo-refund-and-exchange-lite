@@ -1,4 +1,4 @@
-[![Build Status](https://img.shields.io/travis/twbs/bootstrap/v4-dev.svg)](https://travis-ci.org/twbs/bootstrap) ![Active installs](https://img.shields.io/badge/Active-3000%2B-brightgreen) ![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen) ![WP tested](https://img.shields.io/badge/WP%20tested-5.9.3-brightgreen) ![WC tested](https://img.shields.io/badge/WC%20tested-6.4.1-brightgreen) ![Requires PHP](https://img.shields.io/badge/Requires%20PHP-5.6-blue)
+[![Build Status](https://img.shields.io/travis/twbs/bootstrap/v4-dev.svg)](https://travis-ci.org/twbs/bootstrap) ![Active installs](https://img.shields.io/badge/Active-4000%2B-brightgreen) ![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen) ![WP tested](https://img.shields.io/badge/WP%20tested-6.0.0-brightgreen) ![WC tested](https://img.shields.io/badge/WC%20tested-6.5.1-brightgreen) ![Requires PHP](https://img.shields.io/badge/Requires%20PHP-5.6-blue)
 # Return Refund and Exchange for WooCommerce
 ![Return Refund and Exchange For WooCommerce - Create A Simple Warranty Management System RMA with Exchange, Wallet & Cancel Order Features](https://ps.w.org/woo-refund-and-exchange-lite/assets/banner-772x250.png?rev=2672154
 )
@@ -25,7 +25,7 @@
 ***
 
 
-## WITH THE RETURN REFUND AND EXCHANGE FOR WOOCOMMERCE PLUGIN YOU CAN:
+## WITH THE WOOCOMMERCE REFUND AND EXCHANGE WITH RMA PLUGIN YOU CAN:
 * Return an order after delivery
 * Easily handle the tax on the refund products
 * Allow customers to add a reason for a refund
@@ -40,7 +40,7 @@
 * Communicate with customers through messages and Emails
 * Admin can add the shortcode for order_id in the emails to track down the customer from whom refund and exchange request is made
 * Serve the full RMA features to multilingual buyers (internationally) with WPML translation.
-* Manage return and refund features for Cash on delivery(COD) buyers.
+* Manage woocommerce returns and exchanges features for Cash on delivery(COD) buyers.
 
 ###  PLUGIN MEETS YOUR REQUIREMENT, SO ##
 
@@ -76,7 +76,7 @@ Visit [**Return Refund and Exchange For WooCommerce Documentation**](http://docs
 
 Check out [**Return Refund and Exchange For WooCommerce Knowledge Base**](https://support.wpswings.com/wordpress-plugins-knowledge-base/category/rma-return-refund-exchange-for-woocommerce/?utm_source=wpswings-rma-kb&utm_medium=rma-github-page&utm_campaign=kb)
 
-## LIVE DEMO OF RETURN REFUND AND EXCHANGE FOR WOOCOMMERCE PLUGIN
+## LIVE DEMO OF WOOCOMMERCE REFUND AND EXCHANGE WITH RMA PLUGIN
 
 * [**Return Refund & Exchange Frontend Demo**](https://demo.wpswings.com/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma-demo&utm_medium=rma-github-page&utm_campaign=demo)
 
@@ -85,7 +85,6 @@ Check out [**Return Refund and Exchange For WooCommerce Knowledge Base**](https:
 ## PLUGIN COMPATIBILITIES ##
 
 * The RMA plugin is compatible with the [**WooCommerce Gift Cards**](https://wordpress.org/plugins/woo-gift-cards-lite/) and [**Gift Cards For WooCommerce Pro**](https://wpswings.com/product/gift-cards-for-woocommerce-pro/?utm_source=wpswings-gc-pro&utm_medium=rma-github-page&utm_campaign=gc-pro). Admin can now provide refund functionality on gift cards to its users. But for the practical implementation users are required to fulfill two conditions i.e. the expiration period of the gift card shouldn’t be achieved and its usability should be equal to zero.
-The refund request for gift cards can be successfully initiated only if these conditions are satisfied by the user’s end.
 
 * The RMA plugin is compatible with the WordPress Multilingual (WPML) plugin for localization of the plugin’s strings.
 
@@ -107,6 +106,7 @@ The refund request for gift cards can be successfully initiated only if these co
 * Integration for return ship label with ShipStation
 * Shortcode of product table and the refundable amount for Refund Mails
 * Compatibility with WordPress Multilingual (WPML)
+* Compatibility with [**Wallet System for WooCommerce**](https://wordpress.org/plugins/wallet-system-for-woocommerce/) & [**Wallet System for WooCommerce Pro**](https://wpswings.com/product/wallet-system-for-woocommerce-pro/?utm_source=wpswings-wallet-pro&utm_medium=rma-github-page&utm_campaign=wallet-pro).
 
 ### TAKE ADVANTAGE OF EXCLUSIVE FEATURES OF WOOCOMMERCE RMA PLUGIN
 > Note:  Get [**RMA Return Refund & Exchange For WooCommerce Pro**](https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma-pro&utm_medium=rma-github-page&utm_campaign=premium-plugin)_
@@ -129,8 +129,3 @@ Return Refund and Exchange For WooCommerce is translated into multiple languages
 - [**Follow us on Facebook Page**](https://www.facebook.com/wpswings)
 - [**Tweet us on @WP Swings**](https://twitter.com/wpswings)
 - [**Visit our LinkedIn Account**](https://www.linkedin.com/company/77072505/admin/)
-
-
-
-
-
