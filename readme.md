@@ -21,15 +21,14 @@
 
 >_**From the 3.1.4 Version update onwards, the RMA plugin and its support will be handled by [**WP Swings**](https://wpswings.com/?utm_source=wpswings-official&utm_medium=rma-github-page&utm_campaign=wpswings-official).**_
 
->_**WP Swings is just our improvised and rebranded version with all quality solutions and help being the same, so no worries at your end. Please [**connect with us**](https://wpswings.com/contact-us/?utm_source=wpswings-rma-pro-notice&utm_medium=rma-github-page&utm_campaign=notice) for all setup, support, and update related queries without hesitation."**_
+>_**WP Swings is just our improvised and rebranded version with all quality solutions and help being the same, so no worries at your end. Please [**connect with us**](https://wpswings.com/contact-us/?utm_source=wpswings-rma-contactus&utm_medium=rma-github-page&utm_campaign=contactus) for all setup, support, and update related queries without hesitation."**_
 ***
-
 
 ## WITH THE WOOCOMMERCE REFUND AND EXCHANGE WITH RMA PLUGIN YOU CAN:
 * Return an order after delivery
 * Easily handle the tax on the refund products
 * Allow customers to add a reason for a refund
- *Set multiple reasons for a product refund
+* Set multiple reasons for a product refund
 * Let customers send an attachment with a refund request
 * Manage stock on each refund
 * Customize the refund button text
@@ -88,7 +87,7 @@ Check out [**Return Refund and Exchange For WooCommerce Knowledge Base**](https:
 
 * The RMA plugin is compatible with the WordPress Multilingual (WPML) plugin for localization of the plugin’s strings.
 
-## WHAT PREMIUM VERSION RETURN REFUND AND EXCHANGE FOR WOOCOMMERCE OFFERS
+## WHAT PREMIUM VERSION OF RETURN REFUND AND EXCHANGE FOR WOOCOMMERCE OFFERS
 
 * Refund policy feature
 * Order Product Selection feature for Refund/Exchange
