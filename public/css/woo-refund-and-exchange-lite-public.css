@@ -196,7 +196,7 @@ table.wps-rma-product__table:not(.has-background) tbody td {
   background-color: #ffffff;
 }
 
-table.wps-rma-product__table:not(.has-background) tbody tr:nth-child(2n) td, fieldset, fieldset legend {
+table.wps-rma-product__table:not(.has-background) tbody tr:nth-child(2n) td, table.wps-rma-product__table:not(.has-background) fieldset, table.wps-rma-product__table:not(.has-background) fieldset legend {
   background-color: #ffffff;
 }
 

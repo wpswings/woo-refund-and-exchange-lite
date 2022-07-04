@@ -157,7 +157,7 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 										} else {
 											?>
 											<img alt="Placeholder" width="150" height="150" class="attachment-thumbnail size-thumbnail wp-post-image" src="<?php echo esc_html( plugins_url() ); ?>/woocommerce/assets/images/placeholder.png">
-										}
+										<?php } ?>
 										<div class="wps_rma_product_title wps-rma__product-title">
 											<?php
 											// Woo Order Item Name.
