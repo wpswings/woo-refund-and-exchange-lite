@@ -262,6 +262,11 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			$wps_rma_customer_role->add_cap( 'wps-rma-refund-request', true );
 		}
 
+		$wps_rma_customer_role = get_role( 'subscriber' );
+		if ( ! empty( $wps_rma_customer_role ) ) {
+			$wps_rma_customer_role->add_cap( 'wps-rma-refund-request', true );
+		}
+
 		$wps_rma_customer_role = get_role( 'administrator' );
 		if ( ! empty( $wps_rma_customer_role ) ) {
 			$wps_rma_customer_role->add_cap( 'wps-rma-refund-request', true );
@@ -352,9 +357,9 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			$to       = $order->get_billing_email();
 			if ( 'admin' === $msg_type ) {
 				$sender = 'Shop Manager';
-				$to     = get_option( 'woocommerce_email_from_address', get_option( 'admin_email' ) );
 			} else {
 				$sender = 'Customer';
+				$to = get_option( 'woocommerce_email_from_address', get_option( 'admin_email' ) );
 			}
 			$flag = wps_rma_lite_send_order_msg_callback( $order_id, $msg, $sender, $to );
 			echo esc_html( $flag );
