@@ -949,4 +949,16 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		wp_safe_redirect( $permalink );
 		exit;
 	}
+
+	/**
+	 * Get Count
+	 *
+	 * @param string  $status .
+	 * @param string  $action .
+	 * @param boolean $type .
+	 * @return $result .
+	 */
+	public function wps_rma_get_count( $status = 'all', $action = 'count', $type = false ) {
+		return 0;
+	}
 }
