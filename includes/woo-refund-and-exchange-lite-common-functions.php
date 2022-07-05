@@ -145,11 +145,13 @@ if ( ! function_exists( 'wps_rma_lite_send_order_msg_callback' ) ) {
 						if ( ! file_exists( $directory ) ) {
 							mkdir( $directory, 0755, true );
 						}
-						$sourcepath       = sanitize_text_field( wp_unslash( $_FILES['wps_order_msg_attachment']['tmp_name'][ $i ] ) );
-						$f_name           = isset( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ? sanitize_text_field( wp_unslash( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ) : '';
-						$targetpath       = $directory . '/' . $order_id . '-' . $f_name;
-						$file_type        = isset( $_FILES['wps_order_msg_attachment']['type'][ $i ] ) ? sanitize_text_field( wp_unslash( $_FILES['wps_order_msg_attachment']['type'][ $i ] ) ) : '';
+						$sourcepath     = sanitize_text_field( wp_unslash( $_FILES['wps_order_msg_attachment']['tmp_name'][ $i ] ) );
+						$f_name         = isset( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ? sanitize_text_field( wp_unslash( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ) : '';
+						$targetpath     = $directory . '/' . $order_id . '-' . $f_name;
+						$file_type      = isset( $_FILES['wps_order_msg_attachment']['type'][ $i ] ) ? sanitize_text_field( wp_unslash( $_FILES['wps_order_msg_attachment']['type'][ $i ] ) ) : '';
+						$file_type_flag = false;
 						if ( 'image/png' === $file_type || 'image/jpeg' === $file_type || 'image/jpg' === $file_type ) {
+							$file_type_flag         = true;
 							$filename[ $i ] ['img'] = true;
 							$filename[ $i ]['name'] = isset( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ? sanitize_text_field( wp_unslash( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ) : '';
 							$attachment[ $i ]       = $targetpath;
@@ -164,14 +166,15 @@ if ( ! function_exists( 'wps_rma_lite_send_order_msg_callback' ) ) {
 		$order_msg[ $date ]['msg']    = $msg;
 		$order_msg[ $date ]['files']  = $filename;
 		$get_msg                      = get_post_meta( $order_id, 'wps_cutomer_order_msg', true );
-		$msg_count                    = get_post_meta( $order_id, 'wps_order_msg_count', 0 );
 		if ( isset( $get_msg ) && ! empty( $get_msg ) ) {
 			array_push( $get_msg, $order_msg );
 		} else {
 			$get_msg = array();
 			array_push( $get_msg, $order_msg );
 		}
-		update_post_meta( $order_id, 'wps_cutomer_order_msg', $get_msg );
+		if ( $file_type_flag ) {
+			update_post_meta( $order_id, 'wps_cutomer_order_msg', $get_msg );
+		}
 		$restrict_mail =
 		// Allow/Disallow Email.
 		apply_filters( 'wps_rma_restrict_order_msg_mails', false );
@@ -373,7 +376,7 @@ if ( ! function_exists( 'wps_rma_return_req_approve_callback' ) ) {
 		// Update the status.
 		update_post_meta( $orderid, 'wps_rma_return_attachment', $request_files );
 		$order_obj         = wc_get_order( $orderid );
-		$line_items1       = array();
+		$line_items_refund = array();
 		$wps_rma_check_tax = get_option( $orderid . 'check_tax', false );
 		$coupon_discount   = get_option( 'wps_rma_refund_deduct_coupon', 'no' );
 		// add refund item related info for wc_create_refund.
@@ -391,26 +394,26 @@ if ( ! function_exists( 'wps_rma_return_req_approve_callback' ) ) {
 							}
 							if ( 'wps_rma_inlcude_tax' === $wps_rma_check_tax ) {
 								$item_tax                              = $item->get_subtotal_tax() / $item->get_quantity();
-								$line_items1[ $item_id ]['refund_tax'] = array( 1 => $item_tax );
+								$line_items_refund[ $item_id ]['refund_tax'] = array( 1 => $item_tax );
 							} elseif ( 'wps_rma_exclude_tax' === $wps_rma_check_tax ) {
 								$prod_price -= $item->get_subtotal_tax();
 							}
-							$line_items1[ $item_id ]['qty']          = $requested_product['qty'];
-							$line_items1[ $item_id ]['refund_total'] = wc_format_decimal( $prod_price * $requested_product['qty'] / $item->get_quantity() );
+							$line_items_refund[ $item_id ]['qty']          = $requested_product['qty'];
+							$line_items_refund[ $item_id ]['refund_total'] = wc_format_decimal( $prod_price * $requested_product['qty'] / $item->get_quantity() );
 							// translators: %1$s: product name, %2$s: product qty.
-							$order_obj->add_order_note( sprintf( __( '%1$s %2$s Item Quantity has been reduce because the return', 'woo-refund-and-exchange-lite' ), $product->get_name(), $requested_product['qty'] ), false, true );
+							$order_obj->add_order_note( sprintf( __( '%1$s %2$s Item Quantity has been reduce because of the return', 'woo-refund-and-exchange-lite' ), $product->get_name(), $requested_product['qty'] ), false, true );
 						}
 					}
 				}
 			}
 		}
-		if ( ! empty( $line_items1 ) ) {
+		if ( ! empty( $line_items_refund ) ) {
 			$refund = wc_create_refund(
 				array(
 					'amount'         => 0,
 					'reason'         => esc_html__( 'Added the return item info', 'woo-refund-and-exchange-lite' ),
 					'order_id'       => $orderid,
-					'line_items'     => $line_items1,
+					'line_items'     => $line_items_refund,
 					'refund_payment' => false,
 					'restock_items'  => apply_filters( 'wps_rma_auto_restock_item_refund', false, $orderid ),
 				)

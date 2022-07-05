@@ -278,6 +278,7 @@ jQuery(document).ready(function() {
 					
 					$( 'div.wc-order-refund-items' ).slideDown();
 					$( 'div.wc-order-data-row-toggle' ).not( 'div.wc-order-refund-items' ).slideUp();
+					$( '#woocommerce-order-items' ).find( 'div.refund' ).show();
 					$( 'div.wc-order-totals-items' ).slideUp();
 	
 					var refund_reason = $( '#wps_rma_refund_reason' ).val();

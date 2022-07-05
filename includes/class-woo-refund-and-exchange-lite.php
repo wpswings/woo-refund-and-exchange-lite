@@ -230,13 +230,7 @@ class Woo_Refund_And_Exchange_Lite {
 
 		$this->loader->add_action( 'wp_ajax_wps_rma_refund_amount', $wrael_plugin_admin, 'wps_rma_refund_amount' );
 
-		$this->loader->add_action( 'wp_ajax_wps_rma_ajax_callbacks', $wrael_plugin_admin, 'wps_rma_ajax_callbacks' );
-
-		$this->loader->add_action( 'admin_notices', $wrael_plugin_admin, 'wps_rma_lite_upgrade_notice1' );
-
 		$this->loader->add_action( 'admin_menu', $wrael_plugin_admin, 'wps_rma_lite_admin_menus' );
-
-		$this->loader->add_filter( 'after_plugin_row_woo-refund-and-exchange-lite/woocommerce-refund-and-exchange-lite.php', $wrael_plugin_admin, 'wps_rma_lite_upgrade_notice', 0, 3 );
 	}
 
 	/**

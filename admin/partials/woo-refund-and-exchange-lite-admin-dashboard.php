@@ -31,7 +31,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 
 <?php
-include_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/woo-refund-and-exchange-lite-incompatible.php';
 if ( ! wps_rma_standard_check_multistep() && wps_rma_pro_active() ) {
 	?>
 	<div id="react-app"></div>

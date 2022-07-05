@@ -72,7 +72,7 @@ if ( $wps_wrma_show_sidebar_on_form ) {
 if ( isset( $condition ) && 'yes' === $condition ) {
 	$wps_refund_wrapper_class = get_option( 'wps_wrma_refund_form_wrapper_class' );
 	$wps_return_css           = get_option( 'wps_rma_refund_form_css' );
-	?>
+?>
 	<style><?php echo wp_kses_post( $wps_return_css ); ?></style>
 	<div class="wps_rma_refund_form_wrapper wps-rma-form__wrapper <?php echo esc_html( $wps_refund_wrapper_class ); ?>">
 		<div id="wps_rma_return_request_container" class="wps-rma-form__header">
@@ -115,7 +115,7 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 							$product =
 							// Get Product.
 							apply_filters( 'woocommerce_order_item_product', $item->get_product(), $item );
-							$thumbnail = wp_get_attachment_image( $product->get_image_id(), 'thumbnail' );
+							$thumbnail       = wp_get_attachment_image( $product->get_image_id(), 'thumbnail' );
 							$coupon_discount = get_option( 'wps_rma_refund_deduct_coupon', 'no' );
 							if ( 'on' === $coupon_discount ) {
 								$tax_inc = $item->get_total() + $item->get_subtotal_tax();
@@ -135,7 +135,7 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 							} elseif ( 'wps_rma_exclude_tax' === $wps_rma_check_tax ) {
 								$wps_actual_price = $tax_exc;
 							}
-							$wps_total_actual_price += $wps_actual_price * $item_qty;
+							$wps_total_actual_price += $wps_actual_price;
 							$purchase_note           = get_post_meta( $product_id, '_purchase_note', true );
 							?>
 							<tr class="wps_rma_return_column" data-productid="<?php echo esc_html( $product_id ); ?>" data-variationid="<?php echo esc_html( $item['variation_id'] ); ?>" data-itemid="<?php echo esc_html( $item_id ); ?>">
@@ -157,9 +157,7 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 										} else {
 											?>
 											<img alt="Placeholder" width="150" height="150" class="attachment-thumbnail size-thumbnail wp-post-image" src="<?php echo esc_html( plugins_url() ); ?>/woocommerce/assets/images/placeholder.png">
-											<?php
-										}
-										?>
+										<?php } ?>
 										<div class="wps_rma_product_title wps-rma__product-title">
 											<?php
 											// Woo Order Item Name.
@@ -208,16 +206,18 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 										'class'    => array(),
 										'name'     => array(),
 										'disabled' => array(),
+										'min'      => 1,
+										'max'      => $item_qty,
 									),
 								);
-								$qty_html = '<input type="number" disabled value="' . esc_html( $item_qty ) . '" class="wps_rma_return_product_qty" name="wps_rma_return_product_qty">';
+								$qty_html   = '<input type="number" disabled value="' . esc_html( $item_qty ) . '" class="wps_rma_return_product_qty" name="wps_rma_return_product_qty">';
 								echo // Refund form Quantity html.
 								wp_kses( apply_filters( 'wps_rma_change_quanity', $qty_html, $item_qty ), $allow_html ); // phpcs:ignore
 								?>
 								</td>
 								<td class="product-total">
 									<?php
-									echo wp_kses_post( wps_wrma_format_price( $wps_actual_price / $item->get_quantity(), $get_order_currency ) );
+									echo wp_kses_post( wps_wrma_format_price( $wps_actual_price, $get_order_currency ) );
 
 									if ( 'wps_rma_inlcude_tax' === $wps_rma_check_tax ) {
 										?>
