@@ -30,8 +30,8 @@ if ( ! function_exists( 'wps_rma_show_buttons' ) ) {
 					}
 				}
 			}
-			$order_date = date_i18n( 'F d Y', strtotime( $order->get_date_created() ) );
-			$today_date = date_i18n( 'F d Y' );
+			$order_date = date_i18n( wc_date_format(), strtotime( $order->get_date_created() ) );
+			$today_date = date_i18n( wc_date_format() );
 			$order_date = apply_filters( 'wps_order_status_start_date', strtotime( $order_date ), $order );
 			$today_date = strtotime( $today_date );
 			$days       = $today_date - $order_date;
@@ -130,8 +130,9 @@ if ( ! function_exists( 'wps_rma_lite_send_order_msg_callback' ) ) {
 	 * @link http://www.wpswings.com/
 	 */
 	function wps_rma_lite_send_order_msg_callback( $order_id, $msg, $sender, $to ) {
-		$filename   = array();
-		$attachment = array();
+		$filename       = array();
+		$attachment     = array();
+		$file_type_flag = true;
 		if ( isset( $_FILES['wps_order_msg_attachment']['tmp_name'] ) && ! empty( $_FILES['wps_order_msg_attachment']['tmp_name'] ) ) {
 			$count         = count( $_FILES['wps_order_msg_attachment']['tmp_name'] );
 			$file_uploaded = false;
@@ -141,15 +142,15 @@ if ( ! function_exists( 'wps_rma_lite_send_order_msg_callback' ) ) {
 			if ( $file_uploaded ) {
 				for ( $i = 0; $i < $count; $i++ ) {
 					if ( isset( $_FILES['wps_order_msg_attachment']['tmp_name'][ $i ] ) ) {
-						$directory = ABSPATH . 'wp-content/attachment';
+						$file_type_flag = false;
+						$directory      = ABSPATH . 'wp-content/attachment';
 						if ( ! file_exists( $directory ) ) {
 							mkdir( $directory, 0755, true );
 						}
-						$sourcepath     = sanitize_text_field( wp_unslash( $_FILES['wps_order_msg_attachment']['tmp_name'][ $i ] ) );
-						$f_name         = isset( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ? sanitize_text_field( wp_unslash( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ) : '';
-						$targetpath     = $directory . '/' . $order_id . '-' . $f_name;
-						$file_type      = isset( $_FILES['wps_order_msg_attachment']['type'][ $i ] ) ? sanitize_text_field( wp_unslash( $_FILES['wps_order_msg_attachment']['type'][ $i ] ) ) : '';
-						$file_type_flag = false;
+						$sourcepath = sanitize_text_field( wp_unslash( $_FILES['wps_order_msg_attachment']['tmp_name'][ $i ] ) );
+						$f_name     = isset( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ? sanitize_text_field( wp_unslash( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ) : '';
+						$targetpath = $directory . '/' . $order_id . '-' . $f_name;
+						$file_type  = isset( $_FILES['wps_order_msg_attachment']['type'][ $i ] ) ? sanitize_text_field( wp_unslash( $_FILES['wps_order_msg_attachment']['type'][ $i ] ) ) : '';
 						if ( 'image/png' === $file_type || 'image/jpeg' === $file_type || 'image/jpg' === $file_type ) {
 							$file_type_flag         = true;
 							$filename[ $i ] ['img'] = true;
@@ -574,248 +575,50 @@ if ( ! function_exists( 'wps_rma_standard_check_multistep' ) ) {
 		return $bool;
 	}
 }
-if ( ! function_exists( 'wps_rma_lite_migrate_settings' ) ) {
+if ( ! function_exists( 'wps_rma_order_number' ) ) {
 	/**
-	 * Function to migrate the settings
+	 * Check Pro Active.
 	 */
-	function wps_rma_lite_migrate_settings() {
-		$enable_refund = get_option( 'mwb_wrma_return_enable', false );
-		if ( 'yes' === $enable_refund ) {
-			update_option( 'wps_rma_refund_enable', 'on' );
-		}
-		$attach_enable = get_option( 'mwb_wrma_return_attach_enable', false );
-		if ( 'yes' === $attach_enable ) {
-			update_option( 'wps_rma_refund_attachment', 'on' );
-		}
-		$attach_limit = get_option( 'mwb_wrma_refund_attachment_limit', false );
-		if ( ! empty( $attach_limit ) && $attach_limit > 0 ) {
-			update_option( 'wps_rma_attachment_limit', $attach_limit );
-		}
-		$manage_stock = get_option( 'mwb_wrma_return_request_manage_stock', false );
-		if ( 'yes' === $manage_stock ) {
-			update_option( 'wps_rma_refund_manage_stock', 'on' );
-		}
-		$show_pages = get_option( 'mwb_wrma_refund_button_view', false );
-		if ( ! empty( $show_pages ) ) {
-			$button_hide = array();
-			if ( ! in_array( 'order-page', $show_pages ) ) {
-				$button_hide[] = 'order-page';
-			}
-			if ( ! in_array( 'My account', $show_pages ) ) {
-				$button_hide[] = 'My account';
-			}
-			if ( ! in_array( 'thank-you-page', $show_pages ) ) {
-				$button_hide[] = 'Checkout';
-			}
-			update_option( 'wps_rma_refund_button_pages', $button_hide );
-		}
-		$refund_rule_enable = get_option( 'mwb_wrma_refund_rules_editor_enable', false );
-		if ( 'yes' === $refund_rule_enable ) {
-			update_option( 'wps_rma_refund_rules', 'on' );
-		}
-		$refund_editor = get_option( 'mwb_wrma_return_request_rules_editor', false );
-		if ( ! empty( $refund_editor ) ) {
-			update_option( 'wps_rma_refund_rules_editor', $refund_editor );
-		}
-		$refund_text = get_option( 'mwb_wrma_return_button_text', false );
-		if ( ! empty( $refund_text ) ) {
-			update_option( 'wps_rma_refund_button_text', $refund_text );
-		}
-		$refund_desc = get_option( 'mwb_wrma_return_request_description', false );
-		if ( 'yes' === $refund_desc ) {
-			update_option( 'wps_rma_refund_description', 'on' );
-		}
-		$refund_reason  = get_option( 'ced_rnx_return_predefined_reason', false );
-		$refund_reason1 = get_option( 'mwb_wrma_return_predefined_reason', false );
-		if ( ! empty( $refund_reason1 ) ) {
-			$refund_reason = $refund_reason1;
-		}
-		if ( ! empty( $refund_reason ) ) {
-			$refund_reason = implode( ',', $refund_reason );
-			update_option( 'wps_rma_refund_reasons', $refund_reason );
-		}
-		$order_msg_enable = get_option( 'mwb_wrma_order_message_view', false );
-		if ( 'yes' === $order_msg_enable ) {
-			update_option( 'wps_rma_general_om', 'on' );
-		}
-		$order_attach = get_option( 'mwb_wrma_order_message_attachment', false );
-		if ( 'yes' === $order_attach ) {
-			update_option( 'wps_rma_general_enable_om_attachment', 'on' );
-		}
-		$order_text = get_option( 'mwb_wrma_order_msg_text', false );
-		if ( ! empty( $order_text ) ) {
-			update_option( 'wps_rma_order_message_button_text', $order_text );
-		}
-
-		// RMA Policies Setting Save.
-		$tax_enable          = get_option( 'mwb_wrma_return_tax_enable', false );
-		$refund_order_status = get_option( 'mwb_wrma_return_order_status', false );
-		$return_days         = get_option( 'mwb_wrma_return_days', false );
-		$refund_order_status = ! empty( $refund_order_status ) ? $refund_order_status : array();
-		$set_policies_arr    = array(
-			'wps_rma_setting' =>
-			array(
-				0 => array(
-					'row_policy'           => 'wps_rma_maximum_days',
-					'row_functionality'    => 'refund',
-					'row_conditions1'      => 'wps_rma_less_than',
-					'row_value'            => $return_days,
-					'incase_functionality' => 'incase',
-				),
-				1 => array(
-					'row_functionality'    => 'refund',
-					'row_policy'           => 'wps_rma_order_status',
-					'row_conditions2'      => 'wps_rma_equal_to',
-					'row_statuses'         => $refund_order_status,
-					'incase_functionality' => 'incase',
-				),
-			),
-		);
-		update_option( 'policies_setting_option', $set_policies_arr );
-
-		// Refund Request Subject And Content Updation.
-		$subject  = get_option( 'ced_rnx_notification_return_subject', false );
-		$subject1 = get_option( 'mwb_wrma_notification_return_subject', false );
-		if ( ! empty( $subject1 ) ) {
-			$subject = $subject1;
-		}
-		if ( empty( $subject ) ) {
-			$subject = '';
-		}
-		$content  = get_option( 'ced_rnx_notification_return_rcv', false );
-		$content1 = get_option( 'mwb_wrma_notification_return_rcv', false );
-		if ( ! empty( $content1 ) ) {
-			$content = $content1;
-		}
-		if ( empty( $content ) ) {
-			$content = '';
-		}
-		$content            = str_replace( '[', '{', $content );
-		$content            = str_replace( ']', '}', $content );
-		$refund_request_add = array(
-			'enabled'            => 'yes',
-			'subject'            => $subject,
-			'heading'            => '',
-			'additional_content' => $content,
-			'email_type'         => 'html',
-		);
-		update_option( 'woocommerce_wps_rma_refund_request_email_settings', $refund_request_add );
-
-		// Refund Request Accept Subject And Content Updation.
-		$subject  = get_option( 'ced_rnx_notification_return_approve_subject', false );
-		$subject1 = get_option( 'mwb_wrma_notification_return_approve_subject', false );
-		if ( ! empty( $subject1 ) ) {
-			$subject = $subject1;
-		}
-		if ( empty( $subject ) ) {
-			$subject = '';
-		}
-		$content  = get_option( 'ced_rnx_notification_return_approve', false );
-		$content1 = get_option( 'mwb_wrma_notification_return_approve', false );
-		if ( ! empty( $content1 ) ) {
-			$content = $content1;
-		}
-		if ( empty( $content ) ) {
-			$content = '';
-		}
-		$content                   = str_replace( '[', '{', $content );
-		$content                   = str_replace( ']', '}', $content );
-		$refund_request_accept_add = array(
-			'enabled'            => 'yes',
-			'subject'            => $subject,
-			'heading'            => '',
-			'additional_content' => $content,
-			'email_type'         => 'html',
-		);
-		update_option( 'woocommerce_wps_rma_refund_request_accept_email_settings', $refund_request_accept_add );
-
-		// Refund Request Cancel Subject And Content Updation.
-
-		$subject  = get_option( 'ced_rnx_notification_return_cancel_subject', false );
-		$subject1 = get_option( 'mwb_wrma_notification_return_cancel_subject', false );
-		if ( ! empty( $subject1 ) ) {
-			$subject = $subject1;
-		}
-		if ( empty( $subject ) ) {
-			$subject = '';
-		}
-		$content  = get_option( 'ced_rnx_notification_return_cancel', false );
-		$content1 = get_option( 'mwb_wrma_notification_return_cancel', false );
-		if ( ! empty( $content1 ) ) {
-			$content = $content1;
-		}
-		if ( empty( $content ) ) {
-			$content = '';
-		}
-		$content                   = str_replace( '[', '{', $content );
-		$content                   = str_replace( ']', '}', $content );
-		$refund_request_cancel_add = array(
-			'enabled'            => 'yes',
-			'subject'            => $subject,
-			'heading'            => '',
-			'additional_content' => $content,
-			'email_type'         => 'html',
-		);
-		update_option( 'woocommerce_wps_rma_refund_request_cancel_email_settings', $refund_request_cancel_add );
-	}
-}
-if ( ! function_exists( 'wps_rma_lite_post_meta_data_migrate' ) ) {
-	/** Post Meta Data Migrate */
-	function wps_rma_lite_post_meta_data_migrate() {
-		$orders = get_posts(
-			array(
-				'numberposts' => -1,
+	/**
+	 * Return the correct order number
+	 *
+	 * @param int $order_id .
+	 * @return $order_id
+	 */
+	function wps_rma_order_number( $order_id ) {
+		$active_plugins = get_option( 'active_plugins', array() );
+		if ( in_array( 'woocommerce-sequential-order-numbers-pro/woocommerce-sequential-order-numbers-pro.php', $active_plugins, true ) ) {
+			$query_args = array(
+				'numberposts' => 1,
+				'meta_key'    => '_order_number_formatted',
+				'post_id'  => $order_id,
 				'post_type'   => 'shop_order',
-				'fields'      => 'ids', // return only ids.
-				'order'       => 'ASC',
 				'post_status' => 'any',
-			)
-		);
-		if ( ! empty( $orders ) ) {
-			foreach ( $orders as $order_id ) {
-				if ( ! empty( $order_id ) ) {
-					$get_messages = get_option( $order_id . '-mwb_cutomer_order_msg', array() );
-					if ( ! empty( $get_messages ) ) {
-						update_post_meta( $order_id, 'wps_cutomer_order_msg', $get_messages );
-					}
-				}
-			}
-		}
-		$post_meta_keys = array(
-			'ced_rnx_request_made',
-			'ced_rnx_return_product',
-			'ced_rnx_return_attachment',
-			'mwb_wrma_return_product',
-		);
-		foreach ( $post_meta_keys as $key => $meta_keys ) {
-
-			$orders = get_posts(
-				array(
-					'numberposts' => -1,
-					'post_status' => 'publish',
-					'fields'      => 'ids', // return only ids.
-					'meta_key'    => $meta_keys, //phpcs:ignore
-					'post_type'   => 'shop_order',
-					'order'       => 'ASC',
-					'post_status' => 'any',
-				)
+				'fields'      => 'ids',
 			);
-			if ( ! empty( $orders ) ) {
-				foreach ( $orders as $order_id ) {
-					if ( ! empty( $order_id ) ) {
-						$value   = get_post_meta( $order_id, $meta_keys, true );
-						$new_key = str_replace( 'ced_rnx', 'wps_rma', $meta_keys );
-						if ( 'mwb_wrma_return_product' === $meta_keys ) {
-							$new_key = 'wps_rma_return_product';
-							$value   = get_post_meta( $order_id, 'mwb_wrma_return_product', true );
-						}
-						if ( ! empty( $value ) ) {
-							update_post_meta( $order_id, $new_key, $value );
-						}
-					}
-				}
+
+			$posts = get_posts( $query_args );
+			if ( is_array( $posts ) && ! empty( $posts ) && isset( $posts[0] ) ) {
+				$order_id = $posts[0];
+				$order_id = get_post_meta( $order_id, '_order_number_formatted', true );
 			}
 		}
+		if ( in_array( 'wt-woocommerce-sequential-order-numbers/wt-advanced-order-number.php', $active_plugins, true ) ) {
+			$query_args = array(
+				'numberposts' => 1,
+				'meta_key'    => '_order_number',
+				'post_id'     => $order_id,
+				'post_type'   => 'shop_order',
+				'post_status' => 'any',
+				'fields'      => 'ids',
+			);
+
+			$posts = get_posts( $query_args );
+			if ( is_array( $posts ) && ! empty( $posts ) && isset( $posts[0] ) ) {
+				$order_id = $posts[0];
+				$order_id = get_post_meta( $order_id, '_order_number', true );
+			}
+		}
+		return $order_id;
 	}
 }
-
