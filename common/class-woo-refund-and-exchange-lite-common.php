@@ -77,15 +77,19 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			$this->plugin_name . 'common',
 			'wrael_common_param',
 			array(
-				'ajaxurl'               => admin_url( 'admin-ajax.php' ),
-				'wps_rma_nonce'         => wp_create_nonce( 'wps_rma_ajax_security' ),
-				'return_subject_msg'    => esc_html__( 'Please Enter Refund Subject.', 'woo-refund-and-exchange-lite' ),
-				'return_reason_msg'     => esc_html__( 'Please Enter Refund Reason.', 'woo-refund-and-exchange-lite' ),
-				'return_select_product' => esc_html__( 'Please Select Product to refund.', 'woo-refund-and-exchange-lite' ),
-				'check_pro_active'      => esc_html( $pro_active ),
-				'message_sent'          => esc_html__( 'The message has been sent successfully', 'woo-refund-and-exchange-lite' ),
-				'message_empty'         => esc_html__( 'Please Enter a Message.', 'woo-refund-and-exchange-lite' ),
-				'myaccount_url'         => esc_attr( $myaccount_page_url ),
+				'ajaxurl'                => admin_url( 'admin-ajax.php' ),
+				'wps_rma_nonce'          => wp_create_nonce( 'wps_rma_ajax_security' ),
+				'return_subject_msg'     => esc_html__( 'Please Enter Refund Subject.', 'woo-refund-and-exchange-lite' ),
+				'return_reason_msg'      => esc_html__( 'Please Enter Refund Reason.', 'woo-refund-and-exchange-lite' ),
+				'return_select_product'  => esc_html__( 'Please Select Product to refund.', 'woo-refund-and-exchange-lite' ),
+				'check_pro_active'       => esc_html( $pro_active ),
+				'message_sent'           => esc_html__( 'The message has been sent successfully', 'woo-refund-and-exchange-lite' ),
+				'message_empty'          => esc_html__( 'Please Enter a Message.', 'woo-refund-and-exchange-lite' ),
+				'myaccount_url'          => esc_attr( $myaccount_page_url ),
+				'refund_form_attachment' => get_option( 'wps_rma_refund_attachment' ),
+				'order_msg_attachment'   => get_option( 'wps_rma_general_enable_om_attachment' ),
+				'no_file_attached'       => esc_html__( 'No File Attached', 'woo-refund-and-exchange-lite' ),
+				'file_not_supported'     => esc_html__( 'Attached File type is not supported', 'woo-refund-and-exchange-lite' ),
 			)
 		);
 		wp_enqueue_script( $this->plugin_name . 'common' );

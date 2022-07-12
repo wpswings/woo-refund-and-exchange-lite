@@ -33,7 +33,26 @@ jQuery( document ).on( 'ready', function(){
 				}
 			}
 		}
+
+		var attachment_enable = wrael_common_param.refund_form_attachment;
+		if ( attachment_enable && 'on' == attachment_enable ) {
+			$('.wps_rma_return_request_files').each(function(){
+				var up_files = $(this);
+				var totalfiles = up_files[0].files.length;
+				if ( totalfiles ) {
+					var file_type = up_files[0].files[0].type;
+					if ( 'image/png' == file_type || 'image/jpeg' == file_type || 'image/jpg' == file_type ) {
+					} else {
+						alerthtml += '<li>'+ wrael_common_param.file_not_supported + '</li>';
+					}
+				} else {
+					alerthtml += '<li>'+ wrael_common_param.no_file_attached +'</li>';
+				}
+			});
+		}
+
 		if (alerthtml != '') {
+			$( '#wps_rma_return_alert' ).show();
 			$( '#wps_rma_return_alert' ).html( alerthtml );
 			$( '#wps_rma_return_alert' ).addClass('woocommerce-error');
 			$( '#wps_rma_return_alert' ).removeClass('woocommerce-message');
@@ -49,6 +68,7 @@ jQuery( document ).on( 'ready', function(){
 			$( '#wps_rma_return_alert' ).hide();
 			$( '#wps_rma_return_alert' ).html( alerthtml );
 		}
+
 		if( pro_act ){
 			if (typeof wps_rma_refund_total == 'function') {
 				var return_data = wps_rma_refund_total();
@@ -166,24 +186,37 @@ jQuery( document ).on( 'ready', function(){
 		var msg      = $('#wps_order_new_msg').val();
 		var order_msg_type = $('#order_msg_type').val();
 		var alerthtml = '';
-		if ( msg == '' ) {
-			alerthtml = '<p class="wps_order_msg_sent_notice">'+  wrael_common_param.message_empty +'</p><a href="" class="wps_remove_notice_msg">X</a>';
-			$('.wps_order_msg_notice_wrapper').css('display', 'flex');
-			$('.wps_order_msg_notice_wrapper').css('background-color', 'red');
-			$('.wps_order_msg_notice_wrapper').html(alerthtml);
-			$('#wps_order_msg_submit').css({'outline-color':'white', 'border-color':'white'});
-			return false;
-		}
 		var order_id = $(this).data('id');
 
 		var form_data = new FormData();
 
 		// Read selected files
-		if ( up_files[0] ) {
+		var attachment_enable = wrael_common_param.order_msg_attachment;
+		if ( attachment_enable && 'on' == attachment_enable && up_files[0] ) {
 			var totalfiles = up_files[0].files.length;
-			for (var index = 0; index < totalfiles; index++) {
-						form_data.append('wps_order_msg_attachment[]', up_files[0].files[index]);
+			if ( totalfiles ) {
+				for (var index = 0; index < totalfiles; index++) {
+					var file_type = up_files[0].files[index].type;
+					if ( 'image/png' == file_type || 'image/jpeg' == file_type || 'image/jpg' == file_type ) {
+						form_data.append('wps_order_msg_attachment[]', up_files[0].files[index]);	
+					} else {
+						alerthtml = '<p class="wps_order_msg_sent_notice">'+ wrael_common_param.file_not_supported +'</p><a href="" class="wps_remove_notice_msg">X</a>';
+					}
+				}
+
+			} else {
+				alerthtml = '<p class="wps_order_msg_sent_notice">'+ wrael_common_param.no_file_attached +'</p><a href="" class="wps_remove_notice_msg">X</a>';
 			}
+		}
+		if ( msg == '' ) {
+			alerthtml = '<p class="wps_order_msg_sent_notice">'+ wrael_common_param.message_empty +'</p><a href="" class="wps_remove_notice_msg">X</a>';
+		}
+		if ( alerthtml ) {
+			$('.wps_order_msg_notice_wrapper').css('display', 'flex');
+			$('.wps_order_msg_notice_wrapper').css('background-color', 'red');
+			$('.wps_order_msg_notice_wrapper').html(alerthtml);
+			$('#wps_order_msg_submit').css({'outline-color':'white', 'border-color':'white'});
+			return false;
 		}
 		form_data.append( 'action', 'wps_rma_order_messages_save' );
 		form_data.append( 'msg', msg );
