@@ -371,10 +371,14 @@ if ( ! function_exists( 'wps_rma_return_req_approve_callback' ) ) {
 		}
 		// Update the status.
 		update_post_meta( $orderid, 'wps_rma_return_attachment', $request_files );
-		$order_obj         = wc_get_order( $orderid );
-		$line_items_refund = array();
-		$wps_rma_check_tax = get_option( $orderid . 'check_tax', false );
-		$coupon_discount   = get_option( 'wps_rma_refund_deduct_coupon', 'no' );
+		$order_obj            = wc_get_order( $orderid );
+		$line_items_refund    = array();
+		$wps_rma_check_tax    = get_option( $orderid . 'check_tax', false );
+		$coupon_discount      = get_option( 'wps_rma_refund_deduct_coupon', 'no' );
+		$refund_items_details = get_post_meta( $orderid, 'wps_rma_refund_items_details', true );
+		if ( ! is_array( $refund_items_details ) ) {
+			$refund_items_details = array();
+		}
 		// add refund item related info for wc_create_refund.
 		if ( isset( $product_datas ) && ! empty( $product_datas ) ) {
 			foreach ( $order_obj->get_items() as $item_id => $item ) {
@@ -397,29 +401,30 @@ if ( ! function_exists( 'wps_rma_return_req_approve_callback' ) ) {
 							$line_items_refund[ $item_id ]['qty']          = $requested_product['qty'];
 							$line_items_refund[ $item_id ]['refund_total'] = wc_format_decimal( $prod_price * $requested_product['qty'] / $item->get_quantity() );
 							// translators: %1$s: product name, %2$s: product qty.
-							$order_obj->add_order_note( sprintf( __( '%1$s %2$s Item Quantity has been reduce because of the return', 'woo-refund-and-exchange-lite' ), $product->get_name(), $requested_product['qty'] ), false, true );
+							// $order_obj->add_order_note( sprintf( __( '%1$s %2$s Item Quantity has been reduce because of the return', 'woo-refund-and-exchange-lite' ), $product->get_name(), $requested_product['qty'] ), false, true );
+
+							if ( ! empty( $refund_items_details ) && isset( $refund_items_details[ $item_id ] ) ) {
+								$get_qty                          = $refund_items_details[ $item_id ];
+								$refund_items_details[ $item_id ] = $get_qty + $requested_product['qty'];
+							} else {
+								$refund_items_details[ $item_id ] = $requested_product['qty'];
+							}
 						}
 					}
 				}
 			}
 		}
+		update_post_meta( $orderid, 'wps_rma_refund_items_details', $refund_items_details );
 		if ( ! empty( $line_items_refund ) ) {
-			$refund = wc_create_refund(
-				array(
-					'amount'         => 0,
-					'reason'         => esc_html__( 'Added the return item info', 'woo-refund-and-exchange-lite' ),
-					'order_id'       => $orderid,
-					'line_items'     => $line_items_refund,
-					'refund_payment' => false,
-					'restock_items'  => apply_filters( 'wps_rma_auto_restock_item_refund', false, $orderid ),
-				)
+			$refund_items_details = array(
+				'amount'         => 0,
+				'reason'         => esc_html__( 'Added the return item info', 'woo-refund-and-exchange-lite' ),
+				'order_id'       => $orderid,
+				'line_items'     => $line_items_refund,
+				'refund_payment' => false,
+				'restock_items'  => apply_filters( 'wps_rma_auto_restock_item_refund', false, $orderid ),
 			);
-			$wps_refund = get_post_meta( $orderid, 'wps_rma_refund_info', true );
-			if ( empty( $wps_refund ) ) {
-				$wps_refund = array();
-			}
-			$wps_refund[] = $refund->get_id();
-			update_post_meta( $orderid, 'wps_rma_refund_info', $wps_refund );
+			update_post_meta( $orderid, 'wps_rma_refund_items', $refund_items_details );
 		}
 
 		$update_item_status = get_post_meta( $orderid, 'wps_rma_request_made', true );

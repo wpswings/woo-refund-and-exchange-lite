@@ -100,11 +100,18 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 					// Purchases note on the order.
 						apply_filters( 'woocommerce_purchase_note_order_statuses', array( 'completed', 'processing' ) )
 					);
-					$get_order_currency = get_woocommerce_currency_symbol( $order_obj->get_currency() );
+					$get_order_currency   = get_woocommerce_currency_symbol( $order_obj->get_currency() );
+					$refund_items_details = get_post_meta( $order_id, 'wps_rma_refund_items_details', true );
 					foreach ( $order_obj->get_items() as $item_id => $item ) {
 						$item_quantity = $item->get_quantity();
 						$refund_qty    = $order_obj->get_qty_refunded_for_item( $item_id );
 						$item_qty      = $item->get_quantity() + $refund_qty;
+
+						if ( ! empty( $refund_items_details ) && isset( $refund_items_details[ $item_id ] ) ) {
+							$return_item_qty = $refund_items_details[ $item_id ];
+							$item_qty        = $item->get_quantity() - $return_item_qty;
+						}
+
 						if ( $item_qty > 0 ) {
 							if ( isset( $item['variation_id'] ) && $item['variation_id'] > 0 ) {
 								$variation_id = $item['variation_id'];
@@ -358,7 +365,7 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 									<input type="file" name="wps_rma_return_request_files[]" class="wps_rma_return_request_files">
 									</span>
 									<div><input type="button" value="<?php esc_html_e( 'Add More', 'woo-refund-and-exchange-lite' ); ?>" class="wps_rma_return_request_morefiles" data-count="1" data-max="<?php echo esc_html( $attach_limit ); ?>"></div>
-									<i><?php esc_html_e( 'Only .png, .jpeg extension file is approved.', 'woo-refund-and-exchange-lite' ); ?></i>
+									<i><?php esc_html_e( 'Only png,jpg,jpeg extension file is approved', 'woo-refund-and-exchange-lite' ); ?>.</i>
 								</p>
 							</div>
 							<?php

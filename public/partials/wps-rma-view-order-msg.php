@@ -47,7 +47,7 @@ if ( isset( $order_id ) && ! empty( $order_id ) ) {
 						<div><label for="wps_order_msg_attachment"> <?php esc_html_e( 'Attach file: ', 'woo-refund-and-exchange-lite' ); ?></label></div>
 						<div><input type="file" id="wps_order_msg_attachment" name="wps_order_msg_attachment[]" multiple ></div>
 						<div>
-							<label>Only .png, .jpeg extension file is approved.</label>
+							<label><?php esc_html_e( 'Only png,jpg,jpeg extension file is approved', 'woo-refund-and-exchange-lite' ); ?>.</label>
 						</div>
 					<?php endif; ?>
 				</div>
