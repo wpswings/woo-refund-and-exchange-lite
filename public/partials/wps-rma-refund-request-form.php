@@ -13,12 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! is_user_logged_in() ) {
-	$guest_user = true;
-} else {
-	$guest_user = false;
-}
-if ( isset( $_GET['wps_rma_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['wps_rma_nonce'] ) ), 'wps_rma_nonce' ) && isset( $_GET['order_id'] ) && ( $guest_user || current_user_can( 'wps-rma-refund-request' ) ) ) {
+if ( isset( $_GET['wps_rma_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['wps_rma_nonce'] ) ), 'wps_rma_nonce' ) && isset( $_GET['order_id'] ) && current_user_can( 'wps-rma-refund-request' ) ) {
 	$order_id = sanitize_text_field( wp_unslash( $_GET['order_id'] ) );
 } else {
 	$order_id = '';
@@ -36,8 +31,10 @@ $rr_subject = '';
 $rr_reason  = '';
 if ( isset( $condition ) && 'yes' === $condition && isset( $order_id ) && ! empty( $order_id ) && ! empty( $order_obj ) ) {
 	$order_customer_id = get_post_meta( $order_id, '_customer_user', true );
-	if ( ! current_user_can( 'wps-rma-refund-request' ) ) {
-		if ( get_current_user_id() != $order_customer_id ) {
+	$user              = wp_get_current_user();
+	$allowed_roles     = array( 'editor', 'administrator', 'author' );
+	if ( ! array_intersect( $allowed_roles, $user->roles ) ) {
+		if ( get_current_user_id() > 0 && get_current_user_id() != $order_customer_id ) {
 			$myaccount_page     = get_option( 'woocommerce_myaccount_page_id' );
 			$myaccount_page_url = get_permalink( $myaccount_page );
 			$condition          = wp_kses_post( "This order #$order_id is not associated to your account. <a href='$myaccount_page_url'>Click Here</a>" );
