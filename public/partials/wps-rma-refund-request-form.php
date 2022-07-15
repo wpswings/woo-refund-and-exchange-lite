@@ -69,7 +69,7 @@ if ( $wps_wrma_show_sidebar_on_form ) {
 if ( isset( $condition ) && 'yes' === $condition ) {
 	$wps_refund_wrapper_class = get_option( 'wps_wrma_refund_form_wrapper_class' );
 	$wps_return_css           = get_option( 'wps_rma_refund_form_css' );
-?>
+	?>
 	<style><?php echo wp_kses_post( $wps_return_css ); ?></style>
 	<div class="wps_rma_refund_form_wrapper wps-rma-form__wrapper <?php echo esc_html( $wps_refund_wrapper_class ); ?>">
 		<div id="wps_rma_return_request_container" class="wps-rma-form__header">

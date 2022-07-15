@@ -55,24 +55,37 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 				$check_refund = wps_rma_show_buttons( 'refund', $order_obj );
 				if ( 'yes' === $check_refund ) {
 					if ( wps_rma_pro_active() && ! empty( $products ) ) {
-						$products1    = array();
-						$array_merge  = array();
-						$ref_price    = 0;
-						$flag         = true;
-						$qty_flag     = true;
-						$item_flag    = true;
-						$invalid_item = true;
-						$invalid_qty  = true;
-						$item_detail  = array();
+						$products1     = array();
+						$refund_items  = array();
+						$refund_amount = 0;
+						$flag          = true;
+						$qty_flag      = true;
+						$item_flag     = true;
+						$invalid_item  = true;
+						$invalid_qty   = true;
+						$item_detail   = array();
 						foreach ( $order_obj->get_items() as $item_id => $item ) {
-							$item_detail[ $item_id ] = $item->get_quantity();
+							$product = $item->get_product();
+							if ( 'variation' === $product->get_type() ) {
+								$variation_id                 = $item->get_variation_id();
+								$item_detail[ $variation_id ] = $item->get_quantity();
+							} else {
+								$product_id                 = $item->get_product_id();
+								$item_detail[ $product_id ] = $item->get_quantity();
+							}
 						}
 						$json_validate = wps_json_validate( $products );
 						if ( $json_validate ) {
 							foreach ( $order_obj->get_items() as $item_id => $item ) {
 								foreach ( json_decode( $products ) as $key => $value ) {
-									if ( isset( $value->item_id ) && isset( $value->qty ) && array_key_exists( $value->item_id, $item_detail ) ) {
-										if ( $value->item_id === $item_id ) {
+									if ( ( isset( $value->product_id ) && array_key_exists( $value->product_id, $item_detail ) ) || ( isset( $value->variation_id ) && array_key_exists( $value->variation_id, $item_detail ) ) && isset( $value->qty ) ) {
+										$product = $item->get_product();
+										if ( 'variation' === $product->get_type() ) {
+											$variation_id = $item->get_variation_id();
+										} else {
+											$product_id = $item->get_product_id();
+										}
+										if ( ( isset( $value->product_id ) && $product_id == $value->product_id ) || ( isset( $value->variation_id ) && $variation_id == $value->variation_id ) ) {
 											$item_refund_already = get_post_meta( $order_id, 'wps_rma_request_made', true );
 											if ( ! empty( $item_refund_already ) && isset( $item_refund_already[ $item_id ] ) && 'completed' === $item_refund_already[ $item_id ] ) {
 												$flag = false;
@@ -81,7 +94,8 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 											} else {
 												$item_arr               = array();
 												$item_arr['product_id'] = $item->get_product_id();
-												if ( $item->is_type( 'variable' ) ) {
+												$product = $item->get_product();
+												if ( 'variation' === $product->get_type() ) {
 													$variation_id = $item->get_variation_id();
 												} else {
 													$variation_id = 0;
@@ -89,23 +103,28 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 												$item_arr['item_id']      = $item_id;
 												$item_arr['variation_id'] = $variation_id;
 												$item_arr['qty']          = $value->qty;
-												$wps_rma_check_tax = get_option( $order_id . 'check_tax', false );
-												$tax = $item->get_total_tax();
+												$wps_rma_check_tax        = get_option( $order_id . 'check_tax', false );
+												$tax_price                = $item->get_total_tax();
+												$item_price               = $item->get_total();
 												if ( empty( $wps_rma_check_tax ) ) {
-													$item_arr['price'] = $item->get_total();
-													$ref_price        += $item->get_total();
+													$item_arr['price'] = $item_price;
+													$refund_amount    += $item_price;
 												} elseif ( 'wps_rma_inlcude_tax' === $wps_rma_check_tax ) {
-													$item_arr['price'] = $item->get_total() + $tax;
-													$ref_price        += $item->get_total() + $tax;
+													$item_arr['price'] = $item_price + $tax_price;
+													$refund_amount    += $item_price + $tax_price;
 												} elseif ( 'wps_rma_exclude_tax' === $wps_rma_check_tax ) {
-													$item_arr['price'] = $item->get_total() - $tax;
-													$ref_price        += $item->get_total() - $tax;
+													$item_arr['price'] = $item_price - $tax_price;
+													$refund_amount    += $item_price - $tax_price;
 												}
-												$array_merge[] = $item_arr;
+												$refund_items[] = $item_arr;
 											}
 										}
 									} else {
-										if ( ! isset( $value->item_id ) ) {
+										$item_flag = true;
+										if ( isset( $value->product_id ) || isset( $value->variation_id ) ) {
+											$item_flag = false;
+										}
+										if ( $item_flag ) {
 											$invalid_item = false;
 										} elseif ( ! isset( $value->qty ) ) {
 											$invalid_qty = false;
@@ -123,7 +142,7 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 						} elseif ( ! $qty_flag ) {
 							$wps_rma_rest_response['message'] = 'error';
 							$wps_rma_rest_response['status']  = 404;
-							$wps_rma_rest_response['data']    = esc_html__( 'Quantity given for items is greater than the order\'s items quantity', 'woo-refund-and-exchange-lite' );
+							$wps_rma_rest_response['data']    = esc_html__( 'Quantity given for items is greater than the orders items quantity', 'woo-refund-and-exchange-lite' );
 						} elseif ( ! $item_flag ) {
 							$wps_rma_rest_response['message'] = 'error';
 							$wps_rma_rest_response['status']  = 404;
@@ -147,11 +166,11 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 							$wps_rma_rest_response['status'] = 404;
 							$wps_rma_rest_response['data']   = esc_html__( 'Please Provide the data for the products', 'woo-refund-and-exchange-lite' );
 						} else {
-							$products1['products']      = $array_merge;
+							$products1['products']      = $refund_items;
 							$products1['order_id']      = $order_id;
 							$products1['subject']       = $reason;
 							$products1['refund_method'] = $refund_method;
-							$products1['amount']        = $ref_price;
+							$products1['amount']        = $refund_amount;
 							$wps_rma_resultsdata        = wps_rma_save_return_request_callback( $order_id, $refund_method, $products1 );
 							if ( ! empty( $wps_rma_resultsdata ) ) {
 								$wps_rma_rest_response['message'] = 'success';
@@ -164,9 +183,9 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 							}
 						}
 					} else {
-						$products1   = array();
-						$array_merge = array();
-						$ref_price   = 0;
+						$products1     = array();
+						$refund_items  = array();
+						$refund_amound = 0;
 						if ( ! empty( $order_obj ) ) {
 							foreach ( $order_obj->get_items() as $item_id => $item ) {
 								$item_arr               = array();
@@ -179,24 +198,25 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 								$item_arr['item_id']      = $item_id;
 								$item_arr['variation_id'] = $variation_id;
 								$item_arr['qty']          = $item->get_quantity();
-								$tax                      = $item->get_total_tax();
+								$item_tax                 = $item->get_total_tax();
+								$item_price               = $item->get_total();
 								if ( empty( $wps_rma_check_tax ) ) {
-										$item_arr['price'] = $item->get_total();
-										$ref_price        += $item->get_total();
+									$item_arr['price'] = $item_price;
+									$refund_amound    += $item_price;
 								} elseif ( 'wps_rma_inlcude_tax' === $wps_rma_check_tax ) {
-									$item_arr['price'] = $item->get_total() + $tax;
-									$ref_price        += $item->get_total() + $tax;
+									$item_arr['price'] = $item_price + $item_tax;
+									$refund_amound    += $item_price + $item_tax;
 								} elseif ( 'wps_rma_exclude_tax' === $wps_rma_check_tax ) {
-									$item_arr['price'] = $item->get_total() - $tax;
-									$ref_price        += $item->get_total() - $tax;
+									$item_arr['price'] = $item_price - $item_tax;
+									$refund_amound    += $item_price - $item_tax;
 								}
-								$array_merge[] = $item_arr;
+								$refund_items[] = $item_arr;
 							}
-							$products1['products']      = $array_merge;
+							$products1['products']      = $refund_items;
 							$products1['order_id']      = $order_id;
 							$products1['subject']       = $reason;
 							$products1['refund_method'] = 'manual_method';
-							$products1['amount']        = $ref_price;
+							$products1['amount']        = $refund_amound;
 						}
 						$wps_rma_resultsdata = wps_rma_save_return_request_callback( $order_id, 'manual_method', $products1 );
 						$flag_refund_made    = false;

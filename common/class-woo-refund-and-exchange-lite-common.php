@@ -31,8 +31,8 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	/**
 	 * The version of this plugin.
 	 *
-	 * @since    1.0.0
-	 * @var      string    $version    The current version of this plugin.
+	 * @since   1.0.0
+	 * @var     string    $version    The current version of this plugin.
 	 */
 	private $version;
 

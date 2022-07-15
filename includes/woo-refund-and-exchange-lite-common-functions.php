@@ -400,8 +400,6 @@ if ( ! function_exists( 'wps_rma_return_req_approve_callback' ) ) {
 							}
 							$line_items_refund[ $item_id ]['qty']          = $requested_product['qty'];
 							$line_items_refund[ $item_id ]['refund_total'] = wc_format_decimal( $prod_price * $requested_product['qty'] / $item->get_quantity() );
-							// translators: %1$s: product name, %2$s: product qty.
-							// $order_obj->add_order_note( sprintf( __( '%1$s %2$s Item Quantity has been reduce because of the return', 'woo-refund-and-exchange-lite' ), $product->get_name(), $requested_product['qty'] ), false, true );
 
 							if ( ! empty( $refund_items_details ) && isset( $refund_items_details[ $item_id ] ) ) {
 								$get_qty                          = $refund_items_details[ $item_id ];

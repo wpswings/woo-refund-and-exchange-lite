@@ -1,7 +1,8 @@
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Return Refund and Exchange for WooCommerce 4.0.4\n"
-"POT-Creation-Date: 2022-07-05 13:57+0530\n"
+"POT-Creation-Date: 2022-07-15 15:48+0530\n"
 "PO-Revision-Date: 2022-07-05 13:57+0530\n"
 "Last-Translator: \n"
 "Language-Team: WP Swings\n"
@@ -9,7 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.3\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -17,6 +18,7 @@ msgstr ""
 "esc_html;esc_html__;esc_html_e;esc_html_x;_n_noop;_nx_noop;"
 "translate_nooped_plural\n"
 "X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: build\n"
 
 #: admin/class-woo-refund-and-exchange-lite-admin.php:156
 msgid "Policy already exist"
@@ -226,21 +228,21 @@ msgstr ""
 #: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:38
 #: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:45
 #: public/class-woo-refund-and-exchange-lite-public.php:227
-#: public/partials/wps-rma-refund-request-form.php:90
+#: public/partials/wps-rma-refund-request-form.php:87
 msgid "Product"
 msgstr ""
 
 #: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:39
 #: admin/partials/woo-refund-and-exchange-lite-return-meta.php:47
 #: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:46
-#: public/partials/wps-rma-refund-request-form.php:91
+#: public/partials/wps-rma-refund-request-form.php:88
 msgid "Quantity"
 msgstr ""
 
 #: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:40
 #: admin/partials/woo-refund-and-exchange-lite-return-meta.php:46
 #: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:47
-#: public/partials/wps-rma-refund-request-form.php:183
+#: public/partials/wps-rma-refund-request-form.php:187
 msgid "Price"
 msgstr ""
 
@@ -592,7 +594,7 @@ msgstr ""
 #: admin/partials/woo-refund-and-exchange-lite-return-meta.php:48
 #: admin/partials/woo-refund-and-exchange-lite-return-meta.php:104
 #: public/class-woo-refund-and-exchange-lite-public.php:228
-#: public/partials/wps-rma-refund-request-form.php:92
+#: public/partials/wps-rma-refund-request-form.php:89
 msgid "Total"
 msgstr ""
 
@@ -704,30 +706,38 @@ msgstr ""
 msgid "Please Enter a Message."
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:206
+#: common/class-woo-refund-and-exchange-lite-common.php:91
+msgid "No File Attached"
+msgstr ""
+
+#: common/class-woo-refund-and-exchange-lite-common.php:92
+msgid "Attached File type is not supported"
+msgstr ""
+
+#: common/class-woo-refund-and-exchange-lite-common.php:210
 #, php-format
 msgid "Refund Requested <span class=\"count\">(%s)</span>"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:217
+#: common/class-woo-refund-and-exchange-lite-common.php:221
 #, php-format
 msgid "Refund Approved <span class=\"count\">(%s)</span>"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:228
+#: common/class-woo-refund-and-exchange-lite-common.php:232
 #, php-format
 msgid "Refund Cancelled <span class=\"count\">(%s)</span>"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:247
+#: common/class-woo-refund-and-exchange-lite-common.php:251
 msgid "Refund Requested"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:248
+#: common/class-woo-refund-and-exchange-lite-common.php:252
 msgid "Refund Approved"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:249
+#: common/class-woo-refund-and-exchange-lite-common.php:253
 msgid "Refund Cancelled"
 msgstr ""
 
@@ -949,41 +959,36 @@ msgstr ""
 msgid "Refund request is already made and accepted"
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:289
+#: includes/woo-refund-and-exchange-lite-common-functions.php:285
 msgid ""
 "Your Giftcard has been expired so you can not proceed with the exchange. "
 "Thanks"
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:296
+#: includes/woo-refund-and-exchange-lite-common-functions.php:292
 msgid ""
 "Your Giftcard has been used so you can not proceed with the exchange. Thanks"
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:335
+#: includes/woo-refund-and-exchange-lite-common-functions.php:331
 msgid "User Request to refund product"
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:339
+#: includes/woo-refund-and-exchange-lite-common-functions.php:335
 msgid ""
 "Refund request placed successfully. You have received a notification mail "
 "regarding this. You will redirect to the My Account Page"
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:404
-#, php-format
-msgid "%1$s %2$s Item Quantity has been reduce because of the return"
-msgstr ""
-
-#: includes/woo-refund-and-exchange-lite-common-functions.php:414
+#: includes/woo-refund-and-exchange-lite-common-functions.php:419
 msgid "Added the return item info"
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:448
+#: includes/woo-refund-and-exchange-lite-common-functions.php:447
 msgid "User Request of Refund Product is approved"
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:499
+#: includes/woo-refund-and-exchange-lite-common-functions.php:498
 msgid "User Request of Refund Product is cancelled"
 msgstr ""
 
@@ -1010,100 +1015,100 @@ msgstr ""
 msgid "Skip For Now"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:122
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:141
 msgid ""
 "Return Request Already has been made and accepted for the items you have "
 "given"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:126
-msgid "Quantity given for items is greater than the order's items quantity"
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:145
+msgid "Quantity given for items is greater than the orders items quantity"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:130
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:149
 msgid "These item id does not belong to the order"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:134
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:153
 msgid "Please give the item ids which needs to be refunded"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:138
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:157
 msgid "Please give the item qty which needs to be refunded"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:142
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:161
 msgid "Products are given by you doesn't a valid json format"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:145
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:148
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:164
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:167
 msgid "Please Provide the data for the products"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:159
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:178
 msgid "Refund Request Send Successfully"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:163
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:222
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:182
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:242
 msgid "Some problem occur while refund requesting"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:214
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:234
 msgid "Return Request Already has been made and accepted"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:218
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:238
 msgid "Return Request Send Successfully"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:231
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:288
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:339
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:251
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:308
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:359
 msgid "Please Provide the order id to perform the process"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:234
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:285
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:336
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:254
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:305
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:356
 msgid "Please Provide the correct order id to perform the process"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:237
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:257
 msgid "Please Provide the reason for refund"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:271
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:291
 msgid "Return Request Accepted Successfully"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:274
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:294
 msgid "Some problem occur while refund request accepting"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:278
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:298
 msgid "You have approved the refund request already"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:281
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:301
 msgid ""
 "You can only accept the refund request when the request has been made earlier"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:322
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:342
 msgid "Return Request Cancel Successfully"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:325
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:345
 msgid "Some problem occur while refund request cancelling"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:329
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:349
 msgid "You have cancelled the refund request already"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:332
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:352
 msgid ""
 "You can only perform the refund request cancel when the request request has "
 "been made earlier"
@@ -1145,71 +1150,72 @@ msgstr ""
 msgid "The above product Refund request is cancelled on"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:32
+#: public/partials/wps-rma-refund-request-form.php:27
 msgid "Please give the correct order id"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:79
+#: public/partials/wps-rma-refund-request-form.php:76
 msgid "Order's Product Refund Request Form"
-msgstr ""
-
-#: public/partials/wps-rma-refund-request-form.php:188
-#: public/partials/wps-rma-refund-request-form.php:224
-#: public/partials/wps-rma-refund-request-form.php:253
-msgid "(incl. tax)"
 msgstr ""
 
 #: public/partials/wps-rma-refund-request-form.php:192
 #: public/partials/wps-rma-refund-request-form.php:228
 #: public/partials/wps-rma-refund-request-form.php:257
+msgid "(incl. tax)"
+msgstr ""
+
+#: public/partials/wps-rma-refund-request-form.php:196
+#: public/partials/wps-rma-refund-request-form.php:232
+#: public/partials/wps-rma-refund-request-form.php:261
 msgid "(excl. tax)"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:247
+#: public/partials/wps-rma-refund-request-form.php:251
 msgid "Total Refund Amount"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:281
+#: public/partials/wps-rma-refund-request-form.php:285
 msgid "Please Enter the bank details for manual refund"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:291
+#: public/partials/wps-rma-refund-request-form.php:295
 msgid "Subject of Refund Request :"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:307
+#: public/partials/wps-rma-refund-request-form.php:311
 msgid "Other"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:311
+#: public/partials/wps-rma-refund-request-form.php:315
 msgid "Write your refund reason"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:322
+#: public/partials/wps-rma-refund-request-form.php:326
 msgid "Description for Refund Reason :"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:330
+#: public/partials/wps-rma-refund-request-form.php:334
 msgid "Write your description for a refund"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:353
+#: public/partials/wps-rma-refund-request-form.php:357
 msgid "Attach Files:"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:360
+#: public/partials/wps-rma-refund-request-form.php:364
 msgid "Add More"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:361
-msgid "Only .png, .jpeg extension file is approved."
+#: public/partials/wps-rma-refund-request-form.php:365
+#: public/partials/wps-rma-view-order-msg.php:50
+msgid "Only png,jpg,jpeg extension file is approved"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:369
+#: public/partials/wps-rma-refund-request-form.php:373
 msgid "Submit Request"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:401
+#: public/partials/wps-rma-refund-request-form.php:405
 msgid "Refund Request Can't make on this order"
 msgstr ""
 
@@ -1242,7 +1248,7 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:327
+#: woocommerce-refund-and-exchange-lite.php:245
 msgid ""
 "Woocommerce is not activated, Please activate Woocommerce first to install "
 "WooCommerce Refund and Exchange Lite."
