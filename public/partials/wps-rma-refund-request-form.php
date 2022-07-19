@@ -292,10 +292,11 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 						<label>
 							<b>
 								<?php
-									echo esc_html__( 'Subject of Refund Request :', 'woo-refund-and-exchange-lite' );
+									echo esc_html__( 'Subject of Refund Request', 'woo-refund-and-exchange-lite' );
 								?>
 							</b>
 						</label>
+						<span class="wps_field_mendatory">*</span>
 					</div>
 					<select name="wps_rma_return_request_subject" id="wps_rma_return_request_subject">
 						<?php
@@ -323,10 +324,11 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 							<label>
 								<b>
 								<?php
-								echo esc_html__( 'Description for Refund Reason :', 'woo-refund-and-exchange-lite' );
+								echo esc_html__( 'Description for Refund Reason', 'woo-refund-and-exchange-lite' );
 								?>
 								</b>
 							</label>
+							<span class="wps_field_mendatory">*</span>
 						</div>
 						<?php
 						$predefined_return_reason_placeholder = get_option( 'wps_rma_refund_reason_placeholder', false );
@@ -354,7 +356,8 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 						if ( 'on' === $return_attachment ) {
 							?>
 							<div class="wps_rma_attach_files">
-								<label><b><?php esc_html_e( 'Attach Files:', 'woo-refund-and-exchange-lite' ); ?></b></label>
+								<label><b><?php esc_html_e( 'Attach Files', 'woo-refund-and-exchange-lite' ); ?></b></label>
+								<span class="wps_field_mendatory">*</span>
 								<p>
 									<span id="wps_rma_return_request_files">
 									<input type="hidden" name="wps_rma_return_request_order" value="<?php echo esc_html( $order_id ); ?>">

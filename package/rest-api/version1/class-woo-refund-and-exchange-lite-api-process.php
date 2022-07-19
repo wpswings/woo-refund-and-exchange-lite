@@ -104,8 +104,8 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 												$item_arr['variation_id'] = $variation_id;
 												$item_arr['qty']          = $value->qty;
 												$wps_rma_check_tax        = get_option( $order_id . 'check_tax', false );
-												$tax_price                = $item->get_total_tax();
-												$item_price               = $item->get_total();
+												$tax_price                = $item->get_total_tax() / $item->get_quantity();
+												$item_price               = $item->get_total() / $item->get_quantity();
 												if ( empty( $wps_rma_check_tax ) ) {
 													$item_arr['price'] = $item_price;
 													$refund_amount    += $item_price;
@@ -198,8 +198,8 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 								$item_arr['item_id']      = $item_id;
 								$item_arr['variation_id'] = $variation_id;
 								$item_arr['qty']          = $item->get_quantity();
-								$item_tax                 = $item->get_total_tax();
-								$item_price               = $item->get_total();
+								$item_tax                 = $item->get_total_tax() / $item->get_quantity();
+								$item_price               = $item->get_total() / $item->get_quantity();
 								if ( empty( $wps_rma_check_tax ) ) {
 									$item_arr['price'] = $item_price;
 									$refund_amound    += $item_price;

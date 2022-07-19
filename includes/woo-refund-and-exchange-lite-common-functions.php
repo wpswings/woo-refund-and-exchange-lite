@@ -393,10 +393,10 @@ if ( ! function_exists( 'wps_rma_return_req_approve_callback' ) ) {
 								$prod_price = $item->get_subtotal();
 							}
 							if ( 'wps_rma_inlcude_tax' === $wps_rma_check_tax ) {
-								$item_tax                              = $item->get_subtotal_tax() / $item->get_quantity();
+								$item_tax                                    = $item->get_subtotal_tax() / $requested_product['qty'];
 								$line_items_refund[ $item_id ]['refund_tax'] = array( 1 => $item_tax );
 							} elseif ( 'wps_rma_exclude_tax' === $wps_rma_check_tax ) {
-								$prod_price -= $item->get_subtotal_tax();
+								$prod_price -= $item->get_subtotal_tax() / $requested_product['qty'];
 							}
 							$line_items_refund[ $item_id ]['qty']          = $requested_product['qty'];
 							$line_items_refund[ $item_id ]['refund_total'] = wc_format_decimal( $prod_price * $requested_product['qty'] / $item->get_quantity() );

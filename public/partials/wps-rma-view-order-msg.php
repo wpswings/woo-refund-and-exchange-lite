@@ -44,7 +44,7 @@ if ( isset( $order_id ) && ! empty( $order_id ) ) {
 			<div class="wps-order-msg-attachment-wrapper wps_rma_flex">
 				<div class="wps-order-attachment">
 					<?php if ( isset( $upload_attach ) && 'on' === $upload_attach ) : ?>
-						<div><label for="wps_order_msg_attachment"> <?php esc_html_e( 'Attach file: ', 'woo-refund-and-exchange-lite' ); ?></label></div>
+						<div><label for="wps_order_msg_attachment"> <?php esc_html_e( 'Attach file', 'woo-refund-and-exchange-lite' ); ?></label><span class="wps_field_mendatory"> *</span></div>
 						<div><input type="file" id="wps_order_msg_attachment" name="wps_order_msg_attachment[]" multiple ></div>
 						<div>
 							<label><?php esc_html_e( 'Only png,jpg,jpeg extension file is approved', 'woo-refund-and-exchange-lite' ); ?>.</label>
