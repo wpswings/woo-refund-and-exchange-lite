@@ -208,6 +208,9 @@ jQuery( document ).on( 'ready', function(){
 				alerthtml = '<p class="wps_order_msg_sent_notice">'+ wrael_common_param.no_file_attached +'</p><a href="" class="wps_remove_notice_msg">X</a>';
 			}
 		}
+		if ( order_msg_type == 'admin') {
+			alerthtml = '';
+		}
 		if ( msg == '' ) {
 			alerthtml = '<p class="wps_order_msg_sent_notice">'+ wrael_common_param.message_empty +'</p><a href="" class="wps_remove_notice_msg">X</a>';
 		}
