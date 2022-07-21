@@ -75,7 +75,7 @@
 
 .wps-rma-form__wrapper label {
   margin-bottom: 8px;
-  display: inline-block;
+  display: inline-block !important;
   line-height: 1.2;
 }
 
@@ -501,6 +501,10 @@ div.wps_order_msg_single_attachment a .wps_order_msg_attachment_thumbnail {
 .wps_rma_customer_detail {
   padding: 30px 15px;
   overflow: hidden;
+}
+
+.wps_field_mendatory {
+  color: red;
 }
 
 @media only screen and (max-width: 820px) {

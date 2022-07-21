@@ -13,12 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! is_user_logged_in() ) {
-	$guest_user = true;
-} else {
-	$guest_user = false;
-}
-if ( isset( $_GET['wps_rma_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['wps_rma_nonce'] ) ), 'wps_rma_nonce' ) && isset( $_GET['order_id'] ) && ( $guest_user || current_user_can( 'wps-rma-refund-request' ) ) ) {
+if ( isset( $_GET['wps_rma_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['wps_rma_nonce'] ) ), 'wps_rma_nonce' ) && isset( $_GET['order_id'] ) && current_user_can( 'wps-rma-refund-request' ) ) {
 	$order_id = sanitize_text_field( wp_unslash( $_GET['order_id'] ) );
 } else {
 	$order_id = '';
@@ -36,8 +31,10 @@ $rr_subject = '';
 $rr_reason  = '';
 if ( isset( $condition ) && 'yes' === $condition && isset( $order_id ) && ! empty( $order_id ) && ! empty( $order_obj ) ) {
 	$order_customer_id = get_post_meta( $order_id, '_customer_user', true );
-	if ( ! current_user_can( 'wps-rma-refund-request' ) ) {
-		if ( get_current_user_id() != $order_customer_id ) {
+	$user              = wp_get_current_user();
+	$allowed_roles     = array( 'editor', 'administrator', 'author' );
+	if ( ! array_intersect( $allowed_roles, $user->roles ) ) {
+		if ( get_current_user_id() > 0 && get_current_user_id() != $order_customer_id ) {
 			$myaccount_page     = get_option( 'woocommerce_myaccount_page_id' );
 			$myaccount_page_url = get_permalink( $myaccount_page );
 			$condition          = wp_kses_post( "This order #$order_id is not associated to your account. <a href='$myaccount_page_url'>Click Here</a>" );
@@ -72,7 +69,7 @@ if ( $wps_wrma_show_sidebar_on_form ) {
 if ( isset( $condition ) && 'yes' === $condition ) {
 	$wps_refund_wrapper_class = get_option( 'wps_wrma_refund_form_wrapper_class' );
 	$wps_return_css           = get_option( 'wps_rma_refund_form_css' );
-?>
+	?>
 	<style><?php echo wp_kses_post( $wps_return_css ); ?></style>
 	<div class="wps_rma_refund_form_wrapper wps-rma-form__wrapper <?php echo esc_html( $wps_refund_wrapper_class ); ?>">
 		<div id="wps_rma_return_request_container" class="wps-rma-form__header">
@@ -100,11 +97,18 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 					// Purchases note on the order.
 						apply_filters( 'woocommerce_purchase_note_order_statuses', array( 'completed', 'processing' ) )
 					);
-					$get_order_currency = get_woocommerce_currency_symbol( $order_obj->get_currency() );
+					$get_order_currency   = get_woocommerce_currency_symbol( $order_obj->get_currency() );
+					$refund_items_details = get_post_meta( $order_id, 'wps_rma_refund_items_details', true );
 					foreach ( $order_obj->get_items() as $item_id => $item ) {
 						$item_quantity = $item->get_quantity();
 						$refund_qty    = $order_obj->get_qty_refunded_for_item( $item_id );
 						$item_qty      = $item->get_quantity() + $refund_qty;
+
+						if ( ! empty( $refund_items_details ) && isset( $refund_items_details[ $item_id ] ) ) {
+							$return_item_qty = $refund_items_details[ $item_id ];
+							$item_qty        = $item->get_quantity() - $return_item_qty;
+						}
+
 						if ( $item_qty > 0 ) {
 							if ( isset( $item['variation_id'] ) && $item['variation_id'] > 0 ) {
 								$variation_id = $item['variation_id'];
@@ -288,10 +292,11 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 						<label>
 							<b>
 								<?php
-									echo esc_html__( 'Subject of Refund Request :', 'woo-refund-and-exchange-lite' );
+									echo esc_html__( 'Subject of Refund Request', 'woo-refund-and-exchange-lite' );
 								?>
 							</b>
 						</label>
+						<span class="wps_field_mendatory">*</span>
 					</div>
 					<select name="wps_rma_return_request_subject" id="wps_rma_return_request_subject">
 						<?php
@@ -319,10 +324,11 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 							<label>
 								<b>
 								<?php
-								echo esc_html__( 'Description for Refund Reason :', 'woo-refund-and-exchange-lite' );
+								echo esc_html__( 'Description for Refund Reason', 'woo-refund-and-exchange-lite' );
 								?>
 								</b>
 							</label>
+							<span class="wps_field_mendatory">*</span>
 						</div>
 						<?php
 						$predefined_return_reason_placeholder = get_option( 'wps_rma_refund_reason_placeholder', false );
@@ -350,7 +356,8 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 						if ( 'on' === $return_attachment ) {
 							?>
 							<div class="wps_rma_attach_files">
-								<label><b><?php esc_html_e( 'Attach Files:', 'woo-refund-and-exchange-lite' ); ?></b></label>
+								<label><b><?php esc_html_e( 'Attach Files', 'woo-refund-and-exchange-lite' ); ?></b></label>
+								<span class="wps_field_mendatory">*</span>
 								<p>
 									<span id="wps_rma_return_request_files">
 									<input type="hidden" name="wps_rma_return_request_order" value="<?php echo esc_html( $order_id ); ?>">
@@ -358,7 +365,7 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 									<input type="file" name="wps_rma_return_request_files[]" class="wps_rma_return_request_files">
 									</span>
 									<div><input type="button" value="<?php esc_html_e( 'Add More', 'woo-refund-and-exchange-lite' ); ?>" class="wps_rma_return_request_morefiles" data-count="1" data-max="<?php echo esc_html( $attach_limit ); ?>"></div>
-									<i><?php esc_html_e( 'Only .png, .jpeg extension file is approved.', 'woo-refund-and-exchange-lite' ); ?></i>
+									<i><?php esc_html_e( 'Only png,jpg,jpeg extension file is approved', 'woo-refund-and-exchange-lite' ); ?>.</i>
 								</p>
 							</div>
 							<?php

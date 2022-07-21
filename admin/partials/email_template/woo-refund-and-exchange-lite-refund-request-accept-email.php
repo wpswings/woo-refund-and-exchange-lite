@@ -66,7 +66,7 @@ if ( isset( $requested_products ) && ! empty( $requested_products ) ) {
 					}
 					$message .= '<tr><td style="border: 1px solid #C7C7C7;">' . $item['name'] . '<br>';
 					$message .= '<small>' . $item_meta_html . '</small></td>
-								<td style="border: 1px solid #C7C7C7;">' . $item['qty'] . '</td>
+								<td style="border: 1px solid #C7C7C7;">' . $requested_product['qty'] . '</td>
 								<td style="border: 1px solid #C7C7C7;">' . wps_wrma_format_price( $requested_product['price'] * $requested_product['qty'], $get_order_currency ) . '</td>
 								</tr>';
 				}
