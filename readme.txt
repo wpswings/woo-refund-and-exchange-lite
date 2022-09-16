@@ -5,7 +5,7 @@ Tags: return, rma plugin, product return system, woocommerce, warranty
 Requires at least: 5.1.0
 Tested up to: 6.0.2
 WC requires at least: 5.1.0
-WC tested up to: 6.8.2
+WC tested up to: 6.9.2
 Stable tag: 4.0.6
 Requires PHP: 5.6
 License: GPLv3 or later 
