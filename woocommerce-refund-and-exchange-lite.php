@@ -15,16 +15,16 @@
  * Plugin Name:       Return Refund and Exchange for WooCommerce
  * Plugin URI:        https://wordpress.org/plugins/woo-refund-and-exchange-lite/
  * Description:       <code><strong>Return Refund and Exchange for WooCommerce</strong></code> allows users to submit product refund. The plugin provides a dedicated mailing system that would help to communicate better between store owner and customers.This is lite version of WooCommerce Refund And Exchange. <a target="_blank" href="https://wpswings.com/woocommerce-plugins/?utm_source=wpswings-rma-shop&utm_medium=rma-org-backend&utm_campaign=shop-page">Elevate your e-commerce store by exploring more on WP Swings</a>
- * Version:           4.0.5
+ * Version:           4.0.6
  * Author:            WP Swings
  * Author URI:        https://wpswings.com/?utm_source=wpswings-rma-official&utm_medium=rma-org-backend&utm_campaign=official
  * Text Domain:       woo-refund-and-exchange-lite
  * Domain Path:       /languages
  *
  * Requires at least: 5.1.0
- * Tested up to: 6.0.1
+ * Tested up to: 6.0.2
  * WC requires at least: 5.1.0
- * WC tested up to: 6.7.0
+ * WC tested up to: 6.9.2
  *
  * License:           GNU General Public License v3.0
  * License URI:       http://www.gnu.org/licenses/gpl-3.0.html
@@ -60,7 +60,7 @@ if ( $activated ) {
 	 * @since 1.0.0
 	 */
 	function define_woo_refund_and_exchange_lite_constants() {
-		woo_refund_and_exchange_lite_constants( 'WOO_REFUND_AND_EXCHANGE_LITE_VERSION', '4.0.5' );
+		woo_refund_and_exchange_lite_constants( 'WOO_REFUND_AND_EXCHANGE_LITE_VERSION', '4.0.6' );
 		woo_refund_and_exchange_lite_constants( 'WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH', plugin_dir_path( __FILE__ ) );
 		woo_refund_and_exchange_lite_constants( 'WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL', plugin_dir_url( __FILE__ ) );
 		woo_refund_and_exchange_lite_constants( 'WOO_REFUND_AND_EXCHANGE_LITE_SERVER_URL', 'https://wpswings.com' );
@@ -175,7 +175,6 @@ if ( $activated ) {
 			include_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'wp-bakery-widgets/class-wps-rma-vc-widgets.php';
 		}
 		include_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'includes/woo-refund-and-exchange-lite-common-functions.php';
-
 	}
 	run_woo_refund_and_exchange_lite();
 
@@ -191,6 +190,7 @@ if ( $activated ) {
 			$links_array[] = '<a target="_blank" href="https://demo.wpswings.com/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma-demo&utm_medium=rma-org-backend&utm_campaign=demo"><img src="' . esc_url( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL ) . 'admin/image/Demo.svg" class="wps-info-img" alt="Demo image">' . esc_html__( 'Demo', 'woo-refund-and-exchange-lite' ) . '</a>';
 			$links_array[] = '<a href="https://docs.wpswings.com/woocommerce-refund-and-exchange-lite/?utm_source=wpswings-rma-doc&utm_medium=rma-org-backend&utm_campaign=rma-doc/" target="_blank"><img src="' . esc_html( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL ) . 'admin/image/Documentation.svg" class="wps-info-img" alt="documentation image">' . esc_html__( 'Documentation', 'woo-refund-and-exchange-lite' ) . '</a>';
 			$links_array[] = '<a href="https://wpswings.com/submit-query/?utm_source=wpswings-rma-support&utm_medium=rma-org-backend&utm_campaign=support/" target="_blank"><img src="' . esc_html( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL ) . 'admin/image/Support.svg" class="wps-info-img" alt="support image">' . esc_html__( 'Support', 'woo-refund-and-exchange-lite' ) . '</a>';
+			$links_array[] = '<a href="https://wpswings.com/woocommerce-services/?utm_source=wpswings-rma-services&utm_medium=rma-org-backend&utm_campaign=woocommerce-services" target="_blank"><img src="' . esc_html( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL ) . 'admin/image/Icon_services.svg" class="wps-info-img" alt="services image">' . esc_html__( 'Services', 'woo-refund-and-exchange-lite' ) . '</a>';
 		}
 		return $links_array;
 	}

@@ -60,6 +60,12 @@ class Woo_Refund_And_Exchange_Lite_Activator {
 	 * Creates a translation of a post (to be used with WPML) && pages
 	 **/
 	public static function wps_rma_create_pages() {
+		if ( 'no_exist' === get_option( 'wps_rma_refund_enable', 'no_exist' ) ) {
+			update_option( 'wps_rma_refund_enable', 'on' );
+		}
+		if ( 'no_exist' === get_option( 'wps_rma_general_om', 'no_exist' ) ) {
+			update_option( 'wps_rma_general_om', 'on' );
+		}
 		$timestamp = get_option( 'wps_rma_activated_timestamp', 'not_set' );
 
 		if ( 'not_set' === $timestamp ) {

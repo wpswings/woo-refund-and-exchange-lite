@@ -30,9 +30,7 @@ $get_order_currency = get_woocommerce_currency_symbol( $order_obj->get_currency(
 if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 	$ref_meth = get_option( $order_id . 'wps_rma_refund_method' );
 	foreach ( $return_datas as $key => $return_data ) {
-		$date          = date_create( $key );
-		$date_format   = get_option( 'date_format' );
-		$date          = date_format( $date, $date_format );
+		$date          = date_i18n( wc_date_format(), $key );
 		$refund_method = isset( $ref_meth ) ? $ref_meth : '';
 		$refund_method = isset( $return_data['refund_method'] ) ? $return_data['refund_method'] : $refund_method;
 		?>
@@ -70,7 +68,7 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 								?>
 								<tr>
 									<td class="thumb">
-									<?php echo '<div class="wc-order-item-thumbnail">' . wp_get_attachment_image( $product->get_image_id(), 'thumbnail' ) . '</div>'; ?>
+									<?php echo '<div class="wc-order-item-thumbnail">' . wp_kses_post( $product->get_image() ) . '</div>'; ?>
 									</td>
 									<td>
 										<?php
@@ -187,9 +185,7 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 			<input type="hidden" name="wps_rma_total_amount_for_refund" class="wps_rma_total_amount_for_refund" value="<?php echo esc_html( $total_refund_amu ); ?>">
 			<input type="hidden" value="<?php echo esc_html( $return_data['subject'] ); ?>" id="wps_rma_refund_reason">
 			<?php
-			$approve_date          = date_create( $return_data['approve_date'] );
-			$date_format           = get_option( 'date_format' );
-			$approve_date          = date_format( $approve_date, $date_format );
+			$approve_date          = date_i18n( wc_date_format(), $return_data['approve_date'] );
 			$wps_rma_refund_amount = get_post_meta( $order_id, 'wps_rma_left_amount_done', true );
 			esc_html_e( 'Following product refund request is approved on', 'woo-refund-and-exchange-lite' );
 			?>
@@ -216,9 +212,7 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 		}
 
 		if ( 'cancel' === $return_data['status'] ) {
-			$cancel_date = date_create( $return_data['cancel_date'] );
-			$date_format = get_option( 'date_format' );
-			$cancel_date = date_format( $cancel_date, $date_format );
+			$cancel_date = date_i18n( wc_date_format(), $return_data['cancel_date'] );
 			esc_html_e( 'Following product refund request is cancelled on', 'woo-refund-and-exchange-lite' );
 			?>
 			<b><?php echo esc_html( $cancel_date ); ?>.</b>

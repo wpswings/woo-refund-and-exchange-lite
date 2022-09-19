@@ -216,9 +216,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 			<?php
 			$request_status = true;
 			foreach ( $product_datas as $key => $product_data ) {
-				$date        = date_create( $key );
-				$date_format = get_option( 'date_format' );
-				$date        = date_format( $date, $date_format );
+				$date = date_i18n( wc_date_format(), $key );
 				?>
 				<p><?php esc_html_e( 'Following product Refund request made on', 'woo-refund-and-exchange-lite' ); ?> <b><?php echo esc_html( $date ); ?>.</b></p>
 					<table>
@@ -309,18 +307,14 @@ class Woo_Refund_And_Exchange_Lite_Public {
 							<?php
 					}
 					if ( 'complete' === $product_data['status'] ) {
-						$appdate      = date_create( $product_data['approve_date'] );
-						$format       = get_option( 'date_format' );
-						$approve_date = date_format( $appdate, $format );
+						$approve_date = date_i18n( wc_date_format(), $product_data['approve_date'] );
 						?>
 							<p><b><?php esc_html_e( 'The above product Refund request is approved on', 'woo-refund-and-exchange-lite' ); ?> <?php echo esc_html( $approve_date ); ?>.</b></p>
 							<?php
 					}
 
 					if ( 'cancel' === $product_data['status'] ) {
-						$appdate    = date_create( $product_data['cancel_date'] );
-						$format     = get_option( 'date_format' );
-						$canceldate = date_format( $appdate, $format );
+						$canceldate = date_i18n( wc_date_format(), $product_data['cancel_date'] );
 						?>
 							<p><b><?php esc_html_e( 'The above product Refund request is cancelled on', 'woo-refund-and-exchange-lite' ); ?> <?php echo esc_html( $canceldate ); ?>.</b></p>
 							<?php

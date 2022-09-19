@@ -110,16 +110,16 @@ function filtered_array( $argu ) {
 	foreach ( $argu as $key => $value ) {
 		foreach ( $value as $key => $originvalue ) {
 			if ( isset( $originvalue['action_hook'] ) ) {
-				$val                              = explode( "'", $originvalue['action_hook'] );
-				$val                              = $val[1];
+				$val                                = explode( "'", $originvalue['action_hook'] );
+				$val                                = isset( $val[1] ) ? $val[1] : '';
 				$count_admin[ $key ]['action_hook'] = $val;
 			}
 			if ( isset( $originvalue['filter_hook'] ) ) {
-				$val                              = explode( "'", $originvalue['filter_hook'] );
-				$val                              = $val[1];
+				$val                                = explode( "'", $originvalue['filter_hook'] );
+				$val                                = isset( $val[1] ) ? $val[1] : '';
 				$count_admin[ $key ]['filter_hook'] = $val;
 			}
-			$vale                      = str_replace( '//desc - ', '', $originvalue['desc'] );
+			$vale                        = str_replace( '//desc - ', '', $originvalue['desc'] );
 			$count_admin[ $key ]['desc'] = $vale;
 		}
 	}

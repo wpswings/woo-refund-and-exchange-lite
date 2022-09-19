@@ -3,14 +3,13 @@ Contributors: wpswings
 Donate link: https://wpswings.com/
 Tags: return, rma plugin, product return system, woocommerce, warranty
 Requires at least: 5.1.0
-Tested up to: 6.0.0
+Tested up to: 6.0.2
 WC requires at least: 5.1.0
-WC tested up to: 6.6.1
-Stable tag: 4.0.4
+WC tested up to: 6.9.2
+Stable tag: 4.0.6
 Requires PHP: 5.6
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
-
 
 Provide an easy refund service and increase customer satisfaction with WooCommerce Return Refund and Exchange Warranty Management Plugin.
 
@@ -19,7 +18,7 @@ Provide an easy refund service and increase customer satisfaction with WooCommer
 
 **HIGHEST-RATED REFUND AND EXCHANGE MANAGEMENT PLUGIN THAT LIFTS CUSTOMER SATISFACTION. GET RETURN, REFUND AND EXCHANGE RMA PLUGIN TO CREATE A SIMPLE WARRANTY MANAGEMENT SYSTEM WITH EXCHANGE, WALLET AND CANCEL ORDER FEATURES**
 
-Return Refund and Exchange for WooCommerce lets you create a simple warranty management system stuffed with the organized refund, exchange, wallet, and cancel order features. It eliminates on-call complaints and helps in managing returned stock. Customers can request full or partial refunds (based on return policy). The whole process goes under a dedicated and streamlined mailing system that keeps both parties on the same note. Ultimately, [**WooCommerce RMA Plugin**](https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma-pro&utm_medium=rma-org-page&utm_campaign=rma-pro) leads to high customer satisfaction.
+Return Refund and Exchange for WooCommerce lets you create a simple warranty management system stuffed with the organized refund, exchange, wallet, and cancel order features. WooCommerce Refund & Exchange Plugin eliminates on-call complaints and helps in managing returned stock. Customers can request full or partial refunds (based on return policy). The whole process of WordPress Refund Plugin goes under a dedicated and streamlined mailing system that keeps both parties on the same note. Ultimately, [**WooCommerce RMA Plugin**](https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma-pro&utm_medium=rma-org-page&utm_campaign=rma-pro) leads to high customer satisfaction.
 
 
 [youtube https://www.youtube.com/watch?v=GQhXfBtzLE0&h=315&rel=0]
@@ -30,18 +29,15 @@ Return Refund and Exchange for WooCommerce lets you create a simple warranty man
 * Return an order after delivery 
 * Easily handle the tax on the refund products
 * Allow customers to add a reason for a refund
-* Set multiple reasons for a product refund
 * Let customers send an attachment with a refund request
 * Manage stock on each refund
 * Customize the refund button text
 * Set the time period for refund request generation
 * Enable refund requests for selected order statuses
 * Create a dedicated mailing system for warranty management
-* Add predefined elements in email content with shortcodes
 * Communicate with customers through messages and Emails
 * Admin can add the shortcode for order_id in the emails to track down the customer from whom refund and exchange request is made
-* Serve the full RMA features to multilingual buyers (internationally) with *WPML translation*.
-* Manage woocommerce returns and exchanges features for Cash on delivery(COD) buyers.
+* Manage WooCommerce Returns and Exchange features for Cash on delivery(COD) buyers.
 
 == PLUGIN MEETS YOUR REQUIREMENT, SO ==
 [**Download Now**](https://downloads.wordpress.org/plugin/woo-refund-and-exchange-lite.zip)
@@ -53,7 +49,7 @@ Return Refund and Exchange for WooCommerce lets you create a simple warranty man
 With our Return Refund and Exchange plugin, merchants can create a dedicated refund system where they can build an email template to send to the customers who ask for a refund. Merchants can add the name, email, email header, and footer for their email template.
 
 **2) Predefined Refund Reason**
-Merchants can add multiple reasons for a product refund. Customers can select any of these reasons while asking for a refund.
+Merchants can add multiple reasons for a product refund. Customers can select any of these reasons while asking for a refund with the help of Warranties & Returns For WooCommerce.
 
 **3) Mail Notification For Refund**
 Merchants can notify the customers of different scenarios for the product refund. They can create different emails if a refund request is generated, approved, or cancelled. Merchants can add a different subject line and content for every scenario. They can also use Shortcodes to add elements to the email content.
@@ -62,7 +58,7 @@ Merchants can notify the customers of different scenarios for the product refund
 With our Refund and Exchange plugin, merchants can handle the tax on the refund products easily. They can simply enable or disable the tax calculation on the refund products by going to the plugin settings and enabling the “Enable Tax” option.
 
 **5) Stock Management**
-Our Refund management plugin provides a feature to manage stock. Merchants need to enable this feature from the plugin settings. Once you enable this feature, the product stock will be increased whenever a refund request is accepted.
+Our Refund Management Plugin provides a feature to manage stock. Merchants need to enable this feature from the plugin settings. Once you enable this feature, the product stock will be increased whenever a refund request is accepted.
 
 **6) Refund on selected order status**
 You can select the order status on which a customer can submit a refund request. You can select either a single or multiple order status in this setting. For example, if you select Completed, and Failed order statuses, you’ll allow your customers to generate a refund request if their order is completed, or failed.
@@ -88,6 +84,9 @@ Visit [**Return Refund and Exchange For WooCommerce Documentation**](https://doc
 * The Simple RMA Management plugin is compatible with the [**Ultimate Gift Cards For WooCommerce**](https://wordpress.org/plugins/woo-gift-cards-lite/) and [**Gift Cards For WooCommerce Pro**](https://wpswings.com/product/gift-cards-for-woocommerce-pro/?utm_source=wpswings-gc-pro&utm_medium=rma-org-page&utm_campaign=gc-pro). Admin can now provide refund functionality on gift cards to its users. But for the practical implementation users are required to fulfill two conditions i.e. the expiration period of the gift card shouldn’t be achieved and its usability should be equal to zero.
 
 * The RMA Plugin is compatible with the WordPress Multilingual (WPML) plugin for localization of the plugin’s strings.
+
+* The WooCommerce Return and Exchange RMA Plugin is also completely compatible with [**WooCommerce Sequential Order Numbers Pro**](https://www.skyverge.com/product/woocommerce-sequential-order-numbers-pro/) by SkyVerse and [**Sequential Order Numbers for WooCommerce by WebToffee**](https://wordpress.org/plugins/wt-woocommerce-sequential-order-numbers/).
+
 
 == WHAT PREMIUM VERSION WOOCOMMERCE REFUND AND EXCHANGE WITH RMA OFFERS ==
 
@@ -185,7 +184,7 @@ Yes! The plugin automatically manages the stock after every successful refund of
 
 = Is there any plugin that is compatible with Return Refund & Exchange for WooCommerce? =
 
-The RMA plugin is compatible with the [**WooCommerce Gift Cards**](https://wordpress.org/plugins/woo-gift-cards-lite/) and [**Gift Cards For WooCommerce Pro**](https://wpswings.com/product/gift-cards-for-woocommerce-pro/?utm_source=wpswings-gc-pro&utm_medium=rma-org-page&utm_campaign=gc-pro). Admin can now provide refund functionality on gift cards to its users. But for the practical implementation users are required to fulfill two conditions i.e. the expiration period of the gift card shouldn’t be achieved and its usability should be equal to zero.
+The Return RMA Plugin is compatible with the [**WooCommerce Gift Cards**](https://wordpress.org/plugins/woo-gift-cards-lite/) and [**Gift Cards For WooCommerce Pro**](https://wpswings.com/product/gift-cards-for-woocommerce-pro/?utm_source=wpswings-gc-pro&utm_medium=rma-org-page&utm_campaign=gc-pro). Admin can now provide refund functionality on gift cards to its users. But for the practical implementation users are required to fulfill two conditions i.e. the expiration period of the gift card shouldn’t be achieved and its usability should be equal to zero.
 
 = My question is not listed ? =
 
@@ -193,21 +192,39 @@ Please visit [**WP Swings Knowledge Base**](https://support.wpswings.com/wordpre
 
 == Screenshots ==
 
-1. Refund setting.
-2. Order details and click the refund button.
-3. Submit the request.
-4. Refund and manage the account by a merchant.
-5. Customers can send a message to the admin.
-6. Admin can reply to customer messages.
-7. Accept and cancel the refund request by a merchant.
-8. Manage the refunded product Stock.
-9. Send the mail by admin to the customer.
-10. Dedicated mailing system for refund requests.
-11. Mailing system for refund approved.
-12. Mailing system for refund cancel.
-13. Enable/disable email notification.
+1. General Settings.
+2. Refund Settings
+3. Order details and click the refund button.
+4. Submit the request.
+5. Refund and manage the account by a merchant.
+6. Order message frontend.
+7. Order message backend.
+8. Accept and cancel the refund request by a merchant.
+9. Manage the refunded product Stock.
+10. Send the mail by admin to the customer.
+11. Dedicated mailing system for refund requests.
+12. Mailing system for refund approved.
+13. Mailing system for refund cancel.
+14. RMA Policies.
+15. Order Message appearance settings.
+16. API Settings.
 
 == Changelog ==
+
+= 4.0.6 - Released on 16 September 2022 =
+* New : Latest WC and WP Compatibility
+* New : php 8 compatibility
+* Fix : Date format issue
+
+
+= 4.0.5 - Released on 21 July 2022 =
+* New : Latest WC and WP Compatibility
+* New : Compatibility with WooCommerce Sequential Order Numbers Pro by Skyverse
+* New : Compatibility with Sequential Order Numbers for WooCommerce by Webtoffee
+* New : Attachment is now compulsory if enabled
+* Fix : API code optimisation
+* Fix : Minor Bug
+
 
 = 4.0.4 - Released on 5 July 2022 =
 * New: Latest WP and WC Compatibility
@@ -301,7 +318,7 @@ Please visit [**WP Swings Knowledge Base**](https://support.wpswings.com/wordpre
 * New: Customers, Admin communication through messages.
 
 = 2.0.0 - Released on 24 January 2020 =
-* New: Compatibility with Latest WC and WP.
+* New: Compatibility with Latest WC and WP
 * Updated in plugin core and updated language
 * Fix: Image save issue in the Mail Configuration setting.
 * Fix: Expiry date issue with a gift card for refund process.
@@ -311,8 +328,8 @@ Please visit [**WP Swings Knowledge Base**](https://support.wpswings.com/wordpre
 
 == Upgrade Notice ==
 
-= 4.0.4 - Released on 5 July 2022 =
-* New: Latest WP and WC Compatibility
-* Fix: Minor Bug
-
+= 4.0.6 - Released on 16 September 2022 =
+* New : Compatibility with Latest WC and WP
+* New : php 8 Compatibility
+* Fix : Date format issue
 
