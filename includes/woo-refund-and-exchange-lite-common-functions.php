@@ -36,19 +36,17 @@ if ( ! function_exists( 'wps_rma_show_buttons' ) ) {
 			$today_date = strtotime( $today_date );
 			$days       = $today_date - $order_date;
 			$day_diff   = floor( $days / ( 60 * 60 * 24 ) );
-			// Check tax handing exist in array.
-			$check_tax_handling = strpos( wp_json_encode( $get_specific_setting ), 'wps_rma_tax_handling' ) > 0 ? true : false;
-			if ( ! $check_tax_handling ) {
-				update_option( $order->get_id() . 'check_tax', '' );
-			}
+
 			if ( ! empty( $get_specific_setting ) ) {
 				foreach ( $get_specific_setting as $key => $value ) {
 					if ( isset( $value['row_policy'] ) && 'wps_rma_tax_handling' === $value['row_policy'] ) {
 						if ( isset( $value['row_tax'] ) && 'wps_rma_inlcude_tax' === $value['row_tax'] ) {
-							update_option( $order->get_id() . 'check_tax', 'wps_rma_inlcude_tax' );
+							update_option( $func . '_wps_rma_tax_handling', 'wps_rma_inlcude_tax' );
 						} elseif ( isset( $value['row_tax'] ) && 'wps_rma_exclude_tax' === $value['row_tax'] ) {
-							update_option( $order->get_id() . 'check_tax', 'wps_rma_exclude_tax' );
+							update_option( $func . '_wps_rma_tax_handling', 'wps_rma_exclude_tax' );
 						}
+					} else {
+						update_option( $func . '_wps_rma_tax_handling', '' );
 					}
 					if ( isset( $value['row_policy'] ) && 'wps_rma_maximum_days' === $value['row_policy'] ) {
 						if ( isset( $value['row_value'] ) && ! empty( $value['row_value'] ) ) {
@@ -373,7 +371,7 @@ if ( ! function_exists( 'wps_rma_return_req_approve_callback' ) ) {
 		update_post_meta( $orderid, 'wps_rma_return_attachment', $request_files );
 		$order_obj            = wc_get_order( $orderid );
 		$line_items_refund    = array();
-		$wps_rma_check_tax    = get_option( $orderid . 'check_tax', false );
+		$wps_rma_check_tax    = get_option( 'refund_wps_rma_tax_handling', false );
 		$coupon_discount      = get_option( 'wps_rma_refund_deduct_coupon', 'no' );
 		$refund_items_details = get_post_meta( $orderid, 'wps_rma_refund_items_details', true );
 		if ( ! is_array( $refund_items_details ) ) {
@@ -618,5 +616,31 @@ if ( ! function_exists( 'wps_rma_order_number' ) ) {
 			}
 		}
 		return $order_id;
+	}
+}
+
+if ( ! function_exists( 'wps_rma_css_and_js_load_page' ) ) {
+	/** Css and js file load */
+	function wps_rma_css_and_js_load_page() {
+		$load_flag         = false;
+		$return_page_id    = get_option( 'wps_rma_return_request_form_page_id' );
+		$order_msg_page_id = get_option( 'wps_rma_view_order_msg_page_id' );
+		$exchange_page_id  = get_option( 'wps_rma_exchange_req_page' );
+		$cancel_page_id    = get_option( 'wps_rma_cancel_req_page' );
+		$guest_page_id     = get_option( 'wps_rma_guest_form_page' );
+
+		if ( has_filter( 'wpml_object_id' ) ) {
+			$return_page_id0    = apply_filters( 'wpml_object_id', $return_page_id, 'page', false, ICL_LANGUAGE_CODE );
+			$order_msg_page_id0 = apply_filters( 'wpml_object_id', $order_msg_page_id, 'page', false, ICL_LANGUAGE_CODE );
+			$exchange_page_id0  = apply_filters( 'wpml_object_id', $exchange_page_id, 'page', false, ICL_LANGUAGE_CODE );
+			$cancel_page_id0    = apply_filters( 'wpml_object_id', $cancel_page_id, 'page', false, ICL_LANGUAGE_CODE );
+			$guest_page_id0     = apply_filters( 'wpml_object_id', $guest_page_id, 'page', false, ICL_LANGUAGE_CODE );
+		}
+		if ( is_account_page() || ( is_page( $return_page_id ) || is_page( $order_msg_page_id ) || is_page( $exchange_page_id ) || is_page( $cancel_page_id ) || is_page( $guest_page_id ) ) || ( has_filter( 'wpml_object_id' ) && ( is_page( $return_page_id0 ) || is_page( $order_msg_page_id0 ) || is_page( $exchange_page_id0 ) || is_page( $cancel_page_id0 ) || is_page( $guest_page_id0 ) ) ) ) {
+			$load_flag = true;
+		} elseif ( WC()->session && WC()->session->get( 'wps_wrma_exchange' ) && ( is_shop() || is_product() ) ) {
+			$load_flag = true;
+		}
+		return apply_filters( 'wps_rma_css_and_js_load_page', $load_flag );
 	}
 }
