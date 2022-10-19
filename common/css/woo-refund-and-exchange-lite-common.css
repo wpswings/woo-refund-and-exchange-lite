@@ -173,7 +173,7 @@ table.wps-rma-product__table td.product-name img {
     }
 
     .wps-rma-product__table tbody tr:last-of-type th {
-        padding: 15px;
+        padding: 15px 5px;
     }
 
     .wps-rma-product__table thead th:nth-of-type(1),
@@ -333,6 +333,64 @@ table.wps-rma-product__table td.product-name img {
         font-size: 18px;
     }
 
+    .wps_wrma_exchanged_products_wrapper tbody td:nth-of-type(2):after,
+    .wps_wrma_exchanged_products_wrapper tbody td:nth-of-type(3):after,
+    .wps_wrma_exchanged_products_wrapper tbody td:nth-of-type(4):after {
+        content: 'Quantity';
+        position: absolute;
+        left: 6px;
+        top: 0;
+        font-weight: 600;
+    }
 
+    .wps_wrma_exchanged_products_wrapper tbody td:nth-of-type(2),
+    .wps_wrma_exchanged_products_wrapper tbody td:nth-of-type(3),
+    .wps_wrma_exchanged_products_wrapper tbody td:nth-of-type(4) {
+        padding-top: 30px;
+    }
+
+    .wps_wrma_exchanged_products_wrapper tbody td:nth-of-type(3):after {
+        content: 'Price';
+        top: 8px;
+    }
+
+    .wps_wrma_exchanged_products_wrapper tbody td:nth-of-type(4):after {
+        content: 'Total';
+        top: 8px;
+    }
+
+    .wps-rma-form__wrapper .exchange_product_table_footer th:first-child {
+        padding: 5px;
+    }
+
+    .wps_wrma_exchanged_products_wrapper tbody td:nth-of-type(2),
+    .wps_wrma_exchanged_products_wrapper tbody td:nth-of-type(3),
+    .wps_wrma_exchanged_products_wrapper tbody td:nth-of-type(4) {
+        position: relative;
+    }
+
+    .wps-rma-form__wrapper .wps-rma-product__table tbody td:nth-of-type(3),
+    .wps-rma-form__wrapper .wps-rma-product__table tbody td:nth-of-type(4) {
+        position: relative;
+        padding-top: 30px;
+    }
+
+    .wps-rma-form__wrapper .wps-rma-product__table tbody td:nth-of-type(3):after,
+    .wps-rma-form__wrapper .wps-rma-product__table tbody td:nth-of-type(4):after {
+        content: 'Quantity';
+        top: 2px;
+        left: 6px;
+        position: absolute;
+        font-weight: 600;
+    }
+
+    .wps-rma-form__wrapper .wps-rma-product__table tbody td:nth-of-type(4):after {
+        content: 'Total';
+        top: 6px;
+    }
+
+    .wps-rma-form__wrapper.wps_rma_refund_form_wrapper .wps_rma_product_title {
+        padding: 0;
+    }
 
 }
