@@ -896,10 +896,10 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			$value = map_deep( wp_unslash( $_POST ), 'sanitize_text_field' );
 			if ( ! empty( $value ) ) {
 				foreach ( $value as $setting_index => $setting_value ) {
-					if ( $setting_value['row_policy'] && 'wps_rma_maximum_days' === $setting_value['row_policy'] && empty( $setting_value['row_value'] ) ) {
+					if ( isset( $setting_value['row_policy'] ) && 'wps_rma_maximum_days' === $setting_value['row_policy'] && empty( $setting_value['row_value'] ) ) {
 						unset( $value[ $setting_index ] );
 					}
-					if ( $setting_value['row_policy'] && 'wps_rma_order_status' === $setting_value['row_policy'] && empty( $setting_value['row_statuses'] ) ) {
+					if ( isset( $setting_value['row_policy'] ) && 'wps_rma_order_status' === $setting_value['row_policy'] && empty( $setting_value['row_statuses'] ) ) {
 						unset( $value[ $setting_index ] );
 					}
 				}
