@@ -55,7 +55,9 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	 * @since    1.0.0
 	 */
 	public function wrael_common_enqueue_styles() {
-		wp_enqueue_style( $this->plugin_name . 'common', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'common/css/woo-refund-and-exchange-lite-common.css', array(), $this->version, 'all' );
+		if ( function_exists( 'wps_rma_css_and_js_load_page' ) && wps_rma_css_and_js_load_page() ) {
+			wp_enqueue_style( $this->plugin_name . 'common', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'common/css/woo-refund-and-exchange-lite-common.css', array(), $this->version, 'all' );
+		}
 	}
 
 	/**
@@ -64,35 +66,37 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	 * @since    1.0.0
 	 */
 	public function wrael_common_enqueue_scripts() {
-		$pro_active = wps_rma_pro_active();
-		if ( get_current_user_id() > 0 ) {
-			$myaccount_page     = get_option( 'woocommerce_myaccount_page_id' );
-			$myaccount_page_url = get_permalink( $myaccount_page );
-		} else {
-			$myaccount_page     = get_option( 'woocommerce_myaccount_page_id' );
-			$myaccount_page_url = get_permalink( $myaccount_page );
+		if ( function_exists( 'wps_rma_css_and_js_load_page' ) && wps_rma_css_and_js_load_page() ) {
+			$pro_active = wps_rma_pro_active();
+			if ( get_current_user_id() > 0 ) {
+				$myaccount_page     = get_option( 'woocommerce_myaccount_page_id' );
+				$myaccount_page_url = get_permalink( $myaccount_page );
+			} else {
+				$myaccount_page     = get_option( 'woocommerce_myaccount_page_id' );
+				$myaccount_page_url = get_permalink( $myaccount_page );
+			}
+			wp_register_script( $this->plugin_name . 'common', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'common/js/woo-refund-and-exchange-lite-common.min.js', array( 'jquery' ), $this->version, false );
+			wp_localize_script(
+				$this->plugin_name . 'common',
+				'wrael_common_param',
+				array(
+					'ajaxurl'                => admin_url( 'admin-ajax.php' ),
+					'wps_rma_nonce'          => wp_create_nonce( 'wps_rma_ajax_security' ),
+					'return_subject_msg'     => esc_html__( 'Please Enter Refund Subject.', 'woo-refund-and-exchange-lite' ),
+					'return_reason_msg'      => esc_html__( 'Please Enter Refund Reason.', 'woo-refund-and-exchange-lite' ),
+					'return_select_product'  => esc_html__( 'Please Select Product to refund.', 'woo-refund-and-exchange-lite' ),
+					'check_pro_active'       => esc_html( $pro_active ),
+					'message_sent'           => esc_html__( 'The message has been sent successfully', 'woo-refund-and-exchange-lite' ),
+					'message_empty'          => esc_html__( 'Please Enter a Message.', 'woo-refund-and-exchange-lite' ),
+					'myaccount_url'          => esc_attr( $myaccount_page_url ),
+					'refund_form_attachment' => get_option( 'wps_rma_refund_attachment' ),
+					'order_msg_attachment'   => get_option( 'wps_rma_general_enable_om_attachment' ),
+					'no_file_attached'       => esc_html__( 'No File Attached', 'woo-refund-and-exchange-lite' ),
+					'file_not_supported'     => esc_html__( 'Attached File type is not supported', 'woo-refund-and-exchange-lite' ),
+				)
+			);
+			wp_enqueue_script( $this->plugin_name . 'common' );
 		}
-		wp_register_script( $this->plugin_name . 'common', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'common/js/woo-refund-and-exchange-lite-common.min.js', array( 'jquery' ), $this->version, false );
-		wp_localize_script(
-			$this->plugin_name . 'common',
-			'wrael_common_param',
-			array(
-				'ajaxurl'                => admin_url( 'admin-ajax.php' ),
-				'wps_rma_nonce'          => wp_create_nonce( 'wps_rma_ajax_security' ),
-				'return_subject_msg'     => esc_html__( 'Please Enter Refund Subject.', 'woo-refund-and-exchange-lite' ),
-				'return_reason_msg'      => esc_html__( 'Please Enter Refund Reason.', 'woo-refund-and-exchange-lite' ),
-				'return_select_product'  => esc_html__( 'Please Select Product to refund.', 'woo-refund-and-exchange-lite' ),
-				'check_pro_active'       => esc_html( $pro_active ),
-				'message_sent'           => esc_html__( 'The message has been sent successfully', 'woo-refund-and-exchange-lite' ),
-				'message_empty'          => esc_html__( 'Please Enter a Message.', 'woo-refund-and-exchange-lite' ),
-				'myaccount_url'          => esc_attr( $myaccount_page_url ),
-				'refund_form_attachment' => get_option( 'wps_rma_refund_attachment' ),
-				'order_msg_attachment'   => get_option( 'wps_rma_general_enable_om_attachment' ),
-				'no_file_attached'       => esc_html__( 'No File Attached', 'woo-refund-and-exchange-lite' ),
-				'file_not_supported'     => esc_html__( 'Attached File type is not supported', 'woo-refund-and-exchange-lite' ),
-			)
-		);
-		wp_enqueue_script( $this->plugin_name . 'common' );
 	}
 
 	/**

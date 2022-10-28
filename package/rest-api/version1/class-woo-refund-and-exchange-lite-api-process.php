@@ -50,7 +50,7 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 			$refund_method         = isset( $data['refund_method'] ) ? $data['refund_method'] : '';
 			$wps_rma_rest_response = array();
 			$order_obj             = wc_get_order( $order_id );
-			$wps_rma_check_tax     = get_option( $order_id . 'check_tax', false );
+			$wps_rma_check_tax     = get_option( 'refund_wps_rma_tax_handling', false );
 			if ( ! empty( $order_id ) && ! empty( $order_obj ) && ! empty( $reason ) ) {
 				$check_refund = wps_rma_show_buttons( 'refund', $order_obj );
 				if ( 'yes' === $check_refund ) {
@@ -103,7 +103,7 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 												$item_arr['item_id']      = $item_id;
 												$item_arr['variation_id'] = $variation_id;
 												$item_arr['qty']          = $value->qty;
-												$wps_rma_check_tax        = get_option( $order_id . 'check_tax', false );
+												$wps_rma_check_tax        = get_option( 'refund_wps_rma_tax_handling', false );
 												$tax_price                = $item->get_total_tax() / $item->get_quantity();
 												$item_price               = $item->get_total() / $item->get_quantity();
 												if ( empty( $wps_rma_check_tax ) ) {

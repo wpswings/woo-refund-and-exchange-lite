@@ -57,9 +57,9 @@ class Woo_Refund_And_Exchange_Lite_Public {
 	 * @since    1.0.0
 	 */
 	public function wrael_public_enqueue_styles() {
-
-		wp_enqueue_style( $this->plugin_name, WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'public/css/woo-refund-and-exchange-lite-public.min.css', array(), $this->version, 'all' );
-
+		if ( function_exists( 'wps_rma_css_and_js_load_page' ) && wps_rma_css_and_js_load_page() ) {
+			wp_enqueue_style( $this->plugin_name, WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'public/css/woo-refund-and-exchange-lite-public.min.css', array(), $this->version, 'all' );
+		}
 	}
 
 	/**
@@ -68,23 +68,25 @@ class Woo_Refund_And_Exchange_Lite_Public {
 	 * @since    1.0.0
 	 */
 	public function wrael_public_enqueue_scripts() {
-		$pro_active = wps_rma_pro_active();
-		wp_register_script( $this->plugin_name, WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'public/js/woo-refund-and-exchange-lite-public.min.js', array( 'jquery' ), $this->version, false );
-		wp_localize_script(
-			$this->plugin_name,
-			'wrael_public_param',
-			array(
-				'ajaxurl'               => admin_url( 'admin-ajax.php' ),
-				'wps_rma_nonce'         => wp_create_nonce( 'wps_rma_ajax_security' ),
-				'return_subject_msg'    => esc_html__( 'Please enter refund subject.', 'woo-refund-and-exchange-lite' ),
-				'return_reason_msg'     => esc_html__( 'Please enter refund reason.', 'woo-refund-and-exchange-lite' ),
-				'return_select_product' => esc_html__( 'Please select product to refund.', 'woo-refund-and-exchange-lite' ),
-				'check_pro_active'      => esc_html( $pro_active ),
-				'check_refund_method'   => get_option( 'wps_rma_refund_method' ),
-				'wps_refund_manually'   => get_option( 'wps_rma_refund_manually_de' ),
-			)
-		);
-		wp_enqueue_script( $this->plugin_name );
+		if ( function_exists( 'wps_rma_css_and_js_load_page' ) && wps_rma_css_and_js_load_page() ) {
+			$pro_active = wps_rma_pro_active();
+			wp_register_script( $this->plugin_name, WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'public/js/woo-refund-and-exchange-lite-public.min.js', array( 'jquery' ), $this->version, false );
+			wp_localize_script(
+				$this->plugin_name,
+				'wrael_public_param',
+				array(
+					'ajaxurl'               => admin_url( 'admin-ajax.php' ),
+					'wps_rma_nonce'         => wp_create_nonce( 'wps_rma_ajax_security' ),
+					'return_subject_msg'    => esc_html__( 'Please enter refund subject.', 'woo-refund-and-exchange-lite' ),
+					'return_reason_msg'     => esc_html__( 'Please enter refund reason.', 'woo-refund-and-exchange-lite' ),
+					'return_select_product' => esc_html__( 'Please select product to refund.', 'woo-refund-and-exchange-lite' ),
+					'check_pro_active'      => esc_html( $pro_active ),
+					'check_refund_method'   => get_option( 'wps_rma_refund_method' ),
+					'wps_refund_manually'   => get_option( 'wps_rma_refund_manually_de' ),
+				)
+			);
+			wp_enqueue_script( $this->plugin_name );
+		}
 
 	}
 

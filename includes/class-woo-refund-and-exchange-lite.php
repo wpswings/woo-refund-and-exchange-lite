@@ -80,7 +80,7 @@ class Woo_Refund_And_Exchange_Lite {
 			$this->version = '1.0.0';
 		}
 
-		$this->plugin_name = 'Return Refund and Exchange for WooCommerce';
+		$this->plugin_name = 'return-refund-and-exchange-for-woocommerce';
 
 		$this->woo_refund_and_exchange_lite_dependencies();
 		$this->woo_refund_and_exchange_lite_locale();
