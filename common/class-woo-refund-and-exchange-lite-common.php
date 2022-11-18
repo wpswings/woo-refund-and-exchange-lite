@@ -66,7 +66,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	 * @since    1.0.0
 	 */
 	public function wrael_common_enqueue_scripts() {
-		if ( function_exists( 'wps_rma_css_and_js_load_page' ) && wps_rma_css_and_js_load_page() ) {
+		if ( ( function_exists( 'wps_rma_css_and_js_load_page' ) && wps_rma_css_and_js_load_page() ) || 'shop_order' === get_current_screen()->id ) {
 			$pro_active = wps_rma_pro_active();
 			if ( get_current_user_id() > 0 ) {
 				$myaccount_page     = get_option( 'woocommerce_myaccount_page_id' );
@@ -132,16 +132,22 @@ class Woo_Refund_And_Exchange_Lite_Common {
 				$count    = count( $_FILES['wps_rma_return_request_files']['tmp_name'] );
 				for ( $i = 0; $i < $count; $i++ ) {
 					if ( isset( $_FILES['wps_rma_return_request_files']['tmp_name'][ $i ] ) ) {
-						$directory = ABSPATH . 'wp-content/attachment';
+						$directory = realpath( ABSPATH . 'wp-content/attachment' );
 						if ( ! file_exists( $directory ) ) {
 							mkdir( $directory, 0755, true );
 						}
-						$file_name   = isset( $_FILES['wps_rma_return_request_files']['name'][ $i ] ) ? sanitize_text_field( wp_unslash( $_FILES['wps_rma_return_request_files']['name'][ $i ] ) ) : '';
-						$source_path = sanitize_text_field( wp_unslash( $_FILES['wps_rma_return_request_files']['tmp_name'][ $i ] ) );
-						$target_path = $directory . '/' . $order_id . '-' . $file_name;
-
-						$filename[] = $order_id . '-' . $file_name;
-						move_uploaded_file( $source_path, $target_path );
+						$file_name = isset( $_FILES['wps_rma_return_request_files']['name'][ $i ] ) ? sanitize_text_field( wp_unslash( $_FILES['wps_rma_return_request_files']['name'][ $i ] ) ) : '';
+						$file_type = isset( $_FILES['wps_rma_return_request_files']['type'][ $i ] ) ? sanitize_text_field( wp_unslash( $_FILES['wps_rma_return_request_files']['type'][ $i ] ) ) : '';
+						if ( 'image/png' === $file_type || 'image/jpeg' === $file_type || 'image/jpg' === $file_type ) {
+							$source_path = sanitize_text_field( wp_unslash( $_FILES['wps_rma_return_request_files']['tmp_name'][ $i ] ) );
+							$target_path = $directory . '/' . $order_id . '-' . $file_name;
+							if ( false === $directory || false === realpath( $source_path ) ) {
+								// Traversal attempt.
+								return;
+							}
+							$filename[] = $order_id . '-' . $file_name;
+							move_uploaded_file( $source_path, $target_path );
+						}
 					}
 				}
 

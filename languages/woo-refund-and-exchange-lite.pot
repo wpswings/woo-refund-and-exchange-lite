@@ -1,8 +1,8 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Return Refund and Exchange for WooCommerce 4.0.6\n"
-"POT-Creation-Date: 2022-10-27 09:43+0530\n"
+"Project-Id-Version: Return Refund and Exchange for WooCommerce 4.0.8\n"
+"POT-Creation-Date: 2022-11-18 16:02+0530\n"
 "PO-Revision-Date: 2022-07-05 13:57+0530\n"
 "Last-Translator: \n"
 "Language-Team: WP Swings\n"
@@ -716,30 +716,30 @@ msgstr ""
 msgid "Attached File type is not supported"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:214
+#: common/class-woo-refund-and-exchange-lite-common.php:220
 #, php-format
 msgid "Refund Requested <span class=\"count\">(%s)</span>"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:225
+#: common/class-woo-refund-and-exchange-lite-common.php:231
 #, php-format
 msgid "Refund Approved <span class=\"count\">(%s)</span>"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:236
+#: common/class-woo-refund-and-exchange-lite-common.php:242
 #, php-format
 msgid "Refund Cancelled <span class=\"count\">(%s)</span>"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:255
+#: common/class-woo-refund-and-exchange-lite-common.php:261
 msgid "Refund Requested"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:256
+#: common/class-woo-refund-and-exchange-lite-common.php:262
 msgid "Refund Approved"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:257
+#: common/class-woo-refund-and-exchange-lite-common.php:263
 msgid "Refund Cancelled"
 msgstr ""
 
