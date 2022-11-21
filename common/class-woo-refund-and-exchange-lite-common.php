@@ -66,7 +66,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	 * @since    1.0.0
 	 */
 	public function wrael_common_enqueue_scripts() {
-		if ( ( function_exists( 'wps_rma_css_and_js_load_page' ) && wps_rma_css_and_js_load_page() ) || 'shop_order' === get_current_screen()->id ) {
+		if ( ( function_exists( 'wps_rma_css_and_js_load_page' ) && wps_rma_css_and_js_load_page() ) || ( function_exists( 'get_current_screen' ) && 'shop_order' === get_current_screen()->id ) ) {
 			$pro_active = wps_rma_pro_active();
 			if ( get_current_user_id() > 0 ) {
 				$myaccount_page     = get_option( 'woocommerce_myaccount_page_id' );
