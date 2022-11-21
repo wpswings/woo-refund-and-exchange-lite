@@ -18,6 +18,7 @@ if ( isset( $_GET['wps_rma_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp
 } else {
 	$order_id = '';
 }
+
 $allowed = 'yes';
 if ( ! empty( $order_id ) ) {
 	$order_obj = wc_get_order( $order_id );
@@ -282,6 +283,13 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 				if ( 'on' === $re_bank ) {
 					?>
 					<div id="bank_details">
+					<label>
+						<b>
+							<?php
+								echo esc_html__( 'Bank Account Details', 'woo-refund-and-exchange-lite' );
+							?>
+						</b>
+					</label>
 					<textarea name="" class="wps_rma_bank_details" rows=4 id="wps_rma_bank_details" maxlength="1000" placeholder="<?php esc_html_e( 'Please Enter the bank details for manual refund', 'woo-refund-and-exchange-lite' ); ?>"></textarea>
 					</div>
 					<?php
