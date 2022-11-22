@@ -3,16 +3,15 @@ Contributors: wpswings
 Donate link: https://wpswings.com/
 Tags: return, rma plugin, product return system, woocommerce, warranty
 Requires at least: 5.1.0
-Tested up to: 6.0.2
+Tested up to: 6.1.1
 WC requires at least: 5.1.0
-WC tested up to: 6.9.2
-Stable tag: 4.0.6
+WC tested up to: 7.1.0
+Stable tag: 4.0.8
 Requires PHP: 5.6
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 Provide an easy refund service and increase customer satisfaction with WooCommerce Return Refund and Exchange Warranty Management Plugin.
-
 
 == Description ==
 
@@ -20,9 +19,7 @@ Provide an easy refund service and increase customer satisfaction with WooCommer
 
 Return Refund and Exchange for WooCommerce lets you create a simple warranty management system stuffed with the organized refund, exchange, wallet, and cancel order features. WooCommerce Refund & Exchange Plugin eliminates on-call complaints and helps in managing returned stock. Customers can request full or partial refunds (based on return policy). The whole process of WordPress Refund Plugin goes under a dedicated and streamlined mailing system that keeps both parties on the same note. Ultimately, [**WooCommerce RMA Plugin**](https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma-pro&utm_medium=rma-org-page&utm_campaign=rma-pro) leads to high customer satisfaction.
 
-
 [youtube https://www.youtube.com/watch?v=GQhXfBtzLE0&h=315&rel=0]
-
 
 == WITH THE WOOCOMMERCE REFUND AND EXCHANGE WITH RMA PLUGIN YOU CAN: ==
 
@@ -39,7 +36,7 @@ Return Refund and Exchange for WooCommerce lets you create a simple warranty man
 * Admin can add the shortcode for order_id in the emails to track down the customer from whom refund and exchange request is made
 * Manage WooCommerce Returns and Exchange features for Cash on delivery(COD) buyers.
 
-== PLUGIN MEETS YOUR REQUIREMENT, SO ==
+== WOOCOMMERCE RETURNS PLUGIN MEETS YOUR REQUIREMENT, SO ==
 [**Download Now**](https://downloads.wordpress.org/plugin/woo-refund-and-exchange-lite.zip)
 
 
@@ -72,14 +69,13 @@ Translate the RMA solution into 40+ languages with the WordPress Multilingual (W
 Visit [**Return Refund and Exchange For WooCommerce Documentation**](https://docs.wpswings.com/woocommerce-refund-and-exchange-lite/?utm_source=wpswings-rma-doc&utm_medium=rma-org-page&utm_campaign=rma-doc) and learn more about the features and working of the plugin.
 
 
-
 == LIVE DEMO OF RETURN REFUND AND EXCHANGE FOR WOOCOMMERCE ==
 
 * [**Return Refund & Exchange For WooCommerce Frontend Demo**](https://demo.wpswings.com/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma-demo&utm_medium=rma-org-page&utm_campaign=frontend-demo)
 
 * [**Return Refund & Exchange For WooCommerce Backend demo**](https://demo.wpswings.com/rma-return-refund-exchange-for-woocommerce-pro/get-your-personal-demo/?utm_source=wpswings-rma-demo&utm_medium=rma-org-page&utm_campaign=backend-demo)
 
-== PLUGIN COMPATIBILITIES ==
+== WOOCOMMERCE RETURNS PLUGIN COMPATIBILITIES ==
 
 * The Simple RMA Management plugin is compatible with the [**Ultimate Gift Cards For WooCommerce**](https://wordpress.org/plugins/woo-gift-cards-lite/) and [**Gift Cards For WooCommerce Pro**](https://wpswings.com/product/gift-cards-for-woocommerce-pro/?utm_source=wpswings-gc-pro&utm_medium=rma-org-page&utm_campaign=gc-pro). Admin can now provide refund functionality on gift cards to its users. But for the practical implementation users are required to fulfill two conditions i.e. the expiration period of the gift card shouldn’t be achieved and its usability should be equal to zero.
 
@@ -211,6 +207,18 @@ Please visit [**WP Swings Knowledge Base**](https://support.wpswings.com/wordpre
 
 == Changelog ==
 
+= 4.0.8 - Released on 22 November 2022 =
+* New : Latest WC and WP Compatibility
+* Fix : Security Issue Related To WP Scan
+* Fix : Issue Related Order Message Working Both For Admin and Customer
+
+
+= 4.0.7 - Released on 28 October 2022 =
+* New : Latest WC and WP Compatibility
+* New : The JS and CSS file loading optimize
+* Fix : Bug fixes [JS and CSS file naming convention issue]
+
+
 = 4.0.6 - Released on 16 September 2022 =
 * New : Latest WC and WP Compatibility
 * New : php 8 compatibility
@@ -328,8 +336,8 @@ Please visit [**WP Swings Knowledge Base**](https://support.wpswings.com/wordpre
 
 == Upgrade Notice ==
 
-= 4.0.6 - Released on 16 September 2022 =
-* New : Compatibility with Latest WC and WP
-* New : php 8 Compatibility
-* Fix : Date format issue
+= 4.0.8 - Released on 22 November 2022 =
+* New : Latest WC and WP Compatibility
+* Fix : Security Issue Related To WP Scan
+* Fix : Issue Related Order Message Working Both For Admin and Customer
 
