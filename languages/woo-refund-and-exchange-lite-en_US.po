@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Return Refund and Exchange for WooCommerce 4.0.8\n"
-"POT-Creation-Date: 2022-11-18 16:02+0530\n"
-"PO-Revision-Date: 2022-11-18 16:02+0530\n"
+"POT-Creation-Date: 2022-11-22 18:07+0530\n"
+"PO-Revision-Date: 2022-11-22 18:16+0530\n"
 "Last-Translator: \n"
 "Language-Team: WP Swings\n"
 "Language: en_US\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 3.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n;_x;_ex;_nx;esc_attr__;esc_attr_e;esc_attr_x;"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-0: build\n"
 
 #: admin/class-woo-refund-and-exchange-lite-admin.php:156
-msgid "Policy already exist"
+msgid "Policy already exists"
 msgstr ""
 
 #: admin/class-woo-refund-and-exchange-lite-admin.php:171
@@ -228,21 +228,21 @@ msgstr ""
 #: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:38
 #: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:45
 #: public/class-woo-refund-and-exchange-lite-public.php:227
-#: public/partials/wps-rma-refund-request-form.php:87
+#: public/partials/wps-rma-refund-request-form.php:88
 msgid "Product"
 msgstr ""
 
 #: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:39
 #: admin/partials/woo-refund-and-exchange-lite-return-meta.php:45
 #: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:46
-#: public/partials/wps-rma-refund-request-form.php:88
+#: public/partials/wps-rma-refund-request-form.php:89
 msgid "Quantity"
 msgstr ""
 
 #: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:40
 #: admin/partials/woo-refund-and-exchange-lite-return-meta.php:44
 #: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:47
-#: public/partials/wps-rma-refund-request-form.php:187
+#: public/partials/wps-rma-refund-request-form.php:188
 msgid "Price"
 msgstr ""
 
@@ -595,7 +595,7 @@ msgstr ""
 #: admin/partials/woo-refund-and-exchange-lite-return-meta.php:46
 #: admin/partials/woo-refund-and-exchange-lite-return-meta.php:102
 #: public/class-woo-refund-and-exchange-lite-public.php:228
-#: public/partials/wps-rma-refund-request-form.php:89
+#: public/partials/wps-rma-refund-request-form.php:90
 msgid "Total"
 msgstr ""
 
@@ -1151,72 +1151,76 @@ msgstr ""
 msgid "The above product Refund request is cancelled on"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:27
+#: public/partials/wps-rma-refund-request-form.php:28
 msgid "Please give the correct order id"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:76
+#: public/partials/wps-rma-refund-request-form.php:77
 msgid "Order's Product Refund Request Form"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:192
-#: public/partials/wps-rma-refund-request-form.php:228
-#: public/partials/wps-rma-refund-request-form.php:257
+#: public/partials/wps-rma-refund-request-form.php:193
+#: public/partials/wps-rma-refund-request-form.php:229
+#: public/partials/wps-rma-refund-request-form.php:258
 msgid "(incl. tax)"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:196
-#: public/partials/wps-rma-refund-request-form.php:232
-#: public/partials/wps-rma-refund-request-form.php:261
+#: public/partials/wps-rma-refund-request-form.php:197
+#: public/partials/wps-rma-refund-request-form.php:233
+#: public/partials/wps-rma-refund-request-form.php:262
 msgid "(excl. tax)"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:251
+#: public/partials/wps-rma-refund-request-form.php:252
 msgid "Total Refund Amount"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:285
+#: public/partials/wps-rma-refund-request-form.php:289
+msgid "Bank Account Details"
+msgstr ""
+
+#: public/partials/wps-rma-refund-request-form.php:293
 msgid "Please Enter the bank details for manual refund"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:295
+#: public/partials/wps-rma-refund-request-form.php:303
 msgid "Subject of Refund Request"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:312
+#: public/partials/wps-rma-refund-request-form.php:320
 msgid "Other"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:316
+#: public/partials/wps-rma-refund-request-form.php:324
 msgid "Write your refund reason"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:327
+#: public/partials/wps-rma-refund-request-form.php:335
 msgid "Description for Refund Reason"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:336
+#: public/partials/wps-rma-refund-request-form.php:344
 msgid "Write your description for a refund"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:359
+#: public/partials/wps-rma-refund-request-form.php:367
 msgid "Attach Files"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:367
+#: public/partials/wps-rma-refund-request-form.php:375
 msgid "Add More"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:368
+#: public/partials/wps-rma-refund-request-form.php:376
 #: public/partials/wps-rma-view-order-msg.php:50
-msgid "Only png,jpg,jpeg extension file is approved"
+msgid "Only png, jpg and jpeg extension file is approved"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:376
+#: public/partials/wps-rma-refund-request-form.php:384
 msgid "Submit Request"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:408
+#: public/partials/wps-rma-refund-request-form.php:416
 msgid "Refund Request Can't make on this order"
 msgstr ""
 
