@@ -153,7 +153,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 					'wps_rma_nonce'              => wp_create_nonce( 'wps_rma_ajax_seurity' ),
 					'wrael_admin_param_location' => admin_url( 'admin.php?page=woo_refund_and_exchange_lite_menu&wrael_tab=woo-refund-and-exchange-lite-general' ),
 					'check_pro_active'           => esc_html( $pro_active ),
-					'wps_policy_already_exist'   => esc_html__( 'Policy already exist', 'woo-refund-and-exchange-lite' ),
+					'wps_policy_already_exist'   => esc_html__( 'Policy already exists', 'woo-refund-and-exchange-lite' ),
 				)
 			);
 			wp_enqueue_script( $this->plugin_name . 'admin-js' );
