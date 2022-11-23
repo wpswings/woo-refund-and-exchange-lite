@@ -145,9 +145,19 @@ if ( ! function_exists( 'wps_rma_lite_send_order_msg_callback' ) ) {
 						}
 						$sourcepath = sanitize_text_field( wp_unslash( $_FILES['wps_order_msg_attachment']['tmp_name'][ $i ] ) );
 						$f_name     = isset( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ? sanitize_text_field( wp_unslash( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ) : '';
-						$targetpath = $directory . '/' . $order_id . '-' . $f_name;
 						$file_type  = isset( $_FILES['wps_order_msg_attachment']['type'][ $i ] ) ? sanitize_text_field( wp_unslash( $_FILES['wps_order_msg_attachment']['type'][ $i ] ) ) : '';
-						if ( 'image/png' === $file_type || 'image/jpeg' === $file_type || 'image/jpg' === $file_type ) {
+						$targetpath = $directory . '/' . $order_id . '-' . $f_name;
+						$file_security = pathinfo($f_name, PATHINFO_EXTENSION);
+						if ( 'png' === $file_security || 'jpeg' === $file_security || 'jpg' === $file_security ) {
+
+							$realFilePath = realpath($directory);
+							$realBasePath = realpath($directory) . DIRECTORY_SEPARATOR;
+
+							if ($realFilePath === false || strpos( $realBasePath, $realFilePath ) !== 0) {
+								// Traversal attempt
+								return;
+							}
+
 							$filename[ $i ] ['img'] = true;
 							$filename[ $i ]['name'] = isset( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ? sanitize_text_field( wp_unslash( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ) : '';
 							$attachment[ $i ]       = $targetpath;

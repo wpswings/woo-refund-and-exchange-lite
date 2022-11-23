@@ -136,13 +136,19 @@ class Woo_Refund_And_Exchange_Lite_Common {
 						if ( ! file_exists( $directory ) ) {
 							mkdir( $directory, 0755, true );
 						}
+						
 						$file_name = isset( $_FILES['wps_rma_return_request_files']['name'][ $i ] ) ? sanitize_text_field( wp_unslash( $_FILES['wps_rma_return_request_files']['name'][ $i ] ) ) : '';
 						$file_type = isset( $_FILES['wps_rma_return_request_files']['type'][ $i ] ) ? sanitize_text_field( wp_unslash( $_FILES['wps_rma_return_request_files']['type'][ $i ] ) ) : '';
-						if ( 'image/png' === $file_type || 'image/jpeg' === $file_type || 'image/jpg' === $file_type ) {
+						$file_security = pathinfo($file_name, PATHINFO_EXTENSION);
+						if ( 'png' == $file_security || 'jpg' == $file_security || 'jpeg' == $file_security) {
 							$source_path = sanitize_text_field( wp_unslash( $_FILES['wps_rma_return_request_files']['tmp_name'][ $i ] ) );
 							$target_path = $directory . '/' . $order_id . '-' . $file_name;
-							if ( false === $directory || false === realpath( $source_path ) ) {
-								// Traversal attempt.
+
+							$realFilePath = realpath($directory);
+							$realBasePath = realpath($directory) . DIRECTORY_SEPARATOR;
+
+							if ($realFilePath === false || strpos( $realBasePath, $realFilePath ) !== 0) {
+								// Traversal attempt
 								return;
 							}
 							$filename[] = $order_id . '-' . $file_name;
