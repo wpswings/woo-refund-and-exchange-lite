@@ -1,4 +1,4 @@
-[![Build Status](https://img.shields.io/travis/twbs/bootstrap/v4-dev.svg)](https://travis-ci.org/twbs/bootstrap) ![Active installs](https://img.shields.io/badge/Active-4000%2B-brightgreen) ![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen) ![WP tested](https://img.shields.io/badge/WP%20tested-6.0.3-brightgreen) ![WC tested](https://img.shields.io/badge/WC%20tested-7.0.0-brightgreen) ![Requires PHP](https://img.shields.io/badge/Requires%20PHP-5.1.0-blue)
+[![Build Status](https://img.shields.io/travis/twbs/bootstrap/v4-dev.svg)](https://travis-ci.org/twbs/bootstrap) ![Active installs](https://img.shields.io/badge/Active-4000%2B-brightgreen) ![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen) ![WP tested](https://img.shields.io/badge/WP%20tested-6.1.1-brightgreen) ![WC tested](https://img.shields.io/badge/WC%20tested-7.1.0-brightgreen) ![Requires PHP](https://img.shields.io/badge/Requires%20PHP-5.1.0-blue)
 # Return Refund and Exchange for WooCommerce
 ![Return Refund and Exchange For WooCommerce - Create A Simple Warranty Management System RMA with Exchange, Wallet & Cancel Order Features](https://ps.w.org/woo-refund-and-exchange-lite/assets/banner-772x250.png?rev=2672154
 )
@@ -30,7 +30,7 @@
 * Admin can add the shortcode for order_id in the emails to track down the customer from whom refund and exchange request is made
 * Manage woocommerce returns and exchanges features for Cash on delivery(COD) buyers.
 
-###  PLUGIN MEETS YOUR REQUIREMENT, SO ##
+###   WOOCOMMERCE RETURNS PLUGIN MEETS YOUR REQUIREMENT, SO ##
 
 [**Download Now**](https://downloads.wordpress.org/plugin/woo-refund-and-exchange-lite.zip)
 
@@ -70,7 +70,7 @@ Check out [**Return Refund and Exchange For WooCommerce Knowledge Base**](https:
 
 * [**Return Refund & Exchange Backend Demo**](https://demo.wpswings.com/rma-return-refund-exchange-for-woocommerce-pro/get-your-personal-demo/?utm_source=wpswings-rma-demo&utm_medium=rma-github-page&utm_campaign=backend-demo)
 
-## PLUGIN COMPATIBILITIES ##
+##  WOOCOMMERCE RETURNS PLUGIN COMPATIBILITIES ##
 
 * The RMA plugin is compatible with the [**WooCommerce Gift Cards**](https://wordpress.org/plugins/woo-gift-cards-lite/) and [**Gift Cards For WooCommerce Pro**](https://wpswings.com/product/gift-cards-for-woocommerce-pro/?utm_source=wpswings-gc-pro&utm_medium=rma-github-page&utm_campaign=gc-pro). Admin can now provide refund functionality on gift cards to its users. But for the practical implementation users are required to fulfill two conditions i.e. the expiration period of the gift card shouldn’t be achieved and its usability should be equal to zero.
 
@@ -118,7 +118,3 @@ If you need support or have any question then kindly use our online chat window 
 * [**Tweet us on @WP Swings**](https://twitter.com/wpswings)
 * [**Visit our LinkedIn Account**](https://www.linkedin.com/company/77072505/admin/)
 * [**Subscribe To Our YouTube Channel**](https://www.youtube.com/channel/UC7nYNf0JETOwW3GOD_EW2Ag)
-
-
-
-
