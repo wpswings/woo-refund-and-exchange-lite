@@ -152,7 +152,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 								return;
 							}
 							$filename[] = $order_id . '-' . $file_name;
-							move_uploaded_file( $source_path, $target_path );
+							move_uploaded_file( $source_path, $realFilePath. '/' . $order_id . '-' . $file_name );
 						}
 					}
 				}

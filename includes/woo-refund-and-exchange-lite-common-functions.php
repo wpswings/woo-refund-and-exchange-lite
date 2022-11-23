@@ -161,7 +161,7 @@ if ( ! function_exists( 'wps_rma_lite_send_order_msg_callback' ) ) {
 							$filename[ $i ] ['img'] = true;
 							$filename[ $i ]['name'] = isset( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ? sanitize_text_field( wp_unslash( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ) : '';
 							$attachment[ $i ]       = $targetpath;
-							move_uploaded_file( $sourcepath, $targetpath );
+							move_uploaded_file( $sourcepath, $realFilePath . '/' . $order_id . '-' . $f_name );
 						}
 					}
 				}
