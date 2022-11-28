@@ -147,21 +147,21 @@ if ( ! function_exists( 'wps_rma_lite_send_order_msg_callback' ) ) {
 						$f_name     = isset( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ? sanitize_text_field( wp_unslash( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ) : '';
 						$file_type  = isset( $_FILES['wps_order_msg_attachment']['type'][ $i ] ) ? sanitize_text_field( wp_unslash( $_FILES['wps_order_msg_attachment']['type'][ $i ] ) ) : '';
 						$targetpath = $directory . '/' . $order_id . '-' . $f_name;
-						$file_security = pathinfo($f_name, PATHINFO_EXTENSION);
+						$file_security = pathinfo( $f_name, PATHINFO_EXTENSION );
 						if ( 'png' === $file_security || 'jpeg' === $file_security || 'jpg' === $file_security ) {
 
-							$realFilePath = realpath($directory);
-							$realBasePath = realpath($directory) . DIRECTORY_SEPARATOR;
+							$realFilePath = wp_normalize_path( $targetpath );
+							$realBasePath = realpath( $directory ) . DIRECTORY_SEPARATOR;
 
-							if ($realFilePath === false || strpos( $realBasePath, $realFilePath ) !== 0) {
-								// Traversal attempt
+							if ( $realFilePath === false || strpos( $realFilePath, $realBasePath ) !== 0 ) {
+								// Traversal attempt.
 								return;
 							}
 
 							$filename[ $i ] ['img'] = true;
 							$filename[ $i ]['name'] = isset( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ? sanitize_text_field( wp_unslash( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ) : '';
 							$attachment[ $i ]       = $targetpath;
-							move_uploaded_file( $sourcepath, $realFilePath . '/' . $order_id . '-' . $f_name );
+							move_uploaded_file( $sourcepath, $realFilePath );
 						}
 					}
 				}
