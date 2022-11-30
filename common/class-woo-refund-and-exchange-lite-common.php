@@ -141,17 +141,17 @@ class Woo_Refund_And_Exchange_Lite_Common {
 						$file_security = pathinfo( $file_name, PATHINFO_EXTENSION );
 						if ( 'png' == $file_security || 'jpg' == $file_security || 'jpeg' == $file_security ) {
 							$source_path = sanitize_text_field( wp_unslash( $_FILES['wps_rma_return_request_files']['tmp_name'][ $i ] ) );
-							$target_path = $directory . '/' . $order_id . '-' . $file_name;
+							$target_path = $directory . '/' . $order_id . '-' . sanitize_file_name($file_name);
 
-							$realFilePath = wp_normalize_path( $target_path );
 							$realBasePath = realpath( $directory ) . DIRECTORY_SEPARATOR;
 
-							if ( $realFilePath === false || strpos( $realFilePath, $realBasePath ) !== 0 ) {
+
+							if ( $realFilePath === false || strpos( $target_path, $realBasePath ) !== 0 ) {
 								// Traversal attempt.
 								return;
 							}
-							$filename[] = $order_id . '-' . $file_name;
-							move_uploaded_file( $source_path, $realFilePath );
+							$filename[] = $order_id . '-' . sanitize_file_name($file_name);
+							move_uploaded_file( $source_path, $target_path );
 						}
 					}
 				}
