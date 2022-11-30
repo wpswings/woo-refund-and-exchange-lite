@@ -151,7 +151,7 @@ if ( ! function_exists( 'wps_rma_lite_send_order_msg_callback' ) ) {
 
 							$realBasePath = realpath( $directory ) . DIRECTORY_SEPARATOR;
 
-							if ( $realFilePath === false || strpos( $targetpath, $realBasePath ) !== 0 ) {
+							if ( $targetpath === false || strpos( $targetpath, $realBasePath ) !== 0 ) {
 								// Traversal attempt.
 								return;
 							}

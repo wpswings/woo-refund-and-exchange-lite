@@ -146,7 +146,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 							$realBasePath = realpath( $directory ) . DIRECTORY_SEPARATOR;
 
 
-							if ( $realFilePath === false || strpos( $target_path, $realBasePath ) !== 0 ) {
+							if ( $target_path === false || strpos( $target_path, $realBasePath ) !== 0 ) {
 								// Traversal attempt.
 								return;
 							}
