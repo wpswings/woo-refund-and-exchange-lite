@@ -149,13 +149,6 @@ if ( ! function_exists( 'wps_rma_lite_send_order_msg_callback' ) ) {
 						$file_security = pathinfo( $f_name, PATHINFO_EXTENSION );
 						if ( 'png' === $file_security || 'jpeg' === $file_security || 'jpg' === $file_security ) {
 
-							$realBasePath = realpath( $directory ) . DIRECTORY_SEPARATOR;
-
-							if ( $targetpath === false || strpos( $targetpath, $realBasePath ) !== 0 ) {
-								// Traversal attempt.
-								return;
-							}
-
 							$filename[ $i ] ['img'] = true;
 							$filename[ $i ]['name'] = isset( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ? sanitize_text_field( wp_unslash( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ) : '';
 							$attachment[ $i ]       = $targetpath;
