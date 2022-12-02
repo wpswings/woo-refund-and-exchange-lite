@@ -1,3 +1,61 @@
+
+1:09:25
+Task
+Marketing Tasks : Live Updation RMA Org [4.0.9]
+Private Space
+WP Swings
+WP Swings Site Products
+Return Refund and Exchange for WooCommerce
+8
+of
+51
+
+Next status [ON HOLD]
+
+Change priority
+
+Share
+CREATED
+Dec 2, 3:33 pm
+TIME TRACKED
+
+Change start and due dates
+Final Deliverables Org
+Final Deliverables Org
+Requirements
+readme.txt
+plugin zip file
+Show 6 empty fields
++ Add or edit fields
+To Do
+New subtask
++ ADD CHECKLIST
+|
+USE TEMPLATE
+Attachments
+Download All
+Drop files here to attach orbrowse
+Search...
+Search...
+YA
+Yashi Asthanacommented
+3 mins
+TXT
+rma readme.txt
+
+
+readme.txt
+
+Reply
+Yashi Asthana assigned to: Abhay Pratap Singh
+4 mins
+Yashi Asthana added watcher: Abhay Pratap Singh
+4 mins
+3 more updates
+Yashi Asthana created this task
+12 mins
+
+Download
 === Return Refund and Exchange For WooCommerce - Create A Simple Warranty Management System RMA with Exchange, Wallet & Cancel Order Features ===
 Contributors: wpswings
 Donate link: https://wpswings.com/
@@ -6,8 +64,8 @@ Requires at least: 5.1.0
 Tested up to: 6.1.1
 WC requires at least: 5.1.0
 WC tested up to: 7.1.0
-Stable tag: 4.0.8
-Requires PHP: 5.6
+Stable tag: 4.0.9
+Requires PHP:  7.2 or Higher
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -207,6 +265,10 @@ Please visit [**WP Swings Knowledge Base**](https://support.wpswings.com/wordpre
 
 == Changelog ==
 
+= 4.0.9 - Released on 2 December 2022 =
+* Fix : Bug fixes [Security issue related to file traversal] 
+* New : Latest WC and WP Compatibility
+
 = 4.0.8 - Released on 22 November 2022 =
 * New : Latest WC and WP Compatibility
 * Fix : Security Issue Related To WP Scan
@@ -336,8 +398,7 @@ Please visit [**WP Swings Knowledge Base**](https://support.wpswings.com/wordpre
 
 == Upgrade Notice ==
 
-= 4.0.8 - Released on 22 November 2022 =
+= 4.0.9 - Released on 2 December 2022 =
+* Fix : Bug fixes [Security issue related to file traversal] 
 * New : Latest WC and WP Compatibility
-* Fix : Security Issue Related To WP Scan
-* Fix : Issue Related Order Message Working Both For Admin and Customer
 
