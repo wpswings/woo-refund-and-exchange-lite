@@ -43,7 +43,7 @@
     "gulp-uglify": "^3.0.2",
     "postcss": "^8.3.6",
     "postcss-combine-media-query": "^1.0.1",
-    "@wordpress/scripts": "^16.1.4",
+    "@wordpress/scripts": "^25.1.0",
     "@date-io/date-fns": "v1",
     "@fontsource/roboto": "^4.5.0",
     "@material-ui/core": "^4.12.2",
