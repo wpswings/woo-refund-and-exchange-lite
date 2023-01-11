@@ -66,7 +66,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	 * @since    1.0.0
 	 */
 	public function wrael_common_enqueue_scripts() {
-		if ( ( function_exists( 'wps_rma_css_and_js_load_page' ) && wps_rma_css_and_js_load_page() ) || ( function_exists( 'get_current_screen' ) && 'shop_order' === get_current_screen()->id ) ) {
+		if ( ( function_exists( 'wps_rma_css_and_js_load_page' ) && wps_rma_css_and_js_load_page() ) || ( function_exists( 'get_current_screen' ) && ! empty( get_current_screen() ) && 'shop_order' === get_current_screen()->id ) ) {
 			$pro_active = wps_rma_pro_active();
 			if ( get_current_user_id() > 0 ) {
 				$myaccount_page     = get_option( 'woocommerce_myaccount_page_id' );
@@ -493,7 +493,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	 */
 	public function wps_rma_woocommerce_get_order_item_totals( $results, $args ) {
 
-		if ( is_account_page() || ( function_exists( 'get_current_screen' ) && isset( get_current_screen()->id ) && 'shop_order' === get_current_screen()->id ) ) {
+		if ( is_account_page() || ( function_exists( 'get_current_screen' ) && isset( get_current_screen()->id ) && ! empty( get_current_screen() ) && 'shop_order' === get_current_screen()->id ) ) {
 			$wps_refund = get_post_meta( $args['parent'], 'wps_rma_refund_info', true );
 
 			foreach ( $results as $key => $value ) {
