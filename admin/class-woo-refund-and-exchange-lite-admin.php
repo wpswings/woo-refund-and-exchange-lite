@@ -609,7 +609,25 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				'options'     => $get_pages,
 			);
 		}
-		$wps_rma_settings_refund =
+		$wps_rma_settings_refund[] = array(
+			'title'       => esc_html__( 'Refund Form Wrapper Class', 'woo-refund-and-exchange-lite' ),
+			'type'        => 'text',
+			'id'          => 'wps_wrma_refund_form_wrapper_class',
+			'value'       => get_option( 'wps_wrma_refund_form_wrapper_class' ),
+			'class'       => 'wrael-text-class',
+			'placeholder' => esc_html__( 'Enter Refund Form Wrapper Class', 'woo-refund-and-exchange-lite' ),
+		);
+		$wps_rma_settings_refund[] = array(
+			'title'       => esc_html__( 'Refund Form Custom CSS', 'woo-refund-and-exchange-lite' ),
+			'type'        => 'textarea',
+			'id'          => 'wps_rma_refund_form_css',
+			'value'       => get_option( 'wps_rma_refund_form_css' ),
+			'class'       => 'wrael-text-class',
+			'rows'        => '5',
+			'cols'        => '80',
+			'placeholder' => esc_html__( 'Write the Refund Form CSS', 'woo-refund-and-exchange-lite' ),
+		);
+		$wps_rma_settings_refund   =
 		// To extend Refund Apperance setting.
 		apply_filters( 'wps_rma_refund_appearance_setting_extend', $wps_rma_settings_refund );
 		$wps_rma_settings_refund[] = array(
