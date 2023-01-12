@@ -25,9 +25,12 @@ jQuery( document ).on( 'ready', function(){
 		var max  = $(this).data('max');
 		var html = '<div class="add_field_input_div"><input type="file" class="wps_rma_return_request_files" name="wps_rma_return_request_files[]"><span class="wps_rma_delete_field">X</span><br></div>';
 
-		if(count < max ){
+		if ( count < max ){
 			$( '#wps_rma_return_request_files' ).append( html );
 			$(document).find('.wps_rma_return_request_morefiles').data('count', count+1);
+		}
+		if ( count+1 == max ) {
+			$(this).hide();
 		}
 	});
 	// delete file field on the refund request form.
