@@ -144,12 +144,13 @@ if ( ! function_exists( 'wps_rma_lite_send_order_msg_callback' ) ) {
 							mkdir( $directory, 0755, true );
 						}
 						$sourcepath = sanitize_text_field( wp_unslash( $_FILES['wps_order_msg_attachment']['tmp_name'][ $i ] ) );
-						$f_name     = isset( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ? sanitize_text_field( wp_unslash( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ) : '';
-						$targetpath = $directory . '/' . $order_id . '-' . $f_name;
-						$file_type  = isset( $_FILES['wps_order_msg_attachment']['type'][ $i ] ) ? sanitize_text_field( wp_unslash( $_FILES['wps_order_msg_attachment']['type'][ $i ] ) ) : '';
-						if ( 'image/png' === $file_type || 'image/jpeg' === $file_type || 'image/jpg' === $file_type ) {
+						$f_name     = isset( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ? sanitize_file_name( wp_unslash( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ) : '';
+						$targetpath = $directory . '/' . $order_id . '-' . sanitize_file_name( $f_name );
+						$file_security = pathinfo( $f_name, PATHINFO_EXTENSION );
+						if ( 'png' === $file_security || 'jpeg' === $file_security || 'jpg' === $file_security ) {
+
 							$filename[ $i ] ['img'] = true;
-							$filename[ $i ]['name'] = isset( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ? sanitize_text_field( wp_unslash( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ) : '';
+							$filename[ $i ]['name'] = isset( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ? sanitize_file_name( wp_unslash( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ) : '';
 							$attachment[ $i ]       = $targetpath;
 							move_uploaded_file( $sourcepath, $targetpath );
 						}
@@ -227,6 +228,9 @@ if ( ! function_exists( 'wps_rma_save_return_request_callback' ) ) {
 	 */
 	function wps_rma_save_return_request_callback( $order_id, $refund_method, $products1 ) {
 		update_option( $order_id . 'wps_rma_refund_method', $refund_method );
+		if ( ! is_user_logged_in() ) {
+			update_option( $order_id . 'wps_rma_refund_method', 'manual_method' );
+		}
 		$order = wc_get_order( $order_id );
 		if ( empty( get_post_meta( $order_id, 'wps_rma_request_made', true ) ) ) {
 			$item_id = array();

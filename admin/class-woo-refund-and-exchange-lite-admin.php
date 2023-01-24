@@ -70,7 +70,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			);
 			return;
 		}
-		if ( isset( $screen->id ) && 'wp-swings_page_woo_refund_and_exchange_lite_menu' === $screen->id || 'wp-swings_page_home' === $screen->id ) {
+		if ( ! empty( $screen ) && isset( $screen->id ) && 'wp-swings_page_woo_refund_and_exchange_lite_menu' === $screen->id || 'wp-swings_page_home' === $screen->id ) {
 
 			wp_enqueue_style( 'wps-wrael-select2-css', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/select-2/woo-refund-and-exchange-lite-select2.css', array(), time(), 'all' );
 
@@ -83,7 +83,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			wp_enqueue_style( 'wps-admin-min-css', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/css/woo-refund-and-exchange-lite-admin.min.css', array(), $this->version, 'all' );
 			wp_enqueue_style( 'wps-datatable-css', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/datatables/media/css/jquery.dataTables.min.css', array(), $this->version, 'all' );
 		}
-		if ( isset( $screen->id ) && 'shop_order' === $screen->id ) {
+		if ( ! empty( $screen ) && isset( $screen->id ) && 'shop_order' === $screen->id ) {
 			wp_enqueue_style( $this->plugin_name, WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/css/wps-order-edit-page-lite.scss.min.css', array(), $this->version, 'all' );
 		}
 	}
@@ -98,7 +98,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		$screen     = get_current_screen();
 		$pro_active = wps_rma_pro_active();
 
-		if ( isset( $screen->id ) && 'wp-swings_page_woo_refund_and_exchange_lite_menu' === $screen->id ) {
+		if ( ! empty( $screen ) && isset( $screen->id ) && 'wp-swings_page_woo_refund_and_exchange_lite_menu' === $screen->id ) {
 			if ( ! wps_rma_standard_check_multistep() && wps_rma_pro_active() ) {
 				// js for the multistep from.
 				$script_path       = '../../build/index.js';
@@ -135,7 +135,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				return;
 			}
 		}
-		if ( isset( $screen->id ) && 'wp-swings_page_woo_refund_and_exchange_lite_menu' === $screen->id || 'shop_order' === $screen->id || 'plugins' === $screen->id || 'wp-swings_page_home' === $screen->id ) {
+		if ( ! empty( $screen ) && isset( $screen->id ) && 'wp-swings_page_woo_refund_and_exchange_lite_menu' === $screen->id || 'shop_order' === $screen->id || 'plugins' === $screen->id || 'wp-swings_page_home' === $screen->id ) {
 			wp_enqueue_script( 'wps-wrael-select2', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/select-2/woo-refund-and-exchange-lite-select2.js', array( 'jquery' ), time(), false );
 			wp_enqueue_script( 'wps-wrael-metarial-js', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/material-design/material-components-web.min.js', array(), time(), false );
 			wp_enqueue_script( 'wps-wrael-metarial-js2', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/material-design/material-components-v5.0-web.min.js', array(), time(), false );
@@ -609,7 +609,25 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				'options'     => $get_pages,
 			);
 		}
-		$wps_rma_settings_refund =
+		$wps_rma_settings_refund[] = array(
+			'title'       => esc_html__( 'Refund Form Wrapper Class', 'woo-refund-and-exchange-lite' ),
+			'type'        => 'text',
+			'id'          => 'wps_wrma_refund_form_wrapper_class',
+			'value'       => get_option( 'wps_wrma_refund_form_wrapper_class' ),
+			'class'       => 'wrael-text-class',
+			'placeholder' => esc_html__( 'Enter Refund Form Wrapper Class', 'woo-refund-and-exchange-lite' ),
+		);
+		$wps_rma_settings_refund[] = array(
+			'title'       => esc_html__( 'Refund Form Custom CSS', 'woo-refund-and-exchange-lite' ),
+			'type'        => 'textarea',
+			'id'          => 'wps_rma_refund_form_css',
+			'value'       => get_option( 'wps_rma_refund_form_css' ),
+			'class'       => 'wrael-text-class',
+			'rows'        => '5',
+			'cols'        => '80',
+			'placeholder' => esc_html__( 'Write the Refund Form CSS', 'woo-refund-and-exchange-lite' ),
+		);
+		$wps_rma_settings_refund   =
 		// To extend Refund Apperance setting.
 		apply_filters( 'wps_rma_refund_appearance_setting_extend', $wps_rma_settings_refund );
 		$wps_rma_settings_refund[] = array(
