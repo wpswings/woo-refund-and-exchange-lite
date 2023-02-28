@@ -93,7 +93,7 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 				<tbody>
 					<?php
 					$wps_total_actual_price = 0;
-					$wps_rma_check_tax      = get_option( $order_id . 'check_tax', false );
+					$wps_rma_check_tax      = get_option( 'refund_wps_rma_tax_handling' );
 					$show_purchase_note     = $order_obj->has_status(
 					// Purchases note on the order.
 						apply_filters( 'woocommerce_purchase_note_order_statuses', array( 'completed', 'processing' ) )
