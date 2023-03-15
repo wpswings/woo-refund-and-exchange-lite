@@ -197,7 +197,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			}
 			$products1 = $_POST;
 			$response  = wps_rma_save_return_request_callback( $order_id, $refund_method, $products1 );
-			if ( $response['flag'] == true ) {
+			if ( true == $response['flag'] ) {
 				do_action( 'wps_rma_do_shiprocket_integration', $order_id, $products1 );
 			}
 			echo wp_json_encode( $response );
