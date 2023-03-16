@@ -1,8 +1,8 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Return Refund and Exchange for WooCommerce 4.1.0\n"
-"POT-Creation-Date: 2023-01-18 19:57+0530\n"
+"Project-Id-Version: Return Refund and Exchange for WooCommerce 4.1.1\n"
+"POT-Creation-Date: 2023-03-16 09:49+0530\n"
 "PO-Revision-Date: 2022-07-05 13:57+0530\n"
 "Last-Translator: \n"
 "Language-Team: WP Swings\n"
@@ -259,7 +259,7 @@ msgstr ""
 #: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:40
 #: admin/partials/woo-refund-and-exchange-lite-return-meta.php:44
 #: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:47
-#: public/partials/wps-rma-refund-request-form.php:188
+#: public/partials/wps-rma-refund-request-form.php:197
 msgid "Price"
 msgstr ""
 
@@ -732,30 +732,30 @@ msgstr ""
 msgid "Attached File type is not supported"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:218
+#: common/class-woo-refund-and-exchange-lite-common.php:221
 #, php-format
 msgid "Refund Requested <span class=\"count\">(%s)</span>"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:229
+#: common/class-woo-refund-and-exchange-lite-common.php:232
 #, php-format
 msgid "Refund Approved <span class=\"count\">(%s)</span>"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:240
+#: common/class-woo-refund-and-exchange-lite-common.php:243
 #, php-format
 msgid "Refund Cancelled <span class=\"count\">(%s)</span>"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:259
+#: common/class-woo-refund-and-exchange-lite-common.php:262
 msgid "Refund Requested"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:260
+#: common/class-woo-refund-and-exchange-lite-common.php:263
 msgid "Refund Approved"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:261
+#: common/class-woo-refund-and-exchange-lite-common.php:264
 msgid "Refund Cancelled"
 msgstr ""
 
@@ -1176,68 +1176,68 @@ msgstr ""
 msgid "Order's Product Refund Request Form"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:193
-#: public/partials/wps-rma-refund-request-form.php:229
-#: public/partials/wps-rma-refund-request-form.php:258
+#: public/partials/wps-rma-refund-request-form.php:202
+#: public/partials/wps-rma-refund-request-form.php:238
+#: public/partials/wps-rma-refund-request-form.php:267
 msgid "(incl. tax)"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:197
-#: public/partials/wps-rma-refund-request-form.php:233
-#: public/partials/wps-rma-refund-request-form.php:262
+#: public/partials/wps-rma-refund-request-form.php:206
+#: public/partials/wps-rma-refund-request-form.php:242
+#: public/partials/wps-rma-refund-request-form.php:271
 msgid "(excl. tax)"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:252
+#: public/partials/wps-rma-refund-request-form.php:261
 msgid "Total Refund Amount"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:289
+#: public/partials/wps-rma-refund-request-form.php:298
 msgid "Bank Account Details"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:293
+#: public/partials/wps-rma-refund-request-form.php:302
 msgid "Please Enter the bank details for manual refund"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:303
+#: public/partials/wps-rma-refund-request-form.php:312
 msgid "Subject of Refund Request"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:320
+#: public/partials/wps-rma-refund-request-form.php:329
 msgid "Other"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:324
+#: public/partials/wps-rma-refund-request-form.php:333
 msgid "Write your refund reason"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:335
+#: public/partials/wps-rma-refund-request-form.php:344
 msgid "Description for Refund Reason"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:344
+#: public/partials/wps-rma-refund-request-form.php:353
 msgid "Write your description for a refund"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:367
+#: public/partials/wps-rma-refund-request-form.php:376
 msgid "Attach Files"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:375
+#: public/partials/wps-rma-refund-request-form.php:384
 msgid "Add More"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:376
+#: public/partials/wps-rma-refund-request-form.php:385
 #: public/partials/wps-rma-view-order-msg.php:50
 msgid "Only png, jpg and jpeg extension file is approved"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:384
+#: public/partials/wps-rma-refund-request-form.php:393
 msgid "Submit Request"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:416
+#: public/partials/wps-rma-refund-request-form.php:425
 msgid "Refund Request Can't make on this order"
 msgstr ""
 
