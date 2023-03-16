@@ -2,11 +2,11 @@
 Contributors: wpswings
 Donate link: https://wpswings.com/
 Tags: return, rma plugin, product return system, woocommerce, warranty
-Requires at least: 5.1.0
+Requires at least: 5.5.0
 Tested up to: 6.1.1
-WC requires at least: 5.1.0
-WC tested up to: 7.3.0
-Stable tag: 4.1.0
+WC requires at least: 5.5.0
+WC tested up to: 7.5.0
+Stable tag: 4.1.1
 Requires PHP:  7.2 or Higher
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -127,7 +127,9 @@ For WooCommerce store owners who want to succeed in the multivendor marketplace 
 
 If you need support or have any questions then kindly use our online chat window [**here**](https://wpswings.com/?utm_source=wpswings-official&utm_medium=rma-org-page&utm_campaign=wpswings-official) or  connect with us then [**Generate a Ticket**](https://wpswings.com/submit-query/?utm_source=wpswings-generate-ticket&utm_medium=rma-org-page&utm_campaign=generate-ticket)
 
-Create and Revamp your eCommerce store with [**WooCommerce Services**](https://wpswings.com/woocommerce-services/?utm_source=wpswings-rma-services&utm_medium=rma-org-page&utm_campaign=woocommerce-services)
+> If our documentation doesn’t contain the solution to your problem, you can visit the [ **WP Swings Forum Community**](https://forums.wpswings.com/?utm_source=wpswings-rma-forums&utm_medium=rma-org-page&utm_campaign=forum)
+
+>Create and Revamp your eCommerce store with [**WooCommerce Services**](https://wpswings.com/woocommerce-services/?utm_source=wpswings-rma-services&utm_medium=rma-org-page&utm_campaign=woocommerce-services)
 
 
 == Installation ==
@@ -216,6 +218,12 @@ Please visit [**WP Swings Knowledge Base**](https://support.wpswings.com/wordpre
 16. API Settings.
 
 == Changelog ==
+
+= 4.1.1 - Released on 16 March 2023 =
+* New: Compatibility with the Latest WC (6.1.1) and WP (7.5.0)
+* Fix: RMA Policies for Tax Handling 
+* Fix: Price on Refund Form based on the Coupon Functionality
+
 
 = 4.1.0 - Released on 20 January 2023 =
 * New: Compatibility with the Latest WC and WP
@@ -356,8 +364,10 @@ Please visit [**WP Swings Knowledge Base**](https://support.wpswings.com/wordpre
 
 == Upgrade Notice ==
 
-= 4.1.0 - Released on 20 January 2023 =
-* New: Compatibility with the Latest WC and WP
-* New: Added Custom CSS Setting
-* Fix: File Uploading name formatting issue
-* Enhancement: File upload Add more button hide when limit exceeded
+= 4.1.1 - Released on 16 March 2023 =
+* New: Compatibility with the Latest WC (6.1.1) and WP (7.5.0)
+* Fix: RMA Policies for Tax Handling 
+* Fix: Price on Refund Form based on the Coupon Functionality
+
+
+
