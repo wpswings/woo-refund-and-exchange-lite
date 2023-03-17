@@ -141,9 +141,9 @@ class Woo_Refund_And_Exchange_Lite_Common {
 						$file_security = pathinfo( $file_name, PATHINFO_EXTENSION );
 						if ( 'png' == $file_security || 'jpg' == $file_security || 'jpeg' == $file_security ) {
 							$source_path = sanitize_text_field( wp_unslash( $_FILES['wps_rma_return_request_files']['tmp_name'][ $i ] ) );
-							$target_path = $directory . '/' . $order_id . '-' . sanitize_file_name($file_name);
+							$target_path = $directory . '/' . $order_id . '-' . sanitize_file_name( $file_name );
 
-							$filename[] = $order_id . '-' . sanitize_file_name($file_name);
+							$filename[] = $order_id . '-' . sanitize_file_name( $file_name );
 							move_uploaded_file( $source_path, $target_path );
 						}
 					}
@@ -197,6 +197,9 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			}
 			$products1 = $_POST;
 			$response  = wps_rma_save_return_request_callback( $order_id, $refund_method, $products1 );
+			if ( true == $response['flag'] ) {
+				do_action( 'wps_rma_do_shiprocket_integration', $order_id, $products1 );
+			}
 			echo wp_json_encode( $response );
 			wp_die();
 		}

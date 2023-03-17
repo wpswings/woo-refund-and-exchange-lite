@@ -93,7 +93,7 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 				<tbody>
 					<?php
 					$wps_total_actual_price = 0;
-					$wps_rma_check_tax      = get_option( $order_id . 'check_tax', false );
+					$wps_rma_check_tax      = get_option( 'refund_wps_rma_tax_handling' );
 					$show_purchase_note     = $order_obj->has_status(
 					// Purchases note on the order.
 						apply_filters( 'woocommerce_purchase_note_order_statuses', array( 'completed', 'processing' ) )
@@ -123,7 +123,16 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 							$thumbnail       = wp_get_attachment_image( $product->get_image_id(), 'thumbnail' );
 							$coupon_discount = get_option( 'wps_rma_refund_deduct_coupon', 'no' );
 							if ( 'on' === $coupon_discount ) {
-								$tax_inc = $item->get_total() + $item->get_subtotal_tax();
+								$total_tax = $item->get_taxes();
+								if ( isset( $total_tax['total'][1] ) ) {
+
+									$final_total_tax = $total_tax['total'][1];
+									$tax_inc = $item->get_total() + $final_total_tax;
+
+								} else {
+
+									$tax_inc = $item->get_total() + $item->get_subtotal_tax();
+								}
 								$tax_exc = $item->get_total() - $item->get_subtotal_tax();
 							} else {
 								$tax_inc = $item->get_subtotal() + $item->get_subtotal_tax();
