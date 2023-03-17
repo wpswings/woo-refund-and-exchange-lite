@@ -1,4 +1,4 @@
-[![Build Status](https://img.shields.io/travis/twbs/bootstrap/v4-dev.svg)](https://travis-ci.org/twbs/bootstrap) ![Active installs](https://img.shields.io/badge/Active-4000%2B-brightgreen) ![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen) ![WP tested](https://img.shields.io/badge/WP%20tested-6.1.1-brightgreen) ![WC tested](https://img.shields.io/badge/WC%20tested-7.3.0-brightgreen) ![Requires PHP](https://img.shields.io/badge/Requires%20PHP-7.2.0-blue)
+[![Build Status](https://img.shields.io/travis/twbs/bootstrap/v4-dev.svg)](https://travis-ci.org/twbs/bootstrap) ![Active installs](https://img.shields.io/badge/Active-4000%2B-brightgreen) ![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen) ![WP tested](https://img.shields.io/badge/WP%20tested-6.1.1-brightgreen) ![WC tested](https://img.shields.io/badge/WC%20tested-7.5.0-brightgreen) ![Requires PHP](https://img.shields.io/badge/Requires%20PHP-7.2.0-blue)
 # Return Refund and Exchange for WooCommerce
 ![Return Refund and Exchange For WooCommerce - Create A Simple Warranty Management System RMA with Exchange, Wallet & Cancel Order Features](https://ps.w.org/woo-refund-and-exchange-lite/assets/banner-772x250.png?rev=2672154
 )
@@ -92,15 +92,15 @@ Check out [**Return Refund and Exchange For WooCommerce Knowledge Base**](https:
 * Partial refund feature
 * Auto accept refund request feature
 * Refund exchange feature for guest users
-* File upload Add more button hide when limit exceed
+* File upload Add more button hide when limit exceeded
 * Minimum order amount feature
 * Product category disable the feature
 * Integration for return ship label with ShipStation
-* Shortcode of product table and the refundable amount for Refund Mails
+* Shortcode of product table and the refundable amount for Refund Mail
 * Compatibility with WordPress Multilingual (WPML)
 * Compatibility with [**Wallet System for WooCommerce**](https://wordpress.org/plugins/wallet-system-for-woocommerce/) & [**Wallet System for WooCommerce Pro**](https://wpswings.com/product/wallet-system-for-woocommerce-pro/?utm_source=wpswings-wallet-pro&utm_medium=rma-github-page&utm_campaign=wallet-pro).
 
-### TAKE ADVANTAGE OF EXCLUSIVE FEATURES OF WOOCOMMERCE RMA PLUGIN
+### TAKE ADVANTAGE OF THE EXCLUSIVE FEATURES OF WOOCOMMERCE RMA PLUGIN
 > Note:  Get [**RMA Return Refund & Exchange For WooCommerce Pro**](https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma-pro&utm_medium=rma-github-page&utm_campaign=premium-plugin)_
 
 ### DOCUMENTATION OF PREMIUM VERSION
@@ -116,7 +116,7 @@ For WooCommerce store owners who want to succeed in the multivendor marketplace 
 
 ## SUPPORT
 
-If you need support or have any question then kindly use our online chat window [**here**](https://wpswings.com/?utm_source=wpswings-official&utm_medium=rma-github-page&utm_campaign=wpswings-official) or connect with us then [**Generate a Ticket**](https://wpswings.com/submit-query/?utm_source=wpswings-generate-ticket&utm_medium=rma-github-page&utm_campaign=generate-ticket)
+If you need support or have any questions then kindly use our online chat window [**here**](https://wpswings.com/?utm_source=wpswings-official&utm_medium=rma-github-page&utm_campaign=wpswings-official) or connect with us then [**Generate a Ticket**](https://wpswings.com/submit-query/?utm_source=wpswings-generate-ticket&utm_medium=rma-github-page&utm_campaign=generate-ticket)
 
 > If our documentation doesn’t contain the solution to your problem, you can visit the [**WP Swings Forums Community**](https://forums.wpswings.com/?utm_source=wpswings-forums&utm_medium=rma-github-page&utm_campaign=forum)
 
@@ -129,6 +129,7 @@ If you need support or have any question then kindly use our online chat window 
 * [**Tweet us on @WP Swings**](https://twitter.com/wpswings)
 * [**Visit our LinkedIn Account**](https://www.linkedin.com/company/77072505/admin/)
 * [**Subscribe To Our YouTube Channel**](https://www.youtube.com/channel/UC7nYNf0JETOwW3GOD_EW2Ag)
+
 
 
 
