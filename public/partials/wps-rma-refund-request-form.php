@@ -413,7 +413,10 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 		</div>
 		<div class="wps_rma_customer_detail">
 			<?php
-			wc_get_template( 'order/order-details-customer.php', array( 'order' => $order_obj ) );
+			if ( apply_filters( 'wps_rma_visible_customer_details', true ) ) {
+				wc_get_template( 'order/order-details-customer.php', array( 'order' => $order_obj ) );
+			}
+			do_action( 'wps_rma_do_something_after_customer_details', $order_id );
 			?>
 		</div>
 	</div>
