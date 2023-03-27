@@ -567,7 +567,7 @@ class Woo_Refund_And_Exchange_Lite {
 										<span class="mdc-notched-outline__notch">
 										</span>
 										<span class="mdc-notched-outline__trailing"></span>
-									</span>
+									</span>Order cannot be set to shipped.  Massage: This status not allowed, please go through Shipment Tracking. Even after adding the tracking information, same issue. Adding the status Test Shipped for example is working, but not Shipped itself. How?
 									<input 
 									class="mdc-text-field__input <?php echo ( isset( $wrael_component['class'] ) ? esc_attr( $wrael_component['class'] ) : '' ); ?> wps-form__password" 
 									name="<?php echo ( isset( $wrael_component['name'] ) ? esc_html( $wrael_component['name'] ) : esc_html( $wrael_component['id'] ) ); ?>"
