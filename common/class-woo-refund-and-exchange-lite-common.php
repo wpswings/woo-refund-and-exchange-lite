@@ -439,16 +439,16 @@ class Woo_Refund_And_Exchange_Lite_Common {
 		check_ajax_referer( 'ajax-nonce', 'nonce' );
 		unset( $_POST['action'] );
 		unset( $_POST['nonce'] );
-		$checked_refund          = isset( $_POST['checkedRefund'] ) ? sanitize_text_field( wp_unslash( $_POST['checkedRefund'] ) ) : false;
-		$checked_order_msg       = isset( $_POST['checkedOrderMsg'] ) ? sanitize_text_field( wp_unslash( $_POST['checkedOrderMsg'] ) ) : false;
-		$checked_order_msg_email = isset( $_POST['checkedOrderMsgEmail'] ) ? sanitize_text_field( wp_unslash( $_POST['checkedOrderMsgEmail'] ) ) : false;
-		$checked_exchange        = isset( $_POST['checkedExchange'] ) ? sanitize_text_field( wp_unslash( $_POST['checkedExchange'] ) ) : false;
-		$checked_cancel          = isset( $_POST['checkedCancel'] ) ? sanitize_text_field( wp_unslash( $_POST['checkedCancel'] ) ) : false;
-		$checked_cancel_prod     = isset( $_POST['checkedCancelProd'] ) ? sanitize_text_field( wp_unslash( $_POST['checkedCancelProd'] ) ) : false;
-		$checked_wallet          = isset( $_POST['checkedWallet'] ) ? sanitize_text_field( wp_unslash( $_POST['checkedWallet'] ) ) : false;
-		$checked_cod             = isset( $_POST['checkedCOD'] ) ? sanitize_text_field( wp_unslash( $_POST['checkedCOD'] ) ) : false;
-		$checked_conset          = isset( $_POST['consetCheck'] ) ? sanitize_text_field( wp_unslash( $_POST['consetCheck'] ) ) : false;
-		$checked_reset_license   = isset( $_POST['checkedResetLicense'] ) ? sanitize_text_field( wp_unslash( $_POST['checkedResetLicense'] ) ) : false;
+		$checked_refund          = isset( $_POST['checkedRefund'] ) ? 'true' === sanitize_text_field( wp_unslash( $_POST['checkedRefund'] ) ) : false;
+		$checked_order_msg       = isset( $_POST['checkedOrderMsg'] ) ? 'true' === sanitize_text_field( wp_unslash( $_POST['checkedOrderMsg'] ) ) : false;
+		$checked_order_msg_email = isset( $_POST['checkedOrderMsgEmail'] ) ? 'true' === sanitize_text_field( wp_unslash( $_POST['checkedOrderMsgEmail'] ) ) : false;
+		$checked_exchange        = isset( $_POST['checkedExchange'] ) ? 'true' === sanitize_text_field( wp_unslash( $_POST['checkedExchange'] ) ) : false;
+		$checked_cancel          = isset( $_POST['checkedCancel'] ) ? 'true' === sanitize_text_field( wp_unslash( $_POST['checkedCancel'] ) ) : false;
+		$checked_cancel_prod     = isset( $_POST['checkedCancelProd'] ) ? 'true' === sanitize_text_field( wp_unslash( $_POST['checkedCancelProd'] ) ) : false;
+		$checked_wallet          = isset( $_POST['checkedWallet'] ) ? 'true' === sanitize_text_field( wp_unslash( $_POST['checkedWallet'] ) ) : false;
+		$checked_cod             = isset( $_POST['checkedCOD'] ) ? 'true' === sanitize_text_field( wp_unslash( $_POST['checkedCOD'] ) ) : false;
+		$checked_conset          = isset( $_POST['consetCheck'] ) ? 'true' === sanitize_text_field( wp_unslash( $_POST['consetCheck'] ) ) : false;
+		$checked_reset_license   = isset( $_POST['checkedResetLicense'] ) ? 'true' === sanitize_text_field( wp_unslash( $_POST['checkedResetLicense'] ) ) : false;
 		$license_code            = isset( $_POST['licenseCode'] ) ? sanitize_text_field( wp_unslash( $_POST['licenseCode'] ) ) : '';
 		if ( $checked_refund ) {
 			update_option( 'wps_rma_refund_enable', 'on' );
