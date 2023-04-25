@@ -51,6 +51,8 @@ do_action( 'wps_rma_show_license_info' );
 		<h1 class="wps-header-title"><?php echo esc_html( 'RETURN REFUND AND EXCHANGE FOR WOOCOMMERCE' ); ?></h1>
 		<a href="https://docs.wpswings.com/woocommerce-refund-and-exchange-lite/?utm_source=wpswings-rma-doc&utm_medium=rma-org-backend&utm_campaign=rma-doc/" target="_blank" class="wps-link"><?php esc_html_e( 'Documentation', 'woo-refund-and-exchange-lite' ); ?></a>
 		<span>|</span>
+		<a href="https://youtu.be/QyfzruqwnSM" target="_blank" class="wps-link"><?php esc_html_e( 'Video', 'woo-refund-and-exchange-lite' ); ?></a>
+		<span>|</span>
 		<a href="https://wpswings.com/submit-query/?utm_source=wpswings-rma-support&utm_medium=rma-org-backend&utm_campaign=support/" target="_blank" class="wps-link"><?php esc_html_e( 'Support', 'woo-refund-and-exchange-lite' ); ?></a>
 	</div>
 </header>
