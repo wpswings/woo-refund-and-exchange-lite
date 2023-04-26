@@ -3,10 +3,10 @@ Contributors: wpswings
 Donate link: https://wpswings.com/
 Tags: return, rma plugin, product return system, woocommerce, warranty
 Requires at least: 5.5.0
-Tested up to: 6.1.1
+Tested up to: 6.2.0
 WC requires at least: 5.5.0
-WC tested up to: 7.5.0
-Stable tag: 4.1.1
+WC tested up to: 7.6.0
+Stable tag: 4.1.2
 Requires PHP:  7.2 or Higher
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -107,8 +107,10 @@ Visit [**Return Refund and Exchange For WooCommerce Documentation**](https://doc
 
 == TAKE ADVANTAGE OF EXCLUSIVE FEATURES OF WOOCOMMERCE RMA PLUGIN == 
 
-[**RMA Return Refund & Exchange For WooCommerce Pro**](https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma-pro&utm_medium=rma-org-page&utm_campaign=premium-plugin)
+>[**RMA Return Refund & Exchange For WooCommerce Pro**](https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma-pro&utm_medium=rma-org-page&utm_campaign=premium-plugin)
 
+**See what No 44 Store is saying about the WooCommerce RMA Pro Plugin:**
+>“Great product for Managing and Dealing with Exchange/Refund Requests.” [**See WooCommerce Refund & Exchange Pro Plugin Case Study**](https://wpswings.com/case-studies/no44store/?utm_source=wpswings-rma-casestudy&utm_medium=rma-org-page&utm_campaign=no44-casestudy)
 == DOCUMENTATION OF PREMIUM VERSION ==
 
 [**RMA Return Refund and Exchange for WooCommerce Pro Documentation**](https://docs.wpswings.com/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma-doc&utm_medium=rma-org-page&utm_campaign=rma-pro-doc)
@@ -219,7 +221,11 @@ Please visit [**WP Swings Knowledge Base**](https://support.wpswings.com/wordpre
 
 == Changelog ==
 
-= 4.1.1 - Released on 16 March 2023 =
+= 4.1.2 - Released on 26 April 2023 =
+* New: Compatibility with the Latest WC (6.2.0) and WP (7.6.0)
+* Fix: Plugin Stability
+
+= 4.1.1 - Released on 17 March 2023 =
 * New: Compatibility with the Latest WC (6.1.1) and WP (7.5.0)
 * Fix: RMA Policies for Tax Handling 
 * Fix: Price on Refund Form based on the Coupon Functionality
@@ -364,10 +370,8 @@ Please visit [**WP Swings Knowledge Base**](https://support.wpswings.com/wordpre
 
 == Upgrade Notice ==
 
-= 4.1.1 - Released on 16 March 2023 =
-* New: Compatibility with the Latest WC (6.1.1) and WP (7.5.0)
-* Fix: RMA Policies for Tax Handling 
-* Fix: Price on Refund Form based on the Coupon Functionality
-
+= 4.1.2 - Released on 26 April 2023 =
+* New: Compatibility with the Latest WC (6.2.0) and WP (7.6.0)
+* Fix: Plugin Stability
 
 

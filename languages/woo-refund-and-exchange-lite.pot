@@ -1,8 +1,8 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Return Refund and Exchange for WooCommerce 4.1.1\n"
-"POT-Creation-Date: 2023-03-16 09:49+0530\n"
+"Project-Id-Version: Return Refund and Exchange for WooCommerce 4.1.2\n"
+"POT-Creation-Date: 2023-04-25 19:30+0530\n"
 "PO-Revision-Date: 2022-07-05 13:57+0530\n"
 "Last-Translator: \n"
 "Language-Team: WP Swings\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 2.3\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n;_x;_ex;_nx;esc_attr__;esc_attr_e;esc_attr_x;"
@@ -309,6 +309,11 @@ msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-admin-dashboard.php:54
 #: woocommerce-refund-and-exchange-lite.php:192
+msgid "Video"
+msgstr ""
+
+#: admin/partials/woo-refund-and-exchange-lite-admin-dashboard.php:56
+#: woocommerce-refund-and-exchange-lite.php:193
 msgid "Support"
 msgstr ""
 
@@ -1237,7 +1242,7 @@ msgstr ""
 msgid "Submit Request"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:425
+#: public/partials/wps-rma-refund-request-form.php:428
 msgid "Refund Request Can't make on this order"
 msgstr ""
 
@@ -1258,19 +1263,19 @@ msgstr ""
 msgid "Demo"
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:193
+#: woocommerce-refund-and-exchange-lite.php:194
 msgid "Services"
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:212
+#: woocommerce-refund-and-exchange-lite.php:213
 msgid "GO PRO"
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:214
+#: woocommerce-refund-and-exchange-lite.php:215
 msgid "Settings"
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:245
+#: woocommerce-refund-and-exchange-lite.php:246
 msgid ""
 "Woocommerce is not activated, Please activate Woocommerce first to install "
 "WooCommerce Refund and Exchange Lite."
