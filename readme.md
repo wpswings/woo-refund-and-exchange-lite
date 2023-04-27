@@ -1,4 +1,4 @@
-[![Build Status](https://img.shields.io/travis/twbs/bootstrap/v4-dev.svg)](https://travis-ci.org/twbs/bootstrap) ![Active installs](https://img.shields.io/badge/Active-4000%2B-brightgreen) ![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen) ![WP tested](https://img.shields.io/badge/WP%20tested-6.1.1-brightgreen) ![WC tested](https://img.shields.io/badge/WC%20tested-7.5.0-brightgreen) ![Requires PHP](https://img.shields.io/badge/Requires%20PHP-7.2.0-blue)
+[![Build Status](https://img.shields.io/travis/twbs/bootstrap/v4-dev.svg)](https://travis-ci.org/twbs/bootstrap) ![Active installs](https://img.shields.io/badge/Active-4000%2B-brightgreen) ![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen) ![WP tested](https://img.shields.io/badge/WP%20tested-6.2.0-brightgreen)![WC tested](https://img.shields.io/badge/WC%20tested-7.6.0-brightgreen)![Requires PHP](https://img.shields.io/badge/Requires%20PHP-7.2.0-blue)
 # Return Refund and Exchange for WooCommerce
 ![Return Refund and Exchange For WooCommerce - Create A Simple Warranty Management System RMA with Exchange, Wallet & Cancel Order Features](https://ps.w.org/woo-refund-and-exchange-lite/assets/banner-772x250.png?rev=2672154
 )
@@ -9,9 +9,9 @@
 
 # Description
 
-**HIGHEST-RATED REFUND AND EXCHANGE MANAGEMENT PLUGIN THAT LIFTS CUSTOMER SATISFACTION. GET RETURN, REFUND AND EXCHANGE RMA PLUGIN TO CREATE A SIMPLE WARRANTY MANAGEMENT SYSTEM WITH EXCHANGE, WALLET AND CANCEL ORDER FEATURES**
+**HIGHEST-RATED REFUND AND EXCHANGE MANAGEMENT PLUGIN THAT LIFTS CUSTOMER SATISFACTION. GET RETURN, REFUND, AND EXCHANGE RMA PLUGIN TO CREATE A SIMPLE WARRANTY MANAGEMENT SYSTEM WITH EXCHANGE, WALLET, AND CANCEL ORDER FEATURES**
 
-[**Return Refund and Exchange for WooCommerce**](https://wordpress.org/plugins/woo-refund-and-exchange-lite/) lets you create a simple refund management system stuffed with the organized refund, exchange, wallet, and cancel order features.WooCommerce Refund & Exchange Plugin eliminates on-call complaints and helps in managing returned stock. Customers can request full or partial refunds (based on return policy). The whole process of WordPress Refund Plugin  goes under a dedicated and streamlined mailing system that keeps both parties on the same note. Ultimately, [**WooCommerce RMA Plugin**](https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma-pro&utm_medium=rma-github-page&utm_campaign=rma-pro) leads to high customer satisfaction.
+[**Return Refund and Exchange for WooCommerce**](https://wordpress.org/plugins/woo-refund-and-exchange-lite/) lets you create a simple refund management system stuffed with an organized refund, exchange, wallet, and cancel order features.WooCommerce Refund & Exchange Plugin eliminates on-call complaints and helps in managing returned stock. Customers can request full or partial refunds (based on the return policy). The whole process of WordPress Refund Plugin goes under a dedicated and streamlined mailing system that keeps both parties on the same note. Ultimately, [**WooCommerce RMA Plugin**](https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma-pro&utm_medium=rma-github-page&utm_campaign=rma-pro) leads to high customer satisfaction.
 
 **Video** - [**How To Simplify Refund Management Process with RMA for WooCommerce Plugin 2022**](https://youtu.be/GQhXfBtzLE0)
 
@@ -28,7 +28,7 @@
 * Create a dedicated mailing system for warranty management
 * Communicate with customers through messages and Emails
 * Admin can add the shortcode for order_id in the emails to track down the customer from whom refund and exchange request is made
-* Manage woocommerce returns and exchanges features for Cash on delivery(COD) buyers.
+* Manage WooCommerce returns and exchanges features for Cash on delivery(COD) buyers.
 
 ###   WOOCOMMERCE RETURNS PLUGIN MEETS YOUR REQUIREMENT, SO ##
 
@@ -55,10 +55,10 @@ Our Refund management plugin provides a feature to manage stock. Merchants need 
 You can select the order status on which a customer can submit a refund request. You can select either a single or multiple order status in this setting. For example, if you select Completed, and Failed order statuses, you’ll allow your customers to generate a refund request if their order is completed, or failed.
 
 **7) Order Related Messages and Email notifications**
-You can allow your customers to send you the order related queries. Furthermore, you can also enable/disable the settings to let your customers add the attachments along with their messages.
+You can allow your customers to send you order-related queries. Furthermore, you can also enable/disable the settings to let your customers add attachments along with their messages.
 
 **8) WPML Compatible**
-Translate the RMA solution into 40+ languages with the WordPress Multilingual (WPML).
+Translate the RMA solution into 40+ languages with WordPress Multilingual (WPML).
 
 Visit [**Return Refund and Exchange For WooCommerce Documentation**](http://docs.wpswings.com/woocommerce-refund-and-exchange-lite/?utm_source=wpswings-rma-doc&utm_medium=rma-github-page&utm_campaign=rma-pro) and learn more about the features and working of the plugin.
 
@@ -74,7 +74,7 @@ Check out [**Return Refund and Exchange For WooCommerce Knowledge Base**](https:
 
 * The RMA plugin is compatible with the [**WooCommerce Gift Cards**](https://wordpress.org/plugins/woo-gift-cards-lite/) and [**Gift Cards For WooCommerce Pro**](https://wpswings.com/product/gift-cards-for-woocommerce-pro/?utm_source=wpswings-gc-pro&utm_medium=rma-github-page&utm_campaign=gc-pro). Admin can now provide refund functionality on gift cards to its users. But for the practical implementation users are required to fulfill two conditions i.e. the expiration period of the gift card shouldn’t be achieved and its usability should be equal to zero.
 
-* The RMA plugin is compatible with the WordPress Multilingual (WPML) plugin for localization of the plugin’s strings.
+* The RMA plugin is compatible with the WordPress Multilingual (WPML) plugin for the localization of the plugin’s strings.
 
 * The WooCommerce Return and Exchange RMA Plugin is also completely compatible with [**WooCommerce Sequential Order Numbers Pro**](https://www.skyverge.com/product/woocommerce-sequential-order-numbers-pro/) by SkyVerse and [**Sequential Order Numbers for WooCommerce by WebToffee**](https://wordpress.org/plugins/wt-woocommerce-sequential-order-numbers/).
 
@@ -100,8 +100,11 @@ Check out [**Return Refund and Exchange For WooCommerce Knowledge Base**](https:
 * Compatibility with WordPress Multilingual (WPML)
 * Compatibility with [**Wallet System for WooCommerce**](https://wordpress.org/plugins/wallet-system-for-woocommerce/) & [**Wallet System for WooCommerce Pro**](https://wpswings.com/product/wallet-system-for-woocommerce-pro/?utm_source=wpswings-wallet-pro&utm_medium=rma-github-page&utm_campaign=wallet-pro).
 
-### TAKE ADVANTAGE OF THE EXCLUSIVE FEATURES OF WOOCOMMERCE RMA PLUGIN
-> Note:  Get [**RMA Return Refund & Exchange For WooCommerce Pro**](https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma-pro&utm_medium=rma-github-page&utm_campaign=premium-plugin)_
+### TAKE ADVANTAGE OF THE EXCLUSIVE FEATURES OF THE WOOCOMMERCE RMA PLUGIN
+> Note:  Get [**RMA Return Refund & Exchange For WooCommerce Pro**](https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma-pro&utm_medium=rma-github-page&utm_campaign=premium-plugin)
+
+### See what No 44 Store is saying about the WooCommerce RMA Pro Plugin
+>“Great product for Managing and Dealing with Exchange/Refund Requests.” [**See WooCommerce Refund & Exchange Pro Plugin Case Study**](https://wpswings.com/case-studies/no44store/?utm_source=wpswings-rma-casestudy&utm_medium=rma-github-page&utm_campaign=no44-casestudy)
 
 ### DOCUMENTATION OF PREMIUM VERSION
 
@@ -129,7 +132,3 @@ If you need support or have any questions then kindly use our online chat window
 * [**Tweet us on @WP Swings**](https://twitter.com/wpswings)
 * [**Visit our LinkedIn Account**](https://www.linkedin.com/company/77072505/admin/)
 * [**Subscribe To Our YouTube Channel**](https://www.youtube.com/channel/UC7nYNf0JETOwW3GOD_EW2Ag)
-
-
-
-
