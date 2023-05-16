@@ -235,6 +235,7 @@ if ( $activated ) {
 			}
 		}
 	}
+
 } else {
 	/**
 	 * Show warning message if woocommerce is not install

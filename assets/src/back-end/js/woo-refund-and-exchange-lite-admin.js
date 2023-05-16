@@ -373,4 +373,46 @@ jQuery(document).ready(function() {
 			}
 		});
 	});
+	// pro setting tag
+	setTimeout(function(){
+		jQuery('.wps_rma_pro_class').parents('.wps-form-group').addClass('wps_rma_pro_class_wrap');
+	},1)
+
+	$('#wps_wrma_ship_products').select2();
+
+
+	// Integration tab setting code start
+	$( '.wps_rma_shipping_label_setting' ).show();
+	$( '.wps_rma_shipping_setting' ).hide();
+	$( '.wps_rma_shiprocket_setting').hide();
+	$( '.show_returnship_label' ).addClass('shipClass');
+	$('.wps_wrma_return_loader').hide();
+	$('.wps_wrma_returnship_loader').hide();
+	$( '.wps_rma_shiprocket_setting').hide();
+
+	$( document ).on( 'click', '.show_returnship_label', function() {
+		$( '.wps_rma_shipping_label_setting' ).show();
+	  $( '.show_returnship_label' ).addClass('shipClass');
+	  $( '.show_shipintegration' ).removeClass('shipClass');
+	  $( '.show_shiprocketintegration' ).removeClass('shipClass');
+		$( '.wps_rma_shipping_setting' ).hide();
+		$( '.wps_rma_shiprocket_setting').hide();
+	  });
+	  $( document ).on( 'click', '.show_shipintegration', function() {
+		  $( '.wps_rma_shipping_setting' ).show();
+		$( '.show_shipintegration' ).addClass('shipClass');
+		$( '.show_returnship_label' ).removeClass('shipClass');
+		$( '.show_shiprocketintegration' ).removeClass('shipClass');
+		  $( '.wps_rma_shipping_label_setting' ).hide();
+		  $( '.wps_rma_shiprocket_setting').hide();
+	  });
+	  
+	  $( document ).on( 'click', '.show_shiprocketintegration', function() {
+		$( '.wps_rma_shiprocket_setting' ).show();
+	  $( '.show_shiprocketintegration' ).addClass('shipClass');
+	  $( '.show_returnship_label' ).removeClass('shipClass');
+	  $( '.show_shipintegration' ).removeClass('shipClass');
+		$( '.wps_rma_shipping_label_setting' ).hide();
+		$( '.wps_rma_shipping_setting').hide();
+	  });	  
 });

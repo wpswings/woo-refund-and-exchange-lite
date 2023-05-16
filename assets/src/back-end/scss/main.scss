@@ -149,3 +149,220 @@
 .toplevel_page_wps-plugins div img{
     width: 20px ! important;
 }
+
+// css for pro tag
+
+.wps-navbar__items .wps_rma_pro_class {
+    position: relative;
+}
+
+.wps-navbar__items .wps_rma_pro_class:before {
+    content: "PRO";
+    font-size: 10px;
+    padding: 3px 6px;
+    border-radius: 2px;
+    background: #b3ffc0;
+    line-height: 1;
+    color: #038018;
+    margin-right: 5px;
+    position: absolute;
+    top: 12px;
+    right: -5px;
+}
+
+.wps-form-group.wps_rma_pro_class_wrap,.wps-form-group.wps_rma_pro_class_wrap * {
+    pointer-events: none;
+}
+
+.wps_rma_pro_class_wrap .wps-form-group__control {
+    position: relative;
+}
+
+.wps_rma_pro_class_wrap .wps-form-group__control:before {
+    position: absolute;
+    content: "PRO Feature";
+    z-index: 99;
+    background: #f3fff5;
+    top: -10px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-flex;
+    align-items: center;
+    color: #00b81f;
+    font-weight: 600;
+}
+
+.wps_rma_pro_class_wrap .wps-form-group__label {
+    position: relative;
+    overflow: hidden;
+    padding-left: 25px;
+    padding-bottom: 15px;
+}
+
+.wps_rma_pro_class_wrap .wps-form-group__label:before {
+    content: "PRO";
+    position: absolute;
+    transform: rotate(45deg);
+    width: 60px;
+    background: #0aa000;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    bottom: -4px;
+    left: -20px;
+    font-size: 10px;
+    padding: 0 0 10px;
+}
+
+
+/*Global shipping tab css*/
+    #wps_ship_setting #add_fee_button input{
+        margin-bottom: 20px;
+    }
+    #wps_ship_setting tr{
+        vertical-align: top;
+    }
+    #wps_ship_setting th.titledesc, .wps_wrma_shipstation_details_wrapper th{
+        text-align: left;
+    }
+    #wps_ship_setting th, .wps_wrma_shipstation_details_wrapper th{
+        max-width: 200px;
+        min-width: 200px;
+    }
+    #wps_ship_setting td, .wps_wrma_shipstation_details_wrapper td{
+        max-width: calc(100% - 200px);
+    }
+    #wps_ship_setting th, 
+    #wps_ship_setting td{
+        margin-bottom: 15px;
+        display: inline-block;
+    }
+    #wps_ship_setting .wps__enable-shipping td{
+        padding-left: 10px;
+    }
+    #wps_ship_setting .wps__enable-global-shipping td{
+        padding-left: 10px;
+    }
+    #wps_ship_setting #add_fee_div td{
+        margin-right: 30px;
+        max-width: 100%;
+    }
+    #wps_ship_setting #add_fee_div td:last-child{
+        margin-right: 0;
+    }
+    #wps_ship_setting .add_fee_tr td{
+        margin-right: 30px;
+        max-width: 100%;
+    }
+    #wps_ship_setting .add_fee_div td:last-child{
+        margin-right: 0;
+    }
+    
+    
+    /*Integration tab css*/
+    .wps_wrma_accord_sec_wrap .form-table th,
+    .wps_wrma_ship_setting_account_display .form-table th{
+        padding: 20px 10px 20px 10px;
+    }
+    .wps_wrma_shipstation_details_wrapper td{
+        margin-bottom: 20px;
+        display: inline-block;
+    }
+    .wps_rma_shipping_setting input[type=radio]:checked::before{
+        margin-top: 50%;
+        margin-left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .wps_wrma_shipstation_details_wrapper td{
+        min-width: 180px;
+    }
+    .wps_wrma_shipstation_details_wrapper td input{
+        width: 100%;
+        margin: 0;
+    }
+    .wps_wrma_shipstation_details_wrapper td select{
+        width: 100%;
+        margin: 0;
+    }
+    
+    .wps-section h4 input {
+        background: transparent;
+        color: #000000;
+        border: 1px solid #2196F3;
+        transition: .3s ease;
+        padding: 10px 25px;
+    }
+    .wps-section h4 input.shipClass{
+        background: transparent;
+        color: #ffffff;
+        background: #2196F3;
+        transition: .3s ease;
+    }
+    .wps_rma_shipping_setting .submit a:hover {
+        color: #ffffff;
+    }
+    .wps_wrma_ship_station label {
+        margin-right: 15px;
+    } 
+    /*new css*/
+    .admin-bar .wps_table h4 {
+        margin: 40px 0 20px;
+    }
+    .wps-wrma-validation__wrap label {
+        width: 140px;
+        display: inline-block; 
+    }
+    
+    /*media-query*/
+    @media only screen and (max-width: 575px) and (min-width: 531px) {
+        #wps_ship_setting #add_fee_div td:nth-child(2) {
+            margin-right: 0;
+        }
+    }
+    
+    @media only screen and (max-width: 480px) {
+        .show_returnship_label {
+            margin-bottom: 10px;
+        }
+        .wps_wrma_shipstation_details_wrapper table {
+            width: 100%;
+        }
+        .wps_rma_shipping_setting th, 
+        .wps_rma_shipping_setting td,
+        .wps_rma_shipping_setting input,
+        .wps_rma_shipping_setting select,
+        #wps_ship_setting td,
+        .wps_wrma_shipstation_details_wrapper td,
+        .wps-form-group__label,
+        .wps-form-group__control {
+            min-width: 100%;
+            width: 100%;
+            display: block;
+        }
+        .wps-wrma-validation__wrap label {
+            width: 100%;
+        }
+    }
+    @media only screen and (max-width: 400px) {
+        .admin-bar #save_policies_setting_form input.wps_rma_save_settings {
+           margin: 10px 0 0;
+        }
+    }
+
+    .wps-rma-admin__button,
+    .wps-rma-admin__button.button {
+    font-size: 14px;
+    padding: 16px 25px;
+    display: inline-block;
+    border-radius: 60px;
+    background: #2196F3;
+    color: #ffffff;
+    border: none;
+    text-transform: uppercase;
+    letter-spacing: 0.25px;
+    line-height: 16px;
+    }
