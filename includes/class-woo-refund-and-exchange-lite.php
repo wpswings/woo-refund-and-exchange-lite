@@ -231,6 +231,25 @@ class Woo_Refund_And_Exchange_Lite {
 		$this->loader->add_action( 'wp_ajax_wps_rma_refund_amount', $wrael_plugin_admin, 'wps_rma_refund_amount' );
 
 		$this->loader->add_action( 'admin_menu', $wrael_plugin_admin, 'wps_rma_lite_admin_menus' );
+
+		// pro setting register
+		// Setting addon in the lite start.
+		$this->loader->add_filter( 'wps_rma_plugin_admin_settings_tabs_addon_before', $wrael_plugin_admin, 'wps_rma_plugin_admin_settings_tabs_addon_before', 10 );
+		$this->loader->add_filter( 'wps_rma_plugin_admin_settings_tabs_addon_after', $wrael_plugin_admin, 'wps_rma_plugin_admin_settings_tabs_addon_after', 10 );
+
+		$this->loader->add_filter( 'wps_rma_refund_setting_extend', $wrael_plugin_admin, 'wps_rma_refund_setting_extend', 10 );
+
+		$this->loader->add_filter( 'wps_rma_exchange_settings_array', $wrael_plugin_admin, 'wps_rma_exchange_settings_array', 10 );
+
+		$this->loader->add_filter( 'wps_rma_general_setting_extend', $wrael_plugin_admin, 'wps_rma_general_setting_extend', 10 );
+
+		$this->loader->add_filter( 'wps_rma_cancel_settings_array', $wrael_plugin_admin, 'wps_rma_cancel_settings_array', 10 );
+
+		$this->loader->add_filter( 'wps_rma_wallet_settings_array', $wrael_plugin_admin, 'wps_rma_wallet_settings_array', 10 );
+
+		$this->loader->add_filter( 'wps_rma_refund_appearance_setting_extend', $wrael_plugin_admin, 'wps_rma_refund_appearance_setting_extend', 10 );
+
+		$this->loader->add_filter( 'wps_rma_order_message_setting_extend', $wrael_plugin_admin, 'wps_rma_order_message_setting_extend', 10 );
 	}
 
 	/**

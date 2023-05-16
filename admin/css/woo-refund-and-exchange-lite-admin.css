@@ -198,7 +198,7 @@ select {
   letter-spacing: 0.3px;
   color: #2196f3;
   flex: 0 0 100%;
-  max-width: calc(100% - 250px);
+  max-width: calc(100% - 200px);
 }
 
 .wps-form-group {

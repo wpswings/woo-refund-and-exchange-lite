@@ -64,6 +64,9 @@ do_action( 'wps_rma_show_license_info' );
 				foreach ( $wrael_default_tabs as $wrael_tab_key => $wrael_default_tabs ) {
 
 					$wrael_tab_classes = 'wps-link ';
+					if ( isset( $wrael_default_tabs['class'] ) ) {
+						$wrael_tab_classes .= $wrael_default_tabs['class'] . ' ';
+					}
 					if ( ! empty( $wrael_active_tab ) && $wrael_active_tab === $wrael_tab_key ) {
 						$wrael_tab_classes .= 'active';
 					}
