@@ -184,8 +184,9 @@ if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 
 						<!-- input form -->
 						<label for='wps_wrma_validate_id' ><?php esc_html_e( ' Enter Your API Key', 'woocommerce-rma-for-return-refund-and-exchange' ); ?></label>
-
-						<input type='text' id='wps_wrma_validate_id' class="wps_wrma_validate_field" placeholder='Enter Your API Key' >
+						<span class="wps_wrma_input-wrap">
+							<input type='text' id='wps_wrma_validate_id' class="wps_wrma_validate_field" placeholder='Enter Your API Key' >
+						</span>
 
 						<span class='wps_wrma_notify_error'></span>
 
@@ -252,12 +253,16 @@ if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 						<div class="wps-wrma-validation__wrap">
 							<!-- input form -->
 							<label for='wps_wrma_validate_api_id' ><?php esc_html_e( ' Enter Your API Key ', 'woocommerce-rma-for-return-refund-and-exchange' ); ?></label>
-							<input type='text' id='wps_wrma_validate_ship_api_id' class="wps_wrma_validate_api_id_field" placeholder='Enter your Shipstation Api key' >
+							<span class="wps_wrma_input-wrap">
+								<input type='text' id='wps_wrma_validate_ship_api_id' class="wps_wrma_validate_api_id_field" placeholder='Enter your Shipstation Api key' >
+							</span>
 						</div>
 						<br>
 						<div class="wps-wrma-validation__wrap">
 							<label for='wps_wrma_validate_secret_id' ><?php esc_html_e( ' Enter Your Secret Key ', 'woocommerce-rma-for-return-refund-and-exchange' ); ?></label>
-							<input type='text' id='wps_wrma_validate_secret_id' class="wps_wrma_validate_secret_id_field" placeholder='Enter your Shipstation Secret key' >	
+							<span class="wps_wrma_input-wrap">
+								<input type='text' id='wps_wrma_validate_secret_id' class="wps_wrma_validate_secret_id_field" placeholder='Enter your Shipstation Secret key' >	
+							</span>
 						</div>
 						<span class='wps_wrma_notify_error'></span>
 
@@ -481,7 +486,9 @@ if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 						<!-- input form -->
 						<label for='wps_wrma_shiprocket_mail' ><?php esc_html_e( ' Enter Your API User Email', 'woocommerce-rma-for-return-refund-and-exchange' ); ?></label>
 
-						<input type='email' id='wps_wrma_shiprocket_mail' class="wps_wrma_shiprocket_mail_field" placeholder='Enter Your API User Email' value = "<?php echo esc_attr( $wps_wrma_shiprocket_mail ); ?>" required>
+							<span class="wps_wrma_input-wrap">
+								<input type='email' id='wps_wrma_shiprocket_mail' class="wps_wrma_shiprocket_mail_field" placeholder='Enter Your API User Email' value = "<?php echo esc_attr( $wps_wrma_shiprocket_mail ); ?>" required>
+							</span>
 
 						<span class='wps_wrma_notify_error'></span>
 						</div>
@@ -490,7 +497,9 @@ if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 
 							<label for='wps_wrma_shiprocket_pwd' ><?php esc_html_e( ' Enter Your API User Password ', 'woocommerce-rma-for-return-refund-and-exchange' ); ?></label>
 
-							<input type='password' id='wps_wrma_shiprocket_pwd' class="wps_wrma_shiprocket_pwd_field" placeholder='Enter Your API User Password ' value = "<?php echo esc_attr( $wps_wrma_shiprocket_pwd ); ?>" required>	
+							<span class="wps_wrma_input-wrap">
+								<input type='password' id='wps_wrma_shiprocket_pwd' class="wps_wrma_shiprocket_pwd_field" placeholder='Enter Your API User Password ' value = "<?php echo esc_attr( $wps_wrma_shiprocket_pwd ); ?>" required>	
+							</span>
 
 							<span class='wps_wrma_notify_error'></span>
 						</div>
@@ -512,7 +521,9 @@ if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 
 							<label for='wps_wrma_shiprocket_channel_id' ><?php esc_html_e( ' Enter Your Shiprocket Channel Id ', 'woocommerce-rma-for-return-refund-and-exchange' ); ?></label>
 
-							<input type='number' id='wps_wrma_shiprocket_channel_id' class="wps_wrma_shiprocket_channel_id_field" placeholder='Enter Your Shiprocket Channel Id ' value = "<?php echo esc_attr( $wps_wrma_shiprocket_channel_id ); ?>" required >	
+							<span class="wps_wrma_input-wrap">
+								<input type='number' id='wps_wrma_shiprocket_channel_id' class="wps_wrma_shiprocket_channel_id_field" placeholder='Enter Your Shiprocket Channel Id ' value = "<?php echo esc_attr( $wps_wrma_shiprocket_channel_id ); ?>" required >
+							</span>	
 
 						</div>	
 						<br>
@@ -520,7 +531,9 @@ if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 
 							<label for='wps_wrma_shiprocket_channel_name' ><?php esc_html_e( ' Enter Your Shiprocket Channel Name ', 'woocommerce-rma-for-return-refund-and-exchange' ); ?></label>
 
-							<input type='text' id='wps_wrma_shiprocket_channel_name' class="wps_wrma_shiprocket_channel_name_field" placeholder='Enter Your Shiprocket Channel Name ' value = "<?php echo esc_attr( $wps_wrma_shiprocket_channel_name ); ?>" required>	
+							<span class="wps_wrma_input-wrap">
+								<input type='text' id='wps_wrma_shiprocket_channel_name' class="wps_wrma_shiprocket_channel_name_field" placeholder='Enter Your Shiprocket Channel Name ' value = "<?php echo esc_attr( $wps_wrma_shiprocket_channel_name ); ?>" required>
+							</span>	
 
 						</div>
 						<br>	
@@ -662,7 +675,7 @@ if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 			<!-- new setting -->
 		</div>
 		<p class="submit">
-			<button class="wps_wrma_save_shiprocket wps-wrma-save-button wps-rma-admin__button" name="wps_wrma_save_shiprocket" ><?php esc_html_e( 'Save Settings', 'woocommerce-rma-for-return-refund-and-exchange' ); ?>
+			<button class="wps_wrma_save_shiprocket wps-wrma-save-button wps-rma-admin__button <?php echo 'button_' . $rma_pro_activate; ?>" name="wps_wrma_save_shiprocket" ><?php esc_html_e( 'Save Settings', 'woocommerce-rma-for-return-refund-and-exchange' ); ?>
 			</button>
 		</p>
 	</form>

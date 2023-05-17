@@ -14,6 +14,10 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+$rma_pro_activate = 'wps_rma_pro_div';
+if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
+	$rma_pro_activate = null;
+}
 global $wrael_wps_rma_obj;
 $mwr_cancel_settings =
 // Cancel Setting register filter.
@@ -34,6 +38,6 @@ $woo_email_url = admin_url() . 'admin.php?page=wc-settings&tab=email&section=wps
 <h6>
 <?php
 /* translators: %s: search term */
-echo sprintf( esc_html__( 'To Configure Cancel Related Email %s.', 'woocommerce-rma-for-return-refund-and-exchange' ), '<a href="' . esc_html( $woo_email_url ) . '">Click Here</a>' );
+echo sprintf( esc_html__( 'To Configure Cancel Related Email %s.', 'woocommerce-rma-for-return-refund-and-exchange' ), '<a class="' . esc_html( $rma_pro_activate ) . '" href="' . esc_html( $woo_email_url ) . '">Click Here</a>' );
 ?>
 </h6>

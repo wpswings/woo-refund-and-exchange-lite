@@ -526,7 +526,7 @@ class Wps_Rma_Setting_Extend {
 			'type'        => 'button',
 			'id'          => 'wps_rma_save_exchange_setting',
 			'button_text' => esc_html__( 'Save Setting', 'woocommerce-rma-for-return-refund-and-exchange' ),
-			'class'       => 'wrael-button-class',
+			'class'       => 'wrael-button-class button_' . $this->rma_pro_activate,
 		);
 		return $wps_rma_settings_exchange;
 	}
@@ -624,7 +624,7 @@ class Wps_Rma_Setting_Extend {
 			'type'        => 'button',
 			'id'          => 'wps_rma_save_cancel_setting',
 			'button_text' => esc_html__( 'Save Setting', 'woocommerce-rma-for-return-refund-and-exchange' ),
-			'class'       => 'wrael-button-class',
+			'class'       => 'wrael-button-class button_' . $this->rma_pro_activate,
 		);
 		return $wps_rma_settings_cancel;
 	}
@@ -691,7 +691,7 @@ class Wps_Rma_Setting_Extend {
 				'type'        => 'button',
 				'id'          => 'wps_rma_save_wallet_setting',
 				'button_text' => esc_html__( 'Save Setting', 'woocommerce-rma-for-return-refund-and-exchange' ),
-				'class'       => 'wrael-button-class',
+				'class'       => 'wrael-button-class button_' . $this->rma_pro_activate,
 			),
 		);
 		return $wps_rma_settings_wallet;

@@ -14,6 +14,10 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+$rma_pro_activate = 'wps_rma_pro_div';
+if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
+	$rma_pro_activate = null;
+}
 global $wrael_wps_rma_obj;
 $mwr_exchange_settings =
 // Exchange Setting register filter.
@@ -36,18 +40,18 @@ $woo_cancel_email_url  = admin_url() . 'admin.php?page=wc-settings&tab=email&sec
 <h6>
 <?php
 /* translators: %s: link */
-echo sprintf( esc_html__( 'To Configure Exchange Request Email %s.', 'woocommerce-rma-for-return-refund-and-exchange' ), '<a href="' . esc_html( $woo_request_email_url ) . '">Click Here</a>' );
+echo sprintf( esc_html__( 'To Configure Exchange Request Email %s.', 'woocommerce-rma-for-return-refund-and-exchange' ), '<a class="' . esc_html( $rma_pro_activate ) . '" href="' . esc_html( $woo_request_email_url ) . '">Click Here</a>' );
 ?>
 </h6>
 <h6>
 <?php
 /* translators: %s: link */
-echo sprintf( esc_html__( 'To Configure Exchange Request Accept Email %s.', 'woocommerce-rma-for-return-refund-and-exchange' ), '<a href="' . esc_html( $woo_accept_email_url ) . '">Click Here</a>' );
+echo sprintf( esc_html__( 'To Configure Exchange Request Accept Email %s.', 'woocommerce-rma-for-return-refund-and-exchange' ), '<a class="' . esc_html( $rma_pro_activate ) . '" href="' . esc_html( $woo_accept_email_url ) . '">Click Here</a>' );
 ?>
 </h6>
 <h6>
 <?php
 /* translators: %s: link */
-echo sprintf( esc_html__( 'To Configure Exchange Request Cancel Email %s.', 'woocommerce-rma-for-return-refund-and-exchange' ), '<a href="' . esc_html( $woo_cancel_email_url ) . '">Click Here</a>' );
+echo sprintf( esc_html__( 'To Configure Exchange Request Cancel Email %s.', 'woocommerce-rma-for-return-refund-and-exchange' ), '<a class="' . esc_html( $rma_pro_activate ) . '" href="' . esc_html( $woo_cancel_email_url ) . '">Click Here</a>' );
 ?>
 </h6>

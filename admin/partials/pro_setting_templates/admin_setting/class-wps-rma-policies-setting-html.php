@@ -33,8 +33,8 @@ class Wps_Rma_Policies_Setting_Html {
 	 */
 	public function wps_rma_setting_extend_show_column1_set( $value ) {
 		?>
-		<option value="exchange" class="<?php echo esc_html( $this->rma_pro_activate ); ?>" <?php selected( 'exchange', $value ); ?>><?php esc_html_e( 'Exchange', 'woocommerce-rma-for-return-refund-and-exchange' ); ?></option>
-		<option value="cancel" class="<?php echo esc_html( $this->rma_pro_activate ); ?>" <?php selected( 'cancel', $value ); ?>><?php esc_html_e( 'Cancel', 'woocommerce-rma-for-return-refund-and-exchange' ); ?></option>
+		<option value="exchange" class="<?php echo esc_html( $this->rma_pro_activate ); ?>" <?php selected( 'exchange', $value ) ?> <?php echo ( ! empty( $this->rma_pro_activate ) ) ? 'disabled' : ''; ?>><?php esc_html_e( 'Exchange', 'woocommerce-rma-for-return-refund-and-exchange' ); ?></option>
+		<option value="cancel" class="<?php echo esc_html( $this->rma_pro_activate ); ?>" <?php selected( 'cancel', $value ); ?> <?php echo ( ! empty( $this->rma_pro_activate ) ) ? 'disabled' : ''; ?>><?php esc_html_e( 'Cancel', 'woocommerce-rma-for-return-refund-and-exchange' ); ?></option>
 		<?php
 	}
 
@@ -43,8 +43,8 @@ class Wps_Rma_Policies_Setting_Html {
 	 */
 	public function wps_rma_setting_extend_column1_set() {
 		?>
-		<option class="<?php echo esc_html( $this->rma_pro_activate ); ?>" value="exchange" ><?php esc_html_e( 'Exchange', 'woocommerce-rma-for-return-refund-and-exchange' ); ?></option>
-		<option class="<?php echo esc_html( $this->rma_pro_activate ); ?>" value="cancel" ><?php esc_html_e( 'Cancel', 'woocommerce-rma-for-return-refund-and-exchange' ); ?></option>
+		<option class="<?php echo esc_html( $this->rma_pro_activate ); ?>" value="exchange" <?php echo ( ! empty( $this->rma_pro_activate ) ) ? 'disabled' : ''; ?> ><?php esc_html_e( 'Exchange', 'woocommerce-rma-for-return-refund-and-exchange' ); ?></option>
+		<option class="<?php echo esc_html( $this->rma_pro_activate ); ?>" value="cancel" <?php echo ( ! empty( $this->rma_pro_activate ) ) ? 'disabled' : ''; ?> ><?php esc_html_e( 'Cancel', 'woocommerce-rma-for-return-refund-and-exchange' ); ?></option>
 		<?php
 	}
 
@@ -53,9 +53,9 @@ class Wps_Rma_Policies_Setting_Html {
 	 */
 	public function wps_rma_setting_extend_column3_set() {
 		?>
-		<option  class="<?php echo esc_html( $this->rma_pro_activate ); ?>" value="wps_rma_min_order" ><?php esc_html_e( 'Minimum Order', 'woocommerce-rma-for-return-refund-and-exchange' ); ?></option>
-		<option  class="<?php echo esc_html( $this->rma_pro_activate ); ?>" value="wps_rma_exclude_via_categories" ><?php esc_html_e( 'Exclude Categories', 'woocommerce-rma-for-return-refund-and-exchange' ); ?></option>
-		<option  class="<?php echo esc_html( $this->rma_pro_activate ); ?>" value="wps_rma_exclude_via_products" ><?php esc_html_e( 'Exclude Products', 'woocommerce-rma-for-return-refund-and-exchange' ); ?></option>
+		<option  class="<?php echo esc_html( $this->rma_pro_activate ); ?>" value="wps_rma_min_order" <?php echo ( ! empty( $this->rma_pro_activate ) ) ? 'disabled' : ''; ?> ><?php esc_html_e( 'Minimum Order', 'woocommerce-rma-for-return-refund-and-exchange' ); ?></option>
+		<option  class="<?php echo esc_html( $this->rma_pro_activate ); ?>" value="wps_rma_exclude_via_categories" <?php echo ( ! empty( $this->rma_pro_activate ) ) ? 'disabled' : ''; ?> ><?php esc_html_e( 'Exclude Categories', 'woocommerce-rma-for-return-refund-and-exchange' ); ?></option>
+		<option  class="<?php echo esc_html( $this->rma_pro_activate ); ?>" value="wps_rma_exclude_via_products" <?php echo ( ! empty( $this->rma_pro_activate ) ) ? 'disabled' : ''; ?> ><?php esc_html_e( 'Exclude Products', 'woocommerce-rma-for-return-refund-and-exchange' ); ?></option>
 		<?php
 	}
 
@@ -66,9 +66,9 @@ class Wps_Rma_Policies_Setting_Html {
 	 */
 	public function wps_rma_setting_extend_show_column3_set( $value ) {
 		?>
-		<option class="<?php echo esc_html( $this->rma_pro_activate ); ?>" value="wps_rma_min_order" <?php selected( 'wps_rma_min_order', $value ); ?>><?php esc_html_e( 'Minimum Order', 'woocommerce-rma-for-return-refund-and-exchange' ); ?></option>
-		<option class="<?php echo esc_html( $this->rma_pro_activate ); ?>" value="wps_rma_exclude_via_categories" <?php selected( 'wps_rma_exclude_via_categories', $value ); ?>><?php esc_html_e( 'Exclude Categories', 'woocommerce-rma-for-return-refund-and-exchange' ); ?></option>
-		<option class="<?php echo esc_html( $this->rma_pro_activate ); ?>" value="wps_rma_exclude_via_products" <?php selected( 'wps_rma_exclude_via_products', $value ); ?>><?php esc_html_e( 'Exclude Products', 'woocommerce-rma-for-return-refund-and-exchange' ); ?></option>
+		<option class="<?php echo esc_html( $this->rma_pro_activate ); ?>" value="wps_rma_min_order" <?php selected( 'wps_rma_min_order', $value ); ?> <?php echo ( ! empty( $this->rma_pro_activate ) ) ? 'disabled' : ''; ?>><?php esc_html_e( 'Minimum Order', 'woocommerce-rma-for-return-refund-and-exchange' ); ?></option>
+		<option class="<?php echo esc_html( $this->rma_pro_activate ); ?>" value="wps_rma_exclude_via_categories" <?php selected( 'wps_rma_exclude_via_categories', $value ); ?> <?php echo ( ! empty( $this->rma_pro_activate ) ) ? 'disabled' : ''; ?>><?php esc_html_e( 'Exclude Categories', 'woocommerce-rma-for-return-refund-and-exchange' ); ?></option>
+		<option class="<?php echo esc_html( $this->rma_pro_activate ); ?>" value="wps_rma_exclude_via_products" <?php selected( 'wps_rma_exclude_via_products', $value ); ?> <?php echo ( ! empty( $this->rma_pro_activate ) ) ? 'disabled' : ''; ?>><?php esc_html_e( 'Exclude Products', 'woocommerce-rma-for-return-refund-and-exchange' ); ?></option>
 		<?php
 	}
 

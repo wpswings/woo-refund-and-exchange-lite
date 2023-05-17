@@ -379,6 +379,18 @@ jQuery(document).ready(function() {
 	},1)
 
 	$('#wps_wrma_ship_products').select2();
+	if ( $( '#wps_enable_ship_setting' ).is( ':checked' ) ) {
+		$('#add_fee').show();
+	}else{
+	$('#add_fee').hide();
+	}
+	$('#wps_enable_ship_setting').on( 'change' , function(){
+	if ( $( '#wps_enable_ship_setting' ).is( ':checked' ) ) {
+		$('#add_fee').show();
+	}else{
+		$('#add_fee').hide();
+	}
+	});
 
 
 	// Integration tab setting code start
@@ -414,5 +426,9 @@ jQuery(document).ready(function() {
 	  $( '.show_shipintegration' ).removeClass('shipClass');
 		$( '.wps_rma_shipping_label_setting' ).hide();
 		$( '.wps_rma_shipping_setting').hide();
-	  });	  
+	  });
+	  
+	  $(".button_wps_rma_pro_class").parent('button').prop( "disabled", true );
+	  $(".button_wps_rma_pro_div").prop( "disabled", true );
+
 });
