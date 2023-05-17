@@ -14,7 +14,7 @@ if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 	$rma_pro_activate = null;
 }
 ?>
-<div id="wps_ship_setting <?php echo esc_html( $wps_rma_pro_div ); ?>">
+<div id="wps_ship_setting" class="<?php echo esc_html( $rma_pro_activate ); ?>">
 	<?php $get_wps_rnx_global_shipping = get_option( 'wps_wrma_shipping_global_data', array() ); ?>
 
 	<form action="" method="post">
