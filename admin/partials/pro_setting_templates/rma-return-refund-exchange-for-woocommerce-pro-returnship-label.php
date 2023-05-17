@@ -5,6 +5,10 @@
  * @package    woocommerce-rma-for-return-refund-and-exchange
  * @subpackage woocommerce-rma-for-return-refund-and-exchange/admin/partials
  */
+$rma_pro_activate = 'wps_rma_pro_div';
+if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
+	$rma_pro_activate = null;
+}
 ?>
 <h4>
 	<input type="button" class="show_returnship_label wps-rma-admin__button" value="ReturnShip Label" />
@@ -15,6 +19,7 @@
 	do_action( 'wps_rma_extend_more_integration_button' );
 	?>
 </h4>
+<div id="<?php echo esc_html( $wps_rma_pro_div ); ?>">
 <div class="wps_table wps_rma_shipping_label_setting">
 	<form enctype="multipart/form-data" action="" id="mainform" method="post">
 		<h4 id="wrma_mail_setting" class="wps_wrma_basic_setting wps_wrma_slide_active"><?php esc_html_e( 'Return Ship Setting', 'woocommerce-rma-for-return-refund-and-exchange' ); ?></h4>
@@ -660,6 +665,7 @@
 			</button>
 		</p>
 	</form>
+</div>
 </div>
 <?php
 // Extend the integration field.
