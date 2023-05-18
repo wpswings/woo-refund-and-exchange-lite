@@ -45,8 +45,20 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	 * @param string $version     The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
-		require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/pro_setting_templates/admin_setting/class-wps-rma-policies-setting-html.php';
-		require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/pro_setting_templates/admin_setting/class-wps-rma-setting-extend.php';
+		$pro_version = null;
+		$pro_slug = 'woocommerce-rma-for-return-refund-and-exchange/mwb-woocommerce-rma.php';
+		if ( ! function_exists( 'get_plugins' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/plugin.php';
+		}
+		$all_plugins   = get_plugins();
+		$activePlugins = get_option('active_plugins', array());
+		if ( in_array( $pro_slug, $activePlugins ) ) {
+			$pro_version = $all_plugins[ $pro_slug ]['Version'];
+		}
+		if ( is_null( $pro_version ) || $pro_version > '5.0.9' ) {
+			require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/pro_setting_templates/admin_setting/class-wps-rma-policies-setting-html.php';
+			require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/pro_setting_templates/admin_setting/class-wps-rma-setting-extend.php';
+		}
 		$this->plugin_name = $plugin_name;
 		$this->version     = $version;
 
