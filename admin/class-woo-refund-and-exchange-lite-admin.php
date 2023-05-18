@@ -993,13 +993,13 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			$rma_pro_activate = null;
 		}
 		$mwr_default_tabs['rma-return-refund-exchange-for-woocommerce-pro-exchange'] = array(
-			'title'     => esc_html__( 'Exchange', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'title'     => esc_html__( 'Exchange', 'woo-refund-and-exchange-lite' ),
 			'name'      => 'rma-return-refund-exchange-for-woocommerce-pro-exchange',
 			'class'     => $rma_pro_activate,
 			'file_path' => WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-exchange.php',
 		);
 		$mwr_default_tabs['rma-return-refund-exchange-for-woocommerce-pro-cancel']   = array(
-			'title'     => esc_html__( 'Cancel', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'title'     => esc_html__( 'Cancel', 'woo-refund-and-exchange-lite' ),
 			'name'      => 'rma-return-refund-exchange-for-woocommerce-pro-cancel',
 			'class'     => $rma_pro_activate,
 			'file_path' => WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-cancel.php',
@@ -1018,19 +1018,19 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			$rma_pro_activate = null;
 		}
 		$mwr_default_tabs['rma-return-refund-exchange-for-woocommerce-pro-wallet']           = array(
-			'title'     => esc_html__( 'Wallet', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'title'     => esc_html__( 'Wallet', 'woo-refund-and-exchange-lite' ),
 			'name'      => 'rma-return-refund-exchange-for-woocommerce-pro-wallet',
 			'class'     => $rma_pro_activate,
 			'file_path' => WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-wallet.php',
 		);
 		$mwr_default_tabs['rma-return-refund-exchange-for-woocommerce-pro-global-shipping']  = array(
-			'title'     => esc_html__( 'Global Shipping', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'title'     => esc_html__( 'Global Shipping', 'woo-refund-and-exchange-lite' ),
 			'name'      => 'rma-return-refund-exchange-for-woocommerce-pro-global-shipping',
 			'class'     => $rma_pro_activate,
 			'file_path' => WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-global-shipping.php',
 		);
 		$mwr_default_tabs['rma-return-refund-exchange-for-woocommerce-pro-returnship-label'] = array(
-			'title'     => esc_html__( 'Integration', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'title'     => esc_html__( 'Integration', 'woo-refund-and-exchange-lite' ),
 			'name'      => 'rma-return-refund-exchange-for-woocommerce-pro-returnship-label',
 			'class'     => $rma_pro_activate,
 			'file_path' => WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php',

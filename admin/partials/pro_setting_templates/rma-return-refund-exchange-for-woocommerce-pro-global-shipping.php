@@ -22,7 +22,7 @@ if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 		<table>
 			<tr class="wps__enable-global-shipping wps__enable-shipping">
 				<th class="titledesc wps-form-group__label">
-					<label for="wps_ship_pro_cb"><?php esc_html_e( 'Enable Global Shipping', 'woocommerce-rma-for-return-refund-and-exchange' ); ?></label>
+					<label for="wps_ship_pro_cb"><?php esc_html_e( 'Enable Global Shipping', 'woo-refund-and-exchange-lite' ); ?></label>
 				</th>
 				<td class="wps-d-block">
 					<div class="wps-form-group">
@@ -92,7 +92,7 @@ if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 			</tr>
 			<tr class="wps__enable-shipping">
 				<th class="titledesc wps-form-group__label">
-					<label for="wps_ship_pro_cb"><?php esc_html_e( 'Enable Product Category Based Shipping', 'woocommerce-rma-for-return-refund-and-exchange' ); ?></label>
+					<label for="wps_ship_pro_cb"><?php esc_html_e( 'Enable Product Category Based Shipping', 'woo-refund-and-exchange-lite' ); ?></label>
 				</th>
 				<td>
 					<div class="wps-form-group">
@@ -117,7 +117,7 @@ if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 				</td>
 			</tr>
 			<tr class="select_product_for_ship wps__enable-shipping">	
-				<th class="titledesc" ><label><?php esc_html_e( 'Select Product Categories', 'woocommerce-rma-for-return-refund-and-exchange' ); ?></label></th>
+				<th class="titledesc" ><label><?php esc_html_e( 'Select Product Categories', 'woo-refund-and-exchange-lite' ); ?></label></th>
 				<td><select name="wps_wrma_ship_products[]" id="wps_wrma_ship_products" class="wps_wrma_products" multiple>
 					<?php
 					$args               = array(
@@ -146,6 +146,6 @@ if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 				</select></td>
 			</tr>
 		</table>
-		<input type="submit" id="save_ship_setting" name="save_ship_setting" value="<?php esc_html_e( 'Save Settings', 'woocommerce-rma-for-return-refund-and-exchange' ); ?>" class="wps-rma-admin__button <?php echo 'button_' . $rma_pro_activate; ?>" >
+		<input type="submit" id="save_ship_setting" name="save_ship_setting" value="<?php esc_html_e( 'Save Settings', 'woo-refund-and-exchange-lite' ); ?>" class="wps-rma-admin__button <?php echo 'button_' . $rma_pro_activate; ?>" >
 	</form>
 </div>

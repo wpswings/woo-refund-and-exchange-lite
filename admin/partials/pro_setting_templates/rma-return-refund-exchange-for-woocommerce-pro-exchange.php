@@ -40,18 +40,18 @@ $woo_cancel_email_url  = admin_url() . 'admin.php?page=wc-settings&tab=email&sec
 <h6>
 <?php
 /* translators: %s: link */
-echo sprintf( esc_html__( 'To Configure Exchange Request Email %s.', 'woocommerce-rma-for-return-refund-and-exchange' ), '<a class="' . esc_html( $rma_pro_activate ) . '" href="' . esc_html( $woo_request_email_url ) . '">Click Here</a>' );
+echo sprintf( esc_html__( 'To Configure Exchange Request Email %s.', 'woo-refund-and-exchange-lite' ), '<a class="' . esc_html( $rma_pro_activate ) . '" href="' . esc_html( $woo_request_email_url ) . '">Click Here</a>' );
 ?>
 </h6>
 <h6>
 <?php
 /* translators: %s: link */
-echo sprintf( esc_html__( 'To Configure Exchange Request Accept Email %s.', 'woocommerce-rma-for-return-refund-and-exchange' ), '<a class="' . esc_html( $rma_pro_activate ) . '" href="' . esc_html( $woo_accept_email_url ) . '">Click Here</a>' );
+echo sprintf( esc_html__( 'To Configure Exchange Request Accept Email %s.', 'woo-refund-and-exchange-lite' ), '<a class="' . esc_html( $rma_pro_activate ) . '" href="' . esc_html( $woo_accept_email_url ) . '">Click Here</a>' );
 ?>
 </h6>
 <h6>
 <?php
 /* translators: %s: link */
-echo sprintf( esc_html__( 'To Configure Exchange Request Cancel Email %s.', 'woocommerce-rma-for-return-refund-and-exchange' ), '<a class="' . esc_html( $rma_pro_activate ) . '" href="' . esc_html( $woo_cancel_email_url ) . '">Click Here</a>' );
+echo sprintf( esc_html__( 'To Configure Exchange Request Cancel Email %s.', 'woo-refund-and-exchange-lite' ), '<a class="' . esc_html( $rma_pro_activate ) . '" href="' . esc_html( $woo_cancel_email_url ) . '">Click Here</a>' );
 ?>
 </h6>

@@ -35,96 +35,96 @@ class Wps_Rma_Setting_Extend {
 		$none_status                = array( 'wc-none' => 'Order Created Date' );
 		$t_s                        = array_merge( $none_status, $status );
 		$wps_rma_settings_general[] = array(
-			'title'   => esc_html__( 'Enable Exchange', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'title'   => esc_html__( 'Enable Exchange', 'woo-refund-and-exchange-lite' ),
 			'type'    => 'radio-switch',
 			'id'      => 'wps_rma_exchange_enable',
 			'value'   => get_option( 'wps_rma_exchange_enable' ),
 			'class'   => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
 			'options' => array(
-				'yes' => esc_html__( 'YES', 'woocommerce-rma-for-return-refund-and-exchange' ),
-				'no'  => esc_html__( 'NO', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+				'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 			),
 		);
 		$wps_rma_settings_general[] = array(
-			'title'       => esc_html__( 'Enable Cancel', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'title'       => esc_html__( 'Enable Cancel', 'woo-refund-and-exchange-lite' ),
 			'type'        => 'radio-switch',
 			'id'          => 'wps_rma_cancel_enable',
 			'value'       => get_option( 'wps_rma_cancel_enable' ),
 			'class'       => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
 			'placeholder' => '',
 			'options'     => array(
-				'yes' => esc_html__( 'YES', 'woocommerce-rma-for-return-refund-and-exchange' ),
-				'no'  => esc_html__( 'NO', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+				'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 			),
 		);
 		$wps_rma_settings_general[] = array(
-			'title'   => esc_html__( 'Enable wallet', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'title'   => esc_html__( 'Enable wallet', 'woo-refund-and-exchange-lite' ),
 			'type'    => 'radio-switch',
 			'id'      => 'wps_rma_wallet_enable',
 			'value'   => get_option( 'wps_rma_wallet_enable' ),
 			'class'   => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
 			'options' => array(
-				'yes' => esc_html__( 'YES', 'woocommerce-rma-for-return-refund-and-exchange' ),
-				'no'  => esc_html__( 'NO', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+				'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 			),
 		);
 		$wps_rma_settings_general[] = array(
-			'title'   => esc_html__( 'Enable Single Refund and Exchange Request Per Order', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'title'   => esc_html__( 'Enable Single Refund and Exchange Request Per Order', 'woo-refund-and-exchange-lite' ),
 			'type'    => 'radio-switch',
 			'id'      => 'wps_rma_single_refund_exchange',
 			'value'   => get_option( 'wps_rma_single_refund_exchange' ),
 			'class'   => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
 			'options' => array(
-				'yes' => esc_html__( 'YES', 'woocommerce-rma-for-return-refund-and-exchange' ),
-				'no'  => esc_html__( 'NO', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+				'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 			),
 		);
 		$wps_rma_settings_general[] = array(
-			'title'   => esc_html__( 'Enable Refund & Exchange For Exchange Approved Order', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'title'   => esc_html__( 'Enable Refund & Exchange For Exchange Approved Order', 'woo-refund-and-exchange-lite' ),
 			'type'    => 'radio-switch',
 			'id'      => 'wps_rma_exchange_app_check',
 			'value'   => get_option( 'wps_rma_exchange_app_check' ),
 			'class'   => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
 			'options' => array(
-				'yes' => esc_html__( 'YES', 'woocommerce-rma-for-return-refund-and-exchange' ),
-				'no'  => esc_html__( 'NO', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+				'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 			),
 		);
 		$wps_rma_settings_general[] = array(
-			'title'   => esc_html__( 'Show Sidebar For Refund,Exchange & Cancel Form', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'title'   => esc_html__( 'Show Sidebar For Refund,Exchange & Cancel Form', 'woo-refund-and-exchange-lite' ),
 			'type'    => 'radio-switch',
 			'id'      => 'wps_rma_show_sidebar',
 			'value'   => get_option( 'wps_rma_show_sidebar' ),
 			'class'   => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
 			'options' => array(
-				'yes' => esc_html__( 'YES', 'woocommerce-rma-for-return-refund-and-exchange' ),
-				'no'  => esc_html__( 'NO', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+				'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 			),
 		);
 		$wps_rma_settings_general[] = array(
-			'title'   => esc_html__( 'Hide Refund,Exchange,Cancel Button For COD When Processing', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'title'   => esc_html__( 'Hide Refund,Exchange,Cancel Button For COD When Processing', 'woo-refund-and-exchange-lite' ),
 			'type'    => 'radio-switch',
 			'id'      => 'wps_rma_hide_rec',
 			'value'   => get_option( 'wps_rma_hide_rec' ),
 			'class'   => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
 			'options' => array(
-				'yes' => esc_html__( 'YES', 'woocommerce-rma-for-return-refund-and-exchange' ),
-				'no'  => esc_html__( 'NO', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+				'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 			),
 		);
 		$wps_rma_settings_general[] = array(
-			'title'   => esc_html__( 'Guest Feature via Phone Number', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'title'   => esc_html__( 'Guest Feature via Phone Number', 'woo-refund-and-exchange-lite' ),
 			'type'    => 'radio-switch',
 			'id'      => 'wps_rma_guest_phone',
 			'value'   => get_option( 'wps_rma_guest_phone' ),
 			'class'   => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
 			'options' => array(
-				'yes' => esc_html__( 'YES', 'woocommerce-rma-for-return-refund-and-exchange' ),
-				'no'  => esc_html__( 'NO', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+				'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 			),
 		);
 		$wps_rma_settings_general[] = array(
-			'title' => esc_html__( 'Refund,Exchange,Cancel Functionality Start From Order Status Date', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'title' => esc_html__( 'Refund,Exchange,Cancel Functionality Start From Order Status Date', 'woo-refund-and-exchange-lite' ),
 			'type'  => 'select',
 			'id'    => 'wps_rma_order_status_start',
 			'value' => get_option( 'wps_rma_order_status_start' ),
@@ -132,7 +132,7 @@ class Wps_Rma_Setting_Extend {
 			'options' => $t_s,
 		);
 		$wps_rma_settings_general[] = array(
-			'title' => esc_html__( 'Guest Form Shortcode', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'title' => esc_html__( 'Guest Form Shortcode', 'woo-refund-and-exchange-lite' ),
 			'type'  => 'text',
 			'id'    => 'wps_rma_guest_form',
 			'value' => '[Wps_Rma_Guest_Form]',
@@ -140,15 +140,15 @@ class Wps_Rma_Setting_Extend {
 			'class' => 'mwr-select-class ' . $this->rma_pro_activate,
 		);
 		$wps_rma_settings_general[] = array(
-			'title' => esc_html__( 'Enable To Reset The License On Deactivation Of The Plugin.', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'title' => esc_html__( 'Enable To Reset The License On Deactivation Of The Plugin.', 'woo-refund-and-exchange-lite' ),
 			'type'  => 'radio-switch',
 			'description'  => '',
 			'id'    => 'mwr_radio_reset_license',
 			'value' => get_option( 'mwr_radio_reset_license' ),
 			'class' => 'mwr-radio-switch-class ' . $this->rma_pro_activate,
 			'options' => array(
-				'yes' => esc_html__( 'YES', 'woocommerce-rma-for-return-refund-and-exchange' ),
-				'no' => esc_html__( 'NO', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+				'no' => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 			),
 		);
 		return $wps_rma_settings_general;
@@ -162,59 +162,59 @@ class Wps_Rma_Setting_Extend {
 	public function wps_rma_refund_setting_extend_set( $wps_rma_settings_refund ) {
 		$wps_rma_settings_refund[] =
 		array(
-			'title'   => esc_html__( 'Enable To Refund on Sales Item', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'title'   => esc_html__( 'Enable To Refund on Sales Item', 'woo-refund-and-exchange-lite' ),
 			'type'    => 'radio-switch',
 			'id'      => 'wps_rma_refund_on_sale',
 			'value'   => get_option( 'wps_rma_refund_on_sale' ),
 			'class'   => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
 			'options' => array(
-				'yes' => esc_html__( 'YES', 'woocommerce-rma-for-return-refund-and-exchange' ),
-				'no'  => esc_html__( 'NO', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+				'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 			),
 		);
 		$wps_rma_settings_refund[] = array(
-			'title'   => esc_html__( 'Deduct Coupon Amount During Refund', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'title'   => esc_html__( 'Deduct Coupon Amount During Refund', 'woo-refund-and-exchange-lite' ),
 			'type'    => 'radio-switch',
 			'id'      => 'wps_rma_refund_deduct_coupon',
 			'value'   => get_option( 'wps_rma_refund_deduct_coupon' ),
 			'class'   => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
 			'options' => array(
-				'yes' => esc_html__( 'YES', 'woocommerce-rma-for-return-refund-and-exchange' ),
-				'no'  => esc_html__( 'NO', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+				'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 			),
 		);
 		$wps_rma_settings_refund[] =
 		array(
-			'title'   => esc_html__( 'Enable Auto Accept Refund Request', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'title'   => esc_html__( 'Enable Auto Accept Refund Request', 'woo-refund-and-exchange-lite' ),
 			'type'    => 'radio-switch',
 			'id'      => 'wps_rma_refund_auto',
 			'value'   => get_option( 'wps_rma_refund_auto' ),
 			'class'   => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
 			'options' => array(
-				'yes' => esc_html__( 'YES', 'woocommerce-rma-for-return-refund-and-exchange' ),
-				'no'  => esc_html__( 'NO', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+				'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 			),
 		);
 		$wps_rma_settings_refund[] = array(
-			'title'   => esc_html__( 'Enable To Block Customer Refund Request Mail', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'title'   => esc_html__( 'Enable To Block Customer Refund Request Mail', 'woo-refund-and-exchange-lite' ),
 			'type'    => 'radio-switch',
 			'id'      => 'wps_rma_block_refund_req_email',
 			'value'   => get_option( 'wps_rma_block_refund_req_email' ),
 			'class'   => 'wrael-number-class ' . $this->rma_pro_activate,
 			'options' => array(
-				'yes' => esc_html__( 'YES', 'woocommerce-rma-for-return-refund-and-exchange' ),
-				'no'  => esc_html__( 'NO', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+				'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 			),
 		);
 		$wps_rma_settings_refund[] = array(
-			'title'   => esc_html__( 'Enable To Auto Restock When Refund Request Accepted', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'title'   => esc_html__( 'Enable To Auto Restock When Refund Request Accepted', 'woo-refund-and-exchange-lite' ),
 			'type'    => 'radio-switch',
 			'id'      => 'wps_rma_auto_refund_stock',
 			'value'   => get_option( 'wps_rma_auto_refund_stock' ),
 			'class'   => 'wrael-number-class ' . $this->rma_pro_activate,
 			'options' => array(
-				'yes' => esc_html__( 'YES', 'woocommerce-rma-for-return-refund-and-exchange' ),
-				'no'  => esc_html__( 'NO', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+				'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 			),
 		);
 		return $wps_rma_settings_refund;
@@ -227,34 +227,34 @@ class Wps_Rma_Setting_Extend {
 	 */
 	public function wps_rma_refund_appearance_setting_extend_set( $refund_app_setting_extend ) {
 		$refund_app_setting_extend[] = array(
-			'title'       => esc_html__( 'Reason of Refund Placeholder', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'title'       => esc_html__( 'Reason of Refund Placeholder', 'woo-refund-and-exchange-lite' ),
 			'type'        => 'text',
 			'id'          => 'wps_rma_refund_reason_placeholder',
 			'value'       => get_option( 'wps_rma_refund_reason_placeholder' ),
 			'class'       => 'wrael-text-class ' . $this->rma_pro_activate,
-			'placeholder' => esc_html__( 'Enter Reason of Refund Placeholder Text', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'placeholder' => esc_html__( 'Enter Reason of Refund Placeholder Text', 'woo-refund-and-exchange-lite' ),
 		);
 		$refund_app_setting_extend[] = array(
-			'title'       => esc_html__( 'Refund Request Form Shipping Fee Description', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'title'       => esc_html__( 'Refund Request Form Shipping Fee Description', 'woo-refund-and-exchange-lite' ),
 			'type'        => 'text',
 			'id'          => 'wps_rma_refund_shipping_descr',
-			'value'       => empty( get_option( 'wps_rma_refund_shipping_descr' ) ) ? esc_html__( 'This Extra Shipping Fee Will be Deducted from Total Amount When the Refund Request is approved', 'woocommerce-rma-for-return-refund-and-exchange' ) : get_option( 'wps_rma_refund_shipping_descr' ),
+			'value'       => empty( get_option( 'wps_rma_refund_shipping_descr' ) ) ? esc_html__( 'This Extra Shipping Fee Will be Deducted from Total Amount When the Refund Request is approved', 'woo-refund-and-exchange-lite' ) : get_option( 'wps_rma_refund_shipping_descr' ),
 			'class'       => 'wrael-text-class ' . $this->rma_pro_activate,
-			'placeholder' => esc_html__( 'Change Shipping Fee Description on Refund Request Form', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'placeholder' => esc_html__( 'Change Shipping Fee Description on Refund Request Form', 'woo-refund-and-exchange-lite' ),
 		);
 		$refund_app_setting_extend[] = array(
-			'title'   => esc_html__( 'Enable Refund Note On Product Page', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'title'   => esc_html__( 'Enable Refund Note On Product Page', 'woo-refund-and-exchange-lite' ),
 			'type'    => 'radio-switch',
 			'id'      => 'wps_rma_refund_note',
 			'value'   => get_option( 'wps_rma_refund_note' ),
 			'class'   => 'wrael-number-class ' . $this->rma_pro_activate,
 			'options' => array(
-				'yes' => esc_html__( 'YES', 'woocommerce-rma-for-return-refund-and-exchange' ),
-				'no'  => esc_html__( 'NO', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+				'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 			),
 		);
 		$refund_app_setting_extend[] = array(
-			'title'       => esc_html__( 'Refund Note on Product Page', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'title'       => esc_html__( 'Refund Note on Product Page', 'woo-refund-and-exchange-lite' ),
 			'type'        => 'text',
 			'id'          => 'wps_rma_refund_note_text',
 			'value'       => get_option( 'wps_rma_refund_note_text' ),
@@ -271,18 +271,18 @@ class Wps_Rma_Setting_Extend {
 	 */
 	public function wps_rma_exchange_settings_array_set( $wps_rma_settings_exchange ) {
 		$button_view = array(
-			'order-page' => esc_html__( 'Order Page', 'woocommerce-rma-for-return-refund-and-exchange' ),
-			'My account' => esc_html__( 'Order View Page', 'woocommerce-rma-for-return-refund-and-exchange' ),
-			'Checkout'   => esc_html__( 'Thank You Page', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'order-page' => esc_html__( 'Order Page', 'woo-refund-and-exchange-lite' ),
+			'My account' => esc_html__( 'Order View Page', 'woo-refund-and-exchange-lite' ),
+			'Checkout'   => esc_html__( 'Thank You Page', 'woo-refund-and-exchange-lite' ),
 		);
 		$pages       = get_pages();
-		$get_pages   = array( '' => esc_html__( 'Default', 'woocommerce-rma-for-return-refund-and-exchange' ) );
+		$get_pages   = array( '' => esc_html__( 'Default', 'woo-refund-and-exchange-lite' ) );
 		foreach ( $pages as $page ) {
 			$get_pages[ $page->ID ] = $page->post_title;
 		}
 		$wps_rma_settings_exchange = array(
 			array(
-				'title'       => esc_html__( 'Select Pages To Hide Exchange Button', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'title'       => esc_html__( 'Select Pages To Hide Exchange Button', 'woo-refund-and-exchange-lite' ),
 				'type'        => 'multiselect',
 				'description' => '',
 				'id'          => 'wps_rma_exchange_button_pages',
@@ -292,42 +292,42 @@ class Wps_Rma_Setting_Extend {
 				'options'     => $button_view,
 			),
 			array(
-				'title'   => esc_html__( 'Enable Exchange Request With Same Product Or Its Variations', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'title'   => esc_html__( 'Enable Exchange Request With Same Product Or Its Variations', 'woo-refund-and-exchange-lite' ),
 				'type'    => 'radio-switch',
 				'id'      => 'wps_rma_exchange_same_product',
 				'value'   => get_option( 'wps_rma_exchange_same_product' ),
 				'class'   => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
 				'options' => array(
-					'yes' => esc_html__( 'YES', 'woocommerce-rma-for-return-refund-and-exchange' ),
-					'no'  => esc_html__( 'NO', 'woocommerce-rma-for-return-refund-and-exchange' ),
+					'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+					'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 				),
 			),
 			array(
-				'title'   => esc_html__( 'Enable to show Manage Stock Button', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'title'   => esc_html__( 'Enable to show Manage Stock Button', 'woo-refund-and-exchange-lite' ),
 				'type'    => 'radio-switch',
 				'id'      => 'wps_rma_exchange_manage_stock',
 				'value'   => get_option( 'wps_rma_exchange_manage_stock' ),
 				'class'   => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
 				'options' => array(
-					'yes' => esc_html__( 'YES', 'woocommerce-rma-for-return-refund-and-exchange' ),
-					'no'  => esc_html__( 'NO', 'woocommerce-rma-for-return-refund-and-exchange' ),
+					'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+					'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 				),
 			),
 			array(
-				'title'   => esc_html__( 'Enable Attachment', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'title'   => esc_html__( 'Enable Attachment', 'woo-refund-and-exchange-lite' ),
 				'type'    => 'radio-switch',
 				'id'      => 'wps_rma_exchange_attachment',
 				'value'   => get_option( 'wps_rma_exchange_attachment' ),
 				'class'   => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
 				'options' => array(
-					'yes' => esc_html__( 'YES', 'woocommerce-rma-for-return-refund-and-exchange' ),
-					'no'  => esc_html__( 'NO', 'woocommerce-rma-for-return-refund-and-exchange' ),
+					'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+					'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 				),
 			),
 			array(
-				'title'       => esc_html__( 'Attachement Limit', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'title'       => esc_html__( 'Attachement Limit', 'woo-refund-and-exchange-lite' ),
 				'type'        => 'number',
-				'description' => esc_html__( 'By default, It will take 5. If not given any.', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'description' => esc_html__( 'By default, It will take 5. If not given any.', 'woo-refund-and-exchange-lite' ),
 				'id'          => 'wps_rma_exchange_attachment_limit',
 				'value'       => get_option( 'wps_rma_exchange_attachment_limit' ),
 				'class'       => 'wrael-number-class ' . $this->rma_pro_activate,
@@ -336,58 +336,58 @@ class Wps_Rma_Setting_Extend {
 				'placeholder' => 'Enter the attachment limit',
 			),
 			array(
-				'title'   => esc_html__( 'Enable to Exchange on Sales Item', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'title'   => esc_html__( 'Enable to Exchange on Sales Item', 'woo-refund-and-exchange-lite' ),
 				'type'    => 'radio-switch',
 				'id'      => 'wps_rma_exchange_on_sale',
 				'value'   => get_option( 'wps_rma_exchange_on_sale' ),
 				'class'   => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
 				'options' => array(
-					'yes' => esc_html__( 'YES', 'woocommerce-rma-for-return-refund-and-exchange' ),
-					'no'  => esc_html__( 'NO', 'woocommerce-rma-for-return-refund-and-exchange' ),
+					'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+					'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 				),
 			),
 			array(
-				'title'   => esc_html__( 'Deduct Coupon Amount During Exchange', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'title'   => esc_html__( 'Deduct Coupon Amount During Exchange', 'woo-refund-and-exchange-lite' ),
 				'type'    => 'radio-switch',
 				'id'      => 'wps_rma_exchange_deduct_coupon',
 				'value'   => get_option( 'wps_rma_exchange_deduct_coupon' ),
 				'class'   => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
 				'options' => array(
-					'yes' => esc_html__( 'YES', 'woocommerce-rma-for-return-refund-and-exchange' ),
-					'no'  => esc_html__( 'NO', 'woocommerce-rma-for-return-refund-and-exchange' ),
+					'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+					'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 				),
 			),
 			array(
-				'title'   => esc_html__( 'Enable To Block Customer Exchange Request Mail', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'title'   => esc_html__( 'Enable To Block Customer Exchange Request Mail', 'woo-refund-and-exchange-lite' ),
 				'type'    => 'radio-switch',
 				'id'      => 'wps_rma_block_exchange_req_email',
 				'value'   => get_option( 'wps_rma_block_exchange_req_email' ),
 				'class'   => 'wrael-number-class ' . $this->rma_pro_activate,
 				'options' => array(
-					'yes' => esc_html__( 'YES', 'woocommerce-rma-for-return-refund-and-exchange' ),
-					'no'  => esc_html__( 'NO', 'woocommerce-rma-for-return-refund-and-exchange' ),
+					'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+					'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 				),
 			),
 			array(
-				'title'   => esc_html__( 'Enable To Auto Restock When Exchange Request Accepted', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'title'   => esc_html__( 'Enable To Auto Restock When Exchange Request Accepted', 'woo-refund-and-exchange-lite' ),
 				'type'    => 'radio-switch',
 				'id'      => 'wps_rma_auto_exchange_stock',
 				'value'   => get_option( 'wps_rma_auto_exchange_stock' ),
 				'class'   => 'wrael-number-class ' . $this->rma_pro_activate,
 				'options' => array(
-					'yes' => esc_html__( 'YES', 'woocommerce-rma-for-return-refund-and-exchange' ),
-					'no'  => esc_html__( 'NO', 'woocommerce-rma-for-return-refund-and-exchange' ),
+					'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+					'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 				),
 			),
 			array(
-				'title'   => esc_html__( 'Show Add-To-Cart Button', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'title'   => esc_html__( 'Show Add-To-Cart Button', 'woo-refund-and-exchange-lite' ),
 				'type'    => 'radio-switch',
 				'id'      => 'wps_rma_remove_add_to_cart',
 				'value'   => get_option( 'wps_rma_remove_add_to_cart' ),
 				'class'   => 'wrael-number-class ' . $this->rma_pro_activate,
 				'options' => array(
-					'yes' => esc_html__( 'YES', 'woocommerce-rma-for-return-refund-and-exchange' ),
-					'no'  => esc_html__( 'NO', 'woocommerce-rma-for-return-refund-and-exchange' ),
+					'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+					'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 				),
 			),
 		);
@@ -400,56 +400,56 @@ class Wps_Rma_Setting_Extend {
 			'name' => 'Appearance',
 		);
 		$wps_rma_settings_exchange[] = array(
-			'title'       => esc_html__( 'Exchange Button Text', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'title'       => esc_html__( 'Exchange Button Text', 'woo-refund-and-exchange-lite' ),
 			'type'        => 'text',
 			'id'          => 'wps_rma_exchange_button_text',
 			'value'       => get_option( 'wps_rma_exchange_button_text' ),
 			'class'       => 'wrael-text-class ' . $this->rma_pro_activate,
-			'placeholder' => esc_html__( 'Enter Exchange Button Text', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'placeholder' => esc_html__( 'Enter Exchange Button Text', 'woo-refund-and-exchange-lite' ),
 		);
 		$wps_rma_settings_exchange[] = array(
-			'title'   => esc_html__( 'Enable Exchange Reason Description', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'title'   => esc_html__( 'Enable Exchange Reason Description', 'woo-refund-and-exchange-lite' ),
 			'type'    => 'radio-switch',
 			'id'      => 'wps_rma_exchange_description',
 			'value'   => get_option( 'wps_rma_exchange_description' ),
 			'class'   => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
 			'options' => array(
-				'yes' => esc_html__( 'YES', 'woocommerce-rma-for-return-refund-and-exchange' ),
-				'no'  => esc_html__( 'NO', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+				'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 			),
 		);
 		$wps_rma_settings_exchange[] = array(
-			'title'       => esc_html__( 'Predefined Exchange Reason', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'title'       => esc_html__( 'Predefined Exchange Reason', 'woo-refund-and-exchange-lite' ),
 			'type'        => 'textarea',
 			'id'          => 'wps_rma_exchange_reasons',
 			'value'       => get_option( 'wps_rma_exchange_reasons' ),
 			'class'       => 'wrael-textarea-class ' . $this->rma_pro_activate,
 			'rows'        => '2',
 			'cols'        => '80',
-			'placeholder' => esc_html__( 'Enter the multiple reason separated by comma', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'placeholder' => esc_html__( 'Enter the multiple reason separated by comma', 'woo-refund-and-exchange-lite' ),
 		);
 		$wps_rma_settings_exchange[] = array(
-			'title'   => esc_html__( 'Enable Exchange Rules', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'title'   => esc_html__( 'Enable Exchange Rules', 'woo-refund-and-exchange-lite' ),
 			'type'    => 'radio-switch',
 			'id'      => 'wps_rma_exchange_rules',
 			'value'   => get_option( 'wps_rma_exchange_rules' ),
 			'class'   => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
 			'options' => array(
-				'yes' => esc_html__( 'YES', 'woocommerce-rma-for-return-refund-and-exchange' ),
-				'no'  => esc_html__( 'NO', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+				'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 			),
 		);
 		$wps_rma_settings_exchange[] = array(
-			'title'       => esc_html__( 'Exchange Rules Editor', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'title'       => esc_html__( 'Exchange Rules Editor', 'woo-refund-and-exchange-lite' ),
 			'type'        => 'wp_editor',
 			'id'          => 'wps_rma_exchange_rules_editor',
 			'value'       => get_option( 'wps_rma_exchange_rules_editor' ),
 			'class'       => 'wrael-text-class ' . $this->rma_pro_activate,
-			'placeholder' => esc_html__( 'Write the Refund Rules( HTML + CSS )', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'placeholder' => esc_html__( 'Write the Refund Rules( HTML + CSS )', 'woo-refund-and-exchange-lite' ),
 		);
 		if ( function_exists( 'vc_lean_map' ) ) {
 			$wps_rma_settings_exchange[] = array(
-				'title'       => esc_html__( 'Select The Page To Redirect', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'title'       => esc_html__( 'Select The Page To Redirect', 'woo-refund-and-exchange-lite' ),
 				'type'        => 'select',
 				'description' => '',
 				'id'          => 'wps_rma_exchange_page',
@@ -459,34 +459,34 @@ class Wps_Rma_Setting_Extend {
 			);
 		}
 		$wps_rma_settings_exchange[] = array(
-			'title'       => esc_html__( 'Reason Of Exchange Placeholder', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'title'       => esc_html__( 'Reason Of Exchange Placeholder', 'woo-refund-and-exchange-lite' ),
 			'type'        => 'text',
 			'id'          => 'wps_rma_exchange_reason_placeholder',
 			'value'       => get_option( 'wps_rma_exchange_reason_placeholder' ),
 			'class'       => 'wrael-text-class ' . $this->rma_pro_activate,
-			'placeholder' => esc_html__( 'Enter Reason of Exchange Placeholder Text', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'placeholder' => esc_html__( 'Enter Reason of Exchange Placeholder Text', 'woo-refund-and-exchange-lite' ),
 		);
 		$wps_rma_settings_exchange[] = array(
-			'title'       => esc_html__( 'Exchange Request Form Shipping Fee Description', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'title'       => esc_html__( 'Exchange Request Form Shipping Fee Description', 'woo-refund-and-exchange-lite' ),
 			'type'        => 'text',
 			'id'          => 'wps_rma_exchange_shipping_descr',
-			'value'       => empty( get_option( 'wps_rma_exchange_shipping_descr' ) ) ? esc_html__( 'This Extra Shipping Fee Will be Deducted from Total Amount When the Exchange Request is approved', 'woocommerce-rma-for-return-refund-and-exchange' ) : get_option( 'wps_rma_exchange_shipping_descr' ),
+			'value'       => empty( get_option( 'wps_rma_exchange_shipping_descr' ) ) ? esc_html__( 'This Extra Shipping Fee Will be Deducted from Total Amount When the Exchange Request is approved', 'woo-refund-and-exchange-lite' ) : get_option( 'wps_rma_exchange_shipping_descr' ),
 			'class'       => 'wrael-text-class ' . $this->rma_pro_activate,
-			'placeholder' => esc_html__( 'Change Shipping Fee Description on Exchange Request Form', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'placeholder' => esc_html__( 'Change Shipping Fee Description on Exchange Request Form', 'woo-refund-and-exchange-lite' ),
 		);
 		$wps_rma_settings_exchange[] = array(
-			'title'   => esc_html__( 'Enable Exchange Note on Product Page', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'title'   => esc_html__( 'Enable Exchange Note on Product Page', 'woo-refund-and-exchange-lite' ),
 			'type'    => 'radio-switch',
 			'id'      => 'wps_rma_exchange_note',
 			'value'   => get_option( 'wps_rma_exchange_note' ),
 			'class'   => 'wrael-number-class ' . $this->rma_pro_activate,
 			'options' => array(
-				'yes' => esc_html__( 'YES', 'woocommerce-rma-for-return-refund-and-exchange' ),
-				'no'  => esc_html__( 'NO', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+				'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 			),
 		);
 		$wps_rma_settings_exchange[] = array(
-			'title'   => esc_html__( 'Exchange Note On Product Page', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'title'   => esc_html__( 'Exchange Note On Product Page', 'woo-refund-and-exchange-lite' ),
 			'type'    => 'text',
 			'id'      => 'wps_rma_exchange_note_text',
 			'value'   => get_option( 'wps_rma_exchange_note_text' ),
@@ -494,30 +494,30 @@ class Wps_Rma_Setting_Extend {
 			'placeholder' => 'Enter the Product Notes',
 		);
 		$wps_rma_settings_exchange[] = array(
-			'title'       => esc_html__( 'Exchange With Same Product Text', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'title'       => esc_html__( 'Exchange With Same Product Text', 'woo-refund-and-exchange-lite' ),
 			'type'        => 'text',
 			'id'          => 'wps_rma_exchange_same_product_text',
-			'value'       => empty( get_option( 'wps_rma_exchange_same_product_text' ) ) ? esc_html__( 'Click on the product(s) to exchange with selected product(s) or its variation(s).', 'woocommerce-rma-for-return-refund-and-exchange' ) : get_option( 'wps_rma_exchange_same_product_text' ),
+			'value'       => empty( get_option( 'wps_rma_exchange_same_product_text' ) ) ? esc_html__( 'Click on the product(s) to exchange with selected product(s) or its variation(s).', 'woo-refund-and-exchange-lite' ) : get_option( 'wps_rma_exchange_same_product_text' ),
 			'class'       => 'wrael-text-class ' . $this->rma_pro_activate,
-			'placeholder' => esc_html__( 'Add text to display on Exchange form to Exchanging with the same product(s) and it\'s variation(s).', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'placeholder' => esc_html__( 'Add text to display on Exchange form to Exchanging with the same product(s) and it\'s variation(s).', 'woo-refund-and-exchange-lite' ),
 		);
 		$wps_rma_settings_exchange[] = array(
-			'title'       => esc_html__( 'Exchange Form Wrapper Class', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'title'       => esc_html__( 'Exchange Form Wrapper Class', 'woo-refund-and-exchange-lite' ),
 			'type'        => 'text',
 			'id'          => 'wps_wrma_exchange_form_wrapper_class',
 			'value'       => get_option( 'wps_wrma_exchange_form_wrapper_class' ),
 			'class'       => 'wrael-text-class ' . $this->rma_pro_activate,
-			'placeholder' => esc_html__( 'Enter Exchange Form Wrapper Class', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'placeholder' => esc_html__( 'Enter Exchange Form Wrapper Class', 'woo-refund-and-exchange-lite' ),
 		);
 		$wps_rma_settings_exchange[] = array(
-			'title'       => esc_html__( 'Exchange Form Custom CSS', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'title'       => esc_html__( 'Exchange Form Custom CSS', 'woo-refund-and-exchange-lite' ),
 			'type'        => 'textarea',
 			'id'          => 'wps_rma_exchange_form_css',
 			'value'       => get_option( 'wps_rma_exchange_form_css' ),
 			'class'       => 'wrael-text-class ' . $this->rma_pro_activate,
 			'rows'        => '5',
 			'cols'        => '80',
-			'placeholder' => esc_html__( 'Write the Exchange form CSS', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'placeholder' => esc_html__( 'Write the Exchange form CSS', 'woo-refund-and-exchange-lite' ),
 		);
 		$wps_rma_settings_exchange   =
 		// To extend Refund Apperance setting.
@@ -525,7 +525,7 @@ class Wps_Rma_Setting_Extend {
 		$wps_rma_settings_exchange[] = array(
 			'type'        => 'button',
 			'id'          => 'wps_rma_save_exchange_setting',
-			'button_text' => esc_html__( 'Save Setting', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'button_text' => esc_html__( 'Save Setting', 'woo-refund-and-exchange-lite' ),
 			'class'       => 'wrael-button-class button_' . $this->rma_pro_activate,
 		);
 		return $wps_rma_settings_exchange;
@@ -538,29 +538,29 @@ class Wps_Rma_Setting_Extend {
 	 */
 	public function wps_rma_cancel_settings_array_set( $wps_rma_settings_cancel ) {
 		$button_view = array(
-			'order-page' => esc_html__( 'Order Page', 'woocommerce-rma-for-return-refund-and-exchange' ),
-			'My account' => esc_html__( 'Order View Page', 'woocommerce-rma-for-return-refund-and-exchange' ),
-			'Checkout'   => esc_html__( 'Thank You Page', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'order-page' => esc_html__( 'Order Page', 'woo-refund-and-exchange-lite' ),
+			'My account' => esc_html__( 'Order View Page', 'woo-refund-and-exchange-lite' ),
+			'Checkout'   => esc_html__( 'Thank You Page', 'woo-refund-and-exchange-lite' ),
 		);
 		$pages       = get_pages();
-		$get_pages   = array( '' => esc_html__( 'Default', 'woocommerce-rma-for-return-refund-and-exchange' ) );
+		$get_pages   = array( '' => esc_html__( 'Default', 'woo-refund-and-exchange-lite' ) );
 		foreach ( $pages as $page ) {
 			$get_pages[ $page->ID ] = $page->post_title;
 		}
 		$wps_rma_settings_cancel = array(
 			array(
-				'title'   => esc_html__( 'Enable Cancel Order\'s Product', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'title'   => esc_html__( 'Enable Cancel Order\'s Product', 'woo-refund-and-exchange-lite' ),
 				'type'    => 'radio-switch',
 				'id'      => 'wps_rma_cancel_product',
 				'value'   => get_option( 'wps_rma_cancel_product' ),
 				'class'   => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
 				'options' => array(
-					'yes' => esc_html__( 'YES', 'woocommerce-rma-for-return-refund-and-exchange' ),
-					'no'  => esc_html__( 'NO', 'woocommerce-rma-for-return-refund-and-exchange' ),
+					'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+					'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 				),
 			),
 			array(
-				'title'       => esc_html__( 'Select Pages To Hide Cancel Button', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'title'       => esc_html__( 'Select Pages To Hide Cancel Button', 'woo-refund-and-exchange-lite' ),
 				'type'        => 'multiselect',
 				'description' => '',
 				'id'          => 'wps_rma_cancel_button_pages',
@@ -575,43 +575,43 @@ class Wps_Rma_Setting_Extend {
 				'name' => 'Appearance',
 			),
 			array(
-				'title'       => esc_html__( 'Cancel Order Button Text', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'title'       => esc_html__( 'Cancel Order Button Text', 'woo-refund-and-exchange-lite' ),
 				'type'        => 'text',
 				'id'          => 'wps_rma_cancel_button_text',
 				'value'       => get_option( 'wps_rma_cancel_button_text' ),
 				'class'       => 'wrael-text-class ' . $this->rma_pro_activate,
-				'placeholder' => esc_html__( 'Enter Cancel Button Text', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'placeholder' => esc_html__( 'Enter Cancel Button Text', 'woo-refund-and-exchange-lite' ),
 			),
 			array(
-				'title'       => esc_html__( 'Cancel Product Button Text', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'title'       => esc_html__( 'Cancel Product Button Text', 'woo-refund-and-exchange-lite' ),
 				'type'        => 'text',
 				'id'          => 'wps_rma_cancel_prod_button_text',
 				'value'       => get_option( 'wps_rma_cancel_prod_button_text' ),
 				'class'       => 'wrael-text-class ' . $this->rma_pro_activate,
-				'placeholder' => esc_html__( 'Enter Cancel Button Text', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'placeholder' => esc_html__( 'Enter Cancel Button Text', 'woo-refund-and-exchange-lite' ),
 			),
 			array(
-				'title'       => esc_html__( 'Cancel Form Wrapper Class', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'title'       => esc_html__( 'Cancel Form Wrapper Class', 'woo-refund-and-exchange-lite' ),
 				'type'        => 'text',
 				'id'          => 'wps_wrma_cancel_form_wrapper_class',
 				'value'       => get_option( 'wps_wrma_cancel_form_wrapper_class' ),
 				'class'       => 'wrael-text-class ' . $this->rma_pro_activate,
-				'placeholder' => esc_html__( 'Enter Cancel Form Wrapper Class', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'placeholder' => esc_html__( 'Enter Cancel Form Wrapper Class', 'woo-refund-and-exchange-lite' ),
 			),
 			array(
-				'title'       => esc_html__( 'Cancel Form Custom CSS', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'title'       => esc_html__( 'Cancel Form Custom CSS', 'woo-refund-and-exchange-lite' ),
 				'type'        => 'textarea',
 				'id'          => 'wps_rma_cancel_form_css',
 				'value'       => get_option( 'wps_rma_cancel_form_css' ),
 				'class'       => 'wrael-text-class ' . $this->rma_pro_activate,
 				'rows'        => '5',
 				'cols'        => '80',
-				'placeholder' => esc_html__( 'Write the Cancel form CSS', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'placeholder' => esc_html__( 'Write the Cancel form CSS', 'woo-refund-and-exchange-lite' ),
 			),
 		);
 		if ( function_exists( 'vc_lean_map' ) ) {
 			$wps_rma_settings_cancel[] = array(
-				'title'       => esc_html__( 'Select The Page To Redirect', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'title'       => esc_html__( 'Select The Page To Redirect', 'woo-refund-and-exchange-lite' ),
 				'type'        => 'select',
 				'description' => '',
 				'id'          => 'wps_rma_cancel_page',
@@ -623,7 +623,7 @@ class Wps_Rma_Setting_Extend {
 		$wps_rma_settings_cancel[] = array(
 			'type'        => 'button',
 			'id'          => 'wps_rma_save_cancel_setting',
-			'button_text' => esc_html__( 'Save Setting', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'button_text' => esc_html__( 'Save Setting', 'woo-refund-and-exchange-lite' ),
 			'class'       => 'wrael-button-class button_' . $this->rma_pro_activate,
 		);
 		return $wps_rma_settings_cancel;
@@ -637,7 +637,7 @@ class Wps_Rma_Setting_Extend {
 	public function wps_rma_wallet_settings_array_set( $wps_rma_settings_wallet ) {
 		$wps_rma_settings_wallet = array(
 			array(
-				'title'       => esc_html__( 'Enable To Use Wallet System For WooCommerce Plugin', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'title'       => esc_html__( 'Enable To Use Wallet System For WooCommerce Plugin', 'woo-refund-and-exchange-lite' ),
 				'type'        => 'radio-switch',
 				'id'          => 'wps_rma_wallet_plugin',
 				'value'       => get_option( 'wps_rma_wallet_plugin' ),
@@ -645,42 +645,42 @@ class Wps_Rma_Setting_Extend {
 				'show_link'   => true,
 				'class'       => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
 				'options'     => array(
-					'yes' => esc_html__( 'YES', 'woocommerce-rma-for-return-refund-and-exchange' ),
-					'no'  => esc_html__( 'NO', 'woocommerce-rma-for-return-refund-and-exchange' ),
+					'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+					'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 				),
 			),
 			array(
-				'title'   => esc_html__( 'Enable To Select Refund Method For The Customer', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'title'   => esc_html__( 'Enable To Select Refund Method For The Customer', 'woo-refund-and-exchange-lite' ),
 				'type'    => 'radio-switch',
 				'id'      => 'wps_rma_refund_method',
 				'value'   => get_option( 'wps_rma_refund_method' ),
 				'class'   => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
 				'options' => array(
-					'yes' => esc_html__( 'YES', 'woocommerce-rma-for-return-refund-and-exchange' ),
-					'no'  => esc_html__( 'NO', 'woocommerce-rma-for-return-refund-and-exchange' ),
+					'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+					'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 				),
 			),
 			array(
-				'title'   => esc_html__( 'Cancel Order Amount to Wallet', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'title'   => esc_html__( 'Cancel Order Amount to Wallet', 'woo-refund-and-exchange-lite' ),
 				'type'    => 'radio-switch',
 				'id'      => 'wps_rma_cancel_order_wallet',
 				'value'   => get_option( 'wps_rma_cancel_order_wallet' ),
 				'class'   => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
 				'options' => array(
-					'yes' => esc_html__( 'YES', 'woocommerce-rma-for-return-refund-and-exchange' ),
-					'no'  => esc_html__( 'NO', 'woocommerce-rma-for-return-refund-and-exchange' ),
+					'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+					'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 				),
 			),
 			array(
-				'title'       => esc_html__( 'Wallet Coupon Prefix', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'title'       => esc_html__( 'Wallet Coupon Prefix', 'woo-refund-and-exchange-lite' ),
 				'type'        => 'text',
 				'id'          => 'wps_rma_wallet_prefix',
 				'value'       => empty( get_option( 'wps_rma_wallet_prefix' ) ) ? 'wps' : get_option( 'wps_rma_wallet_prefix' ),
 				'class'       => 'wrael-text-class ' . $this->rma_pro_activate,
-				'placeholder' => esc_html__( 'Please Enter the Wallet Coupon Prefix', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'placeholder' => esc_html__( 'Please Enter the Wallet Coupon Prefix', 'woo-refund-and-exchange-lite' ),
 			),
 			array(
-				'title' => esc_html__( 'Wallet Shortcode', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'title' => esc_html__( 'Wallet Shortcode', 'woo-refund-and-exchange-lite' ),
 				'type'  => 'text',
 				'id'    => 'wps_rma_wallet_shorcode',
 				'value' => '[Wps_Rma_Customer_Wallet]',
@@ -690,7 +690,7 @@ class Wps_Rma_Setting_Extend {
 			array(
 				'type'        => 'button',
 				'id'          => 'wps_rma_save_wallet_setting',
-				'button_text' => esc_html__( 'Save Setting', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'button_text' => esc_html__( 'Save Setting', 'woo-refund-and-exchange-lite' ),
 				'class'       => 'wrael-button-class button_' . $this->rma_pro_activate,
 			),
 		);
@@ -704,14 +704,14 @@ class Wps_Rma_Setting_Extend {
 	 */
 	public function wps_rma_order_message_setting_extend_set( $order_msg_setting_array ) {
 		$order_msg_setting_array[] = array(
-			'title'   => esc_html__( 'Enable To Block Mail', 'woocommerce-rma-for-return-refund-and-exchange' ),
+			'title'   => esc_html__( 'Enable To Block Mail', 'woo-refund-and-exchange-lite' ),
 			'type'    => 'radio-switch',
 			'id'      => 'wps_rma_order_email',
 			'value'   => get_option( 'wps_rma_order_email' ),
 			'class'   => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
 			'options' => array(
-				'yes' => esc_html__( 'YES', 'woocommerce-rma-for-return-refund-and-exchange' ),
-				'no'  => esc_html__( 'NO', 'woocommerce-rma-for-return-refund-and-exchange' ),
+				'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+				'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 			),
 		);
 		return $order_msg_setting_array;

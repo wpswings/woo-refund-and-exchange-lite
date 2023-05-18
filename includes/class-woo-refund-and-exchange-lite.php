@@ -237,11 +237,12 @@ class Woo_Refund_And_Exchange_Lite {
 		if ( ! function_exists( 'get_plugins' ) ) {
 			require_once ABSPATH . 'wp-admin/includes/plugin.php';
 		}
-		$all_plugins = get_plugins();
-		if ( ! empty( $all_plugins ) && ! isset( $all_plugins[ $pro_slug ] ) ) {
+		$all_plugins   = get_plugins();
+		$activePlugins = get_option('active_plugins', array());
+		if ( in_array( $pro_slug, $activePlugins ) ) {
 			$pro_version = $all_plugins[ $pro_slug ]['Version'];
 		}
-		if ( $pro_version < '5.0.9' ) {
+		if ( is_null( $pro_version ) || $pro_version > '5.0.9' ) {
 
 			// pro setting register
 			// Setting addon in the lite start.
