@@ -238,8 +238,7 @@ class Woo_Refund_And_Exchange_Lite {
 			require_once ABSPATH . 'wp-admin/includes/plugin.php';
 		}
 		$all_plugins   = get_plugins();
-		$activePlugins = get_option('active_plugins', array());
-		if ( in_array( $pro_slug, $activePlugins ) ) {
+		if ( isset( $all_plugins[ $pro_slug ] ) ) {
 			$pro_version = $all_plugins[ $pro_slug ]['Version'];
 		}
 		if ( is_null( $pro_version ) || $pro_version > '5.0.9' ) {
