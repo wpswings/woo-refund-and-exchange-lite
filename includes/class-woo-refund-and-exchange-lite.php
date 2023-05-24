@@ -233,7 +233,7 @@ class Woo_Refund_And_Exchange_Lite {
 		$this->loader->add_action( 'admin_menu', $wrael_plugin_admin, 'wps_rma_lite_admin_menus' );
 
 		$pro_version = null;
-		$pro_slug = 'woocommerce-rma-for-return-refund-and-exchange/mwb-woocommerce-rma.php';
+		$pro_slug    = 'woocommerce-rma-for-return-refund-and-exchange/mwb-woocommerce-rma.php';
 		if ( ! function_exists( 'get_plugins' ) ) {
 			require_once ABSPATH . 'wp-admin/includes/plugin.php';
 		}
