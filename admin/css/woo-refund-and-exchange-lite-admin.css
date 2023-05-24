@@ -1443,6 +1443,13 @@ select {
 a.wps_rma_pro_div {
   pointer-events: none;
 }
+
+/* Pro link adding start */
+.wps-header-container .wps-header-title {
+  flex: 0 0 60%;
+  line-height: 1.25;
+}
+/* Pro link adding end */
 @media (max-width: 768px){
   .wps-header-container {
     justify-content: flex-start;
@@ -1781,5 +1788,23 @@ span.select2.select2-container.select2-container--default {
   #wps_ship_setting.wps_rma_pro_div .wps__enable-shipping td,
 .wps_rma_pro_div .wps_rma_shipping_label_setting td {
     display: block;
+  }
+}
+@media screen and (max-width: 768px){
+  .wps-header-container .wps-header-title {
+    margin: 0 0 10px;
+    flex: 0 0 100%;
+  }
+
+  .wps-header-container a.wps-link {
+    margin: 5px 0 0;
+  }
+
+  .wps-header-container a.wps_go_pro_link {
+    margin: 5px 10px 0 0;
+  }
+
+  .wps-header-container a.wps-link + span {
+    margin: 0 5px;
   }
 }
