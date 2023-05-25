@@ -20,7 +20,9 @@ if ( ! class_exists( 'Wps_Rma_Setting_Extend' ) ) {
 
 		public $rma_pro_activate = 'wps_rma_pro_class';
 		public function __construct() {
-			if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
+			$pro_slug = 'woocommerce-rma-for-return-refund-and-exchange/mwb-woocommerce-rma.php';
+			// if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
+				if ( function_exists( 'is_plugin_active' ) && is_plugin_active( $pro_slug ) ) {
 				$this->rma_pro_activate = null;
 			}
 		}

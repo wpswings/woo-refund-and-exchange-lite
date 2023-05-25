@@ -54,7 +54,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		if ( isset( $all_plugins[ $pro_slug ] ) ) {
 			$pro_version = $all_plugins[ $pro_slug ]['Version'];
 		}
-		if ( is_null( $pro_version ) || $pro_version > '5.0.9' ) {
+		if (  ( is_null( $pro_version ) || ( $pro_version > '5.0.9' || ( ! is_plugin_active( $pro_slug ) && $pro_version <= '5.0.9' ) ) ) ) {
 			require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/pro_setting_templates/admin_setting/class-wps-rma-policies-setting-html.php';
 			require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/pro_setting_templates/admin_setting/class-wps-rma-setting-extend.php';
 		}
