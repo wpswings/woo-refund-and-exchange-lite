@@ -113,7 +113,7 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 						if ( $item_qty > 0 ) {
 							if ( isset( $item['variation_id'] ) && $item['variation_id'] > 0 ) {
 								$variation_id = $item['variation_id'];
-								$product_id   = $item['product_id'];
+								$product_id   = $variation_id;
 							} else {
 								$product_id = $item['product_id'];
 							}
@@ -155,7 +155,7 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 							<tr class="wps_rma_return_column" data-productid="<?php echo esc_html( $product_id ); ?>" data-variationid="<?php echo esc_html( $item['variation_id'] ); ?>" data-itemid="<?php echo esc_html( $item_id ); ?>">
 								<?php
 								// To show extra column field value in the tbody.
-								do_action( 'wps_rma_add_extra_column_field_value', $item_id, $product_id );
+								do_action( 'wps_rma_add_extra_column_field_value', $item_id, $product_id, $order_obj );
 								?>
 								<td class="product-name">
 									<input type="hidden" name="wps_rma_product_amount" class="wps_rma_product_amount" value="<?php echo esc_html( $wps_actual_price / $item->get_quantity() ); ?>">
