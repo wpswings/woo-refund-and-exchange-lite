@@ -262,10 +262,12 @@ class Woo_Refund_And_Exchange_Lite {
 			$this->loader->add_filter( 'wps_rma_refund_appearance_setting_extend', $wrael_plugin_admin, 'wps_rma_refund_appearance_setting_extend', 10 );
 	
 			$this->loader->add_filter( 'wps_rma_order_message_setting_extend', $wrael_plugin_admin, 'wps_rma_order_message_setting_extend', 10 );
-	
-			if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
-				$this->loader->add_action( 'wps_rma_setting_extend_column5', $mwr_plugin_admin, 'wps_rma_setting_extend_column5' );
-				$this->loader->add_action( 'wps_rma_setting_extend_show_column5', $mwr_plugin_admin, 'wps_rma_setting_extend_show_column5', 10, 2 );
+
+			// if ( function_exists( 'wps_rma_pro_active' ) &&  wps_rma_pro_active() ) {
+				if (  is_plugin_active( $pro_slug ) ){
+				
+				$this->loader->add_action( 'wps_rma_setting_extend_column5', $wrael_plugin_admin, 'wps_rma_setting_extend_column5' );
+				$this->loader->add_action( 'wps_rma_setting_extend_show_column5', $wrael_plugin_admin, 'wps_rma_setting_extend_show_column5', 10, 2 );
 			}
 			
 			$this->loader->add_action( 'wps_rma_setting_extend_show_column1', $wrael_plugin_admin, 'wps_rma_setting_extend_show_column1' );

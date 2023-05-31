@@ -8,7 +8,7 @@
  * @package    woocommerce-rma-for-return-refund-and-exchange
  * @subpackage woocommerce-rma-for-return-refund-and-exchange/admin/partials
  */
-if ( ! class_exists( 'Wps_Rma_Setting_Extend' ) ) {
+if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 	/**
 	 * The admin-specific functionality of the plugin.
 	 * Register the settings.
@@ -16,7 +16,7 @@ if ( ! class_exists( 'Wps_Rma_Setting_Extend' ) ) {
 	 * @package    woocommerce-rma-for-return-refund-and-exchange
 	 * @subpackage woocommerce-rma-for-return-refund-and-exchange/admin/partials
 	 */
-	class Wps_Rma_Setting_Extend {
+	class Wps_Rma_Settings_Extend {
 
 		public $rma_pro_activate = 'wps_rma_pro_class';
 		public function __construct() {

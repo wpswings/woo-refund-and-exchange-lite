@@ -1055,7 +1055,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	 * @param array $wps_rma_settings_general .
 	 */
 	public function wps_rma_general_setting_extend( $wps_rma_settings_general ) {
-		$setting_obj = new Wps_Rma_Setting_Extend();
+		$setting_obj = new Wps_Rma_Settings_Extend();
 		return $setting_obj->wps_rma_general_setting_extend_set( $wps_rma_settings_general );
 	}
 
@@ -1065,7 +1065,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	 * @param array $wps_rma_settings_refund .
 	 */
 	public function wps_rma_refund_setting_extend( $wps_rma_settings_refund ) {
-		$setting_obj = new Wps_Rma_Setting_Extend();
+		$setting_obj = new Wps_Rma_Settings_Extend();
 		return $setting_obj->wps_rma_refund_setting_extend_set( $wps_rma_settings_refund );
 
 	}
@@ -1076,7 +1076,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	 * @param array $refund_app_setting_extend .
 	 */
 	public function wps_rma_refund_appearance_setting_extend( $refund_app_setting_extend ) {
-		$setting_obj = new Wps_Rma_Setting_Extend();
+		$setting_obj = new Wps_Rma_Settings_Extend();
 		return $setting_obj->wps_rma_refund_appearance_setting_extend_set( $refund_app_setting_extend );
 
 	}
@@ -1087,7 +1087,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	 * @param array $wps_rma_settings_exchange .
 	 */
 	public function wps_rma_exchange_settings_array( $wps_rma_settings_exchange ) {
-		$setting_obj = new Wps_Rma_Setting_Extend();
+		$setting_obj = new Wps_Rma_Settings_Extend();
 		return $setting_obj->wps_rma_exchange_settings_array_set( $wps_rma_settings_exchange );
 	}
 
@@ -1097,7 +1097,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	 * @param array $wps_rma_settings_cancel .
 	 */
 	public function wps_rma_cancel_settings_array( $wps_rma_settings_cancel ) {
-		$setting_obj = new Wps_Rma_Setting_Extend();
+		$setting_obj = new Wps_Rma_Settings_Extend();
 		return $setting_obj->wps_rma_cancel_settings_array_set( $wps_rma_settings_cancel );
 
 	}
@@ -1108,7 +1108,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	 * @param array $wps_rma_settings_wallet .
 	 */
 	public function wps_rma_wallet_settings_array( $wps_rma_settings_wallet ) {
-		$setting_obj = new Wps_Rma_Setting_Extend();
+		$setting_obj = new Wps_Rma_Settings_Extend();
 		return $setting_obj->wps_rma_wallet_settings_array_set( $wps_rma_settings_wallet );
 	}
 
@@ -1118,7 +1118,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	 * @param array $cancel_setting_array .
 	 */
 	public function wps_rma_order_message_setting_extend( $cancel_setting_array ) {
-		$setting_obj = new Wps_Rma_Setting_Extend();
+		$setting_obj = new Wps_Rma_Settings_Extend();
 		return $setting_obj->wps_rma_order_message_setting_extend_set( $cancel_setting_array );
 
 	}
@@ -1127,7 +1127,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	 * Policy Setting column1 extend.
 	 */
 	public function wps_rma_setting_extend_column1() {
-		$setting_obj = new Wps_Rma_Policies_Setting_Html();
+		$setting_obj = new Wps_Rma_Policies_Settings();
 		$setting_obj->wps_rma_setting_extend_column1_set();
 	}
 
@@ -1138,14 +1138,14 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	 * @return void
 	 */
 	public function wps_rma_setting_extend_show_column1( $value ) {
-		$setting_obj = new Wps_Rma_Policies_Setting_Html();
+		$setting_obj = new Wps_Rma_Policies_Settings();
 		$setting_obj->wps_rma_setting_extend_show_column1_set( $value );
 	}
 
 
 	/** Policy Setting column3 extend. */
 	public function wps_rma_setting_extend_column3() {
-		$setting_obj = new Wps_Rma_Policies_Setting_Html();
+		$setting_obj = new Wps_Rma_Policies_Settings();
 		$setting_obj->wps_rma_setting_extend_column3_set();
 	}
 
@@ -1155,13 +1155,13 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	 * @param array $value .
 	 */
 	public function wps_rma_setting_extend_show_column3( $value ) {
-		$setting_obj = new Wps_Rma_Policies_Setting_Html();
+		$setting_obj = new Wps_Rma_Policies_Settings();
 		$setting_obj->wps_rma_setting_extend_show_column3_set( $value );
 	}
 
 	/** Policy Setting column5 extend */
 	public function wps_rma_setting_extend_column5() {
-		$setting_obj = new Wps_Rma_Policies_Setting_Html();
+		$setting_obj = new Wps_Rma_Policies_Settings();
 		$setting_obj->wps_rma_setting_extend_column5_set();
 	}
 
@@ -1173,7 +1173,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	 * @return void
 	 */
 	public function wps_rma_setting_extend_show_column5( $value, $count ) {
-		$setting_obj = new Wps_Rma_Policies_Setting_Html();
+		$setting_obj = new Wps_Rma_Policies_Settings();
 		$setting_obj->wps_rma_setting_extend_show_column5_set( $value, $count );
 	}
 }

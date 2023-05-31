@@ -822,6 +822,10 @@
     padding: 14px 20px;
     text-transform: uppercase;
   }
+  button.wps_wrma_save_shiprocket.wps-wrma-save-button.wps-rma-admin__button.button_wps_rma_pro_div{
+    background-color: rgba(0,0,0,.12);
+    color: rgba(0,0,0,.38);
+  }
   /* Additional Tabs added end */
   /* Applying Pro tags start */
   .wps-navbar__items .wps_rma_pro_class {
@@ -898,7 +902,8 @@
   .wps_rma_pro_div .wps_rma_shiprocket_setting label {
       padding-bottom: 15px;
       padding-left: 25px;
-      position: relative
+      position: relative;
+      padding-right: 10px;
   }
   
   #wps_ship_setting.wps_rma_pro_div .wps__enable-shipping th:before,
