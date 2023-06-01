@@ -453,9 +453,27 @@ jQuery(document).ready(function() {
 	  $(".button_wps_rma_pro_class").parent('button').prop( "disabled", true );
 	  $(".button_wps_rma_pro_div").css( "background-color", 'rgba(0,0,0,.12)' );
 
-	//   $(document).on('hover', '.wps_rma_pro_class_wrap', function(){
-	// 	console.log('clicked');
-		
-	//   });
+	// PRO popup start
+	$('.wps_rma_pro_class_wrap label,.wps_rma_pro_div label').attr('for', '');
 
+	$(document).on('click', '.wps_rma_pro_class_wrap,.wps_rma_pro_div', function() {
+		$('.wps-rma__popup-for-pro-shadow').show();
+		$('.wps-rma__popup-for-pro').addClass('active-pro');
+	})
+
+	$(document).on('click', '.wps-rma__popup-for-pro-close', function() {
+		$('.wps-rma__popup-for-pro-shadow').hide();
+		$('.wps-rma__popup-for-pro').removeClass('active-pro');
+	})
+
+	$(document).on('click', '.wps-rma__popup-for-pro-shadow', function() {
+		$(this).hide();
+		$('.wps-rma__popup-for-pro').removeClass('active-pro');
+	})
+
+	$(document).on('click', '.wps_go_pro_link', function(e) {
+		e.preventDefault();
+		$('.wps-rma__popup-for-pro-shadow').show();
+		$('.wps-rma__popup-for-pro').addClass('active-pro');
+	})
 });
