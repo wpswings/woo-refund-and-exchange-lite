@@ -451,6 +451,11 @@ jQuery(document).ready(function() {
 	  });
 	  
 	  $(".button_wps_rma_pro_class").parent('button').prop( "disabled", true );
-	  $(".button_wps_rma_pro_div").prop( "disabled", true );
+	  $(".button_wps_rma_pro_div").css( "background-color", 'rgba(0,0,0,.12)' );
+
+	//   $(document).on('hover', '.wps_rma_pro_class_wrap', function(){
+	// 	console.log('clicked');
+		
+	//   });
 
 });

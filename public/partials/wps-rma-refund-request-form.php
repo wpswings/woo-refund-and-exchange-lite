@@ -372,9 +372,9 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 					if ( isset( $return_attachment ) && ! empty( $return_attachment ) ) {
 						if ( 'on' === $return_attachment ) {
 							?>
+							<label><b><?php esc_html_e( 'Attach Files', 'woo-refund-and-exchange-lite' ); ?></b></label>
+							<span class="wps_field_mendatory">*</span>
 							<div class="wps_rma_attach_files">
-								<label><b><?php esc_html_e( 'Attach Files', 'woo-refund-and-exchange-lite' ); ?></b></label>
-								<span class="wps_field_mendatory">*</span>
 								<p>
 									<span id="wps_rma_return_request_files">
 									<input type="hidden" name="wps_rma_return_request_order" value="<?php echo esc_html( $order_id ); ?>">

@@ -208,6 +208,8 @@ class Woo_Refund_And_Exchange_Lite_Public {
 				<?php
 			}
 		}
+		do_action( 'wps_rxc_button_order_details', $order );
+
 		// Show Refund button functionality end.
 
 		?>
@@ -215,18 +217,16 @@ class Woo_Refund_And_Exchange_Lite_Public {
 			<ul class="wps_rma_ul_wrap_info">
 				<li class="wps_rma_li_wrap_info wps_rma_li_refund active"><h2><?php esc_html_e( 'Refund', 'woo-refund-and-exchange-lite' ); ?></h2></li>
 				<?php
-				$check = false;
-				$check  = apply_filters( 'wps_rma_check_pro_plugin', $check );
-				if ( $check ) {
-				?>
+				if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
+					?>
 					<li class="wps_rma_li_wrap_info wps_rma_li_exchange"><h2><?php esc_html_e( 'Exchange', 'woo-refund-and-exchange-lite' ); ?></h2></li>
 					<?php
 				}
 				?>
 			</ul>
-			<div class="wps_rma_refund_info_wrap">
+			<div class="wps_rma_refund_info_wrap wps_rma_ret_ex_info_wrap">
 				<?php
-				
+
 				// show return Product Details on order view page start.
 				$product_datas = get_post_meta( $order->get_id(), 'wps_rma_return_product', true );
 				if ( isset( $product_datas ) && ! empty( $product_datas ) ) {

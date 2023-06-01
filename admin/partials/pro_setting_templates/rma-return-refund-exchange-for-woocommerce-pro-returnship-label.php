@@ -126,7 +126,7 @@ if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 		?>
 		</h6>
 		<p class="submit">
-			<input type="submit" value="<?php esc_html_e( 'Save Settings', 'woo-refund-and-exchange-lite' ); ?>" class="wps-rma-save-button wps-rma-admin__button" name="wps_wrma_noti_save_return_slip">
+			<input type="submit" value="<?php esc_html_e( 'Save Settings', 'woo-refund-and-exchange-lite' ); ?>" class="wps-rma-save-button wps-rma-admin__button <?php echo 'button_' . $rma_pro_activate; ?>" name="wps_wrma_noti_save_return_slip">
 		</p>
 	</form>
 </div>
@@ -191,7 +191,7 @@ if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 						<span class='wps_wrma_notify_error'></span>
 
 						<p class='submit'>
-							<a href='javascript:void(0)' class='wps_wrma_validate_api_key wps-rma-admin__button' ><?php esc_html_e( 'Validate Account', 'woo-refund-and-exchange-lite' ); ?>
+							<a href='javascript:void(0)' class='wps_wrma_validate_api_key wps-rma-admin__button <?php echo 'button_' . $rma_pro_activate; ?>' ><?php esc_html_e( 'Validate Account', 'woo-refund-and-exchange-lite' ); ?>
 							</a>
 						</p>
 					</div>
@@ -267,7 +267,7 @@ if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 						<span class='wps_wrma_notify_error'></span>
 
 						<p class='submit'>
-							<a href='javascript:void(0)' class='wps_wrma_ship_validate_api_key wps-rma-admin__button' ><?php esc_html_e( 'Validate Account', 'woo-refund-and-exchange-lite' ); ?>
+							<a href='javascript:void(0)' class='wps_wrma_ship_validate_api_key wps-rma-admin__button <?php echo 'button_' . $rma_pro_activate; ?>' ><?php esc_html_e( 'Validate Account', 'woo-refund-and-exchange-lite' ); ?>
 							</a>
 						</p>
 					</div>
@@ -447,7 +447,7 @@ if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 			</div>
 		</div>
 		<p class="submit">
-			<button class="wps_wrma_save_shipstation wps-wrma-save-button wps-rma-admin__button" name="wps_wrma_save_shipstation" ><?php esc_html_e( 'Save Settings', 'woo-refund-and-exchange-lite' ); ?>
+			<button class="wps_wrma_save_shipstation wps-wrma-save-button wps-rma-admin__button <?php echo 'button_' . $rma_pro_activate; ?>" name="wps_wrma_save_shipstation" ><?php esc_html_e( 'Save Settings', 'woo-refund-and-exchange-lite' ); ?>
 			</button>
 		</p>
 	</form>
@@ -514,7 +514,7 @@ if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 						</h6>
 						<br>
 						<p class='submit'>
-							<a href='javascript:void(0)' class='wps_wrma_validate_shiprocket_key wps-rma-admin__button' ><?php esc_html_e( 'Validate Account', 'woo-refund-and-exchange-lite' ); ?>
+							<a href='javascript:void(0)' class='wps_wrma_validate_shiprocket_key wps-rma-admin__button <?php echo 'button_' . $rma_pro_activate; ?>' ><?php esc_html_e( 'Validate Account', 'woo-refund-and-exchange-lite' ); ?>
 							</a>
 						</p>
 						<div class="wps-wrma-validation__wrap">
