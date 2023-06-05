@@ -212,9 +212,8 @@ if ( $activated ) {
 
 			$links['goPro'] = '<a style="background: #05d5d8;color: white;font-weight: 700;padding: 2px 5px;border: 1px solid #05d5d8;border-radius: 5px;" target="_blank" href="https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro?utm_source=wpswings-rma-pro&utm_medium=rma-org-backend&utm_campaign=go-pro">' . esc_html__( 'GO PRO', 'woo-refund-and-exchange-lite' ) . '</a>';
 		}
-		$links['setting'] = '<a href="' . admin_url( 'admin.php?page=woo_refund_and_exchange_lite_menu' ) . '">' . esc_html__( 'Settings', 'woo-refund-and-exchange-lite' ) . '</a>';
-
-		return $links;
+		$my_link['setting'] = '<a href="' . admin_url( 'admin.php?page=woo_refund_and_exchange_lite_menu' ) . '">' . esc_html__( 'Settings', 'woo-refund-and-exchange-lite' ) . '</a>';
+		return array_merge( $my_link, $links );
 	}
 
 	add_action( 'activated_plugin', 'wps_rma_org_redirect_on_settings' );

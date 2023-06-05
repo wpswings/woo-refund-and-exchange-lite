@@ -9,7 +9,8 @@ $rma_pro_activate = 'wps_rma_pro_div';
 if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 	$rma_pro_activate = null;
 }
-
+ini_set('display_errors',1);
+error_reporting(E_ALL);
 ?>
 <h4>
 	<input type="button" class="show_returnship_label wps-rma-admin__button" value="ReturnShip Label" />
@@ -122,7 +123,7 @@ if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 		<?php
 			$woo_email_url = admin_url() . 'admin.php?page=wc-settings&tab=email&section=wps_rma_returnship_email';
 			/* translators: %s: search term */
-			echo sprintf( esc_html__( 'To Configure Returnship Related Email %s.', 'woo-refund-and-exchange-lite' ), '<a href="' . esc_html( $woo_email_url ) . '">Click Here</a>' );
+			echo sprintf( esc_html__( 'To Configure Returnship Related Email %s.', 'woo-refund-and-exchange-lite' ), '<a class="button_' . $rma_pro_activate . '" href="' . esc_html( $woo_email_url ) . '">Click Here</a>' );
 		?>
 		</h6>
 		<p class="submit">

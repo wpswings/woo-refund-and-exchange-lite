@@ -476,4 +476,7 @@ jQuery(document).ready(function() {
 		$('.wps-rma__popup-for-pro-shadow').show();
 		$('.wps-rma__popup-for-pro').addClass('active-pro');
 	})
+	// $('.button_wps_rma_pro_div').prop('disabled',true);
+	$('.button_wps_rma_pro_div').css('pointer-events','none');
+
 });
