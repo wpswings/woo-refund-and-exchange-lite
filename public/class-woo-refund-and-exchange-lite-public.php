@@ -214,16 +214,22 @@ class Woo_Refund_And_Exchange_Lite_Public {
 
 		?>
 		<div class="wps_rma_outer_wrap_info">
-			<ul class="wps_rma_ul_wrap_info">
-				<li class="wps_rma_li_wrap_info wps_rma_li_refund active"><h2><?php esc_html_e( 'Refund', 'woo-refund-and-exchange-lite' ); ?></h2></li>
-				<?php
-				if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
-					?>
-					<li class="wps_rma_li_wrap_info wps_rma_li_exchange"><h2><?php esc_html_e( 'Exchange', 'woo-refund-and-exchange-lite' ); ?></h2></li>
-					<?php
-				}
+			<?php
+			if ( ! is_wc_endpoint_url('order-received')){
 				?>
-			</ul>
+				<ul class="wps_rma_ul_wrap_info">
+					<li class="wps_rma_li_wrap_info wps_rma_li_refund active"><h2><?php esc_html_e( 'Refund', 'woo-refund-and-exchange-lite' ); ?></h2></li>
+					<?php
+					if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
+						?>
+						<li class="wps_rma_li_wrap_info wps_rma_li_exchange"><h2><?php esc_html_e( 'Exchange', 'woo-refund-and-exchange-lite' ); ?></h2></li>
+						<?php
+					}
+					?>
+				</ul>
+				<?php
+			}
+			?>
 			<div class="wps_rma_refund_info_wrap wps_rma_ret_ex_info_wrap">
 				<?php
 
@@ -342,6 +348,10 @@ class Woo_Refund_And_Exchange_Lite_Public {
 							?>
 						<?php
 					}
+				} else {
+					
+					 esc_html_e( 'No Refund Request Found For this order', 'woo-refund-and-exchange-lite' );
+					
 				}
 				?>
 				</div>
