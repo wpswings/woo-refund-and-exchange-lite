@@ -19,12 +19,19 @@ if ( ! class_exists( 'Wps_Rma_Policies_Settings' ) ) {
 	 * @subpackage woocommerce-rma-for-return-refund-and-exchange/admin/partials
 	 */
 	class Wps_Rma_Policies_Settings {
+		/**
+		 * Undocumented variable
+		 *
+		 * @var string $rma_pro_activate as rma_pro_activate.
+		 */
 		public $rma_pro_activate = 'wps_rma_pro_class';
 
+		/**
+		 * Contruct of this file.
+		 */
 		public function __construct() {
 			$pro_slug = 'woocommerce-rma-for-return-refund-and-exchange/mwb-woocommerce-rma.php';
-			// if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
-				if ( function_exists( 'is_plugin_active' ) && is_plugin_active( $pro_slug ) ) {
+			if ( function_exists( 'is_plugin_active' ) && is_plugin_active( $pro_slug ) ) {
 				$this->rma_pro_activate = null;
 			}
 		}
@@ -36,7 +43,7 @@ if ( ! class_exists( 'Wps_Rma_Policies_Settings' ) ) {
 		 */
 		public function wps_rma_setting_extend_show_column1_set( $value ) {
 			?>
-			<option value="exchange" class="<?php echo esc_html( $this->rma_pro_activate ); ?>" <?php selected( 'exchange', $value ) ?> <?php echo ( ! empty( $this->rma_pro_activate ) ) ? 'disabled' : ''; ?>><?php esc_html_e( 'Exchange', 'woo-refund-and-exchange-lite' ); ?></option>
+			<option value="exchange" class="<?php echo esc_html( $this->rma_pro_activate ); ?>" <?php selected( 'exchange', $value ); ?> <?php echo ( ! empty( $this->rma_pro_activate ) ) ? 'disabled' : ''; ?>><?php esc_html_e( 'Exchange', 'woo-refund-and-exchange-lite' ); ?></option>
 			<option value="cancel" class="<?php echo esc_html( $this->rma_pro_activate ); ?>" <?php selected( 'cancel', $value ); ?> <?php echo ( ! empty( $this->rma_pro_activate ) ) ? 'disabled' : ''; ?>><?php esc_html_e( 'Cancel', 'woo-refund-and-exchange-lite' ); ?></option>
 			<?php
 		}

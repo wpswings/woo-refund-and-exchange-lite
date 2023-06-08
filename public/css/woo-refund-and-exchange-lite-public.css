@@ -702,6 +702,17 @@ div.wps_order_msg_single_attachment a .wps_order_msg_attachment_thumbnail {
 
 /* Special for 2023 theme end */
 /* Layout enhancement of RMA end */
+/* multiple theme issue */
+.button[name=wps_rma_new_return_request], .button.wps_rma_view_order, input.btn.button[name=ced_new_return_request], .button.wps_rma_cancel_order, .woocommerce-orders-table__cell-order-actions .exchange, .woocommerce-orders-table__cell-order-actions .return, .woocommerce-orders-table__cell-order-actions .view_msg {
+  margin-top: 5px !important;
+  margin-right: 5px !important;
+  float: unset !important;
+}
+
+.theme-betheme .button.wps_rma_cancel_order, .theme-betheme .woocommerce-orders-table__cell-order-actions .exchange, .theme-betheme .woocommerce-orders-table__cell-order-actions .return, .theme-betheme .woocommerce-orders-table__cell-order-actions .view_msg {
+  margin-left: 5px !important;
+}
+
 @media only screen and (max-width: 820px) {
   .wps-order-msg__row {
     max-width: 100%;
@@ -712,6 +723,7 @@ div.wps_order_msg_single_attachment a .wps_order_msg_attachment_thumbnail {
     margin-right: 0;
   }
 }
+
 @media only screen and (min-width: 600px) {
   .wps-rma-refund-request__row {
     display: flex;
@@ -734,6 +746,7 @@ div.wps_order_msg_single_attachment a .wps_order_msg_attachment_thumbnail {
     margin-left: auto;
   }
 }
+
 @media only screen and (max-width: 480px) {
   .wps_order_msg_sub_container {
     padding: 15px;
@@ -759,11 +772,13 @@ div.wps_order_msg_single_attachment a .wps_order_msg_attachment_thumbnail {
     height: 150px !important;
   }
 }
+
 @media only screen and (max-width: 375px) {
   .wps-order-msg-attachment-wrapper.wps_rma_flex {
     display: block;
   }
 }
+
 @media screen and (max-width: 768px) {
   .wps-rma-form__wrapper .wps_rma_customer_detail .woocommerce-columns {
     flex-direction: column;

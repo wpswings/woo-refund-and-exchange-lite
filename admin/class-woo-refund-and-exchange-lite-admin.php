@@ -54,9 +54,9 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		if ( isset( $all_plugins[ $pro_slug ] ) ) {
 			$pro_version = $all_plugins[ $pro_slug ]['Version'];
 		}
-		if (  ( is_null( $pro_version ) || ( $pro_version > '5.0.9' || ( ! is_plugin_active( $pro_slug ) && $pro_version <= '5.0.9' ) ) ) ) {
-			require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/pro_setting_templates/admin_setting/class-wps-rma-policies-setting-html.php';
-			require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/pro_setting_templates/admin_setting/class-wps-rma-setting-extend.php';
+		if ( ( is_null( $pro_version ) || ( $pro_version > '5.0.9' || ( ! is_plugin_active( $pro_slug ) && $pro_version <= '5.0.9' ) ) ) ) {
+			require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/pro_setting_templates/admin_setting/class-wps-rma-policies-settings.php';
+			require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php';
 		}
 		$this->plugin_name = $plugin_name;
 		$this->version     = $version;
@@ -994,10 +994,10 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	}
 
 		/**
-	 * Plugin org setting tab addon
-	 *
-	 * @param array $mwr_default_tabs .
-	 */
+		 * Plugin org setting tab addon
+		 *
+		 * @param array $mwr_default_tabs .
+		 */
 	public function wps_rma_plugin_admin_settings_tabs_addon_before( $mwr_default_tabs ) {
 		$rma_pro_activate = 'wps_rma_pro_class';
 		if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {

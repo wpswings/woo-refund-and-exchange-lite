@@ -169,7 +169,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 				<form action="<?php echo esc_html( add_query_arg( 'order_id', $order->get_id(), $view_order_msg_url ) ); ?>" method="post">
 					<input type="hidden" value="<?php echo esc_html( $order->get_id() ); ?>" name="order_id">
 					<p>
-						<input type="submit" class="btn button" value="<?php echo esc_html( $wps_rma_order_message_button_text ); ?>">
+						<input type="submit" class="btn button wps_rma_view_order" value="<?php echo esc_html( $wps_rma_order_message_button_text ); ?>">
 					</p>
 				</form>
 				<?php
@@ -215,7 +215,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 		?>
 		<div class="wps_rma_outer_wrap_info">
 			<?php
-			if ( ! is_wc_endpoint_url('order-received')){
+			if ( ! is_wc_endpoint_url( 'order-received' ) ) {
 				?>
 				<ul class="wps_rma_ul_wrap_info">
 					<li class="wps_rma_li_wrap_info wps_rma_li_refund active"><h2><?php esc_html_e( 'Refund', 'woo-refund-and-exchange-lite' ); ?></h2></li>
@@ -349,15 +349,18 @@ class Woo_Refund_And_Exchange_Lite_Public {
 						<?php
 					}
 				} else {
-					
-					 esc_html_e( 'No Refund Request Found For this order', 'woo-refund-and-exchange-lite' );
-					
+
+					if ( ! is_wc_endpoint_url( 'order-received' ) ) {
+
+						esc_html_e( 'No Refund Request Found For this order', 'woo-refund-and-exchange-lite' );
+
+					}
 				}
 				?>
 				</div>
 				<?php
 				do_action( 'wps_rma_exchange_cancel_information_after_order_table', $order );
-		?>
+				?>
 		</div>
 		<?php
 		// show return Product Details on order view page end.

@@ -8,6 +8,7 @@
  * @package    woocommerce-rma-for-return-refund-and-exchange
  * @subpackage woocommerce-rma-for-return-refund-and-exchange/admin/partials
  */
+
 if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 	/**
 	 * The admin-specific functionality of the plugin.
@@ -17,12 +18,18 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 	 * @subpackage woocommerce-rma-for-return-refund-and-exchange/admin/partials
 	 */
 	class Wps_Rma_Settings_Extend {
-
+		/**
+		 * Undocumented variable
+		 *
+		 * @var string $rma_pro_activate as rma_pro_activate.
+		 */
 		public $rma_pro_activate = 'wps_rma_pro_class';
+		/**
+		 * Contruct function.
+		 */
 		public function __construct() {
 			$pro_slug = 'woocommerce-rma-for-return-refund-and-exchange/mwb-woocommerce-rma.php';
-			// if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
-				if ( function_exists( 'is_plugin_active' ) && is_plugin_active( $pro_slug ) ) {
+			if ( function_exists( 'is_plugin_active' ) && is_plugin_active( $pro_slug ) ) {
 				$this->rma_pro_activate = null;
 			}
 		}
@@ -32,7 +39,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 		 * @param array $wps_rma_settings_general .
 		 */
 		public function wps_rma_general_setting_extend_set( $wps_rma_settings_general ) {
-			
+
 			$status                     = wc_get_order_statuses();
 			$none_status                = array( 'wc-none' => 'Order Created Date' );
 			$t_s                        = array_merge( $none_status, $status );

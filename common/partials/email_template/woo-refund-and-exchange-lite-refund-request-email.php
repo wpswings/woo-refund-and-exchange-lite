@@ -89,7 +89,7 @@ $message        = apply_filters( 'wps_rma_add_shipping_fee_tr', $message );
 $message       .= '</tbody>
 		</table>
 	</div>';
-$customer_details =	
+$customer_details =
 		'<div class="Customer-detail"><h4>' . esc_html__( 'Customer details', 'woo-refund-and-exchange-lite' ) . '</h4>
 		<ul>
 			<li><p class="info">

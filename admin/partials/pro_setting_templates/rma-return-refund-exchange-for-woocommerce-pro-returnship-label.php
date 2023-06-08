@@ -5,12 +5,11 @@
  * @package    woocommerce-rma-for-return-refund-and-exchange
  * @subpackage woocommerce-rma-for-return-refund-and-exchange/admin/partials
  */
+
 $rma_pro_activate = 'wps_rma_pro_div';
 if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 	$rma_pro_activate = null;
 }
-ini_set('display_errors',1);
-error_reporting(E_ALL);
 ?>
 <h4>
 	<input type="button" class="show_returnship_label wps-rma-admin__button" value="ReturnShip Label" />
@@ -123,11 +122,11 @@ error_reporting(E_ALL);
 		<?php
 			$woo_email_url = admin_url() . 'admin.php?page=wc-settings&tab=email&section=wps_rma_returnship_email';
 			/* translators: %s: search term */
-			echo sprintf( esc_html__( 'To Configure Returnship Related Email %s.', 'woo-refund-and-exchange-lite' ), '<a class="button_' . $rma_pro_activate . '" href="' . esc_html( $woo_email_url ) . '">Click Here</a>' );
+			echo sprintf( esc_html__( 'To Configure Returnship Related Email %s.', 'woo-refund-and-exchange-lite' ), '<a class="button_' . esc_attr( $rma_pro_activate ) . '" href="' . esc_html( $woo_email_url ) . '">Click Here</a>' );
 		?>
 		</h6>
 		<p class="submit">
-			<input type="submit" value="<?php esc_html_e( 'Save Settings', 'woo-refund-and-exchange-lite' ); ?>" class="wps-rma-save-button wps-rma-admin__button <?php echo 'button_' . $rma_pro_activate; ?>" name="wps_wrma_noti_save_return_slip">
+			<input type="submit" value="<?php esc_html_e( 'Save Settings', 'woo-refund-and-exchange-lite' ); ?>" class="wps-rma-save-button wps-rma-admin__button <?php echo 'button_' . esc_attr( $rma_pro_activate ); ?>" name="wps_wrma_noti_save_return_slip">
 		</p>
 	</form>
 </div>
@@ -192,7 +191,7 @@ error_reporting(E_ALL);
 						<span class='wps_wrma_notify_error'></span>
 
 						<p class='submit'>
-							<a href='javascript:void(0)' class='wps_wrma_validate_api_key wps-rma-admin__button <?php echo 'button_' . $rma_pro_activate; ?>' ><?php esc_html_e( 'Validate Account', 'woo-refund-and-exchange-lite' ); ?>
+							<a href='javascript:void(0)' class='wps_wrma_validate_api_key wps-rma-admin__button <?php echo 'button_' . esc_attr( $rma_pro_activate ); ?>' ><?php esc_html_e( 'Validate Account', 'woo-refund-and-exchange-lite' ); ?>
 							</a>
 						</p>
 					</div>
@@ -268,7 +267,7 @@ error_reporting(E_ALL);
 						<span class='wps_wrma_notify_error'></span>
 
 						<p class='submit'>
-							<a href='javascript:void(0)' class='wps_wrma_ship_validate_api_key wps-rma-admin__button <?php echo 'button_' . $rma_pro_activate; ?>' ><?php esc_html_e( 'Validate Account', 'woo-refund-and-exchange-lite' ); ?>
+							<a href='javascript:void(0)' class='wps_wrma_ship_validate_api_key wps-rma-admin__button <?php echo 'button_' . esc_attr( $rma_pro_activate ); ?>' ><?php esc_html_e( 'Validate Account', 'woo-refund-and-exchange-lite' ); ?>
 							</a>
 						</p>
 					</div>
@@ -448,7 +447,7 @@ error_reporting(E_ALL);
 			</div>
 		</div>
 		<p class="submit">
-			<button class="wps_wrma_save_shipstation wps-wrma-save-button wps-rma-admin__button <?php echo 'button_' . $rma_pro_activate; ?>" name="wps_wrma_save_shipstation" ><?php esc_html_e( 'Save Settings', 'woo-refund-and-exchange-lite' ); ?>
+			<button class="wps_wrma_save_shipstation wps-wrma-save-button wps-rma-admin__button <?php echo 'button_' . esc_attr( $rma_pro_activate ); ?>" name="wps_wrma_save_shipstation" ><?php esc_html_e( 'Save Settings', 'woo-refund-and-exchange-lite' ); ?>
 			</button>
 		</p>
 	</form>
@@ -515,7 +514,7 @@ error_reporting(E_ALL);
 						</h6>
 						<br>
 						<p class='submit'>
-							<a href='javascript:void(0)' class='wps_wrma_validate_shiprocket_key wps-rma-admin__button <?php echo 'button_' . $rma_pro_activate; ?>' ><?php esc_html_e( 'Validate Account', 'woo-refund-and-exchange-lite' ); ?>
+							<a href='javascript:void(0)' class='wps_wrma_validate_shiprocket_key wps-rma-admin__button <?php echo 'button_' . esc_attr( $rma_pro_activate ); ?>' ><?php esc_html_e( 'Validate Account', 'woo-refund-and-exchange-lite' ); ?>
 							</a>
 						</p>
 						<div class="wps-wrma-validation__wrap">
@@ -676,7 +675,7 @@ error_reporting(E_ALL);
 			<!-- new setting -->
 		</div>
 		<p class="submit">
-			<button class="wps_wrma_save_shiprocket wps-wrma-save-button wps-rma-admin__button <?php echo 'button_' . $rma_pro_activate; ?>" name="wps_wrma_save_shiprocket" ><?php esc_html_e( 'Save Settings', 'woo-refund-and-exchange-lite' ); ?>
+			<button class="wps_wrma_save_shiprocket wps-wrma-save-button wps-rma-admin__button <?php echo 'button_' . esc_attr( $rma_pro_activate ); ?>" name="wps_wrma_save_shiprocket" ><?php esc_html_e( 'Save Settings', 'woo-refund-and-exchange-lite' ); ?>
 			</button>
 		</p>
 	</form>

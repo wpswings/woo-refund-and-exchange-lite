@@ -680,3 +680,15 @@ div.wps_order_msg_single_attachment a .wps_order_msg_attachment_thumbnail{
 
 /* Special for 2023 theme end */
 /* Layout enhancement of RMA end */
+
+/* multiple theme issue */
+.button[name =wps_rma_new_return_request],.button.wps_rma_view_order,input.btn.button[name = ced_new_return_request], .button.wps_rma_cancel_order, .woocommerce-orders-table__cell-order-actions .exchange, .woocommerce-orders-table__cell-order-actions .return, .woocommerce-orders-table__cell-order-actions .view_msg {
+    margin-top: 5px !important ;
+    margin-right: 5px !important;
+    float : unset !important;
+
+}
+
+.theme-betheme .button.wps_rma_cancel_order,.theme-betheme .woocommerce-orders-table__cell-order-actions .exchange,.theme-betheme .woocommerce-orders-table__cell-order-actions .return,.theme-betheme .woocommerce-orders-table__cell-order-actions .view_msg{
+   margin-left: 5px !important ;
+}
