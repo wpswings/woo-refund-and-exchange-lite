@@ -132,7 +132,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 				$count    = count( $_FILES['wps_rma_return_request_files']['tmp_name'] );
 				for ( $i = 0; $i < $count; $i++ ) {
 					if ( isset( $_FILES['wps_rma_return_request_files']['tmp_name'][ $i ] ) ) {
-						$directory = realpath( ABSPATH . 'wp-content/attachment' );
+						$directory = ABSPATH . 'wp-content/attachment';
 						if ( ! file_exists( $directory ) ) {
 							mkdir( $directory, 0755, true );
 						}
