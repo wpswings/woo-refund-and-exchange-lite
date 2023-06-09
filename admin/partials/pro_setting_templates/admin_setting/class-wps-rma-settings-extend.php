@@ -674,6 +674,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					'type'    => 'radio-switch',
 					'id'      => 'wps_rma_cancel_order_wallet',
 					'value'   => get_option( 'wps_rma_cancel_order_wallet' ),
+					'description' => 'This Feature is not Applicable For COD Order.',
 					'class'   => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
 					'options' => array(
 						'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),

@@ -146,6 +146,6 @@ if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 				</select></td>
 			</tr>
 		</table>
-		<input type="submit" id="save_ship_setting" name="save_ship_setting" value="<?php esc_html_e( 'Save Settings', 'woo-refund-and-exchange-lite' ); ?>" class="wps-rma-admin__button <?php echo 'button_' . $rma_pro_activate; ?>" >
+		<input type="submit" id="save_ship_setting" name="save_ship_setting" value="<?php esc_html_e( 'Save Settings', 'woo-refund-and-exchange-lite' ); ?>" class="wps-rma-admin__button <?php echo 'button_' . esc_attr( $rma_pro_activate ); ?>" >
 	</form>
 </div>
