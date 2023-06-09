@@ -13,7 +13,7 @@
 
 [**Return Refund and Exchange for WooCommerce**](https://wordpress.org/plugins/woo-refund-and-exchange-lite/) lets you create a simple refund management system stuffed with an organized refund, exchange, wallet, and cancel order features.WooCommerce Refund & Exchange Plugin eliminates on-call complaints and helps in managing returned stock. Customers can request full or partial refunds (based on the return policy). The whole process of WordPress Refund Plugin goes under a dedicated and streamlined mailing system that keeps both parties on the same note. Ultimately, [**WooCommerce RMA Plugin**](https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma-pro&utm_medium=rma-github-page&utm_campaign=rma-pro) leads to high customer satisfaction.
 
-**Video** - [**How To Simplify Refund Management Process with RMA for WooCommerce Plugin 2022**](https://youtu.be/GQhXfBtzLE0)
+**Video** - [**How To Simplify Refund Management Process with Return Refund and Exchange for WooCommerce Plugin?**](https://youtu.be/GQhXfBtzLE0)
 
 
 ## WITH THE WOOCOMMERCE REFUND AND EXCHANGE WITH RMA PLUGIN YOU CAN:
@@ -109,13 +109,6 @@ Check out [**Return Refund and Exchange For WooCommerce Knowledge Base**](https:
 ### DOCUMENTATION OF PREMIUM VERSION
 
 * [**Return Refund & Exchange for WooCommerce Documentation**](https://docs.wpswings.com/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma-doc&utm_medium=rma-github-page&utm_campaign=rma-doc)
-
-##  MULTI VENDOR MARKETPLACE EXTENSION OFFERED 
-
-For WooCommerce store owners who want to succeed in the multivendor marketplace on reputable marketplaces like WCFM and others, we also offer a fantastic add-on available in-house obtained via WP Swings [**RMA WCFM for WooCommerce**](https://wpswings.com/product/rma-wcfm-for-woocommerce/?utm_source=wpswings-wcfm-plugin&utm_medium=rma-github-page&utm_campaign=wcfm-plugin). For store owners that operate on the Multi-Vendor Marketplace, this WCFM plugin streamlines the refund and exchange process as much as possible. 
-
-* [**RMA WCFM For WooCommerce Documentation**](https://docs.wpswings.com/rma-wcfm-for-woocommerce/?utm_source=wpswings-wcfm-doc&utm_medium=rma-github-page&utm_campaign=doc) 
-* [**RMA WCFM Live Demo**](https://demo.wpswings.com/rma-wcfm-for-woocommerce/?utm_source=wpswings-wcfm-demo&utm_medium=rma-github-page&utm_campaign=demo)
 
 ## SUPPORT
 
