@@ -52,7 +52,7 @@ if ( isset( $order_id ) && ! empty( $order_id ) ) {
 					<?php endif; ?>
 				</div>
 				<div class="wps-order-msg-btn">
-					</div>
+					<div>
 						<input type="submit" id="wps_order_msg_submit" name="wps_order_msg_submit" value="<?php esc_html_e( 'Send', 'woo-refund-and-exchange-lite' ); ?>" data-id="<?php echo esc_attr( $order_id ); ?>">
 						<input 	type="hidden" name="wps_order_msg_nonce" value="<?php echo esc_attr( wp_create_nonce( 'wps_order_msg_nonce' ) ); ?>"> 
 					</div>
@@ -114,6 +114,7 @@ if ( isset( $order_id ) && ! empty( $order_id ) ) {
 			</div>
 		</div>
 	</div>
+</div>
 	<?php
 }
 $wps_wrma_show_sidebar_on_form =
