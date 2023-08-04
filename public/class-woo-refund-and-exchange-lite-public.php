@@ -218,12 +218,12 @@ class Woo_Refund_And_Exchange_Lite_Public {
 			<ul class="wps_rma_ul_wrap_info">
 				<li class="wps_rma_li_wrap_info wps_rma_li_refund active"><h2><?php esc_html_e( 'Refund', 'woo-refund-and-exchange-lite' ); ?></h2></li>
 				<?php
-		if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
-				?>
+				if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
+					?>
 				<li class="wps_rma_li_wrap_info wps_rma_li_exchange"><h2><?php esc_html_e( 'Exchange', 'woo-refund-and-exchange-lite' ); ?></h2></li>
-				<?php
-			}
-			?>
+					<?php
+				}
+				?>
 		</ul>
 			<div class="wps_rma_refund_info_wrap wps_rma_ret_ex_info_wrap">
 				<?php
