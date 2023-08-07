@@ -241,7 +241,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	 */
 	public function wrael_admin_submenu_page( $menus = array() ) {
 		$menus[] = array(
-			'name'      => esc_html( 'Return Refund and Exchange for WooCommerce' ),
+			'name'      => 'Return Refund and Exchange for WooCommerce',
 			'slug'      => 'woo_refund_and_exchange_lite_menu',
 			'menu_link' => 'woo_refund_and_exchange_lite_menu',
 			'instance'  => $this,
