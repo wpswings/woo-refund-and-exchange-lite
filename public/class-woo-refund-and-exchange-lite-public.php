@@ -212,7 +212,6 @@ class Woo_Refund_And_Exchange_Lite_Public {
 
 		// Show Refund button functionality end.
 
-<<<<<<< HEAD
 		if ( ! is_wc_endpoint_url( 'order-received' ) ) {
 			?>
 		<div class="wps_rma_outer_wrap_info">
@@ -226,26 +225,6 @@ class Woo_Refund_And_Exchange_Lite_Public {
 				}
 				?>
 		</ul>
-=======
-		?>
-		<div class="wps_rma_outer_wrap_info">
-			<?php
-			if ( ! is_wc_endpoint_url( 'order-received' ) ) {
-				?>
-				<ul class="wps_rma_ul_wrap_info">
-					<li class="wps_rma_li_wrap_info wps_rma_li_refund active"><h2><?php esc_html_e( 'Refund', 'woo-refund-and-exchange-lite' ); ?></h2></li>
-					<?php
-					if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
-						?>
-						<li class="wps_rma_li_wrap_info wps_rma_li_exchange"><h2><?php esc_html_e( 'Exchange', 'woo-refund-and-exchange-lite' ); ?></h2></li>
-						<?php
-					}
-					?>
-				</ul>
-				<?php
-			}
-			?>
->>>>>>> 7eb4d0710a11e87ce8ef15b330f79228493611a7
 			<div class="wps_rma_refund_info_wrap wps_rma_ret_ex_info_wrap">
 				<?php
 
@@ -378,12 +357,8 @@ class Woo_Refund_And_Exchange_Lite_Public {
 				do_action( 'wps_rma_exchange_cancel_information_after_order_table', $order );
 				?>
 		</div>
-<<<<<<< HEAD
 			<?php
 		}
-=======
-		<?php
->>>>>>> 7eb4d0710a11e87ce8ef15b330f79228493611a7
 		// show return Product Details on order view page end.
 	}
 
