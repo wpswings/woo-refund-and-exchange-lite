@@ -89,13 +89,9 @@ Translate the RMA solution into 40+ languages with WordPress Multilingual (WPML)
 
 **6. Shiprocket Integration**: WooCommerce RMA provides customers with a straightforward interface. This interface lets businesses quickly create their ship engine by selecting ShipRocket as their shipping channel and submitting their API Key through the plugin configuration option.
 
-<<<<<<< HEAD
 * The RMA plugin is compatible with the WordPress Multilingual (WPML) plugin for the localization of the plugin’s strings.
 
 * The WooCommerce Return and Exchange RMA Plugin is also completely compatible with [**WooCommerce Sequential Order Numbers Pro**](https://www.skyverge.com/product/woocommerce-sequential-order-numbers-pro/) by SkyVerse and [**Sequential Order Numbers for WooCommerce by WebToffee**](https://wordpress.org/plugins/wt-woocommerce-sequential-order-numbers/).
-=======
-**7. Increase Communication Chances Using Messages**: WooCommerce Return Plugin allows your customers to send their product-related queries along with multimedia files and approach you to take relevant action.
->>>>>>> 7eb4d0710a11e87ce8ef15b330f79228493611a7
 
 ## WHAT PREMIUM VERSION OF RETURN REFUND AND EXCHANGE FOR WOOCOMMERCE OFFERS
 
@@ -117,7 +113,6 @@ Translate the RMA solution into 40+ languages with WordPress Multilingual (WPML)
 * Integration for return ship label with ShipStation
 * Shortcode of product table and the refundable amount for Refund Mail
 * Compatibility with WordPress Multilingual (WPML)
-<<<<<<< HEAD
 * Compatibility with [**Wallet System for WooCommerce**](https://wordpress.org/plugins/wallet-system-for-woocommerce/) & [**Wallet System for WooCommerce Pro**](https://wpswings.com/product/wallet-system-for-woocommerce-pro/?utm_source=wpswings-wallet-pro&utm_medium=rma-github-page&utm_campaign=wallet-pro).
 
 ### TAKE ADVANTAGE OF THE EXCLUSIVE FEATURES OF THE WOOCOMMERCE RMA PLUGIN
@@ -125,9 +120,6 @@ Translate the RMA solution into 40+ languages with WordPress Multilingual (WPML)
 
 ### See what No 44 Store is saying about the WooCommerce RMA Pro Plugin
 >“Great product for Managing and Dealing with Exchange/Refund Requests.” [**See WooCommerce Refund & Exchange Pro Plugin Case Study**](https://wpswings.com/case-studies/no44store/?utm_source=wpswings-rma-casestudy&utm_medium=rma-github-page&utm_campaign=no44-casestudy)
-=======
-* Compatibility with [**Wallet System for WooCommerce**](https://wordpress.org/plugins/wallet-system-for-woocommerce/) & [**Wallet System for WooCommerce Pro**](https://wpswings.com/product/wallet-system-for-woocommerce-pro/?utm_source=wpswings-wallet-pro&utm_medium=rma-github-page&utm_campaign=wallet-pro)
->>>>>>> 7eb4d0710a11e87ce8ef15b330f79228493611a7
 
 ### TAKE ADVANTAGE OF THE EXCLUSIVE FEATURES OF THE WOOCOMMERCE EXCHANGE PREMIUM PLUGIN
 > Note:  Get [**RMA Return Refund & Exchange For WooCommerce Pro**](https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma-pro&utm_medium=rma-github-page&utm_campaign=premium-plugin)
@@ -154,7 +146,3 @@ If you need support or have any questions then kindly use our online chat window
 * [**Tweet us on @WP Swings**](https://twitter.com/wpswings)
 * [**Visit our LinkedIn Account**](https://www.linkedin.com/company/77072505/admin/)
 * [**Subscribe To Our YouTube Channel**](https://www.youtube.com/channel/UC7nYNf0JETOwW3GOD_EW2Ag)
-<<<<<<< HEAD
-=======
-
->>>>>>> 7eb4d0710a11e87ce8ef15b330f79228493611a7
