@@ -3,8 +3,8 @@
 ![Return Refund and Exchange For WooCommerce - Create A Simple Refund System WooCommerce RMA with Exchange, Wallet & Cancel Order Features](https://ps.w.org/woo-refund-and-exchange-lite/assets/banner-772x250.png?rev=2672154
 )
 * Contributors: WP Swings
-* Author URI: [WP Swings](https://wpswings.com/?utm_source=wpswings-official&utm_medium=rma-github-page&utm_campaign=wpswings-official)
-* Tags:  return, rma plugin, product return system, woocommerce,  warranty
+* Author URI: [**WP Swings**](https://wpswings.com/?utm_source=wpswings-official&utm_medium=rma-github-page&utm_campaign=wpswings-official)
+* Tags:  rma, return, refund, exchange, cancel-order, warranty
 * License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 # Description
@@ -115,7 +115,7 @@ Check out [**Return Refund and Exchange For WooCommerce Knowledge Base**](https:
 > Note:  Get [**RMA Return Refund & Exchange For WooCommerce Pro**](https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma-pro&utm_medium=rma-github-page&utm_campaign=premium-plugin)
 
 ### See what No 44 Store is saying about the WooCommerce RMA Pro Plugin
->“Great product for Managing and Dealing with Exchange/Refund Requests.” [See WooCommerce Refund & Exchange Pro Plugin Case Study](https://wpswings.com/case-studies/no44store/?utm_source=wpswings-rma-casestudy&utm_medium=rma-github-page&utm_campaign=no44-casestudy)
+>“Great product for Managing and Dealing with Exchange/Refund Requests.” [**See WooCommerce Refund & Exchange Pro Plugin Case Study**](https://wpswings.com/case-studies/no44store/?utm_source=wpswings-rma-casestudy&utm_medium=rma-github-page&utm_campaign=no44-casestudy)
 
 ### DOCUMENTATION OF THE PREMIUM VERSION
 
