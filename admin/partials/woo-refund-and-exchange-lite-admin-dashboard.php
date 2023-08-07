@@ -93,7 +93,11 @@ do_action( 'wps_rma_show_license_info' );
 				<h2 class="wps-rma__popup-for-pro-title"><?php esc_html_e( 'Want More ?? Go Pro !!', 'woo-refund-and-exchange-lite' ); ?></h2>
 				<p class="wps-rma__popup-for-pro-content"><i><?php echo esc_html__( 'The Pro Version will unlock all of the feature', 'woo-refund-and-exchange-lite' ) . '<br/>' . esc_html__( 'This will easily process returns, refunds, exchange, and cancellation requests with outstanding auto re-stocking, global shipping, wallet integration, and email notifications feature making it the perfect return management system', 'woo-refund-and-exchange-lite' ); ?></i></p>
 				<div class="wps-rma__popup-for-pro-link-wrap">
+<<<<<<< HEAD
 					<a target="_blank" href="https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma&utm_medium=rma-org-page&utm_campaign=go-pro" class="wps-rma__popup-for-pro-link"><?php esc_html_e( 'Go pro now', 'woo-refund-and-exchange-lite' ); ?></a>
+=======
+					<a target="_blank" href="https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma-pro&utm_medium=rma-org-backend&utm_campaign=upgrade-to-pro" class="wps-rma__popup-for-pro-link"><?php esc_html_e( 'Go pro now', 'woo-refund-and-exchange-lite' ); ?></a>
+>>>>>>> 7eb4d0710a11e87ce8ef15b330f79228493611a7
 				</div>
 			</div>
 		</div>
