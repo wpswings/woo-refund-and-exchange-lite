@@ -182,6 +182,8 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	 * This function is to save return request.
 	 */
 	public function wps_rma_save_return_request() {
+		ini_set('display_errors',1);
+		error_reporting(E_ALL);
 		$check_ajax = check_ajax_referer( 'wps_rma_ajax_security', 'security_check' );
 		if ( $check_ajax && current_user_can( 'wps-rma-refund-request' ) ) {
 			$order_id = isset( $_POST['orderid'] ) ? sanitize_text_field( wp_unslash( $_POST['orderid'] ) ) : '';
@@ -195,16 +197,16 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			if ( wps_rma_pro_active() && 'on' === $wallet_enabled && 'on' !== $refund_method_check ) {
 				$refund_method = 'wallet_method';
 			}
-			$products1 = $_POST;
-			$response  = wps_rma_save_return_request_callback( $order_id, $refund_method, $products1 );
+			do_action( 'wps_rma_return_request_data', $_POST, $order_id );
+			$response = wps_rma_save_return_request_callback( $order_id, $refund_method, $_POST );
 			if ( true == $response['flag'] ) {
-				do_action( 'wps_rma_do_shiprocket_integration', $order_id, $products1 );
+				do_action( 'wps_rma_do_shiprocket_integration', $order_id, $_POST );
 			}
 			echo wp_json_encode( $response );
 			wp_die();
 		}
 	}
-
+	
 	/**
 	 * This function is to add custom order status for return
 	 */
