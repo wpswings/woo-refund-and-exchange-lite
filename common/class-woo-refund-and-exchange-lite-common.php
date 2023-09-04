@@ -182,8 +182,6 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	 * This function is to save return request.
 	 */
 	public function wps_rma_save_return_request() {
-		ini_set('display_errors',1);
-		error_reporting(E_ALL);
 		$check_ajax = check_ajax_referer( 'wps_rma_ajax_security', 'security_check' );
 		if ( $check_ajax && current_user_can( 'wps-rma-refund-request' ) ) {
 			$order_id = isset( $_POST['orderid'] ) ? sanitize_text_field( wp_unslash( $_POST['orderid'] ) ) : '';

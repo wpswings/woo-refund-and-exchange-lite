@@ -248,6 +248,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 								</thead>
 								<tbody>
 									<?php
+									$total      = 0;
 									$line_items = $order->get_items();
 									if ( is_array( $line_items ) && ! empty( $line_items ) ) {
 										update_post_meta( $order->get_id(), 'wps_rma_refund_new_line_items', $line_items );
@@ -259,6 +260,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 										foreach ( $return_products as $return_product ) {
 											if ( isset( $return_product['item_id'] ) ) {
 												if ( $return_product['item_id'] == $item_id ) {
+													$total += $return_product['price'] * $return_product['qty'];
 													?>
 													<tr>
 														<td>
@@ -308,7 +310,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 									?>
 									<tr>
 										<th scope="row"><?php esc_html_e( 'Refund Amount', 'woo-refund-and-exchange-lite' ); ?></th>
-										<th><?php echo wp_kses_post( wps_wrma_format_price( $product_data['amount'], $get_order_currency ) ); ?></th>
+										<th><?php echo wp_kses_post( wps_wrma_format_price( $total, $get_order_currency ) ); ?></th>
 									</tr>
 								</tbody>
 							</table>
