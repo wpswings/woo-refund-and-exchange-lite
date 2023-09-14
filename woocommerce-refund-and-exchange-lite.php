@@ -222,7 +222,7 @@ if ( $activated ) {
 		/**
 		 * This function is used to check plugin.
 		 *
-		 * @name wps_rma_org_redirect_on_settings
+		 * @name wps_rma_org_redirect_on_settings.
 		 * @param string $plugin plugin.
 		 * @since 1.0.3
 		 */
@@ -239,7 +239,6 @@ if ( $activated ) {
 	 * Show warning message if woocommerce is not install
 	 */
 	function wps_rma_plugin_error_notice_lite() {
-
 		?>
 		<div class="error notice is-dismissible">
 			<p><?php esc_html_e( 'Woocommerce is not activated, Please activate Woocommerce first to install WooCommerce Refund and Exchange Lite.', 'woo-refund-and-exchange-lite' ); ?></p>
