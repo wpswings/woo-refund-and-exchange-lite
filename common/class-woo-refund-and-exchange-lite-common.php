@@ -93,6 +93,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 					'order_msg_attachment'   => get_option( 'wps_rma_general_enable_om_attachment' ),
 					'no_file_attached'       => esc_html__( 'No File Attached', 'woo-refund-and-exchange-lite' ),
 					'file_not_supported'     => esc_html__( 'Attached File type is not supported', 'woo-refund-and-exchange-lite' ),
+					'qty_error'              => esc_html__( 'Selected product must have the quantity', 'woo-refund-and-exchange-lite' ),
 				)
 			);
 			wp_enqueue_script( $this->plugin_name . 'common' );
