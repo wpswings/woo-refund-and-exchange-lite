@@ -129,16 +129,16 @@ if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 					$product_categories = get_terms( 'product_cat' );
 					$count              = count( $product_categories );
 					if ( $count > 0 ) {
-						foreach ( $product_categories as $cat ) {
+						foreach ( $product_categories as $categry ) {
 							?>
-							<option value="<?php echo esc_html( $cat->term_id ); ?>"
+							<option value="<?php echo esc_html( $categry->term_id ); ?>"
 							<?php
 							if ( isset( $get_wps_rnx_global_shipping['ship_pro'] ) && is_array( $get_wps_rnx_global_shipping['ship_pro'] ) ) {
-								if ( in_array( $cat->term_id, $get_wps_rnx_global_shipping['ship_pro'] ) ) {
+								if ( in_array( $categry->term_id, $get_wps_rnx_global_shipping['ship_pro'] ) ) {
 									echo 'selected'; }
 							}
 							?>
-							><?php echo esc_html( $cat->name ); ?></option>
+							><?php echo esc_html( $categry->name ); ?></option>
 							<?php
 						}
 					}
