@@ -438,7 +438,7 @@ if ( ! function_exists( 'wps_rma_return_req_approve_callback' ) ) {
 		update_post_meta( $orderid, 'wps_rma_request_made', $update_item_status );
 		// Send refund request accept email to customer.
 
-		do_action( 'wps_rma_return_request_accept', $line_items_refund, $order_id );
+		do_action( 'wps_rma_return_request_accept', $line_items_refund, $orderid );
 
 		$restrict_mail =
 		// Allow/Disallow Email.

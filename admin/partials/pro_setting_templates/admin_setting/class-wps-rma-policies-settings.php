@@ -89,7 +89,7 @@ if ( ! class_exists( 'Wps_Rma_Policies_Settings' ) ) {
 		 * @param string $count .
 		 */
 		public function wps_rma_setting_extend_show_column5_set( $value, $count ) {
-			$all_cat   = get_terms( 'product_cat', array( 'hide_empty' => 0 ) );
+			$all_cat  = get_terms( 'product_cat' );
 			$cat_name = array();
 			if ( $all_cat ) {
 				foreach ( $all_cat as $cat ) {
@@ -146,7 +146,7 @@ if ( ! class_exists( 'Wps_Rma_Policies_Settings' ) ) {
 		 *  Extend the settings.
 		 */
 		public function wps_rma_setting_extend_column5_set() {
-			$all_cat  = get_terms( 'product_cat', array( 'hide_empty' => 0 ) );
+			$all_cat  = get_terms( 'product_cat' );
 			$cat_name = array();
 			if ( $all_cat ) {
 				foreach ( $all_cat as $cat ) {
