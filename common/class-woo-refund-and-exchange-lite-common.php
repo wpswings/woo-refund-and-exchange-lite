@@ -260,7 +260,6 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			$wps_rma_new_order_statuses[ $wps_rma_key ] = $wps_rma_status;
 
 			if ( 'wc-completed' === $wps_rma_key ) {
-
 				$wps_rma_new_order_statuses['wc-return-requested'] = esc_html__( 'Refund Requested', 'woo-refund-and-exchange-lite' );
 				$wps_rma_new_order_statuses['wc-return-approved']  = esc_html__( 'Refund Approved', 'woo-refund-and-exchange-lite' );
 				$wps_rma_new_order_statuses['wc-return-cancelled'] = esc_html__( 'Refund Cancelled', 'woo-refund-and-exchange-lite' );
