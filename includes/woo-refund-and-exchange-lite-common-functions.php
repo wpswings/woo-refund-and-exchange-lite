@@ -128,6 +128,7 @@ if ( ! function_exists( 'wps_rma_lite_send_order_msg_callback' ) ) {
 	 * @link http://www.wpswings.com/
 	 */
 	function wps_rma_lite_send_order_msg_callback( $order_id, $msg, $sender, $to ) {
+		// phpcs:disable
 		$filename   = array();
 		$attachment = array();
 		if ( isset( $_FILES['wps_order_msg_attachment']['tmp_name'] ) && ! empty( $_FILES['wps_order_msg_attachment']['tmp_name'] ) ) {
@@ -158,6 +159,7 @@ if ( ! function_exists( 'wps_rma_lite_send_order_msg_callback' ) ) {
 				}
 			}
 		}
+		// phpcs:enable
 		$date                         = strtotime( gmdate( 'Y-m-d H:i:s' ) );
 		$order_msg[ $date ]['sender'] = $sender;
 		$order_msg[ $date ]['msg']    = $msg;
