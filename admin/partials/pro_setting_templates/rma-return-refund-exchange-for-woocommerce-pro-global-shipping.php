@@ -83,7 +83,7 @@ if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 						<tr class="add_fee_tr" valign="top">
 							<td class="forminp" id="add_fee_button"><fieldset>
 								<div >
-									<input type="button" id="add_fee" name="add_fee" class="button wps-rma-admin__button" value="Add fee">
+									<input type="button" id="add_fee" name="add_fee" class="button wps-rma-admin__button" value="<?php esc_html_e( 'Add fee', 'woo-refund-and-exchange-lite' ); ?>">
 								</div>
 							</fieldset></td>
 						</tr>
