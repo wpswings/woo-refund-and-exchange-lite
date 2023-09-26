@@ -128,6 +128,7 @@ if ( ! function_exists( 'wps_rma_lite_send_order_msg_callback' ) ) {
 	 * @link http://www.wpswings.com/
 	 */
 	function wps_rma_lite_send_order_msg_callback( $order_id, $msg, $sender, $to ) {
+		// phpcs:disable
 		$filename   = array();
 		$attachment = array();
 		if ( isset( $_FILES['wps_order_msg_attachment']['tmp_name'] ) && ! empty( $_FILES['wps_order_msg_attachment']['tmp_name'] ) ) {
@@ -158,6 +159,7 @@ if ( ! function_exists( 'wps_rma_lite_send_order_msg_callback' ) ) {
 				}
 			}
 		}
+		// phpcs:enable
 		$date                         = strtotime( gmdate( 'Y-m-d H:i:s' ) );
 		$order_msg[ $date ]['sender'] = $sender;
 		$order_msg[ $date ]['msg']    = $msg;
@@ -438,6 +440,8 @@ if ( ! function_exists( 'wps_rma_return_req_approve_callback' ) ) {
 		update_post_meta( $orderid, 'wps_rma_request_made', $update_item_status );
 		// Send refund request accept email to customer.
 
+		do_action( 'wps_rma_return_request_accept', $line_items_refund, $orderid );
+
 		$restrict_mail =
 		// Allow/Disallow Email.
 		apply_filters( 'wps_rma_restrict_refund_app_mails', true );
@@ -495,6 +499,9 @@ if ( ! function_exists( 'wps_rma_return_req_cancel_callback' ) ) {
 			// To Send Refund Request Cancel Email.
 			do_action( 'wps_rma_refund_req_cancel_email', $orderid );
 		}
+
+		do_action( 'wps_rma_return_request_cancel', $products, $orderid );
+
 		$order_obj = wc_get_order( $orderid );
 
 		$order_obj->update_status( 'wc-return-cancelled', esc_html__( 'User Request of Refund Product is cancelled', 'woo-refund-and-exchange-lite' ) );
@@ -640,7 +647,7 @@ if ( ! function_exists( 'wps_rma_css_and_js_load_page' ) ) {
 			$cancel_page_id0    = apply_filters( 'wpml_object_id', $cancel_page_id, 'page', false, ICL_LANGUAGE_CODE );
 			$guest_page_id0     = apply_filters( 'wpml_object_id', $guest_page_id, 'page', false, ICL_LANGUAGE_CODE );
 		}
-		if ( is_account_page() || ( is_page( $return_page_id ) || is_page( $order_msg_page_id ) || is_page( $exchange_page_id ) || is_page( $cancel_page_id ) || is_page( $guest_page_id ) ) || ( has_filter( 'wpml_object_id' ) && ( is_page( $return_page_id0 ) || is_page( $order_msg_page_id0 ) || is_page( $exchange_page_id0 ) || is_page( $cancel_page_id0 ) || is_page( $guest_page_id0 ) ) ) ) {
+		if ( is_order_received_page() || is_account_page() || ( is_page( $return_page_id ) || is_page( $order_msg_page_id ) || is_page( $exchange_page_id ) || is_page( $cancel_page_id ) || is_page( $guest_page_id ) ) || ( has_filter( 'wpml_object_id' ) && ( is_page( $return_page_id0 ) || is_page( $order_msg_page_id0 ) || is_page( $exchange_page_id0 ) || is_page( $cancel_page_id0 ) || is_page( $guest_page_id0 ) ) ) ) {
 			$load_flag = true;
 		} elseif ( WC()->session && WC()->session->get( 'wps_wrma_exchange' ) && ( is_shop() || is_product() ) ) {
 			$load_flag = true;

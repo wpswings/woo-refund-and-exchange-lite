@@ -83,7 +83,7 @@ if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 						<tr class="add_fee_tr" valign="top">
 							<td class="forminp" id="add_fee_button"><fieldset>
 								<div >
-									<input type="button" id="add_fee" name="add_fee" class="button wps-rma-admin__button" value="Add fee">
+									<input type="button" id="add_fee" name="add_fee" class="button wps-rma-admin__button" value="<?php esc_html_e( 'Add fee', 'woo-refund-and-exchange-lite' ); ?>">
 								</div>
 							</fieldset></td>
 						</tr>
@@ -126,19 +126,19 @@ if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 						'hide_empty' => true,
 						'fields'     => 'id=>name',
 					);
-					$product_categories = get_terms( 'product_cat', $args );
+					$product_categories = get_terms( 'product_cat' );
 					$count              = count( $product_categories );
 					if ( $count > 0 ) {
-						foreach ( $product_categories as $key => $product_category ) {
+						foreach ( $product_categories as $categry ) {
 							?>
-							<option value="<?php echo esc_html( $key ); ?>"
+							<option value="<?php echo esc_html( $categry->term_id ); ?>"
 							<?php
 							if ( isset( $get_wps_rnx_global_shipping['ship_pro'] ) && is_array( $get_wps_rnx_global_shipping['ship_pro'] ) ) {
-								if ( in_array( $key, $get_wps_rnx_global_shipping['ship_pro'] ) ) {
+								if ( in_array( $categry->term_id, $get_wps_rnx_global_shipping['ship_pro'] ) ) {
 									echo 'selected'; }
 							}
 							?>
-							><?php echo esc_html( $product_category ); ?></option>
+							><?php echo esc_html( $categry->name ); ?></option>
 							<?php
 						}
 					}

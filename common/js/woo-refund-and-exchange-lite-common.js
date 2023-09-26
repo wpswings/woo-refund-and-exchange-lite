@@ -12,6 +12,8 @@ jQuery( document ).on( 'ready', function(){
 		var refund_method = '';
 		var pro_act = wrael_common_param.check_pro_active;
 
+		var total_qty = 0;
+
 		var rr_subject = $( '#wps_rma_return_request_subject' ).val();
 			
 		if (rr_subject == '' || rr_subject == null ) {
@@ -51,24 +53,6 @@ jQuery( document ).on( 'ready', function(){
 			});
 		}
 
-		if (alerthtml != '') {
-			$( '#wps_rma_return_alert' ).show();
-			$( '#wps_rma_return_alert' ).html( alerthtml );
-			$( '#wps_rma_return_alert' ).addClass('woocommerce-error');
-			$( '#wps_rma_return_alert' ).removeClass('woocommerce-message');
-			$( '#wps_rma_return_alert' ).css('background-color', 'red');
-			$( 'html, body' ).animate(
-			{
-				scrollTop: $( '#wps_rma_return_request_container' ).offset().top
-			},
-			800
-			);
-			return false;
-		} else {
-			$( '#wps_rma_return_alert' ).hide();
-			$( '#wps_rma_return_alert' ).html( alerthtml );
-		}
-
 		if( pro_act ){
 			if (typeof wps_rma_refund_total == 'function') {
 				var return_data = wps_rma_refund_total();
@@ -94,6 +78,33 @@ jQuery( document ).on( 'ready', function(){
 				}
 			});
 		}
+		var qty_error = false;
+		$.each( selected_product, function( index, data ){
+			if ( ! parseInt( data.qty ) ) {
+				qty_error = true;
+			}
+		});
+		if ( qty_error ) {
+			alerthtml += '<li>'+ wrael_common_param.qty_error + '</li>';
+		}
+
+		if (alerthtml != '') {
+			$( '#wps_rma_return_alert' ).show();
+			$( '#wps_rma_return_alert' ).html( alerthtml );
+			$( '#wps_rma_return_alert' ).addClass('woocommerce-error');
+			$( '#wps_rma_return_alert' ).removeClass('woocommerce-message');
+			$( '#wps_rma_return_alert' ).css('background-color', 'red');
+			$( 'html, body' ).animate(
+			{
+				scrollTop: $( '#wps_rma_return_request_container' ).offset().top
+			},
+			800
+			);
+			return false;
+		} else {
+			$( '#wps_rma_return_alert' ).hide();
+			$( '#wps_rma_return_alert' ).html( alerthtml );
+		}
 		if(pro_act){
 			if (typeof wps_rma_refund_method == 'function') {
 				refund_method = wps_rma_refund_method();
@@ -101,7 +112,7 @@ jQuery( document ).on( 'ready', function(){
 		}
 		var data = {
 			action	:'wps_rma_save_return_request',
-			products: selected_product,
+			products: selected_product, 
 			amount	: refund_amount,
 			subject	: rr_subject,
 			reason	: rr_reason,
@@ -126,8 +137,8 @@ jQuery( document ).on( 'ready', function(){
 			{
 				//Send return request
 				$.ajax({
-					url: wrael_common_param.ajaxurl, 
-					type: 'POST',  
+					url: wrael_common_param.ajaxurl,
+					type: 'POST',
 					data: data,
 					dataType :'json',	
 					success: function(response) 

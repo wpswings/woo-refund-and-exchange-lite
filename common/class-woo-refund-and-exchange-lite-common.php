@@ -93,6 +93,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 					'order_msg_attachment'   => get_option( 'wps_rma_general_enable_om_attachment' ),
 					'no_file_attached'       => esc_html__( 'No File Attached', 'woo-refund-and-exchange-lite' ),
 					'file_not_supported'     => esc_html__( 'Attached File type is not supported', 'woo-refund-and-exchange-lite' ),
+					'qty_error'              => esc_html__( 'Selected product must have the quantity', 'woo-refund-and-exchange-lite' ),
 				)
 			);
 			wp_enqueue_script( $this->plugin_name . 'common' );
@@ -182,6 +183,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	 * This function is to save return request.
 	 */
 	public function wps_rma_save_return_request() {
+
 		$check_ajax = check_ajax_referer( 'wps_rma_ajax_security', 'security_check' );
 		if ( $check_ajax && current_user_can( 'wps-rma-refund-request' ) ) {
 			$order_id = isset( $_POST['orderid'] ) ? sanitize_text_field( wp_unslash( $_POST['orderid'] ) ) : '';
@@ -195,10 +197,10 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			if ( wps_rma_pro_active() && 'on' === $wallet_enabled && 'on' !== $refund_method_check ) {
 				$refund_method = 'wallet_method';
 			}
-			$products1 = $_POST;
-			$response  = wps_rma_save_return_request_callback( $order_id, $refund_method, $products1 );
+			do_action( 'wps_rma_return_request_data', $_POST, $order_id );
+			$response = wps_rma_save_return_request_callback( $order_id, $refund_method, $_POST );
 			if ( true == $response['flag'] ) {
-				do_action( 'wps_rma_do_shiprocket_integration', $order_id, $products1 );
+				do_action( 'wps_rma_do_shiprocket_integration', $order_id, $_POST );
 			}
 			echo wp_json_encode( $response );
 			wp_die();
@@ -258,7 +260,6 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			$wps_rma_new_order_statuses[ $wps_rma_key ] = $wps_rma_status;
 
 			if ( 'wc-completed' === $wps_rma_key ) {
-
 				$wps_rma_new_order_statuses['wc-return-requested'] = esc_html__( 'Refund Requested', 'woo-refund-and-exchange-lite' );
 				$wps_rma_new_order_statuses['wc-return-approved']  = esc_html__( 'Refund Approved', 'woo-refund-and-exchange-lite' );
 				$wps_rma_new_order_statuses['wc-return-cancelled'] = esc_html__( 'Refund Cancelled', 'woo-refund-and-exchange-lite' );

@@ -89,7 +89,7 @@
 						<img src="<?php echo esc_html( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/image/Send-Email-Notification.png' ); ?>" alt="Send-Email-Notification image">
 					</div>
 					<div class="wps-overview__keywords-text">
-						<h3 class="wps-overview__keywords-heading"><?php echo esc_html_e( ' Send Email Notification' ); ?></h3>
+						<h3 class="wps-overview__keywords-heading"><?php echo esc_html_e( 'Send Email Notification', 'woo-refund-and-exchange-lite' ); ?></h3>
 						<p class="wps-overview__keywords-description">
 							<?php
 							esc_html_e( 'Set emails to notify each performing step during the refund process.', 'woo-refund-and-exchange-lite' );
