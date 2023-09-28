@@ -190,7 +190,7 @@ if ( ! class_exists( 'Wps_Rma_Policies_Settings' ) ) {
 		 * @return void
 		 */
 		public function wps_rma_global_shipping_fee_set( $order_id ) {
-			$return_datas = get_post_meta( $order_id, 'wps_rma_return_product', true );
+			$return_datas = wps_rma_get_meta_data( $order_id, 'wps_rma_return_product', true );
 			$readonly     = '';
 			if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 				foreach ( $return_datas as $key => $return_data ) {
@@ -199,7 +199,7 @@ if ( ! class_exists( 'Wps_Rma_Policies_Settings' ) ) {
 					}
 				}
 			}
-			$wps_fee_cost = get_post_meta( $order_id, 'ex_ship_amount1', true );
+			$wps_fee_cost = wps_rma_get_meta_data( $order_id, 'ex_ship_amount1', true );
 			if ( isset( $wps_fee_cost ) && ! empty( $wps_fee_cost ) ) {
 				$flag = false;
 				?>

@@ -105,7 +105,7 @@ if ( ! function_exists( 'wps_rma_show_buttons' ) ) {
 		} else {
 			$show_button = ucfirst( $func ) . esc_html__( ' request is disabled.', 'woo-refund-and-exchange-lite' );
 		}
-		$products = get_post_meta( $order->get_id(), 'wps_rma_return_product', true );
+		$products = wps_rma_get_meta_data( $order->get_id(), 'wps_rma_return_product', true );
 		if ( isset( $products ) && ! empty( $products ) && ! wps_rma_pro_active() && 'yes' === $show_button ) {
 			foreach ( $products as $date => $product ) {
 				if ( 'complete' === $product['status'] ) {
@@ -164,14 +164,14 @@ if ( ! function_exists( 'wps_rma_lite_send_order_msg_callback' ) ) {
 		$order_msg[ $date ]['sender'] = $sender;
 		$order_msg[ $date ]['msg']    = $msg;
 		$order_msg[ $date ]['files']  = $filename;
-		$get_msg                      = get_post_meta( $order_id, 'wps_cutomer_order_msg', true );
+		$get_msg                      = wps_rma_get_meta_data( $order_id, 'wps_cutomer_order_msg', true );
 		if ( isset( $get_msg ) && ! empty( $get_msg ) ) {
 			array_push( $get_msg, $order_msg );
 		} else {
 			$get_msg = array();
 			array_push( $get_msg, $order_msg );
 		}
-		update_post_meta( $order_id, 'wps_cutomer_order_msg', $get_msg );
+		wps_rma_update_meta_data( $order_id, 'wps_cutomer_order_msg', $get_msg );
 		$restrict_mail =
 		// Allow/Disallow Email.
 		apply_filters( 'wps_rma_restrict_order_msg_mails', false );
@@ -234,10 +234,10 @@ if ( ! function_exists( 'wps_rma_save_return_request_callback' ) ) {
 			update_option( $order_id . 'wps_rma_refund_method', 'manual_method' );
 		}
 		$order = wc_get_order( $order_id );
-		if ( empty( get_post_meta( $order_id, 'wps_rma_request_made', true ) ) ) {
+		if ( empty( wps_rma_get_meta_data( $order_id, 'wps_rma_request_made', true ) ) ) {
 			$item_id = array();
 		} else {
-			$item_id = get_post_meta( $order_id, 'wps_rma_request_made', true );
+			$item_id = wps_rma_get_meta_data( $order_id, 'wps_rma_request_made', true );
 		}
 		$item_ids = array();
 		// Gift Card Code Compatibility.
@@ -264,7 +264,7 @@ if ( ! function_exists( 'wps_rma_save_return_request_callback' ) ) {
 		}
 		if ( $gift_card_product && ! empty( $gift_item_id ) ) {
 
-			$coupon = get_post_meta( $order_id, $order_id . '#' . $gift_item_id, true );
+			$coupon = wps_rma_get_meta_data( $order_id, $order_id . '#' . $gift_item_id, true );
 
 			$couponcode = $coupon[0];
 
@@ -298,8 +298,8 @@ if ( ! function_exists( 'wps_rma_save_return_request_callback' ) ) {
 				return $response;
 			}
 		}
-		update_post_meta( $order_id, 'wps_rma_request_made', $item_id );
-		$products = get_post_meta( $order_id, 'wps_rma_return_product', true );
+		wps_rma_update_meta_data( $order_id, 'wps_rma_request_made', $item_id );
+		$products = wps_rma_get_meta_data( $order_id, 'wps_rma_return_product', true );
 		$pending  = true;
 		if ( isset( $products ) && ! empty( $products ) ) {
 			foreach ( $products as $date => $product ) {
@@ -322,7 +322,7 @@ if ( ! function_exists( 'wps_rma_save_return_request_callback' ) ) {
 
 		}
 
-		update_post_meta( $order_id, 'wps_rma_return_product', $products );
+		wps_rma_update_meta_data( $order_id, 'wps_rma_return_product', $products );
 
 		// Send refund request email to admin and customer.
 
@@ -362,9 +362,9 @@ if ( ! function_exists( 'wps_rma_return_req_approve_callback' ) ) {
 		}
 
 		// Update the status.
-		update_post_meta( $orderid, 'wps_rma_return_product', $products );
+		wps_rma_update_meta_data( $orderid, 'wps_rma_return_product', $products );
 
-		$request_files = get_post_meta( $orderid, 'wps_rma_return_attachment', true );
+		$request_files = wps_rma_get_meta_data( $orderid, 'wps_rma_return_attachment', true );
 		if ( isset( $request_files ) && ! empty( $request_files ) ) {
 			foreach ( $request_files as $date => $request_file ) {
 				if ( 'pending' === $request_file['status'] ) {
@@ -374,12 +374,12 @@ if ( ! function_exists( 'wps_rma_return_req_approve_callback' ) ) {
 			}
 		}
 		// Update the status.
-		update_post_meta( $orderid, 'wps_rma_return_attachment', $request_files );
+		wps_rma_update_meta_data( $orderid, 'wps_rma_return_attachment', $request_files );
 		$order_obj            = wc_get_order( $orderid );
 		$line_items_refund    = array();
 		$wps_rma_check_tax    = get_option( 'refund_wps_rma_tax_handling', false );
 		$coupon_discount      = get_option( 'wps_rma_refund_deduct_coupon', 'no' );
-		$refund_items_details = get_post_meta( $orderid, 'wps_rma_refund_items_details', true );
+		$refund_items_details = wps_rma_get_meta_data( $orderid, 'wps_rma_refund_items_details', true );
 		if ( ! is_array( $refund_items_details ) ) {
 			$refund_items_details = array();
 		}
@@ -416,7 +416,7 @@ if ( ! function_exists( 'wps_rma_return_req_approve_callback' ) ) {
 				}
 			}
 		}
-		update_post_meta( $orderid, 'wps_rma_refund_items_details', $refund_items_details );
+		wps_rma_update_meta_data( $orderid, 'wps_rma_refund_items_details', $refund_items_details );
 		if ( ! empty( $line_items_refund ) ) {
 			$refund_items_details = array(
 				'amount'         => 0,
@@ -426,18 +426,18 @@ if ( ! function_exists( 'wps_rma_return_req_approve_callback' ) ) {
 				'refund_payment' => false,
 				'restock_items'  => apply_filters( 'wps_rma_auto_restock_item_refund', false, $orderid ),
 			);
-			update_post_meta( $orderid, 'wps_rma_refund_items', $refund_items_details );
+			wps_rma_update_meta_data( $orderid, 'wps_rma_refund_items', $refund_items_details );
 		}
 
-		$update_item_status = get_post_meta( $orderid, 'wps_rma_request_made', true );
-		foreach ( get_post_meta( $orderid, 'wps_rma_return_product', true ) as $key => $value ) {
+		$update_item_status = wps_rma_get_meta_data( $orderid, 'wps_rma_request_made', true );
+		foreach ( wps_rma_get_meta_data( $orderid, 'wps_rma_return_product', true ) as $key => $value ) {
 			foreach ( $value['products'] as $key => $value ) {
 				if ( isset( $update_item_status[ $value['item_id'] ] ) ) {
 					$update_item_status[ $value['item_id'] ] = 'completed';
 				}
 			}
 		}
-		update_post_meta( $orderid, 'wps_rma_request_made', $update_item_status );
+		wps_rma_update_meta_data( $orderid, 'wps_rma_request_made', $update_item_status );
 		// Send refund request accept email to customer.
 
 		do_action( 'wps_rma_return_request_accept', $line_items_refund, $orderid );
@@ -477,9 +477,9 @@ if ( ! function_exists( 'wps_rma_return_req_cancel_callback' ) ) {
 			}
 		}
 		// Update the status.
-		update_post_meta( $orderid, 'wps_rma_return_product', $products );
+		wps_rma_update_meta_data( $orderid, 'wps_rma_return_product', $products );
 
-		$request_files = get_post_meta( $orderid, 'wps_rma_return_attachment', true );
+		$request_files = wps_rma_get_meta_data( $orderid, 'wps_rma_return_attachment', true );
 		if ( isset( $request_files ) && ! empty( $request_files ) ) {
 			foreach ( $request_files as $date => $request_file ) {
 				if ( 'pending' === $request_file['status'] ) {
@@ -488,7 +488,7 @@ if ( ! function_exists( 'wps_rma_return_req_cancel_callback' ) ) {
 			}
 		}
 		// Update the status.
-		update_post_meta( $orderid, 'wps_rma_return_attachment', $request_files );
+		wps_rma_update_meta_data( $orderid, 'wps_rma_return_attachment', $request_files );
 
 		// Send the cancel refund request email to customer.
 
@@ -595,35 +595,28 @@ if ( ! function_exists( 'wps_rma_order_number' ) ) {
 	function wps_rma_order_number( $order_id ) {
 		$active_plugins = get_option( 'active_plugins', array() );
 		if ( in_array( 'woocommerce-sequential-order-numbers-pro/woocommerce-sequential-order-numbers-pro.php', $active_plugins, true ) ) {
-			$query_args = array(
-				'numberposts' => 1,
-				'meta_key'    => '_order_number_formatted',
-				'post_id'  => $order_id,
-				'post_type'   => 'shop_order',
-				'post_status' => 'any',
-				'fields'      => 'ids',
-			);
-
-			$posts = get_posts( $query_args );
-			if ( is_array( $posts ) && ! empty( $posts ) && isset( $posts[0] ) ) {
-				$order_id = $posts[0];
-				$order_id = get_post_meta( $order_id, '_order_number_formatted', true );
+			if ( OrderUtil::custom_orders_table_usage_is_enabled() ) {
+				// HPOS usage is enabled.
+				$order = wc_get_order( $order_id );
+				$val   = $order->get_meta( '_order_number_formatted' );
+			} else {
+				// Traditional CPT-based orders are in use.
+				$val = get_post_meta( $order_id, '_order_number_formatted', true );
 			}
-		}
-		if ( in_array( 'wt-woocommerce-sequential-order-numbers/wt-advanced-order-number.php', $active_plugins, true ) ) {
-			$query_args = array(
-				'numberposts' => 1,
-				'meta_key'    => '_order_number',
-				'post_id'     => $order_id,
-				'post_type'   => 'shop_order',
-				'post_status' => 'any',
-				'fields'      => 'ids',
-			);
-
-			$posts = get_posts( $query_args );
-			if ( is_array( $posts ) && ! empty( $posts ) && isset( $posts[0] ) ) {
-				$order_id = $posts[0];
-				$order_id = get_post_meta( $order_id, '_order_number', true );
+			if ( ! empty( $val ) ) {
+				$order_id = $val;
+			}
+		} elseif ( in_array( 'wt-woocommerce-sequential-order-numbers/wt-advanced-order-number.php', $active_plugins, true ) ) {
+			if ( OrderUtil::custom_orders_table_usage_is_enabled() ) {
+				// HPOS usage is enabled.
+				$order = wc_get_order( $order_id );
+				$val   = $order->get_meta( '_order_number' );
+			} else {
+				// Traditional CPT-based orders are in use.
+				$val = get_post_meta( $order_id, '_order_number', true );
+			}
+			if ( ! empty( $val ) ) {
+				$order_id = $val;
 			}
 		}
 		return $order_id;

@@ -31,7 +31,7 @@ if ( ! empty( $order_id ) ) {
 $rr_subject = '';
 $rr_reason  = '';
 if ( isset( $condition ) && 'yes' === $condition && isset( $order_id ) && ! empty( $order_id ) && ! empty( $order_obj ) ) {
-	$order_customer_id = get_post_meta( $order_id, '_customer_user', true );
+	$order_customer_id = wps_rma_get_meta_data( $order_id, '_customer_user', true );
 	$user              = wp_get_current_user();
 	$allowed_roles     = array( 'editor', 'administrator', 'author' );
 	if ( ! array_intersect( $allowed_roles, $user->roles ) ) {
@@ -42,7 +42,7 @@ if ( isset( $condition ) && 'yes' === $condition && isset( $order_id ) && ! empt
 		}
 	}
 }
-$products = get_post_meta( $order_id, 'wps_rma_return_product', true );
+$products = wps_rma_get_meta_data( $order_id, 'wps_rma_return_product', true );
 // Get pending return request.
 if ( isset( $products ) && ! empty( $products ) ) {
 	foreach ( $products as $date => $product ) {
@@ -99,7 +99,7 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 						apply_filters( 'woocommerce_purchase_note_order_statuses', array( 'completed', 'processing' ) )
 					);
 					$get_order_currency   = get_woocommerce_currency_symbol( $order_obj->get_currency() );
-					$refund_items_details = get_post_meta( $order_id, 'wps_rma_refund_items_details', true );
+					$refund_items_details = wps_rma_get_meta_data( $order_id, 'wps_rma_refund_items_details', true );
 					foreach ( $order_obj->get_items() as $item_id => $item ) {
 						$item_quantity = $item->get_quantity();
 						$refund_qty    = $order_obj->get_qty_refunded_for_item( $item_id );
@@ -150,7 +150,7 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 								$wps_actual_price = $tax_exc;
 							}
 							$wps_total_actual_price += $wps_actual_price;
-							$purchase_note           = get_post_meta( $product_id, '_purchase_note', true );
+							$purchase_note           = wps_rma_get_meta_data( $product_id, '_purchase_note', true );
 							?>
 							<tr class="wps_rma_return_column" data-productid="<?php echo esc_html( $product_id ); ?>" data-variationid="<?php echo esc_html( $item['variation_id'] ); ?>" data-itemid="<?php echo esc_html( $item_id ); ?>">
 								<?php

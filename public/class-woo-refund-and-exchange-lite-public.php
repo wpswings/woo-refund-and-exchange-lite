@@ -229,7 +229,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 				<?php
 
 				// show return Product Details on order view page start.
-				$product_datas = get_post_meta( $order->get_id(), 'wps_rma_return_product', true );
+				$product_datas = wps_rma_get_meta_data( $order->get_id(), 'wps_rma_return_product', true );
 				if ( isset( $product_datas ) && ! empty( $product_datas ) ) {
 					?>
 					<h2><?php esc_html_e( 'Refund Requested Product', 'woo-refund-and-exchange-lite' ); ?></h2>
@@ -251,9 +251,9 @@ class Woo_Refund_And_Exchange_Lite_Public {
 									$total      = 0;
 									$line_items = $order->get_items();
 									if ( is_array( $line_items ) && ! empty( $line_items ) ) {
-										update_post_meta( $order->get_id(), 'wps_rma_refund_new_line_items', $line_items );
+										wps_rma_update_meta_data( $order->get_id(), 'wps_rma_refund_new_line_items', $line_items );
 									}
-									$line_items = get_post_meta( $order->get_id(), 'wps_rma_refund_new_line_items', true );
+									$line_items = wps_rma_get_meta_data( $order->get_id(), 'wps_rma_refund_new_line_items', true );
 									// Return Products.
 									$return_products = $product_data['products'];
 									foreach ( $line_items as $item_id => $item ) {

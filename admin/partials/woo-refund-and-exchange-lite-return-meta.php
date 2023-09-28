@@ -13,15 +13,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! is_int( $thepostid ) ) {
+if ( ! is_int( $thepostid ) && isset( $post ) ) {
 	$thepostid = $post->ID;
 }
 if ( ! is_object( $theorder ) ) {
 	$theorder = wc_get_order( $thepostid );
 }
+if ( isset( $order ) && is_object( $order ) ) {
+	$theorder = $order;
+}
 $order_obj    = $theorder;
 $order_id     = $order_obj->get_id();
-$return_datas = get_post_meta( $order_id, 'wps_rma_return_product', true );
+$return_datas = wps_rma_get_meta_data( $order_id, 'wps_rma_return_product', true );
 $item_type    =
 // Order Item Type.
 apply_filters( 'woocommerce_admin_order_item_types', 'line_item' );
@@ -125,7 +128,7 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 			}
 			?>
 			<?php
-			$bank_details = get_post_meta( $order_id, 'wps_rma_bank_details', true );
+			$bank_details = wps_rma_get_meta_data( $order_id, 'wps_rma_bank_details', true );
 			if ( ! empty( $bank_details ) ) {
 				?>
 				<p><strong><?php esc_html_e( 'Bank Details', 'woo-refund-and-exchange-lite' ); ?> :</strong><i> <?php echo esc_html( $bank_details ); ?></i></p>
@@ -133,7 +136,7 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 			}
 			?>
 			<?php
-			$req_attachments = get_post_meta( $order_id, 'wps_rma_return_attachment', true );
+			$req_attachments = wps_rma_get_meta_data( $order_id, 'wps_rma_return_attachment', true );
 			if ( isset( $req_attachments ) && ! empty( $req_attachments ) ) {
 				?>
 				<p><b><?php esc_html_e( 'Attachment', 'woo-refund-and-exchange-lite' ); ?> :</b></p>
@@ -186,7 +189,7 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 			<input type="hidden" value="<?php echo esc_html( $return_data['subject'] ); ?>" id="wps_rma_refund_reason">
 			<?php
 			$approve_date          = date_i18n( wc_date_format(), $return_data['approve_date'] );
-			$wps_rma_refund_amount = get_post_meta( $order_id, 'wps_rma_left_amount_done', true );
+			$wps_rma_refund_amount = wps_rma_get_meta_data( $order_id, 'wps_rma_left_amount_done', true );
 			esc_html_e( 'Following product refund request is approved on', 'woo-refund-and-exchange-lite' );
 			?>
 			<b>
@@ -200,7 +203,7 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 			}
 			$manage_stock = get_option( 'wps_rma_refund_manage_stock', 'no' );
 			// to show manage stock button when refund request is approved.
-			$wps_rma_manage_stock_for_return = get_post_meta( $order_id, 'wps_rma_manage_stock_for_return', true );
+			$wps_rma_manage_stock_for_return = wps_rma_get_meta_data( $order_id, 'wps_rma_manage_stock_for_return', true );
 			if ( '' === $wps_rma_manage_stock_for_return ) {
 				$wps_rma_manage_stock_for_return = 'yes';
 			}

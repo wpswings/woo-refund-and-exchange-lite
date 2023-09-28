@@ -9,6 +9,7 @@
  * @subpackage woo-refund-and-exchange-lite/admin
  */
 
+use Automattic\WooCommerce\Internal\DataStores\Orders\CustomOrdersTableController;
 /**
  * The admin-specific functionality of the plugin.
  *
@@ -96,9 +97,10 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			wp_enqueue_style( 'wps-admin-min-css', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/css/woo-refund-and-exchange-lite-admin.min.css', array(), $this->version, 'all' );
 			wp_enqueue_style( 'wps-datatable-css', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/datatables/media/css/jquery.dataTables.min.css', array(), $this->version, 'all' );
 		}
-		if ( ! empty( $screen ) && isset( $screen->id ) && 'shop_order' === $screen->id ) {
+		if ( ! empty( $screen ) && isset( $screen->id ) && 'shop_order' === $screen->id || 'woocommerce_page_wc-orders' === $screen->id ) {
 			wp_enqueue_style( $this->plugin_name, WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/css/wps-order-edit-page-lite.scss.min.css', array(), $this->version, 'all' );
 		}
+		wp_enqueue_style( 'wps-rma-promotional-banner', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/css/woo-refund-and-exchange-lite-banner.css', array(), $this->version, 'all' );
 	}
 
 	/**
@@ -148,7 +150,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				return;
 			}
 		}
-		if ( ! empty( $screen ) && isset( $screen->id ) && 'wp-swings_page_woo_refund_and_exchange_lite_menu' === $screen->id || 'shop_order' === $screen->id || 'plugins' === $screen->id || 'wp-swings_page_home' === $screen->id ) {
+		if ( ! empty( $screen ) && isset( $screen->id ) && 'wp-swings_page_woo_refund_and_exchange_lite_menu' === $screen->id || 'shop_order' === $screen->id || 'plugins' === $screen->id || 'wp-swings_page_home' === $screen->id || 'woocommerce_page_wc-orders' === $screen->id ) {
 			wp_enqueue_script( 'wps-wrael-select2', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/select-2/woo-refund-and-exchange-lite-select2.js', array( 'jquery' ), time(), false );
 			wp_enqueue_script( 'wps-wrael-metarial-js', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/material-design/material-components-web.min.js', array(), time(), false );
 			wp_enqueue_script( 'wps-wrael-metarial-js2', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/material-design/material-components-v5.0-web.min.js', array(), time(), false );
@@ -171,7 +173,18 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			);
 			wp_enqueue_script( $this->plugin_name . 'admin-js' );
 		}
+		wp_enqueue_script( 'wps-rma-promotional-banner', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/js/woo-refund-and-exchange-lite-banner.js', array( 'jquery' ), time(), false );
+		wp_register_script( 'wps-rma-promotional-banner', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/js/woo-refund-and-exchange-lite-banner.js', array( 'jquery' ), $this->version, false );
+			wp_localize_script(
+				$this->plugin_name . 'admin-js',
+				'wrael_admin_param',
+				array(
+					'ajaxurl'                    => admin_url( 'admin-ajax.php' ),
+					'wps_rma_nonce'              => wp_create_nonce( 'wps_rma_ajax_seurity' ),
+				)
+			);
 	}
+
 
 	/**
 	 * Adding settings menu for Woo Refund And Exchange Lite.
@@ -756,10 +769,58 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		return $wps_rma_settings_api;
 	}
 
+
+	/**
+	 * Function to add metabox on the order edit page
+	 *
+	 * @return void
+	 */
+	public function wps_wrma_add_metaboxes() {
+		$screen = wc_get_container()->get( CustomOrdersTableController::class )->custom_orders_table_usage_is_enabled()
+		? wc_get_page_screen_id( 'shop-order' )
+		: 'shop_order';
+
+		$wps_rma_return_enable = get_option( 'wps_rma_refund_enable', 'no' );
+		if ( isset( $wps_rma_return_enable ) && 'on' === $wps_rma_return_enable ) {
+			add_meta_box(
+				'wps_rma_order_refund',
+				esc_html__( 'Refund Requested Products', 'woo-refund-and-exchange-lite' ),
+				array( $this, 'wps_rma_order_return' ),
+				'shop_order'
+			);
+
+			add_meta_box(
+				'wps_rma_order_refund',
+				esc_html__( 'Refund Requested Products', 'woo-refund-and-exchange-lite' ),
+				array( $this, 'wps_rma_order_return_hpos' ),
+				$screen,
+				'advanced',
+				'high'
+			);
+		}
+		$wps_rma_om_enable = get_option( 'wps_rma_general_om', 'no' );
+		if ( 'on' === $wps_rma_om_enable ) {
+			add_meta_box(
+				'wps_rma_order_msg_history',
+				esc_html__( 'Order Message History', 'woo-refund-and-exchange-lite' ),
+				array( $this, 'wps_rma_order_msg_history' ),
+				'shop_order'
+			);
+
+			add_meta_box(
+				'wps_rma_order_msg_history',
+				esc_html__( 'Order Message History', 'woo-refund-and-exchange-lite' ),
+				array( $this, 'wps_rma_order_msg_history_hpos' ),
+				$screen,
+				'advanced',
+				'high'
+			);
+		}
+	}
 	/**
 	 * This function is metabox template for order msg history.
 	 *
-	 * @name ced_rnx_order_msg_history.
+	 * @name wps_rma_order_msg_history.
 	 */
 	public function wps_rma_order_msg_history() {
 		global $post, $thepostid, $theorder;
@@ -775,26 +836,24 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	}
 
 	/**
-	 * Function to add metabox on the order edit page
+	 * This function is metabox template for order msg history.
 	 *
-	 * @return void
+	 * @param object $order .
+	 * @name wps_rma_order_msg_history_hpos.
 	 */
-	public function wps_wrma_add_metaboxes() {
-		$wps_rma_return_enable = get_option( 'wps_rma_refund_enable', 'no' );
-		if ( isset( $wps_rma_return_enable ) && 'on' === $wps_rma_return_enable ) {
-			add_meta_box(
-				'wps_rma_order_refund',
-				esc_html__( 'Refund Requested Products', 'woo-refund-and-exchange-lite' ),
-				array( $this, 'wps_rma_order_return' ),
-				'shop_order'
-			);
-		}
-		add_meta_box(
-			'wps_rma_order_msg_history',
-			esc_html__( 'Order Message History', 'woo-refund-and-exchange-lite' ),
-			array( $this, 'wps_rma_order_msg_history' ),
-			'shop_order'
-		);
+	public function wps_rma_order_msg_history_hpos( $order ) {
+		global $post, $thepostid, $theorder;
+		include_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/woo-refund-and-exchange-lite-order-message-meta.php';
+	}
+
+	/**
+	 * This function is metabox template for order msg history.
+	 *
+	 * @param object $order .
+	 */
+	public function wps_rma_order_return_hpos( $order ) {
+		global $post, $thepostid, $theorder;
+		include_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/woo-refund-and-exchange-lite-return-meta.php';
 	}
 
 	/**
@@ -805,7 +864,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		if ( $check_ajax ) {
 			if ( current_user_can( 'wps-rma-refund-approve' ) ) {
 				$orderid  = isset( $_POST['orderid'] ) ? sanitize_text_field( wp_unslash( $_POST['orderid'] ) ) : '';
-				$products = get_post_meta( $orderid, 'wps_rma_return_product', true );
+				$products = wps_rma_get_meta_data( $orderid, 'wps_rma_return_product', true );
 				$response = wps_rma_return_req_approve_callback( $orderid, $products );
 				echo wp_json_encode( $response );
 			}
@@ -821,7 +880,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		if ( $check_ajax ) {
 			if ( current_user_can( 'wps-rma-refund-cancel' ) ) {
 				$orderid  = isset( $_POST['orderid'] ) ? sanitize_text_field( wp_unslash( $_POST['orderid'] ) ) : '';
-				$products = get_post_meta( $orderid, 'wps_rma_return_product', true );
+				$products = wps_rma_get_meta_data( $orderid, 'wps_rma_return_product', true );
 				$response = wps_rma_return_req_cancel_callback( $orderid, $products );
 				echo wp_json_encode( $response );
 
@@ -841,13 +900,13 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			$response      = array();
 			if ( '' == $refund_method || 'manual_method' === $refund_method ) {
 				$response['refund_method'] = 'manual_method';
-				update_post_meta( $order_id, 'refundable_amount', '0' );
-				update_post_meta( $order_id, 'refund_amount_refunded', '1' );
+				wps_rma_update_meta_data( $order_id, 'refundable_amount', '0' );
+				wps_rma_update_meta_data( $order_id, 'refund_amount_refunded', '1' );
 			} else {
 				do_action( 'wps_rma_refund_price', $_POST );
 				$response['refund_method'] = 'wallet_method';
 			}
-			update_post_meta( $order_id, 'wps_rma_left_amount_done', 'yes' );
+			wps_rma_update_meta_data( $order_id, 'wps_rma_left_amount_done', 'yes' );
 		}
 		echo json_encode( $response );
 		wp_die();
@@ -868,7 +927,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 						// Check already restock the items.
 						$manage_stock = get_option( 'wps_rma_manage_stock_for_return' );
 						if ( 'yes' !== $manage_stock ) {
-							$wps_rma_return_data = get_post_meta( $order_id, 'wps_rma_return_product', true );
+							$wps_rma_return_data = wps_rma_get_meta_data( $order_id, 'wps_rma_return_product', true );
 							if ( is_array( $wps_rma_return_data ) && ! empty( $wps_rma_return_data ) ) {
 								foreach ( $wps_rma_return_data as $date => $requested_data ) {
 									$wps_rma_returned_products = $requested_data['products'];
@@ -892,7 +951,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 													$product->set_stock_quantity( $total_stock );
 												}
 												$product->save();
-												update_post_meta( $order_id, 'wps_rma_manage_stock_for_return', 'no' );
+												wps_rma_update_meta_data( $order_id, 'wps_rma_manage_stock_for_return', 'no' );
 												$response['result'] = 'success';
 												$response['msg']    = esc_html__( 'Product Stock is updated Successfully.', 'woo-refund-and-exchange-lite' );
 												/* translators: %s: search term */
@@ -993,11 +1052,11 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		return 0;
 	}
 
-		/**
-		 * Plugin org setting tab addon
-		 *
-		 * @param array $mwr_default_tabs .
-		 */
+	/**
+	 * Plugin org setting tab addon
+	 *
+	 * @param array $mwr_default_tabs .
+	 */
 	public function wps_rma_plugin_admin_settings_tabs_addon_before( $mwr_default_tabs ) {
 		$rma_pro_activate = 'wps_rma_pro_class';
 		if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
@@ -1175,5 +1234,73 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	public function wps_rma_setting_extend_show_column5( $value, $count ) {
 		$setting_obj = new Wps_Rma_Policies_Settings();
 		$setting_obj->wps_rma_setting_extend_show_column5_set( $value, $count );
+	}
+
+	/**
+	 * Schedule the cron to get the banner info from the server.
+	 */
+	public function wps_rma_set_cron_for_plugin_notification() {
+		$wps_sfw_offset = get_option( 'gmt_offset' );
+		$wps_sfw_time   = time() + $wps_sfw_offset * 60 * 60;
+		if ( ! wp_next_scheduled( 'wps_wgm_check_for_notification_update' ) ) {
+			wp_schedule_event( $wps_sfw_time, 'daily', 'wps_wgm_check_for_notification_update' );
+		}
+	}
+
+	/**
+	 * Save the promotional banner info.
+	 */
+	public function wps_rma_save_banner_info() {
+		$wps_notification_data = $this->wps_sfw_get_update_notification_data();
+		if ( is_array( $wps_notification_data ) && ! empty( $wps_notification_data ) ) {
+			$banner_id    = array_key_exists( 'notification_id', $wps_notification_data[0] ) ? $wps_notification_data[0]['wps_banner_id'] : '';
+			$banner_image = array_key_exists( 'notification_message', $wps_notification_data[0] ) ? $wps_notification_data[0]['wps_banner_image'] : '';
+			$banner_url   = array_key_exists( 'notification_message', $wps_notification_data[0] ) ? $wps_notification_data[0]['wps_banner_url'] : '';
+			$banner_type  = array_key_exists( 'notification_message', $wps_notification_data[0] ) ? $wps_notification_data[0]['wps_banner_type'] : '';
+			update_option( 'wps_wgm_notify_new_banner_id', $banner_id );
+			update_option( 'wps_wgm_notify_new_banner_image', $banner_image );
+			update_option( 'wps_wgm_notify_new_banner_url', $banner_url );
+			if ( 'regular' === $banner_type ) {
+				update_option( 'wps_wgm_notify_hide_baneer_notification', '' );
+			}
+		}
+	}
+
+	/** Fetch the banner info from server throug api call */
+	public function wps_sfw_get_update_notification_data() {
+		$wps_notification_data = array();
+		$url                   = 'https://demo.wpswings.com/client-notification/woo-gift-cards-lite/wps-client-notify.php';
+		$attr                  = array(
+			'action'         => 'wps_notification_fetch',
+			'plugin_version' => WOO_REFUND_AND_EXCHANGE_LITE_VERSION,
+		);
+		$query                 = esc_url_raw( add_query_arg( $attr, $url ) );
+		$response              = wp_remote_get(
+			$query,
+			array(
+				'timeout'   => 20,
+				'sslverify' => false,
+			)
+		);
+
+		if ( is_wp_error( $response ) ) {
+			$error_message = $response->get_error_message();
+			echo '<p><strong>Something went wrong: ' . esc_html( stripslashes( $error_message ) ) . '</strong></p>';
+		} else {
+			$wps_notification_data = json_decode( wp_remote_retrieve_body( $response ), true );
+		}
+		return $wps_notification_data;
+	}
+
+	/** Dismiss the banner */
+	public function wps_rma_dismiss_notice_banner_callback() {
+		if ( isset( $_REQUEST['wps_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['wps_nonce'] ) ), 'wps_rma_ajax_seurity' ) ) {
+
+			$banner_id = get_option( 'wps_wgm_notify_new_banner_id', false );
+			if ( isset( $banner_id ) && '' != $banner_id ) {
+				update_option( 'wps_wgm_notify_hide_baneer_notification', $banner_id );
+			}
+			wp_send_json_success();
+		}
 	}
 }
