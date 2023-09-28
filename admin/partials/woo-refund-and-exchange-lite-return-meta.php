@@ -19,7 +19,7 @@ if ( ! is_int( $thepostid ) && isset( $post ) ) {
 if ( ! is_object( $theorder ) ) {
 	$theorder = wc_get_order( $thepostid );
 }
-if ( isset( $order ) && is_object( $order ) ) {
+if ( isset( $order ) && is_object( $order ) && ! $order instanceof WP_Post ) {
 	$theorder = $order;
 }
 $order_obj    = $theorder;
