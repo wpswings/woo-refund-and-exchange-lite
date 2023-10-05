@@ -7,11 +7,11 @@ jQuery( document ).ready(
                 e.preventDefault();
                 var data = {
                     action:'wps_rma_dismiss_notice_banner',
-                    wps_nonce:wrael_admin_param.wps_rma_nonce
+                    wps_nonce:wrael_banner_param.wps_rma_nonce
                 };
                 $.ajax(
                     {
-                        url: wrael_admin_param.ajaxurl,
+                        url: wrael_banner_param.ajaxurl,
                         type: "POST",
                         data: data,
                         success: function(response)

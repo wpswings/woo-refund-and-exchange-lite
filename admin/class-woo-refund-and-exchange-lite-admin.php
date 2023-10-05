@@ -175,14 +175,14 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		}
 		wp_enqueue_script( 'wps-rma-promotional-banner', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/js/woo-refund-and-exchange-lite-banner.js', array( 'jquery' ), time(), false );
 		wp_register_script( 'wps-rma-promotional-banner', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/js/woo-refund-and-exchange-lite-banner.js', array( 'jquery' ), $this->version, false );
-			wp_localize_script(
-				$this->plugin_name . 'admin-js',
-				'wrael_admin_param',
-				array(
-					'ajaxurl'                    => admin_url( 'admin-ajax.php' ),
-					'wps_rma_nonce'              => wp_create_nonce( 'wps_rma_ajax_seurity' ),
-				)
-			);
+		wp_localize_script(
+			$this->plugin_name . 'admin-js',
+			'wrael_banner_param',
+			array(
+				'ajaxurl'       => admin_url( 'admin-ajax.php' ),
+				'wps_rma_nonce' => wp_create_nonce( 'wps_rma_ajax_seurity' ),
+			)
+		);
 	}
 
 
