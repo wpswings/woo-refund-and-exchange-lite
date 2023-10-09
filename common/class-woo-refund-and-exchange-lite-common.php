@@ -379,7 +379,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			}
 			$flag = wps_rma_lite_send_order_msg_callback( $order_id, $msg, $sender, $to );
 			echo esc_html( $flag );
-			wp_die();
+			wp_die();w
 		}
 	}
 

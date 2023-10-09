@@ -491,8 +491,6 @@ class Woo_Refund_And_Exchange_Lite {
 	 */
 	public function wps_rma_plug_load_template( $path, $params = array() ) {
 
-		// $wrael_file_path = WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . $path;
-
 		if ( file_exists( $path ) ) {
 
 			include $path;
