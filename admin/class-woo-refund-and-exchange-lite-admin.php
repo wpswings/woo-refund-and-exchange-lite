@@ -117,7 +117,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			if ( ! wps_rma_standard_check_multistep() && wps_rma_pro_active() ) {
 				// js for the multistep from.
 				$script_path       = '../../build/index.js';
-				$script_asset_path = WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'build/index.asset.php';
+				$script_asset_path = WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'build/index-asset.php';
 				$script_asset      = file_exists( $script_asset_path )
 					? require $script_asset_path
 					: array(
