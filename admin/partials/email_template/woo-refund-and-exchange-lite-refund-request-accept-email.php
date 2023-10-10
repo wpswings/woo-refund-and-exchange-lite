@@ -9,7 +9,7 @@
  * @subpackage woo-refund-and-exchange-lite/admin/partials
  */
 
-$products = get_post_meta( $order_id, 'wps_rma_return_product', true );
+$products = wps_rma_get_meta_data( $order_id, 'wps_rma_return_product', true );
 if ( isset( $products ) && ! empty( $products ) ) {
 	foreach ( $products as $date => $product ) {
 		if ( 'complete' === $product['status'] ) {

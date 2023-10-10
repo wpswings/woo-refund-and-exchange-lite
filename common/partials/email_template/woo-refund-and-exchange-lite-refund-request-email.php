@@ -9,7 +9,7 @@
  * @subpackage woo-refund-and-exchange-lite/common
  */
 
-$products     = get_post_meta( $order_id, 'wps_rma_return_product', true );
+$products     = wps_rma_get_meta_data( $order_id, 'wps_rma_return_product', true );
 $rr_subject   = '';
 $rr_reason    = '';
 $product_data = '';

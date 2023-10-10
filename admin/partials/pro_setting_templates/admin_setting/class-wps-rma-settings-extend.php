@@ -268,7 +268,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 				'id'          => 'wps_rma_refund_note_text',
 				'value'       => get_option( 'wps_rma_refund_note_text' ),
 				'class'       => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
-				'placeholder' => 'Enter the Product Notes',
+				'placeholder' => esc_html__( 'Enter the Product Notes', 'woo-refund-and-exchange-lite' ),
 			);
 			return $refund_app_setting_extend;
 		}
@@ -500,7 +500,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 				'id'      => 'wps_rma_exchange_note_text',
 				'value'   => get_option( 'wps_rma_exchange_note_text' ),
 				'class'   => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
-				'placeholder' => 'Enter the Product Notes',
+				'placeholder' => esc_html__( 'Enter the Product Notes', 'woo-refund-and-exchange-lite' ),
 			);
 			$wps_rma_settings_exchange[] = array(
 				'title'       => esc_html__( 'Exchange With Same Product Text', 'woo-refund-and-exchange-lite' ),
@@ -650,7 +650,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					'type'        => 'radio-switch',
 					'id'          => 'wps_rma_wallet_plugin',
 					'value'       => get_option( 'wps_rma_wallet_plugin' ),
-					'description' => 'All The Wallet Amount Will Be Migrate Into Wallet System For WooCommerce Plugin For Every Users.',
+					'description' => esc_html__( 'All The Wallet Amount Will Be Migrate Into Wallet System For WooCommerce Plugin For Every Users.', 'woo-refund-and-exchange-lite' ),
 					'show_link'   => true,
 					'class'       => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
 					'options'     => array(
@@ -674,7 +674,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					'type'    => 'radio-switch',
 					'id'      => 'wps_rma_cancel_order_wallet',
 					'value'   => get_option( 'wps_rma_cancel_order_wallet' ),
-					'description' => 'This Feature is not Applicable For COD Order.',
+					'description' => esc_html__( 'This Feature is not Applicable For COD Order', 'woo-refund-and-exchange-lite' ),
 					'class'   => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
 					'options' => array(
 						'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),

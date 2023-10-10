@@ -66,7 +66,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	 * @since    1.0.0
 	 */
 	public function wrael_common_enqueue_scripts() {
-		if ( ( function_exists( 'wps_rma_css_and_js_load_page' ) && wps_rma_css_and_js_load_page() ) || ( function_exists( 'get_current_screen' ) && ! empty( get_current_screen() ) && 'shop_order' === get_current_screen()->id ) ) {
+		if ( ( function_exists( 'wps_rma_css_and_js_load_page' ) && wps_rma_css_and_js_load_page() ) || ( function_exists( 'get_current_screen' ) && ! empty( get_current_screen() ) && ( 'shop_order' === get_current_screen()->id || 'woocommerce_page_wc-orders' === get_current_screen()->id ) ) ) {
 			$pro_active = wps_rma_pro_active();
 			if ( get_current_user_id() > 0 ) {
 				$myaccount_page     = get_option( 'woocommerce_myaccount_page_id' );
@@ -150,7 +150,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 					}
 				}
 
-				$request_files = get_post_meta( $order_id, 'wps_rma_return_attachment', true );
+				$request_files = wps_rma_get_meta_data( $order_id, 'wps_rma_return_attachment', true );
 
 				$pending = true;
 				if ( isset( $request_files ) && ! empty( $request_files ) ) {
@@ -172,7 +172,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 					$request_files[ $date ]['status'] = 'pending';
 				}
 
-				update_post_meta( $order_id, 'wps_rma_return_attachment', $request_files );
+				wps_rma_update_meta_data( $order_id, 'wps_rma_return_attachment', $request_files );
 				echo 'success';
 			}
 			wp_die();
@@ -189,7 +189,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			$order_id = isset( $_POST['orderid'] ) ? sanitize_text_field( wp_unslash( $_POST['orderid'] ) ) : '';
 			$re_bank  = get_option( 'wps_rma_refund_manually_de', false );
 			if ( 'on' === $re_bank && ! empty( $_POST['bankdetails'] ) ) {
-				update_post_meta( $order_id, 'wps_rma_bank_details', sanitize_text_field( wp_unslash( $_POST['bankdetails'] ) ) );
+				wps_rma_update_meta_data( $order_id, 'wps_rma_bank_details', sanitize_text_field( wp_unslash( $_POST['bankdetails'] ) ) );
 			}
 			$refund_method        = isset( $_POST['refund_method'] ) ? sanitize_text_field( wp_unslash( $_POST['refund_method'] ) ) : '';
 			$wallet_enabled       = get_option( 'wps_rma_wallet_enable', 'no' );
@@ -498,7 +498,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	public function wps_rma_woocommerce_get_order_item_totals( $results, $args ) {
 
 		if ( is_account_page() || ( function_exists( 'get_current_screen' ) && isset( get_current_screen()->id ) && ! empty( get_current_screen() ) && 'shop_order' === get_current_screen()->id ) ) {
-			$wps_refund = get_post_meta( $args['parent'], 'wps_rma_refund_info', true );
+			$wps_refund = wps_rma_get_meta_data( $args['parent'], 'wps_rma_refund_info', true );
 
 			foreach ( $results as $key => $value ) {
 				if ( is_object( $value ) && 'shop_order_refund' === $value->get_type() ) {

@@ -177,5 +177,4 @@ class Wps_Rma_Order_Messages_Email extends WC_Email {
 			),
 		);
 	}
-
-} // end \WC_Rma_Order_Messages_Email class
+}

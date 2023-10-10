@@ -274,6 +274,10 @@ class Woo_Refund_And_Exchange_Lite {
 			$this->loader->add_action( 'wps_rma_setting_extend_column1', $wrael_plugin_admin, 'wps_rma_setting_extend_column1', 10 );
 			$this->loader->add_action( 'wps_rma_setting_extend_column3', $wrael_plugin_admin, 'wps_rma_setting_extend_column3' );
 		}
+
+		$this->loader->add_action( 'admin_init', $wrael_plugin_admin, 'wps_rma_set_cron_for_plugin_notification' );
+		$this->loader->add_action( 'wps_wgm_check_for_notification_update', $wrael_plugin_admin, 'wps_rma_save_banner_info' );
+		$this->loader->add_action( 'wp_ajax_wps_rma_dismiss_notice_banner', $wrael_plugin_admin, 'wps_rma_dismiss_notice_banner_callback' );
 	}
 
 	/**
@@ -486,8 +490,6 @@ class Woo_Refund_And_Exchange_Lite {
 	 * @param array  $params parameters to pass to the file for access.
 	 */
 	public function wps_rma_plug_load_template( $path, $params = array() ) {
-
-		// $wrael_file_path = WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . $path;
 
 		if ( file_exists( $path ) ) {
 

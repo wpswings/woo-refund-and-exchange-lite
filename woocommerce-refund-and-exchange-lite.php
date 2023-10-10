@@ -15,7 +15,7 @@
  * Plugin Name:       Return Refund and Exchange for WooCommerce
  * Plugin URI:        https://wordpress.org/plugins/woo-refund-and-exchange-lite/
  * Description:       <code><strong>Return Refund and Exchange for WooCommerce</strong></code> allows users to submit product refund. The plugin provides a dedicated mailing system that would help to communicate better between store owner and customers.This is lite version of WooCommerce Refund And Exchange. <a target="_blank" href="https://wpswings.com/woocommerce-plugins/?utm_source=wpswings-rma-shop&utm_medium=rma-org-backend&utm_campaign=shop-page">Elevate your e-commerce store by exploring more on WP Swings</a>
- * Version:           4.2.2
+ * Version:           4.3.0
  * Author:            WP Swings
  * Author URI:        https://wpswings.com/?utm_source=wpswings-rma-official&utm_medium=rma-org-page&utm_campaign=official
  * Text Domain:       woo-refund-and-exchange-lite
@@ -34,7 +34,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
-
+use Automattic\WooCommerce\Utilities\OrderUtil;
 $activated      = true;
 $active_plugins = get_option( 'active_plugins', array() );
 if ( function_exists( 'is_multisite' ) && is_multisite() ) {
@@ -60,7 +60,7 @@ if ( $activated ) {
 	 * @since 1.0.0
 	 */
 	function define_woo_refund_and_exchange_lite_constants() {
-		woo_refund_and_exchange_lite_constants( 'WOO_REFUND_AND_EXCHANGE_LITE_VERSION', '4.2.2' );
+		woo_refund_and_exchange_lite_constants( 'WOO_REFUND_AND_EXCHANGE_LITE_VERSION', '4.3.0' );
 		woo_refund_and_exchange_lite_constants( 'WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH', plugin_dir_path( __FILE__ ) );
 		woo_refund_and_exchange_lite_constants( 'WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL', plugin_dir_url( __FILE__ ) );
 		woo_refund_and_exchange_lite_constants( 'WOO_REFUND_AND_EXCHANGE_LITE_SERVER_URL', 'https://wpswings.com' );
@@ -125,6 +125,14 @@ if ( $activated ) {
 		}
 		update_option( 'wps_all_plugins_active', $wps_rma_active_plugin );
 	}
+
+	add_action( 'before_woocommerce_init',
+		function() {
+			if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
+				\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+			}
+		}
+	);
 
 	/**
 	 * The code that runs during plugin deactivation.
@@ -231,6 +239,114 @@ if ( $activated ) {
 				$general_settings_url = admin_url( 'admin.php?page=woo_refund_and_exchange_lite_menu' );
 				wp_safe_redirect( $general_settings_url );
 				exit();
+			}
+		}
+	}
+
+	/**
+	 *
+	 * Get the data from the order table if hpos enabled otherwise default working.
+	 *
+	 * @param int    $id .
+	 * @param string $key .
+	 * @param int    $v .
+	 */
+	function wps_rma_get_meta_data( $id, $key, $v ) {
+
+		if ( 'shop_order' === OrderUtil::get_order_type( $id ) && OrderUtil::custom_orders_table_usage_is_enabled() ) {
+			// HPOS usage is enabled.
+			$order    = wc_get_order( $id );
+			$meta_val = $order->get_meta( $key );
+			return $meta_val;
+		} else {
+			// Traditional CPT-based orders are in use.
+			$meta_val = get_post_meta( $id, $key, $v );
+			return $meta_val;
+		}
+	}
+	/**
+	 *
+	 * Update the data into the order table if hpos enabled otherwise default working.
+	 *
+	 * @param int               $id .
+	 * @param string            $key .
+	 * @param init|array|object $value .
+	 */
+	function wps_rma_update_meta_data( $id, $key, $value ) {
+		if ( 'shop_order' === OrderUtil::get_order_type( $id ) && OrderUtil::custom_orders_table_usage_is_enabled() ) {
+			// HPOS usage is enabled.
+			$order = wc_get_order( $id );
+			$order->update_meta_data( $key, $value );
+			$order->save();
+		} else {
+			// Traditional CPT-based orders are in use.
+			update_post_meta( $id, $key, $value );
+		}
+	}
+	add_action( 'admin_notices', 'wps_banner_notification_plugin_html' );
+	if ( ! function_exists( 'wps_banner_notification_plugin_html' ) ) {
+		/**
+		 * Common Function To show banner image.
+		 *
+		 * @return void
+		 */
+		function wps_banner_notification_plugin_html() {
+
+			$screen = get_current_screen();
+			if ( isset( $screen->id ) ) {
+				$pagescreen = $screen->id;
+			}
+			if ( ( isset( $pagescreen ) && 'plugins' === $pagescreen ) || ( 'wp-swings_page_home' == $pagescreen ) ) {
+				$banner_id = get_option( 'wps_wgm_notify_new_banner_id', false );
+				if ( isset( $banner_id ) && '' !== $banner_id ) {
+					$hidden_banner_id            = get_option( 'wps_wgm_notify_hide_baneer_notification', false );
+					$banner_image = get_option( 'wps_wgm_notify_new_banner_image', '' );
+					$banner_url = get_option( 'wps_wgm_notify_new_banner_url', '' );
+					if ( isset( $hidden_banner_id ) && $hidden_banner_id < $banner_id ) {
+						if ( '' !== $banner_image && '' !== $banner_url ) {
+							?>
+								<div class="wps-offer-notice notice notice-warning is-dismissible">
+									<div class="notice-container">
+										<a href="<?php echo esc_url( $banner_url ); ?>" target="_blank"><img src="<?php echo esc_url( $banner_image ); ?>" alt="Subscription cards"/></a>
+									</div>
+									<button type="button" class="notice-dismiss dismiss_banner" id="dismiss-banner"><span class="screen-reader-text">Dismiss this notice.</span></button>
+								</div>
+							<?php
+						}
+					}
+				}
+			}
+		}
+	}
+
+	add_action( 'admin_notices', 'wps_rma_banner_notification_html' );
+	/**
+	 * Function to show banner image based on subscription.
+	 *
+	 * @return void
+	 */
+	function wps_rma_banner_notification_html() {
+		$screen = get_current_screen();
+		if (  isset( $screen->id )  && 'wp-swings_page_woo_refund_and_exchange_lite_menu' === $screen->id ) {
+			$banner_id = get_option( 'wps_wgm_notify_new_banner_id', false );
+			if ( isset( $banner_id ) && '' !== $banner_id ) {
+				$hidden_banner_id            = get_option( 'wps_wgm_notify_hide_baneer_notification', false );
+				$banner_image = get_option( 'wps_wgm_notify_new_banner_image', '' );
+				$banner_url = get_option( 'wps_wgm_notify_new_banner_url', '' );
+				if ( isset( $hidden_banner_id ) && $hidden_banner_id < $banner_id ) {
+
+					if ( '' !== $banner_image && '' !== $banner_url ) {
+
+						?>
+						<div class="wps-offer-notice notice notice-warning is-dismissible">
+							<div class="notice-container">
+								<a href="<?php echo esc_url( $banner_url ); ?>"target="_blank"><img src="<?php echo esc_url( $banner_image ); ?>" alt="Subscription cards"/></a>
+							</div>
+							<button type="button" class="notice-dismiss dismiss_banner" id="dismiss-banner"><span class="screen-reader-text">Dismiss this notice.</span></button>
+						</div>
+						<?php
+					}
+				}
 			}
 		}
 	}

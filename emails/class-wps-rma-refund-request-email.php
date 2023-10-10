@@ -191,5 +191,4 @@ class Wps_Rma_Refund_Request_Email extends WC_Email {
 			),
 		);
 	}
-
-} // end \WPS_Rma_Order_Messages_Email class
+}

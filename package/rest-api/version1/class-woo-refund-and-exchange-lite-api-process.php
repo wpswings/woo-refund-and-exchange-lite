@@ -86,7 +86,7 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 											$product_id = $item->get_product_id();
 										}
 										if ( ( isset( $value->product_id ) && $product_id == $value->product_id ) || ( isset( $value->variation_id ) && $variation_id == $value->variation_id ) ) {
-											$item_refund_already = get_post_meta( $order_id, 'wps_rma_request_made', true );
+											$item_refund_already = wps_rma_get_meta_data( $order_id, 'wps_rma_request_made', true );
 											if ( ! empty( $item_refund_already ) && isset( $item_refund_already[ $item_id ] ) && 'completed' === $item_refund_already[ $item_id ] ) {
 												$flag = false;
 											} elseif ( $value->qty > $item->get_quantity() ) {
@@ -220,7 +220,7 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 						}
 						$wps_rma_resultsdata = wps_rma_save_return_request_callback( $order_id, 'manual_method', $products1 );
 						$flag_refund_made    = false;
-						$products            = get_post_meta( $order_id, 'wps_rma_return_product', true );
+						$products            = wps_rma_get_meta_data( $order_id, 'wps_rma_return_product', true );
 						if ( isset( $products ) && ! empty( $products ) ) {
 							foreach ( $products as $date => $product ) {
 								if ( 'complete' === $product['status'] ) {
@@ -274,7 +274,7 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 			$order_obj             = wc_get_order( $order_id );
 			$flag_completed        = false;
 			if ( ! empty( $order_id ) && ! empty( $order_obj ) ) {
-				$products = get_post_meta( $order_id, 'wps_rma_return_product', true );
+				$products = wps_rma_get_meta_data( $order_id, 'wps_rma_return_product', true );
 				if ( isset( $products ) && ! empty( $products ) ) {
 					foreach ( $products as $date => $product ) {
 						if ( 'pending' === $product['status'] ) {
@@ -325,7 +325,7 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 			$flag_cancel           = false;
 			$order_obj             = wc_get_order( $order_id );
 			if ( ! empty( $order_id ) && ! empty( $order_obj ) ) {
-				$products = get_post_meta( $order_id, 'wps_rma_return_product', true );
+				$products = wps_rma_get_meta_data( $order_id, 'wps_rma_return_product', true );
 				if ( isset( $products ) && ! empty( $products ) ) {
 					foreach ( $products as $date => $product ) {
 						if ( 'pending' === $product['status'] ) {
