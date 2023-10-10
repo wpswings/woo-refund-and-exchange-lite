@@ -73,6 +73,8 @@ Check out [**Return Refund and Exchange For WooCommerce Knowledge Base**](https:
 
 * The RMA exchange Plugin is compatible with the WordPress Multilingual (WPML) plugin for localizing the plugin’s strings.
 
+* WooCommerce RMA plugin is compatible with WooCommerce High-Performance Order Storage (HPOS), an easy-to-understand and solid database structure that uses an alternative storage mechanism for Order Tables to ensure the smooth workflow of your WooCommerce Store.
+
 
 ## WHAT PREMIUM VERSION WOOCOMMERCE REFUND AND EXCHANGE WITH RMA OFFERS
 
@@ -153,7 +155,6 @@ They also receive email notifications at different stages of the refund process,
 Contact the merchant with order-related queries and even attach files if needed, enhancing their ability to communicate with support regarding their purchases.
 * **4. Multilingual Support:** 
 Customers from diverse language backgrounds can benefit from multilingual support when interacting with the return and refund system thanks to WPML compatibility.
-
 
 
 ### TAKE ADVANTAGE OF THE EXCLUSIVE FEATURES OF THE WOOCOMMERCE RMA PLUGIN
