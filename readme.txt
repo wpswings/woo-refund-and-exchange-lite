@@ -6,7 +6,7 @@ Requires at least: 5.5.0
 Tested up to: 6.3.1
 WC requires at least: 5.5.0
 WC tested up to: 8.1.1
-Stable tag: 4.2.2
+Stable tag: 4.3.0
 Requires PHP:  7.2 or Higher
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -76,6 +76,8 @@ Customers can request total or partial WooCommerce refunds (based on the return 
 * The WooCommerce Return and Exchange plugin is also compatible with [**WooCommerce Sequential Order Numbers Pro**](https://www.skyverge.com/product/woocommerce-sequential-order-numbers-pro/) by SkyVerse and [**Sequential Order Numbers for WooCommerce by WebToffee**](https://wordpress.org/plugins/wt-woocommerce-sequential-order-numbers/).
 
 * The RMA exchange Plugin is compatible with the WordPress Multilingual (WPML) plugin for localizing the plugin strings.
+
+* WooCommerce RMA plugin is compatible with WooCommerce High-Performance Order Storage (HPOS), an easy-to-understand and solid database structure that uses an alternative storage mechanism for Order Tables to ensure the smooth workflow of your WooCommerce Store.
 
 == WHAT PREMIUM VERSION WOOCOMMERCE REFUND AND EXCHANGE WITH RMA OFFERS ==
 
@@ -250,6 +252,11 @@ Please visit [**WP Swings Knowledge Base**](https://support.wpswings.com/wordpre
 
 == Changelog ==
 
+= 4.3.0 - Released on 10 October 2023 = 
+* New: Compatibility with WP(6.3.1) and WC(8.1.1) 
+* New: Compatibility with HPOS
+* New: Added Banner image in ORG backend
+
 = 4.2.2 - Released on 25 September 2023 =
 * New: Compatibility with WP(6.3.1) and WC(8.1.1) 
 * New: Added hooks for the RMA Report( Pro ) compatibility
@@ -413,8 +420,7 @@ Please visit [**WP Swings Knowledge Base**](https://support.wpswings.com/wordpre
 
 == Upgrade Notice ==
 
-= 4.2.2 - Released on 25 September 2023 =
+= 4.3.0 - Released on 10 October 2023 = 
 * New: Compatibility with WP(6.3.1) and WC(8.1.1) 
-* New: Added hooks for the RMA Report( Pro ) compatibility
-* Fix: Fix item quantity while request submission
-* Fix: button layout issue with popular themes
+* New: Compatibility with HPOS
+* New: Added Banner image in ORG backend
