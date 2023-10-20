@@ -908,6 +908,20 @@ class Woo_Refund_And_Exchange_Lite {
 							</div>
 							<?php
 							break;
+
+						case 'time':
+							$mwb_wrma_from_time = get_option( $wrael_component['from'], '' );
+							$mwb_wrma_to_time   = get_option( $wrael_component['to'], '' );
+							?>
+							<div class="wps-form-group wps-time-form-group">
+								<th class="titledesc" scope="row">
+									<input type="text" value="<?php echo esc_attr( $mwb_wrma_from_time ); ?>" class="wps_rma_date_time_picker" id="wps_rma_return_from_time" placeholder="hh:mm AM" name="wps_rma_return_from_time"></input>
+								</th>
+								<th class="titledesc" scope="row">
+									<input type="text" value="<?php echo esc_attr( $mwb_wrma_to_time ); ?>" class="wps_rma_date_time_picker" id="wps_rma_return_to_time" placeholder="hh:mm PM" name="wps_rma_return_to_time"></input>
+								</th>
+							</div>
+							<?php
 						default:
 							break;
 					}

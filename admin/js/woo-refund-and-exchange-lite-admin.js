@@ -478,4 +478,10 @@ jQuery(document).ready(function() {
 	})
 	$('.button_wps_rma_pro_div').css('pointer-events','none');
 
+	if ( $( '.wps_rma_date_time_picker' ).length > 0 ) {
+		$( '.wps_rma_date_time_picker' ).timepicker({
+			showPeriod: true,
+		    showLeadingZero: true
+	    });
+	}
 });
