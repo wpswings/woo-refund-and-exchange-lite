@@ -471,7 +471,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				// The refund tab settings.
 				apply_filters( 'wps_rma_refund_settings_array', array() );
 			} elseif ( isset( $_POST['wps_rma_save_text_setting'] ) ) {
-				$wrael_genaral_settings =i
+				$wrael_genaral_settings =
 				// The Order Message tab settings.
 				apply_filters( 'wps_rma_order_message_settings_array', array() );
 			} elseif ( isset( $_POST['wps_rma_save_api_setting'] ) ) {
