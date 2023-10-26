@@ -908,7 +908,6 @@ class Woo_Refund_And_Exchange_Lite {
 							</div>
 							<?php
 							break;
-
 						case 'time':
 							$mwb_wrma_from_time = get_option( $wrael_component['from'], '' );
 							$mwb_wrma_to_time   = get_option( $wrael_component['to'], '' );
@@ -930,6 +929,7 @@ class Woo_Refund_And_Exchange_Lite {
 								</div>
 							</div>
 							<?php
+							break;
 						default:
 							break;
 					}
