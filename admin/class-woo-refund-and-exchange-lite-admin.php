@@ -430,7 +430,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			),
 		);
 		$wrael_settings_general[] = array(
-			'title' => 'Allow the Request Between',
+			'title' => esc_html__( 'Allow the Request Between', 'woo-refund-and-exchange-lite' ),
 			'type'  => 'time',
 			'id'    => 'wps_rma_time_duration',
 			'to'    => 'wps_rma_time_duration_to',
@@ -471,7 +471,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				// The refund tab settings.
 				apply_filters( 'wps_rma_refund_settings_array', array() );
 			} elseif ( isset( $_POST['wps_rma_save_text_setting'] ) ) {
-				$wrael_genaral_settings =
+				$wrael_genaral_settings =i
 				// The Order Message tab settings.
 				apply_filters( 'wps_rma_order_message_settings_array', array() );
 			} elseif ( isset( $_POST['wps_rma_save_api_setting'] ) ) {
