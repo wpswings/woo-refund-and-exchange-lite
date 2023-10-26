@@ -418,12 +418,8 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 			),
 		);
-		$wrael_settings_general   =
-		// To extend the general setting.
-		apply_filters( 'wps_rma_general_setting_extend', $wrael_settings_general );
-
 		$wrael_settings_general[] = array(
-			'title'   => esc_html__( 'Enable Time Based Policy', 'woo-refund-and-exchange-lite' ),
+			'title'   => esc_html__( 'Enable Time Based Policy for Return, Exchange and Cancellation', 'woo-refund-and-exchange-lite' ),
 			'type'    => 'radio-switch',
 			'id'      => 'wps_rma_return_time_policy',
 			'value'   => get_option( 'wps_rma_return_time_policy' ),
@@ -442,6 +438,9 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			'class'       => 'wrael-number-class',
 			'placeholder' => 'hh:mm PM',
 		);
+		$wrael_settings_general   =
+		// To extend the general setting.
+		apply_filters( 'wps_rma_general_setting_extend', $wrael_settings_general );
 		$wrael_settings_general[] = array(
 			'type'        => 'button',
 			'id'          => 'wps_rma_save_general_setting',
