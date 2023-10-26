@@ -914,12 +914,20 @@ class Woo_Refund_And_Exchange_Lite {
 							$mwb_wrma_to_time   = get_option( $wrael_component['to'], '' );
 							?>
 							<div class="wps-form-group wps-time-form-group">
-								<th class="titledesc" scope="row">
-									<input type="text" value="<?php echo esc_attr( $mwb_wrma_from_time ); ?>" class="wps_rma_date_time_picker" id="wps_rma_return_from_time" placeholder="hh:mm AM" name="wps_rma_return_from_time"></input>
-								</th>
-								<th class="titledesc" scope="row">
-									<input type="text" value="<?php echo esc_attr( $mwb_wrma_to_time ); ?>" class="wps_rma_date_time_picker" id="wps_rma_return_to_time" placeholder="hh:mm PM" name="wps_rma_return_to_time"></input>
-								</th>
+								<div class="wps-form-group__label">
+									<label class="wps-form-label" for="<?php echo esc_attr( $wrael_component['id'] ); ?>"><?php echo ( isset( $wrael_component['title'] ) ? esc_html( $wrael_component['title'] ) : '' ); ?></label>
+								</div>
+								<div class="wps-form-group__control">
+									<th class="titledesc" scope="row">
+										<input type="text" value="<?php echo esc_attr( $mwb_wrma_from_time ); ?>" class="wps_rma_date_time_picker1" id="wps_rma_return_from_time" placeholder="hh:mm AM" name="wps_rma_return_from_time"></input>
+									</th>
+									<th class="titledesc" scope="row">
+										<input type="text" value="<?php echo esc_attr( $mwb_wrma_to_time ); ?>" class="wps_rma_date_time_picker2" id="wps_rma_return_to_time" placeholder="hh:mm PM" name="wps_rma_return_to_time"></input>
+									</th>
+									<div class="mdc-text-field-helper-line">
+										<div class="mdc-text-field-helper-text--persistent wps-helper-text" id="" aria-hidden="true"><?php echo ( isset( $wrael_component['description'] ) ? esc_attr( $wrael_component['description'] ) : '' ); ?></div>
+									</div>
+								</div>
 							</div>
 							<?php
 						default:

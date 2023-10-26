@@ -456,10 +456,16 @@ jQuery(document).ready(function() {
 	})
 	$('.button_wps_rma_pro_div').css('pointer-events','none');
 
-	if ( $( '.wps_rma_date_time_picker' ).length > 0 ) {
-		$( '.wps_rma_date_time_picker' ).timepicker({
+	if ( $( '.wps_rma_date_time_picker1' ).length > 0 ) {
+		$( '.wps_rma_date_time_picker1' ).timepicker({
 			showPeriod: true,
-		    showLeadingZero: true
+		    showLeadingZero: true,
+	    });
+	}
+	if ( $( '.wps_rma_date_time_picker2' ).length > 0 ) {
+		$( '.wps_rma_date_time_picker2' ).timepicker({
+			showPeriod: true,
+		    showLeadingZero: true,
 	    });
 	}
 });

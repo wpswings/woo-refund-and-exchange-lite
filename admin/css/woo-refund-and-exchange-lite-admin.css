@@ -1535,8 +1535,8 @@ a.wps-rma__popup-for-pro-link:hover {
   background: transparent;
 }
 
-.wps-time-form-group {
-  margin-left: 0px !important;
+.ui-timepicker-standard {
+  z-index: 99 !important;
 }
 
 @media (max-width: 768px){

@@ -419,24 +419,24 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			),
 		);
 		$wrael_settings_general[] = array(
-			'title'   => esc_html__( 'Enable Time Based Policy for Return, Exchange and Cancellation', 'woo-refund-and-exchange-lite' ),
+			'title'   => esc_html__( 'Enable Time Based Policy for Refund, Exchange and Cancellation', 'woo-refund-and-exchange-lite' ),
 			'type'    => 'radio-switch',
 			'id'      => 'wps_rma_return_time_policy',
 			'value'   => get_option( 'wps_rma_return_time_policy' ),
-			'class'   => 'wrael-number-class',
+			'class'   => 'wrael-number-class wrael-number-class-time',
 			'options' => array(
 				'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
 				'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 			),
 		);
 		$wrael_settings_general[] = array(
-			'title'       => '',
-			'type'        => 'time',
-			'id'          => 'wps_rma_time_duration',
-			'to'          => 'wps_rma_time_duration_to',
-			'from'        => 'wps_rma_time_duration_from',
-			'class'       => 'wrael-number-class',
-			'placeholder' => 'hh:mm PM',
+			'title' => 'Allow the Request Between',
+			'type'  => 'time',
+			'id'    => 'wps_rma_time_duration',
+			'to'    => 'wps_rma_time_duration_to',
+			'from'  => 'wps_rma_time_duration_from',
+			'class' => 'wrael-number-class',
+			'description' => esc_html__( 'Enter a valid time period, For Example:-', 'woo-refund-and-exchange-lite' ) . ' 4:00 AM - 8:30 AM, 8:00 AM - 12 PM, 2:30 PM - 6:30 PM' ,
 		);
 		$wrael_settings_general   =
 		// To extend the general setting.
