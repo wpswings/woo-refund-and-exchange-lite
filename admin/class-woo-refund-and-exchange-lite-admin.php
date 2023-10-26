@@ -517,12 +517,12 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 					$wrael_wps_rma_obj->wps_rma_plug_admin_notice( $wps_rma_error_text, 'success' );
 				}
 			}
-			if ( $_POST['wps_rma_return_from_time'] && $_POST['wps_rma_return_to_time']  ) {
-                $from = $_POST['wps_rma_return_from_time'];
-                $to = $_POST['wps_rma_return_to_time'];
-                update_option( 'wps_rma_time_duration_from', $from );
-                update_option( 'wps_rma_time_duration_to', $to );
-            }
+			if ( isset( $_POST['wps_rma_return_from_time'] ) && $_POST['wps_rma_return_from_time'] && isset( $_POST['wps_rma_return_to_time'] ) && $_POST['wps_rma_return_to_time'] ) {
+				$from = $_POST['wps_rma_return_from_time'];
+				$to   = $_POST['wps_rma_return_to_time'];
+				update_option( 'wps_rma_time_duration_from', $from );
+				update_option( 'wps_rma_time_duration_to', $to );
+			}
 		}
 	}
 
