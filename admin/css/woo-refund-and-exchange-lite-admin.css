@@ -1535,6 +1535,10 @@ a.wps-rma__popup-for-pro-link:hover {
   background: transparent;
 }
 
+.ui-timepicker-standard {
+  z-index: 99 !important;
+}
+
 @media (max-width: 768px){
   .wps-header-container {
     justify-content: flex-start;

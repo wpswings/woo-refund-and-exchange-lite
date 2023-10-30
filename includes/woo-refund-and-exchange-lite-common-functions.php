@@ -10,6 +10,8 @@
  * @subpackage woo-refund-and-exchange-lite/includes
  */
 
+use Automattic\WooCommerce\Utilities\OrderUtil;
+
 if ( ! function_exists( 'wps_rma_show_buttons' ) ) {
 	/**
 	 * Check all the condition whether to show refund buttons or not.
@@ -111,6 +113,13 @@ if ( ! function_exists( 'wps_rma_show_buttons' ) ) {
 				if ( 'complete' === $product['status'] ) {
 					$show_button = esc_html__( 'Refund request is already made and accepted', 'woo-refund-and-exchange-lite' );
 				}
+			}
+		}
+		if ( 'on' === get_option( 'wps_rma_return_time_policy' ) ) {
+			$wps_rma_from_time = get_option( 'wps_rma_time_duration_from', false );
+			$wps_rma_to_time   = get_option( 'wps_rma_time_duration_to', false );
+			if ( $wps_rma_from_time && $wps_rma_to_time && strtotime( current_time('h:i A') ) < strtotime( $wps_rma_from_time ) || strtotime( current_time('h:i A') ) > strtotime( $wps_rma_to_time ) ) {
+				$show_button = ucfirst( $func ) . esc_html__( 'is not available right now', 'woocommerce-rma-for-return-refund-and-exchange' );
 			}
 		}
 		return apply_filters( 'wps_rma_policies_functionality_extend', $show_button, $func, $order, $get_specific_setting );

@@ -100,6 +100,9 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		if ( ! empty( $screen ) && isset( $screen->id ) && 'shop_order' === $screen->id || 'woocommerce_page_wc-orders' === $screen->id ) {
 			wp_enqueue_style( $this->plugin_name, WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/css/wps-order-edit-page-lite.scss.min.css', array(), $this->version, 'all' );
 		}
+		if ( ! empty( $screen ) && isset( $screen->id ) && 'wp-swings_page_woo_refund_and_exchange_lite_menu' === $screen->id ) {
+			wp_enqueue_style( 'wps-rma-style-jqueru-ui', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/css/jquery-ui.css', array(), $this->version, 'all' );
+		}
 		wp_enqueue_style( 'wps-rma-promotional-banner', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/css/woo-refund-and-exchange-lite-banner.css', array(), $this->version, 'all' );
 	}
 
@@ -183,6 +186,9 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				'wps_rma_nonce' => wp_create_nonce( 'wps_rma_ajax_seurity' ),
 			)
 		);
+		if ( ! empty( $screen ) && isset( $screen->id ) && 'wp-swings_page_woo_refund_and_exchange_lite_menu' === $screen->id ) {
+			wp_enqueue_script( 'wps-rma-script-timepicker', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/js/jquery.ui.timepicker.js', array( 'jquery' ), $this->version, true );
+		}
 	}
 
 
@@ -412,6 +418,26 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 			),
 		);
+		$wrael_settings_general[] = array(
+			'title'   => esc_html__( 'Enable Time Based Policy for Refund, Exchange and Cancellation', 'woo-refund-and-exchange-lite' ),
+			'type'    => 'radio-switch',
+			'id'      => 'wps_rma_return_time_policy',
+			'value'   => get_option( 'wps_rma_return_time_policy' ),
+			'class'   => 'wrael-number-class wrael-number-class-time',
+			'options' => array(
+				'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+				'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
+			),
+		);
+		$wrael_settings_general[] = array(
+			'title' => esc_html__( 'Allow the Request Between', 'woo-refund-and-exchange-lite' ),
+			'type'  => 'time',
+			'id'    => 'wps_rma_time_duration',
+			'to'    => 'wps_rma_time_duration_to',
+			'from'  => 'wps_rma_time_duration_from',
+			'class' => 'wrael-number-class',
+			'description' => esc_html__( 'Enter a valid time period, For Example:-', 'woo-refund-and-exchange-lite' ) . ' 4:00 AM - 8:30 AM, 8:00 AM - 12 PM, 2:30 PM - 6:30 PM' ,
+		);
 		$wrael_settings_general   =
 		// To extend the general setting.
 		apply_filters( 'wps_rma_general_setting_extend', $wrael_settings_general );
@@ -489,6 +515,10 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 					$wps_rma_error_text = esc_html__( 'Settings saved !', 'woo-refund-and-exchange-lite' );
 					$wrael_wps_rma_obj->wps_rma_plug_admin_notice( $wps_rma_error_text, 'success' );
 				}
+			}
+			if ( isset( $_POST['wps_rma_return_from_time'] ) && isset( $_POST['wps_rma_return_to_time'] ) ) {
+				update_option( 'wps_rma_time_duration_from', sanitize_text_field( wp_unslash( $_POST['wps_rma_return_from_time'] ) ) );
+				update_option( 'wps_rma_time_duration_to', sanitize_text_field( wp_unslash( $_POST['wps_rma_return_to_time'] ) ) );
 			}
 		}
 	}
