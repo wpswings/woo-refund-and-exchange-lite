@@ -15,7 +15,7 @@
  * Plugin Name:       Return Refund and Exchange for WooCommerce
  * Plugin URI:        https://wordpress.org/plugins/woo-refund-and-exchange-lite/
  * Description:       <code><strong>Return Refund and Exchange for WooCommerce</strong></code> allows users to submit product refund. The plugin provides a dedicated mailing system that would help to communicate better between store owner and customers.This is lite version of WooCommerce Refund And Exchange. <a target="_blank" href="https://wpswings.com/woocommerce-plugins/?utm_source=wpswings-rma-shop&utm_medium=rma-org-backend&utm_campaign=shop-page">Elevate your e-commerce store by exploring more on WP Swings</a>
- * Version:           4.3.3.v
+ * Version:           4.3.3
  * Author:            WP Swings
  * Author URI:        https://wpswings.com/?utm_source=wpswings-rma-official&utm_medium=rma-org-page&utm_campaign=official
  * Text Domain:       woo-refund-and-exchange-lite
@@ -48,10 +48,8 @@ if ( function_exists( 'is_multisite' ) && is_multisite() ) {
 	if ( ! in_array( 'woocommerce/woocommerce.php', $active_plugins, true ) ) {
 		$activated = false;
 	}
-} else {
-	if ( ! in_array( 'woocommerce/woocommerce.php', $active_plugins, true ) ) {
+} elseif ( ! in_array( 'woocommerce/woocommerce.php', $active_plugins, true ) ) {
 		$activated = false;
-	}
 }
 if ( $activated ) {
 	/**
@@ -126,8 +124,9 @@ if ( $activated ) {
 		update_option( 'wps_all_plugins_active', $wps_rma_active_plugin );
 	}
 
-	add_action( 'before_woocommerce_init',
-		function() {
+	add_action(
+		'before_woocommerce_init',
+		function () {
 			if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
 				\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
 			}
@@ -330,7 +329,7 @@ if ( $activated ) {
 	 */
 	function wps_rma_banner_notification_html() {
 		$screen = get_current_screen();
-		if (  isset( $screen->id )  && 'wp-swings_page_woo_refund_and_exchange_lite_menu' === $screen->id ) {
+		if ( isset( $screen->id ) && 'wp-swings_page_woo_refund_and_exchange_lite_menu' === $screen->id ) {
 			$banner_id = get_option( 'wps_wgm_notify_new_banner_id', false );
 			if ( isset( $banner_id ) && '' !== $banner_id ) {
 				$hidden_banner_id            = get_option( 'wps_wgm_notify_hide_baneer_notification', false );

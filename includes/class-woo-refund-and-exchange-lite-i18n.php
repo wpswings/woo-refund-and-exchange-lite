@@ -37,9 +37,5 @@ class Woo_Refund_And_Exchange_Lite_I18n {
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);
-
 	}
-
-
-
 }

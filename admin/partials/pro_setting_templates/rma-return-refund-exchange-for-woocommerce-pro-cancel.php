@@ -38,6 +38,6 @@ $woo_email_url = admin_url() . 'admin.php?page=wc-settings&tab=email&section=wps
 <h6>
 <?php
 /* translators: %s: search term */
-echo sprintf( esc_html__( 'To Configure Cancel Related Email %s.', 'woo-refund-and-exchange-lite' ), '<a class="button_' . esc_html( $rma_pro_activate ) . '" href="' . esc_html( $woo_email_url ) . '">Click Here</a>' );
+printf( esc_html__( 'To Configure Cancel Related Email %s.', 'woo-refund-and-exchange-lite' ), '<a class="button_' . esc_html( $rma_pro_activate ) . '" href="' . esc_html( $woo_email_url ) . '">Click Here</a>' );
 ?>
 </h6>

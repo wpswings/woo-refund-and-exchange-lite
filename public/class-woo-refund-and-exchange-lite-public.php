@@ -48,7 +48,6 @@ class Woo_Refund_And_Exchange_Lite_Public {
 
 		$this->plugin_name = $plugin_name;
 		$this->version     = $version;
-
 	}
 
 	/**
@@ -87,7 +86,6 @@ class Woo_Refund_And_Exchange_Lite_Public {
 			);
 			wp_enqueue_script( $this->plugin_name );
 		}
-
 	}
 
 	/**
@@ -345,13 +343,9 @@ class Woo_Refund_And_Exchange_Lite_Public {
 							?>
 						<?php
 					}
-				} else {
-
-					if ( ! is_wc_endpoint_url( 'order-received' ) ) {
+				} elseif ( ! is_wc_endpoint_url( 'order-received' ) ) {
 
 						esc_html_e( 'No Refund Request Found For this order', 'woo-refund-and-exchange-lite' );
-
-					}
 				}
 				?>
 				</div>
@@ -417,5 +411,4 @@ class Woo_Refund_And_Exchange_Lite_Public {
 		}
 		return $template;
 	}
-
 }

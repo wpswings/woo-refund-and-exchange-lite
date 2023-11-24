@@ -32,7 +32,6 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 		 * @since    1.0.0
 		 */
 		public function __construct() {
-
 		}
 
 		/**

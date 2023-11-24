@@ -61,7 +61,6 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		}
 		$this->plugin_name = $plugin_name;
 		$this->version     = $version;
-
 	}
 
 	/**
@@ -436,7 +435,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			'to'    => 'wps_rma_time_duration_to',
 			'from'  => 'wps_rma_time_duration_from',
 			'class' => 'wrael-number-class',
-			'description' => esc_html__( 'Enter a valid time period, For Example:-', 'woo-refund-and-exchange-lite' ) . ' 4:00 AM - 8:30 AM, 8:00 AM - 12 PM, 2:30 PM - 6:30 PM' ,
+			'description' => esc_html__( 'Enter a valid time period, For Example:-', 'woo-refund-and-exchange-lite' ) . ' 4:00 AM - 8:30 AM, 8:00 AM - 12 PM, 2:30 PM - 6:30 PM',
 		);
 		$wrael_settings_general   =
 		// To extend the general setting.
@@ -1156,7 +1155,6 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	public function wps_rma_refund_setting_extend( $wps_rma_settings_refund ) {
 		$setting_obj = new Wps_Rma_Settings_Extend();
 		return $setting_obj->wps_rma_refund_setting_extend_set( $wps_rma_settings_refund );
-
 	}
 
 	/**
@@ -1167,7 +1165,6 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	public function wps_rma_refund_appearance_setting_extend( $refund_app_setting_extend ) {
 		$setting_obj = new Wps_Rma_Settings_Extend();
 		return $setting_obj->wps_rma_refund_appearance_setting_extend_set( $refund_app_setting_extend );
-
 	}
 
 	/**
@@ -1188,7 +1185,6 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	public function wps_rma_cancel_settings_array( $wps_rma_settings_cancel ) {
 		$setting_obj = new Wps_Rma_Settings_Extend();
 		return $setting_obj->wps_rma_cancel_settings_array_set( $wps_rma_settings_cancel );
-
 	}
 
 	/**
@@ -1209,7 +1205,6 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	public function wps_rma_order_message_setting_extend( $cancel_setting_array ) {
 		$setting_obj = new Wps_Rma_Settings_Extend();
 		return $setting_obj->wps_rma_order_message_setting_extend_set( $cancel_setting_array );
-
 	}
 
 	/**

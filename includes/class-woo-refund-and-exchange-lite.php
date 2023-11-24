@@ -92,7 +92,6 @@ class Woo_Refund_And_Exchange_Lite {
 		$this->woo_refund_and_exchange_lite_common_hooks();
 
 		$this->woo_refund_and_exchange_lite_api_hooks();
-
 	}
 
 	/**
@@ -117,22 +116,22 @@ class Woo_Refund_And_Exchange_Lite {
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		include_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-woo-refund-and-exchange-lite-loader.php';
+		include_once plugin_dir_path( __DIR__ ) . 'includes/class-woo-refund-and-exchange-lite-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		include_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-woo-refund-and-exchange-lite-i18n.php';
+		include_once plugin_dir_path( __DIR__ ) . 'includes/class-woo-refund-and-exchange-lite-i18n.php';
 
 		if ( is_admin() ) {
 
 			// The class responsible for defining all actions that occur in the admin area.
-			include_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-woo-refund-and-exchange-lite-admin.php';
+			include_once plugin_dir_path( __DIR__ ) . 'admin/class-woo-refund-and-exchange-lite-admin.php';
 
 			// The class responsible for on-boarding steps for plugin.
-			if ( is_dir( plugin_dir_path( dirname( __FILE__ ) ) . 'onboarding' ) && ! class_exists( 'Woo_Refund_And_Exchange_Lite_Onboarding_Steps' ) ) {
-				include_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-woo-refund-and-exchange-lite-onboarding-steps.php';
+			if ( is_dir( plugin_dir_path( __DIR__ ) . 'onboarding' ) && ! class_exists( 'Woo_Refund_And_Exchange_Lite_Onboarding_Steps' ) ) {
+				include_once plugin_dir_path( __DIR__ ) . 'includes/class-woo-refund-and-exchange-lite-onboarding-steps.php';
 			}
 
 			if ( class_exists( 'Woo_Refund_And_Exchange_Lite_Onboarding_Steps' ) ) {
@@ -141,20 +140,19 @@ class Woo_Refund_And_Exchange_Lite {
 		} else {
 
 			// The class responsible for defining all actions that occur in the public-facing side of the site.
-			include_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-woo-refund-and-exchange-lite-public.php';
+			include_once plugin_dir_path( __DIR__ ) . 'public/class-woo-refund-and-exchange-lite-public.php';
 
 		}
 
-		include_once plugin_dir_path( dirname( __FILE__ ) ) . 'package/rest-api/class-woo-refund-and-exchange-lite-rest-api.php';
+		include_once plugin_dir_path( __DIR__ ) . 'package/rest-api/class-woo-refund-and-exchange-lite-rest-api.php';
 
 		/**
 		 * This class responsible for defining common functionality
 		 * of the plugin.
 		 */
-		include_once plugin_dir_path( dirname( __FILE__ ) ) . 'common/class-woo-refund-and-exchange-lite-common.php';
+		include_once plugin_dir_path( __DIR__ ) . 'common/class-woo-refund-and-exchange-lite-common.php';
 
 		$this->loader = new Woo_Refund_And_Exchange_Lite_Loader();
-
 	}
 
 	/**
@@ -170,7 +168,6 @@ class Woo_Refund_And_Exchange_Lite {
 		$plugin_i18n = new Woo_Refund_And_Exchange_Lite_I18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
-
 	}
 
 	/**
@@ -357,7 +354,6 @@ class Woo_Refund_And_Exchange_Lite {
 
 		// template include.
 		$this->loader->add_filter( 'template_include', $wrael_plugin_public, 'wps_rma_product_return_template' );
-
 	}
 
 	/**
@@ -369,7 +365,6 @@ class Woo_Refund_And_Exchange_Lite {
 	private function woo_refund_and_exchange_lite_api_hooks() {
 		$wrael_plugin_api = new Woo_Refund_And_Exchange_Lite_Rest_Api( $this->wrael_get_plugin_name(), $this->wrael_get_version() );
 		$this->loader->add_action( 'rest_api_init', $wrael_plugin_api, 'wps_rma_add_endpoint' );
-
 	}
 
 

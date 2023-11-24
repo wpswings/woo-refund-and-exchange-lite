@@ -46,7 +46,6 @@ class Woo_Refund_And_Exchange_Lite_Loader {
 
 		$this->actions = array();
 		$this->filters = array();
-
 	}
 
 	/**
@@ -101,7 +100,6 @@ class Woo_Refund_And_Exchange_Lite_Loader {
 		);
 
 		return $hooks;
-
 	}
 
 	/**
@@ -118,7 +116,5 @@ class Woo_Refund_And_Exchange_Lite_Loader {
 		foreach ( $this->actions as $hook ) {
 			add_action( $hook['hook'], array( $hook['component'], $hook['callback'] ), $hook['priority'], $hook['accepted_args'] );
 		}
-
 	}
-
 }

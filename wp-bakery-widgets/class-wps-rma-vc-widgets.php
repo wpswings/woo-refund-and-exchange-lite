@@ -39,7 +39,6 @@ if ( ! class_exists( 'Wps_Rma_Vc_Widgets' ) ) {
 				vc_lean_map( 'wps_rma_refund_form', array( 'Wps_Rma_Vc_Widgets', 'wps_rma_refund_form_map' ) );
 				vc_lean_map( 'wps_rma_order_msg', array( 'Wps_Rma_Vc_Widgets', 'wps_rma_order_msg_map' ) );
 			}
-
 		}
 		/** Map shortcode to Vc */
 		public static function wps_rma_refund_form_map() {
@@ -72,7 +71,6 @@ if ( ! class_exists( 'Wps_Rma_Vc_Widgets' ) ) {
 		 */
 		public static function wps_rma_refund_form_shortcode( $atts, $content = null ) {
 			return include_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'public/partials/wps-rma-refund-request-form.php';
-
 		}
 
 		/**
@@ -84,7 +82,6 @@ if ( ! class_exists( 'Wps_Rma_Vc_Widgets' ) ) {
 		public static function wps_rma_order_msg_shortcode( $atts, $content = null ) {
 			$template = include_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'public/partials/wps-rma-view-order-msg.php';
 			return $template;
-
 		}
 	}
 	new Wps_Rma_Vc_Widgets();

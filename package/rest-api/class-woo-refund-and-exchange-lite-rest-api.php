@@ -59,7 +59,6 @@ class Woo_Refund_And_Exchange_Lite_Rest_Api {
 
 		$this->plugin_name = $plugin_name;
 		$this->version     = $version;
-
 	}
 
 
