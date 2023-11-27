@@ -3,10 +3,10 @@ Contributors: wpswings
 Donate link: https://wpswings.com/
 Tags: rma, return, refund, exchange, wallet, cancel-order, warranty
 Requires at least: 5.5.0
-Tested up to: 6.3.2
+Tested up to: 6.4.1
 WC requires at least: 5.5.0
-WC tested up to: 8.2.1
-Stable tag: 4.3.2
+WC tested up to: 8.3.1
+Stable tag: 4.3.3
 Requires PHP:  7.2 or Higher
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -230,6 +230,10 @@ Please visit [**WP Swings Knowledge Base**](https://support.wpswings.com/wordpre
 
 == Changelog ==
 
+= 4.3.3 - Released on 27 October 2023 = 
+* New: Compatibility with WP(6.4.1) and WC(8.3.1)
+* New: Compatibility With Cart and Checkout Block.
+
 = 4.3.2 - Released on 27 October 2023 = 
 * New: Added a feature to allow the Refund, Exchange, and Cancellation for a specific time period.
 * New: Compatibility with WP(6.3.2) and WC(8.2.1)
@@ -405,6 +409,6 @@ Please visit [**WP Swings Knowledge Base**](https://support.wpswings.com/wordpre
 
 == Upgrade Notice ==
 
-= 4.3.2 - Released on 27 October 2023 = 
-* New: Added a feature to allow the Refund, Exchange and Cancellation for a specific time period.
-* New: Compatibility with WP(6.3.2) and WC(8.2.1)
+= 4.3.3 - Released on 27 October 2023 = 
+* New: Compatibility with WP(6.4.1) and WC(8.3.1)
+* New: Compatibility With Cart and Checkout Block.
