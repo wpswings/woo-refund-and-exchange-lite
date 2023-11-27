@@ -340,7 +340,6 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			update_option( 'wps_rma_plugin_standard_multistep_done', 'yes' );
 			restore_current_blog();
 		}
-
 	}
 
 	/**

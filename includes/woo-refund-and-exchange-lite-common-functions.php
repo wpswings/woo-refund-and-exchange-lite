@@ -118,7 +118,7 @@ if ( ! function_exists( 'wps_rma_show_buttons' ) ) {
 		if ( 'on' === get_option( 'wps_rma_return_time_policy' ) ) {
 			$wps_rma_from_time = get_option( 'wps_rma_time_duration_from', false );
 			$wps_rma_to_time   = get_option( 'wps_rma_time_duration_to', false );
-			if ( $wps_rma_from_time && $wps_rma_to_time && strtotime( current_time('h:i A') ) < strtotime( $wps_rma_from_time ) || strtotime( current_time('h:i A') ) > strtotime( $wps_rma_to_time ) ) {
+			if ( $wps_rma_from_time && $wps_rma_to_time && strtotime( current_time( 'h:i A' ) ) < strtotime( $wps_rma_from_time ) || strtotime( current_time( 'h:i A' ) ) > strtotime( $wps_rma_to_time ) ) {
 				$show_button = ucfirst( $func ) . esc_html__( 'is not available right now', 'woocommerce-rma-for-return-refund-and-exchange' );
 			}
 		}

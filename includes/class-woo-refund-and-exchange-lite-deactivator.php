@@ -82,5 +82,4 @@ class Woo_Refund_And_Exchange_Lite_Deactivator {
 		wp_delete_post( $page_id );
 		delete_option( 'wps_rma_view_order_msg_page_id' );
 	}
-
 }

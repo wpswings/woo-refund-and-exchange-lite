@@ -15,16 +15,16 @@
  * Plugin Name:       Return Refund and Exchange for WooCommerce
  * Plugin URI:        https://wordpress.org/plugins/woo-refund-and-exchange-lite/
  * Description:       <code><strong>Return Refund and Exchange for WooCommerce</strong></code> allows users to submit product refund. The plugin provides a dedicated mailing system that would help to communicate better between store owner and customers.This is lite version of WooCommerce Refund And Exchange. <a target="_blank" href="https://wpswings.com/woocommerce-plugins/?utm_source=wpswings-rma-shop&utm_medium=rma-org-backend&utm_campaign=shop-page">Elevate your e-commerce store by exploring more on WP Swings</a>
- * Version:           4.3.2
+ * Version:           4.3.3
  * Author:            WP Swings
  * Author URI:        https://wpswings.com/?utm_source=wpswings-rma-official&utm_medium=rma-org-page&utm_campaign=official
  * Text Domain:       woo-refund-and-exchange-lite
  * Domain Path:       /languages
  *
  * Requires at least: 5.5.0
- * Tested up to: 6.3.2
+ * Tested up to: 6.4.1
  * WC requires at least: 5.5.0
- * WC tested up to: 8.2.1
+ * WC tested up to: 8.3.1
  *
  * License:           GNU General Public License v3.0
  * License URI:       http://www.gnu.org/licenses/gpl-3.0.html
@@ -48,10 +48,8 @@ if ( function_exists( 'is_multisite' ) && is_multisite() ) {
 	if ( ! in_array( 'woocommerce/woocommerce.php', $active_plugins, true ) ) {
 		$activated = false;
 	}
-} else {
-	if ( ! in_array( 'woocommerce/woocommerce.php', $active_plugins, true ) ) {
+} elseif ( ! in_array( 'woocommerce/woocommerce.php', $active_plugins, true ) ) {
 		$activated = false;
-	}
 }
 if ( $activated ) {
 	/**
@@ -60,7 +58,7 @@ if ( $activated ) {
 	 * @since 1.0.0
 	 */
 	function define_woo_refund_and_exchange_lite_constants() {
-		woo_refund_and_exchange_lite_constants( 'WOO_REFUND_AND_EXCHANGE_LITE_VERSION', '4.3.2' );
+		woo_refund_and_exchange_lite_constants( 'WOO_REFUND_AND_EXCHANGE_LITE_VERSION', '4.3.3' );
 		woo_refund_and_exchange_lite_constants( 'WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH', plugin_dir_path( __FILE__ ) );
 		woo_refund_and_exchange_lite_constants( 'WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL', plugin_dir_url( __FILE__ ) );
 		woo_refund_and_exchange_lite_constants( 'WOO_REFUND_AND_EXCHANGE_LITE_SERVER_URL', 'https://wpswings.com' );
@@ -126,8 +124,9 @@ if ( $activated ) {
 		update_option( 'wps_all_plugins_active', $wps_rma_active_plugin );
 	}
 
-	add_action( 'before_woocommerce_init',
-		function() {
+	add_action(
+		'before_woocommerce_init',
+		function () {
 			if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
 				\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
 			}
@@ -330,7 +329,7 @@ if ( $activated ) {
 	 */
 	function wps_rma_banner_notification_html() {
 		$screen = get_current_screen();
-		if (  isset( $screen->id )  && 'wp-swings_page_woo_refund_and_exchange_lite_menu' === $screen->id ) {
+		if ( isset( $screen->id ) && 'wp-swings_page_woo_refund_and_exchange_lite_menu' === $screen->id ) {
 			$banner_id = get_option( 'wps_wgm_notify_new_banner_id', false );
 			if ( isset( $banner_id ) && '' !== $banner_id ) {
 				$hidden_banner_id            = get_option( 'wps_wgm_notify_hide_baneer_notification', false );

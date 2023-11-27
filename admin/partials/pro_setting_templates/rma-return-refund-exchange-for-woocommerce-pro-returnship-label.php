@@ -122,7 +122,7 @@ if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 		<?php
 			$woo_email_url = admin_url() . 'admin.php?page=wc-settings&tab=email&section=wps_rma_returnship_email';
 			/* translators: %s: search term */
-			echo sprintf( esc_html__( 'To Configure Returnship Related Email %s.', 'woo-refund-and-exchange-lite' ), '<a class="button_' . esc_attr( $rma_pro_activate ) . '" href="' . esc_html( $woo_email_url ) . '">Click Here</a>' );
+			printf( esc_html__( 'To Configure Returnship Related Email %s.', 'woo-refund-and-exchange-lite' ), '<a class="button_' . esc_attr( $rma_pro_activate ) . '" href="' . esc_html( $woo_email_url ) . '">Click Here</a>' );
 		?>
 		</h6>
 		<p class="submit">
@@ -509,7 +509,7 @@ if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 							<?php
 							$woo_shiprocket_url = 'https://app.shiprocket.in/api-user';
 							/* translators: %s: search term */
-							echo sprintf( esc_html__( 'To Get Api Details For Shiprocket %s.', 'woo-refund-and-exchange-lite' ), '<a href="' . esc_html( $woo_shiprocket_url ) . '" target="_blank">Click Here</a> Shiprocket Dashboard' );
+							printf( esc_html__( 'To Get Api Details For Shiprocket %s.', 'woo-refund-and-exchange-lite' ), '<a href="' . esc_html( $woo_shiprocket_url ) . '" target="_blank">Click Here</a> Shiprocket Dashboard' );
 							?>
 						</h6>
 						<br>
@@ -541,7 +541,7 @@ if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 							<?php
 							$woo_shiprocket_channel_url = 'https://app.shiprocket.in/seller/channels';
 							/* translators: %s: search term */
-							echo sprintf( esc_html__( 'To Get Channel Details Form Shiprocket %s.', 'woo-refund-and-exchange-lite' ), '<a href="' . esc_html( $woo_shiprocket_channel_url ) . '" target="_blank">Click Here</a> Shiprocket Dashboard' );
+							printf( esc_html__( 'To Get Channel Details Form Shiprocket %s.', 'woo-refund-and-exchange-lite' ), '<a href="' . esc_html( $woo_shiprocket_channel_url ) . '" target="_blank">Click Here</a> Shiprocket Dashboard' );
 							?>
 						</h6>
 					</div>

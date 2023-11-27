@@ -21,4 +21,3 @@ $message        =
 $attachment     = array();
 $customer_email = WC()->mailer()->emails['wps_rma_refund_request_cancel_email'];
 $customer_email->trigger( $message, $attachment, $order_obj->get_billing_email(), $order_id );
-

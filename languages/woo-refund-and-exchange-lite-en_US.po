@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2023-10-27 10:54+0530\n"
-"PO-Revision-Date: 2023-10-27 10:54+0530\n"
+"POT-Creation-Date: 2023-11-27 11:27+0530\n"
+"PO-Revision-Date: 2023-11-27 11:27+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -12,28 +12,28 @@ msgstr ""
 "X-Generator: Poedit 3.4.1\n"
 "X-Poedit-Basepath: .\n"
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:174
+#: admin/class-woo-refund-and-exchange-lite-admin.php:173
 msgid "Policy already exists"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:203
+#: admin/class-woo-refund-and-exchange-lite-admin.php:202
 msgid "WP Swings"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:388
+#: admin/class-woo-refund-and-exchange-lite-admin.php:387
 msgid "Enable Refund"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:394
-#: admin/class-woo-refund-and-exchange-lite-admin.php:405
-#: admin/class-woo-refund-and-exchange-lite-admin.php:417
-#: admin/class-woo-refund-and-exchange-lite-admin.php:428
-#: admin/class-woo-refund-and-exchange-lite-admin.php:575
-#: admin/class-woo-refund-and-exchange-lite-admin.php:586
-#: admin/class-woo-refund-and-exchange-lite-admin.php:625
-#: admin/class-woo-refund-and-exchange-lite-admin.php:646
-#: admin/class-woo-refund-and-exchange-lite-admin.php:717
-#: admin/class-woo-refund-and-exchange-lite-admin.php:773
+#: admin/class-woo-refund-and-exchange-lite-admin.php:393
+#: admin/class-woo-refund-and-exchange-lite-admin.php:404
+#: admin/class-woo-refund-and-exchange-lite-admin.php:416
+#: admin/class-woo-refund-and-exchange-lite-admin.php:427
+#: admin/class-woo-refund-and-exchange-lite-admin.php:574
+#: admin/class-woo-refund-and-exchange-lite-admin.php:585
+#: admin/class-woo-refund-and-exchange-lite-admin.php:624
+#: admin/class-woo-refund-and-exchange-lite-admin.php:645
+#: admin/class-woo-refund-and-exchange-lite-admin.php:716
+#: admin/class-woo-refund-and-exchange-lite-admin.php:772
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:53
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:65
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:76
@@ -69,16 +69,16 @@ msgstr ""
 msgid "YES"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:395
-#: admin/class-woo-refund-and-exchange-lite-admin.php:406
-#: admin/class-woo-refund-and-exchange-lite-admin.php:418
-#: admin/class-woo-refund-and-exchange-lite-admin.php:429
-#: admin/class-woo-refund-and-exchange-lite-admin.php:576
-#: admin/class-woo-refund-and-exchange-lite-admin.php:587
-#: admin/class-woo-refund-and-exchange-lite-admin.php:626
-#: admin/class-woo-refund-and-exchange-lite-admin.php:647
-#: admin/class-woo-refund-and-exchange-lite-admin.php:718
-#: admin/class-woo-refund-and-exchange-lite-admin.php:774
+#: admin/class-woo-refund-and-exchange-lite-admin.php:394
+#: admin/class-woo-refund-and-exchange-lite-admin.php:405
+#: admin/class-woo-refund-and-exchange-lite-admin.php:417
+#: admin/class-woo-refund-and-exchange-lite-admin.php:428
+#: admin/class-woo-refund-and-exchange-lite-admin.php:575
+#: admin/class-woo-refund-and-exchange-lite-admin.php:586
+#: admin/class-woo-refund-and-exchange-lite-admin.php:625
+#: admin/class-woo-refund-and-exchange-lite-admin.php:646
+#: admin/class-woo-refund-and-exchange-lite-admin.php:717
+#: admin/class-woo-refund-and-exchange-lite-admin.php:773
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:54
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:66
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:77
@@ -114,30 +114,30 @@ msgstr ""
 msgid "NO"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:399
+#: admin/class-woo-refund-and-exchange-lite-admin.php:398
 msgid "Enable Order Messages"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:411
+#: admin/class-woo-refund-and-exchange-lite-admin.php:410
 msgid "Enable to Show Bank Details Field For Manual Refund"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:422
+#: admin/class-woo-refund-and-exchange-lite-admin.php:421
 msgid "Enable Time Based Policy for Refund, Exchange and Cancellation"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:433
+#: admin/class-woo-refund-and-exchange-lite-admin.php:432
 msgid "Allow the Request Between"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:439
+#: admin/class-woo-refund-and-exchange-lite-admin.php:438
 msgid "Enter a valid time period, For Example:-"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:447
-#: admin/class-woo-refund-and-exchange-lite-admin.php:692
-#: admin/class-woo-refund-and-exchange-lite-admin.php:754
-#: admin/class-woo-refund-and-exchange-lite-admin.php:795
+#: admin/class-woo-refund-and-exchange-lite-admin.php:446
+#: admin/class-woo-refund-and-exchange-lite-admin.php:691
+#: admin/class-woo-refund-and-exchange-lite-admin.php:753
+#: admin/class-woo-refund-and-exchange-lite-admin.php:794
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:537
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:635
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:703
@@ -145,204 +145,204 @@ msgstr ""
 msgid "Save Setting"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:512
+#: admin/class-woo-refund-and-exchange-lite-admin.php:511
 msgid "Id of some field is missing"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:515
-#: admin/class-woo-refund-and-exchange-lite-admin.php:1030
+#: admin/class-woo-refund-and-exchange-lite-admin.php:514
+#: admin/class-woo-refund-and-exchange-lite-admin.php:1029
 msgid "Settings saved !"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:548
+#: admin/class-woo-refund-and-exchange-lite-admin.php:547
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:283
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:550
 msgid "Order Page"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:549
+#: admin/class-woo-refund-and-exchange-lite-admin.php:548
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:284
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:551
 msgid "Order View Page"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:550
+#: admin/class-woo-refund-and-exchange-lite-admin.php:549
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:285
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:552
 msgid "Thank You Page"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:553
-#: admin/class-woo-refund-and-exchange-lite-admin.php:705
+#: admin/class-woo-refund-and-exchange-lite-admin.php:552
+#: admin/class-woo-refund-and-exchange-lite-admin.php:704
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:288
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:555
 msgid "Default"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:559
+#: admin/class-woo-refund-and-exchange-lite-admin.php:558
 msgid "Select Pages To Hide Refund Button"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:569
+#: admin/class-woo-refund-and-exchange-lite-admin.php:568
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:315
 msgid "Enable to show Manage Stock Button"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:580
-#: admin/class-woo-refund-and-exchange-lite-admin.php:711
+#: admin/class-woo-refund-and-exchange-lite-admin.php:579
+#: admin/class-woo-refund-and-exchange-lite-admin.php:710
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:326
 msgid "Enable Attachment"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:591
+#: admin/class-woo-refund-and-exchange-lite-admin.php:590
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:337
 msgid "Attachement Limit"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:593
+#: admin/class-woo-refund-and-exchange-lite-admin.php:592
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:339
 msgid "By default, It will take 5. If not given any."
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:611
+#: admin/class-woo-refund-and-exchange-lite-admin.php:610
 msgid "Refund Button Text"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:616
+#: admin/class-woo-refund-and-exchange-lite-admin.php:615
 msgid "Write the Refund Button Text"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:619
+#: admin/class-woo-refund-and-exchange-lite-admin.php:618
 msgid "Enable Refund Reason Description"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:630
+#: admin/class-woo-refund-and-exchange-lite-admin.php:629
 msgid "Predefined Refund Reason"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:637
+#: admin/class-woo-refund-and-exchange-lite-admin.php:636
 msgid "Write Multiple Refund Reason Separated by Comma"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:640
+#: admin/class-woo-refund-and-exchange-lite-admin.php:639
 msgid "Enable Refund Rules"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:651
+#: admin/class-woo-refund-and-exchange-lite-admin.php:650
 msgid "Refund Rules Editor"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:659
+#: admin/class-woo-refund-and-exchange-lite-admin.php:658
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:461
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:623
 msgid "Select The Page To Redirect"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:669
+#: admin/class-woo-refund-and-exchange-lite-admin.php:668
 msgid "Refund Form Wrapper Class"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:674
+#: admin/class-woo-refund-and-exchange-lite-admin.php:673
 msgid "Enter Refund Form Wrapper Class"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:677
+#: admin/class-woo-refund-and-exchange-lite-admin.php:676
 msgid "Refund Form Custom CSS"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:684
+#: admin/class-woo-refund-and-exchange-lite-admin.php:683
 msgid "Write the Refund Form CSS"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:731
+#: admin/class-woo-refund-and-exchange-lite-admin.php:730
 msgid "Order Message Button Text"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:736
+#: admin/class-woo-refund-and-exchange-lite-admin.php:735
 msgid "Enter Order Message Button Text"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:740
+#: admin/class-woo-refund-and-exchange-lite-admin.php:739
 msgid "Select the Page to Redirect"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:767
+#: admin/class-woo-refund-and-exchange-lite-admin.php:766
 msgid "Enable API"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:778
+#: admin/class-woo-refund-and-exchange-lite-admin.php:777
 msgid "Secret Key"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:784
+#: admin/class-woo-refund-and-exchange-lite-admin.php:783
 msgid "Please Generate the Secret Key"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:789
+#: admin/class-woo-refund-and-exchange-lite-admin.php:788
 msgid "Generate Key"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:817
-#: admin/class-woo-refund-and-exchange-lite-admin.php:824
+#: admin/class-woo-refund-and-exchange-lite-admin.php:816
+#: admin/class-woo-refund-and-exchange-lite-admin.php:823
 msgid "Refund Requested Products"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:835
-#: admin/class-woo-refund-and-exchange-lite-admin.php:842
+#: admin/class-woo-refund-and-exchange-lite-admin.php:834
+#: admin/class-woo-refund-and-exchange-lite-admin.php:841
 msgid "Order Message History"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:986
+#: admin/class-woo-refund-and-exchange-lite-admin.php:985
 msgid "Product Stock is updated Successfully."
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:988
+#: admin/class-woo-refund-and-exchange-lite-admin.php:987
 #, php-format
 msgid "%s Product Stock is updated Successfully."
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:991
+#: admin/class-woo-refund-and-exchange-lite-admin.php:990
 msgid ""
 "Product Stock is not updated as manage stock setting of product is disable."
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:993
+#: admin/class-woo-refund-and-exchange-lite-admin.php:992
 #, php-format
 msgid ""
 "%s Product Stock is not updated as manage stock setting of product is "
 "disable."
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:1053
+#: admin/class-woo-refund-and-exchange-lite-admin.php:1052
 msgid "RMA Configuration"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:1055
+#: admin/class-woo-refund-and-exchange-lite-admin.php:1054
 msgid "Refund-Exchange Lite"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:1096
+#: admin/class-woo-refund-and-exchange-lite-admin.php:1095
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-policies-settings.php:46
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-policies-settings.php:56
-#: public/class-woo-refund-and-exchange-lite-public.php:223
+#: public/class-woo-refund-and-exchange-lite-public.php:221
 msgid "Exchange"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:1102
+#: admin/class-woo-refund-and-exchange-lite-admin.php:1101
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-policies-settings.php:47
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-policies-settings.php:57
 msgid "Cancel"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:1121
+#: admin/class-woo-refund-and-exchange-lite-admin.php:1120
 msgid "Wallet"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:1127
+#: admin/class-woo-refund-and-exchange-lite-admin.php:1126
 msgid "Global Shipping"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:1133
+#: admin/class-woo-refund-and-exchange-lite-admin.php:1132
 msgid "Integration"
 msgstr ""
 
@@ -352,7 +352,7 @@ msgstr ""
 
 #: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:38
 #: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:45
-#: public/class-woo-refund-and-exchange-lite-public.php:245
+#: public/class-woo-refund-and-exchange-lite-public.php:243
 #: public/partials/wps-rma-refund-request-form.php:88
 msgid "Product"
 msgstr ""
@@ -383,7 +383,7 @@ msgstr ""
 
 #: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:90
 #: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:96
-#: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:362
+#: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:361
 msgid "Email"
 msgstr ""
 
@@ -957,22 +957,22 @@ msgid "RETURN REFUND AND EXCHANGE FOR WOOCOMMERCE"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-admin-dashboard.php:55
-#: woocommerce-refund-and-exchange-lite.php:221
+#: woocommerce-refund-and-exchange-lite.php:220
 msgid "GO PRO"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-admin-dashboard.php:57
-#: woocommerce-refund-and-exchange-lite.php:199
+#: woocommerce-refund-and-exchange-lite.php:198
 msgid "Documentation"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-admin-dashboard.php:59
-#: woocommerce-refund-and-exchange-lite.php:200
+#: woocommerce-refund-and-exchange-lite.php:199
 msgid "Video"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-admin-dashboard.php:61
-#: woocommerce-refund-and-exchange-lite.php:201
+#: woocommerce-refund-and-exchange-lite.php:200
 msgid "Support"
 msgstr ""
 
@@ -1182,10 +1182,10 @@ msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-policies.php:37
 #: admin/partials/woo-refund-and-exchange-lite-policies.php:107
-#: includes/class-woo-refund-and-exchange-lite.php:450
-#: public/class-woo-refund-and-exchange-lite-public.php:131
-#: public/class-woo-refund-and-exchange-lite-public.php:192
-#: public/class-woo-refund-and-exchange-lite-public.php:219
+#: includes/class-woo-refund-and-exchange-lite.php:445
+#: public/class-woo-refund-and-exchange-lite-public.php:129
+#: public/class-woo-refund-and-exchange-lite-public.php:190
+#: public/class-woo-refund-and-exchange-lite-public.php:217
 msgid "Refund"
 msgstr ""
 
@@ -1297,7 +1297,7 @@ msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-return-meta.php:49
 #: admin/partials/woo-refund-and-exchange-lite-return-meta.php:105
-#: public/class-woo-refund-and-exchange-lite-public.php:246
+#: public/class-woo-refund-and-exchange-lite-public.php:244
 #: public/partials/wps-rma-refund-request-form.php:90
 msgid "Total"
 msgstr ""
@@ -1312,20 +1312,20 @@ msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-return-meta.php:119
 #: admin/partials/woo-refund-and-exchange-lite-return-meta.php:201
-#: public/class-woo-refund-and-exchange-lite-public.php:312
+#: public/class-woo-refund-and-exchange-lite-public.php:310
 msgid "Refund Amount"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-return-meta.php:123
-#: emails/class-wps-rma-order-messages-email.php:151
-#: emails/class-wps-rma-refund-request-accept-email.php:154
-#: emails/class-wps-rma-refund-request-cancel-email.php:150
-#: emails/class-wps-rma-refund-request-email.php:156
+#: emails/class-wps-rma-order-messages-email.php:150
+#: emails/class-wps-rma-refund-request-accept-email.php:153
+#: emails/class-wps-rma-refund-request-cancel-email.php:149
+#: emails/class-wps-rma-refund-request-email.php:155
 msgid "Subject"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-return-meta.php:126
-#: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:490
+#: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:489
 msgid "Reason"
 msgstr ""
 
@@ -1453,89 +1453,89 @@ msgstr ""
 msgid "Reason of Refund"
 msgstr ""
 
-#: emails/class-wps-rma-order-messages-email.php:103
+#: emails/class-wps-rma-order-messages-email.php:102
 msgid "Your {site_title} order {order_id} message from {message_date}"
 msgstr ""
 
-#: emails/class-wps-rma-order-messages-email.php:110
+#: emails/class-wps-rma-order-messages-email.php:109
 msgid "Thank you"
 msgstr ""
 
-#: emails/class-wps-rma-order-messages-email.php:142
-#: emails/class-wps-rma-refund-request-accept-email.php:145
-#: emails/class-wps-rma-refund-request-cancel-email.php:141
-#: emails/class-wps-rma-refund-request-email.php:147
+#: emails/class-wps-rma-order-messages-email.php:141
+#: emails/class-wps-rma-refund-request-accept-email.php:144
+#: emails/class-wps-rma-refund-request-cancel-email.php:140
+#: emails/class-wps-rma-refund-request-email.php:146
 #, php-format
 msgid "Available placeholders: %s"
 msgstr ""
 
-#: emails/class-wps-rma-order-messages-email.php:159
-#: emails/class-wps-rma-refund-request-accept-email.php:162
-#: emails/class-wps-rma-refund-request-cancel-email.php:158
-#: emails/class-wps-rma-refund-request-email.php:164
+#: emails/class-wps-rma-order-messages-email.php:158
+#: emails/class-wps-rma-refund-request-accept-email.php:161
+#: emails/class-wps-rma-refund-request-cancel-email.php:157
+#: emails/class-wps-rma-refund-request-email.php:163
 msgid "Heading"
+msgstr ""
+
+#: emails/class-wps-rma-order-messages-email.php:172
+#: emails/class-wps-rma-refund-request-accept-email.php:184
+#: emails/class-wps-rma-refund-request-cancel-email.php:180
+#: emails/class-wps-rma-refund-request-email.php:186
+msgid "Plain text"
 msgstr ""
 
 #: emails/class-wps-rma-order-messages-email.php:173
 #: emails/class-wps-rma-refund-request-accept-email.php:185
 #: emails/class-wps-rma-refund-request-cancel-email.php:181
 #: emails/class-wps-rma-refund-request-email.php:187
-msgid "Plain text"
+msgid "HTML"
 msgstr ""
 
 #: emails/class-wps-rma-order-messages-email.php:174
 #: emails/class-wps-rma-refund-request-accept-email.php:186
 #: emails/class-wps-rma-refund-request-cancel-email.php:182
 #: emails/class-wps-rma-refund-request-email.php:188
-msgid "HTML"
-msgstr ""
-
-#: emails/class-wps-rma-order-messages-email.php:175
-#: emails/class-wps-rma-refund-request-accept-email.php:187
-#: emails/class-wps-rma-refund-request-cancel-email.php:183
-#: emails/class-wps-rma-refund-request-email.php:189
 msgid "Multipart"
 msgstr ""
 
-#: emails/class-wps-rma-refund-request-accept-email.php:106
+#: emails/class-wps-rma-refund-request-accept-email.php:105
 msgid "Refund Request Accept for order {order_id} message from {message_date}"
 msgstr ""
 
-#: emails/class-wps-rma-refund-request-accept-email.php:113
+#: emails/class-wps-rma-refund-request-accept-email.php:112
 msgid "Refund Request Accept Email"
+msgstr ""
+
+#: emails/class-wps-rma-refund-request-accept-email.php:169
+#: emails/class-wps-rma-refund-request-cancel-email.php:165
+#: emails/class-wps-rma-refund-request-email.php:171
+msgid "Custom Email"
 msgstr ""
 
 #: emails/class-wps-rma-refund-request-accept-email.php:170
 #: emails/class-wps-rma-refund-request-cancel-email.php:166
 #: emails/class-wps-rma-refund-request-email.php:172
-msgid "Custom Email"
-msgstr ""
-
-#: emails/class-wps-rma-refund-request-accept-email.php:171
-#: emails/class-wps-rma-refund-request-cancel-email.php:167
-#: emails/class-wps-rma-refund-request-email.php:173
 msgid "If N/A then default email will send."
 msgstr ""
 
-#: emails/class-wps-rma-refund-request-accept-email.php:173
-#: emails/class-wps-rma-refund-request-cancel-email.php:169
-#: emails/class-wps-rma-refund-request-email.php:175
+#: emails/class-wps-rma-refund-request-accept-email.php:172
+#: emails/class-wps-rma-refund-request-cancel-email.php:168
+#: emails/class-wps-rma-refund-request-email.php:174
 msgid "N/A"
 msgstr ""
 
-#: emails/class-wps-rma-refund-request-cancel-email.php:103
+#: emails/class-wps-rma-refund-request-cancel-email.php:102
 msgid "Refund Request Cancel for order {order_id} message from {message_date}"
 msgstr ""
 
-#: emails/class-wps-rma-refund-request-cancel-email.php:110
+#: emails/class-wps-rma-refund-request-cancel-email.php:109
 msgid "Refund Request Cancel Email"
 msgstr ""
 
-#: emails/class-wps-rma-refund-request-email.php:107
+#: emails/class-wps-rma-refund-request-email.php:106
 msgid "Refund Request for order {order_id} message from {message_date}"
 msgstr ""
 
-#: emails/class-wps-rma-refund-request-email.php:114
+#: emails/class-wps-rma-refund-request-email.php:113
 msgid "Refund Request Email"
 msgstr ""
 
@@ -1552,76 +1552,76 @@ msgid "view-order-msg"
 msgstr ""
 
 #: includes/class-woo-refund-and-exchange-lite-activator.php:100
-#: public/class-woo-refund-and-exchange-lite-public.php:109
+#: public/class-woo-refund-and-exchange-lite-public.php:107
 msgid "View Order Messages"
 msgstr ""
 
-#: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:302
+#: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:301
 msgid "What is your monthly revenue?"
 msgstr ""
 
-#: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:321
+#: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:320
 msgid "What industry defines your business?"
 msgstr ""
 
-#: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:327
+#: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:326
 msgid "Industry Type"
 msgstr ""
 
-#: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:358
+#: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:357
 msgid "What is the best email address to contact you?"
 msgstr ""
 
-#: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:370
+#: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:369
 msgid "What is your contact number?"
 msgstr ""
 
-#: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:375
+#: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:374
 msgid "Contact Number"
 msgstr ""
 
-#: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:486
+#: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:485
 msgid ""
 "Let us know why you are deactivating WooCommerce Refund and Exchange Lite so "
 "we can improve the plugin"
 msgstr ""
 
-#: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:730
+#: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:729
 msgid "Unexpected Error Occured"
 msgstr ""
 
-#: includes/class-woo-refund-and-exchange-lite.php:445
+#: includes/class-woo-refund-and-exchange-lite.php:440
 msgid "General"
 msgstr ""
 
-#: includes/class-woo-refund-and-exchange-lite.php:456
+#: includes/class-woo-refund-and-exchange-lite.php:451
 msgid "RMA Policies"
 msgstr ""
 
-#: includes/class-woo-refund-and-exchange-lite.php:461
+#: includes/class-woo-refund-and-exchange-lite.php:456
 msgid "Order Message"
 msgstr ""
 
-#: includes/class-woo-refund-and-exchange-lite.php:467
+#: includes/class-woo-refund-and-exchange-lite.php:462
 msgid "Developer"
 msgstr ""
 
-#: includes/class-woo-refund-and-exchange-lite.php:472
+#: includes/class-woo-refund-and-exchange-lite.php:467
 msgid "API Setting"
 msgstr ""
 
-#: includes/class-woo-refund-and-exchange-lite.php:477
+#: includes/class-woo-refund-and-exchange-lite.php:472
 msgid "Overview"
 msgstr ""
 
-#: includes/class-woo-refund-and-exchange-lite.php:500
+#: includes/class-woo-refund-and-exchange-lite.php:495
 #, php-format
 msgid ""
 "Unable to locate file at location \"%s\". Some features may not work "
 "properly in this plugin. Please contact us!"
 msgstr ""
 
-#: includes/class-woo-refund-and-exchange-lite.php:865
+#: includes/class-woo-refund-and-exchange-lite.php:860
 msgid "max="
 msgstr ""
 
@@ -1723,142 +1723,142 @@ msgstr ""
 msgid "Skip For Now"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:141
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:140
 msgid ""
 "Return Request Already has been made and accepted for the items you have "
 "given"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:145
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:144
 msgid "Quantity given for items is greater than the orders items quantity"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:149
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:148
 msgid "These item id does not belong to the order"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:153
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:152
 msgid "Please give the item ids which needs to be refunded"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:157
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:156
 msgid "Please give the item qty which needs to be refunded"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:161
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:160
 msgid "Products are given by you doesn't a valid json format"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:164
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:167
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:163
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:166
 msgid "Please Provide the data for the products"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:178
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:177
 msgid "Refund Request Send Successfully"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:182
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:242
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:181
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:241
 msgid "Some problem occur while refund requesting"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:234
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:233
 msgid "Return Request Already has been made and accepted"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:238
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:237
 msgid "Return Request Send Successfully"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:251
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:308
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:359
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:250
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:307
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:358
 msgid "Please Provide the order id to perform the process"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:254
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:305
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:356
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:253
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:304
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:355
 msgid "Please Provide the correct order id to perform the process"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:257
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:256
 msgid "Please Provide the reason for refund"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:291
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:290
 msgid "Return Request Accepted Successfully"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:294
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:293
 msgid "Some problem occur while refund request accepting"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:298
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:297
 msgid "You have approved the refund request already"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:301
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:300
 msgid ""
 "You can only accept the refund request when the request has been made earlier"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:342
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:341
 msgid "Return Request Cancel Successfully"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:345
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:344
 msgid "Some problem occur while refund request cancelling"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:349
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:348
 msgid "You have cancelled the refund request already"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:352
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:351
 msgid ""
 "You can only perform the refund request cancel when the request request has "
 "been made earlier"
 msgstr ""
 
-#: public/class-woo-refund-and-exchange-lite-public.php:80
+#: public/class-woo-refund-and-exchange-lite-public.php:79
 msgid "Please enter refund subject."
 msgstr ""
 
-#: public/class-woo-refund-and-exchange-lite-public.php:81
+#: public/class-woo-refund-and-exchange-lite-public.php:80
 msgid "Please enter refund reason."
 msgstr ""
 
-#: public/class-woo-refund-and-exchange-lite-public.php:82
+#: public/class-woo-refund-and-exchange-lite-public.php:81
 msgid "Please select product to refund."
 msgstr ""
 
-#: public/class-woo-refund-and-exchange-lite-public.php:162
+#: public/class-woo-refund-and-exchange-lite-public.php:160
 msgid "View Order Message"
 msgstr ""
 
-#: public/class-woo-refund-and-exchange-lite-public.php:235
+#: public/class-woo-refund-and-exchange-lite-public.php:233
 msgid "Refund Requested Product"
 msgstr ""
 
-#: public/class-woo-refund-and-exchange-lite-public.php:241
+#: public/class-woo-refund-and-exchange-lite-public.php:239
 msgid "Following product Refund request made on"
 msgstr ""
 
-#: public/class-woo-refund-and-exchange-lite-public.php:327
+#: public/class-woo-refund-and-exchange-lite-public.php:325
 msgid "Update Request"
 msgstr ""
 
-#: public/class-woo-refund-and-exchange-lite-public.php:335
+#: public/class-woo-refund-and-exchange-lite-public.php:333
 msgid "The above product Refund request is approved on"
 msgstr ""
 
-#: public/class-woo-refund-and-exchange-lite-public.php:342
+#: public/class-woo-refund-and-exchange-lite-public.php:340
 msgid "The above product Refund request is cancelled on"
 msgstr ""
 
-#: public/class-woo-refund-and-exchange-lite-public.php:352
+#: public/class-woo-refund-and-exchange-lite-public.php:348
 msgid "No Refund Request Found For this order"
 msgstr ""
 
@@ -1927,7 +1927,7 @@ msgstr ""
 msgid "Submit Request"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:428
+#: public/partials/wps-rma-refund-request-form.php:427
 msgid "Refund Request Can't make on this order"
 msgstr ""
 
@@ -1939,46 +1939,46 @@ msgstr ""
 msgid "Attachment :"
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:116
-#: woocommerce-refund-and-exchange-lite.php:122
+#: woocommerce-refund-and-exchange-lite.php:114
+#: woocommerce-refund-and-exchange-lite.php:120
 msgid "Woo Refund And Exchange Lite"
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:198
+#: woocommerce-refund-and-exchange-lite.php:197
 msgid "Demo"
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:202
+#: woocommerce-refund-and-exchange-lite.php:201
 msgid "Services"
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:223
+#: woocommerce-refund-and-exchange-lite.php:222
 msgid "Settings"
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:363
+#: woocommerce-refund-and-exchange-lite.php:362
 msgid ""
 "Woocommerce is not activated, Please activate Woocommerce first to install "
 "WooCommerce Refund and Exchange Lite."
 msgstr ""
 
-#: wp-bakery-widgets/class-wps-rma-vc-widgets.php:47
+#: wp-bakery-widgets/class-wps-rma-vc-widgets.php:46
 msgid "Refund Form"
 msgstr ""
 
-#: wp-bakery-widgets/class-wps-rma-vc-widgets.php:48
+#: wp-bakery-widgets/class-wps-rma-vc-widgets.php:47
 msgid "Add Refund Form into your page"
 msgstr ""
 
-#: wp-bakery-widgets/class-wps-rma-vc-widgets.php:50
-#: wp-bakery-widgets/class-wps-rma-vc-widgets.php:60
+#: wp-bakery-widgets/class-wps-rma-vc-widgets.php:49
+#: wp-bakery-widgets/class-wps-rma-vc-widgets.php:59
 msgid "RMA FORMS"
 msgstr ""
 
-#: wp-bakery-widgets/class-wps-rma-vc-widgets.php:57
+#: wp-bakery-widgets/class-wps-rma-vc-widgets.php:56
 msgid "Order Message Form"
 msgstr ""
 
-#: wp-bakery-widgets/class-wps-rma-vc-widgets.php:58
+#: wp-bakery-widgets/class-wps-rma-vc-widgets.php:57
 msgid "Add Order Message Form into your page"
 msgstr ""

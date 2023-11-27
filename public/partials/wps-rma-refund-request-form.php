@@ -421,12 +421,10 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 		</div>
 	</div>
 	<?php
-} else {
-	if ( isset( $condition ) ) {
+} elseif ( isset( $condition ) ) {
 		echo wp_kses_post( $condition );
-	} else {
-		echo esc_html__( 'Refund Request Can\'t make on this order', 'woo-refund-and-exchange-lite' );
-	}
+} else {
+	echo esc_html__( 'Refund Request Can\'t make on this order', 'woo-refund-and-exchange-lite' );
 }
 $wps_wrma_show_sidebar_on_form =
 // Side show/hide on refund request form.
