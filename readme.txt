@@ -217,7 +217,7 @@ Please visit [**WP Swings Knowledge Base**](https://support.wpswings.com/wordpre
 4. Submit the request.
 5. Refund and manage the account by a merchant.
 6. Order message frontend.
-7. Order message backend.
+7. Order message backend.Compatibility With Woocommerce Cart and Checkout Block.
 8. Accept and cancel the refund request by a merchant.
 9. Manage the refunded product Stock.
 10. Send the mail by admin to the customer.
@@ -232,7 +232,7 @@ Please visit [**WP Swings Knowledge Base**](https://support.wpswings.com/wordpre
 
 = 4.3.3 - Released on 27 October 2023 = 
 * New: Compatibility with WP(6.4.1) and WC(8.3.1)
-* New: Compatibility With Cart and Checkout Block.
+* New: Compatibility With Woocommerce Cart and Checkout Block.
 
 = 4.3.2 - Released on 27 October 2023 = 
 * New: Added a feature to allow the Refund, Exchange, and Cancellation for a specific time period.
@@ -264,7 +264,7 @@ Please visit [**WP Swings Knowledge Base**](https://support.wpswings.com/wordpre
 
 = 4.1.3 - Released on 26 May 2023 =
 * New: Compatibility with the Latest WP (6.2.2) and WC (7.7.0).
-* New: The pro setting with tag.
+* New: The pro setting with tag.Compatibility With Woocommerce Cart and Checkout Block.
 * New: Minor bug fixes.
 
 = 4.1.2 - Released on 26 April 2023 =
@@ -411,4 +411,4 @@ Please visit [**WP Swings Knowledge Base**](https://support.wpswings.com/wordpre
 
 = 4.3.3 - Released on 27 October 2023 = 
 * New: Compatibility with WP(6.4.1) and WC(8.3.1)
-* New: Compatibility With Cart and Checkout Block.
+* New: Compatibility With Woocommerce Cart and Checkout Block.
