@@ -230,7 +230,7 @@ Please visit [**WP Swings Knowledge Base**](https://support.wpswings.com/wordpre
 
 == Changelog ==
 
-= 4.3.3 - Released on 27 October 2023 = 
+= 4.3.3 - Released on 27 November 2023 = 
 * New: Compatibility with WP(6.4.1) and WC(8.3.1)
 * New: Compatibility With Woocommerce Cart and Checkout Block.
 
@@ -409,6 +409,6 @@ Please visit [**WP Swings Knowledge Base**](https://support.wpswings.com/wordpre
 
 == Upgrade Notice ==
 
-= 4.3.3 - Released on 27 October 2023 = 
+= 4.3.3 - Released on 27 November 2023 = 
 * New: Compatibility with WP(6.4.1) and WC(8.3.1)
 * New: Compatibility With Woocommerce Cart and Checkout Block.
