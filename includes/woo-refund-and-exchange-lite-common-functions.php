@@ -325,7 +325,7 @@ if ( ! function_exists( 'wps_rma_save_return_request_callback' ) ) {
 				$products = array();
 			}
 			$products                    = array();
-			$date                        = date_i18n( wc_date_format(), time() );
+			$date                        = time();
 			$products[ $date ]           = $products1;
 			$products[ $date ]['status'] = 'pending';
 
