@@ -94,7 +94,6 @@ if ( $activated ) {
 	 */
 	function woo_refund_and_exchange_lite_constants( $key, $value ) {
 		if ( ! defined( $key ) ) {
-
 			define( $key, $value );
 		}
 	}
