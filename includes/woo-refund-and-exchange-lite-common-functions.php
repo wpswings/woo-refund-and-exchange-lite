@@ -325,7 +325,7 @@ if ( ! function_exists( 'wps_rma_save_return_request_callback' ) ) {
 				$products = array();
 			}
 			$products                    = array();
-			$date                        = date_i18n( wc_date_format(), time() );
+			$date                        = time();
 			$products[ $date ]           = $products1;
 			$products[ $date ]['status'] = 'pending';
 
@@ -363,7 +363,7 @@ if ( ! function_exists( 'wps_rma_return_req_approve_callback' ) ) {
 				if ( 'pending' === $product['status'] ) {
 					$product_datas                     = $product['products'];
 					$products[ $date ]['status']       = 'complete';
-					$approvdate                        = date_i18n( wc_date_format(), time() );
+					$approvdate                        = time();
 					$products[ $date ]['approve_date'] = $approvdate;
 					break;
 				}
@@ -479,7 +479,7 @@ if ( ! function_exists( 'wps_rma_return_req_cancel_callback' ) ) {
 				if ( 'pending' === $product['status'] ) {
 					$product_datas                    = $product['products'];
 					$products[ $date ]['status']      = 'cancel';
-					$canceldate                       = date_i18n( wc_date_format(), time() );
+					$canceldate                       = time();
 					$products[ $date ]['cancel_date'] = $canceldate;
 					break;
 				}

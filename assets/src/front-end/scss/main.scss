@@ -634,6 +634,7 @@ div.wps_order_msg_single_attachment a .wps_order_msg_attachment_thumbnail{
     padding: 20px 32px;
     margin: 0 !IMPORTANT;
     flex: 1;
+    max-width: 100%;
 }
 
 @media screen and (max-width:768px) {

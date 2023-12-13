@@ -673,6 +673,7 @@ div.wps_order_msg_single_attachment a .wps_order_msg_attachment_thumbnail {
   padding: 20px 32px;
   margin: 0 !important;
   flex: 1;
+  max-width: 100%;
 }
 /* Form end */
 /* Special for Avada start */

@@ -3,10 +3,10 @@ Contributors: wpswings
 Donate link: https://wpswings.com/
 Tags: rma, return, refund, exchange, wallet, cancel-order, warranty
 Requires at least: 5.5.0
-Tested up to: 6.4.1
+Tested up to: 6.4.2
 WC requires at least: 5.5.0
 WC tested up to: 8.3.1
-Stable tag: 4.3.3
+Stable tag: 4.3.4
 Requires PHP:  7.2 or Higher
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -141,7 +141,7 @@ If you need support or have any questions then kindly use our online chat window
 
 > Create and Revamp your eCommerce store with [**WooCommerce Services**](https://wpswings.com/woocommerce-services/?utm_source=wpswings-rma-services&utm_medium=rma-org-page&utm_campaign=woocommerce-services)
 
-> Get Huge Discounts on WooCommerce Refund, Return and Exchange plugin during BFCM Sales 2023 - [**Get More Offers**](https://wpswings.com/offers/?utm_source=wpswings-rma-offers&utm_medium=rma-org-page&utm_campaign=offers)
+> Get Huge Discounts on WooCommerce Refund, Return and Exchange plugin during Christmas Sales 2023 - [**Get More Offers**](https://wpswings.com/offers/?utm_source=wpswings-rma-offers&utm_medium=rma-org-page&utm_campaign=offers)
 
 == Installation ==
 
@@ -230,9 +230,13 @@ Please visit [**WP Swings Knowledge Base**](https://support.wpswings.com/wordpre
 
 == Changelog ==
 
+= 4.3.4 - Released on 12 December 2023 = 
+* New : Latest WP( 6.4.2 ) and WC( 8.3.1 ) Compatibility
+* Fix : Fixed the date format issue
+
 = 4.3.3 - Released on 27 November 2023 = 
 * New: Compatibility with WP(6.4.1) and WC(8.3.1)
-* New: Compatibility With Woocommerce Cart and Checkout Block.
+* New: Compatibility With WooCommerce Cart and Checkout Block.
 
 = 4.3.2 - Released on 27 October 2023 = 
 * New: Added a feature to allow the Refund, Exchange, and Cancellation for a specific time period.
@@ -409,6 +413,7 @@ Please visit [**WP Swings Knowledge Base**](https://support.wpswings.com/wordpre
 
 == Upgrade Notice ==
 
-= 4.3.3 - Released on 27 November 2023 = 
-* New: Compatibility with WP(6.4.1) and WC(8.3.1)
-* New: Compatibility With Woocommerce Cart and Checkout Block.
+= 4.3.4 - Released on 12 December 2023 = 
+* New : Latest WP( 6.4.2 ) and WC( 8.3.1 ) Compatibility
+* Fix : Fixed the date format issue
+
