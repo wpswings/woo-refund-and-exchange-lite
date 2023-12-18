@@ -1,4 +1,4 @@
-[![Build Status](https://img.shields.io/travis/twbs/bootstrap/v4-dev.svg)](https://travis-ci.org/twbs/bootstrap) ![Active installs](https://img.shields.io/badge/Active-4000%2B-brightgreen)![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen)![WP tested](https://img.shields.io/badge/WP%20tested-6.4.1-brightgreen)![WC tested](https://img.shields.io/badge/WC%20tested-8.3.1-brightgreen)![Requires PHP](https://img.shields.io/badge/Requires%20PHP-7.2.0-blue)
+[![Build Status](https://img.shields.io/travis/twbs/bootstrap/v4-dev.svg)](https://travis-ci.org/twbs/bootstrap) ![Active installs](https://img.shields.io/badge/Active-4000%2B-brightgreen)![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen)![WP tested](https://img.shields.io/badge/WP%20tested-6.4.2-brightgreen)![WC tested](https://img.shields.io/badge/WC%20tested-8.4.0-brightgreen)![Requires PHP](https://img.shields.io/badge/Requires%20PHP-7.2.0-blue)
 # Return Refund and Exchange for WooCommerce
 ![Return Refund and Exchange For WooCommerce - Create A Simple Refund System WooCommerce RMA with Exchange, Wallet & Cancel Order Features](https://ps.w.org/woo-refund-and-exchange-lite/assets/banner-772x250.png?rev=2672154)
 * Contributors: WP Swings
@@ -22,21 +22,23 @@ Customers can request full or partial WooCommerce refunds (based on the return p
 
 ## WHAT’S INCLUDED IN OUR RETURN REFUND AND EXCHANGE FOR WOOCOMMERCE PLUGIN
 
-**1) Dedicated WooCommerce refund system**: With our Return Refund and Exchange plugin, merchants can create a dedicated refund system, that offers a money-back guarantee, and where they can build an email template to send to the customers who ask for a refund. Merchants can add the name, email, email header, and footer for their email template
+**1)  Initiate Return, Exchange & Cancellation For A Specific Period**: Our WordPress RMA plugin enables the admin to set a specific time frame for all the refund, exchange and cancellation requests. During this defined period, customers will have access to these respective request options on the website, while outside this timeframe, they will no longer be visible.
 
-**2) Predefined Refund Reason**: Merchants can add multiple reasons for a product refund. Customers can select any of these reasons while asking for a refund with the help of Warranties & Returns For WooCommerce.
+**2) Dedicated WooCommerce refund system**: With our Return Refund and Exchange plugin, merchants can create a dedicated refund system, that offers a money-back guarantee, and where they can build an email template to send to the customers who ask for a refund. Merchants can add the name, email, email header, and footer for their email template
 
-**3) Mail Notification For Refund**: Merchants can notify the customers of different scenarios for the product refund. They can create different emails if a refund request is generated, approved, or canceled. Merchants can add a different subject line and content for every scenario. They can also use Shortcodes to add elements to the email content.
+**3) Predefined Refund Reason**: Merchants can add multiple reasons for a product refund. Customers can select any of these reasons while asking for a refund with the help of Warranties & Returns For WooCommerce.
 
-**4) Efficient Tax Handling**: By incorporating our WooCommerce Refund and Exchange with RMA, merchants can handle the tax on the refund products easily. They can simply enable or disable the tax calculation on the refund products by going to the plugin settings and enabling the “Enable Tax” option.
+**4) Mail Notification For Refund**: Merchants can notify the customers of different scenarios for the product refund. They can create different emails if a refund request is generated, approved, or canceled. Merchants can add a different subject line and content for every scenario. They can also use Shortcodes to add elements to the email content.
 
-**5) Stock Management**: Our WooCommerce Refund Plugin provides a feature to manage stock. Merchants need to enable this feature from the plugin settings. Once you enable this feature, the product stock will be increased whenever a refund request is accepted.
+**5) Efficient Tax Handling**: By incorporating our WooCommerce Refund and Exchange with RMA, merchants can handle the tax on the refund products easily. They can simply enable or disable the tax calculation on the refund products by going to the plugin settings and enabling the “Enable Tax” option.
 
-**6) Refund on selected order status**: You can select the order status on which a customer can submit a refund request. You can select either a single or multiple order status in this setting. For example, if you select Completed, and Failed order statuses, you’ll allow your customers to generate a refund request if their order is completed, or failed.
+**6) Stock Management**: Our WooCommerce Refund Plugin provides a feature to manage stock. Merchants need to enable this feature from the plugin settings. Once you enable this feature, the product stock will be increased whenever a refund request is accepted.
 
-**7) Order-Related Messages and Email Notifications**: You can allow your customers to send you order-related queries. Furthermore, you can also enable/disable the settings to let your customers add attachments along with their messages.
+**7) Refund on selected order status**: You can select the order status on which a customer can submit a refund request. You can select either a single or multiple order status in this setting. For example, if you select Completed, and Failed order statuses, you’ll allow your customers to generate a refund request if their order is completed, or failed.
 
-**8) WPML Compatible**: Translate the RMA solution into 40+ languages with WordPress Multilingual (WPML).
+**8) Order-Related Messages and Email Notifications**: You can allow your customers to send you order-related queries. Furthermore, you can also enable/disable the settings to let your customers add attachments along with their messages.
+
+**9) WPML Compatible**: Translate the RMA solution into 40+ languages with WordPress Multilingual (WPML).
 
 Check out [**Return Refund and Exchange For WooCommerce Knowledge Base**](https://support.wpswings.com/wordpress-plugins-knowledge-base/category/rma-return-refund-exchange-for-woocommerce/?utm_source=wpswings-rma-kb&utm_medium=rma-github-page&utm_campaign=kb)
 
@@ -65,7 +67,7 @@ Check out [**Return Refund and Exchange For WooCommerce Knowledge Base**](https:
 
 [**Download Now**](https://downloads.wordpress.org/plugin/woo-refund-and-exchange-lite.zip)
 
-### WOOCOMMERCE RETURNS PLUGIN COMPATIBILITIES
+### WOOCOMMERCE REFUND PLUGIN COMPATIBILITIES
 
 * The RMA plugin is compatible with the [**WooCommerce Gift Cards**](https://wordpress.org/plugins/woo-gift-cards-lite/) and [**Gift Cards For WooCommerce Pro**](https://wpswings.com/product/gift-cards-for-woocommerce-pro/?utm_source=wpswings-gc-pro&utm_medium=rma-github-page&utm_campaign=gc-pro). Admin can now provide WooCommerce refund functionality on gift cards to its users. But for the practical implementation users are required to fulfill two conditions i.e. the expiration period of the gift card shouldn’t be achieved and its usability should be equal to zero.
 
@@ -73,7 +75,7 @@ Check out [**Return Refund and Exchange For WooCommerce Knowledge Base**](https:
 
 * The RMA exchange Plugin is compatible with the WordPress Multilingual (WPML) plugin for localizing the plugin’s strings.
 
-* WooCommerce RMA plugin is compatible with WooCommerce High-Performance Order Storage (HPOS), an easy-to-understand and solid database structure that uses an alternative storage mechanism for Order Tables to ensure the smooth workflow of your WooCommerce Store.
+* The WooCommerce RMA plugin is compatible with WooCommerce High-Performance Order Storage (HPOS), an easy-to-understand and solid database structure that uses an alternative storage mechanism for Order Tables to ensure the smooth workflow of your WooCommerce Store.
 
 
 ## WHAT PREMIUM VERSION WOOCOMMERCE REFUND AND EXCHANGE WITH RMA OFFERS
@@ -82,16 +84,16 @@ Check out [**Return Refund and Exchange For WooCommerce Knowledge Base**](https:
 This feature enables the admins to have an overall insight into the refund, return, exchange, and cancellation of the website. 
 
 **2. Refund Policy Feature**: 
-This is an outstanding setup tab available on the WooCommerce RMA plugin, in order to set up the predefined set of rules for the refund request.
+This is an outstanding setup tab available on the WooCommerce RMA plugin, to set up the predefined set of rules for the refund request.
 
 **3. Advanced Wallet System**: 
 The WooCommerce Return plugin provides flexibility to your customers to get the refunded amount in the customers' e-wallet of your store.
 
 **4. Partial Refund and Exchange or Cancel**: 
-Creating partial WooCommerce refunds and exchanges or cancellation is not a hassle anymore. The users can utilize our Partial Refund/Exchange/Cancel order feature of the plugin.
+Creating partial WooCommerce refunds and exchanges or cancellations is not a hassle anymore. The users can utilize our Partial Refund/Exchange/Cancel order feature of the plugin.
 
 **5. Stock Management**: 
-Automated inventory management is carried out successfully with this WooCommerce RMA Plugin feature, saving time and precisely controlling stock without the need for further effort.
+Automated inventory management is carried out successfully with this WooCommerce RMA Plugin feature, saving time and precisely controlling stock without further effort.
 
 **6. Global Shipping**: 
 The global shipping amount can be charged on the order/categories against refund/exchange.
@@ -101,28 +103,6 @@ WooCommerce RMA provides customers with a straightforward interface. This interf
 
 **8. Increase Communication Chances Using Messages**: 
 WooCommerce Return Plugin allows your customers to send their product-related queries along with multimedia files and approach you to take relevant action.
-
-## Some Additional Features of the RMA plugin
-
-* Refund policy feature
-* Order Product Selection feature for Refund/Exchange
-* Exchange feature
-* Cancel feature
-* Product Warranty Management
-* Wallet feature
-* Return ship label feature
-* Guest User Restriction for Wallet Method
-* Full RMA support
-* Partial refund feature
-* Auto accept refund request feature
-* Refund exchange feature for guest users
-* File upload Add more button hide when limit exceeded
-* Minimum order amount feature
-* Product category disable the feature
-* Integration for return ship label with ShipStation
-* Shortcode of product table and the refundable amount for Refund Mail
-* Compatibility with WordPress Multilingual (WPML)
-* Compatibility with [**Wallet System for WooCommerce**](https://wordpress.org/plugins/wallet-system-for-woocommerce/) & [**Wallet System for WooCommerce Pro**](https://wpswings.com/product/wallet-system-for-woocommerce-pro/?utm_source=wpswings-wallet-pro&utm_medium=rma-github-page&utm_campaign=wallet-pro).
 
 ## Streamlining the Refund Experience: Empowering Merchants and Customers
 
@@ -157,7 +137,6 @@ Contact the merchant with order-related queries and even attach files if needed,
 Customers from diverse language backgrounds can benefit from multilingual support when interacting with the return and refund system thanks to WPML compatibility.
 
 
-
 ### TAKE ADVANTAGE OF THE EXCLUSIVE FEATURES OF THE WOOCOMMERCE RMA PLUGIN
 > Note:  Get [**RMA Return Refund & Exchange For WooCommerce Pro**](https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma-pro&utm_medium=rma-github-page&utm_campaign=premium-plugin)
 
@@ -170,11 +149,13 @@ Customers from diverse language backgrounds can benefit from multilingual suppor
 
 ## SUPPORT
 
-If you need support or have any questions then kindly use our online chat window [**here**](https://wpswings.com/?utm_source=wpswings-official&utm_medium=rma-github-page&utm_campaign=wpswings-official) or connect with us then [**Generate a Ticket**](https://wpswings.com/submit-query/?utm_source=wpswings-generate-ticket&utm_medium=rma-github-page&utm_campaign=generate-ticket)
+If you need support or have any questions then kindly use our online chat window [**here**](https://wpswings.com/?utm_source=wpswings-official&utm_medium=rma-github-page&utm_campaign=wpswings-official) or and discover all types of [**WooCommerce Extensions**](https://wpswings.com/woocommerce-plugins/?utm_source=wpswings-rma-shop&utm_medium=rma-github-page&utm_campaign=woocommerce-plugins) for your eCommerce store.
 
-> If our documentation doesn’t contain the solution to your problem, you can visit the [**WP Swings Forums Community**](https://forums.wpswings.com/?utm_source=wpswings-forums&utm_medium=rma-github-page&utm_campaign=forum)
+> If our documentation doesn’t contain the solution to your problem, you can visit the [**WP Swings Forums Community**](https://forums.wpswings.com/?utm_source=wpswings-forums&utm_medium=rma-github-page&utm_campaign=forum) or  [**Generate a Ticket**](https://wpswings.com/submit-query/?utm_source=wpswings-generate-ticket&utm_medium=rma-github-page&utm_campaign=generate-ticket)
 
 > Create and Revamp your eCommerce store with [**WooCommerce Services**](https://wpswings.com/woocommerce-services/?utm_source=wpswings-rma-services&utm_medium=rma-github-page&utm_campaign=woocommerce-services) 
+
+> Get Huge Discounts on WooCommerce Refund, Return and Exchange plugin during Christmas Sales 2023 – [**Get More Offer**](https://wpswings.com/offers/?utm_source=wpswings-rma-offers&utm_medium=rma-github-page&utm_campaign=offers)
 
 ## MORE ABOUT WP SWINGS
 
@@ -183,5 +164,3 @@ If you need support or have any questions then kindly use our online chat window
 * [**Tweet us on @WP Swings**](https://twitter.com/wpswings)
 * [**Visit our LinkedIn Account**](https://www.linkedin.com/company/77072505/admin/)
 * [**Subscribe To Our YouTube Channel**](https://www.youtube.com/channel/UC7nYNf0JETOwW3GOD_EW2Ag)
-
-
