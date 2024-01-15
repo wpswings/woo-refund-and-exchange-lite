@@ -20,6 +20,7 @@ if ( isset( $order ) && is_object( $order ) && ! $order instanceof WP_Post ) {
 }
 $order_obj = $theorder;
 $order_id  = $order_obj->get_id();
+$upload_attach = get_option( 'wps_rma_general_enable_om_attachment', 'no' );
 ?>
 <div class="wps_order_msg_reload_notice_wrapper">
 	<p class="wps_order_msg_sent_notice"><strong><?php esc_html_e( 'Messages Refreshed Successfully', 'woo-refund-and-exchange-lite' ); ?></strong></p>
@@ -84,11 +85,13 @@ $order_id  = $order_obj->get_id();
 			<input type="hidden" value="admin" id="order_msg_type" name="order_msg_type">	
 			<div class="wps_order_msg_title"><h4 class="wps-order-heading"><?php esc_html_e( 'Add a message', 'woo-refund-and-exchange-lite' ); ?></h4></div>
 				<textarea id="wps_order_new_msg" name="wps_order_new_msg" placeholder="<?php esc_html_e( 'Write a message you want to send to the Customer.', 'woo-refund-and-exchange-lite' ); ?>" maxlength="10000" rows="2"></textarea>
-			<div class="wps-order-msg__attachment-lable">
-				<label for="wps_order_msg_attachment"> <?php esc_html_e( 'Attach file', 'woo-refund-and-exchange-lite' ); ?>:</label>
-			</div>
-			<div class="wps-order-msg-attachment-wrapper wps_rma_flex">
-				<input type="file" id="wps_order_msg_attachment" name="wps_order_msg_attachment[]" multiple >
+				<?php if ( isset( $upload_attach ) && 'on' === $upload_attach ) : ?>
+					<div class="wps-order-msg__attachment-lable">
+						<label for="wps_order_msg_attachment"> <?php esc_html_e( 'Attach file', 'woo-refund-and-exchange-lite' ); ?>:</label>
+					</div>
+					<div class="wps-order-msg-attachment-wrapper wps_rma_flex">
+						<input type="file" id="wps_order_msg_attachment" name="wps_order_msg_attachment[]" multiple >
+				<?php endif; ?>	
 				<div class="wps-order-msg-btn">
 					<input type="submit" class="button button-primary" id="wps_order_msg_submit" value="<?php esc_html_e( 'Send', 'woo-refund-and-exchange-lite' ); ?>" name="wps_order_msg_submit" data-id="<?php echo esc_attr( $order_id ); ?>">
 				</div>
