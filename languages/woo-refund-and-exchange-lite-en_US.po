@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
-"POT-Creation-Date: 2023-11-27 11:27+0530\n"
-"PO-Revision-Date: 2023-11-27 11:27+0530\n"
+"Project-Id-Version: Return Refund and Exchange for WooCommerce 4.3.5\n"
+"POT-Creation-Date: 2024-01-16 19:01+0530\n"
+"PO-Revision-Date: 2024-01-16 19:01+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.1\n"
+"X-Generator: Poedit 3.4.2\n"
 "X-Poedit-Basepath: .\n"
 
 #: admin/class-woo-refund-and-exchange-lite-admin.php:173
@@ -957,22 +957,22 @@ msgid "RETURN REFUND AND EXCHANGE FOR WOOCOMMERCE"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-admin-dashboard.php:55
-#: woocommerce-refund-and-exchange-lite.php:220
+#: woocommerce-refund-and-exchange-lite.php:219
 msgid "GO PRO"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-admin-dashboard.php:57
-#: woocommerce-refund-and-exchange-lite.php:198
+#: woocommerce-refund-and-exchange-lite.php:197
 msgid "Documentation"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-admin-dashboard.php:59
-#: woocommerce-refund-and-exchange-lite.php:199
+#: woocommerce-refund-and-exchange-lite.php:198
 msgid "Video"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-admin-dashboard.php:61
-#: woocommerce-refund-and-exchange-lite.php:200
+#: woocommerce-refund-and-exchange-lite.php:199
 msgid "Support"
 msgstr ""
 
@@ -1034,45 +1034,45 @@ msgstr ""
 msgid "Public Hooks"
 msgstr ""
 
-#: admin/partials/woo-refund-and-exchange-lite-order-message-meta.php:25
+#: admin/partials/woo-refund-and-exchange-lite-order-message-meta.php:26
 #: public/partials/wps-rma-view-order-msg.php:63
 msgid "Messages Refreshed Successfully"
 msgstr ""
 
-#: admin/partials/woo-refund-and-exchange-lite-order-message-meta.php:30
+#: admin/partials/woo-refund-and-exchange-lite-order-message-meta.php:31
 #: public/partials/wps-rma-view-order-msg.php:67
 msgid "Message History"
 msgstr ""
 
-#: admin/partials/woo-refund-and-exchange-lite-order-message-meta.php:41
+#: admin/partials/woo-refund-and-exchange-lite-order-message-meta.php:42
 #: public/partials/wps-rma-view-order-msg.php:77
 msgid "Customer"
 msgstr ""
 
-#: admin/partials/woo-refund-and-exchange-lite-order-message-meta.php:41
+#: admin/partials/woo-refund-and-exchange-lite-order-message-meta.php:42
 #: public/partials/wps-rma-view-order-msg.php:77
 msgid "Shop Manager"
 msgstr ""
 
-#: admin/partials/woo-refund-and-exchange-lite-order-message-meta.php:56
+#: admin/partials/woo-refund-and-exchange-lite-order-message-meta.php:57
 msgid "Attachment:"
 msgstr ""
 
-#: admin/partials/woo-refund-and-exchange-lite-order-message-meta.php:85
+#: admin/partials/woo-refund-and-exchange-lite-order-message-meta.php:86
 #: public/partials/wps-rma-view-order-msg.php:41
 msgid "Add a message"
 msgstr ""
 
-#: admin/partials/woo-refund-and-exchange-lite-order-message-meta.php:86
+#: admin/partials/woo-refund-and-exchange-lite-order-message-meta.php:87
 msgid "Write a message you want to send to the Customer."
 msgstr ""
 
-#: admin/partials/woo-refund-and-exchange-lite-order-message-meta.php:88
+#: admin/partials/woo-refund-and-exchange-lite-order-message-meta.php:90
 #: public/partials/wps-rma-view-order-msg.php:47
 msgid "Attach file"
 msgstr ""
 
-#: admin/partials/woo-refund-and-exchange-lite-order-message-meta.php:93
+#: admin/partials/woo-refund-and-exchange-lite-order-message-meta.php:96
 #: public/partials/wps-rma-view-order-msg.php:56
 msgid "Send"
 msgstr ""
@@ -1268,7 +1268,7 @@ msgid "is"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-policies.php:172
-#: public/partials/wps-rma-refund-request-form.php:384
+#: public/partials/wps-rma-refund-request-form.php:383
 msgid "Add More"
 msgstr ""
 
@@ -1407,41 +1407,37 @@ msgid "Please Enter a Message."
 msgstr ""
 
 #: common/class-woo-refund-and-exchange-lite-common.php:94
-msgid "No File Attached"
-msgstr ""
-
-#: common/class-woo-refund-and-exchange-lite-common.php:95
 msgid "Attached File type is not supported"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:96
+#: common/class-woo-refund-and-exchange-lite-common.php:95
 msgid "Selected product must have the quantity"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:223
+#: common/class-woo-refund-and-exchange-lite-common.php:222
 #, php-format
 msgid "Refund Requested <span class=\"count\">(%s)</span>"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:234
+#: common/class-woo-refund-and-exchange-lite-common.php:233
 #, php-format
 msgid "Refund Approved <span class=\"count\">(%s)</span>"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:245
+#: common/class-woo-refund-and-exchange-lite-common.php:244
 #, php-format
 msgid "Refund Cancelled <span class=\"count\">(%s)</span>"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:263
+#: common/class-woo-refund-and-exchange-lite-common.php:262
 msgid "Refund Requested"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:264
+#: common/class-woo-refund-and-exchange-lite-common.php:263
 msgid "Refund Approved"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:265
+#: common/class-woo-refund-and-exchange-lite-common.php:264
 msgid "Refund Cancelled"
 msgstr ""
 
@@ -1918,16 +1914,16 @@ msgstr ""
 msgid "Attach Files"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:385
+#: public/partials/wps-rma-refund-request-form.php:384
 #: public/partials/wps-rma-view-order-msg.php:50
 msgid "Only png, jpg and jpeg extension file is approved"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:393
+#: public/partials/wps-rma-refund-request-form.php:392
 msgid "Submit Request"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:427
+#: public/partials/wps-rma-refund-request-form.php:426
 msgid "Refund Request Can't make on this order"
 msgstr ""
 
@@ -1939,24 +1935,24 @@ msgstr ""
 msgid "Attachment :"
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:114
-#: woocommerce-refund-and-exchange-lite.php:120
+#: woocommerce-refund-and-exchange-lite.php:113
+#: woocommerce-refund-and-exchange-lite.php:119
 msgid "Woo Refund And Exchange Lite"
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:197
+#: woocommerce-refund-and-exchange-lite.php:196
 msgid "Demo"
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:201
+#: woocommerce-refund-and-exchange-lite.php:200
 msgid "Services"
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:222
+#: woocommerce-refund-and-exchange-lite.php:221
 msgid "Settings"
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:362
+#: woocommerce-refund-and-exchange-lite.php:361
 msgid ""
 "Woocommerce is not activated, Please activate Woocommerce first to install "
 "WooCommerce Refund and Exchange Lite."
