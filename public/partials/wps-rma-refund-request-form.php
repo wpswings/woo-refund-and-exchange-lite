@@ -373,7 +373,6 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 						if ( 'on' === $return_attachment ) {
 							?>
 							<label><b><?php esc_html_e( 'Attach Files', 'woo-refund-and-exchange-lite' ); ?></b></label>
-							<span class="wps_field_mendatory">*</span>
 							<div class="wps_rma_attach_files">
 								<p>
 									<span id="wps_rma_return_request_files">

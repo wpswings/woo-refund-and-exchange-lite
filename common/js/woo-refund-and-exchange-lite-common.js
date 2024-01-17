@@ -47,8 +47,6 @@ jQuery( document ).on( 'ready', function(){
 					} else {
 						alerthtml += '<li>'+ wrael_common_param.file_not_supported + '</li>';
 					}
-				} else {
-					alerthtml += '<li>'+ wrael_common_param.no_file_attached +'</li>';
 				}
 			});
 		}

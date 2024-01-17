@@ -5,8 +5,8 @@ Tags: rma, return, refund, exchange, wallet, cancel-order, warranty
 Requires at least: 5.5.0
 Tested up to: 6.4.2
 WC requires at least: 5.5.0
-WC tested up to: 8.3.1
-Stable tag: 4.3.4
+WC tested up to: 8.4.0
+Stable tag: 4.3.5
 Requires PHP:  7.2 or Higher
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -141,7 +141,7 @@ If you need support or have any questions then kindly use our online chat window
 
 > Create and Revamp your eCommerce store with [**WooCommerce Services**](https://wpswings.com/woocommerce-services/?utm_source=wpswings-rma-services&utm_medium=rma-org-page&utm_campaign=woocommerce-services)
 
-> Get Huge Discounts on WooCommerce Refund, Return and Exchange plugin during Christmas Sales 2023 - [**Get More Offers**](https://wpswings.com/offers/?utm_source=wpswings-rma-offers&utm_medium=rma-org-page&utm_campaign=offers)
+> Get Huge Discounts on WooCommerce Refund, Return and Exchange plugin during Republic Day Sales 2024 - [**Get More Offers**](https://wpswings.com/offers/?utm_source=wpswings-rma-offers&utm_medium=rma-org-page&utm_campaign=offers)
 
 == Installation ==
 
@@ -217,7 +217,7 @@ Please visit [**WP Swings Knowledge Base**](https://support.wpswings.com/wordpre
 4. Submit the request.
 5. Refund and manage the account by a merchant.
 6. Order message frontend.
-7. Order message backend.Compatibility With Woocommerce Cart and Checkout Block.
+7. Order message backend.
 8. Accept and cancel the refund request by a merchant.
 9. Manage the refunded product Stock.
 10. Send the mail by admin to the customer.
@@ -230,8 +230,12 @@ Please visit [**WP Swings Knowledge Base**](https://support.wpswings.com/wordpre
 
 == Changelog ==
 
+= 4.3.5 - Released on 17 January 2024 = 
+* New : Latest WP(6.4.2) and WC(8.5.1) Compatibility
+* Enhancement : Enhancement in attachement feature for view order message and refund.
+
 = 4.3.4 - Released on 12 December 2023 = 
-* New : Latest WP( 6.4.2 ) and WC( 8.3.1 ) Compatibility
+* New : Latest WP(6.4.2) and WC(8.3.1) Compatibility
 * Fix : Fixed the date format issue
 
 = 4.3.3 - Released on 27 November 2023 = 
@@ -268,7 +272,7 @@ Please visit [**WP Swings Knowledge Base**](https://support.wpswings.com/wordpre
 
 = 4.1.3 - Released on 26 May 2023 =
 * New: Compatibility with the Latest WP (6.2.2) and WC (7.7.0).
-* New: The pro setting with tag.Compatibility With Woocommerce Cart and Checkout Block.
+* New: The pro setting with tag.
 * New: Minor bug fixes.
 
 = 4.1.2 - Released on 26 April 2023 =
@@ -413,7 +417,6 @@ Please visit [**WP Swings Knowledge Base**](https://support.wpswings.com/wordpre
 
 == Upgrade Notice ==
 
-= 4.3.4 - Released on 12 December 2023 = 
-* New : Latest WP( 6.4.2 ) and WC( 8.3.1 ) Compatibility
-* Fix : Fixed the date format issue
-
+= 4.3.5 - Released on 17 January 2024 = 
+* New : Latest WP(6.4.2) and WC(8.5.1) Compatibility
+* Enhancement : Enhancement in attachement feature for view order message and refund.

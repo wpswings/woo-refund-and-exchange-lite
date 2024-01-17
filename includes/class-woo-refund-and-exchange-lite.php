@@ -897,7 +897,9 @@ class Woo_Refund_And_Exchange_Lite {
 								</div>
 								<div class="wps-form-group__control">
 									<span class="mdc-text-field__resizer">
-											<?php echo wp_kses_post( wp_editor( $wrael_component['value'], esc_attr( $wrael_component['id'] ), array( 'editor_height' => 200 ) ) ); ?>
+											<?php
+											wp_editor( $wrael_component['value'], esc_attr( $wrael_component['id'] ), array( 'editor_height' => 200 ) );
+											?>
 									</span>
 								</div>
 							</div>
