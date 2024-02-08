@@ -77,7 +77,7 @@ class Woo_Refund_And_Exchange_Lite {
 			$this->version = WOO_REFUND_AND_EXCHANGE_LITE_VERSION;
 		} else {
 
-			$this->version = '4.3.3';
+			$this->version = '4.3.6';
 		}
 
 		$this->plugin_name = 'return-refund-and-exchange-for-woocommerce';
