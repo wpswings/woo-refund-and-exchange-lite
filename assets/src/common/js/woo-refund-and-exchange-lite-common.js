@@ -11,7 +11,8 @@ jQuery( document ).on( 'ready', function(){
 		var count = 0;
 		var refund_method = '';
 		var pro_act = wrael_common_param.check_pro_active;
-
+		var wps_rma_allow_refund_shipping_charge = wrael_common_param.wps_rma_allow_refund_shipping_charge;
+		
 		var total_qty = 0;
 
 		var rr_subject = $( '#wps_rma_return_request_subject' ).val();
@@ -119,6 +120,7 @@ jQuery( document ).on( 'ready', function(){
 			refund_method : refund_method,
 			security_check	: wrael_common_param.wps_rma_nonce
 		}
+	
 
 		var formData = new FormData(this);
 		formData.append('action', 'wps_rma_return_upload_files');

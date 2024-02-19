@@ -248,6 +248,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 									<?php
 									$total      = 0;
 									$line_items = $order->get_items();
+									$shipping_price = $order->shipping_total;
 									if ( is_array( $line_items ) && ! empty( $line_items ) ) {
 										wps_rma_update_meta_data( $order->get_id(), 'wps_rma_refund_new_line_items', $line_items );
 									}
@@ -305,6 +306,11 @@ class Woo_Refund_And_Exchange_Lite_Public {
 									<?php
 									// To show extra row in the order view refund request table.
 									do_action( 'wps_rma_add_extra_fields_row', $order->get_id() );
+									$pro_active = wps_rma_pro_active();
+									$wps_rma_allow_refund_shipping_charge = get_option( 'wps_rma_allow_refund_shipping_charge' );
+									if( empty( $pro_active) && 'on' == $wps_rma_allow_refund_shipping_charge ){
+											$total = round($total) + $shipping_price;
+									}
 									?>
 									<tr>
 										<th scope="row"><?php esc_html_e( 'Refund Amount', 'woo-refund-and-exchange-lite' ); ?></th>

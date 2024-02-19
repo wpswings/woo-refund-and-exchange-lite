@@ -597,6 +597,17 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				'max'         => '15',
 				'placeholder' => 'Enter the attachment limit',
 			),
+			array(
+				'title'   => esc_html__( 'Enable To Refund Shipping Charge', 'woo-refund-and-exchange-lite' ),
+				'type'    => 'radio-switch',
+				'id'      => 'wps_rma_allow_refund_shipping_charge',
+				'value'   => get_option( 'wps_rma_allow_refund_shipping_charge' ),
+				'class'   => 'wrael-radio-switch-class',
+				'options' => array(
+					'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+					'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
+				),
+			),
 		);
 		$wps_rma_settings_refund =
 		// To extend the refund setting.

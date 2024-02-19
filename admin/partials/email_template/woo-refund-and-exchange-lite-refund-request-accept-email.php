@@ -74,11 +74,16 @@ if ( isset( $requested_products ) && ! empty( $requested_products ) ) {
 		}
 	}
 }
-// Add some extra <tr> in the table for refund approve mail.
 $message        = apply_filters( 'wps_rma_extend_extra_field_table_approve_email', $message );
-$message       .= '<tr>
+$pro_active = wps_rma_pro_active();
+$wps_rma_allow_refund_shipping_charge = get_option( 'wps_rma_allow_refund_shipping_charge' );
+$shipping_price = $order_obj->shipping_total;
+// Add some extra <tr> in the table for refund approve mail.
+if( empty( $pro_active) && 'on' == $wps_rma_allow_refund_shipping_charge ){
+	$total = round($total) + $shipping_price;
+	$message       .= '<tr>
 					<th colspan="2" style="border: 1px solid #C7C7C7;">' . esc_html__( 'Refund Total', 'woo-refund-and-exchange-lite' ) . ':</th>
-					<td style="border: 1px solid #C7C7C7;">' . wps_wrma_format_price( $total, $get_order_currency ) . '</td>
+					<td style="border: 1px solid #C7C7C7;">' . wps_wrma_format_price( $total, $get_order_currency ) . '( shipping price added )</td>
 				</tr>
 			</tbody>
 		</table>
@@ -105,6 +110,38 @@ $message       .= '<tr>
 		</div>
     </div>
 </div>';
+} else {
+
+	$message       .= '<tr>
+						<th colspan="2" style="border: 1px solid #C7C7C7;">' . esc_html__( 'Refund Total', 'woo-refund-and-exchange-lite' ) . ':</th>
+						<td style="border: 1px solid #C7C7C7;">' . wps_wrma_format_price( $total, $get_order_currency ) . '</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="Customer-detail">
+			<h4>' . esc_html__( 'Customer details', 'woo-refund-and-exchange-lite' ) . '</h4>
+			<ul>
+				<li><p class="info">
+					<span class="bold">' . esc_html__( 'Email', 'woo-refund-and-exchange-lite' ) . ': </span>' . $order_obj->get_billing_email() . '
+				</p></li>
+				<li><p class="info">
+					<span class="bold">' . esc_html__( 'Tel', 'woo-refund-and-exchange-lite' ) . ': </span>' . $order_obj->get_billing_phone() . '
+				</p></li>
+			</ul>
+		</div>
+		<div class="details">
+			<div class="Shipping-detail">
+				<h4>' . esc_html__( 'Shipping Address', 'woo-refund-and-exchange-lite' ) . '</h4>
+				' . $order_obj->get_formatted_shipping_address() . '
+			</div>
+			<div class="Billing-detail">
+				<h4>' . esc_html__( 'Billing Address', 'woo-refund-and-exchange-lite' ) . '</h4>
+				' . $order_obj->get_formatted_billing_address() . '
+			</div>
+		</div>
+	</div>';
+}
 $attachment     = array();
 $customer_email = WC()->mailer()->emails['wps_rma_refund_request_accept_email'];
 $customer_email->trigger( $message, $attachment, $order_obj->get_billing_email(), $order_id );

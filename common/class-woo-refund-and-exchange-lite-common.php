@@ -75,6 +75,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 				$myaccount_page     = get_option( 'woocommerce_myaccount_page_id' );
 				$myaccount_page_url = get_permalink( $myaccount_page );
 			}
+			$wps_rma_allow_refund_shipping_charge = get_option( 'wps_rma_allow_refund_shipping_charge' );
 			wp_register_script( $this->plugin_name . 'common', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'common/js/woo-refund-and-exchange-lite-common.min.js', array( 'jquery' ), $this->version, false );
 			wp_localize_script(
 				$this->plugin_name . 'common',
@@ -93,6 +94,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 					'order_msg_attachment'   => get_option( 'wps_rma_general_enable_om_attachment' ),
 					'file_not_supported'     => esc_html__( 'Attached File type is not supported', 'woo-refund-and-exchange-lite' ),
 					'qty_error'              => esc_html__( 'Selected product must have the quantity', 'woo-refund-and-exchange-lite' ),
+					'wps_rma_allow_refund_shipping_charge'  => $wps_rma_allow_refund_shipping_charge,
 				)
 			);
 			wp_enqueue_script( $this->plugin_name . 'common' );
