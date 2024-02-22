@@ -11,7 +11,7 @@ jQuery( document ).on( 'ready', function(){
 		var count = 0;
 		var refund_method = '';
 		var pro_act = wrael_common_param.check_pro_active;
-		var wps_rma_allow_refund_shipping_charge = wrael_common_param.wps_rma_allow_refund_shipping_charge;
+		
 		
 		var total_qty = 0;
 
@@ -86,7 +86,11 @@ jQuery( document ).on( 'ready', function(){
 		if ( qty_error ) {
 			alerthtml += '<li>'+ wrael_common_param.qty_error + '</li>';
 		}
-
+		var temp_check = 0;
+		if( $('.wps_wrma_return_product_all').is(":checked")){
+			temp_check = 1;
+		}
+		
 		if (alerthtml != '') {
 			$( '#wps_rma_return_alert' ).show();
 			$( '#wps_rma_return_alert' ).html( alerthtml );
@@ -109,6 +113,7 @@ jQuery( document ).on( 'ready', function(){
 				refund_method = wps_rma_refund_method();
 			}
 		}
+	
 		var data = {
 			action	:'wps_rma_save_return_request',
 			products: selected_product, 
@@ -118,7 +123,8 @@ jQuery( document ).on( 'ready', function(){
 			orderid : orderid,
 			bankdetails : $( '#wps_rma_bank_details' ).val(),
 			refund_method : refund_method,
-			security_check	: wrael_common_param.wps_rma_nonce
+			security_check	: wrael_common_param.wps_rma_nonce,
+			all_product_checked : temp_check,
 		}
 	
 

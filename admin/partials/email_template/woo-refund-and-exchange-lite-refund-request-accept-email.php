@@ -77,9 +77,10 @@ if ( isset( $requested_products ) && ! empty( $requested_products ) ) {
 $message        = apply_filters( 'wps_rma_extend_extra_field_table_approve_email', $message );
 $pro_active = wps_rma_pro_active();
 $wps_rma_allow_refund_shipping_charge = get_option( 'wps_rma_allow_refund_shipping_charge' );
+$wps_wrna_all_product_checked = wps_rma_get_meta_data( $order_id, 'wps_wrna_all_product_checked', true );
 $shipping_price = $order_obj->shipping_total;
 // Add some extra <tr> in the table for refund approve mail.
-if( empty( $pro_active) && 'on' == $wps_rma_allow_refund_shipping_charge ){
+if( ( empty( $pro_active) && 'on' == $wps_rma_allow_refund_shipping_charge ) || $wps_wrna_all_product_checked == 1 ){
 	$total = round($total) + $shipping_price;
 	$message       .= '<tr>
 					<th colspan="2" style="border: 1px solid #C7C7C7;">' . esc_html__( 'Refund Total', 'woo-refund-and-exchange-lite' ) . ':</th>
