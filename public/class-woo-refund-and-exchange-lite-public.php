@@ -248,7 +248,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 									<?php
 									$total      = 0;
 									$line_items = $order->get_items();
-									$shipping_price = $order->shipping_total;
+									$shipping_price = $order->get_shipping_total();
 									if ( is_array( $line_items ) && ! empty( $line_items ) ) {
 										wps_rma_update_meta_data( $order->get_id(), 'wps_rma_refund_new_line_items', $line_items );
 									}
@@ -309,8 +309,8 @@ class Woo_Refund_And_Exchange_Lite_Public {
 									$pro_active = wps_rma_pro_active();
 									$wps_rma_allow_refund_shipping_charge = get_option( 'wps_rma_allow_refund_shipping_charge' );
 									$wps_wrna_all_product_checked = wps_rma_get_meta_data( $order->get_id(), 'wps_wrna_all_product_checked', true );
-									if( ( empty( $pro_active) && 'on' == $wps_rma_allow_refund_shipping_charge ) || $wps_wrna_all_product_checked == 1 ){
-											$total = round($total) + $shipping_price;
+									if ( ( empty( $pro_active ) && 'on' == $wps_rma_allow_refund_shipping_charge ) || 1 == $wps_wrna_all_product_checked ) {
+											$total = round( $total ) + $shipping_price;
 									}
 									?>
 									<tr>

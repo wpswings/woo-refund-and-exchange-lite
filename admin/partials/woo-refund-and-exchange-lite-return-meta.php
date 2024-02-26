@@ -25,7 +25,7 @@ if ( isset( $order ) && is_object( $order ) && ! $order instanceof WP_Post ) {
 $order_obj    = $theorder;
 $order_id     = $order_obj->get_id();
 $return_datas = wps_rma_get_meta_data( $order_id, 'wps_rma_return_product', true );
-$order_shipping_price = $order_obj->shipping_total;
+$order_shipping_price = $order_obj->get_shipping_total();
 $item_type    =
 // Order Item Type.
 apply_filters( 'woocommerce_admin_order_item_types', 'line_item' );
@@ -101,10 +101,10 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 					$pro_active = wps_rma_pro_active();
 					$wps_rma_allow_refund_shipping_charge = get_option( 'wps_rma_allow_refund_shipping_charge' );
 					$wps_wrna_all_product_checked = wps_rma_get_meta_data( $order_id, 'wps_wrna_all_product_checked', true );
-					if( ( empty( $pro_active) && 'on' == $wps_rma_allow_refund_shipping_charge ) || $wps_wrna_all_product_checked == 1 ){
+					if ( ( empty( $pro_active ) && 'on' == $wps_rma_allow_refund_shipping_charge ) || ( 1 == $wps_wrna_all_product_checked && 'on' == $wps_rma_allow_refund_shipping_charge ) ) {
 
-						$total = round($total) + $order_shipping_price;
-						
+						$total = round( $total ) + $order_shipping_price;
+
 
 					}
 					$total_refund_amu =
