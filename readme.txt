@@ -1,13 +1,13 @@
 === Return Refund and Exchange For WooCommerce - Return Management System, RMA Exchange, Wallet And Cancel Order Features ===
 Contributors: wpswings
 Donate link: https://wpswings.com/
-Tags: rma, return, refund, exchange, wallet, cancel-order, warranty
+Tags: RMA plugin, return plugin, refund plugin, exchange plugin, cancel-order request
 Requires at least: 5.5.0
-Tested up to: 6.4.2
+Tested up to: 6.4.3
 WC requires at least: 5.5.0
-WC tested up to: 8.4.0
-Stable tag: 4.3.5
-Requires PHP:  7.2 or Higher
+WC tested up to: 8.6.1
+Stable tag: 4.3.6
+Requires PHP:  7.2
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -45,6 +45,9 @@ Customers can request total or partial WooCommerce refunds (based on the return 
 **8) Order Related Messages and Email notifications**: You can allow your customers to send you order-related queries. Furthermore, you can also enable/disable the settings to let your customers add attachments along with their messages.
 
 **9) WPML Compatible**: Translate the RMA solution into 40+ languages with WordPress Multilingual (WPML).
+
+**10) Refund Shipping Charges**: Admins can utilize this feature to refund the charged shipping amount during the refund process. Note: This feature doesn’t work for partial refunds.
+
 
 == LIVE DEMO OF RETURN REFUND AND EXCHANGE FOR WOOCOMMERCE ==
 
@@ -98,6 +101,8 @@ Customers can request total or partial WooCommerce refunds (based on the return 
 **7. Shiprocket Integration**: WooCommerce RMA provides customers with a straightforward interface. This interface lets businesses quickly create their ship engine by selecting ShipRocket as their shipping channel and submitting their API Key through the plugin configuration option.
 
 **8. Increase Communication Chances Using Messages**: WooCommerce Return Plugin allows your customers to send their product-related queries along with multimedia files and approach you to take relevant action.
+
+**9. Refund Shipping Charges**: With the WooCommerce refund plugin, customers can get a refund for the shipping charges as well. If the admin can utilize this feature to win their customer's trust in their WooCommerce store. But it is also important to note that this feature does not work with partial refunds, shipping charges are not refunded in those cases
 
 == STREAMLINING THE REFUND EXPERIENCE: EMPOWERING MERCHANTS AND CUSTOMERS ==
 
@@ -229,6 +234,10 @@ Please visit [**WP Swings Knowledge Base**](https://support.wpswings.com/wordpre
 16. API Settings.
 
 == Changelog ==
+
+= 4.3.6 - Released on 28 February 2024 = 
+* Refund Woocommerce Shipping on Refund Process. 
+* Compatibility with the latest WP (6.4.3) and WC (8.6.1) Update
 
 = 4.3.5 - Released on 17 January 2024 = 
 * New : Latest WP(6.4.2) and WC(8.5.1) Compatibility
@@ -417,6 +426,6 @@ Please visit [**WP Swings Knowledge Base**](https://support.wpswings.com/wordpre
 
 == Upgrade Notice ==
 
-= 4.3.5 - Released on 17 January 2024 = 
-* New : Latest WP(6.4.2) and WC(8.5.1) Compatibility
-* Enhancement : Enhancement in attachement feature for view order message and refund.
+= 4.3.6 - Released on 28 February 2024 = 
+* Refund Woocommerce Shipping on Refund Process. 
+* Compatibility with the latest WP [6.4.3] and WC [8.6.1] Update
