@@ -197,6 +197,10 @@ class Woo_Refund_And_Exchange_Lite_Common {
 				$refund_method = 'wallet_method';
 			}
 			do_action( 'wps_rma_return_request_data', $_POST, $order_id );
+			$temp_check = isset( $_POST['all_product_checked'] ) ? sanitize_text_field( wp_unslash( $_POST['all_product_checked'] ) ) : '';
+			if ( 1 == $temp_check ) {
+				wps_rma_update_meta_data( $order_id, 'wps_wrna_all_product_checked', $temp_check );
+			}
 			$response = wps_rma_save_return_request_callback( $order_id, $refund_method, $_POST );
 			if ( true == $response['flag'] ) {
 				do_action( 'wps_rma_do_shiprocket_integration', $order_id, $_POST );

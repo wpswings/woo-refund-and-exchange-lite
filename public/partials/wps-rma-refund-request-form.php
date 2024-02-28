@@ -100,6 +100,7 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 					);
 					$get_order_currency   = get_woocommerce_currency_symbol( $order_obj->get_currency() );
 					$refund_items_details = wps_rma_get_meta_data( $order_id, 'wps_rma_refund_items_details', true );
+					$shipping_price = $order_obj->get_shipping_total();
 					foreach ( $order_obj->get_items() as $item_id => $item ) {
 						$item_quantity = $item->get_quantity();
 						$refund_qty    = $order_obj->get_qty_refunded_for_item( $item_id );
@@ -259,16 +260,40 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 					?>
 					<tr>
 						<th scope="row" colspan="<?php echo wps_rma_pro_active() ? '3' : '2'; ?>"><?php esc_html_e( 'Total Refund Amount', 'woo-refund-and-exchange-lite' ); ?></th>
+						<?php
+						$pro_active = wps_rma_pro_active();
+						$wps_rma_allow_refund_shipping_charge = get_option( 'wps_rma_allow_refund_shipping_charge' );
+						if ( empty( $pro_active ) && 'on' == $wps_rma_allow_refund_shipping_charge ) {
+
+							$wps_total_actual_price = round( $wps_total_actual_price ) + $shipping_price;
+						}
+						?>
 						<td class="wps_rma_total_amount_wrap"><span id="wps_rma_total_refund_amount"><?php echo wp_kses_post( wps_wrma_format_price( $wps_total_actual_price, $get_order_currency ) ); ?></span>
-						<input type="hidden" name="wps_rma_total_refund_price" class="wps_rma_total_refund_price" value="<?php echo esc_html( $wps_total_actual_price ); ?>">
+						<input type="hidden" name="wps_rma_total_refund_price" class="wps_rma_total_refund_price" value="<?php echo esc_html( $wps_total_actual_price ); ?>" data-shipping_price= "<?php echo esc_html( $shipping_price ); ?>">
 							<?php
 							if ( 'wps_rma_inlcude_tax' === $wps_rma_check_tax ) {
-								?>
-								<small class="tax_label"><?php esc_html_e( '(incl. tax)', 'woo-refund-and-exchange-lite' ); ?></small>
-								<?php
+								if ( empty( $pro_active ) && 'on' == $wps_rma_allow_refund_shipping_charge ) {
+									?>
+									<small class="tax_label"><?php esc_html_e( '(incl. tax & shipping charge) ', 'woo-refund-and-exchange-lite' ); ?></small>
+									<?php
+								} else {
+									?>
+									<small class="tax_label"><?php esc_html_e( '(incl. tax)', 'woo-refund-and-exchange-lite' ); ?></small>
+									<?php
+								}
 							} elseif ( 'wps_rma_exclude_tax' === $wps_rma_check_tax ) {
-								?>
+								if ( empty( $pro_active ) && 'on' == $wps_rma_allow_refund_shipping_charge ) {
+									?>
+									<small class="tax_label"><?php esc_html_e( '(excl. tax & shipping charge)', 'woo-refund-and-exchange-lite' ); ?></small>
+									<?php
+								} else {
+									?>
 									<small class="tax_label"><?php esc_html_e( '(excl. tax)', 'woo-refund-and-exchange-lite' ); ?></small>
+									<?php
+								}
+							} else if ( empty( $pro_active ) && 'on' == $wps_rma_allow_refund_shipping_charge ) {
+								?>
+									<small class="tax_label"><?php esc_html_e( '(shipping charge) ', 'woo-refund-and-exchange-lite' ); ?></small>
 									<?php
 							}
 							?>

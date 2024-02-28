@@ -68,6 +68,11 @@ class Wps_Rma_Refund_Request_Accept_Email extends WC_Email {
 			$this->placeholders['{order_id}']     = '#' . wps_rma_order_number( $order_id );
 			$placeholder                          = $this->placeholders;
 			$this->placeholders                   = apply_filters( 'wps_rma_shortcode_extend', $placeholder, $order_id );
+
+			if ( ! $this->is_enabled() ) {
+				return;
+			}
+
 			$this->send( $this->receicer, $this->get_subject(), $this->get_content(), $this->get_headers(), $attachment );
 		}
 		$this->restore_locale();

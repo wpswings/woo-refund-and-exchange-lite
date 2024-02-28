@@ -357,6 +357,7 @@ if ( ! function_exists( 'wps_rma_return_req_approve_callback' ) ) {
 	 * @param array() $products .
 	 */
 	function wps_rma_return_req_approve_callback( $orderid, $products ) {
+
 		// Fetch and update the return request product.
 		if ( isset( $products ) && ! empty( $products ) ) {
 			foreach ( $products as $date => $product ) {
@@ -421,6 +422,27 @@ if ( ! function_exists( 'wps_rma_return_req_approve_callback' ) ) {
 								$refund_items_details[ $item_id ] = $requested_product['qty'];
 							}
 						}
+					}
+				}
+			}
+			$pro_active = wps_rma_pro_active();
+			$wps_rma_allow_refund_shipping_charge = get_option( 'wps_rma_allow_refund_shipping_charge' );
+
+			if ( empty( $pro_active ) && 'on' == $wps_rma_allow_refund_shipping_charge ) {
+
+				$shipping_methods = $order_obj->get_items( 'shipping' );
+				if ( ! empty( $shipping_methods ) && is_array( $shipping_methods ) ) {
+					foreach ( $shipping_methods as $index => $shipping_method ) {
+
+						$new_refund_item = array(
+							'refund_tax' => array(
+								1 => $shipping_method->get_total_tax(),
+							),
+							'qty' => 1,
+							'refund_total' => $shipping_method->get_total(),
+
+						);
+						$line_items_refund[ $index ] = $new_refund_item;
 					}
 				}
 			}

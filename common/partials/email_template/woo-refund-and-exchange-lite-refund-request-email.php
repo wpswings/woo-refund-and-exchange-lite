@@ -81,10 +81,22 @@ if ( isset( $requested_products ) && ! empty( $requested_products ) ) {
 		}
 	}
 }
-$message       .= '<tr>
-					<th colspan="2" style="border: 1px solid #C7C7C7;">' . esc_html__( 'Refund Total', 'woo-refund-and-exchange-lite' ) . ':</th>
-					<td style="border: 1px solid #C7C7C7;">' . wps_wrma_format_price( $total, $get_order_currency ) . '</td>
-				</tr>';
+$pro_active = wps_rma_pro_active();
+$wps_rma_allow_refund_shipping_charge = get_option( 'wps_rma_allow_refund_shipping_charge' );
+$wps_wrna_all_product_checked = wps_rma_get_meta_data( $order_id, 'wps_wrna_all_product_checked', true );
+$shipping_price = $order_obj->get_shipping_total();
+if ( ( empty( $pro_active ) && 'on' == $wps_rma_allow_refund_shipping_charge ) || ( 1 == $wps_wrna_all_product_checked && 'on' == $wps_rma_allow_refund_shipping_charge ) ) {
+	$total = round( $total ) + $shipping_price;
+	$message       .= '<tr>
+						<th colspan="2" style="border: 1px solid #C7C7C7;">' . esc_html__( 'Refund Total', 'woo-refund-and-exchange-lite' ) . ':</th>
+						<td style="border: 1px solid #C7C7C7;">' . wps_wrma_format_price( $total, $get_order_currency ) . '( shipping price added )</td>
+					   </tr>';
+} else {
+	$message       .= '<tr>
+						<th colspan="2" style="border: 1px solid #C7C7C7;">' . esc_html__( 'Refund Total', 'woo-refund-and-exchange-lite' ) . ':</th>
+						<td style="border: 1px solid #C7C7C7;">' . wps_wrma_format_price( $total, $get_order_currency ) . '</td>
+					   </tr>';
+}
 $message        = apply_filters( 'wps_rma_add_shipping_fee_tr', $message );
 $message       .= '</tbody>
 		</table>
