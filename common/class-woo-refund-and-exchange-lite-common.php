@@ -134,7 +134,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 					if ( isset( $_FILES['wps_rma_return_request_files']['tmp_name'][ $i ] ) ) {
 						$directory = ABSPATH . 'wp-content/attachment';
 						if ( ! file_exists( $directory ) ) {
-							mkdir( $directory, 0755, true );
+							wp_mkdir_p( $directory, 0755, true );
 						}
 
 						$file_name = isset( $_FILES['wps_rma_return_request_files']['name'][ $i ] ) ? sanitize_text_field( wp_unslash( $_FILES['wps_rma_return_request_files']['name'][ $i ] ) ) : '';
@@ -144,7 +144,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 							$target_path = $directory . '/' . $order_id . '-' . sanitize_file_name( $file_name );
 
 							$filename[] = $order_id . '-' . sanitize_file_name( $file_name );
-							move_uploaded_file( $source_path, $target_path );
+							copy( $source_path, $target_path );
 						}
 					}
 				}

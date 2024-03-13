@@ -37,6 +37,11 @@ if ( ! wps_rma_standard_check_multistep() && wps_rma_pro_active() ) {
 	<?php
 	return;
 }
+$secure_nonce      = wp_create_nonce( 'wps-rma-dashboard-nonce' );
+$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'wps-rma-dashboard-nonce' );
+if ( ! $id_nonce_verified ) {
+	wp_die( esc_html__( 'Nonce Not verified', 'woo-refund-and-exchange-lite' ) );
+}
 global $wrael_wps_rma_obj;
 $wrael_active_tab   = isset( $_GET['wrael_tab'] ) ? sanitize_key( $_GET['wrael_tab'] ) : 'woo-refund-and-exchange-lite-general';
 $wrael_default_tabs = $wrael_wps_rma_obj->wps_rma_plug_default_tabs();

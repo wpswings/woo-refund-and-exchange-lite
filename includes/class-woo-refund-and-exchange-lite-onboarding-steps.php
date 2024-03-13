@@ -296,7 +296,7 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 			 * Email field with label. ( auto filled with admin email )
 			 */
 
-			rand() => array(
+			wp_rand() => array(
 				'id'          => 'wps-wrael-monthly-revenue',
 				'title'       => esc_html__( 'What is your monthly revenue?', 'woo-refund-and-exchange-lite' ),
 				'type'        => 'radio',
@@ -315,7 +315,7 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 				),
 			),
 
-			rand() => array(
+			wp_rand() => array(
 				'id'          => 'wps_rma_industry_type',
 				'title'       => esc_html__( 'What industry defines your business?', 'woo-refund-and-exchange-lite' ),
 				'type'        => 'select',
@@ -352,7 +352,7 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 				),
 			),
 
-			rand() => array(
+			wp_rand() => array(
 				'id'          => 'wps-wrael-onboard-email',
 				'title'       => esc_html__( 'What is the best email address to contact you?', 'woo-refund-and-exchange-lite' ),
 				'type'        => 'email',
@@ -364,7 +364,7 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 				'class'       => 'wrael-text-class',
 			),
 
-			rand() => array(
+			wp_rand() => array(
 				'id'          => 'wps-wrael-onboard-number',
 				'title'       => esc_html__( 'What is your contact number?', 'woo-refund-and-exchange-lite' ),
 				'type'        => 'text',
@@ -376,7 +376,7 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 				'class'       => '',
 			),
 
-			rand() => array(
+			wp_rand() => array(
 				'id'          => 'wps-wrael-store-name',
 				'title'       => '',
 				'description' => '',
@@ -388,7 +388,7 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 				'class'       => '',
 			),
 
-			rand() => array(
+			wp_rand() => array(
 				'id'          => 'wps-wrael-store-url',
 				'title'       => '',
 				'description' => '',
@@ -400,7 +400,7 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 				'class'       => '',
 			),
 
-			rand() => array(
+			wp_rand() => array(
 				'id'          => 'wps-wrael-show-counter',
 				'title'       => '',
 				'description' => '',
@@ -412,7 +412,7 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 				'class'       => '',
 			),
 
-			rand() => array(
+			wp_rand() => array(
 				'id'          => 'wps-wrael-plugin-name',
 				'title'       => '',
 				'description' => '',
@@ -459,7 +459,7 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 			 * Email field with label. ( auto filled with admin email )
 			 */
 
-			rand() => array(
+			wp_rand() => array(
 				'id'          => 'wps-wrael-deactivation-reason',
 				'title'       => '',
 				'description' => '',
@@ -480,7 +480,7 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 				),
 			),
 
-			rand() => array(
+			wp_rand() => array(
 				'id'          => 'wps-wrael-deactivation-reason-text',
 				'title'       => esc_html__( 'Let us know why you are deactivating WooCommerce Refund and Exchange Lite so we can improve the plugin', 'woo-refund-and-exchange-lite' ),
 				'type'        => 'textarea',
@@ -492,7 +492,7 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 				'class'       => 'wps-keep-hidden',
 			),
 
-			rand() => array(
+			wp_rand() => array(
 				'id'          => 'wps-wrael-admin-email',
 				'title'       => '',
 				'description' => '',
@@ -504,7 +504,7 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 				'class'       => '',
 			),
 
-			rand() => array(
+			wp_rand() => array(
 				'id'          => 'wps-wrael-store-name',
 				'title'       => '',
 				'description' => '',
@@ -516,7 +516,7 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 				'class'       => '',
 			),
 
-			rand() => array(
+			wp_rand() => array(
 				'id'          => 'wps-wrael-store-url',
 				'title'       => '',
 				'description' => '',
@@ -528,7 +528,7 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 				'class'       => '',
 			),
 
-			rand() => array(
+			wp_rand() => array(
 				'id'          => 'wps-wrael-plugin-name',
 				'title'       => '',
 				'description' => '',

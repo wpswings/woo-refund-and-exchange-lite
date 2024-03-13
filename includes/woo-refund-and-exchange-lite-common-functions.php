@@ -140,55 +140,59 @@ if ( ! function_exists( 'wps_rma_lite_send_order_msg_callback' ) ) {
 		// phpcs:disable
 		$filename   = array();
 		$attachment = array();
-		if ( isset( $_FILES['wps_order_msg_attachment']['tmp_name'] ) && ! empty( $_FILES['wps_order_msg_attachment']['tmp_name'] ) ) {
-			$count         = count( $_FILES['wps_order_msg_attachment']['tmp_name'] );
-			$file_uploaded = false;
-			if ( isset( $_FILES['wps_order_msg_attachment']['tmp_name'][0] ) && ! empty( $_FILES['wps_order_msg_attachment']['tmp_name'][0] ) ) {
-				$file_uploaded = true;
-			}
-			if ( $file_uploaded ) {
-				for ( $i = 0; $i < $count; $i++ ) {
-					if ( isset( $_FILES['wps_order_msg_attachment']['tmp_name'][ $i ] ) ) {
-						$directory = ABSPATH . 'wp-content/attachment';
-						if ( ! file_exists( $directory ) ) {
-							mkdir( $directory, 0755, true );
-						}
-						$sourcepath = sanitize_text_field( wp_unslash( $_FILES['wps_order_msg_attachment']['tmp_name'][ $i ] ) );
-						$f_name     = isset( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ? sanitize_file_name( wp_unslash( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ) : '';
-						$targetpath = $directory . '/' . $order_id . '-' . sanitize_file_name( $f_name );
-						$file_security = pathinfo( $f_name, PATHINFO_EXTENSION );
-						if ( 'png' === $file_security || 'jpeg' === $file_security || 'jpg' === $file_security ) {
+		$check_ajax = check_ajax_referer( 'wps_rma_ajax_security', 'security_check' );
+		if ( $check_ajax ) {
 
-							$filename[ $i ] ['img'] = true;
-							$filename[ $i ]['name'] = isset( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ? sanitize_file_name( wp_unslash( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ) : '';
-							$attachment[ $i ]       = $targetpath;
-							move_uploaded_file( $sourcepath, $targetpath );
+			if ( isset( $_FILES['wps_order_msg_attachment']['tmp_name'] ) && ! empty( $_FILES['wps_order_msg_attachment']['tmp_name'] ) ) {
+				$count         = count( $_FILES['wps_order_msg_attachment']['tmp_name'] );
+				$file_uploaded = false;
+				if ( isset( $_FILES['wps_order_msg_attachment']['tmp_name'][0] ) && ! empty( $_FILES['wps_order_msg_attachment']['tmp_name'][0] ) ) {
+					$file_uploaded = true;
+				}
+				if ( $file_uploaded ) {
+					for ( $i = 0; $i < $count; $i++ ) {
+						if ( isset( $_FILES['wps_order_msg_attachment']['tmp_name'][ $i ] ) ) {
+							$directory = ABSPATH . 'wp-content/attachment';
+							if ( ! file_exists( $directory ) ) {
+								mkdir( $directory, 0755, true );
+							}
+							$sourcepath = sanitize_text_field( wp_unslash( $_FILES['wps_order_msg_attachment']['tmp_name'][ $i ] ) );
+							$f_name     = isset( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ? sanitize_file_name( wp_unslash( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ) : '';
+							$targetpath = $directory . '/' . $order_id . '-' . sanitize_file_name( $f_name );
+							$file_security = pathinfo( $f_name, PATHINFO_EXTENSION );
+							if ( 'png' === $file_security || 'jpeg' === $file_security || 'jpg' === $file_security ) {
+
+								$filename[ $i ] ['img'] = true;
+								$filename[ $i ]['name'] = isset( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ? sanitize_file_name( wp_unslash( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ) : '';
+								$attachment[ $i ]       = $targetpath;
+								move_uploaded_file( $sourcepath, $targetpath );
+							}
 						}
 					}
 				}
 			}
+			// phpcs:enable
+			$date                         = strtotime( gmdate( 'Y-m-d H:i:s' ) );
+			$order_msg[ $date ]['sender'] = $sender;
+			$order_msg[ $date ]['msg']    = $msg;
+			$order_msg[ $date ]['files']  = $filename;
+			$get_msg                      = wps_rma_get_meta_data( $order_id, 'wps_cutomer_order_msg', true );
+			if ( isset( $get_msg ) && ! empty( $get_msg ) ) {
+				array_push( $get_msg, $order_msg );
+			} else {
+				$get_msg = array();
+				array_push( $get_msg, $order_msg );
+			}
+			wps_rma_update_meta_data( $order_id, 'wps_cutomer_order_msg', $get_msg );
+			$restrict_mail =
+			// Allow/Disallow Email.
+			apply_filters( 'wps_rma_restrict_order_msg_mails', false );
+			if ( ! $restrict_mail ) {
+				$customer_email = WC()->mailer()->emails['wps_rma_order_messages_email'];
+				$email_status   = $customer_email->trigger( $msg, $attachment, $to, $order_id );
+			}
+			return true;
 		}
-		// phpcs:enable
-		$date                         = strtotime( gmdate( 'Y-m-d H:i:s' ) );
-		$order_msg[ $date ]['sender'] = $sender;
-		$order_msg[ $date ]['msg']    = $msg;
-		$order_msg[ $date ]['files']  = $filename;
-		$get_msg                      = wps_rma_get_meta_data( $order_id, 'wps_cutomer_order_msg', true );
-		if ( isset( $get_msg ) && ! empty( $get_msg ) ) {
-			array_push( $get_msg, $order_msg );
-		} else {
-			$get_msg = array();
-			array_push( $get_msg, $order_msg );
-		}
-		wps_rma_update_meta_data( $order_id, 'wps_cutomer_order_msg', $get_msg );
-		$restrict_mail =
-		// Allow/Disallow Email.
-		apply_filters( 'wps_rma_restrict_order_msg_mails', false );
-		if ( ! $restrict_mail ) {
-			$customer_email = WC()->mailer()->emails['wps_rma_order_messages_email'];
-			$email_status   = $customer_email->trigger( $msg, $attachment, $to, $order_id );
-		}
-		return true;
 	}
 }
 if ( ! function_exists( 'wps_wrma_format_price' ) ) {
