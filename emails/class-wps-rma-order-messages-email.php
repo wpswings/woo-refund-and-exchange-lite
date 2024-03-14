@@ -21,10 +21,11 @@ class Wps_Rma_Order_Messages_Email extends WC_Email {
 	 *
 	 * @since 0.1
 	 */
+	public $order_id = '';
 	public function __construct() {
 		// set ID, this simply needs to be a unique name.
 		$this->id = 'wps_rma_order_messages_email';
-
+		$this->recipient = '';
 		// this is the title in WooCommerce Email settings.
 		$this->title = 'RMA Order Messages';
 

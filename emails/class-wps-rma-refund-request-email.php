@@ -21,10 +21,12 @@ class Wps_Rma_Refund_Request_Email extends WC_Email {
 	 *
 	 * @since 0.1
 	 */
+	public $order_id = '';
+	public $to = '';
 	public function __construct() {
 		// set ID, this simply needs to be a unique name.
 		$this->id = 'wps_rma_refund_request_email';
-
+		$this->recipient = '';
 		// this is the title in WooCommerce Email settings.
 		$this->title = 'RMA Refund Request Email';
 		// this is the description in WooCommerce email settings.
