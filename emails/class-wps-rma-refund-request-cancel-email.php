@@ -17,11 +17,16 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Wps_Rma_Refund_Request_Cancel_Email extends WC_Email {
 	/**
+	 * Undocumented variable
+	 *
+	 * @var string
+	 */
+	public $order_id = '';
+	/**
 	 * Set email defaults
 	 *
 	 * @since 0.1
 	 */
-	public $order_id = '';
 	public function __construct() {
 		// set ID, this simply needs to be a unique name.
 		$this->id = 'wps_rma_refund_request_cancel_email';
