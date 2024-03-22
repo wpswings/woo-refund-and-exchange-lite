@@ -146,7 +146,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 				'id'    => 'wps_rma_guest_form',
 				'value' => '[Wps_Rma_Guest_Form]',
 				'attr'  => 'readonly',
-				'placeholder' => 'shortcode',
+				'placeholder' => 'Shortcode',
 				'class' => 'mwr-select-class ' . $this->rma_pro_activate,
 			);
 			$wps_rma_settings_general[] = array(
@@ -696,7 +696,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					'id'          => 'wps_rma_wallet_shorcode',
 					'value'       => '[Wps_Rma_Customer_Wallet]',
 					'attr'        => 'readonly',
-					'placeholder' => 'shortcode',
+					'placeholder' => 'Shortcode',
 					'class'       => 'wrael-text-class ' . $this->rma_pro_activate,
 				),
 				array(
