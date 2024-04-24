@@ -948,6 +948,15 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				$response['refund_method'] = 'wallet_method';
 			}
 			wps_rma_update_meta_data( $order_id, 'wps_rma_left_amount_done', 'yes' );
+
+			$order = wc_get_order( $order_id );
+			foreach ( $order->get_items() as $item_id => $item ) {
+				$product = $item->get_product();
+				if ( 'mwb_booking' === $product->get_type() ) {
+					$order->update_status( 'wc-cancelled' );
+					break;
+				}
+			}
 		}
 		echo wp_json_encode( $response );
 		wp_die();

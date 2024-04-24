@@ -19,12 +19,12 @@ jQuery( document ).on( 'ready', function(){
 			
 		if (rr_subject == '' || rr_subject == null ) {
 			rr_subject = $( '#wps_rma_return_request_subject_text' ).val();
-			if (rr_subject == '' || rr_subject == null || ! rr_subject.match(/[[A-Za-z]/i ) ) {
+			if (rr_subject == '' || rr_subject == null ) {
 				alerthtml += '<li>' + wrael_common_param.return_subject_msg + '</li>';
 			}
 		}
 		var rr_reason = $( '.wps_rma_return_request_reason' ).val();
-		if ( typeof( rr_reason ) !== 'undefined' && ( rr_reason == '' || rr_reason == null || ! rr_reason.match(/[[A-Za-z]/i ) ) ) {
+		if ( typeof( rr_reason ) !== 'undefined' && ( rr_reason == '' || rr_reason == null ) ) {
 			alerthtml += '<li>' + wrael_common_param.return_reason_msg + '</li>';
 		}
 
