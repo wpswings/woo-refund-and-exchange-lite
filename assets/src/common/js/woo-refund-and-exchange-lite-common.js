@@ -66,7 +66,7 @@ jQuery( document ).on( 'ready', function(){
 					var product_id = $(this).data('productid');
 					var item_id = $(this).data('itemid');
 					var product_price = $(this).find('td:eq(0)').children('.wps_rma_product_amount').val();
-					var product_qty = $(this).find('td:eq(1)').children('.wps_rma_return_product_qty').val();
+					var product_qty = $(this).find('.wps_rma_return_product_qty').val();
 					product_info['product_id'] = product_id;
 					product_info['variation_id'] = variation_id;
 					product_info['item_id'] = item_id;
