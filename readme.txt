@@ -3,10 +3,10 @@ Contributors: wpswings
 Donate link: https://wpswings.com/
 Tags: RMA plugin, return plugin, refund plugin, exchange plugin, cancel-order request
 Requires at least: 5.5.0
-Tested up to: 6.5
+Tested up to: 6.5.2
 WC requires at leastA: 5.5.0
-WC tested up to: 8.7.0
-Stable tag: 4.3.7
+WC tested up to: 8.8.3
+Stable tag: 4.3.8
 Requires PHP:  7.2
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -58,6 +58,8 @@ With our Return Refund and Exchange plugin, merchants can create a dedicated ref
 == WOOCOMMERCE REFUND PLUGIN COMPATIBILITIES ==
 
 * Compatible with the [**Ultimate Gift Cards For WooCommerce**](https://wordpress.org/plugins/woo-gift-cards-lite/) and [**Gift Cards for WooCommerce Pro**](https://wpswings.com/product/gift-cards-for-woocommerce-pro/?utm_source=wpswings-gc-pro&utm_medium=rma-org-page&utm_campaign=gc-pro). Admin can now provide WooCommerce refund functionality on gift cards to its users.
+
+* Compatible with the [**Bookings for WooCommerce**](https://wordpress.org/plugins/mwb-bookings-for-woocommerce/)
 
 * Compatible with [**WooCommerce Sequential Order Numbers Pro**](https://www.skyverge.com/product/woocommerce-sequential-order-numbers-pro/) by SkyVerse and [**Sequential Order Numbers for WooCommerce by WebToffee**](https://wordpress.org/plugins/wt-woocommerce-sequential-order-numbers/). 
 
@@ -175,13 +177,19 @@ Please visit [**WP Swings Knowledge Base**](https://support.wpswings.com/wordpre
 
 == Changelog == 
 
+= 4.3.8 - Released on 30 April 2024 = 
+* New: Compatibility with the latest WP [6.5.2] and WC [8.8.3] Update.
+* New: Compatibility with [**Bookings for WooCommerce**](https://wordpress.org/plugins/mwb-bookings-for-woocommerce/)
+* Fixes: Form submission issue, when entering Arabic text into the “Refund reason” text box. 
+
+
 = 4.3.7 - Released on 22 March 2024 = 
 * Fix: issue resolved from plugin check.
-* Compatibility with the latest WP [6.4.3] and WC [8.7.0] Update.
+* New: Compatibility with the latest WP [6.4.3] and WC [8.7.0] Update.
 
 = 4.3.6 - Released on 28 February 2024 = 
-* Refund Woocommerce Shipping on Refund Process. 
-* Compatibility with the latest WP (6.4.3) and WC (8.6.1) Update
+* New: Refund Woocommerce Shipping on Refund Process. 
+* New: Compatibility with the latest WP (6.4.3) and WC (8.6.1) Update
 
 = 4.3.5 - Released on 17 January 2024 = 
 * New : Latest WP(6.4.2) and WC(8.5.1) Compatibility
@@ -370,6 +378,7 @@ Please visit [**WP Swings Knowledge Base**](https://support.wpswings.com/wordpre
 
 == Upgrade Notice ==
 
-= 4.3.7 - Released on 22 March 2024 = 
-* Fix: issue resolved from plugin check.
-* Compatibility with the latest WP [6.5] and WC [8.7.0] Update
+= 4.3.8 - Released on 30 April 2024 = 
+* New: Compatibility with the latest WP [6.5.2] and WC [8.8.3] Update.
+* New: Compatibility with [**Bookings for WooCommerce**](https://wordpress.org/plugins/mwb-bookings-for-woocommerce/)
+* Fixes: Form submission issue, when entering Arabic text into the “Refund reason” text box. 

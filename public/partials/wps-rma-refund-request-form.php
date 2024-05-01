@@ -272,9 +272,9 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 						<input type="hidden" name="wps_rma_total_refund_price" class="wps_rma_total_refund_price" value="<?php echo esc_html( $wps_total_actual_price ); ?>" data-shipping_price= "<?php echo esc_html( $shipping_price ); ?>">
 							<?php
 							if ( 'wps_rma_inlcude_tax' === $wps_rma_check_tax ) {
-								if ( empty( $pro_active ) && 'on' == $wps_rma_allow_refund_shipping_charge ) {
+								if ( empty( $pro_active ) && 'on' == $wps_rma_allow_refund_shipping_charge && $shipping_price > 0 ) {
 									?>
-									<small class="tax_label"><?php esc_html_e( '(incl. tax & shipping charge) ', 'woo-refund-and-exchange-lite' ); ?></small>
+									<small class="tax_label"><?php esc_html_e( '(incl. tax & shipping charges) ', 'woo-refund-and-exchange-lite' ); ?></small>
 									<?php
 								} else {
 									?>
@@ -282,7 +282,7 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 									<?php
 								}
 							} elseif ( 'wps_rma_exclude_tax' === $wps_rma_check_tax ) {
-								if ( empty( $pro_active ) && 'on' == $wps_rma_allow_refund_shipping_charge ) {
+								if ( empty( $pro_active ) && 'on' == $wps_rma_allow_refund_shipping_charge && $shipping_price > 0 ) {
 									?>
 									<small class="tax_label"><?php esc_html_e( '(excl. tax & shipping charge)', 'woo-refund-and-exchange-lite' ); ?></small>
 									<?php
@@ -291,7 +291,7 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 									<small class="tax_label"><?php esc_html_e( '(excl. tax)', 'woo-refund-and-exchange-lite' ); ?></small>
 									<?php
 								}
-							} else if ( empty( $pro_active ) && 'on' == $wps_rma_allow_refund_shipping_charge ) {
+							} else if ( empty( $pro_active ) && 'on' == $wps_rma_allow_refund_shipping_charge && $shipping_price > 0 ) {
 								?>
 									<small class="tax_label"><?php esc_html_e( '(shipping charge) ', 'woo-refund-and-exchange-lite' ); ?></small>
 									<?php

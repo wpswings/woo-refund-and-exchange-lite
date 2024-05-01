@@ -1,8 +1,8 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Return Refund and Exchange for WooCommerce 4.3.7\n"
-"POT-Creation-Date: 2024-03-22 11:54+0530\n"
+"Project-Id-Version: Return Refund and Exchange for WooCommerce 4.3.8\n"
+"POT-Creation-Date: 2024-04-30 17:54+0530\n"
 "PO-Revision-Date: 2023-09-25 13:54+0530\n"
 "Last-Translator: \n"
 "Language-Team: WP Swings\n"
@@ -159,7 +159,7 @@ msgid "Id of some field is missing"
 msgstr ""
 
 #: admin/class-woo-refund-and-exchange-lite-admin.php:514
-#: admin/class-woo-refund-and-exchange-lite-admin.php:1041
+#: admin/class-woo-refund-and-exchange-lite-admin.php:1050
 msgid "Settings saved !"
 msgstr ""
 
@@ -310,57 +310,57 @@ msgstr ""
 msgid "Order Message History"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:997
+#: admin/class-woo-refund-and-exchange-lite-admin.php:1006
 msgid "Product Stock is updated Successfully."
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:999
+#: admin/class-woo-refund-and-exchange-lite-admin.php:1008
 #, php-format
 msgid "%s Product Stock is updated Successfully."
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:1002
+#: admin/class-woo-refund-and-exchange-lite-admin.php:1011
 msgid ""
 "Product Stock is not updated as manage stock setting of product is disable."
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:1004
+#: admin/class-woo-refund-and-exchange-lite-admin.php:1013
 #, php-format
 msgid ""
 "%s Product Stock is not updated as manage stock setting of product is "
 "disable."
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:1064
+#: admin/class-woo-refund-and-exchange-lite-admin.php:1073
 msgid "RMA Configuration"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:1066
+#: admin/class-woo-refund-and-exchange-lite-admin.php:1075
 msgid "Refund-Exchange Lite"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:1107
+#: admin/class-woo-refund-and-exchange-lite-admin.php:1116
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-policies-settings.php:46
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-policies-settings.php:56
 #: public/class-woo-refund-and-exchange-lite-public.php:221
 msgid "Exchange"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:1113
+#: admin/class-woo-refund-and-exchange-lite-admin.php:1122
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-policies-settings.php:47
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-policies-settings.php:57
 msgid "Cancel"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:1132
+#: admin/class-woo-refund-and-exchange-lite-admin.php:1141
 msgid "Wallet"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:1138
+#: admin/class-woo-refund-and-exchange-lite-admin.php:1147
 msgid "Global Shipping"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:1144
+#: admin/class-woo-refund-and-exchange-lite-admin.php:1153
 msgid "Integration"
 msgstr ""
 
@@ -1912,7 +1912,7 @@ msgid "Total Refund Amount"
 msgstr ""
 
 #: public/partials/wps-rma-refund-request-form.php:277
-msgid "(incl. tax & shipping charge) "
+msgid "(incl. tax & shipping charges) "
 msgstr ""
 
 #: public/partials/wps-rma-refund-request-form.php:287
