@@ -949,7 +949,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			}
 			wps_rma_update_meta_data( $order_id, 'wps_rma_left_amount_done', 'yes' );
 		}
-		echo json_encode( $response );
+		echo wp_json_encode( $response );
 		wp_die();
 	}
 

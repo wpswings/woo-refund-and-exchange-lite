@@ -17,6 +17,12 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Wps_Rma_Refund_Request_Cancel_Email extends WC_Email {
 	/**
+	 * Undocumented variable
+	 *
+	 * @var string
+	 */
+	public $order_id = '';
+	/**
 	 * Set email defaults
 	 *
 	 * @since 0.1
@@ -24,7 +30,7 @@ class Wps_Rma_Refund_Request_Cancel_Email extends WC_Email {
 	public function __construct() {
 		// set ID, this simply needs to be a unique name.
 		$this->id = 'wps_rma_refund_request_cancel_email';
-
+		$this->recipient = '';
 		// this is the title in WooCommerce Email settings.
 		$this->title = 'RMA Refund Request Cancel Email';
 		// this is the description in WooCommerce email settings.

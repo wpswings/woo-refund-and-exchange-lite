@@ -146,6 +146,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 				'id'    => 'wps_rma_guest_form',
 				'value' => '[Wps_Rma_Guest_Form]',
 				'attr'  => 'readonly',
+				'placeholder' => 'Shortcode',
 				'class' => 'mwr-select-class ' . $this->rma_pro_activate,
 			);
 			$wps_rma_settings_general[] = array(
@@ -690,12 +691,13 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					'placeholder' => esc_html__( 'Please Enter the Wallet Coupon Prefix', 'woo-refund-and-exchange-lite' ),
 				),
 				array(
-					'title' => esc_html__( 'Wallet Shortcode', 'woo-refund-and-exchange-lite' ),
-					'type'  => 'text',
-					'id'    => 'wps_rma_wallet_shorcode',
-					'value' => '[Wps_Rma_Customer_Wallet]',
-					'attr'  => 'readonly',
-					'class' => 'wrael-text-class ' . $this->rma_pro_activate,
+					'title'       => esc_html__( 'Wallet Shortcode', 'woo-refund-and-exchange-lite' ),
+					'type'        => 'text',
+					'id'          => 'wps_rma_wallet_shorcode',
+					'value'       => '[Wps_Rma_Customer_Wallet]',
+					'attr'        => 'readonly',
+					'placeholder' => 'Shortcode',
+					'class'       => 'wrael-text-class ' . $this->rma_pro_activate,
 				),
 				array(
 					'type'        => 'button',

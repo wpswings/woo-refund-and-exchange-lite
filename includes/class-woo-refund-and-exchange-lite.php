@@ -77,7 +77,7 @@ class Woo_Refund_And_Exchange_Lite {
 			$this->version = WOO_REFUND_AND_EXCHANGE_LITE_VERSION;
 		} else {
 
-			$this->version = '4.3.6';
+			$this->version = '4.3.7';
 		}
 
 		$this->plugin_name = 'return-refund-and-exchange-for-woocommerce';
@@ -436,6 +436,11 @@ class Woo_Refund_And_Exchange_Lite {
 	 */
 	public function wps_rma_plug_default_tabs() {
 		$wrael_default_tabs = array();
+		$wrael_default_tabs['woo-refund-and-exchange-lite-overview']      = array(
+			'title'     => esc_html__( 'Overview', 'woo-refund-and-exchange-lite' ),
+			'name'      => 'woo-refund-and-exchange-lite-overview',
+			'file_path' => WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/woo-refund-and-exchange-lite-overview.php',
+		);
 		$wrael_default_tabs['woo-refund-and-exchange-lite-general'] = array(
 			'title'     => esc_html__( 'General', 'woo-refund-and-exchange-lite' ),
 			'name'      => 'woo-refund-and-exchange-lite-general',
@@ -467,11 +472,6 @@ class Woo_Refund_And_Exchange_Lite {
 			'title'     => esc_html__( 'API Setting', 'woo-refund-and-exchange-lite' ),
 			'name'      => 'woo-refund-and-exchange-lite-api',
 			'file_path' => WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/woo-refund-and-exchange-lite-api.php',
-		);
-		$wrael_default_tabs['woo-refund-and-exchange-lite-overview']      = array(
-			'title'     => esc_html__( 'Overview', 'woo-refund-and-exchange-lite' ),
-			'name'      => 'woo-refund-and-exchange-lite-overview',
-			'file_path' => WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/woo-refund-and-exchange-lite-overview.php',
 		);
 		$wrael_default_tabs = apply_filters( 'wps_rma_plugin_standard_admin_settings_tabs', $wrael_default_tabs );
 		return $wrael_default_tabs;
