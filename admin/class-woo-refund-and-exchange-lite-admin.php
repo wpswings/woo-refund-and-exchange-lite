@@ -1219,6 +1219,16 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	}
 
 	/**
+	 * SMS notifcaiton settings register
+	 *
+	 * @param array $wps_rma_settings_wallet .
+	 */
+	public function wps_rma_sms_notification_settings_array( $wps_rma_settings_wallet){
+		$setting_obj = new Wps_Rma_Settings_Extend();
+		return $setting_obj->wps_rma_sms_notification_settings_array_set( $wps_rma_settings_wallet );
+	}
+
+	/**
 	 * Order message seting extend.
 	 *
 	 * @param array $cancel_setting_array .

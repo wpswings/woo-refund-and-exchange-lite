@@ -52,12 +52,14 @@ jQuery( document ).on( 'ready', function(){
 			});
 		}
 
+		var wps_rma_customer_contact_refund = null;
 		if( pro_act ){
 			if (typeof wps_rma_refund_total == 'function') {
 				var return_data = wps_rma_refund_total();
 				selected_product = return_data['selected_product'];
 				refund_amount    = return_data['amount'];
 			}
+			wps_rma_customer_contact_refund = $('#wps_rma_customer_contact_refund').val();
 		}else{
 			$('.wps_rma_return_column').each(function(){
 				if($(this).find('td:eq(0)').children('.wps_rma_return_product')){
@@ -125,6 +127,7 @@ jQuery( document ).on( 'ready', function(){
 			refund_method : refund_method,
 			security_check	: wrael_common_param.wps_rma_nonce,
 			all_product_checked : temp_check,
+			wps_rma_customer_contact_refund : wps_rma_customer_contact_refund,
 		}
 	
 

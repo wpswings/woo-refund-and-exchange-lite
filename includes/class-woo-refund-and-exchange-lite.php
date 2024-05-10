@@ -77,7 +77,7 @@ class Woo_Refund_And_Exchange_Lite {
 			$this->version = WOO_REFUND_AND_EXCHANGE_LITE_VERSION;
 		} else {
 
-			$this->version = '4.3.7';
+			$this->version = '4.3.9';
 		}
 
 		$this->plugin_name = 'return-refund-and-exchange-for-woocommerce';
@@ -260,6 +260,8 @@ class Woo_Refund_And_Exchange_Lite {
 
 			$this->loader->add_filter( 'wps_rma_order_message_setting_extend', $wrael_plugin_admin, 'wps_rma_order_message_setting_extend', 10 );
 
+			$this->loader->add_filter( 'wps_rma_sms_notification_settings_array', $wrael_plugin_admin, 'wps_rma_sms_notification_settings_array', 10 );
+
 			if ( is_plugin_active( $pro_slug ) ) {
 
 				$this->loader->add_action( 'wps_rma_setting_extend_column5', $wrael_plugin_admin, 'wps_rma_setting_extend_column5' );
@@ -435,6 +437,11 @@ class Woo_Refund_And_Exchange_Lite {
 	 * @return Array An key=>value pair of Woo Refund And Exchange Lite tabs.
 	 */
 	public function wps_rma_plug_default_tabs() {
+		
+		$rma_pro_activate = 'wps_rma_pro_class';
+		if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
+			$rma_pro_activate = null;
+		}
 		$wrael_default_tabs = array();
 		$wrael_default_tabs['woo-refund-and-exchange-lite-overview']      = array(
 			'title'     => esc_html__( 'Overview', 'woo-refund-and-exchange-lite' ),
@@ -473,6 +480,14 @@ class Woo_Refund_And_Exchange_Lite {
 			'name'      => 'woo-refund-and-exchange-lite-api',
 			'file_path' => WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/woo-refund-and-exchange-lite-api.php',
 		);
+		//sms notification settings.
+		$wrael_default_tabs['woo-refund-and-exchange-lite-sms-notification']           = array(
+			'title'     => esc_html__( 'SMS Notification', 'woo-refund-and-exchange-lite' ),
+			'name'      => 'woo-refund-and-exchange-lite-sms-notification',
+			'class'     => $rma_pro_activate,
+			'file_path' => WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/pro_setting_templates/woo-refund-and-exchange-lite-sms-notification.php',
+		);
+		//sms notification settings.
 		$wrael_default_tabs = apply_filters( 'wps_rma_plugin_standard_admin_settings_tabs', $wrael_default_tabs );
 		return $wrael_default_tabs;
 	}
@@ -587,7 +602,7 @@ class Woo_Refund_And_Exchange_Lite {
 									>
 								</label>
 								<div class="mdc-text-field-helper-line">
-									<div class="mdc-text-field-helper-text--persistent wps-helper-text" id="" aria-hidden="true"><?php echo ( isset( $wrael_component['description'] ) ? esc_attr( $wrael_component['description'] ) : '' ); ?></div>
+									<div class="mdc-text-field-helper-text--persistent wps-helper-text" id="" aria-hidden="true"><?php echo ( isset( $wrael_component['description'] ) ? wp_kses_post( $wrael_component['description'] ) : '' ); ?></div>
 								</div>
 							</div>
 						</div>
