@@ -202,8 +202,8 @@ class Woo_Refund_And_Exchange_Lite_Common {
 				wps_rma_update_meta_data( $order_id, 'wps_wrna_all_product_checked', $temp_check );
 			}
 			$wps_rma_customer_contact_refund = isset( $_POST['wps_rma_customer_contact_refund'] ) ? sanitize_text_field( wp_unslash( $_POST['wps_rma_customer_contact_refund'] ) ) : '';
-			if( $wps_rma_customer_contact_refund ){
-				wps_rma_update_meta_data( $order_id , 'wps_rma_customer_contact_refund', $wps_rma_customer_contact_refund );
+			if ( $wps_rma_customer_contact_refund ) {
+				wps_rma_update_meta_data( $order_id, 'wps_rma_customer_contact_refund', $wps_rma_customer_contact_refund );
 			}
 			$response = wps_rma_save_return_request_callback( $order_id, $refund_method, $_POST );
 			if ( true == $response['flag'] ) {

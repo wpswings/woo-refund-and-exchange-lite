@@ -437,7 +437,7 @@ class Woo_Refund_And_Exchange_Lite {
 	 * @return Array An key=>value pair of Woo Refund And Exchange Lite tabs.
 	 */
 	public function wps_rma_plug_default_tabs() {
-		
+
 		$rma_pro_activate = 'wps_rma_pro_class';
 		if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 			$rma_pro_activate = null;
@@ -480,14 +480,14 @@ class Woo_Refund_And_Exchange_Lite {
 			'name'      => 'woo-refund-and-exchange-lite-api',
 			'file_path' => WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/woo-refund-and-exchange-lite-api.php',
 		);
-		//sms notification settings.
+		// sms notification settings.
 		$wrael_default_tabs['woo-refund-and-exchange-lite-sms-notification']           = array(
 			'title'     => esc_html__( 'SMS Notification', 'woo-refund-and-exchange-lite' ),
 			'name'      => 'woo-refund-and-exchange-lite-sms-notification',
 			'class'     => $rma_pro_activate,
 			'file_path' => WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/pro_setting_templates/woo-refund-and-exchange-lite-sms-notification.php',
 		);
-		//sms notification settings.
+		// sms notification settings.
 		$wrael_default_tabs = apply_filters( 'wps_rma_plugin_standard_admin_settings_tabs', $wrael_default_tabs );
 		return $wrael_default_tabs;
 	}
