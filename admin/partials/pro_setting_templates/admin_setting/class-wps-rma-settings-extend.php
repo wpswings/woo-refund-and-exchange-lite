@@ -805,6 +805,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					'value'       => get_option( 'wps_rma_admin_number' ),
 					'class'       => 'wrael-text-class ' . $this->rma_pro_activate,
 					'placeholder' => esc_html__( 'Enter a number to recieve sms notification.', 'woo-refund-and-exchange-lite' ),
+					'description' => esc_html__( 'Phone number with country code using +. Ex : +1XXXXXXX987', 'woo-refund-and-exchange-lite' ),
 				),
 
 				array(
