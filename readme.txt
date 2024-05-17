@@ -1,29 +1,31 @@
-=== Return Refund and Exchange For WooCommerce - Return Management System, RMA Exchange, Wallet And Cancel Order Features ===
+=== Return Refund and Exchange For WooCommerce – Return Management System, RMA Exchange, Wallet And Cancel Order Features ===
 Contributors: wpswings
 Donate link: https://wpswings.com/
-Tags: RMA plugin, return plugin, refund plugin, exchange plugin, cancel-order request
+Tags: RMA return refund exchange, re-order, refund, exchange, order management
 Requires at least: 5.5.0
-Tested up to: 6.5.2
+Tested up to: 6.5.3
 WC requires at leastA: 5.5.0
 WC tested up to: 8.8.3
-Stable tag: 4.3.8
+Stable tag: 4.3.9
 Requires PHP:  7.2
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 Provide an easy refund service and increase customer satisfaction with WooCommerce Return Refund and Exchange Warranty Management Plugin.
 
+
 == Description ==
 
 **HIGHEST-RATED REFUND AND EXCHANGE MANAGEMENT PLUGIN THAT LIFTS CUSTOMER SATISFACTION. GET RETURN, REFUND, AND EXCHANGE RMA PLUGIN TO CREATE A SIMPLE WOOCOMMERCE REFUND SYSTEM WITH RMA EXCHANGE, WALLET, AND CANCEL ORDER FEATURES**
 
-Return Refund and Exchange for WooCommerce lets you create simple returns and a WooCommerce refund requests management system stuffed with organized refund, exchange, wallet, and cancel order features. WP Swings WooCommerce Refund & Exchange Plugin eliminates on-call complaints and helps in managing returned stock.
+Return Refund and Exchange for WooCommerce lets you create simple returns and a WooCommerce refund requests management system stuffed with organized refund, exchange, wallet, and cancel order features. [**RMA Return, Refund & Exchange Plugin for WooCommerce Pro**](https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=rma-org&utm_medium=referral&utm_campaign=rma-pro) eliminates on-call complaints and helps in managing returned stock.
 
 Customers can request full or partial WooCommerce refunds (based on the return policy). The whole process of WordPress Refund Plugin goes under a dedicated and streamlined mailing system that keeps both parties on the same note. Ultimately, the WooCommerce RMA Plugin leads to high customer satisfaction and is the most flexible refund and return order for woocommerce plugin.
 
 [**WordPress RMA Demo**](https://demo.wpswings.com/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma-demo&utm_medium=rma-org-page&utm_campaign=frontend-demo) | [**RMA Documentation**](https://docs.wpswings.com/woocommerce-refund-and-exchange-lite/?utm_source=wpswings-rma-doc&utm_medium=rma-org-page&utm_campaign=rma-doc) | [**Contact Us**](https://wpswings.com/contact-us/?utm_source=wpswings-rma-contactus&utm_medium=rma-org-page&utm_campaign=contactus)
 
-[youtube https://www.youtube.com/watch?v=GQhXfBtzLE0&h=315&rel=0]
+[youtube https://www.youtube.com/watch?v=GQhXfBtzLE0&w=560&h=315&rel=0]
+
 
 == SALIENT FEATURES OF THE RETURN REFUND AND EXCHANGE FOR WOOCOMMERCE PLUGIN ==
 
@@ -86,6 +88,8 @@ With our Return Refund and Exchange plugin, merchants can create a dedicated ref
 
 **8.** Allows your customers to send their product-related queries along with multimedia files and approach you to take relevant action for the same.
 
+**9.** SMS Notifications for Customers & Merchants allows them to stay updated. Merchants will receive notifications when a customer makes refund or exchange requests, and customers will be notified when their refund or exchange requests are accepted.
+
 
 == TAKE ADVANTAGE OF THE EXCLUSIVE FEATURES OF THE WOOCOMMERCE EXCHANGE PREMIUM PLUGIN == 
 
@@ -96,6 +100,7 @@ With our Return Refund and Exchange plugin, merchants can create a dedicated ref
 
 [**RMA WooCommerce Pro Documentation**](https://docs.wpswings.com/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma-doc&utm_medium=rma-org-page&utm_campaign=rma-pro-doc)
 
+
 == SUPPORT ==
 
 If you need support or have any questions then kindly use our online chat window [**here**](https://wpswings.com/?utm_source=wpswings-official&utm_medium=rma-org-page&utm_campaign=wpswings-official) or connect with us then [**Generate a Ticket**](https://wpswings.com/submit-query/?utm_source=wpswings-generate-ticket&utm_medium=rma-org-page&utm_campaign=generate-ticket)
@@ -104,7 +109,7 @@ If you need support or have any questions then kindly use our online chat window
 
 > Create and Revamp your eCommerce store with [**WooCommerce Services**](https://wpswings.com/woocommerce-services/?utm_source=wpswings-rma-services&utm_medium=rma-org-page&utm_campaign=woocommerce-services)
 
-> Get Huge Discounts on WooCommerce Refund, Return and Exchange plugin during Republic Day Sales 2024 - [**Get More Offers**](https://wpswings.com/offers/?utm_source=wpswings-rma-offers&utm_medium=rma-org-page&utm_campaign=offers)
+> Get Huge Discounts on WooCommerce Refund, Return and Exchange plugin during Republic Day Sales 2024 – [**Get More Offers**](https://wpswings.com/offers/?utm_source=wpswings-rma-offers&utm_medium=rma-org-page&utm_campaign=offers)
 
 
 == FAQ ==
@@ -146,7 +151,7 @@ Yes, the admin can put a customized refund policy by going to **WP Swings -> Ref
 
 = Is there any stock management functionality in this refund management plugin? =
 
-Yes! The plugin automatically manages the stock after every successful refund of the product. Admin can set it by following the steps - **WP Swings -> Refund-Exchange lite Setting-> Refund Tab->**. Enable to show Manage Stock Button -> then admin can manage the stock from the WooCommerce orders section accordingly.
+Yes! The plugin automatically manages the stock after every successful refund of the product. Admin can set it by following the steps – **WP Swings -> Refund-Exchange lite Setting-> Refund Tab->**. Enable to show Manage Stock Button -> then admin can manage the stock from the WooCommerce orders section accordingly.
 
 = Is there any plugin that is compatible with Return Refund & Exchange for WooCommerce? =
 
@@ -155,6 +160,24 @@ The Return RMA Plugin is compatible with the [**WooCommerce Gift Cards**](https:
 = My question is not listed? =
 
 Please visit [**WP Swings Knowledge Base**](https://support.wpswings.com/wordpress-plugins-knowledge-base/category/rma-return-refund-exchange-for-woocommerce/?utm_source=wpswings-rma-kb&utm_medium=rma-org-page&utm_campaign=rma-kb)
+
+
+== Installation ==
+
+= Automatic installation =
+
+Automatic installation is the easiest option as WordPress handles the file transfers itself and you don't need to leave your web browser. To do an automatic install of Return Refund and Exchange For WooCommerce, log in to your WordPress dashboard, navigate to the Plugins menu, and click Add New.
+
+In the search field type "Return Refund and Exchange For WooCommerce" and click Search Plugins. Once you've found our plugin you can view details about it such as the point release, rating, and description. Most importantly, of course, you can install it by simply clicking "Install Now".
+
+= Manual installation =
+
+The manual installation method involves downloading our Return Refund and Exchange For WooCommerce and uploading it to your web server via your favorite FTP application. The WordPress contains [**instructions on how to do this here**](https://wordpress.org/support/article/managing-plugins/#manual-plugin-installation).
+
+= Updating =
+
+Automatic updates should work like a charm; as always though, ensure you backup your site just in case.
+
 
 == Screenshots ==
 
@@ -177,46 +200,49 @@ Please visit [**WP Swings Knowledge Base**](https://support.wpswings.com/wordpre
 
 == Changelog == 
 
-= 4.3.8 - Released on 30 April 2024 = 
+= 4.3.9 – Released on 17 May 2024 = 
+* New: Compatibility with the latest WP [6.5.3] and WC [8.9.0] Update.
+
+= 4.3.8 – Released on 30 April 2024 = 
 * New: Compatibility with the latest WP [6.5.2] and WC [8.8.3] Update.
 * New: Compatibility with [**Bookings for WooCommerce**](https://wordpress.org/plugins/mwb-bookings-for-woocommerce/)
 * Fixes: Form submission issue, when entering Arabic text into the “Refund reason” text box. 
 
 
-= 4.3.7 - Released on 22 March 2024 = 
+= 4.3.7 – Released on 22 March 2024 = 
 * Fix: issue resolved from plugin check.
 * New: Compatibility with the latest WP [6.4.3] and WC [8.7.0] Update.
 
-= 4.3.6 - Released on 28 February 2024 = 
+= 4.3.6 – Released on 28 February 2024 = 
 * New: Refund Woocommerce Shipping on Refund Process. 
 * New: Compatibility with the latest WP (6.4.3) and WC (8.6.1) Update
 
-= 4.3.5 - Released on 17 January 2024 = 
+= 4.3.5 – Released on 17 January 2024 = 
 * New : Latest WP(6.4.2) and WC(8.5.1) Compatibility
 * Enhancement : Enhancement in attachement feature for view order message and refund.
 
-= 4.3.4 - Released on 12 December 2023 = 
+= 4.3.4 – Released on 12 December 2023 = 
 * New : Latest WP(6.4.2) and WC(8.3.1) Compatibility
 * Fix : Fixed the date format issue
 
-= 4.3.3 - Released on 27 November 2023 = 
+= 4.3.3 – Released on 27 November 2023 = 
 * New: Compatibility with WP(6.4.1) and WC(8.3.1)
 * New: Compatibility With WooCommerce Cart and Checkout Block.
 
-= 4.3.2 - Released on 27 October 2023 = 
+= 4.3.2 – Released on 27 October 2023 = 
 * New: Added a feature to allow the Refund, Exchange, and Cancellation for a specific time period.
 * New: Compatibility with WP(6.3.2) and WC(8.2.1)
 
-= 4.3.1 - Released on 12 October 2023 =
+= 4.3.1 – Released on 12 October 2023 =
 * New: Compatibility with WP(6.3.1) and WC(8.2.0)
 * Fix: User roles issue while opening forms
 
-= 4.3.0 - Released on 10 October 2023 = 
+= 4.3.0 – Released on 10 October 2023 = 
 * New: Compatibility with WP(6.3.1) and WC(8.1.1) 
 * New: Compatibility with HPOS
 * New: Added Banner image in ORG backend
 
-= 4.2.2 - Released on 25 September 2023 =
+= 4.2.2 – Released on 25 September 2023 =
 * New: Compatibility with WP(6.3.1) and WC(8.1.1) 
 * New: Added hooks for the RMA Report( Pro ) compatibility
 * Fix: Fix item quantity while requesting submission
@@ -231,46 +257,46 @@ Please visit [**WP Swings Knowledge Base**](https://support.wpswings.com/wordpre
 * New: Added the Pro Feature Tag
 * Fix: Fixes an issue related to the attachment on the refund form
 
-= 4.1.3 - Released on 26 May 2023 =
+= 4.1.3 – Released on 26 May 2023 =
 * New: Compatibility with the Latest WP (6.2.2) and WC (7.7.0).
 * New: The pro setting with tag.
 * New: Minor bug fixes.
 
-= 4.1.2 - Released on 26 April 2023 =
+= 4.1.2 – Released on 26 April 2023 =
 * New: Compatibility with the Latest WP (6.2.0) and WC (7.6.0)
 * Fix: Plugin Stability
 
-= 4.1.1 - Released on 17 March 2023 =
+= 4.1.1 – Released on 17 March 2023 =
 * New: Compatibility with the Latest WP (6.1.1) and WC (7.5.0)
 * Fix: RMA Policies for Tax Handling 
 * Fix: Price on Refund Form based on the Coupon Functionality
 
-= 4.1.0 - Released on 20 January 2023 =
+= 4.1.0 – Released on 20 January 2023 =
 * New: Compatibility with the Latest WC and WP
 * New: Added Custom CSS Setting
 * Fix: File Uploading name formatting issue
 * Enhancement: File upload Add more button hide when limit exceeded
 
-= 4.0.9 - Released on 2 December 2022 =
+= 4.0.9 – Released on 2 December 2022 =
 * Fix: Bug fixes [Security issue related to file traversal] 
 * New: Latest WC and WP Compatibility
 
-= 4.0.8 - Released on 22 November 2022 =
+= 4.0.8 – Released on 22 November 2022 =
 * New: Latest WC and WP Compatibility
 * Fix: Security Issue Related To WP Scan
 * Fix: Issue Related Order Message Working Both For Admin and Customer
 
-= 4.0.7 - Released on 28 October 2022 =
+= 4.0.7 – Released on 28 October 2022 =
 * New: Latest WC and WP Compatibility
 * New: The JS and CSS file loading optimize
 * Fix: Bug fixes [JS and CSS file naming convention issue]
 
-= 4.0.6 - Released on 16 September 2022 =
+= 4.0.6 – Released on 16 September 2022 =
 * New: Latest WC and WP Compatibility
 * New: PHP 8 compatibility
 * Fix: Date format issue
 
-= 4.0.5 - Released on 21 July 2022 =
+= 4.0.5 – Released on 21 July 2022 =
 * New: Latest WC and WP Compatibility
 * New: Compatibility with WooCommerce Sequential Order Numbers Pro by Skyverse
 * New: Compatibility with Sequential Order Numbers for WooCommerce by Webtoffee
@@ -278,47 +304,47 @@ Please visit [**WP Swings Knowledge Base**](https://support.wpswings.com/wordpre
 * Fix: API code optimization
 * Fix: Minor Bug
 
-= 4.0.4 - Released on 5 July 2022 =
+= 4.0.4 – Released on 5 July 2022 =
 * New: Latest WP and WC Compatibility
 * Fix: Minor Bug
 
-= 4.0.3 - Released on 8 June 2022 =
+= 4.0.3 – Released on 8 June 2022 =
 * New: Latest WP and WC Compatibility
 * Fix: Minor Bug 
 
-= 4.0.2 - Released on 9 May 2022 =
+= 4.0.2 – Released on 9 May 2022 =
 * New: Latest WP and WC Compatibility
 * Fix: Bug fixes
 
-= 4.0.1 - Released on 9 April 2022 =
+= 4.0.1 – Released on 9 April 2022 =
 * Fix: Minor Bug
 
-= 4.0.0 - Released on 5 April 2022 =
+= 4.0.0 – Released on 5 April 2022 =
 * New: Some substantial changes across different areas of the plugin.
 * New: Added Migrator for existing users to import all old plugin data.
 * New: Compatible with the latest WP and WC
 * Fix: Minor Bug
 
-= 3.1.4 - Released on 03 February 2022 =
+= 3.1.4 – Released on 03 February 2022 =
 * New: Change author from MakeWebBetter to WP Swings
 * New: Notice display of current version for [**WP Swings**](https://wpswings.com/?utm_source=wpswings-official&utm_medium=rma-org-page&utm_campaign=official).
 * New: Minor Bug fixes
 * New: Compatible with the latest WP and WC 
 
-= 3.1.3 - Released on 5 November 2021 =
+= 3.1.3 – Released on 5 November 2021 =
 * Fix: Compatible with the latest WP and WC
 * Fix: Minor bug
 
-= 3.1.2 - Released on 27 September 2021 =
+= 3.1.2 – Released on 27 September 2021 =
 * Fix: Onboarding form
 * Fix: Minor bug
 
-= 3.1.1 - Released on 18 August 2021 =
+= 3.1.1 – Released on 18 August 2021 =
 * New: Add notices for upcoming RMA renovation plugin
 * Fix: Compatible with the latest WP and WC
 * Fix: Minor Bug and Issues Fixes
 
-= 3.1.0 - Released on 14 April 2021 =
+= 3.1.0 – Released on 14 April 2021 =
 * Fix: Compatible with latest WP(5.7) and WC(5.2.0)
 * New: WPML Compatibility
 * New: Given setting to show refund button based on added page
@@ -326,24 +352,24 @@ Please visit [**WP Swings Knowledge Base**](https://support.wpswings.com/wordpre
 * Fix: Design issue fixed during mobile view
 * Fix: Minor Bug and Issues Fixes
 
-= 3.0.4 - Released on 17 December 2020 =
+= 3.0.4 – Released on 17 December 2020 =
 * New: order_id shortcode for view order msg mails
 * New: Video link on the Overview tab
 * Fix: Compatibility with the Latest WP (5.6)
 
-= 3.0.3 - Released on 13 November 2020 =
+= 3.0.3 – Released on 13 November 2020 =
 * Fix: Minor Bug Fixes
 * Fix: Update in Plugin Core
 
-= 3.0.2 - Released on 10 November 2020 =
+= 3.0.2 – Released on 10 November 2020 =
 * Fix: Compatibility with latest WP(5.5.3) and WC(4.7.0)
 * Fix: Update in Plugin Core
 
-= 3.0.1 - Released on 30 October 2020 =
+= 3.0.1 – Released on 30 October 2020 =
 * Fix: Some CSS issues with WP images
 * Fix: Compatibility with the Latest WP and WC(4.7.0)
 
-= 3.0.0 - Released on 11 September 2020 =
+= 3.0.0 – Released on 11 September 2020 =
 * New: Overview Tab for plugin explanation
 * New: Functionality to change the text of the Refund button from the admin end
 * New: Functionality to change the text of the View Order Message button from the admin end
@@ -353,21 +379,21 @@ Please visit [**WP Swings Knowledge Base**](https://support.wpswings.com/wordpre
 * Fix: Refund rule editor display issue
 * Fix: Incorrect Notification when activating premium
 
-= 2.1.2 - Released on 21 July 2020 =
+= 2.1.2 – Released on 21 July 2020 =
 * Important: Your translation might be lost. Please take a backup of your language translations before the update.
 * New: Support for WooCommerce 4.3.0
 * New: Support for WordPress 5.4.2
 
-= 2.1.1 - Released on 15 July 2020 =
+= 2.1.1 – Released on 15 July 2020 =
 * New: Support for WooCommerce 4.3.0
 * New: Support for WordPress 5.4.2
 
-= 2.1.0 - Released on 18 April 2020 =
+= 2.1.0 – Released on 18 April 2020 =
 * New: Support for WooCommerce 4.0.1
 * New: Support for WordPress 5.4
 * New: Customers, Admin communication through messages.
 
-= 2.0.0 - Released on 24 January 2020 =
+= 2.0.0 – Released on 24 January 2020 =
 * New: Compatibility with the Latest WC and WP
 * Updated in plugin core and updated language
 * Fix: Image save issue in the Mail Configuration setting.
@@ -378,7 +404,5 @@ Please visit [**WP Swings Knowledge Base**](https://support.wpswings.com/wordpre
 
 == Upgrade Notice ==
 
-= 4.3.8 - Released on 30 April 2024 = 
-* New: Compatibility with the latest WP [6.5.2] and WC [8.8.3] Update.
-* New: Compatibility with [**Bookings for WooCommerce**](https://wordpress.org/plugins/mwb-bookings-for-woocommerce/)
-* Fixes: Form submission issue, when entering Arabic text into the “Refund reason” text box. 
+= 4.3.9 – Released on 17 May 2024 = 
+* New: Compatibility with the latest WP [6.5.3] and WC [8.8.3] Update.
