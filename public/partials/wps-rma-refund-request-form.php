@@ -124,17 +124,10 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 							$thumbnail       = wp_get_attachment_image( $product->get_image_id(), 'thumbnail' );
 							$coupon_discount = get_option( 'wps_rma_refund_deduct_coupon', 'no' );
 							if ( 'on' === $coupon_discount ) {
-								$total_tax = $item->get_taxes();
-								if ( isset( $total_tax['total'][1] ) ) {
-
-									$final_total_tax = $total_tax['total'][1];
-									$tax_inc = $item->get_total() + $final_total_tax;
-
-								} else {
-
-									$tax_inc = $item->get_total() + $item->get_subtotal_tax();
-								}
-								$tax_exc = $item->get_total() - $item->get_subtotal_tax();
+								
+								$tax_inc = $item->get_total() + $item->get_total_tax();
+								$tax_exc = $item->get_total() - $item->get_total_tax();
+									
 							} else {
 								$tax_inc = $item->get_subtotal() + $item->get_subtotal_tax();
 								$tax_exc = $item->get_subtotal() - $item->get_subtotal_tax();
