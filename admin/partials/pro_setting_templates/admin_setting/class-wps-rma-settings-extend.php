@@ -311,6 +311,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 						'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
 						'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 					),
+					'description' => esc_html__( 'This setting does not work if the order contains a bundled product.', 'woo-refund-and-exchange-lite' ),
 				),
 				array(
 					'title'   => esc_html__( 'Enable to show Manage Stock Button', 'woo-refund-and-exchange-lite' ),
