@@ -36,7 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
 use Automattic\WooCommerce\Utilities\OrderUtil;
-$activated      = true;
+$activated      = false;
 $active_plugins = get_option( 'active_plugins', array() );
 if ( function_exists( 'is_multisite' ) && is_multisite() ) {
 	$active_network_wide = get_site_option( 'active_sitewide_plugins', array() );
@@ -46,11 +46,11 @@ if ( function_exists( 'is_multisite' ) && is_multisite() ) {
 		}
 	}
 	$active_plugins = array_merge( $active_plugins, get_site_option( 'active_sitewide_plugins', array() ) );
-	if ( ! in_array( 'woocommerce/woocommerce.php', $active_plugins, true ) ) {
-		$activated = false;
+	if ( file_exists( WP_PLUGIN_DIR . '/woocommerce/woocommerce.php' ) && in_array( 'woocommerce/woocommerce.php', $active_plugins, true ) ) {
+		$activated = true;
 	}
-} elseif ( ! in_array( 'woocommerce/woocommerce.php', $active_plugins, true ) ) {
-		$activated = false;
+} elseif ( file_exists( WP_PLUGIN_DIR . '/woocommerce/woocommerce.php' ) && in_array( 'woocommerce/woocommerce.php', $active_plugins, true ) ) {
+		$activated = true;
 }
 if ( $activated ) {
 	/**
