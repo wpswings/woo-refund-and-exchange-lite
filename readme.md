@@ -1,4 +1,4 @@
-[![Build Status](https://img.shields.io/travis/twbs/bootstrap/v4-dev.svg)](https://travis-ci.org/twbs/bootstrap) ![Active installs](https://img.shields.io/badge/Active-4000%2B-brightgreen) ![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen) ![WP tested](https://img.shields.io/badge/WP%20tested-6.5.2-brightgreen) ![WC tested](https://img.shields.io/badge/WC%20tested-8.8.3-brightgreen) ![Requires PHP](https://img.shields.io/badge/Requires%20PHP-7.2.0-blue)
+[![Build Status](https://img.shields.io/travis/twbs/bootstrap/v4-dev.svg)](https://travis-ci.org/twbs/bootstrap) ![Active installs](https://img.shields.io/badge/Active-4000%2B-brightgreen) ![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen) ![WP tested](https://img.shields.io/badge/WP%20tested-6.5.5-brightgreen) ![WC tested](https://img.shields.io/badge/WC%20tested-9.0.2-brightgreen) ![Requires PHP](https://img.shields.io/badge/Requires%20PHP-7.2.0-blue)
 # Return Refund and Exchange for WooCommerce
 ![Return Refund and Exchange For WooCommerce - Create A Simple Refund System WooCommerce RMA with Exchange, Wallet & Cancel Order Features](https://ps.w.org/woo-refund-and-exchange-lite/assets/banner-772x250.png?rev=2672154)
 * Contributors: WP Swings
@@ -61,6 +61,9 @@ With our Return Refund and Exchange plugin, merchants can create a dedicated ref
 
 ### WOOCOMMERCE REFUND PLUGIN COMPATIBILITIES
 
+* Compatible with [**Product Bundles.**](https://woocommerce.com/products/product-bundles/) The WordPress RMA plugin enables customers to return bundle items without hassle. 
+
+
 * Compatible with the [**Ultimate Gift Cards For WooCommerce**](https://wordpress.org/plugins/woo-gift-cards-lite/) and [**Gift Cards for WooCommerce Pro**](https://wpswings.com/product/gift-cards-for-woocommerce-pro/?utm_source=wpswings-gc-pro&utm_medium=rma-org-page&utm_campaign=gc-pro). Admin can now provide WooCommerce refund functionality on gift cards to its users.
 
 * Compatible with the [**Bookings for WooCommerce Plugin.**](https://wordpress.org/plugins/mwb-bookings-for-woocommerce/)
@@ -74,6 +77,7 @@ With our Return Refund and Exchange plugin, merchants can create a dedicated ref
 
 
 ### Merchant's Point of View,
+
 Merchants can streamline refunds, notifications, and tax management to enhance customer satisfaction, let
 
 **1. Dedicated WooCommerce Refund System:** Merchants can create a dedicated refund system with customizable email templates to offer a money-back guarantee, including the ability to add branding elements.
@@ -87,6 +91,7 @@ Merchants can streamline refunds, notifications, and tax management to enhance c
 **5. Stock Management:** With the RMA plugin a stock management feature is included. When enabled, product stock levels are adjusted automatically when a refund request is accepted, helping merchants maintain accurate inventory records.
 
 ### Customer's Point of View,
+
 Customers can easily request refunds, stay informed, and communicate with support for a seamless experience, that
 
 **1. Refund Request:** 
@@ -100,9 +105,11 @@ Customers can request refunds for products they've purchased, choosing from pred
 
 
 ### TAKE ADVANTAGE OF THE EXCLUSIVE FEATURES OF THE WOOCOMMERCE RMA PLUGIN
+
 > Note:  Get [**RMA Return Refund & Exchange For WooCommerce Pro**](https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma-pro&utm_medium=rma-github-page&utm_campaign=premium-plugin)
 
 ### See what No 44 Store is saying about the WooCommerce RMA Pro Plugin
+
 > [**See WooCommerce Refund & Exchange Pro Plugin Case Study**](https://wpswings.com/case-studies/no44store/?utm_source=wpswings-rma-casestudy&utm_medium=rma-github-page&utm_campaign=no44-casestudy)
 
 ### DOCUMENTATION OF THE PREMIUM VERSION
