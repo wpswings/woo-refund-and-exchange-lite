@@ -45,6 +45,13 @@ if ( ! $id_nonce_verified ) {
 global $wrael_wps_rma_obj;
 $wrael_active_tab   = isset( $_GET['wrael_tab'] ) ? sanitize_key( $_GET['wrael_tab'] ) : 'woo-refund-and-exchange-lite-general';
 $wrael_default_tabs = $wrael_wps_rma_obj->wps_rma_plug_default_tabs();
+if( is_plugin_active( 'woocommerce-rma-for-return-refund-and-exchange/mwb-woocommerce-rma.php' ) ){
+	$wrael_wps_document_link = "https://docs.wpswings.com/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma-doc&utm_medium=rma-pro-backend&utm_campaign=doc" ;
+	$wrael_wps_video_link = "https://youtu.be/QyfzruqwnSM";
+} else {
+	$wrael_wps_document_link = "https://docs.wpswings.com/woocommerce-refund-and-exchange-lite/?utm_source=wpswings-rma-doc&utm_medium=rma-org-backend&utm_campaign=rma-doc/" ;
+	$wrael_wps_video_link = "https://youtu.be/GQhXfBtzLE0";
+}
 do_action( 'wps_rma_show_license_info' );
 ?>
 <header>
@@ -59,9 +66,9 @@ do_action( 'wps_rma_show_license_info' );
 			?>
 			<a class="wps_go_pro_link" style="background: #0aa000;color: white;font-weight: 700;padding: 2px 5px;border: 1px solid #139d09;border-radius: 5px;" target="_blank" href=""><?php esc_html_e( 'GO PRO', 'woo-refund-and-exchange-lite' ); ?></a>
 		<?php } ?>
-		<a href="https://docs.wpswings.com/woocommerce-refund-and-exchange-lite/?utm_source=wpswings-rma-doc&utm_medium=rma-org-backend&utm_campaign=rma-doc/" target="_blank" class="wps-link"><?php esc_html_e( 'Documentation', 'woo-refund-and-exchange-lite' ); ?></a>
+		<a href="<?php echo esc_attr( $wrael_wps_document_link ) ;?>"  target="_blank" class="wps-link"><?php esc_html_e( 'Documentation', 'woo-refund-and-exchange-lite' ); ?></a>
 		<span>|</span>
-		<a href="https://youtu.be/QyfzruqwnSM" target="_blank" class="wps-link"><?php esc_html_e( 'Video', 'woo-refund-and-exchange-lite' ); ?></a>
+		<a href="<?php echo esc_attr( $wrael_wps_video_link ); ?>" target="_blank" class="wps-link"><?php esc_html_e( 'Video', 'woo-refund-and-exchange-lite' ); ?></a>
 		<span>|</span>
 		<a href="https://wpswings.com/submit-query/?utm_source=wpswings-rma-support&utm_medium=rma-org-backend&utm_campaign=support/" target="_blank" class="wps-link"><?php esc_html_e( 'Support', 'woo-refund-and-exchange-lite' ); ?></a>
 	</div>

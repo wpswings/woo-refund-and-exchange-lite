@@ -309,7 +309,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 									$pro_active = wps_rma_pro_active();
 									$wps_rma_allow_refund_shipping_charge = get_option( 'wps_rma_allow_refund_shipping_charge' );
 									$wps_wrna_all_product_checked = wps_rma_get_meta_data( $order->get_id(), 'wps_wrna_all_product_checked', true );
-									if ( ( empty( $pro_active ) && 'on' == $wps_rma_allow_refund_shipping_charge ) || 1 == $wps_wrna_all_product_checked && $shipping_price ) {
+									if ( ( empty( $pro_active ) && ( ( 'on' == $wps_rma_allow_refund_shipping_charge ) || 1 == $wps_wrna_all_product_checked ) && $shipping_price ) ) {
 											$total = round( $total ) + $shipping_price;
 									}
 									?>
@@ -398,7 +398,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 		if ( has_filter( 'wpml_object_id' ) ) {
 			$ro_pageid1 = apply_filters( 'wpml_object_id', $wps_rma_view_order_msg_page_id, 'page', false, ICL_LANGUAGE_CODE );
 		}
-		if ( ( '' !== $wps_rma_view_order_msg_page_id ) && ( is_page( $wps_rma_view_order_msg_page_id ) ) || ( isset( $ro_pageid1 ) && is_page( $ro_pageid1 ) ) ) {
+		if ( ( '' !== $wps_rma_view_order_msg_page_id ) && ( is_page( $wps_rma_view_order_msg_page_id ) || ( isset( $ro_pageid1 ) && is_page( $ro_pageid1 ) ) ) ) {
 			$get_id = get_option( 'wps_rma_order_msg_page' );
 			if ( function_exists( 'vc_lean_map' ) && ! empty( $get_id ) ) {
 				if ( isset( $_GET['wps_rma_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['wps_rma_nonce'] ) ), 'wps_rma_nonce' ) && isset( $_GET['order_id'] ) ) {

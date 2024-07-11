@@ -311,6 +311,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 						'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
 						'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 					),
+					'description' => esc_html__( 'This setting does not work if the order contains a bundled product.', 'woo-refund-and-exchange-lite' ),
 				),
 				array(
 					'title'   => esc_html__( 'Enable to show Manage Stock Button', 'woo-refund-and-exchange-lite' ),
@@ -727,6 +728,108 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 				),
 			);
 			return $order_msg_setting_array;
+		}
+
+		/**
+		 * Register the wallet setting.
+		 *
+		 * @param array $wps_rma_settings_sms_notification .
+		 */
+		public function wps_rma_sms_notification_settings_array_set( $wps_rma_settings_sms_notification ) {
+
+			$wps_rma_settings_sms_notification = array(
+				array(
+					'type' => 'breaker',
+					'id'   => 'Connection',
+					'name' => 'Connection',
+				),
+				array(
+					'title'       => esc_html__( 'Enable To Use SMS Notification For Refund And Exchange', 'woo-refund-and-exchange-lite' ),
+					'type'        => 'radio-switch',
+					'id'          => 'wps_rma_enable_sms_notification',
+					'value'       => get_option( 'wps_rma_enable_sms_notification' ),
+					'show_link'   => true,
+					'class'       => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
+					'options'     => array(
+						'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+						'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
+					),
+				),
+				array(
+					'title'       => esc_html__( 'Account SID', 'woo-refund-and-exchange-lite' ),
+					'type'        => 'text',
+					'id'          => 'wps_rma_account_sid',
+					'value'       => get_option( 'wps_rma_account_sid' ),
+					'class'       => 'wrael-text-class ' . $this->rma_pro_activate,
+					'placeholder' => esc_html__( 'Enter a valid Twilio Account SID', 'woo-refund-and-exchange-lite' ),
+					'description' => esc_html__( 'To view Twilio API credentials visit ', 'woo-refund-and-exchange-lite' ) . '<a href="https://www.twilio.com/user/account/voice-sms-mms">' . esc_html( 'Twilio Website', 'woo-refund-and-exchange-lite' ) . '</a>',
+				),
+				array(
+					'title'       => esc_html__( 'Account Auth Token', 'woo-refund-and-exchange-lite' ),
+					'type'        => 'text',
+					'id'          => 'wps_rma_account_auth_token',
+					'value'       => get_option( 'wps_rma_account_auth_token' ),
+					'class'       => 'wrael-text-class ' . $this->rma_pro_activate,
+					'placeholder' => esc_html__( 'Enter valid Auth Token', 'woo-refund-and-exchange-lite' ),
+				),
+				array(
+					'title'       => esc_html__( 'Account Twilio Number', 'woo-refund-and-exchange-lite' ),
+					'type'        => 'text',
+					'id'          => 'wps_rma_twilio_number',
+					'value'       => get_option( 'wps_rma_twilio_number' ),
+					'class'       => 'wrael-text-class ' . $this->rma_pro_activate,
+					'placeholder' => esc_html__( 'Enter a valid Twilio number to send messages from.', 'woo-refund-and-exchange-lite' ),
+					'description' => esc_html__( 'To Buy a Twilio Number ', 'woo-refund-and-exchange-lite' ) . '<a href="https://www.twilio.com/console/phone-numbers/search">' . esc_html( 'Click Here', 'woo-refund-and-exchange-lite' ) . '</a>',
+				),
+				array(
+					'type' => 'breaker',
+					'id'   => 'Settings',
+					'name' => 'Settings',
+				),
+
+				array(
+					'title'       => esc_html__( 'Enable To Recieve SMS Notification For Refund And Exchange From Customer', 'woo-refund-and-exchange-lite' ),
+					'type'        => 'radio-switch',
+					'id'          => 'wps_rma_enable_sms_notification_for_admin',
+					'value'       => get_option( 'wps_rma_enable_sms_notification_for_admin' ),
+					'show_link'   => true,
+					'class'       => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
+					'options'     => array(
+						'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+						'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
+					),
+				),
+				array(
+					'title'       => esc_html__( 'Enter Phone Number To Receive SMS As A Site Owner', 'woo-refund-and-exchange-lite' ),
+					'type'        => 'text',
+					'id'          => 'wps_rma_admin_number',
+					'value'       => get_option( 'wps_rma_admin_number' ),
+					'class'       => 'wrael-text-class ' . $this->rma_pro_activate,
+					'placeholder' => esc_html__( 'Enter a number to recieve sms notification.', 'woo-refund-and-exchange-lite' ),
+					'description' => esc_html__( 'Phone number with country code using +. Ex : +1XXXXXXX987', 'woo-refund-and-exchange-lite' ),
+				),
+
+				array(
+					'title'       => esc_html__( 'Enable To Send SMS Notification For Refund And Exchange For Customer', 'woo-refund-and-exchange-lite' ),
+					'type'        => 'radio-switch',
+					'id'          => 'wps_rma_enable_sms_notification_for_customer',
+					'value'       => get_option( 'wps_rma_enable_sms_notification_for_customer' ),
+					'show_link'   => true,
+					'class'       => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
+					'options'     => array(
+						'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+						'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
+					),
+				),
+				array(
+					'type'        => 'button',
+					'id'          => 'wps_rma_save_sms_notification_setting',
+					'button_text' => esc_html__( 'Save Setting', 'woo-refund-and-exchange-lite' ),
+					'class'       => 'wrael-button-class button_' . $this->rma_pro_activate,
+				),
+
+			);
+			return $wps_rma_settings_sms_notification;
 		}
 	}
 }

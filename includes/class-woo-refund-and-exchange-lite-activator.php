@@ -33,7 +33,7 @@ class Woo_Refund_And_Exchange_Lite_Activator {
 		// Check if the plugin has been activated on the network.
 		if ( is_multisite() && $network_wide ) {
 			// Get all blogs in the network and activate plugins on each one.
-			$blog_ids = $wpdb->get_col( "SELECT blog_id FROM $wpdb->blogs" );
+			$blog_ids = $wpdb->get_col( "SELECT blog_id FROM $wpdb->blogs" ); //phpcs:ignore
 			foreach ( $blog_ids as $blog_id ) {
 				switch_to_blog( $blog_id );
 

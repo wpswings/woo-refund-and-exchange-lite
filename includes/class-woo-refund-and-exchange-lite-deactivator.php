@@ -35,7 +35,7 @@ class Woo_Refund_And_Exchange_Lite_Deactivator {
 			if ( function_exists( 'get_sites' ) ) {
 				$site_ids = get_sites( array( 'fields' => 'ids' ) );
 			} else {
-				$site_ids = $wpdb->get_col( "SELECT blog_id FROM $wpdb->blogs;" );
+				$site_ids = $wpdb->get_col( "SELECT blog_id FROM $wpdb->blogs;" ); //phpcs:ignore
 			}
 
 			// Uninstall the plugin for all these sites.

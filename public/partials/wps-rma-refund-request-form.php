@@ -124,17 +124,10 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 							$thumbnail       = wp_get_attachment_image( $product->get_image_id(), 'thumbnail' );
 							$coupon_discount = get_option( 'wps_rma_refund_deduct_coupon', 'no' );
 							if ( 'on' === $coupon_discount ) {
-								$total_tax = $item->get_taxes();
-								if ( isset( $total_tax['total'][1] ) ) {
 
-									$final_total_tax = $total_tax['total'][1];
-									$tax_inc = $item->get_total() + $final_total_tax;
+								$tax_inc = $item->get_total() + $item->get_total_tax();
+								$tax_exc = $item->get_total() - $item->get_total_tax();
 
-								} else {
-
-									$tax_inc = $item->get_total() + $item->get_subtotal_tax();
-								}
-								$tax_exc = $item->get_total() - $item->get_subtotal_tax();
 							} else {
 								$tax_inc = $item->get_subtotal() + $item->get_subtotal_tax();
 								$tax_exc = $item->get_subtotal() - $item->get_subtotal_tax();
@@ -411,6 +404,17 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 							</div>
 							<?php
 						}
+					}
+					$wps_rma_enable_sms_notification = get_option( 'wps_rma_enable_sms_notification' );
+					$wps_rma_enable_sms_notification_for_customer = get_option( 'wps_rma_enable_sms_notification_for_customer' );
+					if ( 'on' == $wps_rma_enable_sms_notification_for_customer && 'on' == $wps_rma_enable_sms_notification && ! empty( $pro_active ) ) {
+						?>
+						<div class="wps_rma_section wps_rma_notification" id="wps_rma_notification_div">
+								<label><?php esc_html_e( 'Recieve Refund Related update over SMS : ', 'woo-refund-and-exchange-lite' ); ?>	
+								<input type="tel" name="wps_rma_customer_contact_refund" id="wps_rma_customer_contact_refund"></label>
+								<div><?php esc_html_e( 'Phone number with country code. Ex : 1XXXXXXX987 ( "+" not allowed)', 'woo-refund-and-exchange-lite' ); ?></div>	
+						</div>
+						<?php
 					}
 					?>
 					<div>
