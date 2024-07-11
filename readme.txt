@@ -1,12 +1,12 @@
 === Return Refund and Exchange For WooCommerce – Return Management System, RMA Exchange, Wallet And Cancel Order Features ===
 Contributors: wpswings
 Donate link: https://wpswings.com/
-Tags: RMA return refund exchange, re-order, refund, exchange, order management
+Tags: RMA plugin, re-order, refund, exchange, order management
 Requires at least: 5.5.0
-Tested up to: 6.5.3
-WC requires at leastA: 5.5.0
-WC tested up to: 8.8.3
-Stable tag: 4.3.9
+Tested up to: 6.5.5
+WC requires at least: 5.5.0
+WC tested up to: 9.0.2
+Stable tag: 4.4.0
 Requires PHP:  7.2
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -16,13 +16,13 @@ Provide an easy refund service and increase customer satisfaction with WooCommer
 
 == Description ==
 
-**HIGHEST-RATED REFUND AND EXCHANGE MANAGEMENT PLUGIN THAT LIFTS CUSTOMER SATISFACTION. GET RETURN, REFUND, AND EXCHANGE RMA PLUGIN TO CREATE A SIMPLE WOOCOMMERCE REFUND SYSTEM WITH RMA EXCHANGE, WALLET, AND CANCEL ORDER FEATURES**
+**HIGHEST-RATED REFUND AND EXCHANGE MANAGEMENT PLUGIN THAT LIFTS CUSTOMER SATISFACTION, AND CREATES A SIMPLE WOOCOMMERCE REFUND SYSTEM WITH EXCHANGE, WALLET, AND CANCEL ORDER FEATURES.**
 
-Return Refund and Exchange for WooCommerce lets you create simple returns and a WooCommerce refund requests management system stuffed with organized refund, exchange, wallet, and cancel order features. [**RMA Return, Refund & Exchange Plugin for WooCommerce Pro**](https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=rma-org&utm_medium=referral&utm_campaign=rma-pro) eliminates on-call complaints and helps in managing returned stock.
+Return Refund and Exchange for WooCommerce lets you create simple returns and WooCommerce refund requests management system stuffed with an organized refund, exchange, wallet, and cancel order features. [**RMA Return, Refund & Exchange Plugin for WooCommerce Pro**](https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=rma-org&utm_medium=referral&utm_campaign=rma-pro) eliminates on-call complaints and helps manage returned stock. 
 
-Customers can request full or partial WooCommerce refunds (based on the return policy). The whole process of WordPress Refund Plugin goes under a dedicated and streamlined mailing system that keeps both parties on the same note. Ultimately, the WooCommerce RMA Plugin leads to high customer satisfaction and is the most flexible refund and return order for woocommerce plugin.
+Customers can request full or partial WooCommerce refunds (based on the return policy). The whole process of WordPress Refund Plugin goes under a dedicated and streamlined mailing system that keeps both parties on the same note. Ultimately, the WooCommerce RMA Plugin leads to high customer satisfaction and is the most flexible refund and return order for the WooCommerce plugin.
 
-[**WordPress RMA Demo**](https://demo.wpswings.com/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma-demo&utm_medium=rma-org-page&utm_campaign=frontend-demo) | [**RMA Documentation**](https://docs.wpswings.com/woocommerce-refund-and-exchange-lite/?utm_source=wpswings-rma-doc&utm_medium=rma-org-page&utm_campaign=rma-doc) | [**Contact Us**](https://wpswings.com/contact-us/?utm_source=wpswings-rma-contactus&utm_medium=rma-org-page&utm_campaign=contactus)
+[**WooCommerce Return Plugin**](https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=rma-org&utm_medium=referral&utm_campaign=rma-pro) | [**WordPress RMA Demo**](https://demo.wpswings.com/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma-demo&utm_medium=rma-org-page&utm_campaign=frontend-demo) | [**RMA Documentation**](https://docs.wpswings.com/woocommerce-refund-and-exchange-lite/?utm_source=wpswings-rma-doc&utm_medium=rma-org-page&utm_campaign=rma-doc) 
 
 [youtube https://www.youtube.com/watch?v=GQhXfBtzLE0&w=560&h=315&rel=0]
 
@@ -58,6 +58,8 @@ With our Return Refund and Exchange plugin, merchants can create a dedicated ref
 
 
 == WOOCOMMERCE REFUND PLUGIN COMPATIBILITIES ==
+
+* Compatible with [**Product Bundles.**](https://woocommerce.com/products/product-bundles/) The WordPress RMA plugin enables customers to return bundle items without hassle. 
 
 * Compatible with the [**Ultimate Gift Cards For WooCommerce**](https://wordpress.org/plugins/woo-gift-cards-lite/) and [**Gift Cards for WooCommerce Pro**](https://wpswings.com/product/gift-cards-for-woocommerce-pro/?utm_source=wpswings-gc-pro&utm_medium=rma-org-page&utm_campaign=gc-pro). Admin can now provide WooCommerce refund functionality on gift cards to its users.
 
@@ -199,6 +201,10 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 16. API Settings.
 
 == Changelog == 
+
+= 4.4.0 - Released on 11 July 2024 = 
+* New: Compatibility with the latest WP [6.5.5] and WC [9.0.2] Update.
+* New: Compatibility with Woocommerce Product Bundle Plugin. 
 
 = 4.3.9 – Released on 17 May 2024 = 
 * New: Compatibility with the latest WP [6.5.3] and WC [8.9.0] Update.
@@ -404,5 +410,6 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 == Upgrade Notice ==
 
-= 4.3.9 – Released on 17 May 2024 = 
-* New: Compatibility with the latest WP [6.5.3] and WC [8.8.3] Update.
+= 4.4.0 - Released on 11 July 2024 = 
+* New: Compatibility with the latest WP [6.5.5] and WC [9.0.2] Update.
+* New: Compatibility with Woocommerce Product Bundle Plugin. 
