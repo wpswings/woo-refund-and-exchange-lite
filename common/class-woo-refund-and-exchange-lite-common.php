@@ -383,6 +383,13 @@ class Woo_Refund_And_Exchange_Lite_Common {
 				$sender = 'Customer';
 				$to = get_option( 'woocommerce_email_from_address', get_option( 'admin_email' ) );
 			}
+
+			$wps_rma_customer_contact_order_message_get = wps_rma_pro_get_meta_data( $order_id, 'wps_rma_customer_contact_order_message', true );
+
+			$wps_rma_customer_contact_order_message = isset( $_POST['wps_rma_customer_contact_order_message'] ) ? sanitize_text_field( wp_unslash( $_POST['wps_rma_customer_contact_order_message'] ) ) : '';
+			if ( $wps_rma_customer_contact_order_message && empty( $wps_rma_customer_contact_order_message_get )) {
+				wps_rma_update_meta_data( $order_id, 'wps_rma_customer_contact_order_message', $wps_rma_customer_contact_order_message );
+			}
 			$flag = wps_rma_lite_send_order_msg_callback( $order_id, $msg, $sender, $to );
 			echo esc_html( $flag );
 			wp_die();

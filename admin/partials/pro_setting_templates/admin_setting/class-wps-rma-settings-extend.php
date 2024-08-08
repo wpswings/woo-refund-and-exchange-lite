@@ -744,7 +744,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					'name' => 'Connection',
 				),
 				array(
-					'title'       => esc_html__( 'Enable To Use SMS Notification For Refund And Exchange', 'woo-refund-and-exchange-lite' ),
+					'title'       => esc_html__( 'Enable To Use SMS Notification For Refund , Exchange And Order Messages', 'woo-refund-and-exchange-lite' ),
 					'type'        => 'radio-switch',
 					'id'          => 'wps_rma_enable_sms_notification',
 					'value'       => get_option( 'wps_rma_enable_sms_notification' ),
@@ -788,7 +788,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 				),
 
 				array(
-					'title'       => esc_html__( 'Enable To Recieve SMS Notification For Refund And Exchange From Customer', 'woo-refund-and-exchange-lite' ),
+					'title'       => esc_html__( 'Enable To Recieve SMS Notification For Refund, Exchange And Order Messages From Customer', 'woo-refund-and-exchange-lite' ),
 					'type'        => 'radio-switch',
 					'id'          => 'wps_rma_enable_sms_notification_for_admin',
 					'value'       => get_option( 'wps_rma_enable_sms_notification_for_admin' ),
@@ -810,7 +810,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 				),
 
 				array(
-					'title'       => esc_html__( 'Enable To Send SMS Notification For Refund And Exchange For Customer', 'woo-refund-and-exchange-lite' ),
+					'title'       => esc_html__( 'Enable To Send SMS Notification For Refund ,Exchange And Order Messages For Customer', 'woo-refund-and-exchange-lite' ),
 					'type'        => 'radio-switch',
 					'id'          => 'wps_rma_enable_sms_notification_for_customer',
 					'value'       => get_option( 'wps_rma_enable_sms_notification_for_customer' ),
