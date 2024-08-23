@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Return Refund and Exchange for WooCommerce 4.4.0\n"
-"POT-Creation-Date: 2024-07-10 15:26+0530\n"
-"PO-Revision-Date: 2024-07-10 15:26+0530\n"
+"Project-Id-Version: Return Refund and Exchange for WooCommerce 4.4.1\n"
+"POT-Creation-Date: 2024-08-22 12:34+0530\n"
+"PO-Revision-Date: 2024-08-22 12:34+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -756,7 +756,7 @@ msgid "Enable To Block Mail"
 msgstr ""
 
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:747
-msgid "Enable To Use SMS Notification For Refund And Exchange"
+msgid "Enable To Use SMS Notification For Refund , Exchange And Order Messages"
 msgstr ""
 
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:759
@@ -801,7 +801,8 @@ msgstr ""
 
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:791
 msgid ""
-"Enable To Recieve SMS Notification For Refund And Exchange From Customer"
+"Enable To Recieve SMS Notification For Refund, Exchange And Order Messages "
+"From Customer"
 msgstr ""
 
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:803
@@ -817,7 +818,9 @@ msgid "Phone number with country code using +. Ex : +1XXXXXXX987"
 msgstr ""
 
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:813
-msgid "Enable To Send SMS Notification For Refund And Exchange For Customer"
+msgid ""
+"Enable To Send SMS Notification For Refund ,Exchange And Order Messages For "
+"Customer"
 msgstr ""
 
 #: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-cancel.php:41
@@ -1133,22 +1136,22 @@ msgid "Public Hooks"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-order-message-meta.php:26
-#: public/partials/wps-rma-view-order-msg.php:63
+#: public/partials/wps-rma-view-order-msg.php:79
 msgid "Messages Refreshed Successfully"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-order-message-meta.php:31
-#: public/partials/wps-rma-view-order-msg.php:67
+#: public/partials/wps-rma-view-order-msg.php:83
 msgid "Message History"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-order-message-meta.php:42
-#: public/partials/wps-rma-view-order-msg.php:77
+#: public/partials/wps-rma-view-order-msg.php:93
 msgid "Customer"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-order-message-meta.php:42
-#: public/partials/wps-rma-view-order-msg.php:77
+#: public/partials/wps-rma-view-order-msg.php:93
 msgid "Shop Manager"
 msgstr ""
 
@@ -1171,7 +1174,7 @@ msgid "Attach file"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-order-message-meta.php:96
-#: public/partials/wps-rma-view-order-msg.php:56
+#: public/partials/wps-rma-view-order-msg.php:72
 msgid "Send"
 msgstr ""
 
@@ -1765,36 +1768,36 @@ msgstr ""
 msgid "is not available right now"
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:302
+#: includes/woo-refund-and-exchange-lite-common-functions.php:305
 msgid ""
 "Your Giftcard has been expired so you can not proceed with the exchange. "
 "Thanks"
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:309
+#: includes/woo-refund-and-exchange-lite-common-functions.php:312
 msgid ""
 "Your Giftcard has been used so you can not proceed with the exchange. Thanks"
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:348
+#: includes/woo-refund-and-exchange-lite-common-functions.php:351
 msgid "User Request to refund product"
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:352
+#: includes/woo-refund-and-exchange-lite-common-functions.php:355
 msgid ""
 "Refund request placed successfully. You have received a notification mail "
 "regarding this. You will redirect to the My Account Page"
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:458
+#: includes/woo-refund-and-exchange-lite-common-functions.php:461
 msgid "Added the return item info"
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:488
+#: includes/woo-refund-and-exchange-lite-common-functions.php:491
 msgid "User Request of Refund Product is approved"
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:542
+#: includes/woo-refund-and-exchange-lite-common-functions.php:545
 msgid "User Request of Refund Product is cancelled"
 msgstr ""
 
@@ -2038,6 +2041,7 @@ msgid "Recieve Refund Related update over SMS : "
 msgstr ""
 
 #: public/partials/wps-rma-refund-request-form.php:415
+#: public/partials/wps-rma-view-order-msg.php:67
 msgid "Phone number with country code. Ex : 1XXXXXXX987 ( \"+\" not allowed)"
 msgstr ""
 
@@ -2053,7 +2057,11 @@ msgstr ""
 msgid "Write a message you want to send to the Shop Manager."
 msgstr ""
 
-#: public/partials/wps-rma-view-order-msg.php:92
+#: public/partials/wps-rma-view-order-msg.php:65
+msgid "Recieve Order Message From Shop Manager update over SMS : "
+msgstr ""
+
+#: public/partials/wps-rma-view-order-msg.php:108
 msgid "Attachment :"
 msgstr ""
 

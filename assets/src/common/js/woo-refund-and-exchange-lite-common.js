@@ -208,6 +208,12 @@ jQuery( document ).on( 'ready', function(){
 		var alerthtml = '';
 		var order_id = $(this).data('id');
 
+		var pro_act = wrael_common_param.check_pro_active;
+		var wps_rma_customer_contact_order_message = null;
+		if( pro_act ){
+			wps_rma_customer_contact_order_message = $('#wps_rma_customer_contact_order_message').val();
+		}
+
 		var form_data = new FormData();
 
 		// Read selected files
@@ -239,6 +245,7 @@ jQuery( document ).on( 'ready', function(){
 		form_data.append( 'action', 'wps_rma_order_messages_save' );
 		form_data.append( 'msg', msg );
 		form_data.append( 'order_msg_type', order_msg_type );
+		form_data.append( 'wps_rma_customer_contact_order_message', wps_rma_customer_contact_order_message );
 		form_data.append( 'order_id', order_id );
 		form_data.append( 'security_check', wrael_common_param.wps_rma_nonce );
 

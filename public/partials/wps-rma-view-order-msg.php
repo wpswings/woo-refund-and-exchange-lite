@@ -53,6 +53,22 @@ if ( isset( $order_id ) && ! empty( $order_id ) ) {
 				</div>
 				<div class="wps-order-msg-btn">
 					<div>
+				<?php
+					$wps_rma_enable_sms_notification = get_option( 'wps_rma_enable_sms_notification' );
+					$wps_rma_enable_sms_notification_for_customer = get_option( 'wps_rma_enable_sms_notification_for_customer' );
+					$wps_rma_customer_contact_order_message_get = wps_rma_pro_get_meta_data( $order_id, 'wps_rma_customer_contact_order_message', true );
+					$pro_active = wps_rma_pro_active();
+					if ( 'on' == $wps_rma_enable_sms_notification_for_customer && 'on' == $wps_rma_enable_sms_notification && ! empty( $pro_active ) && empty( $wps_rma_customer_contact_order_message_get ) ) {
+						
+						?>
+						<div class="wps_rma_section wps_rma_notification" id="wps_rma_notification_div">
+								<label><?php esc_html_e( 'Recieve Order Message From Shop Manager update over SMS : ', 'woo-refund-and-exchange-lite' ); ?>	
+								<input type="tel" name="wps_rma_customer_contact_order_message" id="wps_rma_customer_contact_order_message"></label>
+								<div><?php esc_html_e( 'Phone number with country code. Ex : 1XXXXXXX987 ( "+" not allowed)', 'woo-refund-and-exchange-lite' ); ?></div>	
+						</div>
+						<?php
+					}
+				?>
 						<input type="submit" id="wps_order_msg_submit" name="wps_order_msg_submit" value="<?php esc_html_e( 'Send', 'woo-refund-and-exchange-lite' ); ?>" data-id="<?php echo esc_attr( $order_id ); ?>">
 						<input 	type="hidden" name="wps_order_msg_nonce" value="<?php echo esc_attr( wp_create_nonce( 'wps_order_msg_nonce' ) ); ?>"> 
 					</div>

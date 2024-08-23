@@ -187,6 +187,9 @@ if ( ! function_exists( 'wps_rma_lite_send_order_msg_callback' ) ) {
 			$restrict_mail =
 			// Allow/Disallow Email.
 			apply_filters( 'wps_rma_restrict_order_msg_mails', false );
+
+			do_action( 'wps_rma_do_something_on_view_order_message', $order_id, $msg, $sender, $to );
+
 			if ( ! $restrict_mail ) {
 				$customer_email = WC()->mailer()->emails['wps_rma_order_messages_email'];
 				$email_status   = $customer_email->trigger( $msg, $attachment, $to, $order_id );

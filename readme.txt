@@ -1,12 +1,12 @@
 === Return Refund and Exchange For WooCommerce – Return Management System, RMA Exchange, Wallet And Cancel Order Features ===
 Contributors: wpswings
 Donate link: https://wpswings.com/
-Tags: RMA plugin, re-order, refund, exchange, order management
+Tags: Return orders, re-order, refund, exchange, order management
 Requires at least: 5.5.0
-Tested up to: 6.5.5
+Tested up to: 6.6.1
 WC requires at least: 5.5.0
-WC tested up to: 9.0.2
-Stable tag: 4.4.0
+WC tested up to: 9.2.1
+Stable tag: 4.4.1
 Requires PHP:  7.2
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -90,7 +90,8 @@ With our Return Refund and Exchange plugin, merchants can create a dedicated ref
 
 **8.** Allows your customers to send their product-related queries along with multimedia files and approach you to take relevant action for the same.
 
-**9.** SMS Notifications for Customers & Merchants allows them to stay updated. Merchants will receive notifications when a customer makes refund or exchange requests, and customers will be notified when their refund or exchange requests are accepted.
+**9.** SMS Notifications for Customers & Merchants allows them to stay updated. Merchants will receive notifications when a customer makes Return, refund or exchange requests, and SMS Notification for Order Message Feature to admin and customer.  
+
 
 
 == TAKE ADVANTAGE OF THE EXCLUSIVE FEATURES OF THE WOOCOMMERCE EXCHANGE PREMIUM PLUGIN == 
@@ -202,7 +203,10 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 == Changelog == 
 
-= 4.4.0 - Released on 11 July 2024 = 
+= 4.4.1 – Released on 22 August 2024 = 
+* New: Compatibility with the latest WP [6.6.1] and WC [9.2.1] Update.
+
+= 4.4.0 – Released on 11 July 2024 = 
 * New: Compatibility with the latest WP [6.5.5] and WC [9.0.2] Update.
 * New: Compatibility with Woocommerce Product Bundle Plugin. 
 
@@ -213,7 +217,6 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 * New: Compatibility with the latest WP [6.5.2] and WC [8.8.3] Update.
 * New: Compatibility with [**Bookings for WooCommerce**](https://wordpress.org/plugins/mwb-bookings-for-woocommerce/)
 * Fixes: Form submission issue, when entering Arabic text into the “Refund reason” text box. 
-
 
 = 4.3.7 – Released on 22 March 2024 = 
 * Fix: issue resolved from plugin check.
@@ -410,6 +413,5 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 == Upgrade Notice ==
 
-= 4.4.0 - Released on 11 July 2024 = 
-* New: Compatibility with the latest WP [6.5.5] and WC [9.0.2] Update.
-* New: Compatibility with Woocommerce Product Bundle Plugin. 
+= 4.4.1 – Released on 22 August 2024 = 
+* New: Compatibility with the latest WP [6.6.1] and WC [9.2.1] Update.
