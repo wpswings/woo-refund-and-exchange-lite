@@ -1,8 +1,8 @@
-[![Build Status](https://img.shields.io/travis/twbs/bootstrap/v4-dev.svg)](https://travis-ci.org/twbs/bootstrap) ![Active installs](https://img.shields.io/badge/Active-4000%2B-brightgreen) ![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen) ![WP tested](https://img.shields.io/badge/WP%20tested-6.5.5-brightgreen) ![WC tested](https://img.shields.io/badge/WC%20tested-9.0.2-brightgreen) ![Requires PHP](https://img.shields.io/badge/Requires%20PHP-7.2.0-blue)
+[![Build Status](https://img.shields.io/travis/twbs/bootstrap/v4-dev.svg)](https://travis-ci.org/twbs/bootstrap) ![Active installs](https://img.shields.io/badge/Active-4000%2B-brightgreen) ![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen) ![WP tested](https://img.shields.io/badge/WP%20tested-6.6.1-brightgreen) ![WC tested](https://img.shields.io/badge/WC%20tested-9.2.1-brightgreen) ![Requires PHP](https://img.shields.io/badge/Requires%20PHP-7.2.0-blue)
 # Return Refund and Exchange for WooCommerce
 ![Return Refund and Exchange For WooCommerce - Create A Simple Refund System WooCommerce RMA with Exchange, Wallet & Cancel Order Features](https://ps.w.org/woo-refund-and-exchange-lite/assets/banner-772x250.png?rev=2672154)
 * Contributors: WP Swings
-* Author URI: [**WP Swings**](https://wpswings.com/?utm_source=wpswings-official&utm_medium=rma-github-page&utm_campaign=wpswings-official)
+* Author URI: [**WP Swings**](https://wpswings.com/?utm_source=rma-github-page&utm_medium=referral&utm_campaign=wpswings-official)
 * Tags:  RMA plugin, return plugin, refund plugin, exchange plugin, cancel-order request
 * License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -16,7 +16,7 @@ Customers can request full or partial WooCommerce refunds (based on the return p
 
 **NOTE:** We have updated a new feature called in our RMA Pro Plugin! 
 
-[**WordPress RMA Demo**](https://demo.wpswings.com/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma-demo&utm_medium=rma-github-page&utm_campaign=frontend-demo) | [**RMA Documentation**](https://docs.wpswings.com/woocommerce-refund-and-exchange-lite/?utm_source=wpswings-rma-doc&utm_medium=rma-github-page&utm_campaign=rma-doc) | [**Contact Us**](https://wpswings.com/contact-us/?utm_source=wpswings-rma-contactus&utm_medium=rma-github-page&utm_campaign=contactus)
+[**WordPress RMA Demo**](https://demo.wpswings.com/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma-github-page&utm_medium=referral&utm_campaign=rma-frontend-demo) | [**RMA Documentation**](https://docs.wpswings.com/woocommerce-refund-and-exchange-lite/?utm_source=wpswings-rma-github-page&utm_medium=referral&utm_campaign=rma-doc) | [**Contact Us**](https://wpswings.com/contact-us/?utm_source=rma-github-page&utm_medium=referral&utm_campaign=contactus)
 
 **Video** - [**How To Simplify Refund Management Process with Return Refund and Exchange for WooCommerce?**](https://youtu.be/GQhXfBtzLE0)
 
@@ -59,12 +59,14 @@ With our Return Refund and Exchange plugin, merchants can create a dedicated ref
 
 **8.** Allows your customers to send their product-related queries along with multimedia files and approach you to take relevant action for the same.
 
+**9.** SMS Notifications for Customers & Merchants allows them to stay updated. Merchants will receive notifications when a customer makes Return, refund or exchange requests, and SMS Notification for Order Message Feature to admin and customer.
+
 ### WOOCOMMERCE REFUND PLUGIN COMPATIBILITIES
 
 * Compatible with [**Product Bundles.**](https://woocommerce.com/products/product-bundles/) The WordPress RMA plugin enables customers to return bundle items without hassle. 
 
 
-* Compatible with the [**Ultimate Gift Cards For WooCommerce**](https://wordpress.org/plugins/woo-gift-cards-lite/) and [**Gift Cards for WooCommerce Pro**](https://wpswings.com/product/gift-cards-for-woocommerce-pro/?utm_source=wpswings-gc-pro&utm_medium=rma-org-page&utm_campaign=gc-pro). Admin can now provide WooCommerce refund functionality on gift cards to its users.
+* Compatible with the [**Ultimate Gift Cards For WooCommerce**](https://wordpress.org/plugins/woo-gift-cards-lite/) and [**Gift Cards for WooCommerce Pro**](https://wpswings.com/product/gift-cards-for-woocommerce-pro/?utm_source=rma-github-page&utm_medium=referral&utm_campaign=gc-pro). Admin can now provide WooCommerce refund functionality on gift cards to its users.
 
 * Compatible with the [**Bookings for WooCommerce Plugin.**](https://wordpress.org/plugins/mwb-bookings-for-woocommerce/)
 
@@ -106,25 +108,25 @@ Customers can request refunds for products they've purchased, choosing from pred
 
 ### TAKE ADVANTAGE OF THE EXCLUSIVE FEATURES OF THE WOOCOMMERCE RMA PLUGIN
 
-> Note:  Get [**RMA Return Refund & Exchange For WooCommerce Pro**](https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma-pro&utm_medium=rma-github-page&utm_campaign=premium-plugin)
+> Note:  Get [**RMA Return Refund & Exchange For WooCommerce Pro**](https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=rma-github-page&utm_medium=referral&utm_campaign=rma-pro)
 
 ### See what No 44 Store is saying about the WooCommerce RMA Pro Plugin
 
-> [**See WooCommerce Refund & Exchange Pro Plugin Case Study**](https://wpswings.com/case-studies/no44store/?utm_source=wpswings-rma-casestudy&utm_medium=rma-github-page&utm_campaign=no44-casestudy)
+> [**See WooCommerce Refund & Exchange Pro Plugin Case Study**](https://wpswings.com/case-studies/no44store/?utm_source=rma-github-page&utm_medium=referral&utm_campaign=no44-casestudy)
 
 ### DOCUMENTATION OF THE PREMIUM VERSION
 
-* [**Return Refund & Exchange for WooCommerce Documentation**](https://docs.wpswings.com/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma-doc&utm_medium=rma-github-page&utm_campaign=rma-doc)
+* [**Return Refund & Exchange for WooCommerce Documentation**](https://docs.wpswings.com/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=rma-github-page&utm_medium=referral&utm_campaign=rma-doc)
 
 ## SUPPORT
 
-If you need support or have any questions then kindly use our online chat window [**here**](https://wpswings.com/?utm_source=wpswings-official&utm_medium=rma-github-page&utm_campaign=wpswings-official) or and discover all types of [**WooCommerce Extensions**](https://wpswings.com/woocommerce-plugins/?utm_source=wpswings-rma-shop&utm_medium=rma-github-page&utm_campaign=woocommerce-plugins) for your eCommerce store.
+If you need support or have any questions then kindly use our online chat window [**here**](https://wpswings.com/?utm_source=rma-github-page&utm_medium=referral&utm_campaign=wpswings-official) or and discover all types of [**WooCommerce Extensions**](https://wpswings.com/woocommerce-plugins/?utm_source=rma-github-page&utm_medium=referral&utm_campaign=woocommerce-plugins) for your eCommerce store.
 
-> If our documentation doesn [**Get More Offer**](https://wpswings.com/offers/?utm_source=wpswings-rma-offers&utm_medium=rma-github-page&utm_campaign=offers)
+> If our documentation doesn [**Get More Offer**](https://wpswings.com/offers/?utm_source=rma-github-page&utm_medium=referral&utm_campaign=offers)
 
 ## MORE ABOUT WP SWINGS
 
-* [**Our Official Website**](https://wpswings.com/?utm_source=wpswings-official&utm_medium=rma-github-page&utm_campaign=wpswings-official)
+* [**Our Official Website**](https://wpswings.com/?utm_source=rma-github-page&utm_medium=referral&utm_campaign=wpswings-official)
 * [**Follow us on Facebook Page**](https://www.facebook.com/wpswings)
 * [**Tweet us on @WP Swings**](https://twitter.com/wpswings)
 * [**Visit our LinkedIn Account**](https://www.linkedin.com/company/77072505/admin/)
