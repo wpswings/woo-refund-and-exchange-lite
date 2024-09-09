@@ -30,8 +30,9 @@ if ( $wps_wrma_show_sidebar_on_form ) {
 }
 
 if ( isset( $order_id ) && ! empty( $order_id ) ) {
+	$template_class = apply_filters( 'wps_rma_order_msg_template_css', '' );
 	?>
-<div class="wps_rma_order_msg_wrapper">
+<div class="wps_rma_order_msg_wrapper" <?php echo esc_html( $template_class ); ?>>
 	<div class="wps_order_msg_notice_wrapper">
 	</div>
 	<div class="wps_order_msg_container">
@@ -56,7 +57,7 @@ if ( isset( $order_id ) && ! empty( $order_id ) ) {
 				<?php
 					$wps_rma_enable_sms_notification = get_option( 'wps_rma_enable_sms_notification' );
 					$wps_rma_enable_sms_notification_for_customer = get_option( 'wps_rma_enable_sms_notification_for_customer' );
-					$wps_rma_customer_contact_order_message_get = wps_rma_pro_get_meta_data( $order_id, 'wps_rma_customer_contact_order_message', true );
+					$wps_rma_customer_contact_order_message_get = wps_rma_get_meta_data( $order_id, 'wps_rma_customer_contact_order_message', true );
 					$pro_active = wps_rma_pro_active();
 					if ( 'on' == $wps_rma_enable_sms_notification_for_customer && 'on' == $wps_rma_enable_sms_notification && ! empty( $pro_active ) && empty( $wps_rma_customer_contact_order_message_get ) ) {
 						

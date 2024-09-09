@@ -271,6 +271,17 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 				'class'       => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
 				'placeholder' => esc_html__( 'Enter the Product Notes', 'woo-refund-and-exchange-lite' ),
 			);
+			$refund_app_setting_extend[] = array(
+				'title' => esc_html__( 'Choose Template', 'woo-refund-and-exchange-lite' ),
+				'type'  => 'radio',
+				'id'    => 'wps_rma_return_template_css',
+				'value' => get_option( 'wps_rma_return_template_css' ),
+				'class' => 'mwr-radio-class ' . $this->rma_pro_activate,
+				'options' => array(
+					'' => 'Default',
+					'template1' => esc_html__( 'Clean Slate', 'woo-refund-and-exchange-lite' )
+				),
+			);
 			return $refund_app_setting_extend;
 		}
 
@@ -530,6 +541,17 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 				'cols'        => '80',
 				'placeholder' => esc_html__( 'Write the Exchange form CSS', 'woo-refund-and-exchange-lite' ),
 			);
+			$wps_rma_settings_exchange[] = array(
+				'title' => esc_html__( 'Choose Template', 'woo-refund-and-exchange-lite' ),
+				'type'  => 'radio',
+				'id'    => 'wps_rma_exchange_template_css',
+				'value' => get_option( 'wps_rma_exchange_template_css' ),
+				'class' => 'mwr-radio-class ' . $this->rma_pro_activate,
+				'options' => array(
+					'' => 'Default',
+					'template1' => esc_html__( 'Clean Slate', 'woo-refund-and-exchange-lite' )
+				),
+			);
 			$wps_rma_settings_exchange   =
 			// To extend Refund Apperance setting.
 			apply_filters( 'wps_rma_exchange_appearance_setting_extend', $wps_rma_settings_exchange );
@@ -631,6 +653,17 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					'options'     => $get_pages,
 				);
 			}
+			$wps_rma_settings_cancel[] = array(
+				'title' => esc_html__( 'Choose Template', 'woo-refund-and-exchange-lite' ),
+				'type'  => 'radio',
+				'id'    => 'wps_rma_cancel_template_css',
+				'value' => get_option( 'wps_rma_cancel_template_css' ),
+				'class' => 'mwr-radio-class ' . $this->rma_pro_activate,
+				'options' => array(
+					'' => 'Default',
+					'template1' => esc_html__( 'Clean Slate', 'woo-refund-and-exchange-lite' )
+				),
+			);
 			$wps_rma_settings_cancel[] = array(
 				'type'        => 'button',
 				'id'          => 'wps_rma_save_cancel_setting',

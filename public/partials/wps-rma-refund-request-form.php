@@ -70,9 +70,17 @@ if ( $wps_wrma_show_sidebar_on_form ) {
 if ( isset( $condition ) && 'yes' === $condition ) {
 	$wps_refund_wrapper_class = get_option( 'wps_wrma_refund_form_wrapper_class' );
 	$wps_return_css           = get_option( 'wps_rma_refund_form_css' );
+	$template_class = get_option( 'wps_rma_return_template_css', '' );
+
+	if ( $template_class ) {
+		$template_id = 'wps_rma_' . $template_class;
+	} else {
+		$template_id = 'wps_rma_return_request_container';
+	}
 	?>
+
 	<style><?php echo wp_kses_post( $wps_return_css ); ?></style>
-	<div class="wps_rma_refund_form_wrapper wps-rma-form__wrapper <?php echo esc_html( $wps_refund_wrapper_class ); ?>">
+	<div class="wps_rma_refund_form_wrapper wps-rma-form__wrapper <?php echo esc_html( $wps_refund_wrapper_class ); ?> wps_rma_<?php echo esc_html( $template_class ); ?>" id="<?php echo esc_html( $template_id ); ?>">
 		<div id="wps_rma_return_request_container" class="wps-rma-form__header">
 			<h1 class="wps-rma-form__heading"><?php esc_html_e( 'Order\'s Product Refund Request Form', 'woo-refund-and-exchange-lite' ); ?></h1>
 		</div>
@@ -101,6 +109,9 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 					$get_order_currency   = get_woocommerce_currency_symbol( $order_obj->get_currency() );
 					$refund_items_details = wps_rma_get_meta_data( $order_id, 'wps_rma_refund_items_details', true );
 					$shipping_price = $order_obj->get_shipping_total();
+					if ( 'wps_rma_inlcude_tax' === $wps_rma_check_tax ) {
+						$shipping_price += $order_obj->get_shipping_tax();
+					}
 					foreach ( $order_obj->get_items() as $item_id => $item ) {
 						$item_quantity = $item->get_quantity();
 						$refund_qty    = $order_obj->get_qty_refunded_for_item( $item_id );
@@ -258,7 +269,7 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 						$wps_rma_allow_refund_shipping_charge = get_option( 'wps_rma_allow_refund_shipping_charge' );
 						if ( empty( $pro_active ) && 'on' == $wps_rma_allow_refund_shipping_charge ) {
 
-							$wps_total_actual_price = round( $wps_total_actual_price ) + $shipping_price;
+							$wps_total_actual_price = $wps_total_actual_price + $shipping_price;
 						}
 						?>
 						<td class="wps_rma_total_amount_wrap"><span id="wps_rma_total_refund_amount"><?php echo wp_kses_post( wps_wrma_format_price( $wps_total_actual_price, $get_order_currency ) ); ?></span>

@@ -702,3 +702,244 @@ div.wps_order_msg_single_attachment a .wps_order_msg_attachment_thumbnail{
     margin-left: 5px !important ;
 }
 
+// Shadow template css start
+
+#wps_rma_template1.wps_rma_template1 {
+    border-radius: 10px;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 0 0 20px;
+  }
+  
+  #wps_rma_template1.wps_rma_template1 h1.wps-rma-form__heading {
+    color: #000;
+    font-weight: bold;
+    padding: 0;
+    line-height: 1.25;
+    font-size: 32px;
+    margin: 0 0 20px;
+    text-align: left;
+  }
+  
+  #wps_rma_template1.wps_rma_template1 .wps-rma-form__header {
+    background: transparent;
+  }
+  
+  #wps_rma_template1.wps_rma_template1 .wps_rma_customer_detail h2 {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 1.25;
+  }
+  
+  #wps_rma_template1.wps_rma_template1 table tbody tr:nth-of-type(even) {
+    background: #f9f9f9;
+  }
+  
+  #wps_rma_template1.wps_rma_template1 table th,
+  #wps_rma_template1.wps_rma_template1 table td {
+    border: none;
+    text-align: left;
+    vertical-align: top;
+    padding: 10px;
+    background: transparent;
+  }
+  
+  #wps_rma_template1.wps_rma_template1 table th {
+    background: transparent;
+    border: 1px solid #e2e2e2;
+    border-left: none;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.25;
+  }
+  
+  #wps_rma_template1.wps_rma_template1 table th:last-of-type {
+    border-right: none;
+  }
+  
+  #wps_rma_template1.wps_rma_template1 table tbody tr:last-of-type th,
+  #wps_rma_template1.wps_rma_template1 table tbody tr:last-of-type td {
+    border: none;
+    border-top: 1px solid #e2e2e2;
+    border-bottom: 1px solid #e2e2e2;
+    background: transparent;
+  }
+  
+  #wps_rma_template1.wps_rma_template1 table tbody tr:last-of-type {
+    background: transparent;
+  }
+  
+  #wps_rma_template1.wps_rma_template1 table input[type="checkbox"] {
+    border-radius: 6px;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #c7c7c7;
+    position: relative;
+    cursor: pointer;
+  }
+  
+  #wps_rma_template1.wps_rma_template1
+    table
+    input[type="checkbox"]:checked::before {
+    content: "\2714";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: #00a0ef;
+    font-size: 14px;
+  }
+  
+  #wps_rma_template1.wps_rma_template1 table input[type="checkbox"]:checked {
+    border-color: #00a0ef;
+  }
+  
+  #wps_rma_template1.wps_rma_template1
+    table
+    .product-quantity
+    input[type="number"],
+  #wps_rma_template1.wps_rma_template1 table .wps_rma_exchange_to_product_qty {
+    border-radius: 6px;
+    max-width: 80px;
+  }
+  
+  #wps_rma_template1.wps_rma_template1 table .product-name img {
+    border-radius: 6px;
+  }
+  
+  #wps_rma_template1.wps_rma_template1 table input[type="checkbox"]:focus {
+    outline: none;
+  }
+  
+  #wps_rma_template1.wps_rma_template1 table td.product-total {
+    font-weight: bold;
+    color: #000;
+  }
+  
+  #wps_rma_template1.wps_rma_template1 table th.product-check {
+    font-size: 0;
+    width: 40px;
+    min-width: 40px;
+  }
+  
+  #wps_rma_template1.wps_rma_template1 .wps-rma-row__pd,
+  #wps_rma_template1.wps_rma_template1 .wps-rma-refund-request__row {
+    gap: 40px;
+  }
+  
+  #wps_rma_template1.wps_rma_template1 select {
+    border-radius: 6px;
+    width: 100%;
+  }
+  
+  #wps_rma_template1.wps_rma_template1 label {
+    font-weight: bold;
+    line-height: 1.25;
+    color: #000;
+  }
+  
+  #wps_rma_template1.wps_rma_template1 textarea {
+    border-radius: 6px;
+    color: #000;
+    line-height: 1.25;
+    max-height: 140px;
+  }
+  
+  #wps_rma_template1.wps_rma_template1 table {
+    background: transparent;
+  }
+  
+  #wps_rma_template1.wps_rma_template1 .button {
+    border-radius: 6px;
+    width: auto !important;
+    padding: 10px 20px;
+  }
+  
+  #wps_rma_template1.wps_rma_template1 .wps-rma-col:last-of-type {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 6px;
+    color: #000;
+    border: 1px solid #c7c7c7;
+  }
+  
+  #wps_rma_template1.wps_rma_template1
+    table.wps_wrma_exchanged_products
+    th:last-of-type {
+    text-align: center;
+  }
+  
+  @media only screen and (max-width: 580px) {
+    #wps_rma_template1.wps_rma_template1 table th.product-check {
+      font-size: 16px;
+      width: auto;
+    }
+  
+    #wps_rma_template1.wps_rma_template1 table th {
+      border: none;
+      border-bottom: 1px solid #c7c7c7;
+    }
+  
+    #wps_rma_template1.wps_rma_template1 table tbody tr:last-of-type td {
+      border: none;
+    }
+  
+    #wps_rma_template1.wps_rma_template1 table td.product-quantity,
+    #wps_rma_template1.wps_rma_template1 table td.product-total {
+      text-align: right;
+    }
+  
+    #wps_rma_template1.wps_rma_template1 .wps_wrma_exchanged_products tbody td {
+      text-align: right;
+    }
+  
+    #wps_rma_template1.wps_rma_template1
+      .wps_wrma_exchanged_products
+      .wps-rma-product__wrap {
+      border: none;
+    }
+  
+    #wps_rma_template1.wps_rma_template1
+      .wps_wrma_exchanged_products
+      a.remove:before {
+      display: none;
+    }
+  
+    #wps_rma_template1.wps_rma_template1
+      table.wps_wrma_exchanged_products
+      th:last-of-type {
+      text-align: left;
+    }
+  
+    #wps_rma_template1.wps_rma_template1
+      table
+      tr.wps_wrma_cancel_column
+      td
+      .wps_wrma_product_title
+      p {
+      display: flex;
+      justify-content: space-between;
+    }
+  
+    #wps_rma_template1.wps_rma_template1
+      table
+      tr.wps_wrma_cancel_column
+      td
+      .wps_wrma_product_title {
+      width: 100%;
+    }
+  
+    #wps_rma_template1.wps_rma_template1
+      table
+      tr.wps_wrma_cancel_column
+      td
+      .wps_wrma_product_title
+      p
+      b {
+      flex: 1;
+    }
+  }
+  
+// Shadow template css end
