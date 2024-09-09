@@ -840,7 +840,7 @@ div.wps_order_msg_single_attachment a .wps_order_msg_attachment_thumbnail{
     color: #000;
   }
   
-  #wps_rma_template1.wps_rma_template1 textarea {
+  #wps_rma_template1.wps_rma_template1 textarea, #wps_rma_template1.wps_rma_template1 input[type=text] {
     border-radius: 6px;
     color: #000;
     line-height: 1.25;
