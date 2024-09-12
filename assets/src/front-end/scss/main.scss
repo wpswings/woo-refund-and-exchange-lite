@@ -863,6 +863,7 @@ div.wps_order_msg_single_attachment a .wps_order_msg_attachment_thumbnail{
     border-radius: 6px;
     color: #000;
     border: 1px solid #c7c7c7;
+    margin: 15px 0;
   }
   
   #wps_rma_template1.wps_rma_template1
@@ -870,7 +871,25 @@ div.wps_order_msg_single_attachment a .wps_order_msg_attachment_thumbnail{
     th:last-of-type {
     text-align: center;
   }
-  
+  #wps_rma_template1.wps_rma_template1 table td.wps_wrma_exchnaged_product_remove {
+    text-align: center;
+}
+
+#wps_rma_template1 #wps_rma_notification_div>label {
+    display: flex !important;
+    flex-direction: column;
+    gap: 10px;
+    margin: 15px 0 0;
+}
+
+#wps_rma_template1 #wps_rma_notification_div>label input[type=tel] {
+    border-radius: 6px;
+}
+
+#wps_rma_template1 #wps_rma_return_request_form, #wps_rma_template1 #wps_rma_exchnage_request_form {
+    width: 100%;
+}
+
   @media only screen and (max-width: 580px) {
     #wps_rma_template1.wps_rma_template1 table th.product-check {
       font-size: 16px;
