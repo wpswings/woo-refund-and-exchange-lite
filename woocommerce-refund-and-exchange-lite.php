@@ -223,25 +223,6 @@ if ( $activated ) {
 		return array_merge( $my_link, $links );
 	}
 
-	add_action( 'activated_plugin', 'wps_rma_org_redirect_on_settings' );
-
-	if ( ! function_exists( 'wps_rma_org_redirect_on_settings' ) ) {
-		/**
-		 * This function is used to check plugin.
-		 *
-		 * @name wps_rma_org_redirect_on_settings.
-		 * @param string $plugin plugin.
-		 * @since 1.0.3
-		 */
-		function wps_rma_org_redirect_on_settings( $plugin ) {
-			if ( plugin_basename( __FILE__ ) === $plugin ) {
-				$general_settings_url = admin_url( 'admin.php?page=woo_refund_and_exchange_lite_menu' );
-				wp_safe_redirect( $general_settings_url );
-				exit();
-			}
-		}
-	}
-
 	/**
 	 *
 	 * Get the data from the order table if hpos enabled otherwise default working.
