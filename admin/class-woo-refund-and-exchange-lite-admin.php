@@ -703,7 +703,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				'value' => get_option( 'wps_rma_return_template_css' ),
 				'class' => 'mwr-radio-class',
 				'options' => array(
-					'' => 'Default',
+					'' => esc_html__( 'Default', 'woo-refund-and-exchange-lite' ),
 					'template1' => esc_html__( 'Clean Slate', 'woo-refund-and-exchange-lite' )
 				),
 			);

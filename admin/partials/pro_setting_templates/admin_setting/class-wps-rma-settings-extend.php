@@ -280,7 +280,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					'value' => get_option( 'wps_rma_return_template_css' ),
 					'class' => 'mwr-radio-class',
 					'options' => array(
-						'' => 'Default',
+						'' => esc_html__( 'Default', 'woo-refund-and-exchange-lite' ),
 						'template1' => esc_html__( 'Clean Slate', 'woo-refund-and-exchange-lite' )
 					),
 				);
@@ -551,7 +551,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 				'value' => get_option( 'wps_rma_exchange_template_css' ),
 				'class' => 'mwr-radio-class ' . $this->rma_pro_activate,
 				'options' => array(
-					'' => 'Default',
+					'' => esc_html__( 'Default', 'woo-refund-and-exchange-lite' ),
 					'template1' => esc_html__( 'Clean Slate', 'woo-refund-and-exchange-lite' )
 				),
 			);
