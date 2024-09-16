@@ -902,6 +902,7 @@ div.wps_order_msg_single_attachment a .wps_order_msg_attachment_thumbnail {
 
 #wps_rma_template1 #wps_rma_notification_div > label input[type=tel] {
   border-radius: 6px;
+  width: 100%;
 }
 
 #wps_rma_template1 #wps_rma_return_request_form, #wps_rma_template1 #wps_rma_exchnage_request_form {
