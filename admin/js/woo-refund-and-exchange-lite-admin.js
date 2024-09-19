@@ -490,4 +490,22 @@ jQuery(document).ready(function() {
 		    showLeadingZero: true,
 	    });
 	}
+
+	// Function to get URL parameters
+	function getUrlParameter(name) {
+		// Create a regular expression to find the parameter in the URL
+		var regex = new RegExp('[?&]' + name + '=([^&]*)');
+		var results = regex.exec(window.location.search);
+		return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+	}
+	if ( getUrlParameter('wrael_tab') == 'woo-refund-and-exchange-lite-refund' ) {
+		// $('.label_default').append('<img src="img_girl.jpg" class="wps_template_image" alt="Not Found">');
+		// $('.label_template1').append('<img src="img_girl.jpg" class="wps_template_image" alt="Not Found">');
+	} else if ( getUrlParameter('wrael_tab') == 'rma-return-refund-exchange-for-woocommerce-pro-exchange' ) {
+		// $('.label_default').append('<img src="img_girl.jpg" class="wps_template_image" alt="Not Found">');
+		// $('.label_template1').append('<img src="img_girl.jpg" class="wps_template_image" alt="Not Found">');
+	} else if ( getUrlParameter('wrael_tab') == 'rma-return-refund-exchange-for-woocommerce-pro-cancel' ) {
+		// $('.label_default').append('<img src="img_girl.jpg" class="wps_template_image" alt="Not Found">');
+		// $('.label_template1').append('<img src="img_girl.jpg" class="wps_template_image" alt="Not Found">');
+	}
 });

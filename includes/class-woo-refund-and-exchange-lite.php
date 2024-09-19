@@ -759,7 +759,7 @@ class Woo_Refund_And_Exchange_Lite {
 												</div>
 												<div class="mdc-radio__ripple"></div>
 											</div>
-											<label for="radio-1"><?php echo esc_html( $wrael_radio_val ); ?></label>
+											<label class="label_<?php echo ( ! empty( $wrael_radio_key ) ? esc_attr( $wrael_radio_key ) : 'default' ); ?>" for="radio-1"><?php echo esc_html( $wrael_radio_val ); ?></label>
 										</div>    
 								<?php
 							}

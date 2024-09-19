@@ -694,6 +694,20 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			'cols'        => '80',
 			'placeholder' => esc_html__( 'Write the Refund Form CSS', 'woo-refund-and-exchange-lite' ),
 		);
+		$pro_slug = 'woocommerce-rma-for-return-refund-and-exchange/mwb-woocommerce-rma.php';
+		if ( function_exists( 'is_plugin_active' ) && ! is_plugin_active( $pro_slug ) ) {
+			$wps_rma_settings_refund[] = array(
+				'title' => esc_html__( 'Choose Template', 'woo-refund-and-exchange-lite' ),
+				'type'  => 'radio',
+				'id'    => 'wps_rma_return_template_css',
+				'value' => get_option( 'wps_rma_return_template_css' ),
+				'class' => 'mwr-radio-class',
+				'options' => array(
+					'' => esc_html__( 'Default', 'woo-refund-and-exchange-lite' ),
+					'template1' => esc_html__( 'Clean Slate', 'woo-refund-and-exchange-lite' )
+				),
+			);
+		}
 		$wps_rma_settings_refund   =
 		// To extend Refund Apperance setting.
 		apply_filters( 'wps_rma_refund_appearance_setting_extend', $wps_rma_settings_refund );
