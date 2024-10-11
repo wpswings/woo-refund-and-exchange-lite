@@ -103,7 +103,7 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 					$wps_wrna_all_product_checked = wps_rma_get_meta_data( $order_id, 'wps_wrna_all_product_checked', true );
 					if ( ( empty( $pro_active ) && 'on' == $wps_rma_allow_refund_shipping_charge ) || ( 1 == $wps_wrna_all_product_checked && 'on' == $wps_rma_allow_refund_shipping_charge ) ) {
 
-						$total = round( $total ) + $order_shipping_price;
+						$total = $total + $order_shipping_price;
 
 
 					}

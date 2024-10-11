@@ -135,7 +135,6 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 							$thumbnail       = wp_get_attachment_image( $product->get_image_id(), 'thumbnail' );
 							$coupon_discount = get_option( 'wps_rma_refund_deduct_coupon', 'no' );
 							if ( 'on' === $coupon_discount ) {
-
 								$tax_inc = $item->get_total() + $item->get_total_tax();
 								$tax_exc = $item->get_total() - $item->get_total_tax();
 
@@ -187,7 +186,7 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 											echo wp_kses_post( $q_h );
 
 											// Order Item meta Start.
-											do_action( 'woocommerce_order_item_meta_start', $item_id, $item, $order_obj, true );
+											do_action( 'woocommerce_order_item_meta_start', $item_id, $item, $order_obj, false );
 											if ( WC()->version < '3.0.0' ) {
 												$order_obj->display_item_meta( $item );
 												$order_obj->display_item_downloads( $item );
@@ -196,7 +195,7 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 												wc_display_item_downloads( $item );
 											}
 											// Order Item meta End.
-											do_action( 'woocommerce_order_item_meta_end', $item_id, $item, $order_obj, true );
+											do_action( 'woocommerce_order_item_meta_end', $item_id, $item, $order_obj, false );
 											?>
 											<p>
 												<b><?php esc_html_e( 'Price', 'woo-refund-and-exchange-lite' ); ?> :</b> 

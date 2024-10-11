@@ -1,6 +1,4 @@
-
-jQuery( document ).on( 'ready', function(){
-	$ = jQuery;
+jQuery(function($){
 	// Show refund subject field if other option is selected.
 	var wps_rma_return_request_subject = $( '#wps_rma_return_request_subject' ).val();
 	if (wps_rma_return_request_subject == null || wps_rma_return_request_subject == '') {

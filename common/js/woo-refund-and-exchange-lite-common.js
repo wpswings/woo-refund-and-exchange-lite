@@ -1,5 +1,4 @@
-jQuery( document ).on( 'ready', function(){
-	$ = jQuery;
+jQuery(function($){
 	//Refund request submit
 	$('.wps_rma_return_notification').hide();
 	$( '#wps_rma_return_request_form' ).on('submit',function(e){

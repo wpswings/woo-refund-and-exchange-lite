@@ -1,6 +1,4 @@
-
-jQuery(document).ready(function() {
-	$ = jQuery;
+jQuery(function($){
 	
 	const MDCText = mdc.textField.MDCTextField;
 	const textField = [].map.call(
