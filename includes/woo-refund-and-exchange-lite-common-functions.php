@@ -107,6 +107,7 @@ if ( ! function_exists( 'wps_rma_show_buttons' ) ) {
 		} else {
 			$show_button = ucfirst( $func ) . esc_html__( ' request is disabled.', 'woo-refund-and-exchange-lite' );
 		}
+		var_dump( get_option( $func . '_wps_rma_tax_handling' ));
 		$products = wps_rma_get_meta_data( $order->get_id(), 'wps_rma_return_product', true );
 		if ( isset( $products ) && ! empty( $products ) && ! wps_rma_pro_active() && 'yes' === $show_button ) {
 			foreach ( $products as $date => $product ) {
@@ -191,6 +192,10 @@ if ( ! function_exists( 'wps_rma_lite_send_order_msg_callback' ) ) {
 			do_action( 'wps_rma_do_something_on_view_order_message', $order_id, $msg, $sender, $to );
 
 			if ( ! $restrict_mail ) {
+				$order = wc_get_order( $order_id );
+				$lang  = $order->get_meta( 'wpml_language' );
+				do_action( 'wpml_switch_language', $lang );
+
 				$customer_email = WC()->mailer()->emails['wps_rma_order_messages_email'];
 				$email_status   = $customer_email->trigger( $msg, $attachment, $to, $order_id );
 			}
