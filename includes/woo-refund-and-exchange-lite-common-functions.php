@@ -107,7 +107,6 @@ if ( ! function_exists( 'wps_rma_show_buttons' ) ) {
 		} else {
 			$show_button = ucfirst( $func ) . esc_html__( ' request is disabled.', 'woo-refund-and-exchange-lite' );
 		}
-		var_dump( get_option( $func . '_wps_rma_tax_handling' ));
 		$products = wps_rma_get_meta_data( $order->get_id(), 'wps_rma_return_product', true );
 		if ( isset( $products ) && ! empty( $products ) && ! wps_rma_pro_active() && 'yes' === $show_button ) {
 			foreach ( $products as $date => $product ) {
