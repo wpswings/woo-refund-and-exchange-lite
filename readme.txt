@@ -5,8 +5,8 @@ Tags: refund, exchange, wallet, RMA, woocommerce cancel order
 Requires at least: 5.5.0
 Tested up to: 6.6.2
 WC requires at least: 5.5.0
-WC tested up to: 9.3.1
-Stable tag: 4.4.2
+WC tested up to: 9.3.3
+Stable tag: 4.4.3
 Requires PHP:  7.2
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -49,7 +49,6 @@ With our Return Refund and Exchange plugin, merchants can create a dedicated ref
 **9) Refund on Selected Order Status**: You can select the order status on which a customer can submit a refund request. You can select either a single or multiple order status in this setting. For example, if you select Completed, and Failed order statuses, you’ll allow your customers to generate a refund request if their order is completed, or failed.
 
 **10) Order Related Messages and Email Notifications**: You can allow your customers to send you order-related queries. Furthermore, you can also enable/disable the settings to let your customers add attachments along with their messages.
-
 
 
 == LIVE DEMO OF RETURN REFUND AND EXCHANGE FOR WOOCOMMERCE ==
@@ -95,8 +94,7 @@ With our Return Refund and Exchange plugin, merchants can create a dedicated ref
 **9.** SMS Notifications for Customers & Merchants allows them to stay updated. Merchants will receive notifications when a customer makes Return, refund or exchange requests, and SMS Notification for Order Message Feature to admin and customer.  
 
 
-
-== TAKE ADVANTAGE OF THE EXCLUSIVE FEATURES OF THE WOOCOMMERCE EXCHANGE PREMIUM PLUGIN == 
+== TAKE ADVANTAGE O'F THE EXCLUSIVE FEATURES OF THE WOOCOMMERCE EXCHANGE PREMIUM PLUGIN == 
 
 >[**RMA Return Refund & Exchange For WooCommerce Pro**](https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=rma-org-page&utm_medium=referral&utm_campaign=premium-plugin)
 
@@ -136,7 +134,6 @@ When a customer selects the refund button, he or she will be given the option to
 = Can the admin limit the no. of attachments for a customer in the order messages? =
 
 Yes, the admin can limit the number of attachments by going through **WP Swings -> Refund-Exchange lite Setting -> Refund Tab  ->** Enable Attachment and Enter the number of attachments in the attachment box given below to enable the attachment setting.
-
 
 = How to set the order status for the orders which need to be refunded? =
 
@@ -204,6 +201,15 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 16. API Settings.
 
 == Changelog == 
+
+= 4.4.3 - Released on 25 October 2024 = 
+* New: Compatibility with the latest WP [6.6.2] and WC [9.3.3] Update
+* Fix: Fixed the JS Script code used for the document ready validation, a lot of client has came for this issue
+* Fix: Fixed the WooCommerce hooks argument issue
+* Fix: Fixed the shipping pricing refund incase of the decimal price
+* Fix: Fixed the Admin side order message language issue for the WPML
+* Fix: Guest Form Submission issue for the order number generated through the sequential order plugin by the webtoffee. this issue comes when the HPOS is not enabled
+* Enhancement: Only show the products being refunded in the product table 
 
 = 4.4.2 - Released on 17 September 2024 =
 * New: Compatibility with the latest WP [6.6.2] and WC [9.3.1] Update.
@@ -419,6 +425,11 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 == Upgrade Notice ==
 
-= 4.4.2 - Released on 17 September 2024 =
-* New: Compatibility with the latest WP [6.6.2] and WC [9.3.1] Update.
-* New: Added a new template design for Return/Refund/Cancellation From.
+= 4.4.3 - Released on 25 October 2024 = 
+* New: Compatibility with the latest WP [6.6.2] and WC [9.3.3] Update
+* Fix: Fixed the JS Script code used for the document ready validation, a lot of client has came for this issue
+* Fix: Fixed the WooCommerce hooks argument issue
+* Fix: Fixed the shipping pricing refund incase of the decimal price
+* Fix: Fixed the Admin side order message language issue for the WPML
+* Fix: Guest Form Submission issue for the order number generated through the sequential order plugin by the webtoffee. this issue comes when the HPOS is not enabled
+* Enhancement: Only show the products being refunded in the product table 

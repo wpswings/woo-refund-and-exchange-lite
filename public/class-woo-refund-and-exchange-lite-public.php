@@ -278,7 +278,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 															echo '<strong class="product-quantity">' . sprintf( '&times; %s', esc_html( $return_product['qty'] ) ) . '</strong>';
 
 															// Order item meta start.
-															do_action( 'woocommerce_order_item_meta_start', $item_id, $item, $order );
+															do_action( 'woocommerce_order_item_meta_start', $item_id, $item, $order, false );
 
 															if ( WC()->version < '3.0.0' ) {
 																$order->display_item_meta( $item );
@@ -288,7 +288,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 																wc_display_item_downloads( $item );
 															}
 															// Order item meta end.
-															do_action( 'woocommerce_order_item_meta_end', $item_id, $item, $order );
+															do_action( 'woocommerce_order_item_meta_end', $item_id, $item, $order, false );
 															?>
 														</td>
 														<td class="product-total">
@@ -352,7 +352,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 					}
 				} elseif ( ! is_wc_endpoint_url( 'order-received' ) ) {
 
-						esc_html_e( 'No Refund Request Found For this order', 'woo-refund-and-exchange-lite' );
+					esc_html_e( 'No Refund Request Found For this order', 'woo-refund-and-exchange-lite' );
 				}
 				?>
 				</div>
