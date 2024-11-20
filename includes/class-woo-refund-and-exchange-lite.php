@@ -77,7 +77,7 @@ class Woo_Refund_And_Exchange_Lite {
 			$this->version = WOO_REFUND_AND_EXCHANGE_LITE_VERSION;
 		} else {
 
-			$this->version = '4.4.0';
+			$this->version = '4.4.4';
 		}
 
 		$this->plugin_name = 'return-refund-and-exchange-for-woocommerce';
@@ -261,6 +261,8 @@ class Woo_Refund_And_Exchange_Lite {
 			$this->loader->add_filter( 'wps_rma_order_message_setting_extend', $wrael_plugin_admin, 'wps_rma_order_message_setting_extend', 10 );
 
 			$this->loader->add_filter( 'wps_rma_sms_notification_settings_array', $wrael_plugin_admin, 'wps_rma_sms_notification_settings_array', 10 );
+
+			$this->loader->add_filter( 'wps_rma_whatsapp_notification_settings_array', $wrael_plugin_admin, 'wps_rma_whatsapp_notification_settings_array', 10 );
 
 			if ( is_plugin_active( $pro_slug ) ) {
 
@@ -488,6 +490,15 @@ class Woo_Refund_And_Exchange_Lite {
 			'file_path' => WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/pro_setting_templates/woo-refund-and-exchange-lite-sms-notification.php',
 		);
 		// sms notification settings.
+		
+		// whatsapp notification settings.
+		$wrael_default_tabs['woo-refund-and-exchange-lite-whatsapp-notification']           = array(
+			'title'     => esc_html__( 'Whatsapp Notification', 'woo-refund-and-exchange-lite' ),
+			'name'      => 'woo-refund-and-exchange-lite-whatsapp-notification',
+			'class'     => $rma_pro_activate,
+			'file_path' => WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/pro_setting_templates/woo-refund-and-exchange-lite-whatsapp-notification.php',
+		);
+		// whatsapp notification settings.
 		$wrael_default_tabs = apply_filters( 'wps_rma_plugin_standard_admin_settings_tabs', $wrael_default_tabs );
 		return $wrael_default_tabs;
 	}
@@ -660,6 +671,9 @@ class Woo_Refund_And_Exchange_Lite {
 										<textarea rows=<?php echo ( isset( $wrael_component['rows'] ) ) ? esc_attr( $wrael_component['rows'] ) : ''; ?> cols=<?php echo ( isset( $wrael_component['cols'] ) ) ? esc_attr( $wrael_component['cols'] ) : ''; ?> class="mdc-text-field__input <?php echo ( isset( $wrael_component['class'] ) ? esc_attr( $wrael_component['class'] ) : '' ); ?>" rows="2" cols="25" aria-label="Label" name="<?php echo ( isset( $wrael_component['name'] ) ? esc_html( $wrael_component['name'] ) : esc_html( $wrael_component['id'] ) ); ?>" id="<?php echo esc_attr( $wrael_component['id'] ); ?>" placeholder="<?php echo ( isset( $wrael_component['placeholder'] ) ? esc_attr( $wrael_component['placeholder'] ) : '' ); ?>"><?php echo ( isset( $wrael_component['value'] ) ? esc_textarea( $wrael_component['value'] ) : '' ); ?></textarea>
 									</span>
 								</label>
+								<div class="mdc-text-field-helper-line">
+									<div class="mdc-text-field-helper-text--persistent wps-helper-text" id="" aria-hidden="true"><?php echo ( isset( $wrael_component['description'] ) ? esc_attr( $wrael_component['description'] ) : '' ); ?></div>
+								</div>
 							</div>
 						</div>
 							<?php

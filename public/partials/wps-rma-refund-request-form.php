@@ -417,10 +417,13 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 					}
 					$wps_rma_enable_sms_notification = get_option( 'wps_rma_enable_sms_notification' );
 					$wps_rma_enable_sms_notification_for_customer = get_option( 'wps_rma_enable_sms_notification_for_customer' );
-					if ( 'on' == $wps_rma_enable_sms_notification_for_customer && 'on' == $wps_rma_enable_sms_notification && ! empty( $pro_active ) ) {
+
+					//whatsapp notification.
+					$wps_rma_enable_whatsapp_notification = get_option( 'wps_rma_enable_whatsapp_notification' );
+					if ( ( ( 'on' == $wps_rma_enable_sms_notification_for_customer && 'on' == $wps_rma_enable_sms_notification ) || 'on' == $wps_rma_enable_whatsapp_notification ) && ! empty( $pro_active ) ) {
 						?>
 						<div class="wps_rma_section wps_rma_notification" id="wps_rma_notification_div">
-								<label><?php esc_html_e( 'Recieve Refund Related update over SMS : ', 'woo-refund-and-exchange-lite' ); ?>	
+								<label><?php esc_html_e( 'Recieve Refund Related update over Message : ', 'woo-refund-and-exchange-lite' ); ?>	
 								<input type="tel" name="wps_rma_customer_contact_refund" id="wps_rma_customer_contact_refund"></label>
 								<div><?php esc_html_e( 'Phone number with country code. Ex : 1XXXXXXX987 ( "+" not allowed)', 'woo-refund-and-exchange-lite' ); ?></div>	
 						</div>
