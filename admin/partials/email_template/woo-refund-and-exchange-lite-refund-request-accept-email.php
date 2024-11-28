@@ -9,6 +9,9 @@
  * @subpackage woo-refund-and-exchange-lite/admin/partials
  */
 
+$order = wc_get_order( $order_id );
+$lang  = $order->get_meta( 'wpml_language' );
+do_action( 'wpml_switch_language', $lang );
 $products = wps_rma_get_meta_data( $order_id, 'wps_rma_return_product', true );
 if ( isset( $products ) && ! empty( $products ) ) {
 	foreach ( $products as $date => $product ) {
