@@ -415,6 +415,17 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 						'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 					),
 				),
+				array(
+					'title'   => esc_html__( 'Enable To Allow the Exchange Request Cancellation by user', 'woo-refund-and-exchange-lite' ),
+					'type'    => 'radio-switch',
+					'id'      => 'wps_rma_exchange_cancellation',
+					'value'   => get_option( 'wps_rma_exchange_cancellation' ),
+					'class'   => 'wrael-radio-switch-class',
+					'options' => array(
+						'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+						'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
+					),
+				),
 			);
 			$wps_rma_settings_exchange =
 			// To extend the refund setting.

@@ -297,5 +297,26 @@ jQuery(function($){
 		e.preventDefault();
 		$('.wps_order_msg_notice_wrapper').hide();
 	});
+	$( document ).on( 'submit', '#wps_rma_cancel_return_request', function(e){
+		e.preventDefault();
+		const order_id = $('.wps_rma_cancel_return_request').val();
+
+		var data = {
+			action	:'wps_rma_cancel_return_request',
+			order_id: order_id,
+			security_check	: wrael_common_param.wps_rma_nonce,
+		}
+		//cancel return request
+		$.ajax({
+			url: wrael_common_param.ajaxurl,
+			type: 'POST',
+			data: data,
+			dataType :'json',	
+			success: function(response) 
+			{
+				window.location.href = window.location.href;
+			}
+		});
+	});
 });
 

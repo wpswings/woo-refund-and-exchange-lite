@@ -338,6 +338,9 @@ class Woo_Refund_And_Exchange_Lite {
 		}
 		// Used to remove the refund 0 amount .
 		$this->loader->add_filter( 'woocommerce_order_query', $wrael_plugin_common, 'wps_rma_woocommerce_get_order_item_totals', 10, 2 );
+
+		$this->loader->add_action( 'wp_ajax_wps_rma_cancel_return_request', $wrael_plugin_common, 'wps_rma_cancel_return_request_callback' );
+		$this->loader->add_action( 'wp_ajax_nopriv_wps_rma_cancel_return_request', $wrael_plugin_common, 'wps_rma_cancel_return_request_callback' );
 	}
 
 	/**

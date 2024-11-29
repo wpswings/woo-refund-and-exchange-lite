@@ -527,4 +527,18 @@ class Woo_Refund_And_Exchange_Lite_Common {
 		}
 		return $results;
 	}
+	/**
+	 * Request Cancellation by the user
+	 *
+	 */
+	public function wps_rma_cancel_return_request_callback() {
+		check_ajax_referer( 'wps_rma_ajax_security', 'security_check' );
+
+		$order_id = isset( $_POST['order_id'] ) ? filter_input( INPUT_POST, 'order_id' ) : '';
+
+		$products = wps_rma_get_meta_data( $order_id, 'wps_rma_return_product', true );
+		$response = wps_rma_return_req_cancel_callback( $order_id, $products );
+		echo wp_json_encode( $response );
+		wp_die();
+	}
 }
