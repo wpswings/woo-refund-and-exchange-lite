@@ -299,6 +299,11 @@ jQuery(function($){
 	});
 	$( document ).on( 'submit', '#wps_rma_cancel_return_request', function(e){
 		e.preventDefault();
+		
+		// Show confirmation alert
+		if (!confirm(wrael_common_param.return_cancellation_alert)) {
+			return; // Exit if the user clicks "Cancel"
+		}
 		const order_id = $('.wps_rma_cancel_return_request').val();
 
 		var data = {
