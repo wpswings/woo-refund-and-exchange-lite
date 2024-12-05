@@ -879,6 +879,11 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 			return $wps_rma_settings_sms_notification;
 		}
 
+		/**
+		 * Register the whatsapp notification setting.
+		 *
+		 * @param array $wps_rma_settings_whatsapp_notification .
+		 */
 		public function wps_rma_whatsapp_notification_settings_array_set( $wps_rma_settings_whatsapp_notification ){
 			$wps_rma_settings_sms_notification = array(
 				array(

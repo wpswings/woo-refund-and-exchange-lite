@@ -136,7 +136,7 @@ if ( $restrict_mail2 ) {
 	$admin_email->trigger( $message, $attachment, $to, $order_id );
 }
 if ( $restrict_mail1 ) {
-	// conversion of the order wpml language
+	// Conversion of the order wpml language.
 	$lang  = $order_obj->get_meta( 'wpml_language' );
 	do_action( 'wpml_switch_language', $lang );
 
