@@ -1254,7 +1254,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	}
 
 	/**
-	 * whatsapp notifcaiton settings register
+	 * Whatsapp notifcaiton settings register
 	 *
 	 * @param array $wps_rma_settings_wallet .
 	 */
