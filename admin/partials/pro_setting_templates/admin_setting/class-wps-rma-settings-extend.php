@@ -420,7 +420,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					'type'    => 'radio-switch',
 					'id'      => 'wps_rma_exchange_cancellation',
 					'value'   => get_option( 'wps_rma_exchange_cancellation' ),
-					'class'   => 'wrael-radio-switch-class',
+					'class'   => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
 					'options' => array(
 						'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
 						'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
