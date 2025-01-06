@@ -332,7 +332,15 @@ class Woo_Refund_And_Exchange_Lite_Public {
 											<input type="submit" class="btn button" value="<?php esc_html_e( 'Update Request', 'woo-refund-and-exchange-lite' ); ?>" name="wps_mra_return_request">
 										</p>
 									</form>
+									<?php if( 'on' === get_option( 'wps_rma_refund_cancellation' ) ): ?>
+									<form action="/" id="wps_rma_cancel_return_request" method="post">
+										<input type="hidden" class="wps_rma_cancel_return_request" value="<?php echo esc_html( $order->get_id() ); ?>" name="order_id">
+										<p>
+											<input type="submit" class="btn button" value="<?php esc_html_e( 'Cancel Request', 'woo-refund-and-exchange-lite' ); ?>" name="wps_rma_cancel_return_request">
+										</p>
+									</form>
 									<?php
+									endif;
 							}
 							if ( 'complete' === $product_data['status'] ) {
 								$approve_date = date_i18n( wc_date_format(), $product_data['approve_date'] );

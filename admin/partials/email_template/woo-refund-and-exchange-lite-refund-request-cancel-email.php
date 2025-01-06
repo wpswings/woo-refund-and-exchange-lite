@@ -9,7 +9,9 @@
  * @subpackage woo-refund-and-exchange-lite/admin/partials
  */
 
-$order_obj      = wc_get_order( $order_id );
+$order_obj = wc_get_order( $order_id );
+$lang      = $order_obj->get_meta( 'wpml_language' );
+do_action( 'wpml_switch_language', $lang );
 $message        =
 '<div class="wps_rma_refund_cancel_email>
     <div class="Order">

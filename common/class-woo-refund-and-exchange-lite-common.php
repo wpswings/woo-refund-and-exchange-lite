@@ -80,19 +80,21 @@ class Woo_Refund_And_Exchange_Lite_Common {
 				$this->plugin_name . 'common',
 				'wrael_common_param',
 				array(
-					'ajaxurl'                => admin_url( 'admin-ajax.php' ),
-					'wps_rma_nonce'          => wp_create_nonce( 'wps_rma_ajax_security' ),
-					'return_subject_msg'     => esc_html__( 'Please Enter Refund Subject.', 'woo-refund-and-exchange-lite' ),
-					'return_reason_msg'      => esc_html__( 'Please Enter Refund Reason.', 'woo-refund-and-exchange-lite' ),
-					'return_select_product'  => esc_html__( 'Please Select Product to refund.', 'woo-refund-and-exchange-lite' ),
-					'check_pro_active'       => esc_html( $pro_active ),
-					'message_sent'           => esc_html__( 'The message has been sent successfully', 'woo-refund-and-exchange-lite' ),
-					'message_empty'          => esc_html__( 'Please Enter a Message.', 'woo-refund-and-exchange-lite' ),
-					'myaccount_url'          => esc_attr( $myaccount_page_url ),
-					'refund_form_attachment' => get_option( 'wps_rma_refund_attachment' ),
-					'order_msg_attachment'   => get_option( 'wps_rma_general_enable_om_attachment' ),
-					'file_not_supported'     => esc_html__( 'Attached File type is not supported', 'woo-refund-and-exchange-lite' ),
-					'qty_error'              => esc_html__( 'Selected product must have the quantity', 'woo-refund-and-exchange-lite' ),
+					'ajaxurl'                   => admin_url( 'admin-ajax.php' ),
+					'wps_rma_nonce'             => wp_create_nonce( 'wps_rma_ajax_security' ),
+					'return_subject_msg'        => esc_html__( 'Please Enter Refund Subject.', 'woo-refund-and-exchange-lite' ),
+					'return_reason_msg'         => esc_html__( 'Please Enter Refund Reason.', 'woo-refund-and-exchange-lite' ),
+					'return_select_product'     => esc_html__( 'Please Select Product to refund.', 'woo-refund-and-exchange-lite' ),
+					'check_pro_active'          => esc_html( $pro_active ),
+					'message_sent'              => esc_html__( 'The message has been sent successfully', 'woo-refund-and-exchange-lite' ),
+					'message_empty'             => esc_html__( 'Please Enter a Message.', 'woo-refund-and-exchange-lite' ),
+					'myaccount_url'             => esc_attr( $myaccount_page_url ),
+					'refund_form_attachment'    => get_option( 'wps_rma_refund_attachment' ),
+					'order_msg_attachment'      => get_option( 'wps_rma_general_enable_om_attachment' ),
+					'file_not_supported'        => esc_html__( 'Attached File type is not supported', 'woo-refund-and-exchange-lite' ),
+					'qty_error'                 => esc_html__( 'Selected product must have the quantity', 'woo-refund-and-exchange-lite' ),
+					'return_cancellation_alert' => esc_html__( 'Are you sure you want to cancel this return request?', 'woo-refund-and-exchange-lite' ),
+
 				)
 			);
 			wp_enqueue_script( $this->plugin_name . 'common' );
@@ -526,5 +528,25 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			}
 		}
 		return $results;
+	}
+	/**
+	 * Request Cancellation by the user
+	 *
+	 */
+	public function wps_rma_cancel_return_request_callback() {
+		check_ajax_referer( 'wps_rma_ajax_security', 'security_check' );
+
+		$order_id = isset( $_POST['order_id'] ) ? filter_input( INPUT_POST, 'order_id' ) : '';
+
+		$products = wps_rma_get_meta_data( $order_id, 'wps_rma_return_product', true );
+		$response = wps_rma_return_req_cancel_callback( $order_id, $products );
+
+		if ( isset( $response['response'] ) ) {
+			$order = wc_get_order( $order_id );
+			$custom_note = esc_html__( 'The request was cancelled by the customer', 'woo-refund-and-exchange-lite' );
+			$order->add_order_note( $custom_note, true );
+		}        
+		echo wp_json_encode( $response );
+		wp_die();
 	}
 }

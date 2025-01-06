@@ -415,6 +415,17 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 						'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 					),
 				),
+				array(
+					'title'   => esc_html__( 'Enable To Allow the Exchange Request Cancellation by user', 'woo-refund-and-exchange-lite' ),
+					'type'    => 'radio-switch',
+					'id'      => 'wps_rma_exchange_cancellation',
+					'value'   => get_option( 'wps_rma_exchange_cancellation' ),
+					'class'   => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
+					'options' => array(
+						'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+						'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
+					),
+				),
 			);
 			$wps_rma_settings_exchange =
 			// To extend the refund setting.
@@ -864,6 +875,133 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					'class'       => 'wrael-button-class button_' . $this->rma_pro_activate,
 				),
 
+			);
+			return $wps_rma_settings_sms_notification;
+		}
+
+		/**
+		 * Register the whatsapp notification setting.
+		 *
+		 * @param array $wps_rma_settings_whatsapp_notification .
+		 */
+		public function wps_rma_whatsapp_notification_settings_array_set( $wps_rma_settings_whatsapp_notification ){
+			$wps_rma_settings_sms_notification = array(
+				array(
+					'type' => 'breaker',
+					'id'   => 'Connection',
+					'name' => 'Connection',
+				),
+				array(
+					'title'       => esc_html__( 'Enable To Use Whatsapp Notification For Refund And Exchange ', 'woo-refund-and-exchange-lite' ),
+					'type'        => 'radio-switch',
+					'id'          => 'wps_rma_enable_whatsapp_notification',
+					'value'       => get_option( 'wps_rma_enable_whatsapp_notification' ),
+					'show_link'   => true,
+					'class'       => 'wrael-radio-switch-class ' . $this->rma_pro_activate ,
+					'options'     => array(
+						'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+						'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
+					),
+					
+				),
+				array(
+					'title'       => esc_html__( 'Enter Phone number ID', 'woo-refund-and-exchange-lite' ),
+					'type'        => 'text',
+					'id'          => 'wps_rma_whatsapp_number_id',
+					'value'       => get_option( 'wps_rma_whatsapp_number_id' ),
+					'class'       => 'wrael-text-class ' . $this->rma_pro_activate,
+					'placeholder' => esc_html__( 'Enter Phone number ID here.', 'woo-refund-and-exchange-lite' ),
+		
+				),
+
+				array(
+					'title'       => esc_html__( 'Enter Access Token', 'woo-refund-and-exchange-lite' ),
+					'type'        => 'text',
+					'id'          => 'wps_rma_whatsapp_access_token',
+					'value'       => get_option( 'wps_rma_whatsapp_access_token' ),
+					'class'       => 'wrael-text-class ' . $this->rma_pro_activate,
+					'placeholder' => esc_html__( 'Enable Access Token here.', 'woo-refund-and-exchange-lite' ),
+					'description' => esc_html__( ' you can go through this','woo-refund-and-exchange-lite') .'<a href="https://developers.facebook.com/docs/whatsapp/cloud-api/get-started" target="_blank">'. esc_html( ' docs ', 'woo-refund-and-exchange-lite') .'</a> you need to register from <a href="https://developers.facebook.com/docs/development/register" target="_blank">'. esc_html(' here ','woo-refund-and-exchange-lite').'</a>',
+				),
+
+				array(
+					'type' => 'breaker',
+					'id'   => 'Refund',
+					'name' => 'Refund SMS Content',
+				),
+
+				array(
+					'title' => __( 'Enter Content To Send In Sms With Refund Request Process', 'woo-refund-and-exchange-lite' ),
+					'type'  => 'textarea',
+					'id'    => 'wps_wet_twilio_sms_content_refund_request',
+					'value' => get_option( 'wps_wet_twilio_sms_content_refund_request' ),
+					'description'  => esc_html__( 'Use Placeholders  ', 'woo-refund-and-exchange-lite' ) . esc_html( '{customer-name}' ) . esc_html( ' for customer name and ', 'woo-refund-and-exchange-lite' ) . esc_html( ' {order-id} ' ) . esc_html( ' for order id and ,', 'woo-refund-and-exchange-lite' ) . esc_html( ' {siteurl} ' ) . esc_html( ' for site url.', 'woo-refund-and-exchange-lite' ),
+					'class' => 'wrael-text-class ' . $this->rma_pro_activate,
+					'placeholder' => __( 'Enter content to send in sms', 'woo-refund-and-exchange-lite' ),
+				),
+
+				array(
+					'title' => __( 'Enter Content To Send In Sms With Refund Approve Process', 'woo-refund-and-exchange-lite' ),
+					'type'  => 'textarea',
+					'id'    => 'wps_wet_twilio_sms_content_refund_approve',
+					'value' => get_option( 'wps_wet_twilio_sms_content_refund_approve' ),
+					'description'  => esc_html__( 'Use Placeholders  ', 'woo-refund-and-exchange-lite' ) . esc_html( '{customer-name}' ) . esc_html( ' for customer name and ', 'woo-refund-and-exchange-lite' ) . esc_html( ' {order-id} ' ) . esc_html( ' for order id and ,', 'woo-refund-and-exchange-lite' ) . esc_html( ' {siteurl} ' ) . esc_html( ' for site url.', 'woo-refund-and-exchange-lite' ),
+					'class' => 'wrael-text-class ' . $this->rma_pro_activate,
+					'placeholder' => __( 'Enter content to send in sms', 'woo-refund-and-exchange-lite' ),
+				),
+
+				array(
+					'title' => __( 'Enter Content to Send In Sms With Refund Cancel Process', 'woo-refund-and-exchange-lite' ),
+					'type'  => 'textarea',
+					'id'    => 'wps_wet_twilio_sms_content_refund_cancel',
+					'value' => get_option( 'wps_wet_twilio_sms_content_refund_cancel' ),
+					'description'  => esc_html__( 'Use Placeholders  ', 'woo-refund-and-exchange-lite' ) . esc_html( '{customer-name}' ) . esc_html( ' for customer name and ', 'woo-refund-and-exchange-lite' ) . esc_html( ' {order-id} ' ) . esc_html( ' for order id and ,', 'woo-refund-and-exchange-lite' ) . esc_html( ' {siteurl} ' ) . esc_html( ' for site url.', 'woo-refund-and-exchange-lite' ),
+					'class' => 'wrael-text-class ' . $this->rma_pro_activate,
+					'placeholder' => __( 'Enter content to send in sms', 'woo-refund-and-exchange-lite' ),
+				),
+
+				array(
+					'type' => 'breaker',
+					'id'   => 'Exchange',
+					'name' => 'Exchange SMS Content',
+				),
+
+				array(
+					'title' => __( 'Enter Content To Send In Sms With Exchange Request Process', 'woo-refund-and-exchange-lite' ),
+					'type'  => 'textarea',
+					'id'    => 'wps_wet_twilio_sms_content_exchange_request',
+					'value' => get_option( 'wps_wet_twilio_sms_content_exchange_request' ),
+					'description'  => esc_html__( 'Use Placeholders  ', 'woo-refund-and-exchange-lite' ) . esc_html( '{customer-name}' ) . esc_html( ' for customer name and ', 'woo-refund-and-exchange-lite' ) . esc_html( ' {order-id} ' ) . esc_html( ' for order id and ,', 'woo-refund-and-exchange-lite' ) . esc_html( ' {siteurl} ' ) . esc_html( ' for site url.', 'woo-refund-and-exchange-lite' ),
+					'class' => 'wrael-text-class ' . $this->rma_pro_activate,
+					'placeholder' => __( 'Enter content to send in sms', 'woo-refund-and-exchange-lite' ),
+				),
+
+				array(
+					'title' => __( 'Enter Content To Send In Sms With Exchange Approve Process', 'woo-refund-and-exchange-lite' ),
+					'type'  => 'textarea',
+					'id'    => 'wps_wet_twilio_sms_content_exchange_approve',
+					'value' => get_option( 'wps_wet_twilio_sms_content_exchange_approve' ),
+					'description'  => esc_html__( 'Use Placeholders  ', 'woo-refund-and-exchange-lite' ) . esc_html( '{customer-name}' ) . esc_html( ' for customer name and ', 'woo-refund-and-exchange-lite' ) . esc_html( ' {order-id} ' ) . esc_html( ' for order id and ,', 'woo-refund-and-exchange-lite' ) . esc_html( ' {siteurl} ' ) . esc_html( ' for site url.', 'woo-refund-and-exchange-lite' ),
+					'class' => 'wrael-text-class ' . $this->rma_pro_activate,
+					'placeholder' => __( 'Enter content to send in sms', 'woo-refund-and-exchange-lite' ),
+				),
+
+				array(
+					'title' => __( 'Enter Content To Send In Sms With Exchange Cancel Process', 'woo-refund-and-exchange-lite' ),
+					'type'  => 'textarea',
+					'id'    => 'wps_wet_twilio_sms_content_exchange_cancel',
+					'value' => get_option( 'wps_wet_twilio_sms_content_exchange_cancel' ),
+					'description'  => esc_html__( 'Use Placeholders  ', 'woo-refund-and-exchange-lite' ) . esc_html( '{customer-name}' ) . esc_html( ' for customer name and ', 'woo-refund-and-exchange-lite' ) . esc_html( ' {order-id} ' ) . esc_html( ' for order id and ,', 'woo-refund-and-exchange-lite' ) . esc_html( ' {siteurl} ' ) . esc_html( ' for site url.', 'woo-refund-and-exchange-lite' ),
+					'class' => 'wrael-text-class ' . $this->rma_pro_activate,
+					'placeholder' => __( 'Enter content to send in sms', 'woo-refund-and-exchange-lite' ),
+				),
+
+				array(
+					'type'        => 'button',
+					'id'          => 'wps_rma_save_whatsapp_notification_setting',
+					'button_text' => esc_html__( 'Save Setting', 'woo-refund-and-exchange-lite' ),
+					'class'       => 'wrael-button-class button_' . $this->rma_pro_activate,
+				),
 			);
 			return $wps_rma_settings_sms_notification;
 		}
