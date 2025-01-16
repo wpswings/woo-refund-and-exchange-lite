@@ -73,7 +73,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		$screen = get_current_screen();
 		// multistep form css.
 		if ( ! wps_rma_standard_check_multistep() && wps_rma_pro_active() ) {
-			$style_url        = WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'build/style-index.css';
+			$style_url        = WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'multistep-form/build/style-index.css';
 			wp_enqueue_style(
 				'wps-admin-react-styles',
 				$style_url,
@@ -114,12 +114,11 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	public function wrael_admin_enqueue_scripts( $hook ) {
 		$screen     = get_current_screen();
 		$pro_active = wps_rma_pro_active();
-
 		if ( ! empty( $screen ) && isset( $screen->id ) && 'wp-swings_page_woo_refund_and_exchange_lite_menu' === $screen->id ) {
 			if ( ! wps_rma_standard_check_multistep() && wps_rma_pro_active() ) {
 				// js for the multistep from.
-				$script_path       = '../../build/index.js';
-				$script_asset_path = WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'build/index-asset.php';
+				$script_path       = '../../multistep-form/build/index.js';
+				$script_asset_path = WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'multistep-form/build/index-asset.php';
 				$script_asset      = file_exists( $script_asset_path )
 					? require $script_asset_path
 					: array(
@@ -131,7 +130,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 						),
 						'version'      => filemtime( $script_path ),
 					);
-				$script_url = WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'build/index.js';
+				$script_url = WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'multistep-form/build/index.js';
 				wp_register_script(
 					'react-app-block',
 					$script_url,

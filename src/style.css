@@ -1,0 +1,259 @@
+/* Chats section Start */
+
+.wps_order_msg_sub_container::-webkit-scrollbar {
+    width: 8px;
+}
+  
+.wps_order_msg_sub_container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+  
+.wps_order_msg_sub_container::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+  
+.wps_order_msg_sub_container::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
+.wps_order_msg_sub_container {
+    padding: 25px;
+    background: #fff;
+    border-radius: 0 0 5px 5px;
+    max-height: 400px;
+    overflow: auto;
+    border: 1px solid #c2c2c2;
+    border-top: none;
+}
+
+.wps_order_msg_sub_container .wps-order-msg_row {
+    margin: 0 0 15px;
+}
+
+.wps_order_msg_sub_container .wps-order-msg_row_customer {
+    text-align: right;
+}
+
+.wmb-order-customer__msg-container {
+    text-align: right;
+}
+
+.wps-order-msg_row_shopmanager .wps_order_msg_detail_container {
+    padding: 10px;
+    background: #5481b3;
+    border-radius: 10px 10px 10px 0;
+    max-width: 400px;
+    display: inline-block;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: #fff;
+}
+
+.wps-order-msg_row_customer .wps_order_msg_detail_container {
+    padding: 10px;
+    background: #54b36f;
+    border-radius: 10px 10px 0 10px;
+    max-width: 55%;
+    margin: 0 0 0 auto;
+    display: inline-block;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    color: #fff;
+}
+
+.wps_order_msg_sender_details {
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    gap: 0;
+    line-height: 1.25;
+    flex-direction: column;
+}
+
+.wmb-order-customer__msg-container .wps_order_msg_sender_details {
+    justify-content: flex-end;
+}
+
+.wps_order_msg_main_container {
+    margin: 0 0 5px;
+}
+
+.wps_order_msg_sender_details .wps_order_msg_date {
+    font-size: 10px;
+    font-weight: 400;
+}
+
+.wps_order_msg_single_attachment img {
+    max-width: 100px;
+    aspect-ratio: 1;
+    object-fit: contain;
+    border: 1px solid #e2e2e2;
+}
+
+.wps_order_msg_single_attachment .wps_order_msg_attachment_file_name {
+    display: none;
+}
+
+.wps_order_msg_attach_container {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.wps_order_msg_sub_container .wps-order-msg_row_customer .wps_order_msg_attach_container {
+    justify-content: flex-end;
+    margin: 15px 0 0;
+}
+
+.wps_order_msg_att-wrap {
+    background: transparent;
+    display: inline-flex;
+    position: relative;
+}
+
+.wps_order_msg_att-wrap svg {
+    width: 28px;
+    height: 28px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.wps_order_msg_att-wrap svg path {
+    stroke: #ccc;
+}
+
+.wps_order_msg_att-wrap #wps_order_msg_attachment {
+    opacity: 0;
+    width: 28px;
+    position: relative;
+}
+
+.wps-order-msg-attachment-wrapper {
+    cursor: pointer;
+}
+
+.wps_order_msg_att-wrap input:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.wps-rma-order-msg-wrapper {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0 0;
+}
+
+.wps-rma-order-msg-wrapper #wps_order_new_msg {
+    max-height: 80px;
+    font-size: 14px;
+    line-height: 1.5;
+    background: transparent;
+    box-shadow: none;
+    border: 1px solid #c2c2c2;
+    resize: none;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.wps-rma-order-msg-wrapper .wps-order-msg-attachment-wrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    flex-direction: column;
+}
+
+.wps-order-msg-btn svg {
+    width: 28px;
+    height: auto;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.wps-order-msg-btn input {
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    opacity: 0;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.wps-order-msg-btn {
+    position: relative;
+    cursor: pointer;
+    background: #54b36f;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.wps-order-msg-btn svg path {
+    stroke: #fff;
+}
+
+.wps_o_m-label-wrap label {
+    font-size: 12px;
+    text-align: right;
+    display: block;
+    margin: 5px 0 15px;
+}
+
+#wps_rma_notification_div label {
+    font-size: 16px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#wps_rma_notification_div label input[type=tel] {
+    background: transparent;
+    box-shadow: none;
+    border: 1px solid  #c2c2c2;
+    border-radius: 5px;
+    font-size: 14px;
+    line-height: 1.25;
+}
+
+#wps_rma_notification_div .wps_rma_notification_label {
+    font-size: 12px;
+    margin: 5px 0 0;
+}
+
+#wps_rma_notification_div {
+    text-align: center;
+}
+
+#wps_rma_notification_div label input[type=tel]:focus,.wps-order-msg-btn input:focus,.wps-rma-order-msg-wrapper #wps_order_new_msg:focus {
+    outline: none;
+}
+
+.wps-order-msg_column {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 10px;
+    background: #f2f2f2;
+    color: #098046;
+    border-radius: 5px 5px 0 0;
+    font-size: 18px;
+    border: 1px solid #c2c2c2;
+}
+
+.wps-order-msg_column .shop_man-title {
+    color: #2b4473;
+}
+
+/* Chats section End */

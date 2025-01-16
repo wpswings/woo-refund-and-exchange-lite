@@ -73,6 +73,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 			wp_localize_script(
 				$this->plugin_name,
 				'wrael_public_param',
+				
 				array(
 					'ajaxurl'               => admin_url( 'admin-ajax.php' ),
 					'wps_rma_nonce'         => wp_create_nonce( 'wps_rma_ajax_security' ),
