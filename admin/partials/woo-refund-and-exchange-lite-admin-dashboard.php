@@ -46,12 +46,11 @@ global $wrael_wps_rma_obj;
 $wrael_active_tab   = isset( $_GET['wrael_tab'] ) ? sanitize_key( $_GET['wrael_tab'] ) : 'woo-refund-and-exchange-lite-general';
 $wrael_default_tabs = $wrael_wps_rma_obj->wps_rma_plug_default_tabs();
 if( is_plugin_active( 'woocommerce-rma-for-return-refund-and-exchange/mwb-woocommerce-rma.php' ) ){
-	$wrael_wps_document_link = "https://docs.wpswings.com/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma-doc&utm_medium=rma-pro-backend&utm_campaign=doc" ;
 	$wrael_wps_video_link = "https://youtu.be/QyfzruqwnSM";
 } else {
-	$wrael_wps_document_link = "https://docs.wpswings.com/woocommerce-refund-and-exchange-lite/?utm_source=wpswings-rma-doc&utm_medium=rma-org-backend&utm_campaign=rma-doc/" ;
 	$wrael_wps_video_link = "https://youtu.be/GQhXfBtzLE0";
 }
+$wrael_wps_document_link = "https://docs.wpswings.com/rma-return-refund-exchange-for-woocommerce/?utm_source=wpswings-rma-doc&utm_medium=rma-pro-backend&utm_campaign=doc" ;
 do_action( 'wps_rma_show_license_info' );
 ?>
 <header>

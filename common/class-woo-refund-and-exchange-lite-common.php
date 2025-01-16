@@ -568,6 +568,10 @@ class Woo_Refund_And_Exchange_Lite_Common {
 		wp_die();
 	}
 
+	/**
+	 * Fetch the submitted form data for th order.
+	 *
+	 */
 	public function wps_rma_fetch_order_msgs_callback() {
 
 		check_ajax_referer( 'ajax-nonce', 'nonce' );
@@ -581,6 +585,10 @@ class Woo_Refund_And_Exchange_Lite_Common {
 		wp_die();
 	}
 
+	/**
+	 * Handling the order message form submission.
+	 *
+	 */
 	public function wps_rma_send_order_msg_callback() {
 		check_ajax_referer( 'ajax-nonce', 'nonce' );
 
