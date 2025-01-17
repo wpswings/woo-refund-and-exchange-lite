@@ -185,7 +185,7 @@ export const OrderMessage = () => {
                               <a
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                href={`your_file_url/${file.name}`}
+                                href={file.img ? `${wps_rma_react_object.attachment_url + orderID + '-' + file.name}` : "attachment.png"}
                               >
                                 <img
                                   className="wps_order_msg_attachment_thumbnail"
