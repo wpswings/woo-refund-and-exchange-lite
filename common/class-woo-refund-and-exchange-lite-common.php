@@ -557,13 +557,8 @@ class Woo_Refund_And_Exchange_Lite_Common {
 		$order_id = isset( $_POST['order_id'] ) ? filter_input( INPUT_POST, 'order_id' ) : '';
 
 		$products = wps_rma_get_meta_data( $order_id, 'wps_rma_return_product', true );
-		$response = wps_rma_return_req_cancel_callback( $order_id, $products );
+		$response = wps_rma_return_req_cancel_callback( $order_id, $products, true );
 
-		if ( isset( $response['response'] ) ) {
-			$order = wc_get_order( $order_id );
-			$custom_note = esc_html__( 'The request was cancelled by the customer', 'woo-refund-and-exchange-lite' );
-			$order->add_order_note( $custom_note, true );
-		}        
 		echo wp_json_encode( $response );
 		wp_die();
 	}

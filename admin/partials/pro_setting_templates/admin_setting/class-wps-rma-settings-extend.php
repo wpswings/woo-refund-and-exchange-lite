@@ -5,8 +5,8 @@
  * @link  https://wpswings.com/
  * @since 1.0.0
  *
- * @package    woocommerce-rma-for-return-refund-and-exchange
- * @subpackage woocommerce-rma-for-return-refund-and-exchange/admin/partials
+ * @package    woo-refund-and-exchange-lite
+ * @subpackage woo-refund-and-exchange-lite/admin/partials
  */
 
 if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
@@ -14,8 +14,8 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 	 * The admin-specific functionality of the plugin.
 	 * Register the settings.
 	 *
-	 * @package    woocommerce-rma-for-return-refund-and-exchange
-	 * @subpackage woocommerce-rma-for-return-refund-and-exchange/admin/partials
+	 * @package    woo-refund-and-exchange-lite
+	 * @subpackage woo-refund-and-exchange-lite/admin/partials
 	 */
 	class Wps_Rma_Settings_Extend {
 		/**
@@ -28,7 +28,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 		 * Contruct function.
 		 */
 		public function __construct() {
-			$pro_slug = 'woocommerce-rma-for-return-refund-and-exchange/mwb-woocommerce-rma.php';
+			$pro_slug = 'woo-refund-and-exchange-lite/mwb-woocommerce-rma.php';
 			if ( function_exists( 'is_plugin_active' ) && is_plugin_active( $pro_slug ) ) {
 				$this->rma_pro_activate = null;
 			}

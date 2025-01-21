@@ -2112,7 +2112,10 @@ var OrderMessage = function OrderMessage() {
       var formattedDate = new Intl.DateTimeFormat('en-US', {
         year: 'numeric',
         month: 'long',
-        day: '2-digit'
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
       }).format(date);
       data.date = formattedDate;
       return data;
@@ -2304,9 +2307,9 @@ var OrderMessage = function OrderMessage() {
     onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "wps-order-msg-attachment-wrapper"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "wps-order-attachment"
   }, uploadAttach && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "wps-order-attachment"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "wps_order_msg_att-wrap"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
     xmlns: "http://www.w3.org/2000/svg",

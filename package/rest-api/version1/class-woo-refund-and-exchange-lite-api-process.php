@@ -335,7 +335,7 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 					}
 				}
 				if ( $flag ) {
-					$wps_rma_resultsdata = wps_rma_return_req_cancel_callback( $order_id, $products );
+					$wps_rma_resultsdata = wps_rma_return_req_cancel_callback( $order_id, $products, false );
 					if ( ! empty( $wps_rma_resultsdata ) ) {
 						$wps_rma_rest_response['status'] = 200;
 						$wps_rma_rest_response['data']   = esc_html__( 'Return Request Cancel Successfully', 'woo-refund-and-exchange-lite' );

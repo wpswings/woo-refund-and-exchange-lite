@@ -119,7 +119,7 @@ if ( ! function_exists( 'wps_rma_show_buttons' ) ) {
 			$wps_rma_from_time = get_option( 'wps_rma_time_duration_from', false );
 			$wps_rma_to_time   = get_option( 'wps_rma_time_duration_to', false );
 			if ( $wps_rma_from_time && $wps_rma_to_time && strtotime( current_time( 'h:i A' ) ) < strtotime( $wps_rma_from_time ) || strtotime( current_time( 'h:i A' ) ) > strtotime( $wps_rma_to_time ) ) {
-				$show_button = ucfirst( $func ) . esc_html__( 'is not available right now', 'woocommerce-rma-for-return-refund-and-exchange' );
+				$show_button = ucfirst( $func ) . esc_html__( 'is not available right now', 'woo-refund-and-exchange-lite' );
 			}
 		}
 		return apply_filters( 'wps_rma_policies_functionality_extend', $show_button, $func, $order, $get_specific_setting );
@@ -429,7 +429,7 @@ if ( ! function_exists( 'wps_rma_return_req_cancel_callback' ) ) {
 	 * @param string  $orderid .
 	 * @param array() $products .
 	 */
-	function wps_rma_return_req_cancel_callback( $orderid, $products ) {
+	function wps_rma_return_req_cancel_callback( $orderid, $products, $is_customer_cancelled ) {
 		// Fetch the return request product.
 		if ( isset( $products ) && ! empty( $products ) ) {
 			foreach ( $products as $date => $product ) {
@@ -471,7 +471,11 @@ if ( ! function_exists( 'wps_rma_return_req_cancel_callback' ) ) {
 		$order_obj = wc_get_order( $orderid );
 
 		$order_obj->update_status( 'wc-return-cancelled' );
-		$order_obj->add_order_note( esc_html__( 'User Request of Refund Product is cancelled', 'woo-refund-and-exchange-lite' ), true );
+		if ( $is_customer_cancelled ) {
+			$order_obj->add_order_note( esc_html__( 'User Request of Refund is cancelled by customer', 'woo-refund-and-exchange-lite' ), true );
+		} else {
+			$order_obj->add_order_note( esc_html__( 'User Request of Refund is cancelled', 'woo-refund-and-exchange-lite' ), true );
+		}
 		$response             = array();
 		$response['response'] = 'success';
 		return $response;
