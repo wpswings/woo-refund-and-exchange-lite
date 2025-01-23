@@ -47,7 +47,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	 */
 	public function __construct( $plugin_name, $version ) {
 		$pro_version = null;
-		$pro_slug = 'woo-refund-and-exchange-lite/mwb-woocommerce-rma.php';
+		$pro_slug = 'woocommerce-rma-for-return-refund-and-exchange/mwb-woocommerce-rma.php';
 		if ( ! function_exists( 'get_plugins' ) ) {
 			require_once ABSPATH . 'wp-admin/includes/plugin.php';
 		}
@@ -704,7 +704,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			'cols'        => '80',
 			'placeholder' => esc_html__( 'Write the Refund Form CSS', 'woo-refund-and-exchange-lite' ),
 		);
-		$pro_slug = 'woo-refund-and-exchange-lite/mwb-woocommerce-rma.php';
+		$pro_slug = 'woocommerce-rma-for-return-refund-and-exchange/mwb-woocommerce-rma.php';
 		if ( function_exists( 'is_plugin_active' ) && ! is_plugin_active( $pro_slug ) ) {
 			$wps_rma_settings_refund[] = array(
 				'title' => esc_html__( 'Choose Template', 'woo-refund-and-exchange-lite' ),
@@ -1092,7 +1092,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		// phpcs:disable
 		$active_plugins          = get_option( 'active_plugins', array() );
 		$setting_name = '';
-		if ( in_array( 'woo-refund-and-exchange-lite/mwb-woocommerce-rma.php', $active_plugins, true ) ) {
+		if ( in_array( 'woocommerce-rma-for-return-refund-and-exchange/mwb-woocommerce-rma.php', $active_plugins, true ) ) {
 			$setting_name = __( 'RMA Configuration', 'woo-refund-and-exchange-lite' );
 		} else {
 			$setting_name = __( 'Refund-Exchange Lite', 'woo-refund-and-exchange-lite' );

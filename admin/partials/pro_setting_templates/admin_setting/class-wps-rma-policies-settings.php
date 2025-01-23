@@ -30,7 +30,7 @@ if ( ! class_exists( 'Wps_Rma_Policies_Settings' ) ) {
 		 * Contruct of this file.
 		 */
 		public function __construct() {
-			$pro_slug = 'woo-refund-and-exchange-lite/mwb-woocommerce-rma.php';
+			$pro_slug = 'woocommerce-rma-for-return-refund-and-exchange/mwb-woocommerce-rma.php';
 			if ( function_exists( 'is_plugin_active' ) && is_plugin_active( $pro_slug ) ) {
 				$this->rma_pro_activate = null;
 			}

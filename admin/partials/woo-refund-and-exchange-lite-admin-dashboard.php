@@ -45,7 +45,7 @@ if ( ! $id_nonce_verified ) {
 global $wrael_wps_rma_obj;
 $wrael_active_tab   = isset( $_GET['wrael_tab'] ) ? sanitize_key( $_GET['wrael_tab'] ) : 'woo-refund-and-exchange-lite-general';
 $wrael_default_tabs = $wrael_wps_rma_obj->wps_rma_plug_default_tabs();
-if( is_plugin_active( 'woo-refund-and-exchange-lite/mwb-woocommerce-rma.php' ) ){
+if( is_plugin_active( 'woocommerce-rma-for-return-refund-and-exchange/mwb-woocommerce-rma.php' ) ){
 	$wrael_wps_video_link = "https://youtu.be/QyfzruqwnSM";
 } else {
 	$wrael_wps_video_link = "https://youtu.be/GQhXfBtzLE0";
@@ -61,7 +61,7 @@ do_action( 'wps_rma_show_license_info' );
 	<div class="wps-header-container wps-bg-white wps-r-8">
 		<h1 class="wps-header-title"><?php echo esc_html( 'RETURN REFUND AND EXCHANGE FOR WOOCOMMERCE' ); ?></h1>
 		<?php
-		if ( ! is_plugin_active( 'woo-refund-and-exchange-lite/mwb-woocommerce-rma.php' ) ) {
+		if ( ! is_plugin_active( 'woocommerce-rma-for-return-refund-and-exchange/mwb-woocommerce-rma.php' ) ) {
 			?>
 			<a class="wps_go_pro_link" style="background: #0aa000;color: white;font-weight: 700;padding: 2px 5px;border: 1px solid #139d09;border-radius: 5px;" target="_blank" href=""><?php esc_html_e( 'GO PRO', 'woo-refund-and-exchange-lite' ); ?></a>
 		<?php } ?>
