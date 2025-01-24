@@ -96,6 +96,10 @@ class Woo_Refund_And_Exchange_Lite_Public {
 	 * @param object $order is a current order.
 	 */
 	public function wps_rma_refund_button( $actions, $order ) {
+		if ( is_checkout() ) {
+			// Remove the duplicate actions.
+			return $actions;
+		}
 		$show_refund_button = wps_rma_show_buttons( 'refund', $order );
 		$view_msg           = get_option( 'wps_rma_general_om', 'no' );
 		$wps_rma_return     = get_option( 'wps_rma_refund_enable', false );

@@ -1,4 +1,9 @@
 /* Chats section Start */
+#wps_rma_order_msg_react .wps_order_msg_container {
+    max-width: calc(100% - 30px);
+    width: 100%;
+    margin: auto;
+}
 
 .wps_order_msg_sub_container::-webkit-scrollbar {
     width: 8px;
@@ -120,8 +125,11 @@
     transform: translate(-50%, -50%);
 }
 
-.wps_order_msg_att-wrap svg path {
+.wps_order_msg_att-wrap.not_active svg path {
     stroke: #ccc;
+}
+.wps_order_msg_att-wrap.active svg path {
+    stroke: #000000;
 }
 
 .wps_order_msg_att-wrap #wps_order_msg_attachment {
@@ -152,6 +160,7 @@
 }
 
 .wps-rma-order-msg-wrapper #wps_order_new_msg {
+    min-height: auto;
     max-height: 80px;
     font-size: 14px;
     line-height: 1.5;
@@ -161,6 +170,7 @@
     resize: none;
     border-radius: 5px;
     width: 100%;
+    height: auto;
 }
 
 .wps-rma-order-msg-wrapper .wps-order-msg-attachment-wrapper {
@@ -187,6 +197,7 @@
     position: relative;
     z-index: 1;
     cursor: pointer;
+    min-height: auto;
 }
 
 .wps-order-msg-btn {
@@ -235,6 +246,8 @@
 
 #wps_rma_notification_div {
     text-align: center;
+    margin: 15px auto;
+    max-width: 400px;
 }
 
 #wps_rma_notification_div label input[type=tel]:focus,.wps-order-msg-btn input:focus,.wps-rma-order-msg-wrapper #wps_order_new_msg:focus {
