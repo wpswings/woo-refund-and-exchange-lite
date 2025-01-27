@@ -2170,8 +2170,8 @@ var OrderMessage = function OrderMessage() {
   }, [setMessages]);
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
       wps_order_new_msg: "",
-      wps_order_msg_attachment: [],
-      wps_phone_number: ""
+      wps_order_msg_attachment: null,
+      wps_rma_customer_contact_order_message: ""
     }),
     _useState4 = _slicedToArray(_useState3, 2),
     formData = _useState4[0],
@@ -2182,13 +2182,13 @@ var OrderMessage = function OrderMessage() {
     var _e$target = e.target,
       name = _e$target.name,
       value = _e$target.value;
-    if (name === "wps_order_msg_attachment") {
-      setFormData(_objectSpread(_objectSpread({}, formData), {}, {
-        files: Array.from(e.target.files)
-      }));
-    } else {
-      setFormData(_objectSpread(_objectSpread({}, formData), {}, _defineProperty({}, name, value)));
-    }
+    setFormData(_objectSpread(_objectSpread({}, formData), {}, _defineProperty({}, name, value)));
+  };
+  var handleFileChange = function handleFileChange(event) {
+    var _event$target = event.target,
+      name = _event$target.name,
+      files = _event$target.files;
+    setFormData(_objectSpread(_objectSpread({}, formData), {}, _defineProperty({}, name, Array.from(files))));
   };
 
   // submit the form data
@@ -2205,9 +2205,9 @@ var OrderMessage = function OrderMessage() {
             data.append("nonce", wps_rma_react_object.wps_rma_react_nonce);
             data.append("action", 'wps_rma_send_order_msg');
             data.append("order_msg_type", screenID);
-            data.append("wps_rma_customer_contact_order_message", formData.wps_phone_number);
-            if (formData.files) {
-              formData.files.forEach(function (file, index) {
+            data.append("wps_rma_customer_contact_order_message", formData.wps_rma_customer_contact_order_message);
+            if (formData.wps_order_msg_attachment) {
+              formData.wps_order_msg_attachment.forEach(function (file, index) {
                 data.append("wps_order_msg_attachment[]", file); // Append each file
               });
             }
@@ -2224,8 +2224,8 @@ var OrderMessage = function OrderMessage() {
               fetchOrderMessage();
               setFormData({
                 wps_order_new_msg: "",
-                wps_order_msg_attachment: "",
-                wps_phone_number: ""
+                wps_order_msg_attachment: null,
+                wps_rma_customer_contact_order_message: ""
               });
               setTimeout(function () {
                 Redirect();
@@ -2310,7 +2310,7 @@ var OrderMessage = function OrderMessage() {
   }, uploadAttach && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "wps-order-attachment"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "wps_order_msg_att-wrap ".concat(formData.files ? 'active' : 'not_active', " ")
+    className: "wps_order_msg_att-wrap ".concat(formData.wps_order_msg_attachment && formData.wps_order_msg_attachment.length > 0 ? 'active' : 'not_active', " ")
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     width: "800px",
@@ -2339,7 +2339,7 @@ var OrderMessage = function OrderMessage() {
     type: "file",
     id: "wps_order_msg_attachment",
     name: "wps_order_msg_attachment",
-    onChange: handleChange,
+    onChange: handleFileChange,
     multiple: true
   })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "wps-order-msg-btn"
@@ -2614,6 +2614,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* Chats section Start */
     opacity: 0;
     width: 28px;
     position: relative;
+    margin: 0;
 }
 
 .wps-order-msg-attachment-wrapper {
@@ -2639,7 +2640,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* Chats section Start */
 
 .wps-rma-order-msg-wrapper #wps_order_new_msg {
     min-height: auto;
-    max-height: 80px;
+    max-height: 83px;
     font-size: 14px;
     line-height: 1.5;
     background: transparent;
@@ -2649,6 +2650,8 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* Chats section Start */
     border-radius: 5px;
     width: 100%;
     height: auto;
+    margin: 0;
+    padding: 5px;
 }
 
 .wps-rma-order-msg-wrapper .wps-order-msg-attachment-wrapper {
@@ -2676,6 +2679,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* Chats section Start */
     z-index: 1;
     cursor: pointer;
     min-height: auto;
+    margin: 0;
 }
 
 .wps-order-msg-btn {
@@ -2684,6 +2688,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* Chats section Start */
     background: #54b36f;
     padding: 5px;
     border-radius: 5px;
+    flex: 1;
 }
 
 .wps-order-msg-btn svg path {
@@ -2715,6 +2720,8 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* Chats section Start */
     border-radius: 5px;
     font-size: 14px;
     line-height: 1.25;
+    min-height: 33px;
+    padding: 10px;
 }
 
 #wps_rma_notification_div .wps_rma_notification_label {
@@ -2747,7 +2754,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* Chats section Start */
     color: #2b4473;
 }
 
-/* Chats section End */`, "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"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","sourcesContent":["/* Chats section Start */\n#wps_rma_order_msg_react .wps_order_msg_container {\n    max-width: calc(100% - 30px);\n    width: 100%;\n    margin: auto;\n}\n\n.wps_order_msg_sub_container::-webkit-scrollbar {\n    width: 8px;\n}\n  \n.wps_order_msg_sub_container::-webkit-scrollbar-track {\n    background: #f1f1f1;\n    border-radius: 10px;\n}\n  \n.wps_order_msg_sub_container::-webkit-scrollbar-thumb {\n    background: #888;\n    border-radius: 10px;\n}\n  \n.wps_order_msg_sub_container::-webkit-scrollbar-thumb:hover {\n    background: #555; \n}\n\n.wps_order_msg_sub_container {\n    padding: 25px;\n    background: #fff;\n    border-radius: 0 0 5px 5px;\n    max-height: 400px;\n    overflow: auto;\n    border: 1px solid #c2c2c2;\n    border-top: none;\n}\n\n.wps_order_msg_sub_container .wps-order-msg_row {\n    margin: 0 0 15px;\n}\n\n.wps_order_msg_sub_container .wps-order-msg_row_customer {\n    text-align: right;\n}\n\n.wmb-order-customer__msg-container {\n    text-align: right;\n}\n\n.wps-order-msg_row_shopmanager .wps_order_msg_detail_container {\n    padding: 10px;\n    background: #5481b3;\n    border-radius: 10px 10px 10px 0;\n    max-width: 400px;\n    display: inline-block;\n    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);\n    color: #fff;\n}\n\n.wps-order-msg_row_customer .wps_order_msg_detail_container {\n    padding: 10px;\n    background: #54b36f;\n    border-radius: 10px 10px 0 10px;\n    max-width: 55%;\n    margin: 0 0 0 auto;\n    display: inline-block;\n    box-shadow: 0 2px 5px rgba(0,0,0,0.1);\n    color: #fff;\n}\n\n.wps_order_msg_sender_details {\n    font-size: 14px;\n    font-weight: 600;\n    display: flex;\n    gap: 0;\n    line-height: 1.25;\n    flex-direction: column;\n}\n\n.wmb-order-customer__msg-container .wps_order_msg_sender_details {\n    justify-content: flex-end;\n}\n\n.wps_order_msg_main_container {\n    margin: 0 0 5px;\n}\n\n.wps_order_msg_sender_details .wps_order_msg_date {\n    font-size: 10px;\n    font-weight: 400;\n}\n\n.wps_order_msg_single_attachment img {\n    max-width: 100px;\n    aspect-ratio: 1;\n    object-fit: contain;\n    border: 1px solid #e2e2e2;\n}\n\n.wps_order_msg_single_attachment .wps_order_msg_attachment_file_name {\n    display: none;\n}\n\n.wps_order_msg_attach_container {\n    display: flex;\n    gap: 10px;\n    flex-wrap: wrap;\n}\n\n.wps_order_msg_sub_container .wps-order-msg_row_customer .wps_order_msg_attach_container {\n    justify-content: flex-end;\n    margin: 15px 0 0;\n}\n\n.wps_order_msg_att-wrap {\n    background: transparent;\n    display: inline-flex;\n    position: relative;\n}\n\n.wps_order_msg_att-wrap svg {\n    width: 28px;\n    height: 28px;\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    transform: translate(-50%, -50%);\n}\n\n.wps_order_msg_att-wrap.not_active svg path {\n    stroke: #ccc;\n}\n.wps_order_msg_att-wrap.active svg path {\n    stroke: #000000;\n}\n\n.wps_order_msg_att-wrap #wps_order_msg_attachment {\n    opacity: 0;\n    width: 28px;\n    position: relative;\n}\n\n.wps-order-msg-attachment-wrapper {\n    cursor: pointer;\n}\n\n.wps_order_msg_att-wrap input:before {\n    content: '';\n    position: absolute;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    cursor: pointer;\n    z-index: 1;\n}\n\n.wps-rma-order-msg-wrapper {\n    display: flex;\n    gap: 10px;\n    margin: 15px 0 0;\n}\n\n.wps-rma-order-msg-wrapper #wps_order_new_msg {\n    min-height: auto;\n    max-height: 80px;\n    font-size: 14px;\n    line-height: 1.5;\n    background: transparent;\n    box-shadow: none;\n    border: 1px solid #c2c2c2;\n    resize: none;\n    border-radius: 5px;\n    width: 100%;\n    height: auto;\n}\n\n.wps-rma-order-msg-wrapper .wps-order-msg-attachment-wrapper {\n    display: inline-flex;\n    align-items: center;\n    gap: 10px;\n    flex-direction: column;\n}\n\n.wps-order-msg-btn svg {\n    width: 28px;\n    height: auto;\n    position: absolute;\n    left: 50%;\n    top: 50%;\n    transform: translate(-50%,-50%);\n}\n\n.wps-order-msg-btn input {\n    width: 28px;\n    height: 28px;\n    padding: 0;\n    opacity: 0;\n    position: relative;\n    z-index: 1;\n    cursor: pointer;\n    min-height: auto;\n}\n\n.wps-order-msg-btn {\n    position: relative;\n    cursor: pointer;\n    background: #54b36f;\n    padding: 5px;\n    border-radius: 5px;\n}\n\n.wps-order-msg-btn svg path {\n    stroke: #fff;\n}\n\n.wps_o_m-label-wrap label {\n    font-size: 12px;\n    text-align: right;\n    display: block;\n    margin: 5px 0 15px;\n}\n\n#wps_rma_notification_div label {\n    font-size: 16px;\n    font-weight: 600;\n    display: flex;\n    align-items: center;\n    gap: 5px;\n    flex-wrap: wrap;\n    justify-content: center;\n    flex-direction: column;\n}\n\n#wps_rma_notification_div label input[type=tel] {\n    background: transparent;\n    box-shadow: none;\n    border: 1px solid  #c2c2c2;\n    border-radius: 5px;\n    font-size: 14px;\n    line-height: 1.25;\n}\n\n#wps_rma_notification_div .wps_rma_notification_label {\n    font-size: 12px;\n    margin: 5px 0 0;\n}\n\n#wps_rma_notification_div {\n    text-align: center;\n    margin: 15px auto;\n    max-width: 400px;\n}\n\n#wps_rma_notification_div label input[type=tel]:focus,.wps-order-msg-btn input:focus,.wps-rma-order-msg-wrapper #wps_order_new_msg:focus {\n    outline: none;\n}\n\n.wps-order-msg_column {\n    display: flex;\n    justify-content: space-between;\n    padding: 5px 10px;\n    background: #f2f2f2;\n    color: #098046;\n    border-radius: 5px 5px 0 0;\n    font-size: 18px;\n    border: 1px solid #c2c2c2;\n}\n\n.wps-order-msg_column .shop_man-title {\n    color: #2b4473;\n}\n\n/* Chats section End */"],"sourceRoot":""}]);
+/* Chats section End */`, "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"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","sourcesContent":["/* Chats section Start */\n#wps_rma_order_msg_react .wps_order_msg_container {\n    max-width: calc(100% - 30px);\n    width: 100%;\n    margin: auto;\n}\n\n.wps_order_msg_sub_container::-webkit-scrollbar {\n    width: 8px;\n}\n  \n.wps_order_msg_sub_container::-webkit-scrollbar-track {\n    background: #f1f1f1;\n    border-radius: 10px;\n}\n  \n.wps_order_msg_sub_container::-webkit-scrollbar-thumb {\n    background: #888;\n    border-radius: 10px;\n}\n  \n.wps_order_msg_sub_container::-webkit-scrollbar-thumb:hover {\n    background: #555; \n}\n\n.wps_order_msg_sub_container {\n    padding: 25px;\n    background: #fff;\n    border-radius: 0 0 5px 5px;\n    max-height: 400px;\n    overflow: auto;\n    border: 1px solid #c2c2c2;\n    border-top: none;\n}\n\n.wps_order_msg_sub_container .wps-order-msg_row {\n    margin: 0 0 15px;\n}\n\n.wps_order_msg_sub_container .wps-order-msg_row_customer {\n    text-align: right;\n}\n\n.wmb-order-customer__msg-container {\n    text-align: right;\n}\n\n.wps-order-msg_row_shopmanager .wps_order_msg_detail_container {\n    padding: 10px;\n    background: #5481b3;\n    border-radius: 10px 10px 10px 0;\n    max-width: 400px;\n    display: inline-block;\n    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);\n    color: #fff;\n}\n\n.wps-order-msg_row_customer .wps_order_msg_detail_container {\n    padding: 10px;\n    background: #54b36f;\n    border-radius: 10px 10px 0 10px;\n    max-width: 55%;\n    margin: 0 0 0 auto;\n    display: inline-block;\n    box-shadow: 0 2px 5px rgba(0,0,0,0.1);\n    color: #fff;\n}\n\n.wps_order_msg_sender_details {\n    font-size: 14px;\n    font-weight: 600;\n    display: flex;\n    gap: 0;\n    line-height: 1.25;\n    flex-direction: column;\n}\n\n.wmb-order-customer__msg-container .wps_order_msg_sender_details {\n    justify-content: flex-end;\n}\n\n.wps_order_msg_main_container {\n    margin: 0 0 5px;\n}\n\n.wps_order_msg_sender_details .wps_order_msg_date {\n    font-size: 10px;\n    font-weight: 400;\n}\n\n.wps_order_msg_single_attachment img {\n    max-width: 100px;\n    aspect-ratio: 1;\n    object-fit: contain;\n    border: 1px solid #e2e2e2;\n}\n\n.wps_order_msg_single_attachment .wps_order_msg_attachment_file_name {\n    display: none;\n}\n\n.wps_order_msg_attach_container {\n    display: flex;\n    gap: 10px;\n    flex-wrap: wrap;\n}\n\n.wps_order_msg_sub_container .wps-order-msg_row_customer .wps_order_msg_attach_container {\n    justify-content: flex-end;\n    margin: 15px 0 0;\n}\n\n.wps_order_msg_att-wrap {\n    background: transparent;\n    display: inline-flex;\n    position: relative;\n}\n\n.wps_order_msg_att-wrap svg {\n    width: 28px;\n    height: 28px;\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    transform: translate(-50%, -50%);\n}\n\n.wps_order_msg_att-wrap.not_active svg path {\n    stroke: #ccc;\n}\n.wps_order_msg_att-wrap.active svg path {\n    stroke: #000000;\n}\n\n.wps_order_msg_att-wrap #wps_order_msg_attachment {\n    opacity: 0;\n    width: 28px;\n    position: relative;\n    margin: 0;\n}\n\n.wps-order-msg-attachment-wrapper {\n    cursor: pointer;\n}\n\n.wps_order_msg_att-wrap input:before {\n    content: '';\n    position: absolute;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    cursor: pointer;\n    z-index: 1;\n}\n\n.wps-rma-order-msg-wrapper {\n    display: flex;\n    gap: 10px;\n    margin: 15px 0 0;\n}\n\n.wps-rma-order-msg-wrapper #wps_order_new_msg {\n    min-height: auto;\n    max-height: 83px;\n    font-size: 14px;\n    line-height: 1.5;\n    background: transparent;\n    box-shadow: none;\n    border: 1px solid #c2c2c2;\n    resize: none;\n    border-radius: 5px;\n    width: 100%;\n    height: auto;\n    margin: 0;\n    padding: 5px;\n}\n\n.wps-rma-order-msg-wrapper .wps-order-msg-attachment-wrapper {\n    display: inline-flex;\n    align-items: center;\n    gap: 10px;\n    flex-direction: column;\n}\n\n.wps-order-msg-btn svg {\n    width: 28px;\n    height: auto;\n    position: absolute;\n    left: 50%;\n    top: 50%;\n    transform: translate(-50%,-50%);\n}\n\n.wps-order-msg-btn input {\n    width: 28px;\n    height: 28px;\n    padding: 0;\n    opacity: 0;\n    position: relative;\n    z-index: 1;\n    cursor: pointer;\n    min-height: auto;\n    margin: 0;\n}\n\n.wps-order-msg-btn {\n    position: relative;\n    cursor: pointer;\n    background: #54b36f;\n    padding: 5px;\n    border-radius: 5px;\n    flex: 1;\n}\n\n.wps-order-msg-btn svg path {\n    stroke: #fff;\n}\n\n.wps_o_m-label-wrap label {\n    font-size: 12px;\n    text-align: right;\n    display: block;\n    margin: 5px 0 15px;\n}\n\n#wps_rma_notification_div label {\n    font-size: 16px;\n    font-weight: 600;\n    display: flex;\n    align-items: center;\n    gap: 5px;\n    flex-wrap: wrap;\n    justify-content: center;\n    flex-direction: column;\n}\n\n#wps_rma_notification_div label input[type=tel] {\n    background: transparent;\n    box-shadow: none;\n    border: 1px solid  #c2c2c2;\n    border-radius: 5px;\n    font-size: 14px;\n    line-height: 1.25;\n    min-height: 33px;\n    padding: 10px;\n}\n\n#wps_rma_notification_div .wps_rma_notification_label {\n    font-size: 12px;\n    margin: 5px 0 0;\n}\n\n#wps_rma_notification_div {\n    text-align: center;\n    margin: 15px auto;\n    max-width: 400px;\n}\n\n#wps_rma_notification_div label input[type=tel]:focus,.wps-order-msg-btn input:focus,.wps-rma-order-msg-wrapper #wps_order_new_msg:focus {\n    outline: none;\n}\n\n.wps-order-msg_column {\n    display: flex;\n    justify-content: space-between;\n    padding: 5px 10px;\n    background: #f2f2f2;\n    color: #098046;\n    border-radius: 5px 5px 0 0;\n    font-size: 18px;\n    border: 1px solid #c2c2c2;\n}\n\n.wps-order-msg_column .shop_man-title {\n    color: #2b4473;\n}\n\n/* Chats section End */"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

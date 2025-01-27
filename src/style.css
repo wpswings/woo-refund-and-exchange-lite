@@ -136,6 +136,7 @@
     opacity: 0;
     width: 28px;
     position: relative;
+    margin: 0;
 }
 
 .wps-order-msg-attachment-wrapper {
@@ -161,7 +162,7 @@
 
 .wps-rma-order-msg-wrapper #wps_order_new_msg {
     min-height: auto;
-    max-height: 80px;
+    max-height: 83px;
     font-size: 14px;
     line-height: 1.5;
     background: transparent;
@@ -171,6 +172,8 @@
     border-radius: 5px;
     width: 100%;
     height: auto;
+    margin: 0;
+    padding: 5px;
 }
 
 .wps-rma-order-msg-wrapper .wps-order-msg-attachment-wrapper {
@@ -198,6 +201,7 @@
     z-index: 1;
     cursor: pointer;
     min-height: auto;
+    margin: 0;
 }
 
 .wps-order-msg-btn {
@@ -206,6 +210,7 @@
     background: #54b36f;
     padding: 5px;
     border-radius: 5px;
+    flex: 1;
 }
 
 .wps-order-msg-btn svg path {
@@ -237,6 +242,8 @@
     border-radius: 5px;
     font-size: 14px;
     line-height: 1.25;
+    min-height: 33px;
+    padding: 10px;
 }
 
 #wps_rma_notification_div .wps_rma_notification_label {

@@ -97,19 +97,19 @@ export const OrderMessage = () => {
   
     const [formData, setFormData] = useState({
       wps_order_new_msg: "",
-      wps_order_msg_attachment: [],
-      wps_phone_number: "",
+      wps_order_msg_attachment: null,
+      wps_rma_customer_contact_order_message: "",
     });
     
     // handling form data 
     const handleChange = (e) => {
-      const { name, value } = e.target;
-  
-      if (name === "wps_order_msg_attachment") {
-        setFormData({ ...formData, files: Array.from(e.target.files) });
-      } else {
-        setFormData({ ...formData, [name]: value });
-      }
+      const { name, value } = e.target;  
+      setFormData({ ...formData, [name]: value });
+    };
+
+    const handleFileChange = (event) => {
+      const { name, files } = event.target;
+      setFormData({ ...formData, [name]: Array.from(files)});
     };
   
     // submit the form data
@@ -122,10 +122,10 @@ export const OrderMessage = () => {
       data.append("nonce", wps_rma_react_object.wps_rma_react_nonce);
       data.append("action", 'wps_rma_send_order_msg');
       data.append("order_msg_type", screenID );
-      data.append("wps_rma_customer_contact_order_message", formData.wps_phone_number );
+      data.append("wps_rma_customer_contact_order_message", formData.wps_rma_customer_contact_order_message );
       
-      if ( formData.files ) {
-        formData.files.forEach((file, index) => {
+      if ( formData.wps_order_msg_attachment ) {
+        formData.wps_order_msg_attachment.forEach((file, index) => {
           data.append(`wps_order_msg_attachment[]`, file); // Append each file
         });
       }
@@ -140,8 +140,8 @@ export const OrderMessage = () => {
 
         setFormData({
           wps_order_new_msg: "",
-          wps_order_msg_attachment: "",
-          wps_phone_number: "",
+          wps_order_msg_attachment: null,
+          wps_rma_customer_contact_order_message: "",
         });
         setTimeout(() => {
           Redirect();
@@ -225,7 +225,7 @@ export const OrderMessage = () => {
                     {uploadAttach && (
                       <>
                       <div className="wps-order-attachment">
-                        <div className={`wps_order_msg_att-wrap ${formData.files ? 'active' : 'not_active'} `}>
+                        <div className={`wps_order_msg_att-wrap ${ ( formData.wps_order_msg_attachment && formData.wps_order_msg_attachment.length > 0 ) ? 'active' : 'not_active'} `}>
                           <svg xmlns="http://www.w3.org/2000/svg" width="800px" height="800px" viewBox="0 0 24 24" fill="none">
                             <path d="M13 4H8.8C7.11984 4 6.27976 4 5.63803 4.32698C5.07354 4.6146 4.6146 5.07354 4.32698 5.63803C4 6.27976 4 7.11984 4 8.8V15.2C4 16.8802 4 17.7202 4.32698 18.362C4.6146 18.9265 5.07354 19.3854 5.63803 19.673C6.27976 20 7.11984 20 8.8 20H15.2C16.8802 20 17.7202 20 18.362 19.673C18.9265 19.3854 19.3854 18.9265 19.673 18.362C20 17.7202 20 16.8802 20 15.2V11" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M4 16L8.29289 11.7071C8.68342 11.3166 9.31658 11.3166 9.70711 11.7071L13 15M13 15L15.7929 12.2071C16.1834 11.8166 16.8166 11.8166 17.2071 12.2071L20 15M13 15L15.25 17.25" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -235,7 +235,7 @@ export const OrderMessage = () => {
                             type="file"
                             id="wps_order_msg_attachment"
                             name="wps_order_msg_attachment"
-                            onChange={handleChange}
+                            onChange={handleFileChange}
                             multiple
                           />
                         </div>
