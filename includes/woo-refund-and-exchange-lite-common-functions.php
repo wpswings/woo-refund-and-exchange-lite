@@ -426,8 +426,9 @@ if ( ! function_exists( 'wps_rma_return_req_cancel_callback' ) ) {
 	/**
 	 * Cancel return request cancel callback.
 	 *
-	 * @param string  $orderid .
-	 * @param array() $products .
+	 * @param string $orderid .
+	 * @param array  $products .
+	 * @param bool   $is_customer_cancelled .
 	 */
 	function wps_rma_return_req_cancel_callback( $orderid, $products, $is_customer_cancelled ) {
 		// Fetch the return request product.
