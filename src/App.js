@@ -222,7 +222,7 @@ export const OrderMessage = () => {
                   onChange={handleChange}
                 ></textarea>
                 <div className="wps-order-msg-attachment-wrapper">
-                    {uploadAttach && (
+                    { 'on' == uploadAttach && (
                       <>
                       <div className="wps-order-attachment">
                         <div className={`wps_order_msg_att-wrap ${ ( formData.wps_order_msg_attachment && formData.wps_order_msg_attachment.length > 0 ) ? 'active' : 'not_active'} `}>
