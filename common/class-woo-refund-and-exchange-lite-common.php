@@ -99,6 +99,53 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			);
 			wp_enqueue_script( $this->plugin_name . 'common' );
 		}
+		$wps_rma_view_order_msg_page_id = get_option( 'wps_rma_view_order_msg_page_id', true );
+
+		if ( is_page( $wps_rma_view_order_msg_page_id ) || ( function_exists( 'get_current_screen' ) && 'woocommerce_page_wc-orders' === get_current_screen()->id ) ) {
+			$script_path       = '../../build/index.js';
+			$script_asset_path = WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'build/index.asset.php';
+			$script_asset      = file_exists( $script_asset_path )
+			? require $script_asset_path
+			: array(
+				'dependencies' => array(
+					'wp-hooks',
+					'wp-element',
+					'wp-i18n',
+					'wc-components',
+				),
+				'version'      => filemtime( $script_path ),
+			);
+			$script_url        = WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'build/index.js';
+
+			wp_register_script(
+				'wps_rma_react_object',
+				$script_url,
+				$script_asset['dependencies'],
+				$script_asset['version'],
+				true
+			);
+			wp_enqueue_script( 'wps_rma_react_object' );
+			wp_localize_script(
+				'wps_rma_react_object',
+				'wps_rma_react_object',
+				array(
+					'ajaxurl'            => admin_url( 'admin-ajax.php' ),
+					'wps_rma_react_nonce' => wp_create_nonce( 'ajax-nonce' ),
+					'upload_attach' => get_option( 'wps_rma_general_enable_om_attachment', 'no' ),
+					'wps_rma_enable_sms_notification' => get_option( 'wps_rma_enable_sms_notification' ),
+					'wps_rma_enable_sms_notification_for_customer' => get_option( 'wps_rma_enable_sms_notification_for_customer' ),
+					'reload_image' => WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'public/images/reload-icon.png',
+					'attachment_url' => get_home_url() . '/wp-content/attachment/',
+					'is_admin'   => is_admin() ? 'shop_manager' : 'customer',
+					'shop_manager' => esc_attr__( 'Shop Manager', 'woo-refund-and-exchange-lite' ),
+					'customer' => esc_attr__( 'Customer', 'woo-refund-and-exchange-lite' ),
+					'textare_placeholder' => esc_attr__( 'Write a message you want to send', 'woo-refund-and-exchange-lite' ),
+					'attach_note' => esc_attr__( 'Only png, jpg and jpeg file is supported', 'woo-refund-and-exchange-lite' ),
+					'sms_label' => esc_attr__( 'Receive updates over SMS', 'woo-refund-and-exchange-lite' ),
+					'sms_example' => esc_attr__( 'Phone number with country code. Ex: 1XXXXXXX987 ("+" not allowed)', 'woo-refund-and-exchange-lite' ),
+				)
+			);
+		}
 	}
 
 	/**
@@ -368,35 +415,6 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	public function wps_rma_refund_req_cancel_email( $order_id ) {
 		include_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-cancel-email.php';
 	}
-	/**
-	 * Save order message from admin side.
-	 */
-	public function wps_rma_order_messages_save() {
-		$check_ajax = check_ajax_referer( 'wps_rma_ajax_security', 'security_check' );
-		if ( $check_ajax ) {
-			$msg      = isset( $_POST['msg'] ) ? filter_input( INPUT_POST, 'msg' ) : '';
-			$msg_type = isset( $_POST['order_msg_type'] ) ? filter_input( INPUT_POST, 'order_msg_type' ) : '';
-			$order_id = isset( $_POST['order_id'] ) ? filter_input( INPUT_POST, 'order_id' ) : '';
-			$order    = wc_get_order( $order_id );
-			$to       = $order->get_billing_email();
-			if ( 'admin' === $msg_type ) {
-				$sender = 'Shop Manager';
-			} else {
-				$sender = 'Customer';
-				$to = get_option( 'woocommerce_email_from_address', get_option( 'admin_email' ) );
-			}
-
-			$wps_rma_customer_contact_order_message_get = wps_rma_get_meta_data( $order_id, 'wps_rma_customer_contact_order_message', true );
-
-			$wps_rma_customer_contact_order_message = isset( $_POST['wps_rma_customer_contact_order_message'] ) ? sanitize_text_field( wp_unslash( $_POST['wps_rma_customer_contact_order_message'] ) ) : '';
-			if ( $wps_rma_customer_contact_order_message && empty( $wps_rma_customer_contact_order_message_get )) {
-				wps_rma_update_meta_data( $order_id, 'wps_rma_customer_contact_order_message', $wps_rma_customer_contact_order_message );
-			}
-			$flag = wps_rma_lite_send_order_msg_callback( $order_id, $msg, $sender, $to );
-			echo esc_html( $flag );
-			wp_die();
-		}
-	}
 
 	/**
 	 * Function is used for the sending the track data.
@@ -539,14 +557,123 @@ class Woo_Refund_And_Exchange_Lite_Common {
 		$order_id = isset( $_POST['order_id'] ) ? filter_input( INPUT_POST, 'order_id' ) : '';
 
 		$products = wps_rma_get_meta_data( $order_id, 'wps_rma_return_product', true );
-		$response = wps_rma_return_req_cancel_callback( $order_id, $products );
+		$response = wps_rma_return_req_cancel_callback( $order_id, $products, true );
 
-		if ( isset( $response['response'] ) ) {
-			$order = wc_get_order( $order_id );
-			$custom_note = esc_html__( 'The request was cancelled by the customer', 'woo-refund-and-exchange-lite' );
-			$order->add_order_note( $custom_note, true );
-		}        
 		echo wp_json_encode( $response );
+		wp_die();
+	}
+
+	/**
+	 * Fetch the submitted form data for th order.
+	 *
+	 */
+	public function wps_rma_fetch_order_msgs_callback() {
+
+		check_ajax_referer( 'ajax-nonce', 'nonce' );
+
+		$order_id = isset( $_POST['order_id'] ) ? filter_input( INPUT_POST, 'order_id' ) : '';
+
+		$wps_order_messages = wps_rma_get_meta_data( $order_id, 'wps_cutomer_order_msg', true );
+
+		echo wp_json_encode( $wps_order_messages );
+
+		wp_die();
+	}
+
+	/**
+	 * Handling the order message form submission.
+	 *
+	 */
+	public function wps_rma_send_order_msg_callback() {
+		check_ajax_referer( 'ajax-nonce', 'nonce' );
+		global $wp_filesystem;
+
+		if ( ! function_exists('WP_Filesystem') ) {
+			require_once ABSPATH . 'wp-admin/includes/file.php';
+		}
+		WP_Filesystem();
+
+		$order_id = isset( $_POST['order_id'] ) ? filter_input( INPUT_POST, 'order_id' ) : '';
+		$msg      = isset( $_POST['msg'] ) ? filter_input( INPUT_POST, 'msg' ) : '';
+		$msg_type = isset( $_POST['order_msg_type'] ) ? filter_input( INPUT_POST, 'order_msg_type' ) : '';
+		$order    = wc_get_order( $order_id );
+		if ( 'shop_manager' === $msg_type ) {
+			$sender = 'Shop Manager';
+			$to     = $order->get_billing_email();
+		} elseif( 'customer' === $msg_type ) {
+			$sender = 'Customer';
+			$to     = get_option( 'woocommerce_email_from_address', get_option( 'admin_email' ) );
+		}
+		$wps_rma_customer_contact_order_message_get = wps_rma_get_meta_data( $order_id, 'wps_rma_customer_contact_order_message', true );
+		$wps_rma_customer_contact_order_message     = isset( $_POST['wps_rma_customer_contact_order_message'] ) ? sanitize_text_field( wp_unslash( $_POST['wps_rma_customer_contact_order_message'] ) ) : '';
+		if ( $wps_rma_customer_contact_order_message && empty( $wps_rma_customer_contact_order_message_get )) {
+			wps_rma_update_meta_data( $order_id, 'wps_rma_customer_contact_order_message', $wps_rma_customer_contact_order_message );
+		}
+		$filename   = array();
+		$attachment = array();
+
+		if ( isset( $_FILES['wps_order_msg_attachment']['tmp_name'] ) && ! empty( $_FILES['wps_order_msg_attachment']['tmp_name'] ) ) {
+			$count         = count( $_FILES['wps_order_msg_attachment']['tmp_name'] );
+			$file_uploaded = false;
+			if ( isset( $_FILES['wps_order_msg_attachment']['tmp_name'][0] ) && ! empty( $_FILES['wps_order_msg_attachment']['tmp_name'][0] ) ) {
+				$file_uploaded = true;
+			}
+			if ( $file_uploaded ) {
+				for ( $i = 0; $i < $count; $i++ ) {
+					if ( isset( $_FILES['wps_order_msg_attachment']['tmp_name'][ $i ] ) ) {
+						$directory = ABSPATH . 'wp-content/attachment';
+						if ( ! file_exists( $directory ) ) {
+							wp_mkdir_p( $directory );
+						}
+						$sourcepath = sanitize_text_field( wp_unslash( $_FILES['wps_order_msg_attachment']['tmp_name'][ $i ] ) );
+						$f_name     = isset( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ? sanitize_file_name( wp_unslash( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ) : '';
+						$targetpath = $directory . '/' . $order_id . '-' . sanitize_file_name( $f_name );
+						$file_security = pathinfo( $f_name, PATHINFO_EXTENSION );
+						if ( 'png' === $file_security || 'jpeg' === $file_security || 'jpg' === $file_security ) {
+
+							$filename[ $i ] ['img'] = true;
+							$filename[ $i ]['name'] = isset( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ? sanitize_file_name( wp_unslash( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ) : '';
+							$attachment[ $i ]       = $targetpath;
+							
+							$wp_filesystem->move($sourcepath, $targetpath, true);
+						}
+					}
+				}
+			}
+		}
+		// phpcs:enable
+		$date                         = strtotime( gmdate( 'Y-m-d H:i:s' ) );
+		$order_msg[ $date ]['sender'] = $sender;
+		$order_msg[ $date ]['msg']    = $msg;
+		$order_msg[ $date ]['files']  = $filename;
+		$get_msg                      = wps_rma_get_meta_data( $order_id, 'wps_cutomer_order_msg', true );
+		if ( isset( $get_msg ) && ! empty( $get_msg ) ) {
+			array_push( $get_msg, $order_msg );
+		} else {
+			$get_msg = array();
+			array_push( $get_msg, $order_msg );
+		}
+		wps_rma_update_meta_data( $order_id, 'wps_cutomer_order_msg', $get_msg );
+		$restrict_mail =
+		// Allow/Disallow Email.
+		apply_filters( 'wps_rma_restrict_order_msg_mails', false );
+
+		do_action( 'wps_rma_do_something_on_view_order_message', $order_id, $msg, $sender, $to );
+
+		if ( ! $restrict_mail ) {
+			$order = wc_get_order( $order_id );
+			$lang  = $order->get_meta( 'wpml_language' );
+			do_action( 'wpml_switch_language', $lang );
+
+			$customer_email = WC()->mailer()->emails['wps_rma_order_messages_email'];
+			$email_status   = $customer_email->trigger( $msg, $attachment, $to, $order_id );
+		}
+
+		$res = array(
+			'status' => 200,
+			'msg' => ''
+		);
+		echo wp_json_encode( $res );
 		wp_die();
 	}
 }

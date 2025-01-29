@@ -73,6 +73,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 			wp_localize_script(
 				$this->plugin_name,
 				'wrael_public_param',
+				
 				array(
 					'ajaxurl'               => admin_url( 'admin-ajax.php' ),
 					'wps_rma_nonce'         => wp_create_nonce( 'wps_rma_ajax_security' ),
@@ -95,6 +96,9 @@ class Woo_Refund_And_Exchange_Lite_Public {
 	 * @param object $order is a current order.
 	 */
 	public function wps_rma_refund_button( $actions, $order ) {
+		if ( ( version_compare( WC()->version, '9.6.0', '>=' ) && is_account_page() && is_wc_endpoint_url('view-order') ) || is_checkout() ) {
+			return $actions;
+		}
 		$show_refund_button = wps_rma_show_buttons( 'refund', $order );
 		$view_msg           = get_option( 'wps_rma_general_om', 'no' );
 		$wps_rma_return     = get_option( 'wps_rma_refund_enable', false );

@@ -5,8 +5,8 @@
  * @link  https://wpswings.com/
  * @since 1.0.0
  *
- * @package    woocommerce-rma-for-return-refund-and-exchange
- * @subpackage woocommerce-rma-for-return-refund-and-exchange/admin/partials
+ * @package    woo-refund-and-exchange-lite
+ * @subpackage woo-refund-and-exchange-lite/admin/partials
  */
 
 if ( ! class_exists( 'Wps_Rma_Policies_Settings' ) ) {
@@ -15,8 +15,8 @@ if ( ! class_exists( 'Wps_Rma_Policies_Settings' ) ) {
 	 *
 	 * Extend the setting in the RMA POLICIES TAB.
 	 *
-	 * @package    woocommerce-rma-for-return-refund-and-exchange
-	 * @subpackage woocommerce-rma-for-return-refund-and-exchange/admin/partials
+	 * @package    woo-refund-and-exchange-lite
+	 * @subpackage woo-refund-and-exchange-lite/admin/partials
 	 */
 	class Wps_Rma_Policies_Settings {
 		/**

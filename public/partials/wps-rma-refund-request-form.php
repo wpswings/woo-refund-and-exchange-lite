@@ -132,7 +132,6 @@ if ( isset( $condition ) && 'yes' === $condition ) {
 							$product =
 							// Get Product.
 							apply_filters( 'woocommerce_order_item_product', $item->get_product(), $item );
-							$thumbnail       = wp_get_attachment_image( $product->get_image_id(), 'thumbnail' );
 							$coupon_discount = get_option( 'wps_rma_refund_deduct_coupon', 'no' );
 							if ( 'on' === $coupon_discount ) {
 								$tax_inc = $item->get_total() + $item->get_total_tax();

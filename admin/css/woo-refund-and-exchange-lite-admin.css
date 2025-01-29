@@ -245,7 +245,6 @@ select {
   transition: opacity 0.2s linear;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 .wps-form-group .wps-password-hidden:hover {
@@ -1396,8 +1395,7 @@ button.wps_wrma_save_shiprocket.wps-wrma-save-button.wps-rma-admin__button.butto
   position: absolute;
   transform: rotate(45deg);
   width: 60px;
-  -webkit-clip-path: polygon(0% 0%, 100% 0%, 66% 100%, 34% 100%);
-          clip-path: polygon(0% 0%, 100% 0%, 66% 100%, 34% 100%);
+  clip-path: polygon(0% 0%, 100% 0%, 66% 100%, 34% 100%);
 }
 
 #wps_ship_setting.wps_rma_pro_div table {
@@ -1559,19 +1557,15 @@ a.wps-rma__popup-for-pro-link:hover {
   .wps-header-container {
     justify-content: flex-start;
   }
-
   .wps-header-container .wps-header-title {
     max-width: 100%;
   }
-
   .wps-header-container .wps-link {
     margin-top: 15px;
   }
-
   .wps-header-container span {
     margin: 15px 5px 0;
   }
-
   .wps-overview__wrapper .wps-overview__content .wps-overview__keywords .wps-overview__keywords-item {
     flex: 0 0 100%;
     max-width: 100%;
@@ -1579,40 +1573,31 @@ a.wps-rma__popup-for-pro-link:hover {
   .wps-header-container {
     justify-content: flex-start;
   }
-
   .wps-header-container .wps-header-title {
     max-width: 100%;
   }
-
   .wps-header-container .wps-link {
     margin-top: 15px;
   }
-
   .wps-header-container span {
     margin: 15px 5px 0;
   }
-
   .wps-overview__wrapper .wps-overview__content .wps-overview__keywords .wps-overview__keywords-item {
     flex: 0 0 100%;
     max-width: 100%;
   }
-
   .wps-header-container {
     justify-content: flex-start;
   }
-
   .wps-header-container .wps-header-title {
     max-width: 100%;
   }
-
   .wps-header-container .wps-link {
     margin-top: 15px;
   }
-
   .wps-header-container span {
     margin: 15px 5px 0;
   }
-
   .wps-overview__wrapper .wps-overview__content .wps-overview__keywords .wps-overview__keywords-item {
     flex: 0 0 100%;
     max-width: 100%;
@@ -1632,7 +1617,6 @@ a.wps-rma__popup-for-pro-link:hover {
     flex: 0 0 50%;
     max-width: 50%;
   }
-
   .wps-overview__wrapper .wps-overview__content .wps-overview__keywords .wps-overview__keywords-item {
     flex: 0 0 50%;
     max-width: 50%;
@@ -1641,34 +1625,31 @@ a.wps-rma__popup-for-pro-link:hover {
 
 @media only screen and (max-width: 1140px){
   .add_more_rma_policies select,
-.add_more_rma_policies label,
-.add_more_rma_policies input {
+  .add_more_rma_policies label,
+  .add_more_rma_policies input {
     margin-top: 8px;
   }
-
   span.select2.select2-container.select2-container--default {
     margin-top: 8px;
   }
   .add_more_rma_policies input,
-.add_more_rma_policies label,
-.add_more_rma_policies select,
-span.select2.select2-container.select2-container--default {
+  .add_more_rma_policies label,
+  .add_more_rma_policies select,
+  span.select2.select2-container.select2-container--default {
     margin-top: 8px;
   }
   .add_more_rma_policies select,
-.add_more_rma_policies label,
-.add_more_rma_policies input {
+  .add_more_rma_policies label,
+  .add_more_rma_policies input {
     margin-top: 8px;
   }
-
   span.select2.select2-container.select2-container--default {
     margin-top: 8px;
   }
-
   .add_more_rma_policies input,
-.add_more_rma_policies label,
-.add_more_rma_policies select,
-span.select2.select2-container.select2-container--default {
+  .add_more_rma_policies label,
+  .add_more_rma_policies select,
+  span.select2.select2-container.select2-container--default {
     margin-top: 8px;
   }
 }
@@ -1677,7 +1658,6 @@ span.select2.select2-container.select2-container--default {
   .wps-section .wps-overview__wrapper .wps-overview__content .wps-overview__keywords {
     flex-direction: column;
   }
-
   .wps-section .wps-overview__wrapper .wps-overview__content .wps-overview__keywords .wps-overview__keywords-item {
     flex: 0 0 100%;
     max-width: 100%;
@@ -1685,7 +1665,6 @@ span.select2.select2-container.select2-container--default {
   .wps-section .wps-overview__wrapper .wps-overview__content .wps-overview__keywords {
     flex-direction: column;
   }
-
   .wps-section .wps-overview__wrapper .wps-overview__content .wps-overview__keywords .wps-overview__keywords-item {
     flex: 0 0 100%;
     max-width: 100%;
@@ -1693,16 +1672,13 @@ span.select2.select2-container.select2-container--default {
   .wps-section .wps-overview__wrapper .wps-overview__content .wps-overview__keywords {
     flex-direction: column;
   }
-
   .wps-section .wps-overview__wrapper .wps-overview__content .wps-overview__keywords .wps-overview__keywords-item {
     flex: 0 0 100%;
     max-width: 100%;
   }
-
   .wps-section .wps-overview__wrapper .wps-overview__content .wps-overview__keywords {
     flex-direction: column;
   }
-
   .wps-section .wps-overview__wrapper .wps-overview__content .wps-overview__keywords .wps-overview__keywords-item {
     flex: 0 0 100%;
     max-width: 100%;
@@ -1719,7 +1695,6 @@ span.select2.select2-container.select2-container--default {
   #wps_ship_setting #add_fee_div td:nth-child(2) {
     margin-right: 0;
   }
-
   #wps_ship_setting #add_fee_div td:nth-child(2) {
     margin-right: 0;
   }
@@ -1729,60 +1704,52 @@ span.select2.select2-container.select2-container--default {
   .show_returnship_label {
     margin-bottom: 10px;
   }
-
   .wps_wrma_shipstation_details_wrapper table {
     width: 100%;
   }
-
   .wps_rma_shipping_setting th,
-.wps_rma_shipping_setting td,
-.wps_rma_shipping_setting input,
-.wps_rma_shipping_setting select,
-#wps_ship_setting td,
-.wps_wrma_shipstation_details_wrapper td,
-.wps-form-group__label,
-.wps-form-group__control {
+  .wps_rma_shipping_setting td,
+  .wps_rma_shipping_setting input,
+  .wps_rma_shipping_setting select,
+  #wps_ship_setting td,
+  .wps_wrma_shipstation_details_wrapper td,
+  .wps-form-group__label,
+  .wps-form-group__control {
     min-width: 100%;
     width: 100%;
     display: block;
   }
-
   .wps-wrma-validation__wrap label {
     width: 100%;
   }
   .show_returnship_label,
-.show_shiprocketintegration,
-.show_shipintegration {
+  .show_shiprocketintegration,
+  .show_shipintegration {
     margin-bottom: 10px;
   }
-
   .wps_wrma_shipstation_details_wrapper table {
     width: 100%;
   }
-
   #wps_ship_setting th.titledesc,
-.wps_wrma_shipstation_details_wrapper th {
+  .wps_wrma_shipstation_details_wrapper th {
     display: block;
   }
-
   #wps_ship_setting td,
-.wps-form-group__control,
-.wps-form-group__label,
-.wps_rma_shipping_setting input,
-.wps_rma_shipping_setting select,
-.wps_rma_shipping_setting td,
-.wps_rma_shipping_setting th,
-.wps_wrma_shipstation_details_wrapper td {
+  .wps-form-group__control,
+  .wps-form-group__label,
+  .wps_rma_shipping_setting input,
+  .wps_rma_shipping_setting select,
+  .wps_rma_shipping_setting td,
+  .wps_rma_shipping_setting th,
+  .wps_wrma_shipstation_details_wrapper td {
     display: block;
     min-width: 100%;
     max-width: 100%;
     width: 100%;
   }
-
   .wps-wrma-validation__wrap label {
     width: 100%;
   }
-
   .wps_rma_shipping_setting .wps_wrma_accordion label, .wps_rma_shiprocket_setting .wps_wrma_accordion label {
     margin-bottom: 10px;
     display: block;
@@ -1790,61 +1757,52 @@ span.select2.select2-container.select2-container--default {
   .show_returnship_label {
     margin-bottom: 10px;
   }
-
   .wps_wrma_shipstation_details_wrapper table {
     width: 100%;
   }
-
   .wps_rma_shipping_setting th,
-.wps_rma_shipping_setting td,
-.wps_rma_shipping_setting input,
-.wps_rma_shipping_setting select,
-#wps_ship_setting td,
-.wps_wrma_shipstation_details_wrapper td,
-.wps-form-group__label,
-.wps-form-group__control {
+  .wps_rma_shipping_setting td,
+  .wps_rma_shipping_setting input,
+  .wps_rma_shipping_setting select,
+  #wps_ship_setting td,
+  .wps_wrma_shipstation_details_wrapper td,
+  .wps-form-group__label,
+  .wps-form-group__control {
     min-width: 100%;
     width: 100%;
     display: block;
   }
-
   .wps-wrma-validation__wrap label {
     width: 100%;
   }
-
   .show_returnship_label,
-.show_shiprocketintegration,
-.show_shipintegration {
+  .show_shiprocketintegration,
+  .show_shipintegration {
     margin-bottom: 10px;
   }
-
   .wps_wrma_shipstation_details_wrapper table {
     width: 100%;
   }
-
   #wps_ship_setting th.titledesc,
-.wps_wrma_shipstation_details_wrapper th {
+  .wps_wrma_shipstation_details_wrapper th {
     display: block;
   }
-
   #wps_ship_setting td,
-.wps-form-group__control,
-.wps-form-group__label,
-.wps_rma_shipping_setting input,
-.wps_rma_shipping_setting select,
-.wps_rma_shipping_setting td,
-.wps_rma_shipping_setting th,
-.wps_wrma_shipstation_details_wrapper td {
+  .wps-form-group__control,
+  .wps-form-group__label,
+  .wps_rma_shipping_setting input,
+  .wps_rma_shipping_setting select,
+  .wps_rma_shipping_setting td,
+  .wps_rma_shipping_setting th,
+  .wps_wrma_shipstation_details_wrapper td {
     display: block;
     min-width: 100%;
     max-width: 100%;
     width: 100%;
   }
-
   .wps-wrma-validation__wrap label {
     width: 100%;
   }
-
   .wps_rma_shipping_setting .wps_wrma_accordion label, .wps_rma_shiprocket_setting .wps_wrma_accordion label {
     margin-bottom: 10px;
     display: block;
@@ -1861,7 +1819,6 @@ span.select2.select2-container.select2-container--default {
   .admin-bar #save_policies_setting_form input.wps_rma_save_settings {
     margin: 10px 0 0;
   }
-
   .admin-bar #save_policies_setting_form input.wps_rma_save_settings {
     margin: 10px 0 0;
   }
@@ -1869,20 +1826,18 @@ span.select2.select2-container.select2-container--default {
 
 @media screen and (max-width: 480px){
   #wps_ship_setting.wps_rma_pro_div .wps__enable-shipping th,
-.wps_rma_pro_class_wrap .wps-form-group__label,
-.wps_rma_pro_div .wps_rma_shipping_label_setting th {
+  .wps_rma_pro_class_wrap .wps-form-group__label,
+  .wps_rma_pro_div .wps_rma_shipping_label_setting th {
     padding-left: 40px;
   }
-
   #wps_ship_setting.wps_rma_pro_div .wps__enable-shipping td:before,
-.wps_rma_pro_class_wrap .wps-form-group__control:before,
-.wps_rma_pro_div .wps_rma_shipping_label_setting td:before {
+  .wps_rma_pro_class_wrap .wps-form-group__control:before,
+  .wps_rma_pro_div .wps_rma_shipping_label_setting td:before {
     bottom: -20px;
     top: 0;
   }
-
   #wps_ship_setting.wps_rma_pro_div .wps__enable-shipping td,
-.wps_rma_pro_div .wps_rma_shipping_label_setting td {
+  .wps_rma_pro_div .wps_rma_shipping_label_setting td {
     display: block;
   }
 }
@@ -1892,15 +1847,12 @@ span.select2.select2-container.select2-container--default {
     margin: 0 0 10px;
     flex: 0 0 100%;
   }
-
   .wps-header-container a.wps-link {
     margin: 5px 0 0;
   }
-
   .wps-header-container a.wps_go_pro_link {
     margin: 5px 10px 0 0;
   }
-
   .wps-header-container a.wps-link + span {
     margin: 0 5px;
   }

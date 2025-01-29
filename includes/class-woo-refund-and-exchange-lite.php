@@ -326,10 +326,6 @@ class Woo_Refund_And_Exchange_Lite {
 		$this->loader->add_action( 'wps_rma_refund_req_accept_email', $wrael_plugin_common, 'wps_rma_refund_req_accept_email', 10 );
 		$this->loader->add_action( 'wps_rma_refund_req_cancel_email', $wrael_plugin_common, 'wps_rma_refund_req_cancel_email', 10 );
 
-		// send order messages.
-		$this->loader->add_action( 'wp_ajax_wps_rma_order_messages_save', $wrael_plugin_common, 'wps_rma_order_messages_save' );
-		$this->loader->add_action( 'wp_ajax_nopriv_wps_rma_order_messages_save', $wrael_plugin_common, 'wps_rma_order_messages_save' );
-
 		// Save ajax request for the plugin's multistep.
 		$this->loader->add_action( 'wp_ajax_wps_standard_save_settings_filter', $wrael_plugin_common, 'wps_rma_standard_save_settings_filter' );
 		$this->loader->add_action( 'wp_ajax_nopriv_wps_standard_save_settings_filter', $wrael_plugin_common, 'wps_rma_standard_save_settings_filter' );
@@ -341,6 +337,12 @@ class Woo_Refund_And_Exchange_Lite {
 
 		$this->loader->add_action( 'wp_ajax_wps_rma_cancel_return_request', $wrael_plugin_common, 'wps_rma_cancel_return_request_callback' );
 		$this->loader->add_action( 'wp_ajax_nopriv_wps_rma_cancel_return_request', $wrael_plugin_common, 'wps_rma_cancel_return_request_callback' );
+
+		// Handling of the Order Messages.
+		$this->loader->add_action( 'wp_ajax_wps_rma_fetch_order_msgs', $wrael_plugin_common, 'wps_rma_fetch_order_msgs_callback' );
+		$this->loader->add_action( 'wp_ajax_nopriv_wps_rma_fetch_order_msgs', $wrael_plugin_common, 'wps_rma_fetch_order_msgs_callback' );
+		$this->loader->add_action( 'wp_ajax_wps_rma_send_order_msg', $wrael_plugin_common, 'wps_rma_send_order_msg_callback' );
+		$this->loader->add_action( 'wp_ajax_nopriv_wps_rma_send_order_msg', $wrael_plugin_common, 'wps_rma_send_order_msg_callback' );
 	}
 
 	/**
