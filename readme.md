@@ -1,4 +1,5 @@
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://travis-ci.org/twbs/bootstrap) ![Active installs](https://img.shields.io/badge/Active-5000%2B-brightgreen) ![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen) ![WP tested](https://img.shields.io/badge/WP%20tested-6.7.1-brightgreen) ![WC tested](https://img.shields.io/badge/WC%20tested-9.6.0-brightgreen) ![Requires PHP](https://img.shields.io/badge/Requires%20PHP-7.2.0-blue)
+
 # Return Refund and Exchange for WooCommerce
 ![Return Refund and Exchange For WooCommerce - Create A Simple Refund System WooCommerce RMA with Exchange, Wallet & Cancel Order Features](https://ps.w.org/woo-refund-and-exchange-lite/assets/banner-772x250.png?rev=2672154)
 * Contributors: WP Swings
@@ -77,7 +78,6 @@ With our Return Refund and Exchange plugin, merchants can create a dedicated ref
 
 **5) Automated Refund Acceptance:** The store managers can effortlessly automate the refund process and the transfer of refund payments by employing this functionality.
 
-
 **6) SMS Notification for Refund, Exchange, and Order Messages:** Merchants and customers can stay up-to-date. The merchants will be notified if any customer makes refunds, exchange requests, or order messages.
 
 
@@ -106,4 +106,3 @@ If you need support or have any questions then kindly use our online chat window
 * [**Tweet us on @WP Swings**](https://twitter.com/wpswings)
 * [**Visit our LinkedIn Account**](https://www.linkedin.com/company/77072505/admin/)
 * [**Subscribe To Our YouTube Channel**](https://www.youtube.com/channel/UC7nYNf0JETOwW3GOD_EW2Ag)
-
