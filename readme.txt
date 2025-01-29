@@ -27,8 +27,6 @@ Customers can request full or partial WooCommerce refunds (based on the return p
 
 Empower your WooCommerce store with a complete RMA solution - manage returns, refunds, exchanges, and cancellations seamlessly with automated workflows, integrated shipping solutions, and real-time tracking! 📦🔄
 
-Enjoy a fang-tastic 25% off this Halloween [**WooCommerce Refund and Exchnage plugin**](https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=rma-org&utm_medium=referral&utm_campaign=rma-pro) it’s the perfect treat for your WooCommerce store!🎉👻
-
 == SALIENT FEATURES OF THE RETURN REFUND AND EXCHANGE FOR WOOCOMMERCE PLUGIN ==
 
 **1) Return/Exchange Request Cancellation**: This functionality of the WooCommerce RMA plugin enables customers to cancel the made return/exchange requests. Once the customers withdraw the requests, the admins will receive notifications as order notes, informing them about the withdrawals. 
