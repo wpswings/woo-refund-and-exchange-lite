@@ -15,7 +15,7 @@
  * Plugin Name:       Return Refund and Exchange for WooCommerce
  * Plugin URI:        https://wordpress.org/plugins/woo-refund-and-exchange-lite/
  * Description:       <code><strong>Return Refund and Exchange for WooCommerce</strong></code> allows users to submit product refund. The plugin provides a dedicated mailing system that would help to communicate better between store owner and customers.This is lite version of WooCommerce Refund And Exchange. <a target="_blank" href="https://wpswings.com/woocommerce-plugins/?utm_source=wpswings-rma-shop&utm_medium=rma-org-backend&utm_campaign=shop-page">Elevate your e-commerce store by exploring more on WP Swings</a>
- * Version:           4.4.5
+ * Version:           4.5.6
  * Author:            WP Swings
  * Author URI:        https://wpswings.com/?utm_source=wpswings-rma-official&utm_medium=rma-org-page&utm_campaign=official
  * Text Domain:       woo-refund-and-exchange-lite
@@ -25,7 +25,7 @@
  * Requires at least: 5.5.0
  * Tested up to: 6.7.1
  * WC requires at least: 6.5
- * WC tested up to: 9.6.0
+ * WC tested up to: 9.6.1
  *
  * License:           GNU General Public License v3.0
  * License URI:       http://www.gnu.org/licenses/gpl-3.0.html
@@ -59,7 +59,7 @@ if ( $activated ) {
 	 * @since 1.0.0
 	 */
 	function define_woo_refund_and_exchange_lite_constants() {
-		woo_refund_and_exchange_lite_constants( 'WOO_REFUND_AND_EXCHANGE_LITE_VERSION', '4.4.5' );
+		woo_refund_and_exchange_lite_constants( 'WOO_REFUND_AND_EXCHANGE_LITE_VERSION', '4.5.6' );
 		woo_refund_and_exchange_lite_constants( 'WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH', plugin_dir_path( __FILE__ ) );
 		woo_refund_and_exchange_lite_constants( 'WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL', plugin_dir_url( __FILE__ ) );
 		woo_refund_and_exchange_lite_constants( 'WOO_REFUND_AND_EXCHANGE_LITE_SERVER_URL', 'https://wpswings.com' );
@@ -236,9 +236,6 @@ if ( $activated ) {
 		if ( 'shop_order' === OrderUtil::get_order_type( $id ) && OrderUtil::custom_orders_table_usage_is_enabled() ) {
 			// HPOS usage is enabled.
 			$order    = wc_get_order( $id );
-			if ( '_customer_user' === $key ) {
-				return $order->get_customer_id();
-			}
 			$meta_val = $order->get_meta( $key );
 			return $meta_val;
 		} else {
@@ -362,4 +359,114 @@ if ( $activated ) {
 		add_action( 'network_admin_notices', 'wps_rma_plugin_error_notice_lite' );
 		add_action( 'admin_notices', 'wps_rma_plugin_error_notice_lite' );
 	}
+
+
+	/**
+	 * Restrict the direct attachment directory access and rename the existing file name using the randomize name method .
+	 */
+	function wps_attachments_name_randomize(){
+
+		$directory = ABSPATH . 'wp-content/attachment';
+	
+		$index_file = $directory . '/index.php';
+	
+		// Check if index.php exists, if not, create it
+		if (!file_exists($index_file)) {
+			$content = "<?php\n// Silence is golden.";
+			file_put_contents($index_file, $content);
+		}
+	
+		if ( 'yes' === get_option( 'wps_rma_filename_changed' ) ) {
+			return;
+		}
+		// Get the WordPress uploads directory
+		$attachment_dir = ABSPATH . 'wp-content/attachment';
+		
+		// Check if the directory exists
+		if ( ! is_dir($attachment_dir)) {
+			return "Attachment directory does not exist.";
+		}
+			
+		// Get all files in the attachment directory
+		$files = scandir($attachment_dir);
+		$renamed_files = [];
+		
+		foreach ($files as $file) {
+			// Skip system entries
+			if ($file === '.' || $file === '..' || $file === 'index.php' ) {
+				continue;
+			}
+			$old_file_path = $attachment_dir . '/' . $file;
+			
+			// Ensure it's a file (not a directory)
+			if (is_file($old_file_path)) {
+				
+				$explode = explode( '-', $file, 2 );
+				
+				if ( count( $explode ) === 2 ) {
+					$order = wc_get_order( $explode[0] );
+					if ( $order ) {
+						// $file_name = $explode[1];
+						$req_attachments = $order->get_meta( 'wps_rma_return_attachment' );
+						if ( is_array( $req_attachments ) ) {
+							foreach ( $req_attachments as $da => $attachments ) {
+								foreach ( $attachments['files'] as $in => $attachment ) {
+									if ( $attachment == $file ) {
+										$file_format = pathinfo( $file, PATHINFO_EXTENSION);
+	
+										$new_file_name = wps_rma_generate_random_filename( $file_format );
+	
+										$new_file_path = $attachment_dir . '/' . $new_file_name;
+	
+										$req_attachments[$da]['files'][$in] = $new_file_name;
+										$order->update_meta_data( 'wps_rma_return_attachment', $req_attachments );
+										$order->save();
+										if ($old_file_path !== $new_file_path) {
+											rename($old_file_path, $new_file_path);
+										}
+									}
+								}
+							}
+						} else {
+							$file_format = pathinfo( $file, PATHINFO_EXTENSION);
+	
+							$new_file_name = wps_rma_generate_random_filename( $file_format );
+	
+							$new_file_path = $attachment_dir . '/' . $new_file_name;
+							if ($old_file_path !== $new_file_path) {
+								rename($old_file_path, $new_file_path);
+							}
+						}
+					}
+				}
+			}
+		}
+		update_option( 'wps_rma_filename_changed', 'yes' );
+	}
+	add_action( 'admin_init', 'wps_attachments_name_randomize' );
+	
+	/**
+	 * Restrict the direct attachment access .
+	 */
+	function wps_update_htaccess_for_attachments() {
+		$htaccess_file = ABSPATH . '.htaccess';
+		$rules = "\n# BEGIN Block Direct Access to Attachments\n" .
+				 "<IfModule mod_rewrite.c>\n" .
+				 "RewriteEngine On\n" .
+				 "RewriteCond %{REQUEST_URI} ^/wp-content/attachment/ [NC]\n" .
+				 "RewriteCond %{REQUEST_FILENAME} -f\n" .
+				 "RewriteRule \\.(png|jpe?g)$ - [F,L]\n" .
+				 "</IfModule>\n" .
+				 "# END Block Direct Access to Attachments\n";
+	
+		if (file_exists($htaccess_file) && is_writable($htaccess_file)) {
+			$content = file_get_contents($htaccess_file);
+	
+			// Prevent duplicate entries
+			if (strpos($content, "# BEGIN Block Direct Access to Attachments") === false) {
+				file_put_contents($htaccess_file, $content . $rules);
+			}
+		}
+	}
+	add_action('init', 'wps_update_htaccess_for_attachments');
 }

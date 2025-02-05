@@ -188,11 +188,11 @@ export const OrderMessage = () => {
                               <a
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                href={file.img ? `${wps_rma_react_object.attachment_url + orderID + '-' + file.name}` : "attachment.png"}
+                                href={file.img ? `${wps_rma_react_object.attachment_url + file.name}` : "attachment.png"}
                               >
                                 <img
                                   className="wps_order_msg_attachment_thumbnail"
-                                  src={file.img ? `${wps_rma_react_object.attachment_url + orderID + '-' + file.name}` : "attachment.png"}
+                                  src={file.img ? `${wps_rma_react_object.attachment_url + file.name}` : "attachment.png"}
                                   alt={file.name}
                                 />
                                 <span className="wps_order_msg_attachment_file_name">{file.name}</span>

@@ -620,3 +620,16 @@ if ( ! function_exists( 'wps_rma_css_and_js_load_page' ) ) {
 		return apply_filters( 'wps_rma_css_and_js_load_page', $load_flag );
 	}
 }
+
+if ( ! function_exists( 'wps_rma_generate_random_filename' ) ) {
+	// Generate a random string of specified length
+	function wps_rma_generate_random_filename($extension = "jpg", $length = 10) {
+		$random_string = bin2hex(random_bytes($length / 2));
+	
+		// Ensure the extension is properly formatted
+		$extension = ltrim($extension, '.');
+	
+		// Return the full filename with the extension
+		return $random_string . '.' . $extension;
+	}
+}
