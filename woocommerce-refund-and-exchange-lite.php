@@ -341,9 +341,15 @@ if ( $activated ) {
 		}
 		WP_Filesystem();
 
-		$directory = ABSPATH . 'wp-content/attachment';
-	
-		$index_file = $directory . '/index.php';
+		// Get the WordPress uploads directory.
+		$attachment_dir = ABSPATH . 'wp-content/attachment';
+		
+		// Check if the directory exists.
+		if ( ! is_dir($attachment_dir)) {
+			return "Attachment directory does not exist.";
+		}
+
+		$index_file = $attachment_dir . '/index.php';
 	
 		// Check if index.php exists, if not, create it.
 		if (!file_exists($index_file)) {
@@ -353,13 +359,6 @@ if ( $activated ) {
 	
 		if ( 'yes' === get_option( 'wps_rma_filename_changed' ) ) {
 			return;
-		}
-		// Get the WordPress uploads directory.
-		$attachment_dir = ABSPATH . 'wp-content/attachment';
-		
-		// Check if the directory exists.
-		if ( ! is_dir($attachment_dir)) {
-			return "Attachment directory does not exist.";
 		}
 			
 		// Get all files in the attachment directory.
