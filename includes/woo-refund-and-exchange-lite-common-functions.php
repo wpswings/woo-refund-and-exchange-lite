@@ -622,14 +622,19 @@ if ( ! function_exists( 'wps_rma_css_and_js_load_page' ) ) {
 }
 
 if ( ! function_exists( 'wps_rma_generate_random_filename' ) ) {
-	// Generate a random string of specified length
+	/**
+	 * Generate a random string of specified length.
+	 * 
+	 * @param string $extention .
+	 * @param int    $length .
+	 */
 	function wps_rma_generate_random_filename($extension = "jpg", $length = 10) {
 		$random_string = bin2hex(random_bytes($length / 2));
 	
-		// Ensure the extension is properly formatted
+		// Ensure the extension is properly formatted.
 		$extension = ltrim($extension, '.');
 	
-		// Return the full filename with the extension
+		// Return the full filename with the extension.
 		return $random_string . '.' . $extension;
 	}
 }

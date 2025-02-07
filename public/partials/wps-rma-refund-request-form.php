@@ -347,7 +347,7 @@ if ( isset( $_GET['wps_rma_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp
 							</select>
 						</div>
 						<div class="wps_rma_other_subject">
-							<input type="text" name="ced_rnx_return_request_subject" class="wps_rma_return_request_subject_text" value="<?php echo esc_attr( $rr_subject ); ?>" id="wps_rma_return_request_subject_text" value="<?php echo $rr_reason; ?>" maxlength="5000" placeholder="<?php esc_html_e( 'Write your refund reason', 'woo-refund-and-exchange-lite' ); ?>">
+							<input type="text" name="ced_rnx_return_request_subject" class="wps_rma_return_request_subject_text" value="<?php echo esc_attr( $rr_subject ); ?>" id="wps_rma_return_request_subject_text" value="<?php echo esc_html( $rr_reason ); ?>" maxlength="5000" placeholder="<?php esc_html_e( 'Write your refund reason', 'woo-refund-and-exchange-lite' ); ?>">
 						</div>
 						<?php
 						$predefined_return_desc = get_option( 'wps_rma_refund_description', false );

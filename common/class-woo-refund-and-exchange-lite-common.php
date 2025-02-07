@@ -191,17 +191,17 @@ class Woo_Refund_And_Exchange_Lite_Common {
 
 				$user              = wp_get_current_user();
 				$allowed_roles     = array( 'editor', 'administrator', 'shop_manager' );
-				// Check if the user ID is not the current user or if not an admin
-				if ( $user_id === get_current_user_id() || array_intersect( $allowed_roles, $user->roles ) ) {
+				// Check if the user ID is not the current user or if not an admin.
+				if ( get_current_user_id() === $user_id || array_intersect( $allowed_roles, $user->roles ) ) {
 					$count    = count( $_FILES['wps_rma_return_request_files']['tmp_name'] );
 					for ( $i = 0; $i < $count; $i++ ) {
-						if ( isset( $_FILES['wps_rma_return_request_files']['tmp_name'][ $i ] ) ) {
+						if ( isset( $_FILES['wps_rma_return_request_files']['tmp_name'][ $i ] ) && isset( $_FILES['wps_rma_return_request_files']['name'][$i] ) ) {
 							$directory = ABSPATH . 'wp-content/attachment';
 							if ( ! file_exists( $directory ) ) {
 								wp_mkdir_p( $directory, 0755, true );
 							}
 							
-							$file_format = pathinfo($_FILES['wps_rma_return_request_files']['name'][$i], PATHINFO_EXTENSION);
+							$file_format = pathinfo( sanitize_file_name( $_FILES['wps_rma_return_request_files']['name'][$i] ), PATHINFO_EXTENSION);
 		
 							$file_name = wps_rma_generate_random_filename( $file_format );
 							
@@ -258,11 +258,11 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			$order = wc_get_order( $order_id );
 			if ( $order ) {
 				$user_id = $order->get_user_id();
-				// Check if the user ID is not the current user or if not an admin, security purpose
+				// Check if the user ID is not the current user or if not an admin, security purpose.
 				$user              = wp_get_current_user();
 				$allowed_roles     = array( 'editor', 'administrator', 'shop_manager' );
-				// Check if the user ID is not the current user or if not an admin
-				if ( $user_id === get_current_user_id() || array_intersect( $allowed_roles, $user->roles ) ) {
+				// Check if the user ID is not the current user or if not an admin.
+				if ( get_current_user_id() === $user_id || array_intersect( $allowed_roles, $user->roles ) ) {
 					$re_bank  = get_option( 'wps_rma_refund_manually_de', false );
 					if ( 'on' === $re_bank && ! empty( $_POST['bankdetails'] ) ) {
 						wps_rma_update_meta_data( $order_id, 'wps_rma_bank_details', sanitize_text_field( wp_unslash( $_POST['bankdetails'] ) ) );
@@ -639,8 +639,8 @@ class Woo_Refund_And_Exchange_Lite_Common {
 		$user_id = $order->get_user_id();
 		$user              = wp_get_current_user();
 		$allowed_roles     = array( 'editor', 'administrator', 'shop_manager' );
-		// Check if the user ID is not the current user or if not an admin
-		if ( $user_id === get_current_user_id() || array_intersect( $allowed_roles, $user->roles ) ) {
+		// Check if the user ID is not the current user or if not an admin.
+		if ( get_current_user_id() === $user_id || array_intersect( $allowed_roles, $user->roles ) ) {
 			$wps_rma_customer_contact_order_message_get = wps_rma_get_meta_data( $order_id, 'wps_rma_customer_contact_order_message', true );
 			$wps_rma_customer_contact_order_message     = isset( $_POST['wps_rma_customer_contact_order_message'] ) ? sanitize_text_field( wp_unslash( $_POST['wps_rma_customer_contact_order_message'] ) ) : '';
 			if ( $wps_rma_customer_contact_order_message && empty( $wps_rma_customer_contact_order_message_get )) {
@@ -657,13 +657,13 @@ class Woo_Refund_And_Exchange_Lite_Common {
 				}
 				if ( $file_uploaded ) {
 					for ( $i = 0; $i < $count; $i++ ) {
-						if ( isset( $_FILES['wps_order_msg_attachment']['tmp_name'][ $i ] ) ) {
+						if ( isset( $_FILES['wps_order_msg_attachment']['tmp_name'][ $i ] ) && isset( $_FILES['wps_order_msg_attachment']['name'][$i] ) ) {
 							$directory = ABSPATH . 'wp-content/attachment';
 							if ( ! file_exists( $directory ) ) {
 								wp_mkdir_p( $directory );
 							}
 	
-							$file_format = pathinfo($_FILES['wps_order_msg_attachment']['name'][$i], PATHINFO_EXTENSION);
+							$file_format = pathinfo( sanitize_file_name( $_FILES['wps_order_msg_attachment']['name'][$i] ), PATHINFO_EXTENSION);
 										
 							$file_name = wps_rma_generate_random_filename( $file_format );
 	
