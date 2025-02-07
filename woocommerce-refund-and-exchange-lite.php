@@ -352,7 +352,7 @@ if ( $activated ) {
 		}
 	
 		if ( 'yes' === get_option( 'wps_rma_filename_changed' ) ) {
-			// return;
+			return;
 		}
 		// Get the WordPress uploads directory.
 		$attachment_dir = ABSPATH . 'wp-content/attachment';
@@ -397,7 +397,6 @@ if ( $activated ) {
 										$order->save();
 										if ($old_file_path !== $new_file_path) {
 											$wp_filesystem->move( $old_file_path, $new_file_path );
-											// rename($old_file_path, $new_file_path);
 										}
 									}
 								}
@@ -409,7 +408,6 @@ if ( $activated ) {
 	
 							$new_file_path = $attachment_dir . '/' . $new_file_name;
 							if ($old_file_path !== $new_file_path) {
-								// rename($old_file_path, $new_file_path);
 								$wp_filesystem->move( $old_file_path, $new_file_path );
 							}
 						}
@@ -430,7 +428,7 @@ if ( $activated ) {
 			require_once ABSPATH . 'wp-admin/includes/file.php';
 		}
 
-		WP_Filesystem(); // Initialize WP_Filesystem
+		WP_Filesystem(); // Initialize WP_Filesystem.
 		$htaccess_file = ABSPATH . '.htaccess';
 		$rules = "\n# BEGIN Block Direct Access to Attachments\n" .
 				 "<IfModule mod_rewrite.c>\n" .

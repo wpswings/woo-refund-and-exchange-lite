@@ -625,7 +625,7 @@ if ( ! function_exists( 'wps_rma_generate_random_filename' ) ) {
 	/**
 	 * Generate a random string of specified length.
 	 * 
-	 * @param string $extention .
+	 * @param string $extension .
 	 * @param int    $length .
 	 */
 	function wps_rma_generate_random_filename($extension = "jpg", $length = 10) {
