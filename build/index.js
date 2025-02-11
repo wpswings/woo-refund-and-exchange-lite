@@ -2282,10 +2282,10 @@ var OrderMessage = function OrderMessage() {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
         target: "_blank",
         rel: "noopener noreferrer",
-        href: file.img ? "".concat(wps_rma_react_object.attachment_url + orderID + '-' + file.name) : "attachment.png"
+        href: file.img ? "".concat(wps_rma_react_object.attachment_url + file.name) : "attachment.png"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
         className: "wps_order_msg_attachment_thumbnail",
-        src: file.img ? "".concat(wps_rma_react_object.attachment_url + orderID + '-' + file.name) : "attachment.png",
+        src: file.img ? "".concat(wps_rma_react_object.attachment_url + file.name) : "attachment.png",
         alt: file.name
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
         className: "wps_order_msg_attachment_file_name"

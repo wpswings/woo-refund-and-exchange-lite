@@ -5,8 +5,8 @@ Tags: refund, exchange, wallet, RMA, woocommerce cancel order
 Requires at least: 5.5.0
 Tested up to: 6.7.1
 WC requires at least: 5.5.0
-WC tested up to: 9.6.0
-Stable tag: 4.4.5
+WC tested up to: 9.6.1
+Stable tag: 4.4.6
 Requires PHP:  7.2
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -196,8 +196,12 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 == Changelog == 
 
+= 4.4.6 - Released on 07 Febuary 2025 = 
+* Fix: vulnerability issues fixed 
+* New: Added compatibility with WC[9.6.1]
+
 = 4.4.5 - Released on 29 January 2025 = 
-* New: Added compatibility with WooCommerce 9.6.0
+* New: Added compatibility with WC[9.6.0]
 * New: Implemented customer order notes for refund workflows
 * Enhancement: Migrated order messaging system to React
 * Fix: Updated code to comply with WordPress coding standards
@@ -430,9 +434,6 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 == Upgrade Notice ==
 
-= 4.4.5 - Released on 29 January 2025 = 
-* New: Added compatibility with WooCommerce 9.6.0
-* New: Implemented customer order notes for refund workflows
-* Enhancement: Migrated order messaging system to React
-* Fix: Updated code to comply with WordPress coding standards
-* Fix: Resolved button styling/functionality issues in WooCommerce 9.6.0
+= 4.4.6 - Released on 07 Febuary 2025 = 
+* Fix: vulnerability issues fixed  
+* New: Added compatibility with WC[9.6.1]
