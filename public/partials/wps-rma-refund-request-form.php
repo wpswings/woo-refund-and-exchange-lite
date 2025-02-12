@@ -54,7 +54,6 @@ if ( isset( $_GET['wps_rma_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp
 						if ( isset( $pending_request[ $date ]['reason'] ) ) {
 							$rr_reason = $pending_request[ $date ]['reason'];
 						}
-						$product_data = $product['products'];
 					}
 					break;
 				}
@@ -90,12 +89,9 @@ if ( isset( $_GET['wps_rma_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp
 						</thead>
 						<tbody>
 							<?php
-							$wps_total_actual_price = 0;
+							$total_items_price = 0;
 							$wps_rma_check_tax      = get_option( 'refund_wps_rma_tax_handling' );
-							$show_purchase_note     = $order_obj->has_status(
-							// Purchases note on the order.
-								apply_filters( 'woocommerce_purchase_note_order_statuses', array( 'completed', 'processing' ) )
-							);
+
 							$get_order_currency   = get_woocommerce_currency_symbol( $order_obj->get_currency() );
 							$refund_items_details = wps_rma_get_meta_data( $order_id, 'wps_rma_refund_items_details', true );
 							$shipping_price = $order_obj->get_shipping_total();
@@ -106,99 +102,66 @@ if ( isset( $_GET['wps_rma_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp
 								$item_quantity = $item->get_quantity();
 								$refund_qty    = $order_obj->get_qty_refunded_for_item( $item_id );
 								$item_qty      = $item->get_quantity() + $refund_qty;
-
+								// manage the return quantity, if there is refund reuqest has been made and approved.
 								if ( ! empty( $refund_items_details ) && isset( $refund_items_details[ $item_id ] ) ) {
 									$return_item_qty = $refund_items_details[ $item_id ];
 									$item_qty        = $item->get_quantity() - $return_item_qty;
 								}
 
 								if ( $item_qty > 0 ) {
-									if ( isset( $item['variation_id'] ) && $item['variation_id'] > 0 ) {
-										$variation_id = $item['variation_id'];
-										$product_id   = $variation_id;
+									if ( ! empty( $item->get_product_id() ) ) {
+										$product_id   = $item->get_product_id();
 									} else {
-										$product_id = $item['product_id'];
+										$product_id = $item->get_product_id();
 									}
-									$product =
-									// Get Product.
-									apply_filters( 'woocommerce_order_item_product', $item->get_product(), $item );
+									$product = wc_get_product( $product_id );
+
 									$coupon_discount = get_option( 'wps_rma_refund_deduct_coupon', 'no' );
 									if ( 'on' === $coupon_discount ) {
-										$tax_inc = $item->get_total() + $item->get_total_tax();
-										$tax_exc = $item->get_total() - $item->get_total_tax();
-
+										$item_price_inc_tax = $item->get_total() + $item->get_total_tax();
+										$item_price_exc_tax = $item->get_total() - $item->get_total_tax();
+										$item_price = $item->get_total();
 									} else {
-										$tax_inc = $item->get_subtotal() + $item->get_subtotal_tax();
-										$tax_exc = $item->get_subtotal() - $item->get_subtotal_tax();
+										$item_price_inc_tax = $item->get_subtotal() + $item->get_subtotal_tax();
+										$item_price_exc_tax = $item->get_subtotal() - $item->get_subtotal_tax();
+										$item_price = $item->get_subtotal();
 									}
-									if ( empty( $wps_rma_check_tax ) ) {
-										if ( 'on' === $coupon_discount ) {
-											$wps_actual_price = $item->get_total();
-										} else {
-											$wps_actual_price = $item->get_subtotal();
-										}
-									} elseif ( 'wps_rma_inlcude_tax' === $wps_rma_check_tax ) {
-										$wps_actual_price = $tax_inc;
+									if ( 'wps_rma_inlcude_tax' === $wps_rma_check_tax ) {
+										$item_price = $item_price_inc_tax;
 									} elseif ( 'wps_rma_exclude_tax' === $wps_rma_check_tax ) {
-										$wps_actual_price = $tax_exc;
+										$item_price = $item_price_exc_tax;
 									}
-									$wps_total_actual_price += $wps_actual_price;
-									$purchase_note           = wps_rma_get_meta_data( $product_id, '_purchase_note', true );
+									$total_items_price += $item_price;
 									?>
-									<tr class="wps_rma_return_column" data-productid="<?php echo esc_html( $product_id ); ?>" data-variationid="<?php echo esc_html( $item['variation_id'] ); ?>" data-itemid="<?php echo esc_html( $item_id ); ?>">
+									<tr class="wps_rma_return_column" data-productid="<?php echo esc_html( $product_id ); ?>" data-variationid="<?php echo esc_html( $item['variation_id'] ); ?>" data-item_id="<?php echo esc_html( $item_id ); ?>">
 										<?php
 										// To show extra column field value in the tbody.
 										do_action( 'wps_rma_add_extra_column_field_value', $item_id, $product_id, $order_obj );
 										?>
 										<td class="product-name">
-											<input type="hidden" name="wps_rma_product_amount" class="wps_rma_product_amount" value="<?php echo esc_html( $wps_actual_price / $item->get_quantity() ); ?>">
+											<input type="hidden" name="wps_rma_product_amount" class="wps_rma_product_amount" data-item_id="<?php echo esc_html( $item_id ); ?>" value="<?php echo esc_html( $item_price / $item->get_quantity() ); ?>">
 											<div class="wps-rma-product__wrap">
 												<?php
 												$is_visible        = $product && $product->is_visible();
-												$product_permalink =
-												// Order item Permalink.
-												apply_filters( 'woocommerce_order_item_permalink', $is_visible ? $product->get_permalink( $item ) : '', $item, $order_obj );
+												$product_permalink = $is_visible ? $product->get_permalink( $item ) : '';
 												$thumbnail = wp_get_attachment_image( $product->get_image_id(), 'thumbnail' );
-												if ( isset( $thumbnail ) && ! empty( $thumbnail ) ) {
+												if ( ! empty( $thumbnail ) ) {
 													echo wp_kses_post( $thumbnail );
 												} else {
 													?>
 													<img alt="Placeholder" width="150" height="150" class="attachment-thumbnail size-thumbnail wp-post-image" src="<?php echo esc_html( plugins_url() ); ?>/woocommerce/assets/images/placeholder.png">
-												<?php } ?>
+													<?php
+												}
+													?>
 												<div class="wps_rma_product_title wps-rma__product-title">
 													<?php
-													// Woo Order Item Name.
-													$o_n = apply_filters( 'woocommerce_order_item_name', $product_permalink ? sprintf( '<a href="%s">%s</a>', $product_permalink, $item['name'] ) : $item['name'], $item, $is_visible );
-													echo wp_kses_post( $o_n );
-													// Quanity Html.
-													$q_h = apply_filters( 'woocommerce_order_item_quantity_html', ' <strong class="product-quantity">' . sprintf( '&times; %s', $item['qty'] ) . '</strong>', $item );
-													echo wp_kses_post( $q_h );
-
-													// Order Item meta Start.
-													do_action( 'woocommerce_order_item_meta_start', $item_id, $item, $order_obj, false );
-													if ( WC()->version < '3.0.0' ) {
-														$order_obj->display_item_meta( $item );
-														$order_obj->display_item_downloads( $item );
-													} else {
-														wc_display_item_meta( $item );
-														wc_display_item_downloads( $item );
-													}
-													// Order Item meta End.
-													do_action( 'woocommerce_order_item_meta_end', $item_id, $item, $order_obj, false );
+													echo wp_kses_post( $product_permalink ? sprintf( '<a href="%s">%s</a>', $product_permalink, $item->get_name() ) : $item->get_name() );
+													echo wp_kses_post( '<strong class="product-quantity">' . sprintf( '&times; %s', $item->get_quantity() ) . '</strong>' );
 													?>
 													<p>
 														<b><?php esc_html_e( 'Price', 'woo-refund-and-exchange-lite' ); ?> :</b> 
 														<?php
-															echo wp_kses_post( wps_wrma_format_price( $wps_actual_price / $item->get_quantity(), $get_order_currency ) );
-														if ( 'wps_rma_inlcude_tax' === $wps_rma_check_tax ) {
-															?>
-															<small class="tax_label"><?php esc_html_e( '(incl. tax)', 'woo-refund-and-exchange-lite' ); ?></small>
-															<?php
-														} elseif ( 'wps_rma_exclude_tax' === $wps_rma_check_tax ) {
-															?>
-																<small class="tax_label"><?php esc_html_e( '(excl. tax)', 'woo-refund-and-exchange-lite' ); ?></small>
-																<?php
-														}
+															echo wp_kses_post( wps_wrma_format_price( $item->get_total() / $item->get_quantity(), $get_order_currency ) );
 														?>
 													</p>
 												</div>
@@ -217,14 +180,14 @@ if ( isset( $_GET['wps_rma_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp
 												'max'      => $item_qty,
 											),
 										);
-										$qty_html   = '<input type="number" disabled value="' . esc_html( $item_qty ) . '" class="wps_rma_return_product_qty" name="wps_rma_return_product_qty">';
+										$qty_html   = '<input type="number" max="'. esc_html( $item_qty ) .'" min="1" disabled value="' . esc_html( $item_qty ) . '" class="wps_rma_return_product_qty" name="wps_rma_return_product_qty">';
 										echo // Refund form Quantity html.
 										wp_kses( apply_filters( 'wps_rma_change_quanity', $qty_html, $item_qty ), $allow_html ); // phpcs:ignore
 										?>
 										</td>
 										<td class="product-total">
 											<?php
-											echo wp_kses_post( wps_wrma_format_price( $wps_actual_price, $get_order_currency ) );
+											echo wp_kses_post( wps_wrma_format_price( $item_price / $item->get_quantity(), $get_order_currency ) );
 
 											if ( 'wps_rma_inlcude_tax' === $wps_rma_check_tax ) {
 												?>
@@ -236,57 +199,37 @@ if ( isset( $_GET['wps_rma_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp
 													<?php
 											}
 											?>
-										<input type="hidden" id="quanty" value="<?php echo esc_html( $item['qty'] ); ?>"> 
 										</td>
 									</tr>
-									<?php if ( $show_purchase_note && $purchase_note ) : ?>
-									<tr class="product-purchase-note">
-										<td colspan="3"><?php echo wp_kses_post( wpautop( do_shortcode( $purchase_note ) ) ); ?></td>
-									</tr>
 										<?php
-									endif;
 									?>
 									<?php
 								}
 							}
+							$wps_rma_allow_refund_shipping_charge = get_option( 'wps_rma_allow_refund_shipping_charge' );
+							if ( 'on' == $wps_rma_allow_refund_shipping_charge && $shipping_price && ( isset( $pending_request ) && ! isset( $pending_request[ $date ]['shipping_price'] ) ) ) { // add the shipping charges and avoid duplicate entry.
+								$total_items_price += $shipping_price;
+							}
 							?>
 							<tr>
 								<th scope="row" colspan="<?php echo wps_rma_pro_active() ? '3' : '2'; ?>"><?php esc_html_e( 'Total Refund Amount', 'woo-refund-and-exchange-lite' ); ?></th>
-								<?php
-								$pro_active = wps_rma_pro_active();
-								$wps_rma_allow_refund_shipping_charge = get_option( 'wps_rma_allow_refund_shipping_charge' );
-								if ( empty( $pro_active ) && 'on' == $wps_rma_allow_refund_shipping_charge ) {
+								<td class="wps_rma_total_amount_wrap"><span id="wps_rma_total_refund_amount" data-total="<?php echo esc_html( $total_items_price ); ?>"><?php echo wp_kses_post( wps_wrma_format_price( $total_items_price, $get_order_currency ) ); ?></span>
 
-									$wps_total_actual_price = $wps_total_actual_price + $shipping_price;
-								}
-								?>
-								<td class="wps_rma_total_amount_wrap"><span id="wps_rma_total_refund_amount"><?php echo wp_kses_post( wps_wrma_format_price( $wps_total_actual_price, $get_order_currency ) ); ?></span>
-								<input type="hidden" name="wps_rma_total_refund_price" class="wps_rma_total_refund_price" value="<?php echo esc_html( $wps_total_actual_price ); ?>" data-shipping_price= "<?php echo esc_html( $shipping_price ); ?>">
 									<?php
 									if ( 'wps_rma_inlcude_tax' === $wps_rma_check_tax ) {
-										if ( empty( $pro_active ) && 'on' == $wps_rma_allow_refund_shipping_charge && $shipping_price > 0 ) {
-											?>
-											<small class="tax_label"><?php esc_html_e( '(incl. tax & shipping charges) ', 'woo-refund-and-exchange-lite' ); ?></small>
-											<?php
-										} else {
-											?>
-											<small class="tax_label"><?php esc_html_e( '(incl. tax)', 'woo-refund-and-exchange-lite' ); ?></small>
-											<?php
-										}
-									} elseif ( 'wps_rma_exclude_tax' === $wps_rma_check_tax ) {
-										if ( empty( $pro_active ) && 'on' == $wps_rma_allow_refund_shipping_charge && $shipping_price > 0 ) {
-											?>
-											<small class="tax_label"><?php esc_html_e( '(excl. tax & shipping charge)', 'woo-refund-and-exchange-lite' ); ?></small>
-											<?php
-										} else {
-											?>
-											<small class="tax_label"><?php esc_html_e( '(excl. tax)', 'woo-refund-and-exchange-lite' ); ?></small>
-											<?php
-										}
-									} else if ( empty( $pro_active ) && 'on' == $wps_rma_allow_refund_shipping_charge && $shipping_price > 0 ) {
 										?>
-											<small class="tax_label"><?php esc_html_e( '(shipping charge) ', 'woo-refund-and-exchange-lite' ); ?></small>
-											<?php
+										<small class="tax_label"><?php esc_html_e( '(incl. tax)', 'woo-refund-and-exchange-lite' ); ?></small>
+										<?php
+									} elseif ( 'wps_rma_exclude_tax' === $wps_rma_check_tax ) {
+										?>
+										<small class="tax_label"><?php esc_html_e( '(excl. tax)', 'woo-refund-and-exchange-lite' ); ?></small>
+										<?php
+									}
+									if ( 'on' == $wps_rma_allow_refund_shipping_charge && $shipping_price && ( isset( $pending_request ) && ! isset( $pending_request[ $date ]['shipping_price'] ) ) ) { // add the shipping charges and avoid duplicate entry.
+										?>
+										<input type="hidden" name="wps_rma_shipping_price" class="wps_rma_shipping_price" value="<?php echo esc_html( $shipping_price ); ?>" data-shipping_price="<?php echo esc_html( $shipping_price ); ?>">
+										<small class="wps_shipping_label"><?php echo esc_html( 'Shipping Charges' ); ?></small>
+										<?php
 									}
 									?>
 								</td>

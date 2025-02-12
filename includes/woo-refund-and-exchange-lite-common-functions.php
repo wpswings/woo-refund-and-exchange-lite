@@ -170,7 +170,7 @@ if ( ! function_exists( 'wps_rma_save_return_request_callback' ) ) {
 	 * @param string $refund_method .
 	 * @param array  $products1 .
 	 */
-	function wps_rma_save_return_request_callback( $order_id, $refund_method, $products1 ) {
+	function wps_rma_save_return_request_callback( $order_id, $refund_method, $return_products ) {
 		update_option( $order_id . 'wps_rma_refund_method', $refund_method );
 		if ( ! is_user_logged_in() ) {
 			update_option( $order_id . 'wps_rma_refund_method', 'manual_method' );
@@ -186,8 +186,8 @@ if ( ! function_exists( 'wps_rma_save_return_request_callback' ) ) {
 		$gift_card_product = false;
 		$gift_item_id      = '';
 		$exp_flag          = false;
-		if ( isset( $products1['products'] ) && ! empty( $products1['products'] ) && is_array( $products1['products'] ) ) {
-			foreach ( $products1['products'] as $post_key => $post_value ) {
+		if ( isset( $return_products['products'] ) && ! empty( $return_products['products'] ) && is_array( $return_products['products'] ) ) {
+			foreach ( $return_products['products'] as $post_key => $post_value ) {
 				$item_id[ $post_value['item_id'] ] = 'pending';
 				$item_ids[]                        = $post_value['item_id'];
 
@@ -246,7 +246,7 @@ if ( ! function_exists( 'wps_rma_save_return_request_callback' ) ) {
 		if ( isset( $products ) && ! empty( $products ) ) {
 			foreach ( $products as $date => $product ) {
 				if ( 'pending' === $product['status'] ) {
-						$products[ $date ]           = $products1;
+						$products[ $date ]           = $return_products;
 						$products[ $date ]['status'] = 'pending'; // update requested products.
 						$pending                     = false;
 						break;
@@ -259,7 +259,7 @@ if ( ! function_exists( 'wps_rma_save_return_request_callback' ) ) {
 			}
 			$products                    = array();
 			$date                        = time();
-			$products[ $date ]           = $products1;
+			$products[ $date ]           = $return_products;
 			$products[ $date ]['status'] = 'pending';
 
 		}
