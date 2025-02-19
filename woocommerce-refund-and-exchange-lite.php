@@ -348,15 +348,14 @@ if ( $activated ) {
 		if ( ! is_dir($attachment_dir)) {
 			return "Attachment directory does not exist.";
 		}
-
+		
 		$index_file = $attachment_dir . '/index.php';
-	
+		
 		// Check if index.php exists, if not, create it.
 		if (!file_exists($index_file)) {
 			$content = "<?php\n// Silence is golden.";
 			file_put_contents($index_file, $content);
 		}
-	
 		if ( 'yes' === get_option( 'wps_rma_filename_changed' ) ) {
 			return;
 		}
@@ -374,7 +373,6 @@ if ( $activated ) {
 			
 			// Ensure it's a file (not a directory).
 			if (is_file($old_file_path)) {
-				
 				$explode = explode( '-', $file, 2 );
 				
 				if ( count( $explode ) === 2 ) {
@@ -396,6 +394,26 @@ if ( $activated ) {
 										$order->save();
 										if ($old_file_path !== $new_file_path) {
 											$wp_filesystem->move( $old_file_path, $new_file_path );
+										}
+									}
+								}
+							}
+						} elseif ( is_array( $msg_attachments ) ) {
+							foreach ( $msg_attachments as $index => $msg_data ) {
+								foreach( $msg_data as $date => $data ) {
+									foreach ( $data['files'] as $index2 => $attachment ) {
+										if ( $attachment['name'] && $explode[0] . '-' . $attachment['name'] == $file ) {
+											$file_format = pathinfo( $file, PATHINFO_EXTENSION);
+											$new_file_name = wps_rma_generate_random_filename( $file_format );
+											
+											$new_file_path = $attachment_dir . '/' . $new_file_name;
+											
+											$msg_attachments[$index][$date]['files'][$index2]['name'] = $new_file_name;
+											$order->update_meta_data( 'wps_cutomer_order_msg', $msg_attachments );
+											$order->save();
+											if ($old_file_path !== $new_file_path) {
+												$wp_filesystem->move( $old_file_path, $new_file_path );
+											}
 										}
 									}
 								}
