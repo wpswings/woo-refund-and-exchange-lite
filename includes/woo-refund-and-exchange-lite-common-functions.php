@@ -168,7 +168,7 @@ if ( ! function_exists( 'wps_rma_save_return_request_callback' ) ) {
 	 *
 	 * @param int    $order_id .
 	 * @param string $refund_method .
-	 * @param array  $products1 .
+	 * @param array  $return_products .
 	 */
 	function wps_rma_save_return_request_callback( $order_id, $refund_method, $return_products ) {
 		update_option( $order_id . 'wps_rma_refund_method', $refund_method );
@@ -556,9 +556,6 @@ if ( ! function_exists( 'wps_rma_standard_check_multistep' ) ) {
 }
 if ( ! function_exists( 'wps_rma_order_number' ) ) {
 	/**
-	 * Check Pro Active.
-	 */
-	/**
 	 * Return the correct order number
 	 *
 	 * @param int $order_id .
@@ -596,7 +593,9 @@ if ( ! function_exists( 'wps_rma_order_number' ) ) {
 }
 
 if ( ! function_exists( 'wps_rma_css_and_js_load_page' ) ) {
-	/** Css and js file load */
+	/**
+	 * Css and js file load
+	 */
 	function wps_rma_css_and_js_load_page() {
 		$load_flag         = false;
 		$return_page_id    = get_option( 'wps_rma_return_request_form_page_id' );

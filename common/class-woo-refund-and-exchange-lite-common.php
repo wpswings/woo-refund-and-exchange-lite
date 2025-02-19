@@ -282,43 +282,43 @@ class Woo_Refund_And_Exchange_Lite_Common {
 					if ( $wps_rma_customer_contact_refund ) {
 						wps_rma_update_meta_data( $order_id, 'wps_rma_customer_contact_refund', $wps_rma_customer_contact_refund );
 					}
-					// prepare the request data using the item id and qty, added for the securiy concern
+					// Prepare the request data using the item id and qty, added for the securiy concern.
 					$return_data = $_POST;
 					$wps_rma_check_tax      = get_option( 'refund_wps_rma_tax_handling' );
 					if ( isset( $_POST['products'] ) ) {
 						$item_ids = $return_data['products'];
 						unset( $return_data['products'] );
 						foreach( $order->get_items() as $item_id => $item ) {
-							$index = array_search( $item_id, array_column($item_ids, 'item_id'));
-							if ($index !== false) {
-								$coupon_discount = get_option( 'wps_rma_refund_deduct_coupon', 'no' );
-								if ( 'on' === $coupon_discount ) {
-									$item_price_inc_tax = $item->get_total() + $item->get_total_tax();
-									$item_price_exc_tax = $item->get_total() - $item->get_total_tax();
-									$item_price = $item->get_total();
-								} else {
-									$item_price_inc_tax = $item->get_subtotal() + $item->get_subtotal_tax();
-									$item_price_exc_tax = $item->get_subtotal() - $item->get_subtotal_tax();
-									$item_price = $item->get_subtotal();
+							foreach( $item_ids as $index => $item_data ) {
+								if ( isset( $item_data['item_id'] ) && $item_id === (int) $item_data['item_id'] ) {
+									$coupon_discount = get_option( 'wps_rma_refund_deduct_coupon', 'no' );
+									if ( 'on' === $coupon_discount ) {
+										$item_price_inc_tax = $item->get_total() + $item->get_total_tax();
+										$item_price_exc_tax = $item->get_total() - $item->get_total_tax();
+										$item_price = $item->get_total();
+									} else {
+										$item_price_inc_tax = $item->get_subtotal() + $item->get_subtotal_tax();
+										$item_price_exc_tax = $item->get_subtotal() - $item->get_subtotal_tax();
+										$item_price = $item->get_subtotal();
+									}
+									if ( 'wps_rma_inlcude_tax' === $wps_rma_check_tax ) {
+										$item_price = $item_price_inc_tax;
+									} elseif ( 'wps_rma_exclude_tax' === $wps_rma_check_tax ) {
+										$item_price = $item_price_exc_tax;
+									}
+									$qty = $item_ids[$index]['qty'];
+									
+									$return_data['products'][] = array(
+										'item_id' => $item_id,
+										'product_id' => $item->get_product_id(),
+										'variation_id' => $item->get_variation_id(),
+										'qty' => $qty,
+										'price' => $item_price / $item->get_quantity(),
+									);
 								}
-								if ( 'wps_rma_inlcude_tax' === $wps_rma_check_tax ) {
-									$item_price = $item_price_inc_tax;
-								} elseif ( 'wps_rma_exclude_tax' === $wps_rma_check_tax ) {
-									$item_price = $item_price_exc_tax;
-								}
-								$qty = $item_ids[$index]['qty'];
-								
-								$return_data['products'][] = array(
-									'item_id' => $item_id,
-									'product_id' => $item->get_product_id(),
-									'variation_id' => $item->get_variation_id(),
-									'qty' => $qty,
-									'price' => $item_price / $item->get_quantity(),
-								);
 							}
 						}
 					}
-
 					$shipping_price = 0;
 					$wps_rma_allow_refund_shipping_charge = get_option( 'wps_rma_allow_refund_shipping_charge' );
 					if ( $checked_all && 'on' == $wps_rma_allow_refund_shipping_charge ) {
