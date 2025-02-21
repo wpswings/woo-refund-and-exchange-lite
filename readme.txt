@@ -3,10 +3,10 @@ Contributors: wpswings
 Donate link: https://wpswings.com/
 Tags: refund, exchange, wallet, RMA, woocommerce cancel order
 Requires at least: 5.5.0
-Tested up to: 6.7.1
+Tested up to: 6.7.2
 WC requires at least: 5.5.0
-WC tested up to: 9.6.1
-Stable tag: 4.4.6
+WC tested up to: 9.6.2
+Stable tag: 4.4.7
 Requires PHP:  7.2
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -195,6 +195,10 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 16. API Settings.
 
 == Changelog == 
+
+= 4.4.7 - Released on 21 Febuary 2025 = 
+* Compatibility with the latest WP [6.7.2] and WC [9.6.2]
+* Enhancement: Server based calculation to avoid security concern and code stability
 
 = 4.4.6 - Released on 07 Febuary 2025 = 
 * Fix: vulnerability issues fixed 
@@ -434,6 +438,6 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 == Upgrade Notice ==
 
-= 4.4.6 - Released on 07 Febuary 2025 = 
-* Fix: vulnerability issues fixed  
-* New: Added compatibility with WC[9.6.1]
+= 4.4.7 - Released on 21 Febuary 2025 = 
+* Compatibility with the latest WP [6.7.2] and WC [9.6.2]
+* Enhancement: Server based calculation to avoid security concern and code stability
