@@ -25,13 +25,26 @@ if ( ! function_exists( 'wps_rma_show_buttons' ) ) {
 		$check                = get_option( 'wps_rma_' . $func . '_enable', false );
 		$get_specific_setting = array();
 		if ( 'on' === $check ) {
-			if ( isset( $setting_saved['wps_rma_setting'] ) && ! empty( $setting_saved['wps_rma_setting'] ) ) {
-				foreach ( $setting_saved['wps_rma_setting'] as $key => $value ) {
-					if ( $func === $value['row_functionality'] ) {
-						array_push( $get_specific_setting, $value );
-					}
-				}
+			$get_setting = get_option( 'policies_setting_option', array() );
+			$get_specific_setting = array_filter($get_setting['wps_rma_setting'], function ($item) use ($func) {
+				return $item['row_functionality'] == $func;
+			});
+			$get_specific_setting = array_values( $get_specific_setting );
+
+			// Handling tax policy.
+			$is_tax_policy = array_filter( $get_specific_setting, function ($item) {
+				return isset( $item['row_policy'] ) && 'wps_rma_tax_handling' === $item['row_policy'];
+			});
+			$is_tax_policy = array_values( $is_tax_policy );
+			if ( ! empty( $is_tax_policy ) && isset( $is_tax_policy[0] ) && isset( $is_tax_policy[0]['row_tax'] ) && 'wps_rma_inlcude_tax' === $is_tax_policy[0]['row_tax'] ) {
+				update_option( $func . '_wps_rma_tax_handling', 'wps_rma_inlcude_tax' );
+			} elseif ( ! empty( $is_tax_policy ) && isset( $is_tax_policy[0] ) && isset( $is_tax_policy[0]['row_tax'] ) && 'wps_rma_exclude_tax' === $is_tax_policy[0]['row_tax'] ) {
+				update_option( $func . '_wps_rma_tax_handling', 'wps_rma_exclude_tax' );
+			} else {
+				update_option( $func . '_wps_rma_tax_handling', '' );
 			}
+
+			// Handling max days policy.
 			$order_date = date_i18n( 'y-m-d', strtotime( $order->get_date_created() ) );
 			$today_date = date_i18n( 'y-m-d' );
 			$order_date = apply_filters( 'wps_order_status_start_date', strtotime( $order_date ), $order );
@@ -39,68 +52,63 @@ if ( ! function_exists( 'wps_rma_show_buttons' ) ) {
 			$days       = $today_date - $order_date;
 			$day_diff   = floor( $days / ( 60 * 60 * 24 ) );
 
-			if ( ! empty( $get_specific_setting ) ) {
-				foreach ( $get_specific_setting as $key => $value ) {
-					if ( isset( $value['row_policy'] ) && 'wps_rma_tax_handling' === $value['row_policy'] ) {
-						if ( isset( $value['row_tax'] ) && 'wps_rma_inlcude_tax' === $value['row_tax'] ) {
-							update_option( $func . '_wps_rma_tax_handling', 'wps_rma_inlcude_tax' );
-						} elseif ( isset( $value['row_tax'] ) && 'wps_rma_exclude_tax' === $value['row_tax'] ) {
-							update_option( $func . '_wps_rma_tax_handling', 'wps_rma_exclude_tax' );
-						}
+			$is_max_days_policy = array_filter( $get_specific_setting, function ($item) {
+				return isset( $item['row_policy'] ) && 'wps_rma_maximum_days' === $item['row_policy'];
+			});
+			$is_max_days_policy = array_values( $is_max_days_policy );
+
+			if ( ! empty( $is_max_days_policy ) && isset( $is_max_days_policy[0] ) && isset( $is_max_days_policy[0]['row_policy'] ) && 'wps_rma_maximum_days' === $is_max_days_policy[0]['row_policy'] && ! empty( $is_max_days_policy[0]['row_value'] ) ) {
+				$row_value = isset( $is_max_days_policy[0]['row_value'] ) ? $is_max_days_policy[0]['row_value'] : null;
+				$row_condition = isset( $is_max_days_policy[0]['row_conditions1'] ) ? $is_max_days_policy[0]['row_conditions1'] : null;
+
+				if ( 'wps_rma_less_than' === $row_condition ) {
+					if ( $day_diff < floatval( $row_value ) ) {
+						$show_button = 'yes';
 					} else {
-						update_option( $func . '_wps_rma_tax_handling', '' );
+						$show_button = ucfirst( $func ) . esc_html__( ' days exceed must be less than ', 'woo-refund-and-exchange-lite' ) . $row_value;
 					}
-					if ( isset( $value['row_policy'] ) && 'wps_rma_maximum_days' === $value['row_policy'] ) {
-						if ( isset( $value['row_value'] ) && ! empty( $value['row_value'] ) ) {
-							if ( isset( $value['row_conditions1'] ) && 'wps_rma_less_than' === $value['row_conditions1'] ) {
-								if ( isset( $value['row_value'] ) && $day_diff < floatval( $value['row_value'] ) ) {
-									$show_button = 'yes';
-								} else {
-									$show_button = ucfirst( $func ) . esc_html__( ' days exceed must be less than ', 'woo-refund-and-exchange-lite' ) . $value['row_value'];
-									break;
-								}
-							} elseif ( $value['row_conditions1'] && 'wps_rma_greater_than' === $value['row_conditions1'] ) {
-								if ( isset( $value['row_value'] ) && $day_diff > floatval( $value['row_value'] ) ) {
-									$show_button = 'yes';
-								} else {
-									$show_button = ucfirst( $func ) . esc_html__( ' days must be greater than ', 'woo-refund-and-exchange-lite' ) . $value['row_value'];
-									break;
-								}
-							} elseif ( $value['row_conditions1'] && 'wps_rma_less_than_equal' === $value['row_conditions1'] ) {
-								if ( isset( $value['row_value'] ) && $day_diff <= floatval( $value['row_value'] ) ) {
-									$show_button = 'yes';
-								} else {
-									$show_button = ucfirst( $func ) . esc_html__( ' days must be less than equal to ', 'woo-refund-and-exchange-lite' ) . $value['row_value'];
-									break;
-								}
-							} elseif ( $value['row_conditions1'] && 'wps_rma_greater_than_equal' === $value['row_conditions1'] ) {
-								if ( isset( $value['row_value'] ) && $day_diff >= floatval( $value['row_value'] ) ) {
-									$show_button = 'yes';
-								} else {
-									$show_button = ucfirst( $func ) . esc_html__( ' days must be greater than equal to ', 'woo-refund-and-exchange-lite' ) . $value['row_value'];
-									break;
-								}
-							}
-						} else {
-							$show_button = ucfirst( $func ) . esc_html__( ' max days is blank', 'woo-refund-and-exchange-lite' );
-							break;
-						}
-					} elseif ( isset( $value['row_policy'] ) && 'wps_rma_order_status' === $value['row_policy'] ) {
-						if ( $value['row_conditions2'] && 'wps_rma_equal_to' === $value['row_conditions2'] ) {
-							if ( isset( $value['row_statuses'] ) && in_array( 'wc-' . $order->get_status(), $value['row_statuses'], true ) ) {
-								$show_button = 'yes';
-							} else {
-								$show_button = ucfirst( $func ) . esc_html__( ' request can not make on this order.', 'woo-refund-and-exchange-lite' );
-								break;
-							}
-						} elseif ( $value['row_conditions2'] && 'wps_rma_not_equal_to' === $value['row_conditions2'] ) {
-							if ( isset( $value['row_statuses'] ) && ! in_array( 'wc-' . $order->get_status(), $value['row_statuses'], true ) ) {
-								$show_button = 'yes';
-							} else {
-								$show_button = ucfirst( $func ) . esc_html__( ' request can not make on this order.', 'woo-refund-and-exchange-lite' );
-								break;
-							}
-						}
+				} elseif ( 'wps_rma_greater_than' === $row_condition ) {
+					if ( $day_diff > floatval( $row_value ) ) {
+						$show_button = 'yes';
+					} else {
+						$show_button = ucfirst( $func ) . esc_html__( ' days must be greater than ', 'woo-refund-and-exchange-lite' ) . $row_value;
+					}
+				} elseif ( 'wps_rma_less_than_equal' === $row_condition ) {
+					if ( $day_diff <= floatval( $row_value ) ) {
+						$show_button = 'yes';
+					} else {
+						$show_button = ucfirst( $func ) . esc_html__( ' days must be less than equal to ', 'woo-refund-and-exchange-lite' ) . $row_value;
+					}
+				} elseif ( 'wps_rma_greater_than_equal' === $row_condition ) {
+					if ( $day_diff >= floatval( $row_value ) ) {
+						$show_button = 'yes';
+					} else {
+						$show_button = ucfirst( $func ) . esc_html__( ' days must be greater than equal to ', 'woo-refund-and-exchange-lite' ) . $row_value;
+					}
+				}
+			}
+
+			// Handling order status policy.
+			$is_order_status_policy = array_filter( $get_specific_setting, function ($item) {
+				return isset( $item['row_policy'] ) && 'wps_rma_order_status' === $item['row_policy'];
+			});
+			$is_order_status_policy = array_values( $is_order_status_policy );
+
+			if ( ! empty( $is_order_status_policy ) && isset( $is_order_status_policy[0] ) && isset( $is_order_status_policy[0]['row_policy'] ) && 'wps_rma_order_status' === $is_order_status_policy[0]['row_policy'] && ! empty( $is_order_status_policy[0]['row_statuses'] ) && 'yes' === $show_button ) {
+				$row_condition = isset( $is_order_status_policy[0]['row_conditions2'] ) ? $is_order_status_policy[0]['row_conditions2'] : null;
+				$row_statuses = isset( $is_order_status_policy[0]['row_statuses'] ) ? $is_order_status_policy[0]['row_statuses'] : array();
+
+				if ( 'wps_rma_equal_to' === $row_condition ) {
+					if ( in_array( 'wc-' . $order->get_status(), $row_statuses, true ) ) {
+						$show_button = 'yes';
+					} else {
+						$show_button = ucfirst( $func ) . esc_html__( ' request can not make on this order.', 'woo-refund-and-exchange-lite' );
+					}
+				} elseif ( 'wps_rma_not_equal_to' === $row_condition ) {
+					if ( ! in_array( 'wc-' . $order->get_status(), $row_statuses, true ) ) {
+						$show_button = 'yes';
+					} else {
+						$show_button = ucfirst( $func ) . esc_html__( ' request can not make on this order.', 'woo-refund-and-exchange-lite' );
 					}
 				}
 			}
@@ -119,7 +127,7 @@ if ( ! function_exists( 'wps_rma_show_buttons' ) ) {
 			$wps_rma_from_time = get_option( 'wps_rma_time_duration_from', false );
 			$wps_rma_to_time   = get_option( 'wps_rma_time_duration_to', false );
 			if ( $wps_rma_from_time && $wps_rma_to_time && strtotime( current_time( 'h:i A' ) ) < strtotime( $wps_rma_from_time ) || strtotime( current_time( 'h:i A' ) ) > strtotime( $wps_rma_to_time ) ) {
-				$show_button = ucfirst( $func ) . esc_html__( 'is not available right now', 'woo-refund-and-exchange-lite' );
+				$show_button = ucfirst( $func ) . esc_html__( 'is not available right now, Please try again later', 'woo-refund-and-exchange-lite' );
 			}
 		}
 		return apply_filters( 'wps_rma_policies_functionality_extend', $show_button, $func, $order, $get_specific_setting );

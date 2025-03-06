@@ -216,163 +216,246 @@ class Woo_Refund_And_Exchange_Lite_Public {
 
 		if ( ! is_wc_endpoint_url( 'order-received' ) ) {
 			?>
-		<div class="wps_rma_outer_wrap_info">
-			<ul class="wps_rma_ul_wrap_info">
-				<li class="wps_rma_li_wrap_info wps_rma_li_refund active"><h2><?php esc_html_e( 'Refund', 'woo-refund-and-exchange-lite' ); ?></h2></li>
-				<?php
-				if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
-					?>
-				<li class="wps_rma_li_wrap_info wps_rma_li_exchange"><h2><?php esc_html_e( 'Exchange', 'woo-refund-and-exchange-lite' ); ?></h2></li>
+			<div class="wps_rma_outer_wrap_info">
+				<ul class="wps_rma_ul_wrap_info">
+					<li class="wps_rma_li_wrap_info wps_rma_li_refund active"><h2><?php esc_html_e( 'Refund', 'woo-refund-and-exchange-lite' ); ?></h2></li>
 					<?php
-				}
-				?>
-		</ul>
-			<div class="wps_rma_refund_info_wrap wps_rma_ret_ex_info_wrap">
-				<?php
-
-				// show return Product Details on order view page start.
-				$product_datas = wps_rma_get_meta_data( $order->get_id(), 'wps_rma_return_product', true );
-				if ( isset( $product_datas ) && ! empty( $product_datas ) ) {
-					?>
-					<h2><?php esc_html_e( 'Refund Requested Product', 'woo-refund-and-exchange-lite' ); ?></h2>
-					<?php
-					$request_status = true;
-					foreach ( $product_datas as $key => $product_data ) {
-						$date = date_i18n( wc_date_format(), $key );
+					if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 						?>
-						<p><?php esc_html_e( 'Following product Refund request made on', 'woo-refund-and-exchange-lite' ); ?> <b><?php echo esc_html( $date ); ?>.</b></p>
-							<table>
-								<thead>
-									<tr>
-										<th class="product-name"><?php esc_html_e( 'Product', 'woo-refund-and-exchange-lite' ); ?></th>
-										<th class="product-total"><?php esc_html_e( 'Total', 'woo-refund-and-exchange-lite' ); ?></th>
-									</tr>
-								</thead>
-								<tbody>
-									<?php
-									$total      = 0;
-									$line_items = $order->get_items();
-									$shipping_price = $order->get_shipping_total();
-									if ( is_array( $line_items ) && ! empty( $line_items ) ) {
-										wps_rma_update_meta_data( $order->get_id(), 'wps_rma_refund_new_line_items', $line_items );
-									}
-									$line_items = wps_rma_get_meta_data( $order->get_id(), 'wps_rma_refund_new_line_items', true );
-									// Return Products.
-									$return_products = $product_data['products'];
-									foreach ( $line_items as $item_id => $item ) {
-										foreach ( $return_products as $return_product ) {
-											if ( isset( $return_product['item_id'] ) ) {
-												if ( $return_product['item_id'] == $item_id ) {
-													$total += $return_product['price'] * $return_product['qty'];
-													?>
-													<tr>
-														<td>
-															<?php
-															$product =
-															// Get Product.
-															apply_filters( 'woocommerce_order_item_product', $item->get_product(), $item );
+					<li class="wps_rma_li_wrap_info wps_rma_li_exchange"><h2><?php esc_html_e( 'Exchange', 'woo-refund-and-exchange-lite' ); ?></h2></li>
+						<?php
+					}
+					?>
+				</ul>
+				<div class="wps_rma_refund_info_wrap wps_rma_ret_ex_info_wrap">
+					<?php
 
-															$is_visible        = $product && $product->is_visible();
-															$product_permalink =
-															// Order item Permalink.
-															apply_filters( 'woocommerce_order_item_permalink', $is_visible ? $product->get_permalink( $item ) : '', $item, $order );
-															if ( ! empty( $product ) && is_object( $product ) ) {
-																echo esc_html( $product_permalink ) ? sprintf( '<a href="%s">%s</a>', esc_html( $product_permalink ), esc_html( $product->get_name() ) ) : esc_html( $product->get_name() );
-															}
-															echo '<strong class="product-quantity">' . sprintf( '&times; %s', esc_html( $return_product['qty'] ) ) . '</strong>';
-
-															// Order item meta start.
-															do_action( 'woocommerce_order_item_meta_start', $item_id, $item, $order, false );
-
-															if ( WC()->version < '3.0.0' ) {
-																$order->display_item_meta( $item );
-																$order->display_item_downloads( $item );
-															} else {
-																wc_display_item_meta( $item );
-																wc_display_item_downloads( $item );
-															}
-															// Order item meta end.
-															do_action( 'woocommerce_order_item_meta_end', $item_id, $item, $order, false );
-															?>
-														</td>
-														<td class="product-total">
-														<?php
-															echo wp_kses_post( wps_wrma_format_price( $return_product['price'] * $return_product['qty'], $get_order_currency ) );
+					// show return Product Details on order view page start.
+					$product_datas = wps_rma_get_meta_data( $order->get_id(), 'wps_rma_return_product', true );
+					if ( isset( $product_datas ) && ! empty( $product_datas ) ) {
+						?>
+						<h2><?php esc_html_e( 'Refund Requested Product', 'woo-refund-and-exchange-lite' ); ?></h2>
+						<?php
+						$request_status = true;
+						foreach ( $product_datas as $key => $product_data ) {
+							$date = date_i18n( wc_date_format(), $key );
+							?>
+							<p><?php esc_html_e( 'Following product Refund request made on', 'woo-refund-and-exchange-lite' ); ?> <b><?php echo esc_html( $date ); ?>.</b></p>
+								<table>
+									<thead>
+										<tr>
+											<th class="product-name"><?php esc_html_e( 'Product', 'woo-refund-and-exchange-lite' ); ?></th>
+											<th class="product-total"><?php esc_html_e( 'Total', 'woo-refund-and-exchange-lite' ); ?></th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php
+										$total      = 0;
+										$line_items = $order->get_items();
+										$shipping_price = $order->get_shipping_total();
+										if ( is_array( $line_items ) && ! empty( $line_items ) ) {
+											wps_rma_update_meta_data( $order->get_id(), 'wps_rma_refund_new_line_items', $line_items );
+										}
+										$line_items = wps_rma_get_meta_data( $order->get_id(), 'wps_rma_refund_new_line_items', true );
+										// Return Products.
+										$return_products = $product_data['products'];
+										foreach ( $line_items as $item_id => $item ) {
+											foreach ( $return_products as $return_product ) {
+												if ( isset( $return_product['item_id'] ) ) {
+													if ( $return_product['item_id'] == $item_id ) {
+														$total += $return_product['price'] * $return_product['qty'];
 														?>
-														</td>
-													</tr>
-													<?php
+														<tr>
+															<td>
+																<?php
+																$product =
+																// Get Product.
+																apply_filters( 'woocommerce_order_item_product', $item->get_product(), $item );
+
+																$is_visible        = $product && $product->is_visible();
+																$product_permalink =
+																// Order item Permalink.
+																apply_filters( 'woocommerce_order_item_permalink', $is_visible ? $product->get_permalink( $item ) : '', $item, $order );
+																if ( ! empty( $product ) && is_object( $product ) ) {
+																	echo esc_html( $product_permalink ) ? sprintf( '<a href="%s">%s</a>', esc_html( $product_permalink ), esc_html( $product->get_name() ) ) : esc_html( $product->get_name() );
+																}
+																echo '<strong class="product-quantity">' . sprintf( '&times; %s', esc_html( $return_product['qty'] ) ) . '</strong>';
+
+																// Order item meta start.
+																do_action( 'woocommerce_order_item_meta_start', $item_id, $item, $order, false );
+
+																if ( WC()->version < '3.0.0' ) {
+																	$order->display_item_meta( $item );
+																	$order->display_item_downloads( $item );
+																} else {
+																	wc_display_item_meta( $item );
+																	wc_display_item_downloads( $item );
+																}
+																// Order item meta end.
+																do_action( 'woocommerce_order_item_meta_end', $item_id, $item, $order, false );
+																?>
+															</td>
+															<td class="product-total">
+															<?php
+																echo wp_kses_post( wps_wrma_format_price( $return_product['price'] * $return_product['qty'], $get_order_currency ) );
+															?>
+															</td>
+														</tr>
+														<?php
+													}
 												}
 											}
 										}
-									}
-									?>
-									<?php
-									// To show extra row in the order view refund request table.
-									do_action( 'wps_rma_add_extra_fields_row', $order->get_id() );
+										?>
+										<?php
+										// To show extra row in the order view refund request table.
+										do_action( 'wps_rma_add_extra_fields_row', $order->get_id() );
 
-									$shipping_price = 0;
-									if ( isset( $product_data['shipping_price'] ) && ! empty( $product_data['shipping_price'] ) ) {
-										$shipping_price = esc_html__( '(Shipping Charges Added)', 'woo-refund-and-exchange-lite' );
-										$total += $product_data['shipping_price'];
-									}
+										$shipping_price = 0;
+										if ( isset( $product_data['shipping_price'] ) && ! empty( $product_data['shipping_price'] ) ) {
+											$shipping_price = esc_html__( '(Shipping Charges Added)', 'woo-refund-and-exchange-lite' );
+											$total += $product_data['shipping_price'];
+										}
+										?>
+										<tr>
+											<th scope="row"><?php esc_html_e( 'Refund Amount', 'woo-refund-and-exchange-lite' ); ?></th>
+											<th><?php echo wp_kses_post( wps_wrma_format_price( $total, $get_order_currency ) ); ?></th>
+										</tr>
+									</tbody>
+								</table>
+								<?php
+								if ( 'pending' === $product_data['status'] ) {
+									$page_id    = $wps_rma_return_request_form_page_id;
+									$return_url = get_permalink( $page_id );
+									$return_url = add_query_arg( 'order_id', $order->get_id(), $return_url );
+									$return_url = wp_nonce_url( $return_url, 'wps_rma_nonce', 'wps_rma_nonce' );
 									?>
-									<tr>
-										<th scope="row"><?php esc_html_e( 'Refund Amount', 'woo-refund-and-exchange-lite' ); ?></th>
-										<th><?php echo wp_kses_post( wps_wrma_format_price( $total, $get_order_currency ) ); ?></th>
-									</tr>
-								</tbody>
-							</table>
+										<form action="<?php echo esc_html( $return_url ); ?>" method="post">
+											<input type="hidden" value="<?php echo esc_html( $order->get_id() ); ?>" name="order_id">
+											<p>
+												<input type="submit" class="btn button" value="<?php esc_html_e( 'Update Request', 'woo-refund-and-exchange-lite' ); ?>" name="wps_mra_return_request">
+											</p>
+										</form>
+										<?php if( 'on' === get_option( 'wps_rma_refund_cancellation' ) ): ?>
+										<form action="/" id="wps_rma_cancel_return_request" method="post">
+											<input type="hidden" class="wps_rma_cancel_return_request" value="<?php echo esc_html( $order->get_id() ); ?>" name="order_id">
+											<p>
+												<input type="submit" class="btn button" value="<?php esc_html_e( 'Cancel Request', 'woo-refund-and-exchange-lite' ); ?>" name="wps_rma_cancel_return_request">
+											</p>
+										</form>
+										<?php
+										endif;
+								}
+								if ( 'complete' === $product_data['status'] ) {
+									$approve_date = date_i18n( wc_date_format(), $product_data['approve_date'] );
+									?>
+										<p><b><?php esc_html_e( 'The above product Refund request is approved on', 'woo-refund-and-exchange-lite' ); ?> <?php echo esc_html( $approve_date ); ?>.</b></p>
+										<?php
+								}
+
+								if ( 'cancel' === $product_data['status'] ) {
+									$canceldate = date_i18n( wc_date_format(), $product_data['cancel_date'] );
+									?>
+										<p><b><?php esc_html_e( 'The above product Refund request is cancelled on', 'woo-refund-and-exchange-lite' ); ?> <?php echo esc_html( $canceldate ); ?>.</b></p>
+										<?php
+								}
+								?>
 							<?php
-							if ( 'pending' === $product_data['status'] ) {
-								$page_id    = $wps_rma_return_request_form_page_id;
-								$return_url = get_permalink( $page_id );
-								$return_url = add_query_arg( 'order_id', $order->get_id(), $return_url );
-								$return_url = wp_nonce_url( $return_url, 'wps_rma_nonce', 'wps_rma_nonce' );
-								?>
-									<form action="<?php echo esc_html( $return_url ); ?>" method="post">
-										<input type="hidden" value="<?php echo esc_html( $order->get_id() ); ?>" name="order_id">
-										<p>
-											<input type="submit" class="btn button" value="<?php esc_html_e( 'Update Request', 'woo-refund-and-exchange-lite' ); ?>" name="wps_mra_return_request">
-										</p>
-									</form>
-									<?php if( 'on' === get_option( 'wps_rma_refund_cancellation' ) ): ?>
-									<form action="/" id="wps_rma_cancel_return_request" method="post">
-										<input type="hidden" class="wps_rma_cancel_return_request" value="<?php echo esc_html( $order->get_id() ); ?>" name="order_id">
-										<p>
-											<input type="submit" class="btn button" value="<?php esc_html_e( 'Cancel Request', 'woo-refund-and-exchange-lite' ); ?>" name="wps_rma_cancel_return_request">
-										</p>
-									</form>
-									<?php
-									endif;
-							}
-							if ( 'complete' === $product_data['status'] ) {
-								$approve_date = date_i18n( wc_date_format(), $product_data['approve_date'] );
-								?>
-									<p><b><?php esc_html_e( 'The above product Refund request is approved on', 'woo-refund-and-exchange-lite' ); ?> <?php echo esc_html( $approve_date ); ?>.</b></p>
-									<?php
-							}
+						}
+					} elseif ( ! is_wc_endpoint_url( 'order-received' ) ) {
 
-							if ( 'cancel' === $product_data['status'] ) {
-								$canceldate = date_i18n( wc_date_format(), $product_data['cancel_date'] );
-								?>
-									<p><b><?php esc_html_e( 'The above product Refund request is cancelled on', 'woo-refund-and-exchange-lite' ); ?> <?php echo esc_html( $canceldate ); ?>.</b></p>
-									<?php
-							}
-							?>
-						<?php
+						esc_html_e( 'No Refund Request Found For this order', 'woo-refund-and-exchange-lite' );
 					}
-				} elseif ( ! is_wc_endpoint_url( 'order-received' ) ) {
-
-					esc_html_e( 'No Refund Request Found For this order', 'woo-refund-and-exchange-lite' );
-				}
-				?>
-				</div>
-				<?php
-				do_action( 'wps_rma_exchange_cancel_information_after_order_table', $order );
-				?>
-		</div>
+					?>
+					</div>
+					<?php
+					do_action( 'wps_rma_exchange_cancel_information_after_order_table', $order );
+					?>
+			</div>
 			<?php
+			$is_refund_rules = false;
+			if ( 'on' === get_option( 'wps_rma_refund_enable', false ) )  {
+				$get_specific_setting = array();
+				$get_setting          = get_option( 'policies_setting_option', array() );
+				$order_statuses_policy = array_filter($get_setting['wps_rma_setting'], function ($item) {
+					return $item['row_functionality'] == 'refund' && in_array($item['row_policy'], ['wps_rma_order_status']);
+				});
+				$order_max_date_policy = array_filter($get_setting['wps_rma_setting'], function ($item) {
+					return  $item['row_functionality'] == 'refund' && in_array($item['row_policy'], ['wps_rma_maximum_days']);
+				});
+				$order_statuses_policy = array_values($order_statuses_policy);
+				$order_max_date_policy = array_values($order_max_date_policy);
+
+				$refund_rules_enable = get_option( 'wps_rma_refund_rules', 'no' );
+				$refund_rules        = get_option( 'wps_rma_refund_rules_editor', '' );
+
+				$is_rules = 'on' === $refund_rules_enable && ! empty( $refund_rules ) ? true : false;
+
+				if ( $is_rules || ! empty( $order_max_date_policy ) || ! empty( $order_max_date_policy ) ) { 
+					$is_refund_rules = true;
+					?>
+					<br/>
+					<div class="wps_rma_return_rules">
+						<h2><?php esc_html_e( 'Refund Rules', 'woo-refund-and-exchange-lite' ); ?></h2>
+						<?php
+						if ( $is_rules ) {
+							?>
+							<div class="wps-rma-col wps_rma_flex">        
+								<?php
+									echo wp_kses_post( $refund_rules );
+								?>
+							</div>
+							<?php
+						}
+						if ( ! empty( $order_statuses_policy ) && isset( $order_statuses_policy[0] ) && isset( $order_statuses_policy[0]['row_statuses'] ) && ! empty( $order_statuses_policy[0]['row_statuses'] ) ) {
+							$allowed_statuses = $order_statuses_policy[0]['row_statuses'];
+						}
+						if ( ! empty( $order_max_date_policy ) && isset( $order_max_date_policy[0] ) && isset( $order_max_date_policy[0]['row_value'] ) && ! empty( $order_max_date_policy[0]['row_value'] ) ) {
+							$allowed_days = $order_max_date_policy[0]['row_value'];
+							$order_date = date_i18n( 'y-m-d', strtotime( $order->get_date_created() ) );
+							$today_date = date_i18n( 'y-m-d' );
+							$order_date = apply_filters( 'wps_order_status_start_date', strtotime( $order_date ), $order );
+							$today_date = strtotime( $today_date );
+							$days       = $today_date - $order_date;
+							$day_diff   = floor( $days / ( 60 * 60 * 24 ) );
+			
+							if ( isset( $order_max_date_policy[0]['row_conditions1'] ) && 'wps_rma_less_than' === $order_max_date_policy[0]['row_conditions1'] ) {
+								if ( $day_diff < floatval( $allowed_days ) ) {
+									$show_rules = esc_html__( sprintf( 'Refund are valid for %s days', $allowed_days ), 'woo-refund-and-exchange-lite' );
+								} else {
+									$show_rules = esc_html__( sprintf( 'Refund days are exceed, must be less than %s days', $allowed_days ), 'woo-refund-and-exchange-lite' );
+								}
+							} elseif ( $order_max_date_policy[0]['row_conditions1'] && 'wps_rma_greater_than' === $order_max_date_policy[0]['row_conditions1'] ) {
+								if ( $day_diff > floatval( $allowed_days ) ) {
+									$show_rules = esc_html__( sprintf( 'Refund are valid after %s days', $allowed_days ), 'woo-refund-and-exchange-lite' );
+								} else {
+									$show_rules = esc_html__( sprintf( 'Refund are valid after %s days', $allowed_days ), 'woo-refund-and-exchange-lite' );
+								}
+							}
+			
+							if ( isset( $show_rules ) ) {
+								?>
+								<p><?php echo esc_html( $show_rules ); ?></p>
+								<?php
+							}
+							if ( isset( $allowed_statuses ) && ! empty( $allowed_statuses ) ) {
+								$cleaned_data = array_map(function($item) {
+									return str_replace("wc-", "", $item);
+								}, $allowed_statuses);
+								$string = implode(", ", $cleaned_data);
+								$show_rules = esc_html__( sprintf( 'Refund allowed for these order statuses :- %s', $string ), 'woo-refund-and-exchange-lite' );
+								?>
+								<p><?php echo esc_html( $show_rules ) ?></p>
+								<?php
+							}
+						}
+						?>
+					</div>
+					<br/>
+					<?php
+				}
+			}
+			do_action( 'wps_rma_exchange_rules', $order, $is_refund_rules );
 		}
 		// show return Product Details on order view page end.
 	}

@@ -35,15 +35,16 @@ if ( isset( $_GET['wps_rma_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp
 			$user              = wp_get_current_user();
 			$allowed_roles     = array( 'editor', 'administrator', 'shop_manager' );
 			if ( get_current_user_id() != $order_customer_id && ! array_intersect( $allowed_roles, $user->roles ) ) {
-					$myaccount_page     = get_option( 'woocommerce_myaccount_page_id' );
-					$myaccount_page_url = get_permalink( $myaccount_page );
-					$is_refundable      = wp_kses_post( "This order #$order_id is not associated to your account. <a href='$myaccount_page_url'>Click Here</a>" );
+				$myaccount_page     = get_option( 'woocommerce_myaccount_page_id' );
+				$myaccount_page_url = get_permalink( $myaccount_page );
+				$is_refundable      = wp_kses_post( "This order #$order_id is not associated to your account. <a href='$myaccount_page_url'>Click Here</a>" );
 			}
 		}
 
 		if ( 'yes' === $is_refundable ) {
 			$rr_subject = '';
 			$rr_reason  = '';
+			$shipping_already_requested = false;
 
 			$pending_request = wps_rma_get_meta_data( $order_id, 'wps_rma_return_product', true );
 			// Get pending return request data.
@@ -53,6 +54,9 @@ if ( isset( $_GET['wps_rma_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp
 						$rr_subject = $pending_request[ $date ]['subject'];
 						if ( isset( $pending_request[ $date ]['reason'] ) ) {
 							$rr_reason = $pending_request[ $date ]['reason'];
+						}
+						if ( isset( $pending_request[$date]['shipping_price'] ) ) {
+							$shipping_already_requested = true;
 						}
 					}
 					break;
@@ -206,7 +210,7 @@ if ( isset( $_GET['wps_rma_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp
 								}
 							}
 							$wps_rma_allow_refund_shipping_charge = get_option( 'wps_rma_allow_refund_shipping_charge' );
-							if ( 'on' == $wps_rma_allow_refund_shipping_charge && $shipping_price && ( isset( $date ) && isset( $pending_request ) && ! isset( $pending_request[ $date ]['shipping_price'] ) ) ) { // add the shipping charges and avoid duplicate entry.
+							if ( 'on' == $wps_rma_allow_refund_shipping_charge && $shipping_price && ! $shipping_already_requested ) { // add the shipping charges and avoid duplicate entry.
 								$total_items_price += $shipping_price;
 							}
 							?>
@@ -224,7 +228,7 @@ if ( isset( $_GET['wps_rma_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp
 										<small class="tax_label"><?php esc_html_e( '(excl. tax)', 'woo-refund-and-exchange-lite' ); ?></small>
 										<?php
 									}
-									if ( 'on' == $wps_rma_allow_refund_shipping_charge && $shipping_price && ( isset( $date ) && isset( $pending_request ) && ! isset( $pending_request[ $date ]['shipping_price'] ) ) ) { // add the shipping charges and avoid duplicate entry.
+									if ( 'on' == $wps_rma_allow_refund_shipping_charge && $shipping_price && ! $shipping_already_requested ) { // add the shipping charges and avoid duplicate entry.
 										?>
 										<input type="hidden" name="wps_rma_shipping_price" class="wps_rma_shipping_price" value="<?php echo esc_html( $shipping_price ); ?>" data-shipping_price="<?php echo esc_html( $shipping_price ); ?>">
 										<small class="wps_shipping_label"><?php echo esc_html( 'Shipping Charges' ); ?></small>

@@ -757,3 +757,14 @@ table.wps-rma-product__table:not( .has-background ) tbody tr:nth-child(2n) td, t
   }
   
 // Shadow template css end
+.wps_rma_return_rules,.wps_rma_exchange_rules {
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+.wps_rma_return_rules  > h2,.wps_rma_exchange_rules > h2{
+    margin-bottom: 10px;
+    font-size: 18px;
+}

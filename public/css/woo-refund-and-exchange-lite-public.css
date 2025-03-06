@@ -705,6 +705,18 @@ table.wps-rma-product__table:not(.has-background) tbody tr:nth-child(2n) td, tab
 #wps_rma_template1 #wps_rma_return_request_form, #wps_rma_template1 #wps_rma_exchnage_request_form {
   width: 100%;
 }
+.wps_rma_return_rules, .wps_rma_exchange_rules {
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+.wps_rma_return_rules > h2, .wps_rma_exchange_rules > h2 {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
 
 @media only screen and (min-width: 600px){
   .wps-rma-refund-request__row {
