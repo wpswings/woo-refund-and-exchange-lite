@@ -26,7 +26,7 @@ if ( ! function_exists( 'wps_rma_show_buttons' ) ) {
 		$get_specific_setting = array();
 		if ( 'on' === $check ) {
 			$get_setting = get_option( 'policies_setting_option', array() );
-			$get_specific_setting = array_filter($get_setting['wps_rma_setting'], function ($item) use ($func) {
+			$get_specific_setting = array_filter( isset( $get_setting['wps_rma_setting'] ) ? $get_setting['wps_rma_setting'] : array(), function ($item) use ($func) {
 				return $item['row_functionality'] == $func;
 			});
 			$get_specific_setting = array_values( $get_specific_setting );
