@@ -21,7 +21,6 @@ jQuery(function($){
 		if ( typeof( rr_reason ) !== 'undefined' && ( rr_reason == '' || rr_reason == null ) ) {
 			alerthtml += '<li>' + wrael_common_param.return_reason_msg + '</li>';
 		}
-
 		if( pro_act && typeof wps_rma_return_alert_condition_addon == 'function' ){
 			alerthtml += wps_rma_return_alert_condition_addon();
 		}
@@ -59,7 +58,9 @@ jQuery(function($){
 				}
 			});
 			wps_rma_customer_contact_refund = $('#wps_rma_customer_contact_refund').val();
-			refund_method = wps_rma_refund_method();
+			if ( typeof wps_rma_return_alert_condition_addon == 'function' ) {
+				refund_method = wps_rma_refund_method();
+			}
 		} else {
 			$('.wps_rma_return_column').each(function(){
 				const item_id = $(this).data('item_id');
