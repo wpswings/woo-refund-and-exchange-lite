@@ -377,10 +377,10 @@ class Woo_Refund_And_Exchange_Lite_Public {
 			if ( 'on' === get_option( 'wps_rma_refund_enable', false ) )  {
 				$get_specific_setting = array();
 				$get_setting          = get_option( 'policies_setting_option', array() );
-				$order_statuses_policy = array_filter($get_setting['wps_rma_setting'], function ($item) {
+				$order_statuses_policy = array_filter( isset( $get_setting['wps_rma_setting'] ) ? $get_setting['wps_rma_setting'] : array(), function ($item) {
 					return $item['row_functionality'] == 'refund' && in_array($item['row_policy'], ['wps_rma_order_status']);
 				});
-				$order_max_date_policy = array_filter($get_setting['wps_rma_setting'], function ($item) {
+				$order_max_date_policy = array_filter( isset( $get_setting['wps_rma_setting'] ) ? $get_setting['wps_rma_setting'] : array(), function ($item) {
 					return  $item['row_functionality'] == 'refund' && in_array($item['row_policy'], ['wps_rma_maximum_days']);
 				});
 				$order_statuses_policy = array_values($order_statuses_policy);
