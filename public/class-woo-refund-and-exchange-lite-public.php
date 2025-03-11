@@ -378,10 +378,10 @@ class Woo_Refund_And_Exchange_Lite_Public {
 				$get_specific_setting = array();
 				$get_setting          = get_option( 'policies_setting_option', array() );
 				$order_statuses_policy = array_filter( isset( $get_setting['wps_rma_setting'] ) ? $get_setting['wps_rma_setting'] : array(), function ($item) {
-					return $item['row_functionality'] === 'refund' && in_array($item['row_policy'], ['wps_rma_order_status']);
+					return 'refund' === $item['row_functionality'] && in_array($item['row_policy'], ['wps_rma_order_status']);
 				});
 				$order_max_date_policy = array_filter( isset( $get_setting['wps_rma_setting'] ) ? $get_setting['wps_rma_setting'] : array(), function ($item) {
-					return  $item['row_functionality'] === 'refund' && in_array($item['row_policy'], ['wps_rma_maximum_days']);
+					return  'refund' === $item['row_functionality'] && in_array($item['row_policy'], ['wps_rma_maximum_days']);
 				});
 				$order_statuses_policy = array_values($order_statuses_policy);
 				$order_max_date_policy = array_values($order_max_date_policy);
@@ -422,18 +422,18 @@ class Woo_Refund_And_Exchange_Lite_Public {
 							if ( isset( $order_max_date_policy[0]['row_conditions1'] ) && 'wps_rma_less_than' === $order_max_date_policy[0]['row_conditions1'] ) {
 								if ( $day_diff < floatval( $allowed_days ) ) {
 									// translators: %s: days.
-									$show_rules = esc_html__( sprintf( 'Refund are valid for %s days', $allowed_days ), 'woo-refund-and-exchange-lite' );
+									$show_rules = sprintf( esc_html__( 'Refund are valid for %s days', 'woo-refund-and-exchange-lite' ), $allowed_days );
 								} else {
 									// translators: %s: days.
-									$show_rules = esc_html__( sprintf( 'Refund days are exceed, must be less than %s days', $allowed_days ), 'woo-refund-and-exchange-lite' );
+									$show_rules = sprintf( esc_html__( 'Refund days are exceed, must be less than %s days', 'woo-refund-and-exchange-lite' ), $allowed_days );
 								}
 							} elseif ( $order_max_date_policy[0]['row_conditions1'] && 'wps_rma_greater_than' === $order_max_date_policy[0]['row_conditions1'] ) {
 								if ( $day_diff > floatval( $allowed_days ) ) {
 									// translators: %s: days.
-									$show_rules = esc_html__( sprintf( 'Refund are valid after %s days', $allowed_days ), 'woo-refund-and-exchange-lite' );
+									$show_rules = sprintf( esc_html__( 'Refund are valid after %s days', 'woo-refund-and-exchange-lite' ), $allowed_days );
 								} else {
 									// translators: %s: days.
-									$show_rules = esc_html__( sprintf( 'Refund are valid after %s days', $allowed_days ), 'woo-refund-and-exchange-lite' );
+									$show_rules = sprintf( esc_html__( 'Refund are valid after %s days', 'woo-refund-and-exchange-lite' ), $allowed_days );
 								}
 							}
 			
@@ -448,7 +448,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 								}, $allowed_statuses);
 								$string = implode(", ", $cleaned_data);
 								// translators: %s: statuses.
-								$show_rules = esc_html__( sprintf( 'Refund allowed for these order statuses :- %s', $string ), 'woo-refund-and-exchange-lite' );
+								$show_rules = sprintf( esc_html__( 'Refund allowed for these order statuses :- %s', 'woo-refund-and-exchange-lite' ), $string );
 								?>
 								<p><?php echo esc_html( $show_rules ) ?></p>
 								<?php
