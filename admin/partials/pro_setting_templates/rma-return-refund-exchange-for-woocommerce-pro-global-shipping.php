@@ -66,7 +66,7 @@ if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 
 											</td>
 											<td>
-												<input type="text" name="add_ship_fee_cost[]" id="add_ship_fee_cost" value="<?php echo esc_html( $wps_fee_cost[ $name_key ] ); ?>" data-attr="<?php echo esc_html( $name_key ); ?>">
+												<input type="number" min="1" name="add_ship_fee_cost[]" id="add_ship_fee_cost" value="<?php echo esc_html( $wps_fee_cost[ $name_key ] ); ?>" data-attr="<?php echo esc_html( $name_key ); ?>">
 											</td>
 											<td>
 												<input type="button" class="button wps_wrma_global_ship_fee_rem" value="Remove">
