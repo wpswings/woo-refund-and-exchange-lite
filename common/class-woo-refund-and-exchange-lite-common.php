@@ -94,7 +94,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 					'file_not_supported'        => esc_html__( 'Attached File type is not supported', 'woo-refund-and-exchange-lite' ),
 					'qty_error'                 => esc_html__( 'Selected product must have the quantity', 'woo-refund-and-exchange-lite' ),
 					'return_cancellation_alert' => esc_html__( 'Are you sure you want to cancel this return request?', 'woo-refund-and-exchange-lite' ),
-
+					'correct_quantity'          => esc_html__( 'Please Enter Correct Quantity.', 'woo-refund-and-exchange-lite' ),
 				)
 			);
 			wp_enqueue_script( $this->plugin_name . 'common' );
@@ -263,26 +263,73 @@ class Woo_Refund_And_Exchange_Lite_Common {
 				$allowed_roles     = array( 'editor', 'administrator', 'shop_manager' );
 				// Check if the user ID is not the current user or if not an admin.
 				if ( get_current_user_id() === $user_id || array_intersect( $allowed_roles, $user->roles ) ) {
-					$re_bank  = get_option( 'wps_rma_refund_manually_de', false );
-					if ( 'on' === $re_bank && ! empty( $_POST['bankdetails'] ) ) {
+					$bank_details  = get_option( 'wps_rma_refund_manually_de', false );
+					if ( 'on' === $bank_details && ! empty( $_POST['bankdetails'] ) ) {
 						wps_rma_update_meta_data( $order_id, 'wps_rma_bank_details', sanitize_text_field( wp_unslash( $_POST['bankdetails'] ) ) );
 					}
-					$refund_method        = isset( $_POST['refund_method'] ) ? sanitize_text_field( wp_unslash( $_POST['refund_method'] ) ) : '';
 					$wallet_enabled       = get_option( 'wps_rma_wallet_enable', 'no' );
 					$refund_method_check  = get_option( 'wps_rma_refund_method', 'no' );
 					if ( wps_rma_pro_active() && 'on' === $wallet_enabled && 'on' !== $refund_method_check ) {
 						$refund_method = 'wallet_method';
+					} else {
+						$refund_method = isset( $_POST['refund_method'] ) ? sanitize_text_field( wp_unslash( $_POST['refund_method'] ) ) : '';
 					}
-					do_action( 'wps_rma_return_request_data', $_POST, $order_id );
-					$temp_check = isset( $_POST['all_product_checked'] ) ? sanitize_text_field( wp_unslash( $_POST['all_product_checked'] ) ) : '';
-					if ( 1 == $temp_check ) {
-						wps_rma_update_meta_data( $order_id, 'wps_wrna_all_product_checked', $temp_check );
+					$checked_all = isset( $_POST['all_product_checked'] ) ? sanitize_text_field( wp_unslash( $_POST['all_product_checked'] ) ) : '';
+					if ( 1 == $checked_all ) {
+						wps_rma_update_meta_data( $order_id, 'wps_wrna_all_product_checked', $checked_all );
 					}
 					$wps_rma_customer_contact_refund = isset( $_POST['wps_rma_customer_contact_refund'] ) ? sanitize_text_field( wp_unslash( $_POST['wps_rma_customer_contact_refund'] ) ) : '';
 					if ( $wps_rma_customer_contact_refund ) {
 						wps_rma_update_meta_data( $order_id, 'wps_rma_customer_contact_refund', $wps_rma_customer_contact_refund );
 					}
-					$response = wps_rma_save_return_request_callback( $order_id, $refund_method, $_POST );
+					// Prepare the request data using the item id and qty, added for the securiy concern.
+					$return_data = $_POST;
+					$wps_rma_check_tax      = get_option( 'refund_wps_rma_tax_handling' );
+					if ( isset( $_POST['products'] ) ) {
+						$item_ids = $return_data['products'];
+						unset( $return_data['products'] );
+						foreach( $order->get_items() as $item_id => $item ) {
+							foreach( $item_ids as $index => $item_data ) {
+								if ( isset( $item_data['item_id'] ) && $item_id === (int) $item_data['item_id'] ) {
+									$coupon_discount = get_option( 'wps_rma_refund_deduct_coupon', 'no' );
+									if ( 'on' === $coupon_discount ) {
+										$item_price_inc_tax = $item->get_total() + $item->get_total_tax();
+										$item_price_exc_tax = $item->get_total() - $item->get_total_tax();
+										$item_price = $item->get_total();
+									} else {
+										$item_price_inc_tax = $item->get_subtotal() + $item->get_subtotal_tax();
+										$item_price_exc_tax = $item->get_subtotal() - $item->get_subtotal_tax();
+										$item_price = $item->get_subtotal();
+									}
+									if ( 'wps_rma_inlcude_tax' === $wps_rma_check_tax ) {
+										$item_price = $item_price_inc_tax;
+									} elseif ( 'wps_rma_exclude_tax' === $wps_rma_check_tax ) {
+										$item_price = $item_price_exc_tax;
+									}
+									$qty = $item_ids[$index]['qty'];
+									
+									$return_data['products'][] = array(
+										'item_id' => $item_id,
+										'product_id' => $item->get_product_id(),
+										'variation_id' => $item->get_variation_id(),
+										'qty' => $qty,
+										'price' => $item_price / $item->get_quantity(),
+									);
+								}
+							}
+						}
+					}
+					$shipping_price = 0;
+					$wps_rma_allow_refund_shipping_charge = get_option( 'wps_rma_allow_refund_shipping_charge' );
+					if ( $checked_all && 'on' == $wps_rma_allow_refund_shipping_charge ) {
+						$shipping_price = $order->get_shipping_total();
+						if ( 'wps_rma_inlcude_tax' === $wps_rma_check_tax ) {
+							$shipping_price += $order->get_shipping_tax();
+						}
+					}
+					$return_data['shipping_price'] = $shipping_price;
+					do_action( 'wps_rma_return_request_data', $return_data, $order_id );
+					$response = wps_rma_save_return_request_callback( $order_id, $refund_method, $return_data );
 					if ( true == $response['flag'] ) {
 						do_action( 'wps_rma_do_shiprocket_integration', $order_id, $_POST );
 					}

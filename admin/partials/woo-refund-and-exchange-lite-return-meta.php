@@ -98,14 +98,8 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 							}
 						}
 					}
-					$pro_active = wps_rma_pro_active();
-					$wps_rma_allow_refund_shipping_charge = get_option( 'wps_rma_allow_refund_shipping_charge' );
-					$wps_wrna_all_product_checked = wps_rma_get_meta_data( $order_id, 'wps_wrna_all_product_checked', true );
-					if ( ( empty( $pro_active ) && 'on' == $wps_rma_allow_refund_shipping_charge ) || ( 1 == $wps_wrna_all_product_checked && 'on' == $wps_rma_allow_refund_shipping_charge ) ) {
-
-						$total = $total + $order_shipping_price;
-
-
+					if ( isset( $return_data['shipping_price'] ) && ! empty( $return_data['shipping_price'] ) ) {
+						$total += $return_data['shipping_price'];
 					}
 					$total_refund_amu =
 					// Change refund total amount on product meta.
@@ -113,7 +107,14 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 					?>
 					<tr>
 						<th colspan="4"><?php esc_html_e( 'Total', 'woo-refund-and-exchange-lite' ); ?></th>
-						<th><?php echo wp_kses_post( wps_wrma_format_price( $total, $get_order_currency ) ); ?></th>
+						<th>
+							<?php
+								echo wp_kses_post( wps_wrma_format_price( $total, $get_order_currency ) );
+								if ( isset( $return_data['shipping_price'] ) && ! empty( $return_data['shipping_price'] ) ) {
+									echo esc_html__( '(Shipping Charges)', 'woo-refund-and-exchange-lite' );
+								}
+							?>
+						</th>
 					</tr>
 				</tbody>
 			</table>

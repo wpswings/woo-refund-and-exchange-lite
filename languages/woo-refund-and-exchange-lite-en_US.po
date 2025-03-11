@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Return Refund and Exchange for WooCommerce 4.5.6\n"
-"POT-Creation-Date: 2025-02-07 13:50+0530\n"
-"PO-Revision-Date: 2025-02-07 13:50+0530\n"
+"Project-Id-Version: Return Refund and Exchange for WooCommerce 4.4.8\n"
+"POT-Creation-Date: 2025-03-11 15:06+0530\n"
+"PO-Revision-Date: 2025-03-11 15:07+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -399,70 +399,69 @@ msgstr ""
 
 #: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:41
 #: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:45
-#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:159
+#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:150
 #: public/class-woo-refund-and-exchange-lite-public.php:247
-#: public/partials/wps-rma-refund-request-form.php:86
+#: public/partials/wps-rma-refund-request-form.php:89
 msgid "Product"
 msgstr ""
 
 #: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:42
 #: admin/partials/woo-refund-and-exchange-lite-return-meta.php:49
 #: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:46
-#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:160
-#: public/partials/wps-rma-refund-request-form.php:87
+#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:151
+#: public/partials/wps-rma-refund-request-form.php:90
 msgid "Quantity"
 msgstr ""
 
 #: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:43
 #: admin/partials/woo-refund-and-exchange-lite-return-meta.php:48
 #: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:47
-#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:161
-#: public/partials/wps-rma-refund-request-form.php:190
+#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:152
+#: public/partials/wps-rma-refund-request-form.php:165
 msgid "Price"
 msgstr ""
 
-#: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:89
-#: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:120
-#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:91
-#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:96
-#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:205
-#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:210
+#: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:83
+#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:87
+#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:191
+#: public/class-woo-refund-and-exchange-lite-public.php:316
+msgid "(Shipping Charges Added)"
+msgstr ""
+
+#: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:88
+#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:92
+#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:195
 msgid "Refund Total"
 msgstr ""
 
-#: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:96
-#: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:127
-#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:105
-#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:219
+#: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:95
+#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:96
+#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:203
 msgid "Customer details"
 msgstr ""
 
-#: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:99
-#: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:130
-#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:108
-#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:222
+#: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:98
+#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:99
+#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:206
 #: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:361
 msgid "Email"
 msgstr ""
 
-#: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:102
-#: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:133
-#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:111
-#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:225
+#: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:101
+#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:102
+#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:209
 msgid "Tel"
 msgstr ""
 
-#: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:108
-#: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:139
-#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:117
-#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:231
+#: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:107
+#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:108
+#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:215
 msgid "Shipping Address"
 msgstr ""
 
-#: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:112
-#: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:143
-#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:121
-#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:235
+#: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:111
+#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:112
+#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:219
 msgid "Billing Address"
 msgstr ""
 
@@ -1497,7 +1496,7 @@ msgid "is"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-policies.php:172
-#: public/partials/wps-rma-refund-request-form.php:400
+#: public/partials/wps-rma-refund-request-form.php:346
 msgid "Add More"
 msgstr ""
 
@@ -1525,9 +1524,9 @@ msgid "Item"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-return-meta.php:50
-#: admin/partials/woo-refund-and-exchange-lite-return-meta.php:115
+#: admin/partials/woo-refund-and-exchange-lite-return-meta.php:109
 #: public/class-woo-refund-and-exchange-lite-public.php:248
-#: public/partials/wps-rma-refund-request-form.php:88
+#: public/partials/wps-rma-refund-request-form.php:91
 msgid "Total"
 msgstr ""
 
@@ -1539,13 +1538,17 @@ msgstr ""
 msgid "Variation ID:"
 msgstr ""
 
-#: admin/partials/woo-refund-and-exchange-lite-return-meta.php:129
-#: admin/partials/woo-refund-and-exchange-lite-return-meta.php:211
+#: admin/partials/woo-refund-and-exchange-lite-return-meta.php:114
+msgid "(Shipping Charges)"
+msgstr ""
+
+#: admin/partials/woo-refund-and-exchange-lite-return-meta.php:130
+#: admin/partials/woo-refund-and-exchange-lite-return-meta.php:212
 #: public/class-woo-refund-and-exchange-lite-public.php:321
 msgid "Refund Amount"
 msgstr ""
 
-#: admin/partials/woo-refund-and-exchange-lite-return-meta.php:133
+#: admin/partials/woo-refund-and-exchange-lite-return-meta.php:134
 #: emails/class-wps-rma-order-messages-email.php:161
 #: emails/class-wps-rma-refund-request-accept-email.php:170
 #: emails/class-wps-rma-refund-request-cancel-email.php:160
@@ -1553,62 +1556,62 @@ msgstr ""
 msgid "Subject"
 msgstr ""
 
-#: admin/partials/woo-refund-and-exchange-lite-return-meta.php:136
+#: admin/partials/woo-refund-and-exchange-lite-return-meta.php:137
 #: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:489
 msgid "Reason"
 msgstr ""
 
-#: admin/partials/woo-refund-and-exchange-lite-return-meta.php:144
+#: admin/partials/woo-refund-and-exchange-lite-return-meta.php:145
 msgid "Bank Details"
 msgstr ""
 
-#: admin/partials/woo-refund-and-exchange-lite-return-meta.php:152
-#: admin/partials/woo-refund-and-exchange-lite-return-meta.php:160
+#: admin/partials/woo-refund-and-exchange-lite-return-meta.php:153
+#: admin/partials/woo-refund-and-exchange-lite-return-meta.php:161
 msgid "Attachment"
 msgstr ""
 
-#: admin/partials/woo-refund-and-exchange-lite-return-meta.php:160
+#: admin/partials/woo-refund-and-exchange-lite-return-meta.php:161
 msgid "/attachment/"
 msgstr ""
 
-#: admin/partials/woo-refund-and-exchange-lite-return-meta.php:165
+#: admin/partials/woo-refund-and-exchange-lite-return-meta.php:166
 msgid "No attachment from customer"
 msgstr ""
 
-#: admin/partials/woo-refund-and-exchange-lite-return-meta.php:185
+#: admin/partials/woo-refund-and-exchange-lite-return-meta.php:186
 msgid "Accept Request"
 msgstr ""
 
-#: admin/partials/woo-refund-and-exchange-lite-return-meta.php:186
+#: admin/partials/woo-refund-and-exchange-lite-return-meta.php:187
 #: public/class-woo-refund-and-exchange-lite-public.php:343
 msgid "Cancel Request"
 msgstr ""
 
-#: admin/partials/woo-refund-and-exchange-lite-return-meta.php:193
+#: admin/partials/woo-refund-and-exchange-lite-return-meta.php:194
 msgid "admin/image/loader.gif"
 msgstr ""
 
-#: admin/partials/woo-refund-and-exchange-lite-return-meta.php:203
+#: admin/partials/woo-refund-and-exchange-lite-return-meta.php:204
 msgid "Following product refund request is approved on"
 msgstr ""
 
-#: admin/partials/woo-refund-and-exchange-lite-return-meta.php:222
+#: admin/partials/woo-refund-and-exchange-lite-return-meta.php:223
 msgid "When Product Back in stock then for stock management click on "
 msgstr ""
 
-#: admin/partials/woo-refund-and-exchange-lite-return-meta.php:222
+#: admin/partials/woo-refund-and-exchange-lite-return-meta.php:223
 msgid "Manage Stock"
 msgstr ""
 
-#: admin/partials/woo-refund-and-exchange-lite-return-meta.php:229
+#: admin/partials/woo-refund-and-exchange-lite-return-meta.php:230
 msgid "Following product refund request is cancelled on"
 msgstr ""
 
-#: admin/partials/woo-refund-and-exchange-lite-return-meta.php:248
+#: admin/partials/woo-refund-and-exchange-lite-return-meta.php:249
 msgid "No request from customer"
 msgstr ""
 
-#: admin/partials/woo-refund-and-exchange-lite-return-meta.php:249
+#: admin/partials/woo-refund-and-exchange-lite-return-meta.php:250
 msgid "Initiate Refund Request"
 msgstr ""
 
@@ -1648,6 +1651,10 @@ msgstr ""
 msgid "Are you sure you want to cancel this return request?"
 msgstr ""
 
+#: common/class-woo-refund-and-exchange-lite-common.php:97
+msgid "Please Enter Correct Quantity."
+msgstr ""
+
 #: common/class-woo-refund-and-exchange-lite-common.php:140
 msgid "Shop Manager"
 msgstr ""
@@ -1672,40 +1679,40 @@ msgstr ""
 msgid "Phone number with country code. Ex: 1XXXXXXX987 (\"+\" not allowed)"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:309
+#: common/class-woo-refund-and-exchange-lite-common.php:356
 #, php-format
 msgid "Refund Requested <span class=\"count\">(%s)</span>"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:320
+#: common/class-woo-refund-and-exchange-lite-common.php:367
 #, php-format
 msgid "Refund Approved <span class=\"count\">(%s)</span>"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:331
+#: common/class-woo-refund-and-exchange-lite-common.php:378
 #, php-format
 msgid "Refund Cancelled <span class=\"count\">(%s)</span>"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:349
+#: common/class-woo-refund-and-exchange-lite-common.php:396
 msgid "Refund Requested"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:350
+#: common/class-woo-refund-and-exchange-lite-common.php:397
 msgid "Refund Approved"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:351
+#: common/class-woo-refund-and-exchange-lite-common.php:398
 msgid "Refund Cancelled"
 msgstr ""
 
 #: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:29
-#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:143
+#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:134
 msgid "No Reason"
 msgstr ""
 
 #: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:37
-#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:151
+#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:142
 msgid "Reason of Refund"
 msgstr ""
 
@@ -1894,77 +1901,73 @@ msgstr ""
 msgid "oops looks like nothing is here"
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:59
+#: includes/woo-refund-and-exchange-lite-common-functions.php:68
 msgid " days exceed must be less than "
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:66
+#: includes/woo-refund-and-exchange-lite-common-functions.php:74
 msgid " days must be greater than "
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:73
+#: includes/woo-refund-and-exchange-lite-common-functions.php:80
 msgid " days must be less than equal to "
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:80
+#: includes/woo-refund-and-exchange-lite-common-functions.php:86
 msgid " days must be greater than equal to "
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:85
-msgid " max days is blank"
-msgstr ""
-
-#: includes/woo-refund-and-exchange-lite-common-functions.php:93
-#: includes/woo-refund-and-exchange-lite-common-functions.php:100
+#: includes/woo-refund-and-exchange-lite-common-functions.php:105
+#: includes/woo-refund-and-exchange-lite-common-functions.php:111
 msgid " request can not make on this order."
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:108
+#: includes/woo-refund-and-exchange-lite-common-functions.php:116
 msgid " request is disabled."
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:114
+#: includes/woo-refund-and-exchange-lite-common-functions.php:122
 msgid "Refund request is already made and accepted"
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:122
-msgid "is not available right now"
+#: includes/woo-refund-and-exchange-lite-common-functions.php:130
+msgid "is not available right now, Please try again later"
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:231
+#: includes/woo-refund-and-exchange-lite-common-functions.php:239
 msgid ""
 "Your Giftcard has been expired so you can not proceed with the exchange. "
 "Thanks"
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:238
+#: includes/woo-refund-and-exchange-lite-common-functions.php:246
 msgid ""
 "Your Giftcard has been used so you can not proceed with the exchange. Thanks"
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:278
+#: includes/woo-refund-and-exchange-lite-common-functions.php:286
 msgid "User Request to refund product"
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:282
+#: includes/woo-refund-and-exchange-lite-common-functions.php:290
 msgid ""
 "Refund request placed successfully. You have received a notification mail "
 "regarding this. You will redirect to the My Account Page"
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:388
+#: includes/woo-refund-and-exchange-lite-common-functions.php:396
 msgid "Added the return item info"
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:419
+#: includes/woo-refund-and-exchange-lite-common-functions.php:427
 msgid "User Request of Refund Product is approved"
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:476
+#: includes/woo-refund-and-exchange-lite-common-functions.php:484
 msgid "User Request of Refund is cancelled by customer"
 msgstr ""
 
-#: includes/woo-refund-and-exchange-lite-common-functions.php:478
+#: includes/woo-refund-and-exchange-lite-common-functions.php:486
 msgid "User Request of Refund is cancelled"
 msgstr ""
 
@@ -2130,87 +2133,102 @@ msgstr ""
 msgid "No Refund Request Found For this order"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:75
+#: public/class-woo-refund-and-exchange-lite-public.php:399
+msgid "Refund Rules"
+msgstr ""
+
+#: public/class-woo-refund-and-exchange-lite-public.php:425
+#, php-format
+msgid "Refund are valid for %s days"
+msgstr ""
+
+#: public/class-woo-refund-and-exchange-lite-public.php:428
+#, php-format
+msgid "Refund days are exceed, must be less than %s days"
+msgstr ""
+
+#: public/class-woo-refund-and-exchange-lite-public.php:433
+#: public/class-woo-refund-and-exchange-lite-public.php:436
+#, php-format
+msgid "Refund are valid after %s days"
+msgstr ""
+
+#: public/class-woo-refund-and-exchange-lite-public.php:451
+#, php-format
+msgid "Refund allowed for these order statuses :- %s"
+msgstr ""
+
+#: public/partials/wps-rma-refund-request-form.php:78
 msgid "Order's Product Refund Request Form"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:195
-#: public/partials/wps-rma-refund-request-form.php:231
-#: public/partials/wps-rma-refund-request-form.php:273
+#: public/partials/wps-rma-refund-request-form.php:197
+#: public/partials/wps-rma-refund-request-form.php:224
 msgid "(incl. tax)"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:199
-#: public/partials/wps-rma-refund-request-form.php:235
-#: public/partials/wps-rma-refund-request-form.php:283
+#: public/partials/wps-rma-refund-request-form.php:201
+#: public/partials/wps-rma-refund-request-form.php:228
 msgid "(excl. tax)"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:254
+#: public/partials/wps-rma-refund-request-form.php:218
 msgid "Total Refund Amount"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:269
-msgid "(incl. tax & shipping charges) "
+#: public/partials/wps-rma-refund-request-form.php:234
+msgid "Shipping Charges"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:279
-msgid "(excl. tax & shipping charge)"
-msgstr ""
-
-#: public/partials/wps-rma-refund-request-form.php:288
-msgid "(shipping charge) "
-msgstr ""
-
-#: public/partials/wps-rma-refund-request-form.php:315
+#: public/partials/wps-rma-refund-request-form.php:261
 msgid "Bank Account Details"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:319
+#: public/partials/wps-rma-refund-request-form.php:265
 msgid "Please Enter the bank details for manual refund"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:329
+#: public/partials/wps-rma-refund-request-form.php:275
 msgid "Subject of Refund Request"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:346
+#: public/partials/wps-rma-refund-request-form.php:292
 msgid "Other"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:350
+#: public/partials/wps-rma-refund-request-form.php:296
 msgid "Write your refund reason"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:361
+#: public/partials/wps-rma-refund-request-form.php:307
 msgid "Description for Refund Reason"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:370
+#: public/partials/wps-rma-refund-request-form.php:316
 msgid "Write your description for a refund"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:392
+#: public/partials/wps-rma-refund-request-form.php:338
 msgid "Attach Files"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:401
+#: public/partials/wps-rma-refund-request-form.php:347
 msgid "Only png, jpg and jpeg extension file is approved"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:415
+#: public/partials/wps-rma-refund-request-form.php:361
 msgid "Recieve Refund Related update over Message : "
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:417
+#: public/partials/wps-rma-refund-request-form.php:363
 msgid "Phone number with country code. Ex : 1XXXXXXX987 ( \"+\" not allowed)"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:423
+#: public/partials/wps-rma-refund-request-form.php:369
 msgid "Submit Request"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:457
+#: public/partials/wps-rma-refund-request-form.php:403
 msgid "Refund Request Can't make on this order"
 msgstr ""
 
@@ -2231,7 +2249,7 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:458
+#: woocommerce-refund-and-exchange-lite.php:470
 msgid ""
 "Woocommerce is not activated, Please activate Woocommerce first to install "
 "WooCommerce Refund and Exchange Lite."
