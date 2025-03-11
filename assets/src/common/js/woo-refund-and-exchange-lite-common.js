@@ -90,6 +90,9 @@ jQuery(function($){
 		if ( qty_error ) {
 			alerthtml += '<li>'+ wrael_common_param.qty_error + '</li>';
 		}
+		if ( alerthtml == 'false' ) {
+			alerthtml = '';
+		}
 		
 		if (alerthtml != '') {
 			$( '#wps_rma_return_alert' ).show();
