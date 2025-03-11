@@ -197,9 +197,8 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 == Changelog == 
 
 = 4.4.8 - Released on 11 March 2025 = 
-* New: Compatibility with the latest WP [6.7.2] and WC [9.7.1]
-* New: Added Refund and Exchange Rules on the Order View Page
-* Enhancement: Dynamic Calculation of Global Shipping on the Exchange Request Form.
+* New: Compatibility with the latest WC [9.7.1]
+* New: Added Refund Rules on the Order View Page
 
 = 4.4.7 - Released on 21 Febuary 2025 = 
 * New: Compatibility with the latest WP [6.7.2] and WC [9.6.2]
@@ -444,6 +443,5 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 == Upgrade Notice ==
 
 = 4.4.8 - Released on 11 March 2025 = 
-* New: Compatibility with the latest WP [6.7.2] and WC [9.7.1]
-* New: Added Refund and Exchange Rules on the Order View Page
-* Enhancement: Dynamic Calculation of Global Shipping on the Exchange Request Form.
+* New: Compatibility with the latest WC [9.7.1]
+* New: Added Refund Rules on the Order View Page
