@@ -82,7 +82,7 @@ if ( isset( $requested_products ) && ! empty( $requested_products ) ) {
 	}
 }
 
-$shipping_price = 0;
+$shipping_price = '';
 if ( isset( $products[ $date ]['shipping_price'] ) && ! empty( $products[ $date ]['shipping_price'] ) ) {
 	$shipping_price = esc_html__( '(Shipping Charges Added)', 'woo-refund-and-exchange-lite' );
 	$total += $products[ $date ]['shipping_price'];
@@ -186,7 +186,7 @@ if ( $restrict_mail1 ) {
 			}
 		}
 	}
-	$shipping_price = 0;
+	$shipping_price = '';
 	if ( isset( $products[ $date ]['shipping_price'] ) && ! empty( $products[ $date ]['shipping_price'] ) ) {
 		$shipping_price = esc_html__( '(Shipping Charges Added)', 'woo-refund-and-exchange-lite' );
 		$total += $products[ $date ]['shipping_price'];
