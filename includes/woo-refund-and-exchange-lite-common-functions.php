@@ -138,11 +138,11 @@ if ( ! function_exists( 'wps_wrma_format_price' ) ) {
 	/**
 	 * Format the price showing on the frontend and the backend
 	 *
-	 * @param string $price is current showing price.
-	 * @param string $currency_symbol .
+	 * @param mixed $price is current showing price.
+	 * @param mixed $currency_symbol . 
 	 */
 	function wps_wrma_format_price( $price, $currency_symbol ) {
-		$price           = apply_filters( 'formatted_woocommerce_price', number_format( $price, wc_get_price_decimals(), wc_get_price_decimal_separator(), wc_get_price_thousand_separator() ), $price, wc_get_price_decimals(), wc_get_price_decimal_separator(), wc_get_price_thousand_separator() );
+		$price           = apply_filters( 'formatted_woocommerce_price', number_format( (float) $price, wc_get_price_decimals(), wc_get_price_decimal_separator(), wc_get_price_thousand_separator() ), $price, wc_get_price_decimals(), wc_get_price_decimal_separator(), wc_get_price_thousand_separator() );
 		$price           = apply_filters( 'wps_rma_price_change_everywhere', $price );
 		$currency_pos    = get_option( 'woocommerce_currency_pos' );
 		switch ( $currency_pos ) {

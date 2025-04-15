@@ -77,7 +77,7 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 						if ( $json_validate ) {
 							foreach ( $order_obj->get_items() as $item_id => $item ) {
 								foreach ( json_decode( $products ) as $key => $value ) {
-									if ( ( isset( $value->product_id ) && array_key_exists( $value->product_id, $item_detail ) ) || ( isset( $value->variation_id ) && array_key_exists( $value->variation_id, $item_detail ) ) && isset( $value->qty ) ) {
+									if ( ( ( isset( $value->product_id ) && array_key_exists( $value->product_id, $item_detail ) ) || ( isset( $value->variation_id ) && array_key_exists( $value->variation_id, $item_detail ) ) ) && isset( $value->qty ) ) {
 										$product = $item->get_product();
 										if ( 'variation' === $product->get_type() ) {
 											$variation_id = $item->get_variation_id();

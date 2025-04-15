@@ -13,9 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-
 get_header( 'shop' );
-
 
 $wps_wrma_show_sidebar_on_form =
 // Side show/hide on refund request form.
@@ -145,9 +143,8 @@ if ( isset( $_GET['wps_rma_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp
 											<input type="hidden" name="wps_rma_product_amount" class="wps_rma_product_amount" data-item_id="<?php echo esc_html( $item_id ); ?>" value="<?php echo esc_html( $item_price / $item->get_quantity() ); ?>">
 											<div class="wps-rma-product__wrap">
 												<?php
-												$is_visible        = $product && $product->is_visible();
-												$product_permalink = $is_visible ? $product->get_permalink( $item ) : '';
-												$thumbnail = wp_get_attachment_image( $product->get_image_id(), 'thumbnail' );
+												$product_permalink = ( $product && $product->is_visible() ) ? $product->get_permalink( $item ) : '';
+												$thumbnail = ( $product && wp_get_attachment_image( $product->get_image_id(), 'thumbnail' ) ) ? wp_get_attachment_image( $product->get_image_id(), 'thumbnail' ) : null;
 												if ( ! empty( $thumbnail ) ) {
 													echo wp_kses_post( $thumbnail );
 												} else {
