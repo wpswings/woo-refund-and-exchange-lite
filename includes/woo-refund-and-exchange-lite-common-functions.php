@@ -248,6 +248,21 @@ if ( ! function_exists( 'wps_rma_save_return_request_callback' ) ) {
 				return $response;
 			}
 		}
+		// Quantity check.
+		$order_items = $order->get_items();
+		foreach( $order_items as $item_id => $item ) {
+			if ( isset( $return_products['products'] ) && ! empty( $return_products['products'] ) && is_array( $return_products['products'] ) ) {
+				foreach ( $return_products['products'] as $post_key => $post_value ) {
+					if ( $item_id == $post_value['item_id'] ) {
+						if ( isset( $post_value['qty'] ) && ! empty( $post_value['qty'] ) && $post_value['qty'] > $item->get_quantity() ) {
+							$response['flag'] = false;
+							$response['msg']  = esc_html__( 'You can not request more than the purchased quantity.', 'woo-refund-and-exchange-lite' );
+							return $response;
+						}
+					}
+				}
+			}
+		}
 		wps_rma_update_meta_data( $order_id, 'wps_rma_request_made', $item_id );
 		$products = wps_rma_get_meta_data( $order_id, 'wps_rma_return_product', true );
 		$pending  = true;
@@ -269,7 +284,6 @@ if ( ! function_exists( 'wps_rma_save_return_request_callback' ) ) {
 			$date                        = time();
 			$products[ $date ]           = $return_products;
 			$products[ $date ]['status'] = 'pending';
-
 		}
 
 		wps_rma_update_meta_data( $order_id, 'wps_rma_return_product', $products );
