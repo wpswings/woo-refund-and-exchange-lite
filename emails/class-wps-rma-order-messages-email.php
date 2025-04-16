@@ -50,7 +50,8 @@ class Wps_Rma_Order_Messages_Email extends WC_Email {
 			'{message_date}' => '',
 			'{order_id}'     => '',
 		);
-		$this->order_id       = '';
+		$this->order_id  = '';
+		$this->msg       = '';
 		// Call parent constructor to load any other defaults not explicity defined here.
 		parent::__construct();
 	}

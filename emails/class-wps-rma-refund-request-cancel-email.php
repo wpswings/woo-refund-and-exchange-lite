@@ -51,6 +51,7 @@ class Wps_Rma_Refund_Request_Cancel_Email extends WC_Email {
 			'{order_id}' => '',
 		);
 		$this->order_id = '';
+		$this->msg = '';
 		// Call parent constructor to load any other defaults not explicity defined here.
 		parent::__construct();
 	}
