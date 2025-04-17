@@ -197,7 +197,7 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 == Changelog == 
 
 = 4.4.9 - Released on 17 April 2025 = 
-* New: Compatibility with the latest WC [9.7.1] and WP [6.8]
+* New: Compatibility with the latest WC [9.8.1] and WP [6.8]
 * Fix: Resolved an issue affecting the display of the shipping label in email notifications.
 * Fix: Addressed and corrected various validation issues throughout the plugin.
 
@@ -448,6 +448,6 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 == Upgrade Notice ==
 
 = 4.4.9 - Released on 17 April 2025 = 
-* New: Compatibility with the latest WC [9.7.1] and WP [6.8]
+* New: Compatibility with the latest WC [9.8.1] and WP [6.8]
 * Fix: Resolved an issue affecting the display of the shipping label in email notifications.
 * Fix: Addressed and corrected various validation issues throughout the plugin.
