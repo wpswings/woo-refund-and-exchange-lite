@@ -3,10 +3,10 @@ Contributors: wpswings
 Donate link: https://wpswings.com/
 Tags: refund, exchange, wallet, RMA, woocommerce cancel order
 Requires at least: 5.5.0
-Tested up to: 6.7.2
+Tested up to: 6.8
 WC requires at least: 5.5.0
-WC tested up to: 9.7.1
-Stable tag: 4.4.8
+WC tested up to: 9.8.1
+Stable tag: 4.4.9
 Requires PHP:  7.2
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -17,7 +17,7 @@ Provide an easy refund service and increase customer satisfaction with WooCommer
 
 **HIGHEST-RATED REFUND AND EXCHANGE MANAGEMENT PLUGIN THAT LIFTS CUSTOMER SATISFACTION, AND CREATES A SIMPLE WOOCOMMERCE REFUND SYSTEM WITH EXCHANGE, WALLET, AND CANCEL ORDER FEATURES.**
 
-[**Return Refund and Exchange for WooCommerce**](https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=rma-org&utm_medium=referral&utm_campaign=rma-pro)) lets you create simple returns and WooCommerce refund requests management system stuffed with an organized refund, exchange, wallet, and cancel order features. [**RMA Return, Refund & Exchange Plugin for WooCommerce Pro**](https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=rma-org&utm_medium=referral&utm_campaign=rma-pro) eliminates on-call complaints and helps manage returned stock. 
+Return Refund and Exchange for WooCommerce lets you create simple returns and WooCommerce refund requests management system stuffed with an organized refund, exchange, wallet, and cancel order features. [**RMA Return, Refund & Exchange Plugin for WooCommerce Pro**](https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=rma-org&utm_medium=referral&utm_campaign=rma-pro) eliminates on-call complaints and helps manage returned stock. 
 
 Customers can request full or partial WooCommerce refunds (based on the return policy). The whole process of WordPress Refund Plugin goes under a dedicated and streamlined mailing system that keeps both parties on the same note. Ultimately, the WooCommerce RMA Plugin leads to high customer satisfaction and is the most flexible refund and return order for the WooCommerce plugin.
 
@@ -195,6 +195,11 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 16. API Settings.
 
 == Changelog == 
+
+= 4.4.9 - Released on 17 April 2025 = 
+* New: Compatibility with the latest WC [9.7.1] and WP [6.8]
+* Fix: Resolved an issue affecting the display of the shipping label in email notifications.
+* Fix: Addressed and corrected various validation issues throughout the plugin.
 
 = 4.4.8 - Released on 11 March 2025 = 
 * New: Compatibility with the latest WC [9.7.1]
@@ -442,6 +447,7 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 == Upgrade Notice ==
 
-= 4.4.8 - Released on 11 March 2025 = 
-* New: Compatibility with the latest WC [9.7.1]
-* New: Added Refund Rules on the Order View Page
+= 4.4.9 - Released on 17 April 2025 = 
+* New: Compatibility with the latest WC [9.7.1] and WP [6.8]
+* Fix: Resolved an issue affecting the display of the shipping label in email notifications.
+* Fix: Addressed and corrected various validation issues throughout the plugin.
