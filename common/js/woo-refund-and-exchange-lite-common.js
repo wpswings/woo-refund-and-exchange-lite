@@ -83,7 +83,7 @@ jQuery(function($){
 		}
 		var qty_error = false;
 		$.each( selected_product, function( index, data ){
-			if ( ! parseInt( data.qty ) ) {
+			if (!Number.isInteger(parseInt(data.qty)) || parseInt(data.qty) <= 0) {
 				qty_error = true;
 			}
 		});

@@ -311,7 +311,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 										// To show extra row in the order view refund request table.
 										do_action( 'wps_rma_add_extra_fields_row', $order->get_id() );
 
-										$shipping_price = 0;
+										$shipping_price = '';
 										if ( isset( $product_data['shipping_price'] ) && ! empty( $product_data['shipping_price'] ) ) {
 											$shipping_price = esc_html__( '(Shipping Charges Added)', 'woo-refund-and-exchange-lite' );
 											$total += $product_data['shipping_price'];

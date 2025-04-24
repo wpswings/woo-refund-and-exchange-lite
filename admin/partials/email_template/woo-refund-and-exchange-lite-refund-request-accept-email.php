@@ -78,7 +78,7 @@ if ( isset( $requested_products ) && ! empty( $requested_products ) ) {
 	}
 }
 $message        = apply_filters( 'wps_rma_extend_extra_field_table_approve_email', $message );
-$shipping_price = 0;
+$shipping_price = '';
 if ( isset($products[ $date ]['shipping_price'] ) && ! empty( $products[ $date ]['shipping_price'] ) ) {
 	$shipping_price = esc_html__( '(Shipping Charges Added)', 'woo-refund-and-exchange-lite' );
 	$total += $products[ $date ]['shipping_price'];
