@@ -33,7 +33,6 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 		 */
 		public function __construct() {
 		}
-
 		/**
 		 * Define the function to process data for custom endpoint.
 		 *
@@ -41,273 +40,258 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 		 * @param   object $wrael_request  data of requesting headers and other information.
 		 * @return  Array $wps_rma_rest_response    returns processed data and status of operations.
 		 */
-		public function wps_rma_refund_request_process( $wrael_request ) {
-			$data                  = $wrael_request->get_params();
-			$order_id              = isset( $data['order_id'] ) ? absint( $data['order_id'] ) : 0;
-			$products              = isset( $data['products'] ) ? $data['products'] : '';
-			$reason                = isset( $data['reason'] ) ? $data['reason'] : '';
-			$refund_method         = isset( $data['refund_method'] ) ? $data['refund_method'] : '';
-			$wps_rma_rest_response = array();
-			$order_obj             = wc_get_order( $order_id );
-			$wps_rma_check_tax     = get_option( 'refund_wps_rma_tax_handling', false );
-			if ( ! empty( $order_id ) && ! empty( $order_obj ) && ! empty( $reason ) ) {
-				$check_refund = wps_rma_show_buttons( 'refund', $order_obj );
-				if ( 'yes' === $check_refund ) {
-					if ( wps_rma_pro_active() && ! empty( $products ) ) {
-						$products1     = array();
-						$refund_items  = array();
-						$refund_amount = 0;
-						$flag          = true;
-						$qty_flag      = true;
-						$item_flag     = true;
-						$invalid_item  = true;
-						$invalid_qty   = true;
-						$item_detail   = array();
-						foreach ( $order_obj->get_items() as $item_id => $item ) {
-							$product = $item->get_product();
-							if ( 'variation' === $product->get_type() ) {
-								$variation_id                 = $item->get_variation_id();
-								$item_detail[ $variation_id ] = $item->get_quantity();
-							} else {
-								$product_id                 = $item->get_product_id();
-								$item_detail[ $product_id ] = $item->get_quantity();
-							}
-						}
-						$json_validate = wps_json_validate( $products );
-						if ( $json_validate ) {
-							foreach ( $order_obj->get_items() as $item_id => $item ) {
-								foreach ( json_decode( $products ) as $key => $value ) {
-									if ( ( ( isset( $value->product_id ) && array_key_exists( $value->product_id, $item_detail ) ) || ( isset( $value->variation_id ) && array_key_exists( $value->variation_id, $item_detail ) ) ) && isset( $value->qty ) ) {
-										$product = $item->get_product();
-										if ( 'variation' === $product->get_type() ) {
-											$variation_id = $item->get_variation_id();
-										} else {
-											$product_id = $item->get_product_id();
-										}
-										if ( ( isset( $value->product_id ) && $product_id == $value->product_id ) || ( isset( $value->variation_id ) && $variation_id == $value->variation_id ) ) {
-											$item_refund_already = wps_rma_get_meta_data( $order_id, 'wps_rma_request_made', true );
-											if ( ! empty( $item_refund_already ) && isset( $item_refund_already[ $item_id ] ) && 'completed' === $item_refund_already[ $item_id ] ) {
-												$flag = false;
-											} elseif ( $value->qty > $item->get_quantity() ) {
-												$qty_flag = false;
-											} else {
-												$item_arr               = array();
-												$item_arr['product_id'] = $item->get_product_id();
-												$product = $item->get_product();
-												if ( 'variation' === $product->get_type() ) {
-													$variation_id = $item->get_variation_id();
-												} else {
-													$variation_id = 0;
-												}
-												$item_arr['item_id']      = $item_id;
-												$item_arr['variation_id'] = $variation_id;
-												$item_arr['qty']          = $value->qty;
-												$wps_rma_check_tax        = get_option( 'refund_wps_rma_tax_handling', false );
-												$tax_price                = $item->get_total_tax() / $item->get_quantity();
-												$item_price               = $item->get_total() / $item->get_quantity();
-												if ( empty( $wps_rma_check_tax ) ) {
-													$item_arr['price'] = $item_price;
-													$refund_amount    += $item_price;
-												} elseif ( 'wps_rma_inlcude_tax' === $wps_rma_check_tax ) {
-													$item_arr['price'] = $item_price + $tax_price;
-													$refund_amount    += $item_price + $tax_price;
-												} elseif ( 'wps_rma_exclude_tax' === $wps_rma_check_tax ) {
-													$item_arr['price'] = $item_price - $tax_price;
-													$refund_amount    += $item_price - $tax_price;
-												}
-												$refund_items[] = $item_arr;
-											}
-										}
-									} else {
-										$item_flag = true;
-										if ( isset( $value->product_id ) || isset( $value->variation_id ) ) {
-											$item_flag = false;
-										}
-										if ( $item_flag ) {
-											$invalid_item = false;
-										} elseif ( ! isset( $value->qty ) ) {
-											$invalid_qty = false;
-										} else {
-											$item_flag = false;
-										}
-									}
-								}
-							}
-						}
-						if ( ! $flag ) {
-							$wps_rma_rest_response['message'] = 'error';
-							$wps_rma_rest_response['status']  = 404;
-							$wps_rma_rest_response['data']    = esc_html__( 'Return Request Already has been made and accepted for the items you have given', 'woo-refund-and-exchange-lite' );
-						} elseif ( ! $qty_flag ) {
-							$wps_rma_rest_response['message'] = 'error';
-							$wps_rma_rest_response['status']  = 404;
-							$wps_rma_rest_response['data']    = esc_html__( 'Quantity given for items is greater than the orders items quantity', 'woo-refund-and-exchange-lite' );
-						} elseif ( ! $item_flag ) {
-							$wps_rma_rest_response['message'] = 'error';
-							$wps_rma_rest_response['status']  = 404;
-							$wps_rma_rest_response['data']    = esc_html__( 'These item id does not belong to the order', 'woo-refund-and-exchange-lite' );
-						} elseif ( ! $invalid_item ) {
-							$wps_rma_rest_response['message'] = 'error';
-							$wps_rma_rest_response['status']  = 404;
-							$wps_rma_rest_response['data']    = esc_html__( 'Please give the item ids which needs to be refunded', 'woo-refund-and-exchange-lite' );
-						} elseif ( ! $invalid_qty ) {
-							$wps_rma_rest_response['message'] = 'error';
-							$wps_rma_rest_response['status']  = 404;
-							$wps_rma_rest_response['data']    = esc_html__( 'Please give the item qty which needs to be refunded', 'woo-refund-and-exchange-lite' );
-						} elseif ( ! $json_validate ) {
-							$wps_rma_rest_response['message'] = 'error';
-							$wps_rma_rest_response['status']  = 404;
-							$wps_rma_rest_response['data']    = esc_html__( 'Products are given by you doesn\'t a valid json format', 'woo-refund-and-exchange-lite' );
-						} elseif ( empty( $products ) ) {
-							$wps_rma_rest_response['status'] = 404;
-							$wps_rma_rest_response['data']   = esc_html__( 'Please Provide the data for the products', 'woo-refund-and-exchange-lite' );
-						} elseif ( empty( $products ) ) {
-							$wps_rma_rest_response['status'] = 404;
-							$wps_rma_rest_response['data']   = esc_html__( 'Please Provide the data for the products', 'woo-refund-and-exchange-lite' );
-						} else {
-							$products1['products']      = $refund_items;
-							$products1['order_id']      = $order_id;
-							$products1['subject']       = $reason;
-							$products1['refund_method'] = $refund_method;
-							$products1['amount']        = $refund_amount;
-							$wps_rma_resultsdata        = wps_rma_save_return_request_callback( $order_id, $refund_method, $products1 );
-							if ( ! empty( $wps_rma_resultsdata ) ) {
-								$wps_rma_rest_response['message'] = 'success';
-								$wps_rma_rest_response['status']  = 200;
-								$wps_rma_rest_response['data']    = esc_html__( 'Refund Request Send Successfully', 'woo-refund-and-exchange-lite' );
-							} else {
-								$wps_rma_rest_response['message'] = 'error';
-								$wps_rma_rest_response['status']  = 404;
-								$wps_rma_rest_response['data']    = esc_html__( 'Some problem occur while refund requesting', 'woo-refund-and-exchange-lite' );
-							}
-						}
-					} else {
-						$products1     = array();
-						$refund_items  = array();
-						$refund_amound = 0;
-						if ( ! empty( $order_obj ) ) {
-							foreach ( $order_obj->get_items() as $item_id => $item ) {
-								$item_arr               = array();
-								$item_arr['product_id'] = $item->get_product_id();
-								if ( $item->is_type( 'variable' ) ) {
-									$variation_id = $item->get_variation_id();
-								} else {
-									$variation_id = 0;
-								}
-								$item_arr['item_id']      = $item_id;
-								$item_arr['variation_id'] = $variation_id;
-								$item_arr['qty']          = $item->get_quantity();
-								$item_tax                 = $item->get_total_tax() / $item->get_quantity();
-								$item_price               = $item->get_total() / $item->get_quantity();
-								if ( empty( $wps_rma_check_tax ) ) {
-									$item_arr['price'] = $item_price;
-									$refund_amound    += $item_price;
-								} elseif ( 'wps_rma_inlcude_tax' === $wps_rma_check_tax ) {
-									$item_arr['price'] = $item_price + $item_tax;
-									$refund_amound    += $item_price + $item_tax;
-								} elseif ( 'wps_rma_exclude_tax' === $wps_rma_check_tax ) {
-									$item_arr['price'] = $item_price - $item_tax;
-									$refund_amound    += $item_price - $item_tax;
-								}
-								$refund_items[] = $item_arr;
-							}
-							$products1['products']      = $refund_items;
-							$products1['order_id']      = $order_id;
-							$products1['subject']       = $reason;
-							$products1['refund_method'] = 'manual_method';
-							$products1['amount']        = $refund_amound;
-						}
-						$wps_rma_resultsdata = wps_rma_save_return_request_callback( $order_id, 'manual_method', $products1 );
-						$flag_refund_made    = false;
-						$products            = wps_rma_get_meta_data( $order_id, 'wps_rma_return_product', true );
-						if ( isset( $products ) && ! empty( $products ) ) {
-							foreach ( $products as $date => $product ) {
-								if ( 'complete' === $product['status'] ) {
-									$flag_refund_made = true;
-								}
-							}
-						}
-						if ( $flag_refund_made ) {
-							$wps_rma_rest_response['message'] = 'error';
-							$wps_rma_rest_response['status']  = 404;
-							$wps_rma_rest_response['data']    = esc_html__( 'Return Request Already has been made and accepted', 'woo-refund-and-exchange-lite' );
-						} elseif ( ! empty( $wps_rma_resultsdata ) ) {
-							$wps_rma_rest_response['message'] = 'success';
-							$wps_rma_rest_response['status']  = 200;
-							$wps_rma_rest_response['data']    = esc_html__( 'Return Request Send Successfully', 'woo-refund-and-exchange-lite' );
-						} else {
-							$wps_rma_rest_response['message'] = 'error';
-							$wps_rma_rest_response['status']  = 404;
-							$wps_rma_rest_response['data']    = esc_html__( 'Some problem occur while refund requesting', 'woo-refund-and-exchange-lite' );
-						}
-					}
-				} else {
-					$wps_rma_rest_response['status'] = 404;
-					$wps_rma_rest_response['data']   = $check_refund;
-				}
-			} elseif ( empty( $order_id ) ) {
-				$wps_rma_rest_response['status'] = 404;
-				$wps_rma_rest_response['data']   = esc_html__( 'Please Provide the order id to perform the process', 'woo-refund-and-exchange-lite' );
-			} elseif ( empty( $order_obj ) ) {
-				$wps_rma_rest_response['status'] = 404;
-				$wps_rma_rest_response['data']   = esc_html__( 'Please Provide the correct order id to perform the process', 'woo-refund-and-exchange-lite' );
-			} elseif ( empty( $reason ) ) {
-				$wps_rma_rest_response['status'] = 404;
-				$wps_rma_rest_response['data']   = esc_html__( 'Please Provide the reason for refund', 'woo-refund-and-exchange-lite' );
+		public static function wps_rma_refund_request_process($wrael_request) {
+			$data          = $wrael_request->get_params();
+			$order_id      = isset($data['order_id']) ? absint($data['order_id']) : 0;
+			$refund_items  = isset($data['refund_items']) ? $data['refund_items'] : '';
+			$reason        = isset($data['reason']) ? $data['reason'] : '';
+			$refund_method = isset($data['refund_method']) ? $data['refund_method'] : '';
+			$response      = array();
+			$order         = wc_get_order($order_id);
+		
+			if (!$order_id || !$order) {
+				$response['status'] = 404;
+				$response['data']   = esc_html__('Please provide a valid order ID.', 'woo-refund-and-exchange-lite');
+				return $response;
 			}
-			return $wps_rma_rest_response;
+		
+			$check_refund = wps_rma_show_buttons('refund', $order);
+			if ('yes' !== $check_refund) {
+				return ['status' => 404, 'data' => $check_refund];
+			}
+		
+			$tax_option = get_option('refund_wps_rma_tax_handling', false);
+		
+			if (wps_rma_pro_active() && $refund_items) {
+				return self::process_pro_refund($order, $order_id, $refund_items, $reason, $refund_method, $tax_option);
+			}
+		
+			return self::process_basic_refund($order, $order_id, $reason, $tax_option);
 		}
 
 		/**
+		 * Process the refund request for Pro version.
+		 *
+		 * @param object $order         The order object.
+		 * @param int    $order_id     The order ID.
+		 * @param array  $refund_items The refund items.
+		 * @param string $reason       The reason for the refund.
+		 * @param string $refund_method The refund method.
+		 * @param string $tax_option   The tax option.
+		 *
+		 * @return array
+		 */
+		private static function process_pro_refund($order, $order_id, $refund_items, $reason, $refund_method, $tax_option) {
+			$response     = [];
+			$items_detail = [];
+			foreach ($order->get_items() as $item_id => $item) {
+				$product = $item->get_product();
+				$id      = $product->get_type() === 'variation' ? $item->get_variation_id() : $item->get_product_id();
+				$items_detail[$id] = $item->get_quantity();
+			}
+		
+			if ( is_string( $refund_items ) && !wps_json_validate($refund_items)) {
+				return ['message' => 'error', 'status' => 404, 'data' => esc_html__('Invalid JSON format.', 'woo-refund-and-exchange-lite')];
+			}
+
+			$refund_items_array = [];
+			$refund_amount = 0;
+			$flags = ['valid' => true, 'qty' => true, 'item' => true, 'invalid_item' => true, 'invalid_qty' => true];
+		
+			foreach ($order->get_items() as $item_id => $item) {
+				$product = $item->get_product();
+				$product_id = $item->get_product_id();
+				$variation_id = $item->get_variation_id();
+		
+				foreach ($refund_items as $data) {
+					$id = isset($data['product_id']) ? $data['product_id'] : (isset($data['variation_id']) ? $data['variation_id'] : 0);
+					if (!isset($items_detail[$id]) || !isset($data['qty'])) {
+						$flags['item'] = isset($data['product_id']) || isset($data['variation_id']) ? false : true;
+						$flags['invalid_item'] = !$flags['item'] ? $flags['invalid_item'] : false;
+						$flags['invalid_qty'] = !isset($data['qty']) ? false : $flags['invalid_qty'];
+						continue;
+					}
+					if ( $id !== $product_id && $id !== $variation_id ) {
+						continue;
+					}
+					$already_refunded = wps_rma_get_meta_data($order_id, 'wps_rma_request_made', true);
+
+					if ( isset( $already_refunded[$item_id] ) && !empty($already_refunded[$item_id]) && $already_refunded[$item_id] === 'completed') {
+						$flags['valid'] = false;
+						continue;
+					}
+		
+					if ($data['qty'] > $item->get_quantity() || $data['qty'] <= 0) {
+						$flags['qty'] = false;
+						continue;
+					}
+		
+					$item_price = $item->get_total() / $item->get_quantity();
+					$tax_price  = $item->get_total_tax() / $item->get_quantity();
+					$price = $item_price;
+					if ( $tax_option === 'wps_rma_inlcude_tax' ) {
+						$price += $tax_price;
+					} elseif ( $tax_option === 'wps_rma_exclude_tax' ) {
+						$price -= $tax_price;
+					}
+		
+					$refund_items_array[] = [
+						'product_id'   => $product_id,
+						'item_id'      => $item_id,
+						'variation_id' => $variation_id,
+						'qty'          => $data['qty'],
+						'price'        => $price
+					];
+					$refund_amount += $price;
+				}
+			}
+		
+			foreach ($flags as $flag => $value) {
+				if (!$value) {
+					$messages = [
+						'valid'        => 'Return request already accepted for the items.',
+						'qty'          => 'Quantity exceeds ordered amount.',
+						'item'         => 'Item ID not part of this order.',
+						'invalid_item' => 'Missing item ID for refund.',
+						'invalid_qty'  => 'Missing quantity for refund.'
+					];
+					return ['message' => 'error', 'status' => 404, 'data' => esc_html__($messages[$flag], 'woo-refund-and-exchange-lite')];
+				}
+			}
+		
+			$refund_data = [
+				'products'      => $refund_items_array,
+				'order_id'      => $order_id,
+				'subject'       => $reason,
+				'refund_method' => $refund_method,
+				'amount'        => $refund_amount
+			];
+		
+			$result = wps_rma_save_return_request_callback($order_id, $refund_method, $refund_data);
+			if ($result) {
+				return ['message' => 'success', 'status' => 200, 'data' => esc_html__('Refund request sent successfully.', 'woo-refund-and-exchange-lite')];
+			}
+		
+			return ['message' => 'error', 'status' => 404, 'data' => esc_html__('An error occurred while submitting the refund request.', 'woo-refund-and-exchange-lite')];
+		}
+		
+		/**
+		 * Process the refund request for Basic version.
+		 *
+		 * @param object $order       The order object.
+		 * @param int    $order_id   The order ID.
+		 * @param string $reason     The reason for the refund.
+		 * @param string $tax_option The tax option.
+		 *
+		 * @return array
+		 */
+		private static function process_basic_refund($order, $order_id, $reason, $tax_option) {
+			$refund_items = [];
+			$refund_amount = 0;
+		
+			foreach ($order->get_items() as $item_id => $item) {
+				$item_price = $item->get_total() / $item->get_quantity();
+				$item_tax = $item->get_total_tax() / $item->get_quantity();
+		
+				$price = $item_price;
+				if ($tax_option === 'wps_rma_inlcude_tax') {
+					$price += $item_tax;
+				} elseif ($tax_option === 'wps_rma_exclude_tax') {
+					$price -= $item_tax;
+				}
+		
+				$refund_items[] = [
+					'item_id'      => $item_id,
+					'product_id'   => $item->get_product_id(),
+					'variation_id' => $item->is_type('variable') ? $item->get_variation_id() : 0,
+					'qty'          => $item->get_quantity(),
+					'price'        => $price
+				];
+		
+				$refund_amount += $price;
+			}
+		
+			$refund_data = [
+				'products'      => $refund_items,
+				'order_id'      => $order_id,
+				'subject'       => $reason,
+				'refund_method' => 'manual_method',
+				'amount'        => $refund_amount
+			];
+		
+			$existing_requests = wps_rma_get_meta_data($order_id, 'wps_rma_return_product', true);
+			foreach ((array)$existing_requests as $request) {
+				if ( isset( $request['status'] ) && $request['status'] === 'complete') {
+					return ['message' => 'error', 'status' => 404, 'data' => esc_html__('Return request already accepted.', 'woo-refund-and-exchange-lite')];
+				}
+			}
+		
+			$result = wps_rma_save_return_request_callback($order_id, 'manual_method', $refund_data);
+			if ($result) {
+				return ['message' => 'success', 'status' => 200, 'data' => esc_html__('Return request sent successfully.', 'woo-refund-and-exchange-lite')];
+			}
+		
+			return ['message' => 'error', 'status' => 404, 'data' => esc_html__('An error occurred while submitting the return request.', 'woo-refund-and-exchange-lite')];
+		}
+		
+
+		/**
 		 * Define the function to process data for custom endpoint.
 		 *
 		 * @since    1.0.0
 		 * @param   object $wrael_request  data of requesting headers and other information.
 		 * @return  Array $wps_rma_rest_response    returns processed data and status of operations.
 		 */
-		public function wps_rma_refund_request_accept_process( $wrael_request ) {
-			$wps_rma_rest_response = array();
-			$data                  = $wrael_request->get_params();
-			$order_id              = isset( $data['order_id'] ) ? absint( $data['order_id'] ) : 0;
-			$flag                  = false;
-			$order_obj             = wc_get_order( $order_id );
-			$flag_completed        = false;
-			if ( ! empty( $order_id ) && ! empty( $order_obj ) ) {
-				$products = wps_rma_get_meta_data( $order_id, 'wps_rma_return_product', true );
-				if ( isset( $products ) && ! empty( $products ) ) {
-					foreach ( $products as $date => $product ) {
-						if ( 'pending' === $product['status'] ) {
-							$flag = true;
-						} elseif ( 'complete' === $product['status'] ) {
-							$flag_completed = true;
+		public static function wps_rma_refund_request_accept_process( $wrael_request ) {
+			$data      = $wrael_request->get_params();
+			$order_id  = isset( $data['order_id'] ) ? absint( $data['order_id'] ) : 0;
+			$response  = [ 'status' => 404 ];
+		
+			if ( ! $order_id ) {
+				$response['data'] = esc_html__( 'Please provide the order ID to perform the process.', 'woo-refund-and-exchange-lite' );
+				return $response;
+			}
+		
+			$order = wc_get_order( $order_id );
+		
+			if ( ! $order ) {
+				$response['data'] = esc_html__( 'Please provide a valid order ID to perform the process.', 'woo-refund-and-exchange-lite' );
+				return $response;
+			}
+		
+			$get_refund_meta         = wps_rma_get_meta_data( $order_id, 'wps_rma_return_product', true );
+			$has_pending      = false;
+			$has_completed    = false;
+		
+			if ( ! empty( $get_refund_meta ) ) {
+				foreach ( $get_refund_meta as $meta_data ) {
+					if ( isset( $meta_data['status'] ) ) {
+						if ( 'pending' === $meta_data['status'] ) {
+							$has_pending = true;
+						} elseif ( 'complete' === $meta_data['status'] ) {
+							$has_completed = true;
 						}
 					}
 				}
-				if ( $flag ) {
-					$wps_rma_resultsdata = wps_rma_return_req_approve_callback( $order_id, $products );
-					if ( ! empty( $wps_rma_resultsdata ) ) {
-						$wps_rma_rest_response['status'] = 200;
-						$wps_rma_rest_response['data']   = esc_html__( 'Return Request Accepted Successfully', 'woo-refund-and-exchange-lite' );
-					} else {
-						$wps_rma_rest_response['status'] = 404;
-						$wps_rma_rest_response['data']   = esc_html__( 'Some problem occur while refund request accepting', 'woo-refund-and-exchange-lite' );
-					}
-				} elseif ( $flag_completed ) {
-					$wps_rma_rest_response['status'] = 404;
-					$wps_rma_rest_response['data']   = esc_html__( 'You have approved the refund request already', 'woo-refund-and-exchange-lite' );
-				} else {
-					$wps_rma_rest_response['status'] = 404;
-					$wps_rma_rest_response['data']   = esc_html__( 'You can only accept the refund request when the request has been made earlier', 'woo-refund-and-exchange-lite' );
+			}
+		
+			if ( $has_pending ) {
+				$result = wps_rma_return_req_approve_callback( $order_id, $get_refund_meta );
+				if ( ! empty( $result ) ) {
+					return [
+						'status' => 200,
+						'data'   => esc_html__( 'Return request accepted successfully.', 'woo-refund-and-exchange-lite' ),
+					];
 				}
-			} elseif ( empty( $order_obj ) ) {
-				$wps_rma_rest_response['status'] = 404;
-				$wps_rma_rest_response['data']   = esc_html__( 'Please Provide the correct order id to perform the process', 'woo-refund-and-exchange-lite' );
+				$response['data'] = esc_html__( 'Some problem occurred while accepting the refund request.', 'woo-refund-and-exchange-lite' );
+			} elseif ( $has_completed ) {
+				$response['data'] = esc_html__( 'You have already approved the refund request.', 'woo-refund-and-exchange-lite' );
 			} else {
-				$wps_rma_rest_response['status'] = 404;
-				$wps_rma_rest_response['data']   = esc_html__( 'Please Provide the order id to perform the process', 'woo-refund-and-exchange-lite' );
+				$response['data'] = esc_html__( 'You can only accept a refund request if one has been made earlier.', 'woo-refund-and-exchange-lite' );
 			}
-			return $wps_rma_rest_response;
-		}
+		
+			return $response;
+		}		
 
 		/**
 		 * Define the function to process data for custom endpoint.
@@ -316,48 +300,55 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 		 * @param   object $wrael_request  data of requesting headers and other information.
 		 * @return  Array $wps_rma_rest_response    returns processed data and status of operations.
 		 */
-		public function wps_rma_refund_request_cancel_process( $wrael_request ) {
-			$wps_rma_rest_response = array();
-			$data                  = $wrael_request->get_params();
-			$order_id              = isset( $data['order_id'] ) ? absint( $data['order_id'] ) : 0;
-			$flag                  = false;
-			$flag_cancel           = false;
-			$order_obj             = wc_get_order( $order_id );
-			if ( ! empty( $order_id ) && ! empty( $order_obj ) ) {
-				$products = wps_rma_get_meta_data( $order_id, 'wps_rma_return_product', true );
-				if ( isset( $products ) && ! empty( $products ) ) {
-					foreach ( $products as $date => $product ) {
-						if ( 'pending' === $product['status'] ) {
-							$flag = true;
-						} elseif ( 'cancel' === $product['status'] ) {
-							$flag_cancel = true;
+		public static function wps_rma_refund_request_cancel_process( $wrael_request ) {
+			$data     = $wrael_request->get_params();
+			$order_id = isset( $data['order_id'] ) ? absint( $data['order_id'] ) : 0;
+			$response = [ 'status' => 404 ];
+		
+			if ( ! $order_id ) {
+				$response['data'] = esc_html__( 'Please provide the order ID to perform the process.', 'woo-refund-and-exchange-lite' );
+				return $response;
+			}
+		
+			$order = wc_get_order( $order_id );
+		
+			if ( ! $order ) {
+				$response['data'] = esc_html__( 'Please provide a valid order ID to perform the process.', 'woo-refund-and-exchange-lite' );
+				return $response;
+			}
+		
+			$get_refund_meta    = wps_rma_get_meta_data( $order_id, 'wps_rma_return_product', true );
+			$has_pending = false;
+			$has_cancel  = false;
+		
+			if ( ! empty( $get_refund_meta ) ) {
+				foreach ( $get_refund_meta as $meta_data ) {
+					if ( isset( $product['status'] ) ) {
+						if ( 'pending' === $meta_data['status'] ) {
+							$has_pending = true;
+						} elseif ( 'cancel' === $meta_data['status'] ) {
+							$has_cancel = true;
 						}
 					}
 				}
-				if ( $flag ) {
-					$wps_rma_resultsdata = wps_rma_return_req_cancel_callback( $order_id, $products, false );
-					if ( ! empty( $wps_rma_resultsdata ) ) {
-						$wps_rma_rest_response['status'] = 200;
-						$wps_rma_rest_response['data']   = esc_html__( 'Return Request Cancel Successfully', 'woo-refund-and-exchange-lite' );
-					} else {
-						$wps_rma_rest_response['status'] = 404;
-						$wps_rma_rest_response['data']   = esc_html__( 'Some problem occur while refund request cancelling', 'woo-refund-and-exchange-lite' );
-					}
-				} elseif ( $flag_cancel ) {
-					$wps_rma_rest_response['status'] = 404;
-					$wps_rma_rest_response['data']   = esc_html__( 'You have cancelled the refund request already', 'woo-refund-and-exchange-lite' );
-				} else {
-					$wps_rma_rest_response['status'] = 404;
-					$wps_rma_rest_response['data']   = esc_html__( 'You can only perform the refund request cancel when the request request has been made earlier', 'woo-refund-and-exchange-lite' );
-				}
-			} elseif ( empty( $order_obj ) ) {
-				$wps_rma_rest_response['status'] = 404;
-				$wps_rma_rest_response['data']   = esc_html__( 'Please Provide the correct order id to perform the process', 'woo-refund-and-exchange-lite' );
-			} else {
-				$wps_rma_rest_response['status'] = 404;
-				$wps_rma_rest_response['data']   = esc_html__( 'Please Provide the order id to perform the process', 'woo-refund-and-exchange-lite' );
 			}
-			return $wps_rma_rest_response;
-		}
+		
+			if ( $has_pending ) {
+				$result = wps_rma_return_req_cancel_callback( $order_id, $get_refund_meta, false );
+				if ( ! empty( $result ) ) {
+					return [
+						'status' => 200,
+						'data'   => esc_html__( 'Return request cancelled successfully.', 'woo-refund-and-exchange-lite' ),
+					];
+				}
+				$response['data'] = esc_html__( 'Some problem occurred while cancelling the refund request.', 'woo-refund-and-exchange-lite' );
+			} elseif ( $has_cancel ) {
+				$response['data'] = esc_html__( 'You have already cancelled the refund request.', 'woo-refund-and-exchange-lite' );
+			} else {
+				$response['data'] = esc_html__( 'You can only cancel a refund request if one has been made earlier.', 'woo-refund-and-exchange-lite' );
+			}
+		
+			return $response;
+		}		
 	}
 }
