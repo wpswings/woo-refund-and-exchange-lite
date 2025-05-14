@@ -332,7 +332,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 					do_action( 'wps_rma_return_request_data', $return_data, $order_id );
 					$response = wps_rma_save_return_request_callback( $order_id, $refund_method, $return_data );
 					if ( true == $response['flag'] ) {
-						do_action( 'wps_rma_do_shiprocket_integration', $order_id, $_POST );
+						do_action( 'wps_rma_do_shiprocket_integration', $order_id, $return_data );
 					}
 				}
 			}

@@ -130,8 +130,8 @@ class Woo_Refund_And_Exchange_Lite_Rest_Api {
 	 * @since    1.0.0
 	 */
 	public function wps_rma_refund_request_callback( $request ) {
-		$response_data = Woo_Refund_And_Exchange_Lite_Api_Process::wps_rma_refund_request_process( $request );
-		$wps_rma_response    = new WP_REST_Response( $response_data, $response_data['status'] );
+		$response_data    = Woo_Refund_And_Exchange_Lite_Api_Process::wps_rma_refund_request_process( $request );
+		$wps_rma_response = new WP_REST_Response( $response_data, $response_data['status'] );
 		return $wps_rma_response;
 	}
 
@@ -144,8 +144,8 @@ class Woo_Refund_And_Exchange_Lite_Rest_Api {
 	 * @since    1.0.0
 	 */
 	public function wps_rma_refund_request_accept_callback( $request ) {
-		$response_data = Woo_Refund_And_Exchange_Lite_Api_Process::wps_rma_refund_request_accept_process( $request );
-		$wps_rma_response    = new WP_REST_Response( $response_data, $response_data['status'] );
+		$response_data    = Woo_Refund_And_Exchange_Lite_Api_Process::wps_rma_refund_request_accept_process( $request );
+		$wps_rma_response = new WP_REST_Response( $response_data, $response_data['status'] );
 		return $wps_rma_response;
 	}
 
@@ -157,8 +157,8 @@ class Woo_Refund_And_Exchange_Lite_Rest_Api {
 		 * @since    1.0.0
 		 */
 	public function wps_rma_refund_request_cancel_callback( $request ) {
-		$response_data = Woo_Refund_And_Exchange_Lite_Api_Process::wps_rma_refund_request_cancel_process( $request );
-		$wps_rma_response    = new WP_REST_Response( $response_data, $response_data['status'] );
+		$response_data    = Woo_Refund_And_Exchange_Lite_Api_Process::wps_rma_refund_request_cancel_process( $request );
+		$wps_rma_response = new WP_REST_Response( $response_data, $response_data['status'] );
 		return $wps_rma_response;
 	}
 }

@@ -426,6 +426,17 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 						'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 					),
 				),
+				array(
+					'title'   => esc_html__( 'Enable Auto Exchange Approval', 'woo-refund-and-exchange-lite' ),
+					'type'    => 'radio-switch',
+					'id'      => 'wps_rma_auto_exchange_approve',
+					'value'   => get_option( 'wps_rma_auto_exchange_approve' ),
+					'class'   => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
+					'options' => array(
+						'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+						'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
+					),
+				),
 			);
 			$wps_rma_settings_exchange =
 			// To extend the refund setting.
