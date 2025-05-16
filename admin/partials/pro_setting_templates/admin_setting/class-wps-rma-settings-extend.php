@@ -427,7 +427,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					),
 				),
 				array(
-					'title'   => esc_html__( 'Enable Auto Exchange Approval', 'woo-refund-and-exchange-lite' ),
+					'title'   => esc_html__( 'Enable Auto Exchange Approval for exchange requests', 'woo-refund-and-exchange-lite' ),
 					'type'    => 'radio-switch',
 					'id'      => 'wps_rma_auto_exchange_approve',
 					'value'   => get_option( 'wps_rma_auto_exchange_approve' ),
