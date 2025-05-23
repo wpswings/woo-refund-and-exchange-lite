@@ -96,13 +96,14 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 
 			$refund_items_array = [];
 			$refund_amount = 0;
-			$flags = ['valid' => true, 'qty' => true, 'item' => true, 'invalid_item' => true, 'invalid_qty' => true];
+			$flags = ['valid' => true, 'qty' => true, 'item' => true, 'invalid_item' => true, 'invalid_qty' => true, 'sale_item' => true];
 		
 			foreach ($order->get_items() as $item_id => $item) {
 				$product = $item->get_product();
 				$product_id = $item->get_product_id();
 				$variation_id = $item->get_variation_id();
-		
+				
+				$check_sale_item = get_option( 'wps_rma_refund_on_sale', 'no' );
 				foreach ($refund_items as $data) {
 					$id = isset($data['product_id']) ? $data['product_id'] : (isset($data['variation_id']) ? $data['variation_id'] : 0);
 					if (!isset($items_detail[$id]) || !isset($data['qty'])) {
@@ -111,6 +112,11 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 						$flags['invalid_qty'] = !isset($data['qty']) ? false : $flags['invalid_qty'];
 						continue;
 					}
+					if ( 'on' != $check_sale_item && ! $product->is_on_sale() ) {
+						$flags['sale_item'] = false;
+						continue;
+					}
+
 					if ( $id !== $product_id && $id !== $variation_id ) {
 						continue;
 					}
@@ -153,7 +159,8 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 						'qty'          => 'Quantity exceeds ordered amount.',
 						'item'         => 'Item ID not part of this order.',
 						'invalid_item' => 'Missing item ID for refund.',
-						'invalid_qty'  => 'Missing quantity for refund.'
+						'invalid_qty'  => 'Missing quantity for refund.',
+						'sale_item'    => 'Sale item not refundable.'
 					];
 					return ['message' => 'error', 'status' => 404, 'data' => esc_html__($messages[$flag], 'woo-refund-and-exchange-lite')];
 				}
@@ -323,7 +330,7 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 		
 			if ( ! empty( $get_refund_meta ) ) {
 				foreach ( $get_refund_meta as $meta_data ) {
-					if ( isset( $product['status'] ) ) {
+					if ( isset( $meta_data['status'] ) ) {
 						if ( 'pending' === $meta_data['status'] ) {
 							$has_pending = true;
 						} elseif ( 'cancel' === $meta_data['status'] ) {

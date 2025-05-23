@@ -30,21 +30,11 @@ apply_filters( 'wps_rma_api_settings_array', array() );
 	</div>
 </form>
 <style>
-	.api-container h2 {
-		font-size: 22px;
-		padding-top: 30px;
-		color: #444;
-		border-bottom: 2px solid #eee;
-		margin-bottom: 10px;
-		line-height: 1.25;
-		padding-bottom: 10px;
-		font-weight: 600;
-	}
-	.api-container p {
+	.wps-rma-api-container p {
 		margin-bottom: 15px;
 	}
 
-	.api-container code, .api-container pre {
+	.wps-rma-api-container code, .wps-rma-api-container pre {
 		background: #f0f0f0;
 		color: #505050;
 		padding: 10px;
@@ -54,13 +44,13 @@ apply_filters( 'wps_rma_api_settings_array', array() );
 		overflow-x: auto;
 		margin: 15px 0;
 	}
-	.api-container pre {
+	.wps-rma-api-container pre {
 		border: 1px solid #004299;
 		background: transparent;
-
+=
 	}
 
-	.api-container .json-response {
+	.wps-rma-api-container .json-response {
 		background-color: #fefefe;
 		padding: 12px;
 		font-family: Consolas, monospace;
@@ -71,12 +61,12 @@ apply_filters( 'wps_rma_api_settings_array', array() );
 		border-left: 4px solid #198d00;
 	}
 
-	.api-container .error {
+	.wps-rma-api-container .error {
 		border-color: #e53935;
 		background-color: #fff5f5;
 	}
 
-	.api-container details {
+	.wps-rma-api-container details {
 		background: #f9f9f9;
 		border: 1px solid #ddd;
 		border-radius: 8px;
@@ -84,17 +74,17 @@ apply_filters( 'wps_rma_api_settings_array', array() );
 		padding: 15px;
 	}
 
-	.api-container summary {
+	.wps-rma-api-container summary {
 		font-weight: bold;
 		font-size: 16px;
 		cursor: pointer;
 		outline: none;
 	}
 
-	.api-container summary::-webkit-details-marker {
+	.wps-rma-api-container summary::-webkit-details-marker {
 		display: none;
 	}
-	.api-container span {
+	.wps-rma-api-container span {
 		color: black;
 		border-radius: 5px;
 		background-color: lightgrey;
@@ -102,17 +92,54 @@ apply_filters( 'wps_rma_api_settings_array', array() );
 		margin-right: 10px;
 		display: inline-block;
 	}
+	.rma-api-section > *:not(h2) {
+		display: none;
+	}
+	.rma-api-section.open > * {
+		display: block;
+	}
 
 	@media screen and (max-width: 600px) {
 
-		.api-container .container {
+		.wps-rma-api-container .container {
 		padding: 20px;
 		}
 	}
-</style>
-  <div class="api-container">
+	.wps-rma-api-container h2 {
+		cursor: pointer;
+		background-color: #f9f9f9;
+		padding: 10px 16px;
+		margin: 0;
+		position: relative;
+		font-size: 18px;
+		border: 1px solid #ddd;
+		transition: background-color 0.3s;
+		border-radius: 5px;
+		margin-bottom: 15px;
+	}
 
-	<div class="section">
+	.wps-rma-api-container h2::after {
+		content: '▸'; /* Right-pointing arrow */
+		position: absolute;
+		right: 16px;
+		top: 50%;
+		transform: translateY(-50%);
+		font-size: 18px;
+		transition: transform 0.3s;
+	}
+	.wps-rma-api-container .open h2 {
+		transition: background-color 0.6s;
+		background-color:rgb(199, 199, 199);
+	}
+
+	.wps-rma-api-container .open h2::after {
+		content: '▾';
+	}
+
+</style>
+  <div class="wps-rma-api-container">
+
+	<div class="rma-api-section">
 	  <h2><?php esc_html_e( 'Refund Request', 'woo-refund-and-exchange-lite' ); ?></h2>
 	  <p><?php esc_html_e( 'This API is used to make a refund request on an order', 'woo-refund-and-exchange-lite' ); ?></p>
 	  <strong><?php esc_html_e( 'HTTP Request', 'woo-refund-and-exchange-lite' ); ?></strong>
@@ -155,7 +182,7 @@ curl -X POST https://example.com/wp-json/rma/refund-request \
 	  </details>
 	</div>
 	<?php if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) : ?>
-	<div class="section">
+	<div class="rma-api-section">
 	  <h2><?php esc_html_e( 'Partial Refund Request', 'woo-refund-and-exchange-lite' ); ?></h2>
 	  <p><?php esc_html_e( 'This API is used to make a partial refund request on an order', 'woo-refund-and-exchange-lite' ); ?></p>
 	  <strong><?php esc_html_e( 'HTTP Request', 'woo-refund-and-exchange-lite' ); ?></strong>
@@ -217,7 +244,7 @@ curl -X POST https://example.com/wp-json/rma/refund-request \
 	  </details>
 	</div>
 	<?php endif; ?>
-	<div class="section">
+	<div class="rma-api-section">
 	  <h2><?php esc_html_e( 'Refund Request Accept', 'woo-refund-and-exchange-lite' ); ?></h2>
 	  <p><?php esc_html_e( 'This API is used to accept pending refund requests on an order', 'woo-refund-and-exchange-lite' ); ?></p>
 	  <strong><?php esc_html_e( 'HTTP Request', 'woo-refund-and-exchange-lite' ); ?></strong>
@@ -260,7 +287,7 @@ curl -X POST https://example.com/wp-json/rma/refund-request-accept \
 			</div>
 		</details>
 	</div>
-  	<div class="section">
+  	<div class="rma-api-section">
 	  <h2><?php esc_html_e( 'Refund Request Cancel', 'woo-refund-and-exchange-lite' ); ?></h2>
 	  <p><?php esc_html_e( 'This API is used to cancel pending refund requests on an order', 'woo-refund-and-exchange-lite' ); ?></p>
 	  <strong><?php esc_html_e( 'HTTP Request', 'woo-refund-and-exchange-lite' ); ?></strong>
@@ -305,7 +332,7 @@ curl -X POST https://example.com/wp-json/rma/refund-request-cancel \
 	</div>
 	<?php if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) : ?>
 
-	<div class="section">
+	<div class="rma-api-section">
 	  <h2><?php esc_html_e( 'Exchange Request', 'woo-refund-and-exchange-lite' ); ?></h2>
 	  <p><?php esc_html_e( 'This API is used to make an exchange request on an order', 'woo-refund-and-exchange-lite' ); ?></p>
 	  <strong><?php esc_html_e( 'HTTP Request', 'woo-refund-and-exchange-lite' ); ?></strong>
@@ -386,7 +413,7 @@ curl -X POST https://example.com/wp-json/rma/exchange-request \
 			</div>
 		</details>
 	</div>
-  <div class="section">
+  <div class="rma-api-section">
       <h2><?php esc_html_e( 'Exchange Request Accept', 'woo-refund-and-exchange-lite' ); ?></h2>
 	  <p><?php esc_html_e( 'This API is used to accept the pending exchange request on an order', 'woo-refund-and-exchange-lite' ); ?></p>
 	  <strong><?php esc_html_e( 'HTTP Request', 'woo-refund-and-exchange-lite' ); ?></strong>
@@ -432,7 +459,7 @@ curl -X POST https://example.com/wp-json/rma/exchange-request-accept \
 		</details>
 	</div>
 
-	<div class="section">
+	<div class="rma-api-section">
 	   <h2><?php esc_html_e( 'Exchange Request Cancel', 'woo-refund-and-exchange-lite' ); ?></h2>
 	  <p><?php esc_html_e( 'This API is used to cancel the pending exchange request on an order', 'woo-refund-and-exchange-lite' ); ?></p>
 	  <strong><?php esc_html_e( 'HTTP Request', 'woo-refund-and-exchange-lite' ); ?></strong>
@@ -475,7 +502,7 @@ curl -X POST https://example.com/wp-json/rma/exchange-request-cancel \
 			</div>
 		</details>
 	</div>
-	<div class="section">
+	<div class="rma-api-section">
 	<h2><?php esc_html_e( 'Order Cancel', 'woo-refund-and-exchange-lite' ); ?></h2>
 	  <p><?php esc_html_e( 'This API is used to cancel the order', 'woo-refund-and-exchange-lite' ); ?></p>
 	  <strong><?php esc_html_e( 'HTTP Request', 'woo-refund-and-exchange-lite' ); ?></strong>
@@ -516,7 +543,7 @@ curl -X POST https://example.com/wp-json/rma/cancel-request \
 		</details>
 	</div>
 
-	<div class="section">
+	<div class="rma-api-section">
 	<h2><?php esc_html_e( 'Partial Order Cancel', 'woo-refund-and-exchange-lite' ); ?></h2>
 	  <p><?php esc_html_e( 'This API is used to partial cancel an order', 'woo-refund-and-exchange-lite' ); ?></p>
 	  <strong><?php esc_html_e( 'HTTP Request', 'woo-refund-and-exchange-lite' ); ?></strong>
