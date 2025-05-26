@@ -93,11 +93,11 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 			if ( is_string( $refund_items ) && !wps_json_validate($refund_items)) {
 				return ['message' => 'error', 'status' => 404, 'data' => esc_html__('Invalid JSON format.', 'woo-refund-and-exchange-lite')];
 			}
-
+			
 			$refund_items_array = [];
 			$refund_amount = 0;
 			$flags = ['valid' => true, 'qty' => true, 'item' => true, 'invalid_item' => true, 'invalid_qty' => true, 'sale_item' => true];
-		
+			
 			foreach ($order->get_items() as $item_id => $item) {
 				$product = $item->get_product();
 				$product_id = $item->get_product_id();
@@ -112,12 +112,12 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 						$flags['invalid_qty'] = !isset($data['qty']) ? false : $flags['invalid_qty'];
 						continue;
 					}
-					if ( 'on' != $check_sale_item && ! $product->is_on_sale() ) {
-						$flags['sale_item'] = false;
+					
+					if ( $id !== $product_id && $id !== $variation_id ) {
 						continue;
 					}
-
-					if ( $id !== $product_id && $id !== $variation_id ) {
+					if ( 'on' != $check_sale_item && $product->is_on_sale() ) {
+						$flags['sale_item'] = false;
 						continue;
 					}
 					$already_refunded = wps_rma_get_meta_data($order_id, 'wps_rma_request_made', true);
