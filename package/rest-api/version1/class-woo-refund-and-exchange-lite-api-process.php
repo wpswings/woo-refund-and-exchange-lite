@@ -157,7 +157,7 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 					$messages = [
 						'valid'        => 'Return request already accepted for the items.',
 						'qty'          => 'Quantity exceeds ordered amount.',
-						'item'         => 'Item ID not part of this order.',
+						'item'         => 'Product ID not part of this order.',
 						'invalid_item' => 'Missing item ID for refund.',
 						'invalid_qty'  => 'Missing quantity for refund.',
 						'sale_item'    => 'Sale item not refundable.'
