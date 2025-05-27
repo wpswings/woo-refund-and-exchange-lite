@@ -211,7 +211,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 								$target_path = $directory . '/' . sanitize_file_name( $file_name );
 								$filename[] = $file_name;
 								$wp_filesystem->move($source_path, $target_path, true);
-								$wp_filesystem->chmod($target_path, 0644); // For files permission issue
+								$wp_filesystem->chmod($target_path, 0644); // For files permission issue.
 							}
 						}
 					}

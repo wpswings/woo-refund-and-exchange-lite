@@ -431,37 +431,6 @@ if ( $activated ) {
 		update_option( 'wps_rma_filename_changed', 'yes' );
 	}
 	add_action( 'admin_init', 'wps_attachments_name_randomize' );
-	
-	/**
-	 * Restrict the direct attachment access .
-	 */
-	function wps_update_htaccess_for_attachments() {
-		global $wp_filesystem;
-		if ( ! function_exists( 'WP_Filesystem' ) ) {
-			require_once ABSPATH . 'wp-admin/includes/file.php';
-		}
-
-		WP_Filesystem(); // Initialize WP_Filesystem.
-		$htaccess_file = ABSPATH . '.htaccess';
-		$rules = "\n# BEGIN Block Direct Access to Attachments\n" .
-				 "<IfModule mod_rewrite.c>\n" .
-				 "RewriteEngine On\n" .
-				 "RewriteCond %{REQUEST_URI} ^/wp-content/attachment/ [NC]\n" .
-				 "RewriteCond %{REQUEST_FILENAME} -f\n" .
-				 "RewriteRule \\.(png|jpe?g)$ - [F,L]\n" .
-				 "</IfModule>\n" .
-				 "# END Block Direct Access to Attachments\n";
-	
-		if (file_exists($htaccess_file) && $wp_filesystem->is_writable( $htaccess_file ) ) {
-			$content = file_get_contents($htaccess_file);
-	
-			// Prevent duplicate entries.
-			if (strpos($content, "# BEGIN Block Direct Access to Attachments") === false) {
-				file_put_contents($htaccess_file, $content . $rules);
-			}
-		}
-	}
-	add_action('admin_init', 'wps_update_htaccess_for_attachments');
 } else {
 	/**
 	 * Show warning message if woocommerce is not install
