@@ -25,7 +25,7 @@
  * Requires at least: 5.5.0
  * Tested up to: 6.8.1
  * WC requires at least: 6.5
- * WC tested up to: 9.8.4
+ * WC tested up to: 9.8.5
  *
  * License:           GNU General Public License v3.0
  * License URI:       http://www.gnu.org/licenses/gpl-3.0.html
@@ -396,7 +396,7 @@ if ( $activated ) {
 										$order->save();
 										if ($old_file_path !== $new_file_path) {
 											$wp_filesystem->move( $old_file_path, $new_file_path );
-											$wp_filesystem->chmod($new_file_path, 0644); // For files permission issue
+											$wp_filesystem->chmod($new_file_path, 0644); // For files permission issue.
 										}
 									}
 								}
@@ -417,7 +417,7 @@ if ( $activated ) {
 											$order->save();
 											if ($old_file_path !== $new_file_path) {
 												$wp_filesystem->move( $old_file_path, $new_file_path );
-												$wp_filesystem->chmod($new_file_path, 0644); // For files permission issue
+												$wp_filesystem->chmod($new_file_path, 0644); // For files permission issue.
 											}
 										}
 									}

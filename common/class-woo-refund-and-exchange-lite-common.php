@@ -725,7 +725,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 								$attachment[ $i ]       = $targetpath;
 								
 								$wp_filesystem->move($sourcepath, $targetpath, true);
-								$wp_filesystem->chmod($targetpath, 0644); // For files permission issue
+								$wp_filesystem->chmod($targetpath, 0644); // For files permission issue.
 
 							}
 						}

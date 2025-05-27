@@ -116,7 +116,7 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 					if ( $id !== $product_id && $id !== $variation_id ) {
 						continue;
 					}
-					if ( 'on' != $check_sale_item && $product->is_on_sale() ) {
+					if ( 'on' !== $check_sale_item && $product->is_on_sale() ) {
 						$flags['sale_item'] = false;
 						continue;
 					}
@@ -135,9 +135,9 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 					$item_price = $item->get_total() / $item->get_quantity();
 					$tax_price  = $item->get_total_tax() / $item->get_quantity();
 					$price = $item_price;
-					if ( $tax_option === 'wps_rma_inlcude_tax' ) {
+					if ( 'wps_rma_inlcude_tax' === $tax_option ) {
 						$price += $tax_price;
-					} elseif ( $tax_option === 'wps_rma_exclude_tax' ) {
+					} elseif ( 'wps_rma_exclude_tax' === $tax_option ) {
 						$price -= $tax_price;
 					}
 		
@@ -162,7 +162,7 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 						'invalid_qty'  => 'Missing quantity for refund.',
 						'sale_item'    => 'Sale item not refundable.'
 					];
-					return ['message' => 'error', 'status' => 404, 'data' => esc_html__($messages[$flag], 'woo-refund-and-exchange-lite')];
+					return ['message' => 'error', 'status' => 404, 'data' => $messages[$flag] ];
 				}
 			}
 		
@@ -174,7 +174,7 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 				'amount'        => $refund_amount
 			];
 		
-			$result = wps_rma_save_return_request_callback($order_id, $refund_method, $refund_data);
+			$result = wps_rma_save_return_request_callback( $order_id, $refund_method, $refund_data );
 			if ($result) {
 				return ['message' => 'success', 'status' => 200, 'data' => esc_html__('Refund request sent successfully.', 'woo-refund-and-exchange-lite')];
 			}
@@ -201,9 +201,9 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 				$item_tax = $item->get_total_tax() / $item->get_quantity();
 		
 				$price = $item_price;
-				if ($tax_option === 'wps_rma_inlcude_tax') {
+				if ( 'wps_rma_inlcude_tax' === $tax_option ) {
 					$price += $item_tax;
-				} elseif ($tax_option === 'wps_rma_exclude_tax') {
+				} elseif ( 'wps_rma_exclude_tax' === $tax_option ) {
 					$price -= $item_tax;
 				}
 		
@@ -228,12 +228,12 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 		
 			$existing_requests = wps_rma_get_meta_data($order_id, 'wps_rma_return_product', true);
 			foreach ((array)$existing_requests as $request) {
-				if ( isset( $request['status'] ) && $request['status'] === 'complete') {
+				if ( isset( $request['status'] ) && 'complete' === $request['status'] ) {
 					return ['message' => 'error', 'status' => 404, 'data' => esc_html__('Return request already accepted.', 'woo-refund-and-exchange-lite')];
 				}
 			}
 		
-			$result = wps_rma_save_return_request_callback($order_id, 'manual_method', $refund_data);
+			$result = wps_rma_save_return_request_callback( $order_id, 'manual_method', $refund_data );
 			if ($result) {
 				return ['message' => 'success', 'status' => 200, 'data' => esc_html__('Return request sent successfully.', 'woo-refund-and-exchange-lite')];
 			}

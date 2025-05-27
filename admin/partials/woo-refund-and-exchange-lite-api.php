@@ -144,7 +144,7 @@ apply_filters( 'wps_rma_api_settings_array', array() );
 	  <p><?php esc_html_e( 'This API is used to make a refund request on an order', 'woo-refund-and-exchange-lite' ); ?></p>
 	  <strong><?php esc_html_e( 'HTTP Request', 'woo-refund-and-exchange-lite' ); ?></strong>
 	  <code><span><?php esc_html_e( 'Method', 'woo-refund-and-exchange-lite' ); ?></span>POST</code> 
-	  <code> <span><?php esc_html_e( 'Base Url', 'woo-refund-and-exchange-lite' ); ?></span><?php echo site_url( '/wp-json/rma/refund-request' ); ?></code>
+	  <code> <span><?php esc_html_e( 'Base Url', 'woo-refund-and-exchange-lite' ); ?></span><?php echo esc_url( site_url( '/wp-json/rma/refund-request' ) ); ?></code>
 	  <strong><?php esc_html_e( 'cURL Example', 'woo-refund-and-exchange-lite' ); ?></strong>
 <pre>
 curl -X POST https://example.com/wp-json/rma/refund-request \
@@ -187,7 +187,7 @@ curl -X POST https://example.com/wp-json/rma/refund-request \
 	  <p><?php esc_html_e( 'This API is used to make a partial refund request on an order', 'woo-refund-and-exchange-lite' ); ?></p>
 	  <strong><?php esc_html_e( 'HTTP Request', 'woo-refund-and-exchange-lite' ); ?></strong>
 	  <code><span><?php esc_html_e( 'Method', 'woo-refund-and-exchange-lite' ); ?></span>POST</code> 
-	  <code> <span><?php esc_html_e( 'Base Url', 'woo-refund-and-exchange-lite' ); ?></span><?php echo site_url( '/wp-json/rma/refund-request' ); ?></code>
+	  <code> <span><?php esc_html_e( 'Base Url', 'woo-refund-and-exchange-lite' ); ?></span><?php echo esc_url( site_url( '/wp-json/rma/refund-request' ) ); ?></code>
 	  <strong><?php esc_html_e( 'cURL Example', 'woo-refund-and-exchange-lite' ); ?></strong>
 <pre>
 curl -X POST https://example.com/wp-json/rma/refund-request \
@@ -249,7 +249,7 @@ curl -X POST https://example.com/wp-json/rma/refund-request \
 	  <p><?php esc_html_e( 'This API is used to accept pending refund requests on an order', 'woo-refund-and-exchange-lite' ); ?></p>
 	  <strong><?php esc_html_e( 'HTTP Request', 'woo-refund-and-exchange-lite' ); ?></strong>
 	  <code><span><?php esc_html_e( 'Method', 'woo-refund-and-exchange-lite' ); ?></span>POST</code> 
-	  <code> <span><?php esc_html_e( 'Base Url', 'woo-refund-and-exchange-lite' ); ?></span><?php echo site_url( '/wp-json/rma/refund-request-accept' ); ?></code>
+	  <code> <span><?php esc_html_e( 'Base Url', 'woo-refund-and-exchange-lite' ); ?></span><?php echo esc_url( site_url( '/wp-json/rma/refund-request-accept' ) ); ?></code>
 	  <strong><?php esc_html_e( 'cURL Example', 'woo-refund-and-exchange-lite' ); ?></strong>
 <pre>
 curl -X POST https://example.com/wp-json/rma/refund-request-accept \
@@ -292,7 +292,7 @@ curl -X POST https://example.com/wp-json/rma/refund-request-accept \
 	  <p><?php esc_html_e( 'This API is used to cancel pending refund requests on an order', 'woo-refund-and-exchange-lite' ); ?></p>
 	  <strong><?php esc_html_e( 'HTTP Request', 'woo-refund-and-exchange-lite' ); ?></strong>
 	  <code><span><?php esc_html_e( 'Method', 'woo-refund-and-exchange-lite' ); ?></span>POST</code> 
-	  <code> <span><?php esc_html_e( 'Base Url', 'woo-refund-and-exchange-lite' ); ?></span><?php echo site_url( '/wp-json/rma/refund-request-cancel' ); ?></code>
+	  <code> <span><?php esc_html_e( 'Base Url', 'woo-refund-and-exchange-lite' ); ?></span><?php echo esc_url( site_url( '/wp-json/rma/refund-request-cancel' ) ); ?></code>
 	  <strong><?php esc_html_e( 'cURL Example', 'woo-refund-and-exchange-lite' ); ?></strong>
 <pre>
 curl -X POST https://example.com/wp-json/rma/refund-request-cancel \
@@ -337,7 +337,7 @@ curl -X POST https://example.com/wp-json/rma/refund-request-cancel \
 	  <p><?php esc_html_e( 'This API is used to make an exchange request on an order', 'woo-refund-and-exchange-lite' ); ?></p>
 	  <strong><?php esc_html_e( 'HTTP Request', 'woo-refund-and-exchange-lite' ); ?></strong>
 	  <code><span><?php esc_html_e( 'Method', 'woo-refund-and-exchange-lite' ); ?></span>POST</code> 
-	  <code> <span><?php esc_html_e( 'Base Url', 'woo-refund-and-exchange-lite' ); ?></span><?php echo site_url( '/wp-json/rma/exchange-request' ); ?></code>
+	  <code> <span><?php esc_html_e( 'Base Url', 'woo-refund-and-exchange-lite' ); ?></span><?php echo esc_url( site_url( '/wp-json/rma/exchange-request' ) ); ?></code>
 	  <strong><?php esc_html_e( 'cURL Example', 'woo-refund-and-exchange-lite' ); ?></strong>
 <pre>
 curl -X POST https://example.com/wp-json/rma/exchange-request \
@@ -418,7 +418,7 @@ curl -X POST https://example.com/wp-json/rma/exchange-request \
 	  <p><?php esc_html_e( 'This API is used to accept the pending exchange request on an order', 'woo-refund-and-exchange-lite' ); ?></p>
 	  <strong><?php esc_html_e( 'HTTP Request', 'woo-refund-and-exchange-lite' ); ?></strong>
 	  <code><span><?php esc_html_e( 'Method', 'woo-refund-and-exchange-lite' ); ?></span>POST</code> 
-	  <code> <span><?php esc_html_e( 'Base Url', 'woo-refund-and-exchange-lite' ); ?></span><?php echo site_url( '/wp-json/rma/exchange-request-accept' ); ?></code>
+	  <code> <span><?php esc_html_e( 'Base Url', 'woo-refund-and-exchange-lite' ); ?></span><?php echo esc_url( site_url( '/wp-json/rma/exchange-request-accept' ) ); ?></code>
 	  <strong><?php esc_html_e( 'cURL Example', 'woo-refund-and-exchange-lite' ); ?></strong>
 
 <pre>
@@ -464,7 +464,7 @@ curl -X POST https://example.com/wp-json/rma/exchange-request-accept \
 	  <p><?php esc_html_e( 'This API is used to cancel the pending exchange request on an order', 'woo-refund-and-exchange-lite' ); ?></p>
 	  <strong><?php esc_html_e( 'HTTP Request', 'woo-refund-and-exchange-lite' ); ?></strong>
 	  <code><span><?php esc_html_e( 'Method', 'woo-refund-and-exchange-lite' ); ?></span>POST</code> 
-	  <code> <span><?php esc_html_e( 'Base Url', 'woo-refund-and-exchange-lite' ); ?></span><?php echo site_url( '/wp-json/rma/exchange-request-cancel' ); ?></code>
+	  <code> <span><?php esc_html_e( 'Base Url', 'woo-refund-and-exchange-lite' ); ?></span><?php echo esc_url( site_url( '/wp-json/rma/exchange-request-cancel' ) ); ?></code>
 	  <strong><?php esc_html_e( 'cURL Example', 'woo-refund-and-exchange-lite' ); ?></strong>
 <pre>
 curl -X POST https://example.com/wp-json/rma/exchange-request-cancel \
@@ -507,7 +507,7 @@ curl -X POST https://example.com/wp-json/rma/exchange-request-cancel \
 	  <p><?php esc_html_e( 'This API is used to cancel the order', 'woo-refund-and-exchange-lite' ); ?></p>
 	  <strong><?php esc_html_e( 'HTTP Request', 'woo-refund-and-exchange-lite' ); ?></strong>
 	  <code><span><?php esc_html_e( 'Method', 'woo-refund-and-exchange-lite' ); ?></span>POST</code> 
-	  <code> <span><?php esc_html_e( 'Base Url', 'woo-refund-and-exchange-lite' ); ?></span><?php echo site_url( '/wp-json/rma/cancel-request' ); ?></code>
+	  <code> <span><?php esc_html_e( 'Base Url', 'woo-refund-and-exchange-lite' ); ?></span><?php echo esc_url( site_url( '/wp-json/rma/cancel-request' ) ); ?></code>
 	  <strong><?php esc_html_e( 'cURL Example', 'woo-refund-and-exchange-lite' ); ?></strong>
 <pre>
 curl -X POST https://example.com/wp-json/rma/cancel-request \
@@ -548,7 +548,7 @@ curl -X POST https://example.com/wp-json/rma/cancel-request \
 	  <p><?php esc_html_e( 'This API is used to partial cancel an order', 'woo-refund-and-exchange-lite' ); ?></p>
 	  <strong><?php esc_html_e( 'HTTP Request', 'woo-refund-and-exchange-lite' ); ?></strong>
 	  <code><span><?php esc_html_e( 'Method', 'woo-refund-and-exchange-lite' ); ?></span>POST</code> 
-	  <code> <span><?php esc_html_e( 'Base Url', 'woo-refund-and-exchange-lite' ); ?></span><?php echo site_url( '/wp-json/rma/cancel-request' ); ?></code>
+	  <code> <span><?php esc_html_e( 'Base Url', 'woo-refund-and-exchange-lite' ); ?></span><?php echo esc_url( site_url( '/wp-json/rma/cancel-request' ) ); ?></code>
 	  <strong><?php esc_html_e( 'cURL Example', 'woo-refund-and-exchange-lite' ); ?></strong>
 <pre>
 curl -X POST https://example.com/wp-json/rma/cancel-request \
