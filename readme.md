@@ -1,4 +1,4 @@
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://travis-ci.org/twbs/bootstrap) ![Active installs](https://img.shields.io/badge/Active-5000%2B-brightgreen) ![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen) ![WP tested](https://img.shields.io/badge/WP%20tested-6.7.2-brightgreen) ![WC tested](https://img.shields.io/badge/WC%20tested-9.7.1-brightgreen) ![Requires PHP](https://img.shields.io/badge/Requires%20PHP-7.2.0-blue)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://travis-ci.org/twbs/bootstrap) ![Active installs](https://img.shields.io/badge/Active-5000%2B-brightgreen) ![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen) ![WP tested](https://img.shields.io/badge/WP%20tested-6.8.1-brightgreen) ![WC tested](https://img.shields.io/badge/WC%20tested-9.8.5-brightgreen) ![Requires PHP](https://img.shields.io/badge/Requires%20PHP-7.2.0-blue)
 # Return Refund and Exchange for WooCommerce
 ![Return Refund and Exchange For WooCommerce(https://ps.w.org/woo-refund-and-exchange-lite/assets/banner-772x250.png?rev=2672154)
 * Contributors: WP Swings
@@ -22,13 +22,15 @@ Empower your WooCommerce store with a complete RMA solution – manage returns, 
 
 ### SALIENT FEATURES OF THE RETURN REFUND AND EXCHANGE FOR WOOCOMMERCE PLUGIN 
 
-**1) Return/Exchange Request Cancellation:** This functionality of the WooCommerce RMA plugin enables customers to cancel the made return/exchange requests. Once the customers withdraw the requests, the admins will receive notifications as order notes, informing them about the withdrawals.
+**1) API Settings:** Return, Refund, and Exchange for WooCommerce allows admins to access information related to refunds -  accept, cancel, and approve through an external source. The overall setup of the API Settings is seamless and user-friendly.
+
+**1) Return Request Cancellation:** This functionality of the WooCommerce RMA plugin enables customers to cancel the return requests. Once the customers withdraw the requests, the admins will receive notifications as order notes, informing them about the withdrawals.
 
 **2) Template For Refund Requests**: The admin is provided with a dedicated template for the refund form, and the customers have a clear and concise form, that they can fill out and share the refund requests.
 
 **3) Refund Shipping Charges**: Admins can utilize this feature to refund the charged shipping amount during the refund process. 
 
-**4) Initiate Return, Exchange & Cancellation For A Specific Period**: Our WordPress RMA plugin enables the admin to set a specific time frame for all the refund, exchange, and cancellation requests. During this defined period, customers will have access to these respective request options on the website, while outside this timeframe, they will no longer be visible.
+**4) Initiate Return For A Specific Period**: Our WordPress RMA plugin enables the admin to set a specific time frame for all the refund requests. During this defined period, customers will have access to these respective request options on the website, while outside this timeframe, they will no longer be visible.
 
 **5) Dedicated WooCommerce Refund System**: 
 With our Return Refund and Exchange plugin, merchants can create a dedicated refund system that offers a money-back guarantee, and where they can build an email template to send to the customers who ask for a refund. Merchants can add the name, email, email header, and footer for their email template 
@@ -106,3 +108,4 @@ If you need support or have any questions then kindly use our online chat window
 * [**Tweet us on @WP Swings**](https://twitter.com/wpswings)
 * [**Visit our LinkedIn Account**](https://www.linkedin.com/company/77072505/admin/)
 * [**Subscribe To Our YouTube Channel**](https://www.youtube.com/channel/UC7nYNf0JETOwW3GOD_EW2Ag)
+
