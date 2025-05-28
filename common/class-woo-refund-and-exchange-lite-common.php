@@ -211,6 +211,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 								$target_path = $directory . '/' . sanitize_file_name( $file_name );
 								$filename[] = $file_name;
 								$wp_filesystem->move($source_path, $target_path, true);
+								$wp_filesystem->chmod($target_path, 0644); // For files permission issue.
 							}
 						}
 					}
@@ -331,7 +332,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 					do_action( 'wps_rma_return_request_data', $return_data, $order_id );
 					$response = wps_rma_save_return_request_callback( $order_id, $refund_method, $return_data );
 					if ( true == $response['flag'] ) {
-						do_action( 'wps_rma_do_shiprocket_integration', $order_id, $_POST );
+						do_action( 'wps_rma_do_shiprocket_integration', $order_id, $return_data );
 					}
 				}
 			}
@@ -724,6 +725,8 @@ class Woo_Refund_And_Exchange_Lite_Common {
 								$attachment[ $i ]       = $targetpath;
 								
 								$wp_filesystem->move($sourcepath, $targetpath, true);
+								$wp_filesystem->chmod($targetpath, 0644); // For files permission issue.
+
 							}
 						}
 					}

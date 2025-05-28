@@ -56,7 +56,7 @@ class Woo_Refund_And_Exchange_Lite_Rest_Api {
 	 * @param   string $version        Version of the plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
-
+		require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php';
 		$this->plugin_name = $plugin_name;
 		$this->version     = $version;
 	}
@@ -110,23 +110,17 @@ class Woo_Refund_And_Exchange_Lite_Rest_Api {
 	 * @since    1.0.0
 	 */
 	public function wps_rma_default_permission_check( $request ) {
-		$request_params  = $request->get_params();
-		$wps_secretkey   = isset( $request_params['secret_key'] ) ? $request_params['secret_key'] : '';
-		$secret_key      = get_option( 'wps_rma_secret_key', true );
-		$api_enable      = get_option( 'wps_rma_enable_api', true );
-		$wps_secret_code = '';
-		if ( 'on' === $api_enable ) {
-			$wps_secret_code = ! empty( $secret_key ) ? $secret_key : '';
-		}
-		if ( '' === $wps_secretkey ) {
-			return false;
-		} elseif ( trim( $wps_secret_code ) === trim( $wps_secretkey ) ) {
+		$request_params      = $request->get_params();
+		$incoming_secret_key = isset( $request_params['secret_key'] ) ? $request_params['secret_key'] : '';
+		$secret_key          = get_option( 'wps_rma_secret_key', true );
+		$api_enable          = get_option( 'wps_rma_enable_api', true );
+
+		if ( 'on' === $api_enable && trim( $secret_key ) === trim( $incoming_secret_key ) ) {
 			return true;
 		} else {
 			return false;
 		}
 	}
-
 
 	/**
 	 * Begins execution of api endpoint.
@@ -136,14 +130,8 @@ class Woo_Refund_And_Exchange_Lite_Rest_Api {
 	 * @since    1.0.0
 	 */
 	public function wps_rma_refund_request_callback( $request ) {
-		require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php';
-		$wps_rma_api_obj     = new Woo_Refund_And_Exchange_Lite_Api_Process();
-		$wps_rma_resultsdata = $wps_rma_api_obj->wps_rma_refund_request_process( $request );
-		if ( is_array( $wps_rma_resultsdata ) && isset( $wps_rma_resultsdata['status'] ) && 200 == $wps_rma_resultsdata['status'] ) {
-			$wps_rma_response = new WP_REST_Response( $wps_rma_resultsdata, 200 );
-		} else {
-			$wps_rma_response = new WP_REST_Response( $wps_rma_resultsdata, 404 );
-		}
+		$response_data    = Woo_Refund_And_Exchange_Lite_Api_Process::wps_rma_refund_request_process( $request );
+		$wps_rma_response = new WP_REST_Response( $response_data, $response_data['status'] );
 		return $wps_rma_response;
 	}
 
@@ -156,14 +144,8 @@ class Woo_Refund_And_Exchange_Lite_Rest_Api {
 	 * @since    1.0.0
 	 */
 	public function wps_rma_refund_request_accept_callback( $request ) {
-		require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php';
-		$wps_rma_api_obj     = new Woo_Refund_And_Exchange_Lite_Api_Process();
-		$wps_rma_resultsdata = $wps_rma_api_obj->wps_rma_refund_request_accept_process( $request );
-		if ( is_array( $wps_rma_resultsdata ) && isset( $wps_rma_resultsdata['status'] ) && 200 == $wps_rma_resultsdata['status'] ) {
-			$wps_rma_response = new WP_REST_Response( $wps_rma_resultsdata, 200 );
-		} else {
-			$wps_rma_response = new WP_REST_Response( $wps_rma_resultsdata, 404 );
-		}
+		$response_data    = Woo_Refund_And_Exchange_Lite_Api_Process::wps_rma_refund_request_accept_process( $request );
+		$wps_rma_response = new WP_REST_Response( $response_data, $response_data['status'] );
 		return $wps_rma_response;
 	}
 
@@ -175,14 +157,8 @@ class Woo_Refund_And_Exchange_Lite_Rest_Api {
 		 * @since    1.0.0
 		 */
 	public function wps_rma_refund_request_cancel_callback( $request ) {
-		require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php';
-		$wps_rma_api_obj     = new Woo_Refund_And_Exchange_Lite_Api_Process();
-		$wps_rma_resultsdata = $wps_rma_api_obj->wps_rma_refund_request_cancel_process( $request );
-		if ( is_array( $wps_rma_resultsdata ) && isset( $wps_rma_resultsdata['status'] ) && 200 == $wps_rma_resultsdata['status'] ) {
-			$wps_rma_response = new WP_REST_Response( $wps_rma_resultsdata, 200 );
-		} else {
-			$wps_rma_response = new WP_REST_Response( $wps_rma_resultsdata, 404 );
-		}
+		$response_data    = Woo_Refund_And_Exchange_Lite_Api_Process::wps_rma_refund_request_cancel_process( $request );
+		$wps_rma_response = new WP_REST_Response( $response_data, $response_data['status'] );
 		return $wps_rma_response;
 	}
 }

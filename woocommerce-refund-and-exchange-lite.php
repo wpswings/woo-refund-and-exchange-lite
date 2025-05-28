@@ -15,7 +15,7 @@
  * Plugin Name:       Return Refund and Exchange for WooCommerce
  * Plugin URI:        https://wordpress.org/plugins/woo-refund-and-exchange-lite/
  * Description:       <code><strong>Return Refund and Exchange for WooCommerce</strong></code> allows users to submit product refund. The plugin provides a dedicated mailing system that would help to communicate better between store owner and customers.This is lite version of WooCommerce Refund And Exchange. <a target="_blank" href="https://wpswings.com/woocommerce-plugins/?utm_source=wpswings-rma-shop&utm_medium=rma-org-backend&utm_campaign=shop-page">Elevate your e-commerce store by exploring more on WP Swings</a>
- * Version:           4.4.9
+ * Version:           4.5.0
  * Author:            WP Swings
  * Author URI:        https://wpswings.com/?utm_source=wpswings-rma-official&utm_medium=rma-org-page&utm_campaign=official
  * Text Domain:       woo-refund-and-exchange-lite
@@ -23,9 +23,9 @@
  * Requires Plugins:  woocommerce
  *
  * Requires at least: 5.5.0
- * Tested up to: 6.8.0
+ * Tested up to: 6.8.1
  * WC requires at least: 6.5
- * WC tested up to: 9.8.1
+ * WC tested up to: 9.8.5
  *
  * License:           GNU General Public License v3.0
  * License URI:       http://www.gnu.org/licenses/gpl-3.0.html
@@ -59,7 +59,7 @@ if ( $activated ) {
 	 * @since 1.0.0
 	 */
 	function define_woo_refund_and_exchange_lite_constants() {
-		woo_refund_and_exchange_lite_constants( 'WOO_REFUND_AND_EXCHANGE_LITE_VERSION', '4.4.9' );
+		woo_refund_and_exchange_lite_constants( 'WOO_REFUND_AND_EXCHANGE_LITE_VERSION', '4.5.0' );
 		woo_refund_and_exchange_lite_constants( 'WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH', plugin_dir_path( __FILE__ ) );
 		woo_refund_and_exchange_lite_constants( 'WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL', plugin_dir_url( __FILE__ ) );
 		woo_refund_and_exchange_lite_constants( 'WOO_REFUND_AND_EXCHANGE_LITE_SERVER_URL', 'https://wpswings.com' );
@@ -396,6 +396,7 @@ if ( $activated ) {
 										$order->save();
 										if ($old_file_path !== $new_file_path) {
 											$wp_filesystem->move( $old_file_path, $new_file_path );
+											$wp_filesystem->chmod($new_file_path, 0644); // For files permission issue.
 										}
 									}
 								}
@@ -416,6 +417,7 @@ if ( $activated ) {
 											$order->save();
 											if ($old_file_path !== $new_file_path) {
 												$wp_filesystem->move( $old_file_path, $new_file_path );
+												$wp_filesystem->chmod($new_file_path, 0644); // For files permission issue.
 											}
 										}
 									}
@@ -429,37 +431,6 @@ if ( $activated ) {
 		update_option( 'wps_rma_filename_changed', 'yes' );
 	}
 	add_action( 'admin_init', 'wps_attachments_name_randomize' );
-	
-	/**
-	 * Restrict the direct attachment access .
-	 */
-	function wps_update_htaccess_for_attachments() {
-		global $wp_filesystem;
-		if ( ! function_exists( 'WP_Filesystem' ) ) {
-			require_once ABSPATH . 'wp-admin/includes/file.php';
-		}
-
-		WP_Filesystem(); // Initialize WP_Filesystem.
-		$htaccess_file = ABSPATH . '.htaccess';
-		$rules = "\n# BEGIN Block Direct Access to Attachments\n" .
-				 "<IfModule mod_rewrite.c>\n" .
-				 "RewriteEngine On\n" .
-				 "RewriteCond %{REQUEST_URI} ^/wp-content/attachment/ [NC]\n" .
-				 "RewriteCond %{REQUEST_FILENAME} -f\n" .
-				 "RewriteRule \\.(png|jpe?g)$ - [F,L]\n" .
-				 "</IfModule>\n" .
-				 "# END Block Direct Access to Attachments\n";
-	
-		if (file_exists($htaccess_file) && $wp_filesystem->is_writable( $htaccess_file ) ) {
-			$content = file_get_contents($htaccess_file);
-	
-			// Prevent duplicate entries.
-			if (strpos($content, "# BEGIN Block Direct Access to Attachments") === false) {
-				file_put_contents($htaccess_file, $content . $rules);
-			}
-		}
-	}
-	add_action('admin_init', 'wps_update_htaccess_for_attachments');
 } else {
 	/**
 	 * Show warning message if woocommerce is not install

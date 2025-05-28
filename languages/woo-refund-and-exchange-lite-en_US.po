@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Return Refund and Exchange for WooCommerce 4.4.8\n"
-"POT-Creation-Date: 2025-04-16 17:59+0530\n"
-"PO-Revision-Date: 2025-04-16 17:59+0530\n"
+"Project-Id-Version: Return Refund and Exchange for WooCommerce 4.5.0\n"
+"POT-Creation-Date: 2025-05-27 16:19+0530\n"
+"PO-Revision-Date: 2025-05-27 16:19+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -28,14 +28,14 @@ msgstr ""
 #: admin/class-woo-refund-and-exchange-lite-admin.php:403
 #: admin/class-woo-refund-and-exchange-lite-admin.php:415
 #: admin/class-woo-refund-and-exchange-lite-admin.php:426
-#: admin/class-woo-refund-and-exchange-lite-admin.php:573
-#: admin/class-woo-refund-and-exchange-lite-admin.php:584
-#: admin/class-woo-refund-and-exchange-lite-admin.php:607
-#: admin/class-woo-refund-and-exchange-lite-admin.php:618
-#: admin/class-woo-refund-and-exchange-lite-admin.php:646
-#: admin/class-woo-refund-and-exchange-lite-admin.php:667
-#: admin/class-woo-refund-and-exchange-lite-admin.php:752
-#: admin/class-woo-refund-and-exchange-lite-admin.php:808
+#: admin/class-woo-refund-and-exchange-lite-admin.php:558
+#: admin/class-woo-refund-and-exchange-lite-admin.php:569
+#: admin/class-woo-refund-and-exchange-lite-admin.php:592
+#: admin/class-woo-refund-and-exchange-lite-admin.php:603
+#: admin/class-woo-refund-and-exchange-lite-admin.php:631
+#: admin/class-woo-refund-and-exchange-lite-admin.php:652
+#: admin/class-woo-refund-and-exchange-lite-admin.php:737
+#: admin/class-woo-refund-and-exchange-lite-admin.php:793
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:53
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:65
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:76
@@ -60,18 +60,19 @@ msgstr ""
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:403
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:414
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:425
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:453
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:474
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:520
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:605
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:706
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:436
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:464
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:485
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:531
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:616
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:717
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:729
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:773
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:801
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:845
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:867
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:902
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:728
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:740
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:784
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:812
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:856
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:878
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:913
 #: admin/partials/woo-refund-and-exchange-lite-welcome.php:54
 msgid "YES"
 msgstr ""
@@ -80,14 +81,14 @@ msgstr ""
 #: admin/class-woo-refund-and-exchange-lite-admin.php:404
 #: admin/class-woo-refund-and-exchange-lite-admin.php:416
 #: admin/class-woo-refund-and-exchange-lite-admin.php:427
-#: admin/class-woo-refund-and-exchange-lite-admin.php:574
-#: admin/class-woo-refund-and-exchange-lite-admin.php:585
-#: admin/class-woo-refund-and-exchange-lite-admin.php:608
-#: admin/class-woo-refund-and-exchange-lite-admin.php:619
-#: admin/class-woo-refund-and-exchange-lite-admin.php:647
-#: admin/class-woo-refund-and-exchange-lite-admin.php:668
-#: admin/class-woo-refund-and-exchange-lite-admin.php:753
-#: admin/class-woo-refund-and-exchange-lite-admin.php:809
+#: admin/class-woo-refund-and-exchange-lite-admin.php:559
+#: admin/class-woo-refund-and-exchange-lite-admin.php:570
+#: admin/class-woo-refund-and-exchange-lite-admin.php:593
+#: admin/class-woo-refund-and-exchange-lite-admin.php:604
+#: admin/class-woo-refund-and-exchange-lite-admin.php:632
+#: admin/class-woo-refund-and-exchange-lite-admin.php:653
+#: admin/class-woo-refund-and-exchange-lite-admin.php:738
+#: admin/class-woo-refund-and-exchange-lite-admin.php:794
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:54
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:66
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:77
@@ -112,18 +113,19 @@ msgstr ""
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:404
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:415
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:426
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:454
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:475
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:521
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:606
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:707
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:437
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:465
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:486
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:532
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:617
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:718
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:730
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:774
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:802
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:846
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:868
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:903
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:729
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:741
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:785
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:813
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:857
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:879
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:914
 #: admin/partials/woo-refund-and-exchange-lite-welcome.php:55
 msgid "NO"
 msgstr ""
@@ -149,14 +151,14 @@ msgid "Enter a valid time period, For Example:-"
 msgstr ""
 
 #: admin/class-woo-refund-and-exchange-lite-admin.php:445
-#: admin/class-woo-refund-and-exchange-lite-admin.php:727
-#: admin/class-woo-refund-and-exchange-lite-admin.php:789
-#: admin/class-woo-refund-and-exchange-lite-admin.php:830
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:575
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:684
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:753
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:874
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:1002
+#: admin/class-woo-refund-and-exchange-lite-admin.php:712
+#: admin/class-woo-refund-and-exchange-lite-admin.php:774
+#: admin/class-woo-refund-and-exchange-lite-admin.php:815
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:586
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:695
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:764
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:885
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:1013
 #: admin/partials/woo-refund-and-exchange-lite-policies.php:173
 msgid "Save Setting"
 msgstr ""
@@ -166,230 +168,230 @@ msgid "Id of some field is missing"
 msgstr ""
 
 #: admin/class-woo-refund-and-exchange-lite-admin.php:513
-#: admin/class-woo-refund-and-exchange-lite-admin.php:1073
+#: admin/class-woo-refund-and-exchange-lite-admin.php:1058
 msgid "Settings saved !"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:546
+#: admin/class-woo-refund-and-exchange-lite-admin.php:531
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:298
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:588
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:599
 msgid "Order Page"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:547
+#: admin/class-woo-refund-and-exchange-lite-admin.php:532
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:299
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:589
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:600
 msgid "Order View Page"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:548
+#: admin/class-woo-refund-and-exchange-lite-admin.php:533
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:300
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:590
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:601
 msgid "Thank You Page"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:551
-#: admin/class-woo-refund-and-exchange-lite-admin.php:716
-#: admin/class-woo-refund-and-exchange-lite-admin.php:740
+#: admin/class-woo-refund-and-exchange-lite-admin.php:536
+#: admin/class-woo-refund-and-exchange-lite-admin.php:701
+#: admin/class-woo-refund-and-exchange-lite-admin.php:725
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:283
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:303
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:565
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:593
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:677
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:576
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:604
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:688
 msgid "Default"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:557
+#: admin/class-woo-refund-and-exchange-lite-admin.php:542
 msgid "Select Pages To Hide Refund Button"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:567
+#: admin/class-woo-refund-and-exchange-lite-admin.php:552
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:331
 msgid "Enable to show Manage Stock Button"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:578
-#: admin/class-woo-refund-and-exchange-lite-admin.php:746
+#: admin/class-woo-refund-and-exchange-lite-admin.php:563
+#: admin/class-woo-refund-and-exchange-lite-admin.php:731
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:342
 msgid "Enable Attachment"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:589
+#: admin/class-woo-refund-and-exchange-lite-admin.php:574
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:353
 msgid "Attachement Limit"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:591
+#: admin/class-woo-refund-and-exchange-lite-admin.php:576
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:355
 msgid "By default, It will take 5. If not given any."
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:600
+#: admin/class-woo-refund-and-exchange-lite-admin.php:585
 msgid "Enable To Refund Shipping Charge"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:604
+#: admin/class-woo-refund-and-exchange-lite-admin.php:589
 msgid ""
 "This feature will only work with a full refund order, not a partial refund."
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:612
+#: admin/class-woo-refund-and-exchange-lite-admin.php:597
 msgid "Enable To Allow the Refund Request Cancellation by user"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:632
+#: admin/class-woo-refund-and-exchange-lite-admin.php:617
 msgid "Refund Button Text"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:637
+#: admin/class-woo-refund-and-exchange-lite-admin.php:622
 msgid "Write the Refund Button Text"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:640
+#: admin/class-woo-refund-and-exchange-lite-admin.php:625
 msgid "Enable Refund Reason Description"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:651
+#: admin/class-woo-refund-and-exchange-lite-admin.php:636
 msgid "Predefined Refund Reason"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:658
+#: admin/class-woo-refund-and-exchange-lite-admin.php:643
 msgid "Write Multiple Refund Reason Separated by Comma"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:661
+#: admin/class-woo-refund-and-exchange-lite-admin.php:646
 msgid "Enable Refund Rules"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:672
+#: admin/class-woo-refund-and-exchange-lite-admin.php:657
 msgid "Refund Rules Editor"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:680
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:488
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:661
+#: admin/class-woo-refund-and-exchange-lite-admin.php:665
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:499
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:672
 msgid "Select The Page To Redirect"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:690
+#: admin/class-woo-refund-and-exchange-lite-admin.php:675
 msgid "Refund Form Wrapper Class"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:695
+#: admin/class-woo-refund-and-exchange-lite-admin.php:680
 msgid "Enter Refund Form Wrapper Class"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:698
+#: admin/class-woo-refund-and-exchange-lite-admin.php:683
 msgid "Refund Form Custom CSS"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:705
+#: admin/class-woo-refund-and-exchange-lite-admin.php:690
 msgid "Write the Refund Form CSS"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:710
+#: admin/class-woo-refund-and-exchange-lite-admin.php:695
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:277
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:559
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:671
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:570
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:682
 msgid "Choose Template"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:717
+#: admin/class-woo-refund-and-exchange-lite-admin.php:702
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:284
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:566
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:678
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:577
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:689
 msgid "Clean Slate"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:766
+#: admin/class-woo-refund-and-exchange-lite-admin.php:751
 msgid "Order Message Button Text"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:771
+#: admin/class-woo-refund-and-exchange-lite-admin.php:756
 msgid "Enter Order Message Button Text"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:775
+#: admin/class-woo-refund-and-exchange-lite-admin.php:760
 msgid "Select the Page to Redirect"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:802
+#: admin/class-woo-refund-and-exchange-lite-admin.php:787
 msgid "Enable API"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:813
+#: admin/class-woo-refund-and-exchange-lite-admin.php:798
 msgid "Secret Key"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:819
+#: admin/class-woo-refund-and-exchange-lite-admin.php:804
 msgid "Please Generate the Secret Key"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:824
+#: admin/class-woo-refund-and-exchange-lite-admin.php:809
 msgid "Generate Key"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:852
-#: admin/class-woo-refund-and-exchange-lite-admin.php:859
+#: admin/class-woo-refund-and-exchange-lite-admin.php:837
+#: admin/class-woo-refund-and-exchange-lite-admin.php:844
 msgid "Refund Requested Products"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:870
-#: admin/class-woo-refund-and-exchange-lite-admin.php:877
+#: admin/class-woo-refund-and-exchange-lite-admin.php:855
+#: admin/class-woo-refund-and-exchange-lite-admin.php:862
 msgid "Order Message History"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:1029
+#: admin/class-woo-refund-and-exchange-lite-admin.php:1014
 msgid "Product Stock is updated Successfully."
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:1031
+#: admin/class-woo-refund-and-exchange-lite-admin.php:1016
 #, php-format
 msgid "%s Product Stock is updated Successfully."
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:1034
+#: admin/class-woo-refund-and-exchange-lite-admin.php:1019
 msgid ""
 "Product Stock is not updated as manage stock setting of product is disable."
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:1036
+#: admin/class-woo-refund-and-exchange-lite-admin.php:1021
 #, php-format
 msgid ""
 "%s Product Stock is not updated as manage stock setting of product is "
 "disable."
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:1096
+#: admin/class-woo-refund-and-exchange-lite-admin.php:1081
 msgid "RMA Configuration"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:1098
+#: admin/class-woo-refund-and-exchange-lite-admin.php:1083
 msgid "Refund-Exchange Lite"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:1139
+#: admin/class-woo-refund-and-exchange-lite-admin.php:1124
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-policies-settings.php:46
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-policies-settings.php:56
 #: public/class-woo-refund-and-exchange-lite-public.php:225
 msgid "Exchange"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:1145
+#: admin/class-woo-refund-and-exchange-lite-admin.php:1130
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-policies-settings.php:47
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-policies-settings.php:57
 msgid "Cancel"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:1164
+#: admin/class-woo-refund-and-exchange-lite-admin.php:1149
 msgid "Wallet"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:1170
+#: admin/class-woo-refund-and-exchange-lite-admin.php:1155
 msgid "Global Shipping"
 msgstr ""
 
-#: admin/class-woo-refund-and-exchange-lite-admin.php:1176
+#: admin/class-woo-refund-and-exchange-lite-admin.php:1161
 msgid "Integration"
 msgstr ""
 
@@ -443,7 +445,7 @@ msgstr ""
 #: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:98
 #: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:99
 #: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:206
-#: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:361
+#: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:360
 msgid "Email"
 msgstr ""
 
@@ -588,7 +590,7 @@ msgid "Refund Note on Product Page"
 msgstr ""
 
 #: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:272
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:530
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:541
 msgid "Enter the Product Notes"
 msgstr ""
 
@@ -628,368 +630,372 @@ msgstr ""
 msgid "Enable To Allow the Exchange Request Cancellation by user"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:439
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:430
+msgid "Enable Auto Exchange Approval for exchange requests"
+msgstr ""
+
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:450
 msgid "Exchange Button Text"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:444
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:455
 msgid "Enter Exchange Button Text"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:447
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:458
 msgid "Enable Exchange Reason Description"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:458
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:469
 msgid "Predefined Exchange Reason"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:465
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:476
 msgid "Enter the multiple reason separated by comma"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:468
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:479
 msgid "Enable Exchange Rules"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:479
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:490
 msgid "Exchange Rules Editor"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:484
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:495
 msgid "Write the Refund Rules( HTML + CSS )"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:498
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:509
 msgid "Reason Of Exchange Placeholder"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:503
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:514
 msgid "Enter Reason of Exchange Placeholder Text"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:506
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:517
 msgid "Exchange Request Form Shipping Fee Description"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:509
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:520
 msgid ""
 "This Extra Shipping Fee Will be Deducted from Total Amount When the Exchange "
 "Request is approved"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:511
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:522
 msgid "Change Shipping Fee Description on Exchange Request Form"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:514
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:525
 msgid "Enable Exchange Note on Product Page"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:525
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:536
 msgid "Exchange Note On Product Page"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:533
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:544
 msgid "Exchange With Same Product Text"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:536
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:547
 msgid ""
 "Click on the product(s) to exchange with selected product(s) or its "
 "variation(s)."
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:538
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:549
 msgid ""
 "Add text to display on Exchange form to Exchanging with the same product(s) "
 "and it's variation(s)."
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:541
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:552
 msgid "Exchange Form Wrapper Class"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:546
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:557
 msgid "Enter Exchange Form Wrapper Class"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:549
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:560
 msgid "Exchange Form Custom CSS"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:556
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:567
 msgid "Write the Exchange form CSS"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:599
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:610
 msgid "Enable Cancel Order's Product"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:610
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:621
 msgid "Select Pages To Hide Cancel Button"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:625
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:636
 msgid "Cancel Order Button Text"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:630
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:638
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:641
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:649
 msgid "Enter Cancel Button Text"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:633
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:644
 msgid "Cancel Product Button Text"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:641
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:652
 msgid "Cancel Form Wrapper Class"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:646
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:657
 msgid "Enter Cancel Form Wrapper Class"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:649
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:660
 msgid "Cancel Form Custom CSS"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:656
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:667
 msgid "Write the Cancel form CSS"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:698
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:709
 msgid "Enable To Use Wallet System For WooCommerce Plugin"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:702
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:713
 msgid ""
 "All The Wallet Amount Will Be Migrate Into Wallet System For WooCommerce "
 "Plugin For Every Users."
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:711
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:722
 msgid "Enable To Select Refund Method For The Customer"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:722
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:733
 msgid "Cancel Order Amount to Wallet"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:726
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:737
 msgid "This Feature is not Applicable For COD Order"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:734
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:745
 msgid "Wallet Coupon Prefix"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:739
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:750
 msgid "Please Enter the Wallet Coupon Prefix"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:742
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:753
 msgid "Wallet Shortcode"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:767
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:778
 msgid "Enable To Block Mail"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:794
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:805
 msgid "Enable To Use SMS Notification For Refund , Exchange And Order Messages"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:806
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:817
 msgid "Account SID"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:811
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:822
 msgid "Enter a valid Twilio Account SID"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:812
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:823
 msgid "To view Twilio API credentials visit "
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:812
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:823
 msgid "Twilio Website"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:815
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:826
 msgid "Account Auth Token"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:820
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:831
 msgid "Enter valid Auth Token"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:823
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:834
 msgid "Account Twilio Number"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:828
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:839
 msgid "Enter a valid Twilio number to send messages from."
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:829
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:840
 msgid "To Buy a Twilio Number "
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:829
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:840
 msgid "Click Here"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:838
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:849
 msgid ""
 "Enable To Recieve SMS Notification For Refund, Exchange And Order Messages "
 "From Customer"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:850
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:861
 msgid "Enter Phone Number To Receive SMS As A Site Owner"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:855
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:866
 msgid "Enter a number to recieve sms notification."
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:856
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:867
 msgid "Phone number with country code using +. Ex : +1XXXXXXX987"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:860
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:871
 msgid ""
 "Enable To Send SMS Notification For Refund ,Exchange And Order Messages For "
 "Customer"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:895
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:906
 msgid "Enable To Use Whatsapp Notification For Refund And Exchange "
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:908
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:919
 msgid "Enter Phone number ID"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:913
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:924
 msgid "Enter Phone number ID here."
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:918
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:929
 msgid "Enter Access Token"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:923
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:934
 msgid "Enable Access Token here."
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:924
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:935
 msgid " you can go through this"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:924
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:935
 msgid " docs "
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:924
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:935
 msgid " here "
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:934
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:945
 msgid "Enter Content To Send In Sms With Refund Request Process"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:938
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:948
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:958
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:974
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:984
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:994
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:949
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:959
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:969
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:985
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:995
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:1005
 msgid "Use Placeholders  "
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:938
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:948
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:958
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:974
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:984
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:994
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:949
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:959
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:969
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:985
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:995
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:1005
 msgid "{customer-name}"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:938
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:948
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:958
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:974
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:984
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:994
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:949
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:959
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:969
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:985
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:995
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:1005
 msgid " for customer name and "
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:938
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:948
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:958
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:974
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:984
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:994
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:949
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:959
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:969
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:985
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:995
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:1005
 msgid " {order-id} "
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:938
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:948
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:958
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:974
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:984
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:994
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:949
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:959
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:969
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:985
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:995
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:1005
 msgid " for order id and ,"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:938
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:948
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:958
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:974
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:984
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:994
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:949
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:959
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:969
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:985
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:995
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:1005
 msgid " {siteurl} "
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:938
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:948
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:958
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:974
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:984
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:994
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:949
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:959
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:969
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:985
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:995
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:1005
 msgid " for site url."
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:940
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:950
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:960
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:976
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:986
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:996
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:951
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:961
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:971
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:987
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:997
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:1007
 msgid "Enter content to send in sms"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:944
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:955
 msgid "Enter Content To Send In Sms With Refund Approve Process"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:954
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:965
 msgid "Enter Content to Send In Sms With Refund Cancel Process"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:970
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:981
 msgid "Enter Content To Send In Sms With Exchange Request Process"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:980
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:991
 msgid "Enter Content To Send In Sms With Exchange Approve Process"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:990
+#: admin/partials/pro_setting_templates/admin_setting/class-wps-rma-settings-extend.php:1001
 msgid "Enter Content To Send In Sms With Exchange Cancel Process"
 msgstr ""
 
@@ -1265,6 +1271,149 @@ msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-admin-dashboard.php:107
 msgid "Go pro now"
+msgstr ""
+
+#: admin/partials/woo-refund-and-exchange-lite-api.php:143
+msgid "Refund Request"
+msgstr ""
+
+#: admin/partials/woo-refund-and-exchange-lite-api.php:144
+msgid "This API is used to make a refund request on an order"
+msgstr ""
+
+#: admin/partials/woo-refund-and-exchange-lite-api.php:145
+#: admin/partials/woo-refund-and-exchange-lite-api.php:188
+#: admin/partials/woo-refund-and-exchange-lite-api.php:250
+#: admin/partials/woo-refund-and-exchange-lite-api.php:293
+#: admin/partials/woo-refund-and-exchange-lite-api.php:338
+#: admin/partials/woo-refund-and-exchange-lite-api.php:419
+#: admin/partials/woo-refund-and-exchange-lite-api.php:465
+#: admin/partials/woo-refund-and-exchange-lite-api.php:508
+#: admin/partials/woo-refund-and-exchange-lite-api.php:549
+msgid "HTTP Request"
+msgstr ""
+
+#: admin/partials/woo-refund-and-exchange-lite-api.php:146
+#: admin/partials/woo-refund-and-exchange-lite-api.php:189
+#: admin/partials/woo-refund-and-exchange-lite-api.php:251
+#: admin/partials/woo-refund-and-exchange-lite-api.php:294
+#: admin/partials/woo-refund-and-exchange-lite-api.php:339
+#: admin/partials/woo-refund-and-exchange-lite-api.php:420
+#: admin/partials/woo-refund-and-exchange-lite-api.php:466
+#: admin/partials/woo-refund-and-exchange-lite-api.php:509
+#: admin/partials/woo-refund-and-exchange-lite-api.php:550
+msgid "Method"
+msgstr ""
+
+#: admin/partials/woo-refund-and-exchange-lite-api.php:147
+#: admin/partials/woo-refund-and-exchange-lite-api.php:190
+#: admin/partials/woo-refund-and-exchange-lite-api.php:252
+#: admin/partials/woo-refund-and-exchange-lite-api.php:295
+#: admin/partials/woo-refund-and-exchange-lite-api.php:340
+#: admin/partials/woo-refund-and-exchange-lite-api.php:421
+#: admin/partials/woo-refund-and-exchange-lite-api.php:467
+#: admin/partials/woo-refund-and-exchange-lite-api.php:510
+#: admin/partials/woo-refund-and-exchange-lite-api.php:551
+msgid "Base Url"
+msgstr ""
+
+#: admin/partials/woo-refund-and-exchange-lite-api.php:148
+#: admin/partials/woo-refund-and-exchange-lite-api.php:191
+#: admin/partials/woo-refund-and-exchange-lite-api.php:253
+#: admin/partials/woo-refund-and-exchange-lite-api.php:296
+#: admin/partials/woo-refund-and-exchange-lite-api.php:341
+#: admin/partials/woo-refund-and-exchange-lite-api.php:422
+#: admin/partials/woo-refund-and-exchange-lite-api.php:468
+#: admin/partials/woo-refund-and-exchange-lite-api.php:511
+#: admin/partials/woo-refund-and-exchange-lite-api.php:552
+msgid "cURL Example"
+msgstr ""
+
+#: admin/partials/woo-refund-and-exchange-lite-api.php:159
+#: admin/partials/woo-refund-and-exchange-lite-api.php:208
+#: admin/partials/woo-refund-and-exchange-lite-api.php:264
+#: admin/partials/woo-refund-and-exchange-lite-api.php:307
+#: admin/partials/woo-refund-and-exchange-lite-api.php:365
+#: admin/partials/woo-refund-and-exchange-lite-api.php:434
+#: admin/partials/woo-refund-and-exchange-lite-api.php:479
+#: admin/partials/woo-refund-and-exchange-lite-api.php:522
+#: admin/partials/woo-refund-and-exchange-lite-api.php:567
+msgid "Successful JSON Response"
+msgstr ""
+
+#: admin/partials/woo-refund-and-exchange-lite-api.php:169
+#: admin/partials/woo-refund-and-exchange-lite-api.php:219
+#: admin/partials/woo-refund-and-exchange-lite-api.php:275
+#: admin/partials/woo-refund-and-exchange-lite-api.php:318
+#: admin/partials/woo-refund-and-exchange-lite-api.php:445
+#: admin/partials/woo-refund-and-exchange-lite-api.php:490
+#: admin/partials/woo-refund-and-exchange-lite-api.php:533
+#: admin/partials/woo-refund-and-exchange-lite-api.php:578
+msgid "Error Responses"
+msgstr ""
+
+#: admin/partials/woo-refund-and-exchange-lite-api.php:186
+msgid "Partial Refund Request"
+msgstr ""
+
+#: admin/partials/woo-refund-and-exchange-lite-api.php:187
+msgid "This API is used to make a partial refund request on an order"
+msgstr ""
+
+#: admin/partials/woo-refund-and-exchange-lite-api.php:248
+msgid "Refund Request Accept"
+msgstr ""
+
+#: admin/partials/woo-refund-and-exchange-lite-api.php:249
+msgid "This API is used to accept pending refund requests on an order"
+msgstr ""
+
+#: admin/partials/woo-refund-and-exchange-lite-api.php:291
+msgid "Refund Request Cancel"
+msgstr ""
+
+#: admin/partials/woo-refund-and-exchange-lite-api.php:292
+msgid "This API is used to cancel pending refund requests on an order"
+msgstr ""
+
+#: admin/partials/woo-refund-and-exchange-lite-api.php:336
+msgid "Exchange Request"
+msgstr ""
+
+#: admin/partials/woo-refund-and-exchange-lite-api.php:337
+msgid "This API is used to make an exchange request on an order"
+msgstr ""
+
+#: admin/partials/woo-refund-and-exchange-lite-api.php:417
+msgid "Exchange Request Accept"
+msgstr ""
+
+#: admin/partials/woo-refund-and-exchange-lite-api.php:418
+msgid "This API is used to accept the pending exchange request on an order"
+msgstr ""
+
+#: admin/partials/woo-refund-and-exchange-lite-api.php:463
+msgid "Exchange Request Cancel"
+msgstr ""
+
+#: admin/partials/woo-refund-and-exchange-lite-api.php:464
+msgid "This API is used to cancel the pending exchange request on an order"
+msgstr ""
+
+#: admin/partials/woo-refund-and-exchange-lite-api.php:506
+msgid "Order Cancel"
+msgstr ""
+
+#: admin/partials/woo-refund-and-exchange-lite-api.php:507
+msgid "This API is used to cancel the order"
+msgstr ""
+
+#: admin/partials/woo-refund-and-exchange-lite-api.php:547
+msgid "Partial Order Cancel"
+msgstr ""
+
+#: admin/partials/woo-refund-and-exchange-lite-api.php:548
+msgid "This API is used to partial cancel an order"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-developer.php:33
@@ -1557,7 +1706,7 @@ msgid "Subject"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-return-meta.php:137
-#: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:489
+#: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:488
 msgid "Reason"
 msgstr ""
 
@@ -1679,30 +1828,30 @@ msgstr ""
 msgid "Phone number with country code. Ex: 1XXXXXXX987 (\"+\" not allowed)"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:356
+#: common/class-woo-refund-and-exchange-lite-common.php:357
 #, php-format
 msgid "Refund Requested <span class=\"count\">(%s)</span>"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:367
+#: common/class-woo-refund-and-exchange-lite-common.php:368
 #, php-format
 msgid "Refund Approved <span class=\"count\">(%s)</span>"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:378
+#: common/class-woo-refund-and-exchange-lite-common.php:379
 #, php-format
 msgid "Refund Cancelled <span class=\"count\">(%s)</span>"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:396
+#: common/class-woo-refund-and-exchange-lite-common.php:397
 msgid "Refund Requested"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:397
+#: common/class-woo-refund-and-exchange-lite-common.php:398
 msgid "Refund Approved"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:398
+#: common/class-woo-refund-and-exchange-lite-common.php:399
 msgid "Refund Cancelled"
 msgstr ""
 
@@ -1819,37 +1968,37 @@ msgstr ""
 msgid "View Order Messages"
 msgstr ""
 
-#: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:301
+#: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:300
 msgid "What is your monthly revenue?"
 msgstr ""
 
-#: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:320
+#: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:319
 msgid "What industry defines your business?"
 msgstr ""
 
-#: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:326
+#: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:325
 msgid "Industry Type"
 msgstr ""
 
-#: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:357
+#: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:356
 msgid "What is the best email address to contact you?"
 msgstr ""
 
-#: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:369
+#: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:368
 msgid "What is your contact number?"
 msgstr ""
 
-#: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:374
+#: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:373
 msgid "Contact Number"
 msgstr ""
 
-#: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:485
+#: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:484
 msgid ""
 "Let us know why you are deactivating WooCommerce Refund and Exchange Lite so "
 "we can improve the plugin"
 msgstr ""
 
-#: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:729
+#: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:728
 msgid "Unexpected Error Occured"
 msgstr ""
 
@@ -1998,103 +2147,74 @@ msgstr ""
 msgid "Skip For Now"
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:140
-msgid ""
-"Return Request Already has been made and accepted for the items you have "
-"given"
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:54
+msgid "Please provide a valid order ID."
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:144
-msgid "Quantity given for items is greater than the orders items quantity"
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:94
+msgid "Invalid JSON format."
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:148
-msgid "These item id does not belong to the order"
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:179
+msgid "Refund request sent successfully."
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:152
-msgid "Please give the item ids which needs to be refunded"
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:182
+msgid "An error occurred while submitting the refund request."
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:156
-msgid "Please give the item qty which needs to be refunded"
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:232
+msgid "Return request already accepted."
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:160
-msgid "Products are given by you doesn't a valid json format"
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:238
+msgid "Return request sent successfully."
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:163
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:166
-msgid "Please Provide the data for the products"
-msgstr ""
-
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:177
-msgid "Refund Request Send Successfully"
-msgstr ""
-
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:181
 #: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:241
-msgid "Some problem occur while refund requesting"
+msgid "An error occurred while submitting the return request."
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:233
-msgid "Return Request Already has been made and accepted"
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:258
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:316
+msgid "Please provide the order ID to perform the process."
 msgstr ""
 
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:237
-msgid "Return Request Send Successfully"
-msgstr ""
-
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:250
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:307
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:358
-msgid "Please Provide the order id to perform the process"
-msgstr ""
-
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:253
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:304
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:355
-msgid "Please Provide the correct order id to perform the process"
-msgstr ""
-
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:256
-msgid "Please Provide the reason for refund"
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:265
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:323
+msgid "Please provide a valid order ID to perform the process."
 msgstr ""
 
 #: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:290
-msgid "Return Request Accepted Successfully"
+msgid "Return request accepted successfully."
 msgstr ""
 
 #: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:293
-msgid "Some problem occur while refund request accepting"
+msgid "Some problem occurred while accepting the refund request."
+msgstr ""
+
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:295
+msgid "You have already approved the refund request."
 msgstr ""
 
 #: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:297
-msgid "You have approved the refund request already"
-msgstr ""
-
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:300
-msgid ""
-"You can only accept the refund request when the request has been made earlier"
-msgstr ""
-
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:341
-msgid "Return Request Cancel Successfully"
-msgstr ""
-
-#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:344
-msgid "Some problem occur while refund request cancelling"
+msgid "You can only accept a refund request if one has been made earlier."
 msgstr ""
 
 #: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:348
-msgid "You have cancelled the refund request already"
+msgid "Return request cancelled successfully."
 msgstr ""
 
 #: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:351
-msgid ""
-"You can only perform the refund request cancel when the request request has "
-"been made earlier"
+msgid "Some problem occurred while cancelling the refund request."
+msgstr ""
+
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:353
+msgid "You have already cancelled the refund request."
+msgstr ""
+
+#: package/rest-api/version1/class-woo-refund-and-exchange-lite-api-process.php:355
+msgid "You can only cancel a refund request if one has been made earlier."
 msgstr ""
 
 #: public/class-woo-refund-and-exchange-lite-public.php:80
@@ -2253,7 +2373,7 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:470
+#: woocommerce-refund-and-exchange-lite.php:441
 msgid ""
 "Woocommerce is not activated, Please activate Woocommerce first to install "
 "WooCommerce Refund and Exchange Lite."

@@ -522,21 +522,6 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	}
 
 	/**
-	 * Sanitation for an array
-	 *
-	 * @param array $wps_input_array .
-	 *
-	 * @return array
-	 */
-	public function wps_sanitize_array( $wps_input_array ) {
-		foreach ( $wps_input_array as $key => $value ) {
-			$key   = sanitize_text_field( wp_unslash( $key ) );
-			$value = map_deep( wp_unslash( $value ), 'sanitize_text_field' );
-		}
-		return $wps_input_array;
-	}
-
-	/**
 	 * Register Refund section setting.
 	 *
 	 * @param array $wps_rma_settings_refund .

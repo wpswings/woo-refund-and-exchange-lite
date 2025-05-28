@@ -171,7 +171,6 @@ class Woo_Refund_And_Exchange_Lite_Onboarding_Steps {
 
 			wp_enqueue_style( 'wps-wrael-meterial-css', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/material-design/material-components-web.min.css', array(), time(), 'all' );
 			wp_enqueue_style( 'wps-wrael-meterial-css2', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/material-design/material-components-v5.0-web.min.css', array(), time(), 'all' );
-			wp_enqueue_style( 'wps-wrael-meterial-lite', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/material-design/material-lite.min.css', array(), time(), 'all' );
 			wp_enqueue_style( 'wps-wrael-meterial-icons-css', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/material-design/icon.css', array(), time(), 'all' );
 
 			wp_enqueue_style( 'wps-wrael-onboarding-style', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'onboarding/css/woo-refund-and-exchange-lite-onboarding.css', array(), time(), 'all' );
