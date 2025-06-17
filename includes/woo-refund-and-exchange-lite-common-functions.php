@@ -24,6 +24,118 @@ if ( ! function_exists( 'wps_rma_show_buttons' ) ) {
 		$setting_saved        = get_option( 'policies_setting_option', array() );
 		$check                = get_option( 'wps_rma_' . $func . '_enable', false );
 		$get_specific_setting = array();
+		
+		//user role feature for refund.
+		if( 'refund' == $func ){
+
+			$wps_rma_allow_refund_user_role = get_option( 'wps_rma_disable_'.$func.'_user_role' );
+			$wps_rma_refund_allowed_user_roles = get_option( 'wps_rma_'.$func.'_disable_user_roles' );
+	
+			$current_user = wp_get_current_user();
+			$current_user_roles = (array) $current_user->roles;
+	
+			$is_user_allowed_refund = false;
+	
+			if ( $wps_rma_allow_refund_user_role === 'on' ) {	
+				if ( empty( $wps_rma_refund_allowed_user_roles ) || ! is_array( $wps_rma_refund_allowed_user_roles ) ) {
+					$is_user_allowed_refund = true;
+				} else {
+					// Check if user's role is in the allowed roles
+					foreach ( $current_user_roles as $role ) {
+						if ( in_array( $role, $wps_rma_refund_allowed_user_roles, true ) ) {
+							$is_user_allowed_refund = true;
+							break;
+						}
+					}
+				}
+			}
+			// else{
+			// 	$is_user_allowed_refund = true;
+			// }
+	
+			if ( $is_user_allowed_refund ) {
+				// User is allowed to request refund
+				$show_button = esc_html__( 'You Are not allow to do refund request', 'woo-refund-and-exchange-lite' );
+			} else {
+				// User is NOT allowed to request refund
+				$show_button = 'yes';
+			}
+		}
+		//user role feature for refund.
+
+		//user role feature for exchange.
+		if( 'exchange' == $func ){
+
+			$wps_rma_allow_exchange_user_role = get_option( 'wps_rma_disable_'.$func.'_user_role' );
+		
+			$wps_rma_exchange_allowed_user_roles = get_option( 'wps_rma_'.$func.'_disable_user_roles' );
+	
+			$current_user = wp_get_current_user();
+			$current_user_roles = (array) $current_user->roles;
+	
+			$is_user_allowed_exchange = false;
+	
+			if ( $wps_rma_allow_exchange_user_role === 'on' ) {	
+				if ( empty( $wps_rma_exchange_allowed_user_roles ) || ! is_array( $wps_rma_exchange_allowed_user_roles ) ) {
+					$is_user_allowed_exchange = true;
+				} else {
+					// Check if user's role is in the allowed roles
+					foreach ( $current_user_roles as $role ) {
+						if ( in_array( $role, $wps_rma_exchange_allowed_user_roles, true ) ) {
+							$is_user_allowed_exchange = true;
+							break;
+						}
+					}
+				}
+			}
+	
+			if ( $is_user_allowed_exchange ) {
+				// User is allowed to request refund
+				$show_button = esc_html__( 'You Are not allow to do exchange request', 'woo-refund-and-exchange-lite' );
+			} else {
+				// User is NOT allowed to request refund
+				$show_button = 'yes';
+			}
+		}
+		//user role feature for exchange.
+
+
+		//user role feature for cancel.
+		if( 'cancel' == $func ){
+
+			$wps_rma_allow_cancel_user_role = get_option( 'wps_rma_disable_'.$func.'_user_role' );
+		
+			$wps_rma_cancel_allowed_user_roles = get_option( 'wps_rma_'.$func.'_disable_user_roles' );
+	
+			$current_user = wp_get_current_user();
+			$current_user_roles = (array) $current_user->roles;
+	
+			$is_user_allowed_cancel = false;
+	
+			if ( $wps_rma_allow_cancel_user_role === 'on' ) {	
+				if ( empty( $wps_rma_cancel_allowed_user_roles ) || ! is_array( $wps_rma_cancel_allowed_user_roles ) ) {
+					$is_user_allowed_cancel = true;
+				} else {
+					// Check if user's role is in the allowed roles
+					foreach ( $current_user_roles as $role ) {
+						if ( in_array( $role, $wps_rma_cancel_allowed_user_roles, true ) ) {
+							$is_user_allowed_cancel = true;
+							break;
+						}
+					}
+				}
+			}
+	
+			if ( $is_user_allowed_cancel ) {
+				// User is allowed to request refund
+				$show_button = esc_html__( 'You Are not allow to do cancel request', 'woo-refund-and-exchange-lite' );
+			} else {
+				// User is NOT allowed to request refund
+				$show_button = 'yes';
+			}
+		}
+		//user role feature for cancel.
+			
 		if ( 'on' === $check ) {
 			$get_setting = get_option( 'policies_setting_option', array() );
 			$get_specific_setting = array_filter( isset( $get_setting['wps_rma_setting'] ) ? $get_setting['wps_rma_setting'] : array(), function ($item) use ($func) {
