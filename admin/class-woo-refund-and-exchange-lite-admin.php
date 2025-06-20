@@ -619,7 +619,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			),
 
 			array(
-				'title'   => esc_html__( 'Enable To Disable the Refund Request Based on user role', 'woo-refund-and-exchange-lite' ),
+				'title'   => esc_html__( 'Enable/Disable Refund Functionality for Specific User Roles', 'woo-refund-and-exchange-lite' ),
 				'type'    => 'radio-switch',
 				'id'      => 'wps_rma_disable_refund_user_role',
 				'value'   => get_option( 'wps_rma_disable_refund_user_role' ),
@@ -631,9 +631,9 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			),
 
 			array(
-				'title'       => esc_html__( 'Select User Role To Not Allow Refund', 'woo-refund-and-exchange-lite' ),
+				'title'       => esc_html__( 'Select User Roles to Restrict Refund Access', 'woo-refund-and-exchange-lite' ),
 				'type'        => 'multiselect',
-				'description' =>  esc_html__( 'if no, user role is selected then refund feature will work for all user role', 'woo-refund-and-exchange-lite' ),
+				'description' =>  esc_html__( 'If no user role is selected, the refund feature will be available for all user roles', 'woo-refund-and-exchange-lite' ),
 				'id'          => 'wps_rma_refund_disable_user_roles',
 				'value'       => get_option( 'wps_rma_refund_disable_user_roles' ),
 				'class'       => 'wrael-multiselect-class wps-defaut-multiselect',

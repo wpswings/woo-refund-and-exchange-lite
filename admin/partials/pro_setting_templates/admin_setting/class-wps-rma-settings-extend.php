@@ -452,7 +452,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 				),
 
 					array(
-					'title'   => esc_html__( 'Enable To Disable the Exchange Request Based on user role', 'woo-refund-and-exchange-lite' ),
+					'title'   => esc_html__( 'Enable/Disable Exchange Functionality for Specific User Roles', 'woo-refund-and-exchange-lite' ),
 					'type'    => 'radio-switch',
 					'id'      => 'wps_rma_disable_exchange_user_role',
 					'value'   => get_option( 'wps_rma_disable_exchange_user_role' ),
@@ -466,9 +466,9 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 				
 
 				array(
-					'title'       => esc_html__( 'Select User Role To Not Allow Exchange', 'woo-refund-and-exchange-lite' ),
+					'title'       => esc_html__( 'Select User Roles to Restrict Exchange Access', 'woo-refund-and-exchange-lite' ),
 					'type'        => 'multiselect',
-					'description' => esc_html__( 'if no, user role is selected then exchange feature will work for all user role', 'woo-refund-and-exchange-lite' ),
+					'description' => esc_html__( 'If no user role is selected, the Exchange feature will be available for all user roles', 'woo-refund-and-exchange-lite' ),
 					'id'          => 'wps_rma_exchange_disable_user_roles',
 					'value'       => get_option( 'wps_rma_exchange_disable_user_roles' ),
 					'class'       => 'wrael-multiselect-class wps-defaut-multiselect ' . $this->rma_pro_activate,
@@ -679,7 +679,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					'options'     => $button_view,
 				),
 				array(
-					'title'   => esc_html__( 'Enable To Disable the Cancel Request Based on user role', 'woo-refund-and-exchange-lite' ),
+					'title'   => esc_html__( 'Enable/Disable Cancel Functionality for Specific User Roles', 'woo-refund-and-exchange-lite' ),
 					'type'    => 'radio-switch',
 					'id'      => 'wps_rma_disable_cancel_user_role',
 					'value'   => get_option( 'wps_rma_disable_cancel_user_role' ),
@@ -690,9 +690,9 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					),
 				),
 				array(
-					'title'       => esc_html__( 'Select User Role To Not Allow Cancel', 'woo-refund-and-exchange-lite' ),
+					'title'       => esc_html__( 'Select User Roles to Restrict Cancel Access', 'woo-refund-and-exchange-lite' ),
 					'type'        => 'multiselect',
-					'description' => esc_html__( 'if no, user role is selected then cancel feature will work for all user role', 'woo-refund-and-exchange-lite' ),
+					'description' => esc_html__( 'If no user role is selected, the cancel feature will be available for all user roles.', 'woo-refund-and-exchange-lite' ),
 					'id'          => 'wps_rma_cancel_disable_user_roles',
 					'value'       => get_option( 'wps_rma_cancel_disable_user_roles' ),
 					'class'       => 'wrael-multiselect-class wps-defaut-multiselect ' . $this->rma_pro_activate,

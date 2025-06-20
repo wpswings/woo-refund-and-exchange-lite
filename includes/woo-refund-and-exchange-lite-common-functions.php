@@ -35,11 +35,8 @@ if ( ! function_exists( 'wps_rma_show_buttons' ) ) {
 			$current_user_roles = (array) $current_user->roles;
 	
 			$is_user_allowed_refund = false;
-	
 			if ( $wps_rma_allow_refund_user_role === 'on' ) {	
-				if ( empty( $wps_rma_refund_allowed_user_roles ) || ! is_array( $wps_rma_refund_allowed_user_roles ) ) {
-					$is_user_allowed_refund = true;
-				} else {
+				if ( ! empty( $wps_rma_refund_allowed_user_roles ) &&  is_array( $wps_rma_refund_allowed_user_roles ) ) {
 					// Check if user's role is in the allowed roles
 					foreach ( $current_user_roles as $role ) {
 						if ( in_array( $role, $wps_rma_refund_allowed_user_roles, true ) ) {
@@ -49,10 +46,8 @@ if ( ! function_exists( 'wps_rma_show_buttons' ) ) {
 					}
 				}
 			}
-			// else{
-			// 	$is_user_allowed_refund = true;
-			// }
-	
+			
+			
 			if ( $is_user_allowed_refund ) {
 				// User is allowed to request refund
 				$show_button = esc_html__( 'You Are not allow to do refund request', 'woo-refund-and-exchange-lite' );
@@ -76,9 +71,7 @@ if ( ! function_exists( 'wps_rma_show_buttons' ) ) {
 			$is_user_allowed_exchange = false;
 	
 			if ( $wps_rma_allow_exchange_user_role === 'on' ) {	
-				if ( empty( $wps_rma_exchange_allowed_user_roles ) || ! is_array( $wps_rma_exchange_allowed_user_roles ) ) {
-					$is_user_allowed_exchange = true;
-				} else {
+				if ( ! empty( $wps_rma_exchange_allowed_user_roles ) && is_array( $wps_rma_exchange_allowed_user_roles ) ) {
 					// Check if user's role is in the allowed roles
 					foreach ( $current_user_roles as $role ) {
 						if ( in_array( $role, $wps_rma_exchange_allowed_user_roles, true ) ) {
@@ -113,9 +106,7 @@ if ( ! function_exists( 'wps_rma_show_buttons' ) ) {
 			$is_user_allowed_cancel = false;
 	
 			if ( $wps_rma_allow_cancel_user_role === 'on' ) {	
-				if ( empty( $wps_rma_cancel_allowed_user_roles ) || ! is_array( $wps_rma_cancel_allowed_user_roles ) ) {
-					$is_user_allowed_cancel = true;
-				} else {
+				if ( ! empty( $wps_rma_cancel_allowed_user_roles ) &&  is_array( $wps_rma_cancel_allowed_user_roles ) ) {
 					// Check if user's role is in the allowed roles
 					foreach ( $current_user_roles as $role ) {
 						if ( in_array( $role, $wps_rma_cancel_allowed_user_roles, true ) ) {
