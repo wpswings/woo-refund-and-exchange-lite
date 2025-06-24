@@ -25,7 +25,7 @@
  * Requires at least: 5.5.0
  * Tested up to: 6.8.1
  * WC requires at least: 6.5
- * WC tested up to: 9.8.5
+ * WC tested up to: 9.9.5
  *
  * License:           GNU General Public License v3.0
  * License URI:       http://www.gnu.org/licenses/gpl-3.0.html
@@ -276,7 +276,10 @@ if ( $activated ) {
 			if ( isset( $screen->id ) ) {
 				$pagescreen = $screen->id;
 			}
-			if ( ( isset( $pagescreen ) && 'plugins' === $pagescreen ) || ( 'wp-swings_page_home' == $pagescreen ) ) {
+			$target_screens = array( 'plugins', 'dashboard', 'wp-swings_page_home' );
+			$page_param     = isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '';
+
+			if ( 'wc-settings' === $page_param || in_array( $screen->id, $target_screens, true ) ) {
 				$banner_id = get_option( 'wps_wgm_notify_new_banner_id', false );
 				if ( isset( $banner_id ) && '' !== $banner_id ) {
 					$hidden_banner_id            = get_option( 'wps_wgm_notify_hide_baneer_notification', false );
@@ -301,7 +304,7 @@ if ( $activated ) {
 
 	add_action( 'admin_notices', 'wps_rma_banner_notification_html' );
 	/**
-	 * Function to show banner image based on subscription.
+	 * Function to show banner image based on rma.
 	 *
 	 * @return void
 	 */

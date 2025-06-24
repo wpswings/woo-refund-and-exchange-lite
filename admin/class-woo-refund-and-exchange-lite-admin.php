@@ -177,11 +177,12 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		wp_enqueue_script( 'wps-rma-promotional-banner', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/js/woo-refund-and-exchange-lite-banner.js', array( 'jquery' ), time(), false );
 		wp_register_script( 'wps-rma-promotional-banner', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/js/woo-refund-and-exchange-lite-banner.js', array( 'jquery' ), $this->version, false );
 		wp_localize_script(
-			$this->plugin_name . 'admin-js',
+			'wps-rma-promotional-banner',
 			'wrael_banner_param',
 			array(
 				'ajaxurl'       => admin_url( 'admin-ajax.php' ),
 				'wps_rma_nonce' => wp_create_nonce( 'wps_rma_ajax_seurity' ),
+				'check_pro_active'           => esc_html( $pro_active ),
 			)
 		);
 		if ( ! empty( $screen ) && isset( $screen->id ) && 'wp-swings_page_woo_refund_and_exchange_lite_menu' === $screen->id ) {
@@ -1361,7 +1362,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	 * Save the promotional banner info.
 	 */
 	public function wps_rma_save_banner_info() {
-		$wps_notification_data = $this->wps_sfw_get_update_notification_data();
+		$wps_notification_data = $this->wps_rma_get_update_notification_data();
 		if ( is_array( $wps_notification_data ) && ! empty( $wps_notification_data ) ) {
 			$banner_id    = array_key_exists( 'notification_id', $wps_notification_data[0] ) ? $wps_notification_data[0]['wps_banner_id'] : '';
 			$banner_image = array_key_exists( 'notification_message', $wps_notification_data[0] ) ? $wps_notification_data[0]['wps_banner_image'] : '';
@@ -1371,13 +1372,13 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			update_option( 'wps_wgm_notify_new_banner_image', $banner_image );
 			update_option( 'wps_wgm_notify_new_banner_url', $banner_url );
 			if ( 'regular' === $banner_type ) {
-				update_option( 'wps_wgm_notify_hide_baneer_notification', '' );
+				update_option( 'wps_wgm_notify_hide_baneer_notification', 0 );
 			}
 		}
 	}
 
 	/** Fetch the banner info from server throug api call */
-	public function wps_sfw_get_update_notification_data() {
+	public function wps_rma_get_update_notification_data() {
 		$wps_notification_data = array();
 		$url                   = 'https://demo.wpswings.com/client-notification/woo-gift-cards-lite/wps-client-notify.php';
 		$attr                  = array(
