@@ -99,7 +99,7 @@ if ( ! class_exists( 'Wps_Rma_Policies_Settings' ) ) {
 			$all_products_ids = get_posts(
 				array(
 					'post_type'   => 'product',
-					'numberposts' => -1,
+					'numberposts' => 50,
 					'post_status' => 'publish',
 					'fields'      => 'ids',
 				)
@@ -156,7 +156,7 @@ if ( ! class_exists( 'Wps_Rma_Policies_Settings' ) ) {
 			$all_products_ids = get_posts(
 				array(
 					'post_type'   => 'product',
-					'numberposts' => -1,
+					'numberposts' => 50,
 					'post_status' => 'publish',
 					'fields'      => 'ids',
 				)
