@@ -271,12 +271,15 @@ if ( $activated ) {
 		 * @return void
 		 */
 		function wps_banner_notification_plugin_html() {
-
+			if ( ! function_exists( 'get_current_screen' ) ) {
+				return;
+			}
+			
 			$screen = get_current_screen();
 			if ( isset( $screen->id ) ) {
 				$pagescreen = $screen->id;
 			}
-			$target_screens = array( 'plugins', 'dashboard', 'wp-swings_page_home' );
+			$target_screens = array( 'plugins', 'dashboard', 'wp-swings_page_home', 'wp-swings_page_woo_refund_and_exchange_lite_menu' );
 			$page_param     = isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '';
 
 			if ( 'wc-settings' === $page_param || in_array( $screen->id, $target_screens, true ) ) {
@@ -302,37 +305,6 @@ if ( $activated ) {
 		}
 	}
 
-	add_action( 'admin_notices', 'wps_rma_banner_notification_html' );
-	/**
-	 * Function to show banner image based on rma.
-	 *
-	 * @return void
-	 */
-	function wps_rma_banner_notification_html() {
-		$screen = get_current_screen();
-		if ( isset( $screen->id ) && 'wp-swings_page_woo_refund_and_exchange_lite_menu' === $screen->id ) {
-			$banner_id = get_option( 'wps_wgm_notify_new_banner_id', false );
-			if ( isset( $banner_id ) && '' !== $banner_id ) {
-				$hidden_banner_id            = get_option( 'wps_wgm_notify_hide_baneer_notification', false );
-				$banner_image = get_option( 'wps_wgm_notify_new_banner_image', '' );
-				$banner_url = get_option( 'wps_wgm_notify_new_banner_url', '' );
-				if ( isset( $hidden_banner_id ) && $hidden_banner_id < $banner_id ) {
-
-					if ( '' !== $banner_image && '' !== $banner_url ) {
-
-						?>
-						<div class="wps-offer-notice notice notice-warning is-dismissible">
-							<div class="notice-container">
-								<a href="<?php echo esc_url( $banner_url ); ?>"target="_blank"><img src="<?php echo esc_url( $banner_image ); ?>" alt="RMA cards"/></a>
-							</div>
-							<button type="button" class="notice-dismiss dismiss_banner" id="dismiss-banner"><span class="screen-reader-text">Dismiss this notice.</span></button>
-						</div>
-						<?php
-					}
-				}
-			}
-		}
-	}
 	/**
 	 * Restrict the direct attachment directory access and rename the existing file name using the randomize name method .
 	 */
