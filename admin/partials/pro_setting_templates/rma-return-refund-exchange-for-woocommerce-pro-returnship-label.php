@@ -56,7 +56,7 @@ if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 						</div>
 					</td>
 				</tr>
-				<tr valign="top">
+				<tr valign="top" style="display: none;">
 					<th class="titledesc wps-form-group__label">
 						<label for="wps_wrma_enable_return_ship_station_label"><?php esc_html_e( 'Enable ShipEngine Shiping Label', 'woo-refund-and-exchange-lite' ); ?></label>
 					</th>
@@ -133,7 +133,7 @@ if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 <div class='wps_table wps_rma_shipping_setting'>
 	<form enctype='multipart/form-data' action='' id='' method='post'>
 		<!-- wrapper div -->
-		<div class='wps_wrma_accordion'>
+		<div class='wps_wrma_accordion' style="display:none">
 			<div class="wps_wrma_accord_sec_wrap">
 				<h4 id="wrma_shipstation_heading" class="wps_wrma_basic_setting wps_wrma_slide_active">
 					<?php esc_html_e( 'ShipEngine Configuration', 'woo-refund-and-exchange-lite' ); ?>
