@@ -139,10 +139,6 @@ if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 					<?php esc_html_e( 'ShipEngine Configuration', 'woo-refund-and-exchange-lite' ); ?>
 				</h4>
 				<div class='wps_wrma_validate_form_wrapper'>
-					<!-- loader -->
-					<div class="wps_wrma_return_loader">
-						<img src="<?php echo esc_html( home_url() ); ?>/wp-admin/images/spinner-2x.gif">
-					</div>
 					<?php
 
 						$wps_wrma_connected_account = get_option( ' wps_wrma_connected_ship_station_account ', '' );
@@ -194,6 +190,10 @@ if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 							<a href='javascript:void(0)' class='wps_wrma_validate_api_key wps-rma-admin__button <?php echo 'button_' . esc_attr( $rma_pro_activate ); ?>' ><?php esc_html_e( 'Validate Account', 'woo-refund-and-exchange-lite' ); ?>
 							</a>
 						</p>
+						<!-- loader -->
+						<div class="wps_wrma_return_loader">
+							<img src="<?php echo esc_html( home_url() ); ?>/wp-admin/images/spinner-2x.gif">
+						</div>
 					</div>
 					<!-- Validation form ends -->
 				</div>
@@ -206,10 +206,6 @@ if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 					<?php esc_html_e( 'Shipstation Configuration', 'woo-refund-and-exchange-lite' ); ?>
 				</h4>
 				<div class='wps_wrma_ship_validate_form_wrapper'>
-					<!-- loader -->
-					<div class="wps_wrma_returnship_loader">
-						<img src="<?php echo esc_html( home_url() ); ?>/wp-admin/images/spinner-2x.gif">
-					</div>
 					<?php
 						$wps_wrma_connected_account = get_option( ' wps_wrma_validated_real_ship_station_api_key ', '' );
 						$wps_wrma_api_key = get_option( ' wps_wrma_validated_real_ship_station_api_key ', '' );
@@ -270,6 +266,10 @@ if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 							<a href='javascript:void(0)' class='wps_wrma_ship_validate_api_key wps-rma-admin__button <?php echo 'button_' . esc_attr( $rma_pro_activate ); ?>' ><?php esc_html_e( 'Validate Account', 'woo-refund-and-exchange-lite' ); ?>
 							</a>
 						</p>
+						<!-- loader -->
+						<div class="wps_wrma_returnship_loader">
+							<img src="<?php echo esc_html( home_url() ); ?>/wp-admin/images/spinner-2x.gif">
+						</div>
 					</div>
 					<!-- Validation form ends -->
 				</div>
