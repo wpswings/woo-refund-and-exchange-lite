@@ -168,9 +168,10 @@ if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 
 							<?php
 							/* List carriers starts */
-
-							$wps_wrma_refund_class = new Rma_Return_Refund_Exchange_For_Woocommerce_Pro_Admin( 'rma-return-refund-exchange-for-woocommerce-pro', '5.0.0' );
-							$wps_wrma_refund_class->wps_wrma_list_carriers_html();
+							if ( class_exists( 'Rma_Return_Refund_Exchange_For_Woocommerce_Pro_Admin' ) ) {
+								$wps_wrma_refund_class = new Rma_Return_Refund_Exchange_For_Woocommerce_Pro_Admin( 'rma-return-refund-exchange-for-woocommerce-pro', '5.0.0' );
+								$wps_wrma_refund_class->wps_wrma_list_carriers_html();
+							}
 
 							/* List carriers ends */
 					}
@@ -236,9 +237,10 @@ if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 							<?php
 
 							/* List carriers starts */
-
-							$wps_wrma_refund_class = new Rma_Return_Refund_Exchange_For_Woocommerce_Pro_Admin( 'rma-return-refund-exchange-for-woocommerce-pro', '5.0.0' );
-							$wps_wrma_refund_class->wps_wrma_list_shipstation_carriers_html();
+							if ( class_exists( 'Rma_Return_Refund_Exchange_For_Woocommerce_Pro_Admin' ) ) {
+								$wps_wrma_refund_class = new Rma_Return_Refund_Exchange_For_Woocommerce_Pro_Admin( 'rma-return-refund-exchange-for-woocommerce-pro', '5.0.0' );
+								$wps_wrma_refund_class->wps_wrma_list_shipstation_carriers_html();
+							}
 
 							/* List carriers ends */
 					}
