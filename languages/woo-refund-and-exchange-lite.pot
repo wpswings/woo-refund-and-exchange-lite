@@ -1,8 +1,8 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Return Refund and Exchange for WooCommerce 4.5.1\n"
-"POT-Creation-Date: 2025-06-24 15:49+0530\n"
+"Project-Id-Version: Return Refund and Exchange for WooCommerce 4.5.2\n"
+"POT-Creation-Date: 2025-07-24 17:24+0530\n"
 "PO-Revision-Date: 2023-09-25 13:54+0530\n"
 "Last-Translator: \n"
 "Language-Team: WP Swings\n"
@@ -473,7 +473,7 @@ msgstr ""
 
 #: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:41
 #: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:45
-#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:150
+#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:146
 #: public/class-woo-refund-and-exchange-lite-public.php:247
 #: public/partials/wps-rma-refund-request-form.php:87
 msgid "Product"
@@ -482,7 +482,7 @@ msgstr ""
 #: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:42
 #: admin/partials/woo-refund-and-exchange-lite-return-meta.php:49
 #: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:46
-#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:151
+#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:147
 #: public/partials/wps-rma-refund-request-form.php:88
 msgid "Quantity"
 msgstr ""
@@ -490,52 +490,52 @@ msgstr ""
 #: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:43
 #: admin/partials/woo-refund-and-exchange-lite-return-meta.php:48
 #: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:47
-#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:152
+#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:148
 #: public/partials/wps-rma-refund-request-form.php:162
 msgid "Price"
 msgstr ""
 
-#: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:83
-#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:87
-#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:191
-#: public/class-woo-refund-and-exchange-lite-public.php:316
+#: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:79
+#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:83
+#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:183
+#: public/class-woo-refund-and-exchange-lite-public.php:311
 msgid "(Shipping Charges Added)"
 msgstr ""
 
-#: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:88
-#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:92
-#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:195
+#: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:84
+#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:88
+#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:187
 msgid "Refund Total"
 msgstr ""
 
-#: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:95
-#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:96
-#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:203
+#: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:91
+#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:92
+#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:195
 msgid "Customer details"
 msgstr ""
 
-#: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:98
-#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:99
-#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:206
+#: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:94
+#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:95
+#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:198
 #: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:360
 msgid "Email"
 msgstr ""
 
-#: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:101
-#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:102
-#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:209
+#: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:97
+#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:98
+#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:201
 msgid "Tel"
+msgstr ""
+
+#: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:103
+#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:104
+#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:207
+msgid "Shipping Address"
 msgstr ""
 
 #: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:107
 #: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:108
-#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:215
-msgid "Shipping Address"
-msgstr ""
-
-#: admin/partials/email_template/woo-refund-and-exchange-lite-refund-request-accept-email.php:111
-#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:112
-#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:219
+#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:211
 msgid "Billing Address"
 msgstr ""
 
@@ -1137,8 +1137,8 @@ msgstr ""
 
 #: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-global-shipping.php:149
 #: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:129
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:450
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:678
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:452
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:680
 msgid "Save Settings"
 msgstr ""
 
@@ -1167,161 +1167,161 @@ msgstr ""
 msgid "ShipEngine Configuration"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:166
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:233
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:162
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:230
 msgid "Log Out"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:186
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:183
 msgid " Enter Your API Key"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:194
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:270
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:517
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:191
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:268
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:519
 msgid "Validate Account"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:206
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:207
 msgid "Shipstation Configuration"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:255
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:253
 msgid " Enter Your API Key "
 msgstr ""
 
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:262
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:260
 msgid " Enter Your Secret Key "
 msgstr ""
 
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:281
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:283
 msgid "Ship Integration Details"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:288
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:290
 #: admin/partials/woo-refund-and-exchange-lite-return-meta.php:47
 msgid "Name"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:299
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:301
 msgid "Company Name"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:310
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:312
 msgid "Address"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:321
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:606
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:323
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:608
 msgid "City"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:332
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:334
 msgid "Postcode/ZIP"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:343
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:628
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:345
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:630
 msgid "Country"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:377
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:639
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:379
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:641
 msgid "State"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:404
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:650
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:406
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:652
 msgid "Phone"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:415
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:417
 msgid "Weight Unit"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:422
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:424
 msgid "Ounce"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:423
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:425
 msgid "Pound"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:424
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:426
 msgid "Gram"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:425
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:427
 msgid "Kilogram"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:431
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:433
 msgid "Dimensions Unit"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:439
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:441
 msgid "Inch"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:440
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:442
 msgid "Centimeter"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:467
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:469
 msgid "ShipRocket Configuration"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:487
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:489
 msgid " Enter Your API User Email"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:498
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:500
 msgid " Enter Your API User Password "
 msgstr ""
 
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:512
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:514
 #, php-format
 msgid "To Get Api Details For Shiprocket %s."
 msgstr ""
 
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:522
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:524
 msgid " Enter Your Shiprocket Channel Id "
 msgstr ""
 
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:532
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:534
 msgid " Enter Your Shiprocket Channel Name "
 msgstr ""
 
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:544
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:546
 #, php-format
 msgid "To Get Channel Details Form Shiprocket %s."
 msgstr ""
 
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:555
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:557
 msgid "Ship Rocket Warehouse Address"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:562
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:564
 msgid "Admin First Name"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:573
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:575
 msgid "Admin Last Name"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:584
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:586
 msgid "Address 1"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:595
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:597
 msgid "Address 2"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:617
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:619
 msgid "Postcode"
 msgstr ""
 
-#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:661
+#: admin/partials/pro_setting_templates/rma-return-refund-exchange-for-woocommerce-pro-returnship-label.php:663
 msgid "E-Mail"
 msgstr ""
 
@@ -1793,7 +1793,7 @@ msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-return-meta.php:130
 #: admin/partials/woo-refund-and-exchange-lite-return-meta.php:212
-#: public/class-woo-refund-and-exchange-lite-public.php:321
+#: public/class-woo-refund-and-exchange-lite-public.php:316
 msgid "Refund Amount"
 msgstr ""
 
@@ -1832,7 +1832,7 @@ msgid "Accept Request"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-return-meta.php:187
-#: public/class-woo-refund-and-exchange-lite-public.php:343
+#: public/class-woo-refund-and-exchange-lite-public.php:338
 msgid "Cancel Request"
 msgstr ""
 
@@ -1948,12 +1948,12 @@ msgid "Refund Cancelled"
 msgstr ""
 
 #: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:29
-#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:134
+#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:130
 msgid "No Reason"
 msgstr ""
 
 #: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:37
-#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:142
+#: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:138
 msgid "Reason of Refund"
 msgstr ""
 
@@ -2345,43 +2345,43 @@ msgstr ""
 msgid "Following product Refund request made on"
 msgstr ""
 
-#: public/class-woo-refund-and-exchange-lite-public.php:336
+#: public/class-woo-refund-and-exchange-lite-public.php:331
 msgid "Update Request"
 msgstr ""
 
-#: public/class-woo-refund-and-exchange-lite-public.php:352
+#: public/class-woo-refund-and-exchange-lite-public.php:347
 msgid "The above product Refund request is approved on"
 msgstr ""
 
-#: public/class-woo-refund-and-exchange-lite-public.php:359
+#: public/class-woo-refund-and-exchange-lite-public.php:354
 msgid "The above product Refund request is cancelled on"
 msgstr ""
 
-#: public/class-woo-refund-and-exchange-lite-public.php:367
+#: public/class-woo-refund-and-exchange-lite-public.php:362
 msgid "No Refund Request Found For this order"
 msgstr ""
 
-#: public/class-woo-refund-and-exchange-lite-public.php:399
+#: public/class-woo-refund-and-exchange-lite-public.php:394
 msgid "Refund Rules"
 msgstr ""
 
-#: public/class-woo-refund-and-exchange-lite-public.php:425
+#: public/class-woo-refund-and-exchange-lite-public.php:420
 #, php-format
 msgid "Refund are valid for %s days"
 msgstr ""
 
-#: public/class-woo-refund-and-exchange-lite-public.php:428
+#: public/class-woo-refund-and-exchange-lite-public.php:423
 #, php-format
 msgid "Refund days are exceed, must be less than %s days"
 msgstr ""
 
-#: public/class-woo-refund-and-exchange-lite-public.php:433
-#: public/class-woo-refund-and-exchange-lite-public.php:436
+#: public/class-woo-refund-and-exchange-lite-public.php:428
+#: public/class-woo-refund-and-exchange-lite-public.php:431
 #, php-format
 msgid "Refund are valid after %s days"
 msgstr ""
 
-#: public/class-woo-refund-and-exchange-lite-public.php:451
+#: public/class-woo-refund-and-exchange-lite-public.php:446
 #, php-format
 msgid "Refund allowed for these order statuses :- %s"
 msgstr ""
@@ -2477,7 +2477,7 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: woocommerce-refund-and-exchange-lite.php:444
+#: woocommerce-refund-and-exchange-lite.php:416
 msgid ""
 "Woocommerce is not activated, Please activate Woocommerce first to install "
 "WooCommerce Refund and Exchange Lite."
