@@ -2,11 +2,11 @@
 Contributors: wpswings
 Donate link: https://wpswings.com/
 Tags: refund, exchange, wallet, RMA, woocommerce cancel order
-Requires at least: 5.5.0
-Tested up to: 6.8.1
-WC requires at least: 5.5.0
-WC tested up to: 9.9.5
-Stable tag: 4.5.1
+Requires at least: 6.7.0
+Tested up to: 6.8.2
+WC requires at least: 6.5.0
+WC tested up to: 10.0.4
+Stable tag: 4.5.2
 Requires PHP:  7.2
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -219,6 +219,11 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 == Changelog == 
 
+= 4.5.2 - Released on 24 July 2025 = 
+* New: Compatibility update with the latest WordPress (v6.8.2) and WooCommerce (v10.0.4) versions
+* Fix: Resolved version comparison issue with the latest WooCommerce
+* Fix: Limited product retrieval on the RMA Policies page to prevent continuous loading
+
 = 4.5.1 - Released on 24 June 2025 = 
 * New: Disable Refund Feature based on WooCommerce user role.
 * New: Compatibility with the latest WC [9.9.5] and WP [6.8.1]
@@ -239,7 +244,7 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 = 4.4.7 - Released on 21 Febuary 2025 = 
 * New: Compatibility with the latest WP [6.7.2] and WC [9.6.2]
-* Enhancement: Server based calculation to avoid security concern and code stability
+* Enhancement: Server-based calculation to avoid security concern and code stability
 
 = 4.4.6 - Released on 07 Febuary 2025 = 
 * Fix: vulnerability issues fixed 
@@ -479,6 +484,8 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 == Upgrade Notice ==
 
-= 4.5.1 - Released on 24 June 2025 = 
-* New: Disable Refund Feature based on WooCommerce user role.
-* New: Compatibility with the latest WC [9.9.5] and WP [6.8.1]
+= 4.5.2 - Released on 24 July 2025 = 
+
+* New: Compatibility update with the latest WordPress (v6.8.2) and WooCommerce (v10.0.4) versions
+* Fix: Resolved version comparison issue with the latest WooCommerce
+* Fix: Limited product retrieval on the RMA Policies page to prevent continuous loading

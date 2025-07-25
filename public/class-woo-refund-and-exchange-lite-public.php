@@ -284,13 +284,8 @@ class Woo_Refund_And_Exchange_Lite_Public {
 																// Order item meta start.
 																do_action( 'woocommerce_order_item_meta_start', $item_id, $item, $order, false );
 
-																if ( WC()->version < '3.0.0' ) {
-																	$order->display_item_meta( $item );
-																	$order->display_item_downloads( $item );
-																} else {
-																	wc_display_item_meta( $item );
-																	wc_display_item_downloads( $item );
-																}
+																wc_display_item_meta( $item );
+																wc_display_item_downloads( $item );
 																// Order item meta end.
 																do_action( 'woocommerce_order_item_meta_end', $item_id, $item, $order, false );
 																?>

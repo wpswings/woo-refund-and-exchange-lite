@@ -56,7 +56,7 @@ if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 						</div>
 					</td>
 				</tr>
-				<tr valign="top">
+				<tr valign="top" style="display: none;">
 					<th class="titledesc wps-form-group__label">
 						<label for="wps_wrma_enable_return_ship_station_label"><?php esc_html_e( 'Enable ShipEngine Shiping Label', 'woo-refund-and-exchange-lite' ); ?></label>
 					</th>
@@ -133,16 +133,12 @@ if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 <div class='wps_table wps_rma_shipping_setting'>
 	<form enctype='multipart/form-data' action='' id='' method='post'>
 		<!-- wrapper div -->
-		<div class='wps_wrma_accordion'>
+		<div class='wps_wrma_accordion' style="display:none">
 			<div class="wps_wrma_accord_sec_wrap">
 				<h4 id="wrma_shipstation_heading" class="wps_wrma_basic_setting wps_wrma_slide_active">
 					<?php esc_html_e( 'ShipEngine Configuration', 'woo-refund-and-exchange-lite' ); ?>
 				</h4>
 				<div class='wps_wrma_validate_form_wrapper'>
-					<!-- loader -->
-					<div class="wps_wrma_return_loader">
-						<img src="<?php echo esc_html( home_url() ); ?>/wp-admin/images/spinner-2x.gif">
-					</div>
 					<?php
 
 						$wps_wrma_connected_account = get_option( ' wps_wrma_connected_ship_station_account ', '' );
@@ -172,9 +168,10 @@ if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 
 							<?php
 							/* List carriers starts */
-
-							$wps_wrma_refund_class = new Rma_Return_Refund_Exchange_For_Woocommerce_Pro_Admin( 'rma-return-refund-exchange-for-woocommerce-pro', '5.0.0' );
-							$wps_wrma_refund_class->wps_wrma_list_carriers_html();
+							if ( class_exists( 'Rma_Return_Refund_Exchange_For_Woocommerce_Pro_Admin' ) ) {
+								$wps_wrma_refund_class = new Rma_Return_Refund_Exchange_For_Woocommerce_Pro_Admin( 'rma-return-refund-exchange-for-woocommerce-pro', '5.0.0' );
+								$wps_wrma_refund_class->wps_wrma_list_carriers_html();
+							}
 
 							/* List carriers ends */
 					}
@@ -194,6 +191,10 @@ if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 							<a href='javascript:void(0)' class='wps_wrma_validate_api_key wps-rma-admin__button <?php echo 'button_' . esc_attr( $rma_pro_activate ); ?>' ><?php esc_html_e( 'Validate Account', 'woo-refund-and-exchange-lite' ); ?>
 							</a>
 						</p>
+						<!-- loader -->
+						<div class="wps_wrma_return_loader">
+							<img src="<?php echo esc_html( home_url() ); ?>/wp-admin/images/spinner-2x.gif">
+						</div>
 					</div>
 					<!-- Validation form ends -->
 				</div>
@@ -206,10 +207,6 @@ if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 					<?php esc_html_e( 'Shipstation Configuration', 'woo-refund-and-exchange-lite' ); ?>
 				</h4>
 				<div class='wps_wrma_ship_validate_form_wrapper'>
-					<!-- loader -->
-					<div class="wps_wrma_returnship_loader">
-						<img src="<?php echo esc_html( home_url() ); ?>/wp-admin/images/spinner-2x.gif">
-					</div>
 					<?php
 						$wps_wrma_connected_account = get_option( ' wps_wrma_validated_real_ship_station_api_key ', '' );
 						$wps_wrma_api_key = get_option( ' wps_wrma_validated_real_ship_station_api_key ', '' );
@@ -240,9 +237,10 @@ if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 							<?php
 
 							/* List carriers starts */
-
-							$wps_wrma_refund_class = new Rma_Return_Refund_Exchange_For_Woocommerce_Pro_Admin( 'rma-return-refund-exchange-for-woocommerce-pro', '5.0.0' );
-							$wps_wrma_refund_class->wps_wrma_list_shipstation_carriers_html();
+							if ( class_exists( 'Rma_Return_Refund_Exchange_For_Woocommerce_Pro_Admin' ) ) {
+								$wps_wrma_refund_class = new Rma_Return_Refund_Exchange_For_Woocommerce_Pro_Admin( 'rma-return-refund-exchange-for-woocommerce-pro', '5.0.0' );
+								$wps_wrma_refund_class->wps_wrma_list_shipstation_carriers_html();
+							}
 
 							/* List carriers ends */
 					}
@@ -270,6 +268,10 @@ if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 							<a href='javascript:void(0)' class='wps_wrma_ship_validate_api_key wps-rma-admin__button <?php echo 'button_' . esc_attr( $rma_pro_activate ); ?>' ><?php esc_html_e( 'Validate Account', 'woo-refund-and-exchange-lite' ); ?>
 							</a>
 						</p>
+						<!-- loader -->
+						<div class="wps_wrma_returnship_loader">
+							<img src="<?php echo esc_html( home_url() ); ?>/wp-admin/images/spinner-2x.gif">
+						</div>
 					</div>
 					<!-- Validation form ends -->
 				</div>

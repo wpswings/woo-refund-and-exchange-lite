@@ -64,13 +64,9 @@ if ( isset( $requested_products ) && ! empty( $requested_products ) ) {
 					}
 					$subtotal = $requested_product['price'] * $requested_product['qty'];
 					$total   += $subtotal;
-					if ( WC()->version < '3.1.0' ) {
-						$item_meta      = new WC_Order_Item_Meta( $item, $product_obj );
-						$item_meta_html = $item_meta->display( true, true );
-					} else {
-						$item_meta      = new WC_Order_Item_Product( $item, $product_obj );
-						$item_meta_html = wc_display_item_meta( $item_meta, array( 'echo' => false ) );
-					}
+				
+					$item_meta      = new WC_Order_Item_Product( $item, $product_obj );
+					$item_meta_html = wc_display_item_meta( $item_meta, array( 'echo' => false ) );
 					$message .= '<tr><td style="border: 1px solid #C7C7C7;">' . $item['name'] . '<br>';
 					$message .= '<small>' . $item_meta_html . '</small></td>
 								<td style="border: 1px solid #C7C7C7;">' . $requested_product['qty'] . '</td>
@@ -169,13 +165,9 @@ if ( $restrict_mail1 ) {
 						}
 						$subtotal = $requested_product['price'] * $requested_product['qty'];
 						$total   += $subtotal;
-						if ( WC()->version < '3.1.0' ) {
-							$item_meta      = new WC_Order_Item_Meta( $item, $product_obj );
-							$item_meta_html = $item_meta->display( true, true );
-						} else {
-							$item_meta      = new WC_Order_Item_Product( $item, $product_obj );
-							$item_meta_html = wc_display_item_meta( $item_meta, array( 'echo' => false ) );
-						}
+						
+						$item_meta      = new WC_Order_Item_Product( $item, $product_obj );
+						$item_meta_html = wc_display_item_meta( $item_meta, array( 'echo' => false ) );
 						$message .= '<tr><td style="border: 1px solid #C7C7C7;">' . $item['name'] . '<br>';
 						$message .= '<small>' . $item_meta_html . '</small></td>
 									<td style="border: 1px solid #C7C7C7;">' . $requested_product['qty'] . '</td>
