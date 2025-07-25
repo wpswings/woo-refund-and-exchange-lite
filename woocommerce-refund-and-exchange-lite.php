@@ -15,7 +15,7 @@
  * Plugin Name:       Return Refund and Exchange for WooCommerce
  * Plugin URI:        https://wordpress.org/plugins/woo-refund-and-exchange-lite/
  * Description:       <code><strong>Return Refund and Exchange for WooCommerce</strong></code> allows users to submit product refund. The plugin provides a dedicated mailing system that would help to communicate better between store owner and customers.This is lite version of WooCommerce Refund And Exchange. <a target="_blank" href="https://wpswings.com/woocommerce-plugins/?utm_source=wpswings-rma-shop&utm_medium=rma-org-backend&utm_campaign=shop-page">Elevate your e-commerce store by exploring more on WP Swings</a>
- * Version:           4.5.0
+ * Version:           4.5.1
  * Author:            WP Swings
  * Author URI:        https://wpswings.com/?utm_source=wpswings-rma-official&utm_medium=rma-org-page&utm_campaign=official
  * Text Domain:       woo-refund-and-exchange-lite
@@ -25,7 +25,7 @@
  * Requires at least: 5.5.0
  * Tested up to: 6.8.1
  * WC requires at least: 6.5
- * WC tested up to: 9.8.5
+ * WC tested up to: 9.9.5
  *
  * License:           GNU General Public License v3.0
  * License URI:       http://www.gnu.org/licenses/gpl-3.0.html
@@ -59,7 +59,7 @@ if ( $activated ) {
 	 * @since 1.0.0
 	 */
 	function define_woo_refund_and_exchange_lite_constants() {
-		woo_refund_and_exchange_lite_constants( 'WOO_REFUND_AND_EXCHANGE_LITE_VERSION', '4.5.0' );
+		woo_refund_and_exchange_lite_constants( 'WOO_REFUND_AND_EXCHANGE_LITE_VERSION', '4.5.1' );
 		woo_refund_and_exchange_lite_constants( 'WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH', plugin_dir_path( __FILE__ ) );
 		woo_refund_and_exchange_lite_constants( 'WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL', plugin_dir_url( __FILE__ ) );
 		woo_refund_and_exchange_lite_constants( 'WOO_REFUND_AND_EXCHANGE_LITE_SERVER_URL', 'https://wpswings.com' );
@@ -276,7 +276,10 @@ if ( $activated ) {
 			if ( isset( $screen->id ) ) {
 				$pagescreen = $screen->id;
 			}
-			if ( ( isset( $pagescreen ) && 'plugins' === $pagescreen ) || ( 'wp-swings_page_home' == $pagescreen ) ) {
+			$target_screens = array( 'plugins', 'dashboard', 'wp-swings_page_home' );
+			$page_param     = isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '';
+
+			if ( 'wc-settings' === $page_param || in_array( $screen->id, $target_screens, true ) ) {
 				$banner_id = get_option( 'wps_wgm_notify_new_banner_id', false );
 				if ( isset( $banner_id ) && '' !== $banner_id ) {
 					$hidden_banner_id            = get_option( 'wps_wgm_notify_hide_baneer_notification', false );
@@ -301,7 +304,7 @@ if ( $activated ) {
 
 	add_action( 'admin_notices', 'wps_rma_banner_notification_html' );
 	/**
-	 * Function to show banner image based on subscription.
+	 * Function to show banner image based on rma.
 	 *
 	 * @return void
 	 */

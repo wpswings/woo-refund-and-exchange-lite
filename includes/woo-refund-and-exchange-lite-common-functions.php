@@ -24,17 +24,124 @@ if ( ! function_exists( 'wps_rma_show_buttons' ) ) {
 		$setting_saved        = get_option( 'policies_setting_option', array() );
 		$check                = get_option( 'wps_rma_' . $func . '_enable', false );
 		$get_specific_setting = array();
+
+		// user role feature for refund.
+		if ( 'refund' == $func ) {
+
+			$wps_rma_allow_refund_user_role = get_option( 'wps_rma_disable_' . $func . '_user_role' );
+			$wps_rma_refund_allowed_user_roles = get_option( 'wps_rma_' . $func . '_disable_user_roles' );
+
+			$current_user = wp_get_current_user();
+			$current_user_roles = (array) $current_user->roles;
+
+			$is_user_allowed_refund = false;
+			if ( 'on' === $wps_rma_allow_refund_user_role ) {
+				if ( ! empty( $wps_rma_refund_allowed_user_roles ) && is_array( $wps_rma_refund_allowed_user_roles ) ) {
+					// Check if user's role is in the allowed roles.
+					foreach ( $current_user_roles as $role ) {
+						if ( in_array( $role, $wps_rma_refund_allowed_user_roles, true ) ) {
+							$is_user_allowed_refund = true;
+							break;
+						}
+					}
+				}
+			}
+
+			if ( $is_user_allowed_refund ) {
+				// User is allowed to request refund.
+				$show_button = esc_html__( 'You Are not allow to do refund request', 'woo-refund-and-exchange-lite' );
+			} else {
+				// User is NOT allowed to request refund.
+				$show_button = 'yes';
+			}
+		}
+		// user role feature for refund.
+
+		// user role feature for exchange.
+		if ( 'exchange' == $func ) {
+
+			$wps_rma_allow_exchange_user_role = get_option( 'wps_rma_disable_' . $func . '_user_role' );
+
+			$wps_rma_exchange_allowed_user_roles = get_option( 'wps_rma_' . $func . '_disable_user_roles' );
+
+			$current_user = wp_get_current_user();
+			$current_user_roles = (array) $current_user->roles;
+
+			$is_user_allowed_exchange = false;
+
+			if ( 'on' === $wps_rma_allow_exchange_user_role ) {
+				if ( ! empty( $wps_rma_exchange_allowed_user_roles ) && is_array( $wps_rma_exchange_allowed_user_roles ) ) {
+					// Check if user's role is in the allowed roles.
+					foreach ( $current_user_roles as $role ) {
+						if ( in_array( $role, $wps_rma_exchange_allowed_user_roles, true ) ) {
+							$is_user_allowed_exchange = true;
+							break;
+						}
+					}
+				}
+			}
+
+			if ( $is_user_allowed_exchange ) {
+				// User is allowed to request refund.
+				$show_button = esc_html__( 'You Are not allow to do exchange request', 'woo-refund-and-exchange-lite' );
+			} else {
+				// User is NOT allowed to request refund.
+				$show_button = 'yes';
+			}
+		}
+		// user role feature for exchange.
+
+		// user role feature for cancel.
+		if ( 'cancel' == $func ) {
+
+			$wps_rma_allow_cancel_user_role = get_option( 'wps_rma_disable_' . $func . '_user_role' );
+
+			$wps_rma_cancel_allowed_user_roles = get_option( 'wps_rma_' . $func . '_disable_user_roles' );
+
+			$current_user = wp_get_current_user();
+			$current_user_roles = (array) $current_user->roles;
+
+			$is_user_allowed_cancel = false;
+
+			if ( 'on' === $wps_rma_allow_cancel_user_role ) {
+				if ( ! empty( $wps_rma_cancel_allowed_user_roles ) && is_array( $wps_rma_cancel_allowed_user_roles ) ) {
+					// Check if user's role is in the allowed roles.
+					foreach ( $current_user_roles as $role ) {
+						if ( in_array( $role, $wps_rma_cancel_allowed_user_roles, true ) ) {
+							$is_user_allowed_cancel = true;
+							break;
+						}
+					}
+				}
+			}
+
+			if ( $is_user_allowed_cancel ) {
+				// User is allowed to request refund.
+				$show_button = esc_html__( 'You Are not allow to do cancel request', 'woo-refund-and-exchange-lite' );
+			} else {
+				// User is NOT allowed to request refund.
+				$show_button = 'yes';
+			}
+		}
+		// user role feature for cancel.
+
 		if ( 'on' === $check ) {
 			$get_setting = get_option( 'policies_setting_option', array() );
-			$get_specific_setting = array_filter( isset( $get_setting['wps_rma_setting'] ) ? $get_setting['wps_rma_setting'] : array(), function ($item) use ($func) {
-				return $item['row_functionality'] == $func;
-			});
+			$get_specific_setting = array_filter(
+				isset( $get_setting['wps_rma_setting'] ) ? $get_setting['wps_rma_setting'] : array(),
+				function ( $item ) use ( $func ) {
+					return $item['row_functionality'] == $func;
+				}
+			);
 			$get_specific_setting = array_values( $get_specific_setting );
 
 			// Handling tax policy.
-			$is_tax_policy = array_filter( $get_specific_setting, function ($item) {
-				return isset( $item['row_policy'] ) && 'wps_rma_tax_handling' === $item['row_policy'];
-			});
+			$is_tax_policy = array_filter(
+				$get_specific_setting,
+				function ( $item ) {
+					return isset( $item['row_policy'] ) && 'wps_rma_tax_handling' === $item['row_policy'];
+				}
+			);
 			$is_tax_policy = array_values( $is_tax_policy );
 			if ( ! empty( $is_tax_policy ) && isset( $is_tax_policy[0] ) && isset( $is_tax_policy[0]['row_tax'] ) && 'wps_rma_inlcude_tax' === $is_tax_policy[0]['row_tax'] ) {
 				update_option( $func . '_wps_rma_tax_handling', 'wps_rma_inlcude_tax' );
@@ -52,9 +159,12 @@ if ( ! function_exists( 'wps_rma_show_buttons' ) ) {
 			$days       = $today_date - $order_date;
 			$day_diff   = floor( $days / ( 60 * 60 * 24 ) );
 
-			$is_max_days_policy = array_filter( $get_specific_setting, function ($item) {
-				return isset( $item['row_policy'] ) && 'wps_rma_maximum_days' === $item['row_policy'];
-			});
+			$is_max_days_policy = array_filter(
+				$get_specific_setting,
+				function ( $item ) {
+					return isset( $item['row_policy'] ) && 'wps_rma_maximum_days' === $item['row_policy'];
+				}
+			);
 			$is_max_days_policy = array_values( $is_max_days_policy );
 
 			if ( ! empty( $is_max_days_policy ) && isset( $is_max_days_policy[0] ) && isset( $is_max_days_policy[0]['row_policy'] ) && 'wps_rma_maximum_days' === $is_max_days_policy[0]['row_policy'] && ! empty( $is_max_days_policy[0]['row_value'] ) ) {
@@ -89,9 +199,12 @@ if ( ! function_exists( 'wps_rma_show_buttons' ) ) {
 			}
 
 			// Handling order status policy.
-			$is_order_status_policy = array_filter( $get_specific_setting, function ($item) {
-				return isset( $item['row_policy'] ) && 'wps_rma_order_status' === $item['row_policy'];
-			});
+			$is_order_status_policy = array_filter(
+				$get_specific_setting,
+				function ( $item ) {
+					return isset( $item['row_policy'] ) && 'wps_rma_order_status' === $item['row_policy'];
+				}
+			);
 			$is_order_status_policy = array_values( $is_order_status_policy );
 
 			if ( ! empty( $is_order_status_policy ) && isset( $is_order_status_policy[0] ) && isset( $is_order_status_policy[0]['row_policy'] ) && 'wps_rma_order_status' === $is_order_status_policy[0]['row_policy'] && ! empty( $is_order_status_policy[0]['row_statuses'] ) && 'yes' === $show_button ) {
@@ -139,7 +252,7 @@ if ( ! function_exists( 'wps_wrma_format_price' ) ) {
 	 * Format the price showing on the frontend and the backend
 	 *
 	 * @param mixed $price is current showing price.
-	 * @param mixed $currency_symbol . 
+	 * @param mixed $currency_symbol .
 	 */
 	function wps_wrma_format_price( $price, $currency_symbol ) {
 		$price           = apply_filters( 'formatted_woocommerce_price', number_format( (float) $price, wc_get_price_decimals(), wc_get_price_decimal_separator(), wc_get_price_thousand_separator() ), $price, wc_get_price_decimals(), wc_get_price_decimal_separator(), wc_get_price_thousand_separator() );
@@ -250,7 +363,7 @@ if ( ! function_exists( 'wps_rma_save_return_request_callback' ) ) {
 		}
 		// Quantity check.
 		$order_items = $order->get_items();
-		foreach( $order_items as $item_id => $item ) {
+		foreach ( $order_items as $item_id => $item ) {
 			if ( isset( $return_products['products'] ) && ! empty( $return_products['products'] ) && is_array( $return_products['products'] ) ) {
 				foreach ( $return_products['products'] as $post_key => $post_value ) {
 					if ( $item_id == $post_value['item_id'] ) {
@@ -645,16 +758,16 @@ if ( ! function_exists( 'wps_rma_css_and_js_load_page' ) ) {
 if ( ! function_exists( 'wps_rma_generate_random_filename' ) ) {
 	/**
 	 * Generate a random string of specified length.
-	 * 
+	 *
 	 * @param string $extension .
 	 * @param int    $length .
 	 */
-	function wps_rma_generate_random_filename($extension = "jpg", $length = 10) {
-		$random_string = bin2hex(random_bytes($length / 2));
-	
+	function wps_rma_generate_random_filename( $extension = 'jpg', $length = 10 ) {
+		$random_string = bin2hex( random_bytes( $length / 2 ) );
+
 		// Ensure the extension is properly formatted.
-		$extension = ltrim($extension, '.');
-	
+		$extension = ltrim( $extension, '.' );
+
 		// Return the full filename with the extension.
 		return $random_string . '.' . $extension;
 	}

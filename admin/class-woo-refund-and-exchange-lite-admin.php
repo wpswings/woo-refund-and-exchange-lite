@@ -177,11 +177,12 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		wp_enqueue_script( 'wps-rma-promotional-banner', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/js/woo-refund-and-exchange-lite-banner.js', array( 'jquery' ), time(), false );
 		wp_register_script( 'wps-rma-promotional-banner', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/js/woo-refund-and-exchange-lite-banner.js', array( 'jquery' ), $this->version, false );
 		wp_localize_script(
-			$this->plugin_name . 'admin-js',
+			'wps-rma-promotional-banner',
 			'wrael_banner_param',
 			array(
 				'ajaxurl'       => admin_url( 'admin-ajax.php' ),
 				'wps_rma_nonce' => wp_create_nonce( 'wps_rma_ajax_seurity' ),
+				'check_pro_active'           => esc_html( $pro_active ),
 			)
 		);
 		if ( ! empty( $screen ) && isset( $screen->id ) && 'wp-swings_page_woo_refund_and_exchange_lite_menu' === $screen->id ) {
@@ -532,6 +533,19 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			'My account' => esc_html__( 'Order View Page', 'woo-refund-and-exchange-lite' ),
 			'Checkout'   => esc_html__( 'Thank You Page', 'woo-refund-and-exchange-lite' ),
 		);
+
+		$woocommerce_roles = array(
+			'customer'      => esc_html__( 'Customer', 'woo-refund-and-exchange-lite' ),
+			'shop_manager'  => esc_html__( 'Shop Manager', 'woo-refund-and-exchange-lite' ),
+			'subscriber'    => esc_html__( 'Subscriber', 'woo-refund-and-exchange-lite' ),
+			'contributor'   => esc_html__( 'Contributor', 'woo-refund-and-exchange-lite' ),
+			'author'        => esc_html__( 'Author', 'woo-refund-and-exchange-lite' ),
+			'editor'        => esc_html__( 'Editor', 'woo-refund-and-exchange-lite' ),
+			'administrator' => esc_html__( 'Administrator', 'woo-refund-and-exchange-lite' )
+		);
+
+		$woocommerce_roles = apply_filters( 'wps_rma_add_extra_user_role', $woocommerce_roles );
+
 		$pages       = get_pages();
 		$get_pages   = array( '' => esc_html__( 'Default', 'woo-refund-and-exchange-lite' ) );
 		foreach ( $pages as $page ) {
@@ -603,6 +617,29 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 					'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
 					'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 				),
+			),
+
+			array(
+				'title'   => esc_html__( 'Enable/Disable Refund Functionality for Specific User Roles', 'woo-refund-and-exchange-lite' ),
+				'type'    => 'radio-switch',
+				'id'      => 'wps_rma_disable_refund_user_role',
+				'value'   => get_option( 'wps_rma_disable_refund_user_role' ),
+				'class'   => 'wrael-radio-switch-class',
+				'options' => array(
+					'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+					'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
+				),
+			),
+
+			array(
+				'title'       => esc_html__( 'Select User Roles to Restrict Refund Access', 'woo-refund-and-exchange-lite' ),
+				'type'        => 'multiselect',
+				'description' =>  esc_html__( 'If no user role is selected, the refund feature will be available for all user roles', 'woo-refund-and-exchange-lite' ),
+				'id'          => 'wps_rma_refund_disable_user_roles',
+				'value'       => get_option( 'wps_rma_refund_disable_user_roles' ),
+				'class'       => 'wrael-multiselect-class wps-defaut-multiselect',
+				'placeholder' => '',
+				'options'     => $woocommerce_roles,
 			),
 		);
 		$wps_rma_settings_refund =
@@ -1325,7 +1362,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	 * Save the promotional banner info.
 	 */
 	public function wps_rma_save_banner_info() {
-		$wps_notification_data = $this->wps_sfw_get_update_notification_data();
+		$wps_notification_data = $this->wps_rma_get_update_notification_data();
 		if ( is_array( $wps_notification_data ) && ! empty( $wps_notification_data ) ) {
 			$banner_id    = array_key_exists( 'notification_id', $wps_notification_data[0] ) ? $wps_notification_data[0]['wps_banner_id'] : '';
 			$banner_image = array_key_exists( 'notification_message', $wps_notification_data[0] ) ? $wps_notification_data[0]['wps_banner_image'] : '';
@@ -1335,13 +1372,13 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			update_option( 'wps_wgm_notify_new_banner_image', $banner_image );
 			update_option( 'wps_wgm_notify_new_banner_url', $banner_url );
 			if ( 'regular' === $banner_type ) {
-				update_option( 'wps_wgm_notify_hide_baneer_notification', '' );
+				update_option( 'wps_wgm_notify_hide_baneer_notification', 0 );
 			}
 		}
 	}
 
 	/** Fetch the banner info from server throug api call */
-	public function wps_sfw_get_update_notification_data() {
+	public function wps_rma_get_update_notification_data() {
 		$wps_notification_data = array();
 		$url                   = 'https://demo.wpswings.com/client-notification/woo-gift-cards-lite/wps-client-notify.php';
 		$attr                  = array(

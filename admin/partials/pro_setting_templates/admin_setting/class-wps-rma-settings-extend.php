@@ -299,6 +299,19 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 				'My account' => esc_html__( 'Order View Page', 'woo-refund-and-exchange-lite' ),
 				'Checkout'   => esc_html__( 'Thank You Page', 'woo-refund-and-exchange-lite' ),
 			);
+
+			$woocommerce_roles = array(
+			'customer'      => esc_html__( 'Customer', 'woo-refund-and-exchange-lite' ),
+			'shop_manager'  => esc_html__( 'Shop Manager', 'woo-refund-and-exchange-lite' ),
+			'subscriber'    => esc_html__( 'Subscriber', 'woo-refund-and-exchange-lite' ),
+			'contributor'   => esc_html__( 'Contributor', 'woo-refund-and-exchange-lite' ),
+			'author'        => esc_html__( 'Author', 'woo-refund-and-exchange-lite' ),
+			'editor'        => esc_html__( 'Editor', 'woo-refund-and-exchange-lite' ),
+			'administrator' => esc_html__( 'Administrator', 'woo-refund-and-exchange-lite' )
+			);
+
+			$woocommerce_roles = apply_filters( 'wps_rma_add_extra_user_role', $woocommerce_roles );
+
 			$pages       = get_pages();
 			$get_pages   = array( '' => esc_html__( 'Default', 'woo-refund-and-exchange-lite' ) );
 			foreach ( $pages as $page ) {
@@ -436,6 +449,31 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 						'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
 						'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 					),
+				),
+
+					array(
+					'title'   => esc_html__( 'Enable/Disable Exchange Functionality for Specific User Roles', 'woo-refund-and-exchange-lite' ),
+					'type'    => 'radio-switch',
+					'id'      => 'wps_rma_disable_exchange_user_role',
+					'value'   => get_option( 'wps_rma_disable_exchange_user_role' ),
+					'class'   => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
+					'options' => array(
+						'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+						'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
+					),
+				),
+
+				
+
+				array(
+					'title'       => esc_html__( 'Select User Roles to Restrict Exchange Access', 'woo-refund-and-exchange-lite' ),
+					'type'        => 'multiselect',
+					'description' => esc_html__( 'If no user role is selected, the Exchange feature will be available for all user roles', 'woo-refund-and-exchange-lite' ),
+					'id'          => 'wps_rma_exchange_disable_user_roles',
+					'value'       => get_option( 'wps_rma_exchange_disable_user_roles' ),
+					'class'       => 'wrael-multiselect-class wps-defaut-multiselect ' . $this->rma_pro_activate,
+					'placeholder' => '',
+					'options'     => $woocommerce_roles,
 				),
 			);
 			$wps_rma_settings_exchange =
@@ -605,6 +643,19 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 			foreach ( $pages as $page ) {
 				$get_pages[ $page->ID ] = $page->post_title;
 			}
+
+			$woocommerce_roles = array(
+			'customer'      => esc_html__( 'Customer', 'woo-refund-and-exchange-lite' ),
+			'shop_manager'  => esc_html__( 'Shop Manager', 'woo-refund-and-exchange-lite' ),
+			'subscriber'    => esc_html__( 'Subscriber', 'woo-refund-and-exchange-lite' ),
+			'contributor'   => esc_html__( 'Contributor', 'woo-refund-and-exchange-lite' ),
+			'author'        => esc_html__( 'Author', 'woo-refund-and-exchange-lite' ),
+			'editor'        => esc_html__( 'Editor', 'woo-refund-and-exchange-lite' ),
+			'administrator' => esc_html__( 'Administrator', 'woo-refund-and-exchange-lite' )
+			);
+
+			$woocommerce_roles = apply_filters( 'wps_rma_add_extra_user_role', $woocommerce_roles );
+
 			$wps_rma_settings_cancel = array(
 				array(
 					'title'   => esc_html__( 'Enable Cancel Order\'s Product', 'woo-refund-and-exchange-lite' ),
@@ -626,6 +677,27 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					'class'       => 'wrael-multiselect-class wps-defaut-multiselect ' . $this->rma_pro_activate,
 					'placeholder' => '',
 					'options'     => $button_view,
+				),
+				array(
+					'title'   => esc_html__( 'Enable/Disable Cancel Functionality for Specific User Roles', 'woo-refund-and-exchange-lite' ),
+					'type'    => 'radio-switch',
+					'id'      => 'wps_rma_disable_cancel_user_role',
+					'value'   => get_option( 'wps_rma_disable_cancel_user_role' ),
+					'class'   => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
+					'options' => array(
+						'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+						'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
+					),
+				),
+				array(
+					'title'       => esc_html__( 'Select User Roles to Restrict Cancel Access', 'woo-refund-and-exchange-lite' ),
+					'type'        => 'multiselect',
+					'description' => esc_html__( 'If no user role is selected, the cancel feature will be available for all user roles.', 'woo-refund-and-exchange-lite' ),
+					'id'          => 'wps_rma_cancel_disable_user_roles',
+					'value'       => get_option( 'wps_rma_cancel_disable_user_roles' ),
+					'class'       => 'wrael-multiselect-class wps-defaut-multiselect ' . $this->rma_pro_activate,
+					'placeholder' => '',
+					'options'     => $woocommerce_roles,
 				),
 				array(
 					'type' => 'breaker',
