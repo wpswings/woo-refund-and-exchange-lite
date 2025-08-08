@@ -182,7 +182,6 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			array(
 				'ajaxurl'       => admin_url( 'admin-ajax.php' ),
 				'wps_rma_nonce' => wp_create_nonce( 'wps_rma_ajax_seurity' ),
-				'check_pro_active'           => esc_html( $pro_active ),
 			)
 		);
 		if ( ! empty( $screen ) && isset( $screen->id ) && 'wp-swings_page_woo_refund_and_exchange_lite_menu' === $screen->id ) {
