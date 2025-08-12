@@ -178,9 +178,9 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 			<input type="hidden" name="wps_rma_total_amount_for_refund" class="wps_rma_total_amount_for_refund" value="<?php echo esc_html( $total_refund_amu ); ?>">
 			<input type="hidden" value="<?php echo esc_html( $return_data['subject'] ); ?>" id="wps_rma_refund_reason">
 			<?php
+			// To show some fields when refund request is pending.
+			do_action( 'wps_rma_return_ship_attach_upload_html', $order_id );
 			if ( 'pending' === $return_data['status'] ) {
-				// To show some fields when refund request is pending.
-				do_action( 'wps_rma_return_ship_attach_upload_html', $order_id );
 				?>
 				<p id="wps_rma_return_package">
 				<input type="button" value="<?php esc_html_e( 'Accept Request', 'woo-refund-and-exchange-lite' ); ?>" class="button button-primary" id="wps_rma_accept_return" data-orderid="<?php echo esc_html( $order_id ); ?>" data-date="<?php echo esc_html( $key ); ?>">
