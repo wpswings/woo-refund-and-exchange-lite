@@ -5,13 +5,13 @@ Tags: refund, exchange, wallet, RMA, woocommerce cancel order
 Requires at least: 6.7.0
 Tested up to: 6.8.2
 WC requires at least: 6.5.0
-WC tested up to: 10.0.4
-Stable tag: 4.5.2
+WC tested up to: 10.1.0
+Stable tag: 4.5.3
 Requires PHP:  7.2
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Provide an easy refund service and increase customer satisfaction with WooCommerce Return Refund and Exchange Warranty Management Plugin.
+Provide an easy refund service and increase customer satisfaction with WooCommerce Return Refund, and Exchange Warranty Management Plugin.
 
 == Description ==
 
@@ -219,8 +219,12 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 == Changelog == 
 
+= 4.5.3 - Released on 13 August 2025 = 
+* New: Compatibility update with the latest WordPress (6.8.2) and WooCommerce (10.1.0) 
+* Fixes: Removed redundant and unnecessary code segments.
+
 = 4.5.2 - Released on 24 July 2025 = 
-* New: Compatibility update with the latest WordPress (v6.8.2) and WooCommerce (v10.0.4) versions
+* New: Compatibility update with the latest WordPress (6.8.2) and WooCommerce (10.0.4) 
 * Fix: Resolved version comparison issue with the latest WooCommerce
 * Fix: Limited product retrieval on the RMA Policies page to prevent continuous loading
 
@@ -484,8 +488,6 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 == Upgrade Notice ==
 
-= 4.5.2 - Released on 24 July 2025 = 
-
-* New: Compatibility update with the latest WordPress (v6.8.2) and WooCommerce (v10.0.4) versions
-* Fix: Resolved version comparison issue with the latest WooCommerce
-* Fix: Limited product retrieval on the RMA Policies page to prevent continuous loading
+= 4.5.3 - Released on 13 August 2025 = 
+* New: Compatibility update with the latest WordPress (6.8.2) and WooCommerce (10.1.0) 
+* Fixes: Removed redundant and unnecessary code segments.
