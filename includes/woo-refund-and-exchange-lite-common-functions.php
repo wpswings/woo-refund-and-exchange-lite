@@ -292,10 +292,6 @@ if ( ! function_exists( 'wps_rma_save_return_request_callback' ) ) {
 	 * @param array  $return_products .
 	 */
 	function wps_rma_save_return_request_callback( $order_id, $refund_method, $return_products ) {
-		update_option( $order_id . 'wps_rma_refund_method', $refund_method );
-		if ( ! is_user_logged_in() ) {
-			update_option( $order_id . 'wps_rma_refund_method', 'manual_method' );
-		}
 		$order = wc_get_order( $order_id );
 		if ( empty( wps_rma_get_meta_data( $order_id, 'wps_rma_request_made', true ) ) ) {
 			$item_id = array();

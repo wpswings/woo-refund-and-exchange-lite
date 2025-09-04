@@ -984,13 +984,12 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			$order_id      = isset( $_POST['order_id'] ) ? sanitize_text_field( wp_unslash( $_POST['order_id'] ) ) : '';
 			$response      = array();
 			if ( '' == $refund_method || 'manual_method' === $refund_method ) {
-				$response['refund_method'] = 'manual_method';
-				wps_rma_update_meta_data( $order_id, 'refundable_amount', '0' );
-				wps_rma_update_meta_data( $order_id, 'refund_amount_refunded', '1' );
+				$refund_method = 'manual_method';
+				wps_rma_update_meta_data( $order_id, 'refundable_amount', 0 );
 			} else {
 				do_action( 'wps_rma_refund_price', $_POST );
-				$response['refund_method'] = 'wallet_method';
 			}
+			$response['refund_method'] = $refund_method;
 			wps_rma_update_meta_data( $order_id, 'wps_rma_left_amount_done', 'yes' );
 
 			$order = wc_get_order( $order_id );

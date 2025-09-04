@@ -830,6 +830,17 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					'placeholder' => 'Shortcode',
 					'class'       => 'wrael-text-class ' . $this->rma_pro_activate,
 				),
+					array(
+					'title'   => esc_html__( 'Enable To give the options to choose Refund through TerraWallet ', 'woo-refund-and-exchange-lite' ),
+					'type'    => 'radio-switch',
+					'id'      => 'wps_rma_refund_method_through_terra_wallet',
+					'value'   => get_option( 'wps_rma_refund_method_through_terra_wallet' ),
+					'class'   => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
+					'options' => array(
+						'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+						'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
+					),
+				),
 				array(
 					'type'        => 'button',
 					'id'          => 'wps_rma_save_wallet_setting',

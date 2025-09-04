@@ -32,10 +32,8 @@ apply_filters( 'woocommerce_admin_order_item_types', 'line_item' );
 $line_items         = $order_obj->get_items( $item_type );
 $get_order_currency = get_woocommerce_currency_symbol( $order_obj->get_currency() );
 if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
-	$ref_meth = get_option( $order_id . 'wps_rma_refund_method' );
 	foreach ( $return_datas as $key => $return_data ) {
 		$date          = date_i18n( wc_date_format(), $key );
-		$refund_method = isset( $ref_meth ) ? $ref_meth : '';
 		$refund_method = isset( $return_data['refund_method'] ) ? $return_data['refund_method'] : $refund_method;
 		?>
 		<p><?php esc_html_e( 'Following product refund request made on', 'woo-refund-and-exchange-lite' ); ?> <b><?php echo esc_html( $date ); ?>.</b></p>
