@@ -169,6 +169,20 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 					}
 				}
 			}
+			?>
+			<p>
+				<b><?php esc_html_e( 'Refund Method', 'woo-refund-and-exchange-lite' ); ?>:</b>
+				<?php
+				if ( ! $refund_method || 'manual_method' === $refund_method ) {
+					esc_html_e( 'Manual Method', 'woo-refund-and-exchange-lite' );
+				} elseif ( 'wallet_method' === $refund_method ) {
+					esc_html_e( 'Manual Method', 'woo-refund-and-exchange-lite' );
+				} elseif ( 'terrawallet' === $refund_method ) {
+					esc_html_e( 'Terra Wallet', 'woo-refund-and-exchange-lite' );
+				}
+				?>
+			</p>
+			<?php
 
 			// Show some fields in the refund request metabox.
 			do_action( 'wps_rma_show_extra_field', $order_id );
