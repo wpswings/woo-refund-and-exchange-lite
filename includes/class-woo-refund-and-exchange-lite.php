@@ -817,7 +817,7 @@ class Woo_Refund_And_Exchange_Lite {
 									</div>
 								</div>
 								<div class="mdc-text-field-helper-line">
-									<div class="mdc-text-field-helper-text--persistent wps-helper-text" id="" aria-hidden="true"><?php echo ( isset( $wrael_component['description'] ) ? esc_attr( $wrael_component['description'] ) : '' ); ?></div>
+									<div class="mdc-text-field-helper-text--persistent wps-helper-text" id="" aria-hidden="true"><?php echo ( isset( $wrael_component['description'] ) ? wp_kses_post( $wrael_component['description'] ) : '' ); ?></div>
 								</div>
 							</div>
 						</div>
