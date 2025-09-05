@@ -205,14 +205,23 @@ class Woo_Refund_And_Exchange_Lite_Common {
 		
 							$file_name = wps_rma_generate_random_filename( $file_format );
 							
-							if ( 'png' == $file_format || 'jpg' == $file_format || 'jpeg' == $file_format ) {
-		
+							$allowed_types = [
+								'png',
+								'jpeg',
+								'mp4',
+								'webm',
+								'ogg',
+								'quicktime', // mov
+								'x-msvideo', // avi
+							];
+
+							if ( in_array( $file_format, $allowed_types, true ) ) {
 								$source_path = sanitize_text_field( wp_unslash( $_FILES['wps_rma_return_request_files']['tmp_name'][ $i ] ) );
 								$target_path = $directory . '/' . sanitize_file_name( $file_name );
 								$filename[] = $file_name;
 								$wp_filesystem->move($source_path, $target_path, true);
 								$wp_filesystem->chmod($target_path, 0644); // For files permission issue.
-							}
+							}		
 						}
 					}
 		
