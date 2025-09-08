@@ -680,6 +680,14 @@ select {
   text-transform: uppercase;
   letter-spacing: 0.25px;
   line-height: 16px;
+  cursor: pointer;
+  transition: all 0.3s linear;
+}
+
+.admin-bar #save_policies_setting_form #wps_rma_add_more:hover,
+.admin-bar #save_policies_setting_form .wps_rma_save_settings:hover {
+  opacity: 0.9;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .admin-bar #save_policies_setting_form input.wps_rma_save_settings {
@@ -1535,6 +1543,10 @@ a.wps-rma__popup-for-pro-link:hover {
 
 .ui-timepicker-standard {
   z-index: 99 !important;
+}
+
+.wps-rma-api-container .section h2 {
+  cursor: hand;
 }
 
 @media (max-width: 768px){

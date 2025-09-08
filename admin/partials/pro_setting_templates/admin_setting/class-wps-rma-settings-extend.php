@@ -67,7 +67,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 				),
 			);
 			$wps_rma_settings_general[] = array(
-				'title'   => esc_html__( 'Enable wallet', 'woo-refund-and-exchange-lite' ),
+				'title'   => esc_html__( 'Enable Wallet', 'woo-refund-and-exchange-lite' ),
 				'type'    => 'radio-switch',
 				'id'      => 'wps_rma_wallet_enable',
 				'value'   => get_option( 'wps_rma_wallet_enable' ),
@@ -111,7 +111,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 				),
 			);
 			$wps_rma_settings_general[] = array(
-				'title'   => esc_html__( 'Hide Refund,Exchange,Cancel Button For COD When Processing', 'woo-refund-and-exchange-lite' ),
+				'title'   => esc_html__( 'Hide Refund, Exchange, Cancel Button For COD and Processing Order', 'woo-refund-and-exchange-lite' ),
 				'type'    => 'radio-switch',
 				'id'      => 'wps_rma_hide_rec',
 				'value'   => get_option( 'wps_rma_hide_rec' ),
@@ -133,7 +133,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 				),
 			);
 			$wps_rma_settings_general[] = array(
-				'title' => esc_html__( 'Refund,Exchange,Cancel Functionality Start From Order Status Date', 'woo-refund-and-exchange-lite' ),
+				'title' => esc_html__( 'Refund, Exchange, Cancel Functionality Start From Order Status Date', 'woo-refund-and-exchange-lite' ),
 				'type'  => 'select',
 				'id'    => 'wps_rma_order_status_start',
 				'value' => get_option( 'wps_rma_order_status_start' ),
@@ -150,7 +150,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 				'class' => 'mwr-select-class ' . $this->rma_pro_activate,
 			);
 			$wps_rma_settings_general[] = array(
-				'title' => esc_html__( 'Enable To Reset The License On Deactivation Of The Plugin.', 'woo-refund-and-exchange-lite' ),
+				'title' => esc_html__( 'Enable To Reset The License On Deactivation Of The Plugin', 'woo-refund-and-exchange-lite' ),
 				'type'  => 'radio-switch',
 				'description'  => '',
 				'id'    => 'mwr_radio_reset_license',
@@ -341,7 +341,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					'description' => esc_html__( 'This setting does not work if the order contains a bundled product.', 'woo-refund-and-exchange-lite' ),
 				),
 				array(
-					'title'   => esc_html__( 'Enable to show Manage Stock Button', 'woo-refund-and-exchange-lite' ),
+					'title'   => esc_html__( 'Enable To Show Manage Stock Button', 'woo-refund-and-exchange-lite' ),
 					'type'    => 'radio-switch',
 					'id'      => 'wps_rma_exchange_manage_stock',
 					'value'   => get_option( 'wps_rma_exchange_manage_stock' ),
@@ -363,7 +363,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					),
 				),
 				array(
-					'title'       => esc_html__( 'Attachement Limit', 'woo-refund-and-exchange-lite' ),
+					'title'       => esc_html__( 'Attachment Limit', 'woo-refund-and-exchange-lite' ),
 					'type'        => 'number',
 					'description' => esc_html__( 'By default, It will take 5. If not given any.', 'woo-refund-and-exchange-lite' ),
 					'id'          => 'wps_rma_exchange_attachment_limit',
@@ -429,7 +429,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					),
 				),
 				array(
-					'title'   => esc_html__( 'Enable To Allow the Exchange Request Cancellation by user', 'woo-refund-and-exchange-lite' ),
+					'title'   => esc_html__( 'Enable To Allow the Exchange Request Cancellation by User', 'woo-refund-and-exchange-lite' ),
 					'type'    => 'radio-switch',
 					'id'      => 'wps_rma_exchange_cancellation',
 					'value'   => get_option( 'wps_rma_exchange_cancellation' ),
@@ -440,7 +440,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					),
 				),
 				array(
-					'title'   => esc_html__( 'Enable Auto Exchange Approval for exchange requests', 'woo-refund-and-exchange-lite' ),
+					'title'   => esc_html__( 'Enable Auto Exchange Approval Ror Exchange Requests', 'woo-refund-and-exchange-lite' ),
 					'type'    => 'radio-switch',
 					'id'      => 'wps_rma_auto_exchange_approve',
 					'value'   => get_option( 'wps_rma_auto_exchange_approve' ),
@@ -988,7 +988,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					'name' => 'Connection',
 				),
 				array(
-					'title'       => esc_html__( 'Enable To Use Whatsapp Notification For Refund And Exchange ', 'woo-refund-and-exchange-lite' ),
+					'title'       => esc_html__( 'Enable To Use WhatsApp Notification For Refund And Exchange ', 'woo-refund-and-exchange-lite' ),
 					'type'        => 'radio-switch',
 					'id'          => 'wps_rma_enable_whatsapp_notification',
 					'value'       => get_option( 'wps_rma_enable_whatsapp_notification' ),

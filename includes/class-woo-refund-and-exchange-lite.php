@@ -498,7 +498,7 @@ class Woo_Refund_And_Exchange_Lite {
 		
 		// whatsapp notification settings.
 		$wrael_default_tabs['woo-refund-and-exchange-lite-whatsapp-notification']           = array(
-			'title'     => esc_html__( 'Whatsapp Notification', 'woo-refund-and-exchange-lite' ),
+			'title'     => esc_html__( 'WhatsApp Notification', 'woo-refund-and-exchange-lite' ),
 			'name'      => 'woo-refund-and-exchange-lite-whatsapp-notification',
 			'class'     => $rma_pro_activate,
 			'file_path' => WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/pro_setting_templates/woo-refund-and-exchange-lite-whatsapp-notification.php',
