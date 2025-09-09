@@ -782,9 +782,9 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					'type'        => 'radio-switch',
 					'id'          => 'wps_rma_wallet_plugin',
 					'value'       => get_option( 'wps_rma_wallet_plugin' ),
-					'description' => sprintf( esc_html__( 'This will disable the integrated wallet, Download it from %s', 'woo-refund-and-exchange-lite' ), '<a href="https://wordpress.org/plugins/wallet-system-for-woocommerce/" target="__blank">Here</a>' ),
+					'description' => sprintf( esc_html__( 'This will disable the integrated wallet, Download it from %s', 'woo-refund-and-exchange-lite' ), '<a href="https://wordpress.org/plugins/wallet-system-for-woocommerce/" target="__blank">here</a>' ),
 					'show_link'   => true,
-					'class'       => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
+					'class'       => 'wrael-radio-switch-class ' . $this->rma_pro_activate . 'wps-isnot-activated' . wps_rma_is_wallet_plugin_activated(),
 					'options'     => array(
 						'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
 						'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
@@ -831,17 +831,17 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					'placeholder' => 'Shortcode',
 					'class'       => 'wrael-text-class ' . $this->rma_pro_activate,
 				),
-					array(
+				array(
 					'title'   => esc_html__( 'Enable Refund Method Selection via TerraWallet', 'woo-refund-and-exchange-lite' ),
 					'type'    => 'radio-switch',
 					'id'      => 'wps_rma_refund_method_through_terra_wallet',
 					'value'   => get_option( 'wps_rma_refund_method_through_terra_wallet' ),
-					'class'   => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
+					'class'   => 'wrael-radio-switch-class ' . $this->rma_pro_activate . 'wps-isnot-activated' . wps_rma_is_terrawallet_plugin_activated(),
 					'options' => array(
 						'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
 						'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 					),
-					'description' => esc_html( 'This will allow users to choose a refund method through TerraWallet', 'woo-refund-and-exchange-lite' )
+					'description' => esc_html( 'This will allow users to choose a refund method through TerraWallet, Download it from', 'woo-refund-and-exchange-lite' ) . ' <a href="https://wordpress.org/plugins/woo-wallet/" target="__blank">here</a>',
 				),
 				array(
 					'type'        => 'button',

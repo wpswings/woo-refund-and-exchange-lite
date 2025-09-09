@@ -34,7 +34,7 @@ $get_order_currency = get_woocommerce_currency_symbol( $order_obj->get_currency(
 if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 	foreach ( $return_datas as $key => $return_data ) {
 		$date          = date_i18n( wc_date_format(), $key );
-		$refund_method = isset( $return_data['refund_method'] ) ? $return_data['refund_method'] : $refund_method;
+		$refund_method = isset( $return_data['refund_method'] ) ? $return_data['refund_method'] : 'manual_method';
 		?>
 		<p><?php esc_html_e( 'Following product refund request made on', 'woo-refund-and-exchange-lite' ); ?> <b><?php echo esc_html( $date ); ?>.</b></p>
 		<div id="wps_rma_return_meta_wrapper">
@@ -176,7 +176,7 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 				if ( ! $refund_method || 'manual_method' === $refund_method ) {
 					esc_html_e( 'Manual Method', 'woo-refund-and-exchange-lite' );
 				} elseif ( 'wallet_method' === $refund_method ) {
-					esc_html_e( 'Manual Method', 'woo-refund-and-exchange-lite' );
+					esc_html_e( 'Wallet Method', 'woo-refund-and-exchange-lite' );
 				} elseif ( 'terrawallet' === $refund_method ) {
 					esc_html_e( 'Terra Wallet', 'woo-refund-and-exchange-lite' );
 				}

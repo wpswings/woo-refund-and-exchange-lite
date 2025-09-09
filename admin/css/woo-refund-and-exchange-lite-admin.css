@@ -1549,6 +1549,12 @@ a.wps-rma__popup-for-pro-link:hover {
   cursor: hand;
 }
 
+.mdc-switch:has(.wps-isnot-activated) {
+  pointer-events: none; /* makes it unclickable */
+  opacity: 0.6; /* optional: make it look disabled */
+  cursor: not-allowed; /* optional: show disabled cursor */
+}
+
 @media (max-width: 768px){
   .wps-header-container {
     justify-content: flex-start;
@@ -1868,4 +1874,12 @@ a.wps-rma__popup-for-pro-link:hover {
   .wps-header-container a.wps-link + span {
     margin: 0 5px;
   }
+}
+
+.mdc-switch:has(.wps-isnot-activated){
+  opacity: 0.6;           /* optional: make it look disabled */
+  cursor: not-allowed;    /* optional: show disabled cursor */
+}
+.wps-isnot-activated{
+  pointer-events: none;   /* makes it unclickable */ 
 }

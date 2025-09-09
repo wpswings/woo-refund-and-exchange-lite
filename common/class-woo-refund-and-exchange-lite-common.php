@@ -140,7 +140,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 					'shop_manager' => esc_attr__( 'Shop Manager', 'woo-refund-and-exchange-lite' ),
 					'customer' => esc_attr__( 'Customer', 'woo-refund-and-exchange-lite' ),
 					'textare_placeholder' => esc_attr__( 'Write a message you want to send', 'woo-refund-and-exchange-lite' ),
-					'attach_note' => esc_attr__( 'Only png, jpg and jpeg file is supported', 'woo-refund-and-exchange-lite' ),
+					'attach_note' => esc_attr__( 'Only PNG, JPG, JPEG, MP4, and WEBM files are supported', 'woo-refund-and-exchange-lite' ),
 					'sms_label' => esc_attr__( 'Receive updates over SMS', 'woo-refund-and-exchange-lite' ),
 					'sms_example' => esc_attr__( 'Phone number with country code. Ex: 1XXXXXXX987 ("+" not allowed)', 'woo-refund-and-exchange-lite' ),
 				)

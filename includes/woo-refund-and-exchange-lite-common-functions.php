@@ -768,3 +768,39 @@ if ( ! function_exists( 'wps_rma_generate_random_filename' ) ) {
 		return $random_string . '.' . $extension;
 	}
 }
+
+if ( ! function_exists( 'wps_rma_is_wallet_plugin_activated' ) ) {
+	/**
+	 * Use to know if the Wallet System for WooCommerce plugin is installed and activated
+	 *
+	 * @return bool
+	 */
+	function wps_rma_is_wallet_plugin_activated() {
+
+		$active_plugins = (array) apply_filters( 'active_plugins', get_option( 'active_plugins', array() ) );
+
+		$has_wps_wallet = in_array(
+			'wallet-system-for-woocommerce/wallet-system-for-woocommerce.php',
+			$active_plugins,
+			true
+		);
+
+		// Wallet System for WooCommerce Compatibility.
+		if ( $has_wps_wallet ) {
+			$file = WP_PLUGIN_DIR . '/wallet-system-for-woocommerce/includes/class-wallet-system-for-woocommerce.php';
+			if ( file_exists( $file ) ) {
+				return true;
+			}
+		}
+		return false;
+	}
+}
+
+if ( ! function_exists( 'wps_rma_is_terrawallet_plugin_activated' ) ) {
+	/**
+	 * Use to know if the Terra Wallet for woocommerce plugin is installed and activated
+	 */
+	function wps_rma_is_terrawallet_plugin_activated() {
+		return function_exists( 'woo_wallet' );
+	}
+}
