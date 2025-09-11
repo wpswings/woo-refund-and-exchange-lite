@@ -143,6 +143,8 @@ class Woo_Refund_And_Exchange_Lite_Common {
 					'attach_note' => esc_attr__( 'Only PNG, JPG, JPEG, MP4, and WEBM files are supported', 'woo-refund-and-exchange-lite' ),
 					'sms_label' => esc_attr__( 'Receive updates over SMS', 'woo-refund-and-exchange-lite' ),
 					'sms_example' => esc_attr__( 'Phone number with country code. Ex: 1XXXXXXX987 ("+" not allowed)', 'woo-refund-and-exchange-lite' ),
+					'my_account_order_url' => wc_get_account_endpoint_url( 'orders' ),
+					'back' => esc_attr__( 'Back', 'woo-refund-and-exchange-lite' ),
 				)
 			);
 		}
@@ -211,8 +213,8 @@ class Woo_Refund_And_Exchange_Lite_Common {
 								'mp4',
 								'webm',
 								'ogg',
-								'quicktime', // mov
-								'x-msvideo', // avi
+								'quicktime',
+								'x-msvideo',
 							];
 
 							if ( in_array( $file_format, $allowed_types, true ) ) {

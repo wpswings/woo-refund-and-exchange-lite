@@ -264,7 +264,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 				),
 			);
 			$refund_app_setting_extend[] = array(
-				'title'       => esc_html__( 'Refund Note on Product Page', 'woo-refund-and-exchange-lite' ),
+				'title'       => esc_html__( 'Refund Note On Product Page', 'woo-refund-and-exchange-lite' ),
 				'type'        => 'text',
 				'id'          => 'wps_rma_refund_note_text',
 				'value'       => get_option( 'wps_rma_refund_note_text' ),
@@ -440,7 +440,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					),
 				),
 				array(
-					'title'   => esc_html__( 'Enable Auto Exchange Approval Ror Exchange Requests', 'woo-refund-and-exchange-lite' ),
+					'title'   => esc_html__( 'Enable Auto Exchange Approval for Exchange Requests', 'woo-refund-and-exchange-lite' ),
 					'type'    => 'radio-switch',
 					'id'      => 'wps_rma_auto_exchange_approve',
 					'value'   => get_option( 'wps_rma_auto_exchange_approve' ),
@@ -560,7 +560,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 				'placeholder' => esc_html__( 'Change Shipping Fee Description on Exchange Request Form', 'woo-refund-and-exchange-lite' ),
 			);
 			$wps_rma_settings_exchange[] = array(
-				'title'   => esc_html__( 'Enable Exchange Note on Product Page', 'woo-refund-and-exchange-lite' ),
+				'title'   => esc_html__( 'Enable Exchange Note On Product Page', 'woo-refund-and-exchange-lite' ),
 				'type'    => 'radio-switch',
 				'id'      => 'wps_rma_exchange_note',
 				'value'   => get_option( 'wps_rma_exchange_note' ),
@@ -679,7 +679,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					'options'     => $button_view,
 				),
 				array(
-					'title'   => esc_html__( 'Enable/Disable Cancel Functionality for Specific User Roles', 'woo-refund-and-exchange-lite' ),
+					'title'   => esc_html__( 'Enable/Disable Cancel Functionality For Specific User Roles', 'woo-refund-and-exchange-lite' ),
 					'type'    => 'radio-switch',
 					'id'      => 'wps_rma_disable_cancel_user_role',
 					'value'   => get_option( 'wps_rma_disable_cancel_user_role' ),
@@ -778,11 +778,11 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 		public function wps_rma_wallet_settings_array_set( $wps_rma_settings_wallet ) {
 			$wps_rma_settings_wallet = array(
 				array(
-					'title'       => sprintf( esc_html__( 'Enable Wallet System for WooCommerce Plugin', 'woo-refund-and-exchange-lite' ), '<>' ),
+					'title'       => esc_html__( 'Enable Wallet System For WooCommerce Plugin', 'woo-refund-and-exchange-lite' ),
 					'type'        => 'radio-switch',
 					'id'          => 'wps_rma_wallet_plugin',
 					'value'       => get_option( 'wps_rma_wallet_plugin' ),
-					'description' => sprintf( esc_html__( 'This will disable the integrated wallet, Download it from %s', 'woo-refund-and-exchange-lite' ), '<a href="https://wordpress.org/plugins/wallet-system-for-woocommerce/" target="__blank">here</a>' ),
+					'description' => esc_html__( 'This will disable the integrated wallet, Download it from', 'woo-refund-and-exchange-lite' ) . ' <a href="https://wordpress.org/plugins/wallet-system-for-woocommerce/" target="__blank">here</a>',
 					'show_link'   => true,
 					'class'       => 'wrael-radio-switch-class ' . $this->rma_pro_activate . 'wps-isnot-activated' . wps_rma_is_wallet_plugin_activated(),
 					'options'     => array(
@@ -791,7 +791,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					),
 				),
 				array(
-					'title'   => esc_html__( 'Enable Refund Method Options for Users', 'woo-refund-and-exchange-lite' ),
+					'title'   => esc_html__( 'Enable Refund Method Options For Users', 'woo-refund-and-exchange-lite' ),
 					'type'    => 'radio-switch',
 					'id'      => 'wps_rma_refund_method',
 					'value'   => get_option( 'wps_rma_refund_method' ),
@@ -832,7 +832,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					'class'       => 'wrael-text-class ' . $this->rma_pro_activate,
 				),
 				array(
-					'title'   => esc_html__( 'Enable Refund Method Selection via TerraWallet', 'woo-refund-and-exchange-lite' ),
+					'title'   => esc_html__( 'Enable Refund Method Selection Via TerraWallet', 'woo-refund-and-exchange-lite' ),
 					'type'    => 'radio-switch',
 					'id'      => 'wps_rma_refund_method_through_terra_wallet',
 					'value'   => get_option( 'wps_rma_refund_method_through_terra_wallet' ),

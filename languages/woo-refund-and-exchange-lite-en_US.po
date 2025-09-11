@@ -2191,7 +2191,7 @@ msgid ""
 msgstr ""
 
 #: includes/woo-refund-and-exchange-lite-common-functions.php:372
-msgid "You can not request more than the purchased quantity."
+msgid "You are not permitted to request more than the purchased quantity."
 msgstr ""
 
 #: includes/woo-refund-and-exchange-lite-common-functions.php:413

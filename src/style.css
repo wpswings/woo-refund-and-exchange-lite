@@ -275,5 +275,16 @@
 .wps-order-msg_column .shop_man-title {
     color: #2b4473;
 }
+.wps-order-msg-back {
+    display: inline-block;
+    background-color: #54b36f;
+    color: #fff;
+    padding: 6px 12px;
+    font-size: 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    margin-bottom: 4px;
+}
 
 /* Chats section End */

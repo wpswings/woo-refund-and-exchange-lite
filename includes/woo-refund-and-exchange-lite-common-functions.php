@@ -365,7 +365,7 @@ if ( ! function_exists( 'wps_rma_save_return_request_callback' ) ) {
 					if ( $item_id == $post_value['item_id'] ) {
 						if ( isset( $post_value['qty'] ) && ! empty( $post_value['qty'] ) && $post_value['qty'] > $item->get_quantity() ) {
 							$response['flag'] = false;
-							$response['msg']  = esc_html__( 'You can not request more than the purchased quantity.', 'woo-refund-and-exchange-lite' );
+							$response['msg']  = esc_html__( 'You are not permitted to request more than the purchased quantity. You will redirect to the My Account Page', 'woo-refund-and-exchange-lite' );
 							return $response;
 						}
 					}
