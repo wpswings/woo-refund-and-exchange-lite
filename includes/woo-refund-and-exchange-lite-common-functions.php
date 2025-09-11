@@ -288,10 +288,9 @@ if ( ! function_exists( 'wps_rma_save_return_request_callback' ) ) {
 	 * This function is a callback function to save return request.
 	 *
 	 * @param int    $order_id .
-	 * @param string $refund_method .
 	 * @param array  $return_products .
 	 */
-	function wps_rma_save_return_request_callback( $order_id, $refund_method, $return_products ) {
+	function wps_rma_save_return_request_callback( $order_id, $return_products ) {
 		$order = wc_get_order( $order_id );
 		if ( empty( wps_rma_get_meta_data( $order_id, 'wps_rma_request_made', true ) ) ) {
 			$item_id = array();
