@@ -22,6 +22,19 @@ class Wps_Rma_Order_Messages_Email extends WC_Email {
 	 * @var string
 	 */
 	public $order_id = '';
+
+	/**
+	 * $msg as message.
+	 *
+	 * @var string
+	 */
+	public $msg = '';
+	/**
+	 * $recipient as to mail.
+	 *
+	 * @var string
+	 */
+	public $recipient = '';
 	/**
 	 * Set email defaults
 	 *

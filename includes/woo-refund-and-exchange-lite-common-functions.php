@@ -289,8 +289,9 @@ if ( ! function_exists( 'wps_rma_save_return_request_callback' ) ) {
 	 *
 	 * @param int    $order_id .
 	 * @param array  $return_products .
+	 * @param string $payment_method .
 	 */
-	function wps_rma_save_return_request_callback( $order_id, $return_products ) {
+	function wps_rma_save_return_request_callback( $order_id, $payment_method, $return_products ) {
 		$order = wc_get_order( $order_id );
 		if ( empty( wps_rma_get_meta_data( $order_id, 'wps_rma_request_made', true ) ) ) {
 			$item_id = array();
