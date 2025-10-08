@@ -31,14 +31,6 @@
         <exclude name="WordPress.WhiteSpace" />
     </rule>
 
-    <!-- WooCommerce Standard (correct name is just WooCommerce) -->
-    <rule ref="WooCommerce">
-        <exclude name="Core.Commenting.CommentTags.AuthorTag" />
-        <exclude name="WordPress.PHP.DontExtract" />
-        <exclude name="Generic.Arrays.DisallowShortArraySyntax" />
-        <exclude name="Generic.WhiteSpace.ScopeIndent.Incorrect" />
-    </rule>
-
     <!-- PHPCompatibility -->
     <rule ref="PHPCompatibility">
         <exclude-pattern>tests/</exclude-pattern>
