@@ -103,7 +103,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 
 		if ( is_page( $wps_rma_view_order_msg_page_id ) || ( function_exists( 'get_current_screen' ) && ! empty( get_current_screen() ) && ( 'woocommerce_page_wc-orders' === get_current_screen()->id || 'shop_order' === get_current_screen()->id ) ) ) {
 			$script_path       = '../../build/index.js';
-			$script_asset_path = WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'build/index.asset.php';
+			$script_asset_path = WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'build/index-asset.php';
 			$script_asset      = file_exists( $script_asset_path )
 			? require $script_asset_path
 			: array(

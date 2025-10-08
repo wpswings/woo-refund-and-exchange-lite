@@ -29,7 +29,7 @@ class Wps_Rma_Refund_Request_Email extends WC_Email {
 	 */
 	public $to = '';
 	/**
-	 * msg variable
+	 * Msg variable
 	 *
 	 * @var string
 	 */
