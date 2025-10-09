@@ -3,10 +3,10 @@ Contributors: wpswings
 Donate link: https://wpswings.com/
 Tags: refund, exchange, wallet, RMA, woocommerce cancel order
 Requires at least: 6.7.0
-Tested up to: 6.8.2
+Tested up to: 6.8.3
 WC requires at least: 6.5.0
-WC tested up to: 10.1.2
-Stable tag: 4.5.4
+WC tested up to: 10.2.2
+Stable tag: 4.5.5
 Requires PHP:  7.2
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -223,7 +223,12 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 == Changelog == 
 
-= 4.5.4 - Released on 12 September 2025 = 
+= 4.5.5 - Released on 9 October 2025 = 
+* New - Compatibility with the latest (WP 6.8.3) and (WC 10.2.2)
+* Fix - Code fixes for the term of the mail template 
+* Fix - Code fixes for raising a refund request through the RMA API
+
+= 4.5.4 - Released on 15 September 2025 = 
 * New: Latest WP(6.8.2) and WC(10.1.2) Compatibility
 * New: Added the Video file submission for the return request
 
@@ -496,6 +501,7 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 == Upgrade Notice ==
 
-= 4.5.4 - Released on 12 September 2025 = 
-* New: Latest WP(6.8.2) and WC(10.1.2) Compatibility
-* New: Added the Video file submission for the return request
+= 4.5.5 - Released on 9 October 2025 = 
+* New - Compatibility with the latest WP 6.8.3 and WC 10.2.2 
+* Fix - Code fixes for the term of the mail template 
+* Fix - Code fixes for raising a refund request through the RMA API
