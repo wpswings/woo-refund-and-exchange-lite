@@ -1,4 +1,4 @@
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://travis-ci.org/twbs/bootstrap) ![Active installs](https://img.shields.io/badge/Active-5000%2B-brightgreen) ![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen) ![WP tested](https://img.shields.io/badge/WP%20tested-6.8.2-brightgreen) ![WC tested](https://img.shields.io/badge/WC%20tested-10.0.4-brightgreen) ![Requires PHP](https://img.shields.io/badge/Requires%20PHP-7.2.0-blue)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://travis-ci.org/twbs/bootstrap) ![Active installs](https://img.shields.io/badge/Active-5000%2B-brightgreen) ![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen) ![WP tested](https://img.shields.io/badge/WP%20tested-6.8.3-brightgreen) ![WC tested](https://img.shields.io/badge/WC%20tested-10.2.2-brightgreen) ![Requires PHP](https://img.shields.io/badge/Requires%20PHP-7.2.0-blue)
 
 # Return Refund and Exchange for WooCommerce
 
@@ -48,6 +48,12 @@ With our Return Refund and Exchange plugin, merchants can create a dedicated ref
 **10) Refund on Selected Order Status**: You can select the order status on which a customer can submit a refund request. You can select either a single or multiple order status in this setting. For example, if you select Completed, and Failed order statuses, you’ll allow your customers to generate a refund request if their order is completed, or failed.
 
 **11) Order Related Messages and Email Notifications**: You can allow your customers to send you order-related queries. Furthermore, you can also enable/disable the settings to let your customers add attachments along with their messages.
+
+**12) Attachments For Refund & Exchange:**
+Merchants can allow customers to add attachments, i.e., either images or videos. This functionality helps merchants understand customers’ problem with the purchased product. To further help them with the correct resolution.
+
+**13) Return Access By User Roles:**
+The merchants utilise this unique functionality to restrict certain user roles (choose from the default WooCommerce user roles) from accessing the return functionality for any product listed on the website.
 
 ### WOOCOMMERCE REFUND PLUGIN COMPATIBILITIES
 
