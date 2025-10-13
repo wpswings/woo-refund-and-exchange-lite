@@ -239,7 +239,7 @@ if ( ! function_exists( 'wps_rma_show_buttons' ) ) {
 		if ( 'on' === get_option( 'wps_rma_return_time_policy' ) ) {
 			$wps_rma_from_time = get_option( 'wps_rma_time_duration_from', false );
 			$wps_rma_to_time   = get_option( 'wps_rma_time_duration_to', false );
-			if ( $wps_rma_from_time && $wps_rma_to_time && strtotime( current_time( 'h:i A' ) ) < strtotime( $wps_rma_from_time ) || strtotime( current_time( 'h:i A' ) ) > strtotime( $wps_rma_to_time ) ) {
+			if ( $wps_rma_from_time && $wps_rma_to_time && ( strtotime( current_time( 'h:i A' ) ) < strtotime( $wps_rma_from_time ) || strtotime( current_time( 'h:i A' ) ) > strtotime( $wps_rma_to_time ) ) ) {
 				$show_button = ucfirst( $func ) . esc_html__( 'is not available right now, Please try again later', 'woo-refund-and-exchange-lite' );
 			}
 		}
@@ -288,14 +288,10 @@ if ( ! function_exists( 'wps_rma_save_return_request_callback' ) ) {
 	 * This function is a callback function to save return request.
 	 *
 	 * @param int    $order_id .
-	 * @param string $refund_method .
-	 * @param array  $return_products .
+	 * @param array  $payment_method .
+	 * @param string $return_products .
 	 */
-	function wps_rma_save_return_request_callback( $order_id, $refund_method, $return_products ) {
-		update_option( $order_id . 'wps_rma_refund_method', $refund_method );
-		if ( ! is_user_logged_in() ) {
-			update_option( $order_id . 'wps_rma_refund_method', 'manual_method' );
-		}
+	function wps_rma_save_return_request_callback( $order_id, $payment_method, $return_products ) {
 		$order = wc_get_order( $order_id );
 		if ( empty( wps_rma_get_meta_data( $order_id, 'wps_rma_request_made', true ) ) ) {
 			$item_id = array();
@@ -369,7 +365,7 @@ if ( ! function_exists( 'wps_rma_save_return_request_callback' ) ) {
 					if ( $item_id == $post_value['item_id'] ) {
 						if ( isset( $post_value['qty'] ) && ! empty( $post_value['qty'] ) && $post_value['qty'] > $item->get_quantity() ) {
 							$response['flag'] = false;
-							$response['msg']  = esc_html__( 'You can not request more than the purchased quantity.', 'woo-refund-and-exchange-lite' );
+							$response['msg']  = esc_html__( 'You are not permitted to request more than the purchased quantity. You will redirect to the My Account Page', 'woo-refund-and-exchange-lite' );
 							return $response;
 						}
 					}
@@ -770,5 +766,41 @@ if ( ! function_exists( 'wps_rma_generate_random_filename' ) ) {
 
 		// Return the full filename with the extension.
 		return $random_string . '.' . $extension;
+	}
+}
+
+if ( ! function_exists( 'wps_rma_is_wallet_plugin_activated' ) ) {
+	/**
+	 * Use to know if the Wallet System for WooCommerce plugin is installed and activated
+	 *
+	 * @return bool
+	 */
+	function wps_rma_is_wallet_plugin_activated() {
+
+		$active_plugins = (array) apply_filters( 'active_plugins', get_option( 'active_plugins', array() ) );
+
+		$has_wps_wallet = in_array(
+			'wallet-system-for-woocommerce/wallet-system-for-woocommerce.php',
+			$active_plugins,
+			true
+		);
+
+		// Wallet System for WooCommerce Compatibility.
+		if ( $has_wps_wallet ) {
+			$file = WP_PLUGIN_DIR . '/wallet-system-for-woocommerce/includes/class-wallet-system-for-woocommerce.php';
+			if ( file_exists( $file ) ) {
+				return true;
+			}
+		}
+		return false;
+	}
+}
+
+if ( ! function_exists( 'wps_rma_is_terrawallet_plugin_activated' ) ) {
+	/**
+	 * Use to know if the Terra Wallet for woocommerce plugin is installed and activated
+	 */
+	function wps_rma_is_terrawallet_plugin_activated() {
+		return function_exists( 'woo_wallet' );
 	}
 }

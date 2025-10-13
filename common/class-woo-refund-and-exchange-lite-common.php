@@ -103,7 +103,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 
 		if ( is_page( $wps_rma_view_order_msg_page_id ) || ( function_exists( 'get_current_screen' ) && ! empty( get_current_screen() ) && ( 'woocommerce_page_wc-orders' === get_current_screen()->id || 'shop_order' === get_current_screen()->id ) ) ) {
 			$script_path       = '../../build/index.js';
-			$script_asset_path = WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'build/index.asset.php';
+			$script_asset_path = WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'build/index-asset.php';
 			$script_asset      = file_exists( $script_asset_path )
 			? require $script_asset_path
 			: array(
@@ -140,9 +140,11 @@ class Woo_Refund_And_Exchange_Lite_Common {
 					'shop_manager' => esc_attr__( 'Shop Manager', 'woo-refund-and-exchange-lite' ),
 					'customer' => esc_attr__( 'Customer', 'woo-refund-and-exchange-lite' ),
 					'textare_placeholder' => esc_attr__( 'Write a message you want to send', 'woo-refund-and-exchange-lite' ),
-					'attach_note' => esc_attr__( 'Only png, jpg and jpeg file is supported', 'woo-refund-and-exchange-lite' ),
+					'attach_note' => esc_attr__( 'Only PNG, JPG, JPEG, MP4, and WEBM files are supported', 'woo-refund-and-exchange-lite' ),
 					'sms_label' => esc_attr__( 'Receive updates over SMS', 'woo-refund-and-exchange-lite' ),
 					'sms_example' => esc_attr__( 'Phone number with country code. Ex: 1XXXXXXX987 ("+" not allowed)', 'woo-refund-and-exchange-lite' ),
+					'my_account_order_url' => wc_get_account_endpoint_url( 'orders' ),
+					'back' => esc_attr__( 'Back', 'woo-refund-and-exchange-lite' ),
 				)
 			);
 		}
@@ -205,14 +207,23 @@ class Woo_Refund_And_Exchange_Lite_Common {
 		
 							$file_name = wps_rma_generate_random_filename( $file_format );
 							
-							if ( 'png' == $file_format || 'jpg' == $file_format || 'jpeg' == $file_format ) {
-		
+							$allowed_types = [
+								'png',
+								'jpeg',
+								'mp4',
+								'webm',
+								'ogg',
+								'quicktime',
+								'x-msvideo',
+							];
+
+							if ( in_array( $file_format, $allowed_types, true ) ) {
 								$source_path = sanitize_text_field( wp_unslash( $_FILES['wps_rma_return_request_files']['tmp_name'][ $i ] ) );
 								$target_path = $directory . '/' . sanitize_file_name( $file_name );
 								$filename[] = $file_name;
 								$wp_filesystem->move($source_path, $target_path, true);
 								$wp_filesystem->chmod($target_path, 0644); // For files permission issue.
-							}
+							}		
 						}
 					}
 		
@@ -268,12 +279,14 @@ class Woo_Refund_And_Exchange_Lite_Common {
 					if ( 'on' === $bank_details && ! empty( $_POST['bankdetails'] ) ) {
 						wps_rma_update_meta_data( $order_id, 'wps_rma_bank_details', sanitize_text_field( wp_unslash( $_POST['bankdetails'] ) ) );
 					}
-					$wallet_enabled       = get_option( 'wps_rma_wallet_enable', 'no' );
-					$refund_method_check  = get_option( 'wps_rma_refund_method', 'no' );
-					if ( wps_rma_pro_active() && 'on' === $wallet_enabled && 'on' !== $refund_method_check ) {
-						$refund_method = 'wallet_method';
-					} else {
-						$refund_method = isset( $_POST['refund_method'] ) ? sanitize_text_field( wp_unslash( $_POST['refund_method'] ) ) : '';
+					$refund_method = isset( $_POST['refund_method'] ) ? sanitize_text_field( wp_unslash( $_POST['refund_method'] ) ) : '';
+					if ( wps_rma_pro_active() && wps_rma_is_wallet_enable() && ! wps_rma_is_choose_method_enable() ) {
+						$is_terrawallet = wps_rma_is_terra_wallet_enable() && wps_rma_is_terrawallet_plugin_activated();
+						if ( $is_terrawallet ) {
+							$refund_method = 'terrawallet';
+						} else {
+							$refund_method = 'wallet_method';
+						}
 					}
 					$checked_all = isset( $_POST['all_product_checked'] ) ? sanitize_text_field( wp_unslash( $_POST['all_product_checked'] ) ) : '';
 					if ( 1 == $checked_all ) {
@@ -329,6 +342,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 						}
 					}
 					$return_data['shipping_price'] = $shipping_price;
+					$return_data['refund_method'] = $refund_method;
 					do_action( 'wps_rma_return_request_data', $return_data, $order_id );
 					$response = wps_rma_save_return_request_callback( $order_id, $refund_method, $return_data );
 					if ( true == $response['flag'] ) {

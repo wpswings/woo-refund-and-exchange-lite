@@ -67,7 +67,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 				),
 			);
 			$wps_rma_settings_general[] = array(
-				'title'   => esc_html__( 'Enable wallet', 'woo-refund-and-exchange-lite' ),
+				'title'   => esc_html__( 'Enable Wallet', 'woo-refund-and-exchange-lite' ),
 				'type'    => 'radio-switch',
 				'id'      => 'wps_rma_wallet_enable',
 				'value'   => get_option( 'wps_rma_wallet_enable' ),
@@ -111,7 +111,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 				),
 			);
 			$wps_rma_settings_general[] = array(
-				'title'   => esc_html__( 'Hide Refund,Exchange,Cancel Button For COD When Processing', 'woo-refund-and-exchange-lite' ),
+				'title'   => esc_html__( 'Hide Refund, Exchange, Cancel Button For COD and Processing Order', 'woo-refund-and-exchange-lite' ),
 				'type'    => 'radio-switch',
 				'id'      => 'wps_rma_hide_rec',
 				'value'   => get_option( 'wps_rma_hide_rec' ),
@@ -133,7 +133,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 				),
 			);
 			$wps_rma_settings_general[] = array(
-				'title' => esc_html__( 'Refund,Exchange,Cancel Functionality Start From Order Status Date', 'woo-refund-and-exchange-lite' ),
+				'title' => esc_html__( 'Refund, Exchange, Cancel Functionality Start From Order Status Date', 'woo-refund-and-exchange-lite' ),
 				'type'  => 'select',
 				'id'    => 'wps_rma_order_status_start',
 				'value' => get_option( 'wps_rma_order_status_start' ),
@@ -150,7 +150,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 				'class' => 'mwr-select-class ' . $this->rma_pro_activate,
 			);
 			$wps_rma_settings_general[] = array(
-				'title' => esc_html__( 'Enable To Reset The License On Deactivation Of The Plugin.', 'woo-refund-and-exchange-lite' ),
+				'title' => esc_html__( 'Enable To Reset The License On Deactivation Of The Plugin', 'woo-refund-and-exchange-lite' ),
 				'type'  => 'radio-switch',
 				'description'  => '',
 				'id'    => 'mwr_radio_reset_license',
@@ -264,7 +264,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 				),
 			);
 			$refund_app_setting_extend[] = array(
-				'title'       => esc_html__( 'Refund Note on Product Page', 'woo-refund-and-exchange-lite' ),
+				'title'       => esc_html__( 'Refund Note On Product Page', 'woo-refund-and-exchange-lite' ),
 				'type'        => 'text',
 				'id'          => 'wps_rma_refund_note_text',
 				'value'       => get_option( 'wps_rma_refund_note_text' ),
@@ -341,7 +341,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					'description' => esc_html__( 'This setting does not work if the order contains a bundled product.', 'woo-refund-and-exchange-lite' ),
 				),
 				array(
-					'title'   => esc_html__( 'Enable to show Manage Stock Button', 'woo-refund-and-exchange-lite' ),
+					'title'   => esc_html__( 'Enable To Show Manage Stock Button', 'woo-refund-and-exchange-lite' ),
 					'type'    => 'radio-switch',
 					'id'      => 'wps_rma_exchange_manage_stock',
 					'value'   => get_option( 'wps_rma_exchange_manage_stock' ),
@@ -363,7 +363,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					),
 				),
 				array(
-					'title'       => esc_html__( 'Attachement Limit', 'woo-refund-and-exchange-lite' ),
+					'title'       => esc_html__( 'Attachment Limit', 'woo-refund-and-exchange-lite' ),
 					'type'        => 'number',
 					'description' => esc_html__( 'By default, It will take 5. If not given any.', 'woo-refund-and-exchange-lite' ),
 					'id'          => 'wps_rma_exchange_attachment_limit',
@@ -429,7 +429,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					),
 				),
 				array(
-					'title'   => esc_html__( 'Enable To Allow the Exchange Request Cancellation by user', 'woo-refund-and-exchange-lite' ),
+					'title'   => esc_html__( 'Enable To Allow the Exchange Request Cancellation by User', 'woo-refund-and-exchange-lite' ),
 					'type'    => 'radio-switch',
 					'id'      => 'wps_rma_exchange_cancellation',
 					'value'   => get_option( 'wps_rma_exchange_cancellation' ),
@@ -440,7 +440,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					),
 				),
 				array(
-					'title'   => esc_html__( 'Enable Auto Exchange Approval for exchange requests', 'woo-refund-and-exchange-lite' ),
+					'title'   => esc_html__( 'Enable Auto Exchange Approval for Exchange Requests', 'woo-refund-and-exchange-lite' ),
 					'type'    => 'radio-switch',
 					'id'      => 'wps_rma_auto_exchange_approve',
 					'value'   => get_option( 'wps_rma_auto_exchange_approve' ),
@@ -560,7 +560,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 				'placeholder' => esc_html__( 'Change Shipping Fee Description on Exchange Request Form', 'woo-refund-and-exchange-lite' ),
 			);
 			$wps_rma_settings_exchange[] = array(
-				'title'   => esc_html__( 'Enable Exchange Note on Product Page', 'woo-refund-and-exchange-lite' ),
+				'title'   => esc_html__( 'Enable Exchange Note On Product Page', 'woo-refund-and-exchange-lite' ),
 				'type'    => 'radio-switch',
 				'id'      => 'wps_rma_exchange_note',
 				'value'   => get_option( 'wps_rma_exchange_note' ),
@@ -679,7 +679,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					'options'     => $button_view,
 				),
 				array(
-					'title'   => esc_html__( 'Enable/Disable Cancel Functionality for Specific User Roles', 'woo-refund-and-exchange-lite' ),
+					'title'   => esc_html__( 'Enable/Disable Cancel Functionality For Specific User Roles', 'woo-refund-and-exchange-lite' ),
 					'type'    => 'radio-switch',
 					'id'      => 'wps_rma_disable_cancel_user_role',
 					'value'   => get_option( 'wps_rma_disable_cancel_user_role' ),
@@ -778,20 +778,20 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 		public function wps_rma_wallet_settings_array_set( $wps_rma_settings_wallet ) {
 			$wps_rma_settings_wallet = array(
 				array(
-					'title'       => esc_html__( 'Enable To Use Wallet System For WooCommerce Plugin', 'woo-refund-and-exchange-lite' ),
+					'title'       => esc_html__( 'Enable Wallet System For WooCommerce Plugin', 'woo-refund-and-exchange-lite' ),
 					'type'        => 'radio-switch',
 					'id'          => 'wps_rma_wallet_plugin',
 					'value'       => get_option( 'wps_rma_wallet_plugin' ),
-					'description' => esc_html__( 'All The Wallet Amount Will Be Migrate Into Wallet System For WooCommerce Plugin For Every Users.', 'woo-refund-and-exchange-lite' ),
+					'description' => esc_html__( 'This will disable the integrated wallet, Download it from', 'woo-refund-and-exchange-lite' ) . ' <a href="https://wordpress.org/plugins/wallet-system-for-woocommerce/" target="__blank">here</a>',
 					'show_link'   => true,
-					'class'       => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
+					'class'       => 'wrael-radio-switch-class ' . $this->rma_pro_activate . 'wps-isnot-activated' . wps_rma_is_wallet_plugin_activated(),
 					'options'     => array(
 						'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
 						'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 					),
 				),
 				array(
-					'title'   => esc_html__( 'Enable To Select Refund Method For The Customer', 'woo-refund-and-exchange-lite' ),
+					'title'   => esc_html__( 'Enable Refund Method Options For Users', 'woo-refund-and-exchange-lite' ),
 					'type'    => 'radio-switch',
 					'id'      => 'wps_rma_refund_method',
 					'value'   => get_option( 'wps_rma_refund_method' ),
@@ -800,13 +800,14 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 						'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
 						'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 					),
+					'description' => esc_html__( 'This will provide options to select the available refund methods in the refund and exchange request forms', 'woo-refund-and-exchange-lite' ),
 				),
 				array(
 					'title'   => esc_html__( 'Cancel Order Amount to Wallet', 'woo-refund-and-exchange-lite' ),
 					'type'    => 'radio-switch',
 					'id'      => 'wps_rma_cancel_order_wallet',
 					'value'   => get_option( 'wps_rma_cancel_order_wallet' ),
-					'description' => esc_html__( 'This Feature is not Applicable For COD Order', 'woo-refund-and-exchange-lite' ),
+					'description' => esc_html__( 'This feature is not applicable for COD orders', 'woo-refund-and-exchange-lite' ),
 					'class'   => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
 					'options' => array(
 						'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
@@ -829,6 +830,18 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					'attr'        => 'readonly',
 					'placeholder' => 'Shortcode',
 					'class'       => 'wrael-text-class ' . $this->rma_pro_activate,
+				),
+				array(
+					'title'   => esc_html__( 'Enable Refund Method Selection Via TerraWallet', 'woo-refund-and-exchange-lite' ),
+					'type'    => 'radio-switch',
+					'id'      => 'wps_rma_refund_method_through_terra_wallet',
+					'value'   => get_option( 'wps_rma_refund_method_through_terra_wallet' ),
+					'class'   => 'wrael-radio-switch-class ' . $this->rma_pro_activate . 'wps-isnot-activated' . wps_rma_is_terrawallet_plugin_activated(),
+					'options' => array(
+						'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+						'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
+					),
+					'description' => esc_html( 'This will allow users to choose a refund method through TerraWallet, Download it from', 'woo-refund-and-exchange-lite' ) . ' <a href="https://wordpress.org/plugins/woo-wallet/" target="__blank">here</a>',
 				),
 				array(
 					'type'        => 'button',
@@ -975,7 +988,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					'name' => 'Connection',
 				),
 				array(
-					'title'       => esc_html__( 'Enable To Use Whatsapp Notification For Refund And Exchange ', 'woo-refund-and-exchange-lite' ),
+					'title'       => esc_html__( 'Enable To Use WhatsApp Notification For Refund And Exchange ', 'woo-refund-and-exchange-lite' ),
 					'type'        => 'radio-switch',
 					'id'          => 'wps_rma_enable_whatsapp_notification',
 					'value'       => get_option( 'wps_rma_enable_whatsapp_notification' ),

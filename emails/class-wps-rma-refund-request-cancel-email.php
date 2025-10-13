@@ -23,6 +23,18 @@ class Wps_Rma_Refund_Request_Cancel_Email extends WC_Email {
 	 */
 	public $order_id = '';
 	/**
+	 * Msg variable
+	 *
+	 * @var string
+	 */
+	public $msg = '';
+	/**
+	 * $recipient as to mail.
+	 *
+	 * @var string
+	 */
+	public $recipient = '';
+	/**
 	 * Set email defaults
 	 *
 	 * @since 0.1

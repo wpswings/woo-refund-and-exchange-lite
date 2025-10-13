@@ -31,8 +31,18 @@ jQuery(function($){
 				var totalfiles = up_files[0].files.length;
 				if ( totalfiles ) {
 					var file_type = up_files[0].files[0].type;
-					if ( 'image/png' == file_type || 'image/jpeg' == file_type || 'image/jpg' == file_type ) {
-					} else {
+
+					var allowedTypes = [
+					'image/png',
+					'image/jpeg',
+					'video/mp4',
+					'video/webm',
+					'video/ogg',
+					'video/quicktime', // mov
+					'video/x-msvideo'  // avi
+					];
+
+					if ( ! allowedTypes.includes(file_type)) {
 						alerthtml += '<li>'+ wrael_common_param.file_not_supported + '</li>';
 					}
 				}

@@ -157,6 +157,11 @@ export const OrderMessage = () => {
     return (
       <Fragment>
           <div className="wps_order_msg_container">
+            { wps_rma_react_object.is_admin != 'shop_manager' &&
+              (
+                <a className="wps-order-msg-back" href={wps_rma_react_object.my_account_order_url}>{wps_rma_react_object.back}</a>
+              )
+            }
             <div className="wps-order-msg_column">
               <div className="wps-order-msg_column_name shop_man-title">{wps_rma_react_object.shop_manager}</div>
               <div className="wps-order-msg_column_name">{wps_rma_react_object.customer}</div>

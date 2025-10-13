@@ -77,7 +77,7 @@ class Woo_Refund_And_Exchange_Lite {
 			$this->version = WOO_REFUND_AND_EXCHANGE_LITE_VERSION;
 		} else {
 
-			$this->version = '4.5.1';
+			$this->version = '4.5.5';
 		}
 
 		$this->plugin_name = 'return-refund-and-exchange-for-woocommerce';
@@ -498,7 +498,7 @@ class Woo_Refund_And_Exchange_Lite {
 		
 		// whatsapp notification settings.
 		$wrael_default_tabs['woo-refund-and-exchange-lite-whatsapp-notification']           = array(
-			'title'     => esc_html__( 'Whatsapp Notification', 'woo-refund-and-exchange-lite' ),
+			'title'     => esc_html__( 'WhatsApp Notification', 'woo-refund-and-exchange-lite' ),
 			'name'      => 'woo-refund-and-exchange-lite-whatsapp-notification',
 			'class'     => $rma_pro_activate,
 			'file_path' => WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/pro_setting_templates/woo-refund-and-exchange-lite-whatsapp-notification.php',
@@ -817,7 +817,7 @@ class Woo_Refund_And_Exchange_Lite {
 									</div>
 								</div>
 								<div class="mdc-text-field-helper-line">
-									<div class="mdc-text-field-helper-text--persistent wps-helper-text" id="" aria-hidden="true"><?php echo ( isset( $wrael_component['description'] ) ? esc_attr( $wrael_component['description'] ) : '' ); ?></div>
+									<div class="mdc-text-field-helper-text--persistent wps-helper-text" id="" aria-hidden="true"><?php echo ( isset( $wrael_component['description'] ) ? wp_kses_post( $wrael_component['description'] ) : '' ); ?></div>
 								</div>
 							</div>
 						</div>

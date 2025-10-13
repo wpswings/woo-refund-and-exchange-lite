@@ -86,7 +86,7 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 			$items_detail = [];
 			foreach ($order->get_items() as $item_id => $item) {
 				$product = $item->get_product();
-				$id      = $product->get_type() === 'variation' ? $item->get_variation_id() : $item->get_product_id();
+				$id      = 'variation' === $product->get_type() ? $item->get_variation_id() : $item->get_product_id();
 				$items_detail[$id] = $item->get_quantity();
 			}
 		
@@ -122,7 +122,7 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 					}
 					$already_refunded = wps_rma_get_meta_data($order_id, 'wps_rma_request_made', true);
 
-					if ( isset( $already_refunded[$item_id] ) && !empty($already_refunded[$item_id]) && $already_refunded[$item_id] === 'completed') {
+					if ( isset( $already_refunded[$item_id] ) && !empty($already_refunded[$item_id]) && 'completed' === $already_refunded[$item_id] ) {
 						$flags['valid'] = false;
 						continue;
 					}

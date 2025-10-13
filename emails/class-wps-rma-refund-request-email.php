@@ -29,6 +29,18 @@ class Wps_Rma_Refund_Request_Email extends WC_Email {
 	 */
 	public $to = '';
 	/**
+	 * Msg variable
+	 *
+	 * @var string
+	 */
+	public $msg = '';
+	/**
+	 * $recipient as to mail.
+	 *
+	 * @var string
+	 */
+	public $recipient = '';
+	/**
 	 * Set email defaults
 	 *
 	 * @since 0.1

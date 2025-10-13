@@ -21,7 +21,6 @@ jQuery( document ).ready(
                     }
                 );
             }
-            }
         );
     }
  );

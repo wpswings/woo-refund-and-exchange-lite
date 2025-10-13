@@ -680,6 +680,14 @@ select {
   text-transform: uppercase;
   letter-spacing: 0.25px;
   line-height: 16px;
+  cursor: pointer;
+  transition: all 0.3s linear;
+}
+
+.admin-bar #save_policies_setting_form #wps_rma_add_more:hover,
+.admin-bar #save_policies_setting_form .wps_rma_save_settings:hover {
+  opacity: 0.9;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .admin-bar #save_policies_setting_form input.wps_rma_save_settings {
@@ -1537,6 +1545,16 @@ a.wps-rma__popup-for-pro-link:hover {
   z-index: 99 !important;
 }
 
+.wps-rma-api-container .section h2 {
+  cursor: hand;
+}
+
+.mdc-switch:has(.wps-isnot-activated) {
+  pointer-events: none; /* makes it unclickable */
+  opacity: 0.6; /* optional: make it look disabled */
+  cursor: not-allowed; /* optional: show disabled cursor */
+}
+
 @media (max-width: 768px){
   .wps-header-container {
     justify-content: flex-start;
@@ -1856,4 +1874,12 @@ a.wps-rma__popup-for-pro-link:hover {
   .wps-header-container a.wps-link + span {
     margin: 0 5px;
   }
+}
+
+.mdc-switch:has(.wps-isnot-activated){
+  opacity: 0.6;           /* optional: make it look disabled */
+  cursor: not-allowed;    /* optional: show disabled cursor */
+}
+.wps-isnot-activated{
+  pointer-events: none;   /* makes it unclickable */ 
 }

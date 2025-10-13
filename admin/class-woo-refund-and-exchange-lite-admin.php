@@ -428,13 +428,13 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			),
 		);
 		$wrael_settings_general[] = array(
-			'title' => esc_html__( 'Allow the Request Between', 'woo-refund-and-exchange-lite' ),
+			'title' => esc_html__( 'Allow the Requests Between', 'woo-refund-and-exchange-lite' ),
 			'type'  => 'time',
 			'id'    => 'wps_rma_time_duration',
 			'to'    => 'wps_rma_time_duration_to',
 			'from'  => 'wps_rma_time_duration_from',
 			'class' => 'wrael-number-class',
-			'description' => esc_html__( 'Enter a valid time period, For Example:-', 'woo-refund-and-exchange-lite' ) . ' 4:00 AM - 8:30 AM, 8:00 AM - 12 PM, 2:30 PM - 6:30 PM',
+			'description' => esc_html__( 'Enter a valid time period, For Example:', 'woo-refund-and-exchange-lite' ) . ' 4:00 AM - 8:30 AM, 8:00 AM - 12 PM, 2:30 PM - 6:30 PM',
 		);
 		$wrael_settings_general   =
 		// To extend the general setting.
@@ -562,7 +562,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				'options'     => $button_view,
 			),
 			array(
-				'title'   => esc_html__( 'Enable to show Manage Stock Button', 'woo-refund-and-exchange-lite' ),
+				'title'   => esc_html__( 'Enable To Show Manage Stock Button', 'woo-refund-and-exchange-lite' ),
 				'type'    => 'radio-switch',
 				'id'      => 'wps_rma_refund_manage_stock',
 				'value'   => get_option( 'wps_rma_refund_manage_stock' ),
@@ -584,7 +584,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				),
 			),
 			array(
-				'title'       => esc_html__( 'Attachement Limit', 'woo-refund-and-exchange-lite' ),
+				'title'       => esc_html__( 'Attachment Limit', 'woo-refund-and-exchange-lite' ),
 				'type'        => 'number',
 				'description' => esc_html__( 'By default, It will take 5. If not given any.', 'woo-refund-and-exchange-lite' ),
 				'id'          => 'wps_rma_attachment_limit',
@@ -607,7 +607,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				),
 			),
 			array(
-				'title'   => esc_html__( 'Enable To Allow the Refund Request Cancellation by user', 'woo-refund-and-exchange-lite' ),
+				'title'   => esc_html__( 'Enable To Allow the Refund Request Cancellation by User', 'woo-refund-and-exchange-lite' ),
 				'type'    => 'radio-switch',
 				'id'      => 'wps_rma_refund_cancellation',
 				'value'   => get_option( 'wps_rma_refund_cancellation' ),
@@ -984,13 +984,12 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			$order_id      = isset( $_POST['order_id'] ) ? sanitize_text_field( wp_unslash( $_POST['order_id'] ) ) : '';
 			$response      = array();
 			if ( '' == $refund_method || 'manual_method' === $refund_method ) {
-				$response['refund_method'] = 'manual_method';
-				wps_rma_update_meta_data( $order_id, 'refundable_amount', '0' );
-				wps_rma_update_meta_data( $order_id, 'refund_amount_refunded', '1' );
+				$refund_method = 'manual_method';
+				wps_rma_update_meta_data( $order_id, 'refundable_amount', 0 );
 			} else {
 				do_action( 'wps_rma_refund_price', $_POST );
-				$response['refund_method'] = 'wallet_method';
 			}
+			$response['refund_method'] = $refund_method;
 			wps_rma_update_meta_data( $order_id, 'wps_rma_left_amount_done', 'yes' );
 
 			$order = wc_get_order( $order_id );

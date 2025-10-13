@@ -341,7 +341,7 @@ if ( isset( $_GET['wps_rma_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp
 											<input type="file" name="wps_rma_return_request_files[]" class="wps_rma_return_request_files">
 											</span>
 											<div><input type="button" value="<?php esc_html_e( 'Add More', 'woo-refund-and-exchange-lite' ); ?>" class="wps_rma_return_request_morefiles" data-count="1" data-max="<?php echo esc_html( $attach_limit ); ?>"></div>
-											<i><?php esc_html_e( 'Only png, jpg and jpeg extension file is approved', 'woo-refund-and-exchange-lite' ); ?>.</i>
+											<i><?php esc_html_e( 'Only PNG, JPG, JPEG, MP4, and WEBM files are supported', 'woo-refund-and-exchange-lite' ); ?>.</i>
 										</p>
 									</div>
 									<?php

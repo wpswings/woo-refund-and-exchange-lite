@@ -1259,3 +1259,10 @@ a.wps-rma__popup-for-pro-link:hover {
 .wps-rma-api-container .section h2 {
     cursor: hand;
 }
+.mdc-switch:has(.wps-isnot-activated){
+  opacity: 0.6;           /* optional: make it look disabled */
+  cursor: not-allowed;    /* optional: show disabled cursor */
+}
+.wps-isnot-activated{
+  pointer-events: none;   /* makes it unclickable */ 
+}
