@@ -178,7 +178,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 
 		global $wp_filesystem;
 
-		if ( ! function_exists('WP_Filesystem') ) {
+		if ( ! function_exists( 'WP_Filesystem' ) ) {
 			require_once ABSPATH . 'wp-admin/includes/file.php';
 		}
 		WP_Filesystem();
@@ -186,7 +186,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 		if ( isset( $_FILES['wps_rma_return_request_files'] ) && isset( $_FILES['wps_rma_return_request_files']['tmp_name'] ) && isset( $_FILES['wps_rma_return_request_files']['name'] ) ) {
 			$filename = array();
 			$order_id = isset( $_POST['wps_rma_return_request_order'] ) ? sanitize_text_field( wp_unslash( $_POST['wps_rma_return_request_order'] ) ) : sanitize_text_field( wp_unslash( $_POST['wps_rma_return_request_order'] ) );
-			
+
 			$order = wc_get_order( $order_id );
 			if ( $order ) {
 				$user_id = $order->get_user_id();
@@ -197,17 +197,17 @@ class Woo_Refund_And_Exchange_Lite_Common {
 				if ( get_current_user_id() === $user_id || array_intersect( $allowed_roles, $user->roles ) ) {
 					$count    = count( $_FILES['wps_rma_return_request_files']['tmp_name'] );
 					for ( $i = 0; $i < $count; $i++ ) {
-						if ( isset( $_FILES['wps_rma_return_request_files']['tmp_name'][ $i ] ) && isset( $_FILES['wps_rma_return_request_files']['name'][$i] ) ) {
+						if ( isset( $_FILES['wps_rma_return_request_files']['tmp_name'][ $i ] ) && isset( $_FILES['wps_rma_return_request_files']['name'][ $i ] ) ) {
 							$directory = ABSPATH . 'wp-content/attachment';
 							if ( ! file_exists( $directory ) ) {
 								wp_mkdir_p( $directory, 0755, true );
 							}
-							
-							$file_format = pathinfo( sanitize_file_name( $_FILES['wps_rma_return_request_files']['name'][$i] ), PATHINFO_EXTENSION);
-		
+
+							$file_format = pathinfo( sanitize_file_name( $_FILES['wps_rma_return_request_files']['name'][ $i ] ), PATHINFO_EXTENSION );
+
 							$file_name = wps_rma_generate_random_filename( $file_format );
-							
-							$allowed_types = [
+
+							$allowed_types = array(
 								'png',
 								'jpeg',
 								'mp4',
@@ -215,20 +215,20 @@ class Woo_Refund_And_Exchange_Lite_Common {
 								'ogg',
 								'quicktime',
 								'x-msvideo',
-							];
+							);
 
 							if ( in_array( $file_format, $allowed_types, true ) ) {
 								$source_path = sanitize_text_field( wp_unslash( $_FILES['wps_rma_return_request_files']['tmp_name'][ $i ] ) );
 								$target_path = $directory . '/' . sanitize_file_name( $file_name );
 								$filename[] = $file_name;
-								$wp_filesystem->move($source_path, $target_path, true);
-								$wp_filesystem->chmod($target_path, 0644); // For files permission issue.
-							}		
+								$wp_filesystem->move( $source_path, $target_path, true );
+								$wp_filesystem->chmod( $target_path, 0644 ); // For files permission issue.
+							}
 						}
 					}
-		
+
 					$request_files = wps_rma_get_meta_data( $order_id, 'wps_rma_return_attachment', true );
-		
+
 					$pending = true;
 					if ( isset( $request_files ) && ! empty( $request_files ) ) {
 						foreach ( $request_files as $date => $request_file ) {
@@ -241,14 +241,14 @@ class Woo_Refund_And_Exchange_Lite_Common {
 							}
 						}
 					}
-		
+
 					if ( $pending ) {
 						$request_files                    = array();
 						$date                             = gmdate( 'd-m-Y' );
 						$request_files[ $date ]['files']  = $filename;
 						$request_files[ $date ]['status'] = 'pending';
 					}
-		
+
 					wps_rma_update_meta_data( $order_id, 'wps_rma_return_attachment', $request_files );
 				}
 			}
@@ -272,7 +272,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 				$user_id = $order->get_user_id();
 				// Check if the user ID is not the current user or if not an admin, security purpose.
 				$user              = wp_get_current_user();
-				$allowed_roles     = array( 'editor', 'administrator', 'shop_manager' );
+				$allowed_roles     = array( 'administrator', 'shop_manager' );
 				// Check if the user ID is not the current user or if not an admin.
 				if ( get_current_user_id() === $user_id || array_intersect( $allowed_roles, $user->roles ) ) {
 					$bank_details  = get_option( 'wps_rma_refund_manually_de', false );
@@ -302,8 +302,8 @@ class Woo_Refund_And_Exchange_Lite_Common {
 					if ( isset( $_POST['products'] ) ) {
 						$item_ids = $return_data['products'];
 						unset( $return_data['products'] );
-						foreach( $order->get_items() as $item_id => $item ) {
-							foreach( $item_ids as $index => $item_data ) {
+						foreach ( $order->get_items() as $item_id => $item ) {
+							foreach ( $item_ids as $index => $item_data ) {
 								if ( isset( $item_data['item_id'] ) && $item_id === (int) $item_data['item_id'] ) {
 									$coupon_discount = get_option( 'wps_rma_refund_deduct_coupon', 'no' );
 									if ( 'on' === $coupon_discount ) {
@@ -320,8 +320,8 @@ class Woo_Refund_And_Exchange_Lite_Common {
 									} elseif ( 'wps_rma_exclude_tax' === $wps_rma_check_tax ) {
 										$item_price = $item_price_exc_tax;
 									}
-									$qty = $item_ids[$index]['qty'];
-									
+									$qty = $item_ids[ $index ]['qty'];
+
 									$return_data['products'][] = array(
 										'item_id' => $item_id,
 										'product_id' => $item->get_product_id(),
@@ -641,15 +641,31 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	}
 	/**
 	 * Request Cancellation by the user
-	 *
 	 */
 	public function wps_rma_cancel_return_request_callback() {
 		check_ajax_referer( 'wps_rma_ajax_security', 'security_check' );
 
 		$order_id = isset( $_POST['order_id'] ) ? filter_input( INPUT_POST, 'order_id' ) : '';
-
-		$products = wps_rma_get_meta_data( $order_id, 'wps_rma_return_product', true );
-		$response = wps_rma_return_req_cancel_callback( $order_id, $products, true );
+		$order = wc_get_order( $order_id );
+		if ( $order ) {
+			$user_id = $order->get_user_id();
+			// Check if the user ID is not the current user or if not an admin, security purpose.
+			$user              = wp_get_current_user();
+			$allowed_roles     = array( 'administrator', 'shop_manager' );
+			// Check if the user ID is not the current user or if not an admin.
+			if ( get_current_user_id() === $user_id || array_intersect( $allowed_roles, $user->roles ) ) {
+				$products = wps_rma_get_meta_data( $order_id, 'wps_rma_return_product', true );
+				$response = wps_rma_return_req_cancel_callback( $order_id, $products, true );
+			} else {
+				echo wp_json_encode(
+					array(
+						'flag' => false,
+						'message' => esc_html__( 'You are not authorized to cancel this return request.', 'woo-refund-and-exchange-lite' ),
+					)
+				);
+				wp_die();
+			}
+		}
 
 		echo wp_json_encode( $response );
 		wp_die();
@@ -657,7 +673,6 @@ class Woo_Refund_And_Exchange_Lite_Common {
 
 	/**
 	 * Fetch the submitted form data for th order.
-	 *
 	 */
 	public function wps_rma_fetch_order_msgs_callback() {
 
@@ -674,13 +689,12 @@ class Woo_Refund_And_Exchange_Lite_Common {
 
 	/**
 	 * Handling the order message form submission.
-	 *
 	 */
 	public function wps_rma_send_order_msg_callback() {
 		check_ajax_referer( 'ajax-nonce', 'nonce' );
 		global $wp_filesystem;
 
-		if ( ! function_exists('WP_Filesystem') ) {
+		if ( ! function_exists( 'WP_Filesystem' ) ) {
 			require_once ABSPATH . 'wp-admin/includes/file.php';
 		}
 		WP_Filesystem();
@@ -692,7 +706,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 		if ( 'shop_manager' === $msg_type ) {
 			$sender = 'Shop Manager';
 			$to     = $order->get_billing_email();
-		} elseif( 'customer' === $msg_type ) {
+		} elseif ( 'customer' === $msg_type ) {
 			$sender = 'Customer';
 			$to     = get_option( 'woocommerce_email_from_address', get_option( 'admin_email' ) );
 		}
@@ -705,12 +719,12 @@ class Woo_Refund_And_Exchange_Lite_Common {
 		if ( get_current_user_id() === $user_id || array_intersect( $allowed_roles, $user->roles ) ) {
 			$wps_rma_customer_contact_order_message_get = wps_rma_get_meta_data( $order_id, 'wps_rma_customer_contact_order_message', true );
 			$wps_rma_customer_contact_order_message     = isset( $_POST['wps_rma_customer_contact_order_message'] ) ? sanitize_text_field( wp_unslash( $_POST['wps_rma_customer_contact_order_message'] ) ) : '';
-			if ( $wps_rma_customer_contact_order_message && empty( $wps_rma_customer_contact_order_message_get )) {
+			if ( $wps_rma_customer_contact_order_message && empty( $wps_rma_customer_contact_order_message_get ) ) {
 				wps_rma_update_meta_data( $order_id, 'wps_rma_customer_contact_order_message', $wps_rma_customer_contact_order_message );
 			}
 			$filename   = array();
 			$attachment = array();
-	
+
 			if ( isset( $_FILES['wps_order_msg_attachment']['tmp_name'] ) && ! empty( $_FILES['wps_order_msg_attachment']['tmp_name'] ) ) {
 				$count         = count( $_FILES['wps_order_msg_attachment']['tmp_name'] );
 				$file_uploaded = false;
@@ -719,27 +733,27 @@ class Woo_Refund_And_Exchange_Lite_Common {
 				}
 				if ( $file_uploaded ) {
 					for ( $i = 0; $i < $count; $i++ ) {
-						if ( isset( $_FILES['wps_order_msg_attachment']['tmp_name'][ $i ] ) && isset( $_FILES['wps_order_msg_attachment']['name'][$i] ) ) {
+						if ( isset( $_FILES['wps_order_msg_attachment']['tmp_name'][ $i ] ) && isset( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ) {
 							$directory = ABSPATH . 'wp-content/attachment';
 							if ( ! file_exists( $directory ) ) {
 								wp_mkdir_p( $directory );
 							}
-	
-							$file_format = pathinfo( sanitize_file_name( $_FILES['wps_order_msg_attachment']['name'][$i] ), PATHINFO_EXTENSION);
-										
+
+							$file_format = pathinfo( sanitize_file_name( $_FILES['wps_order_msg_attachment']['name'][ $i ] ), PATHINFO_EXTENSION );
+
 							$file_name = wps_rma_generate_random_filename( $file_format );
-	
+
 							$f_name     = isset( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ? sanitize_file_name( wp_unslash( $_FILES['wps_order_msg_attachment']['name'][ $i ] ) ) : '';
 							if ( 'png' === $file_format || 'jpeg' === $file_format || 'jpg' === $file_format ) {
 								$sourcepath = sanitize_text_field( wp_unslash( $_FILES['wps_order_msg_attachment']['tmp_name'][ $i ] ) );
 								$targetpath = $directory . '/' . sanitize_file_name( $file_name );
-	
+
 								$filename[ $i ] ['img'] = true;
 								$filename[ $i ]['name'] = $file_name;
 								$attachment[ $i ]       = $targetpath;
-								
-								$wp_filesystem->move($sourcepath, $targetpath, true);
-								$wp_filesystem->chmod($targetpath, 0644); // For files permission issue.
+
+								$wp_filesystem->move( $sourcepath, $targetpath, true );
+								$wp_filesystem->chmod( $targetpath, 0644 ); // For files permission issue.
 
 							}
 						}
@@ -762,14 +776,14 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			$restrict_mail =
 			// Allow/Disallow Email.
 			apply_filters( 'wps_rma_restrict_order_msg_mails', false );
-	
+
 			do_action( 'wps_rma_do_something_on_view_order_message', $order_id, $msg, $sender, $to );
-	
+
 			if ( ! $restrict_mail ) {
 				$order = wc_get_order( $order_id );
 				$lang  = $order->get_meta( 'wpml_language' );
 				do_action( 'wpml_switch_language', $lang );
-	
+
 				$customer_email = WC()->mailer()->emails['wps_rma_order_messages_email'];
 				$email_status   = $customer_email->trigger( $msg, $attachment, $to, $order_id );
 			}
@@ -777,7 +791,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 
 		$res = array(
 			'status' => 200,
-			'msg' => ''
+			'msg' => '',
 		);
 		echo wp_json_encode( $res );
 		wp_die();
