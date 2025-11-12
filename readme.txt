@@ -224,7 +224,7 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 == Changelog == 
 
 = 4.5.6 - Released on 12 November 2025 = 
-* New - comptability with latest wp (6.8.3) and wc (10.3.4) vulnerable and security issue fix in term of cancel request process
+* New - comptability with latest wp (6.8.3) and wc (10.3.4)
 * Fix - vulnerable and security issue fix in term of cancel request process
 * Fix - vulnerable and security issue fix in term of view order message process
 
@@ -507,6 +507,6 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 == Upgrade Notice ==
 
 = 4.5.6 - Released on 12 November 2025 =
-* New - comptability with latest wp (6.8.3) and wc (10.3.4) vulnerable and security issue fix in term of cancel request process
+* New - comptability with latest wp (6.8.3) and wc (10.3.4) 
 * Fix - vulnerable and security issue fix in term of cancel request process
 * Fix - vulnerable and security issue fix in term of view order message process
