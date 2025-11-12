@@ -5,8 +5,8 @@ Tags: refund, exchange, wallet, RMA, woocommerce cancel order
 Requires at least: 6.7.0
 Tested up to: 6.8.3
 WC requires at least: 6.5.0
-WC tested up to: 10.2.2
-Stable tag: 4.5.5
+WC tested up to: 10.3.4
+Stable tag: 4.5.6
 Requires PHP:  7.2
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -222,6 +222,11 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 16. API Settings.
 
 == Changelog == 
+
+= 4.5.6 - Released on 12 November 2025 = 
+* New - comptability with latest wp (6.8.3) and wc (10.3.4) vulnerable and security issue fix in term of cancel request process
+* Fix - vulnerable and security issue fix in term of cancel request process
+* Fix - vulnerable and security issue fix in term of view order message process
 
 = 4.5.5 - Released on 9 October 2025 = 
 * New - Compatibility with the latest (WP 6.8.3) and (WC 10.2.2)
@@ -501,7 +506,7 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 == Upgrade Notice ==
 
-= 4.5.5 - Released on 9 October 2025 = 
-* New - Compatibility with the latest WP 6.8.3 and WC 10.2.2 
-* Fix - Code fixes for the term of the mail template 
-* Fix - Code fixes for raising a refund request through the RMA API
+= 4.5.6 - Released on 12 November 2025 =
+* New - comptability with latest wp (6.8.3) and wc (10.3.4) vulnerable and security issue fix in term of cancel request process
+* Fix - vulnerable and security issue fix in term of cancel request process
+* Fix - vulnerable and security issue fix in term of view order message process
