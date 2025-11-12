@@ -680,11 +680,29 @@ class Woo_Refund_And_Exchange_Lite_Common {
 
 		$order_id = isset( $_POST['order_id'] ) ? filter_input( INPUT_POST, 'order_id' ) : '';
 
-		$wps_order_messages = wps_rma_get_meta_data( $order_id, 'wps_cutomer_order_msg', true );
-
-		echo wp_json_encode( $wps_order_messages );
-
-		wp_die();
+		$order = wc_get_order( $order_id );
+		if ( $order ) {
+			$user_id = $order->get_user_id();
+			// Check if the user ID is not the current user or if not an admin, security purpose.
+			$user              = wp_get_current_user();
+			$allowed_roles     = array( 'administrator', 'shop_manager' );
+			// Check if the user ID is not the current user or if not an admin.
+			if ( get_current_user_id() === $user_id || array_intersect( $allowed_roles, $user->roles ) ) {
+				// User is authorized.
+				$wps_order_messages = wps_rma_get_meta_data( $order_id, 'wps_cutomer_order_msg', true );
+		
+				echo wp_json_encode( $wps_order_messages );
+				wp_die();
+			} else {
+				echo wp_json_encode(
+					array(
+						'flag' => false,
+						'message' => esc_html__( 'You are not authorized to view this order messages.', 'woo-refund-and-exchange-lite' ),
+					)
+				);
+				wp_die();
+			}
+		}
 	}
 
 	/**
