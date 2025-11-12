@@ -1,8 +1,8 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Return Refund and Exchange for WooCommerce 4.5.5\n"
-"POT-Creation-Date: 2025-10-09 16:06+0530\n"
+"Project-Id-Version: Return Refund and Exchange for WooCommerce 4.5.6\n"
+"POT-Creation-Date: 2025-11-12 14:47+0530\n"
 "PO-Revision-Date: 2023-09-25 13:54+0530\n"
 "Last-Translator: \n"
 "Language-Team: WP Swings\n"
@@ -10,7 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.7\n"
+"X-Generator: Poedit 3.8\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: "
@@ -1981,6 +1981,14 @@ msgstr ""
 
 #: common/class-woo-refund-and-exchange-lite-common.php:413
 msgid "Refund Cancelled"
+msgstr ""
+
+#: common/class-woo-refund-and-exchange-lite-common.php:663
+msgid "You are not authorized to cancel this return request."
+msgstr ""
+
+#: common/class-woo-refund-and-exchange-lite-common.php:700
+msgid "You are not authorized to view this order messages."
 msgstr ""
 
 #: common/partials/email_template/woo-refund-and-exchange-lite-refund-request-email.php:29
