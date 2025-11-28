@@ -341,12 +341,22 @@ class Woo_Refund_And_Exchange_Lite_Common {
 							$shipping_price += $order->get_shipping_tax();
 						}
 					}
+					
 					$return_data['shipping_price'] = $shipping_price;
 					$return_data['refund_method'] = $refund_method;
 					do_action( 'wps_rma_return_request_data', $return_data, $order_id );
 					$response = wps_rma_save_return_request_callback( $order_id, $refund_method, $return_data );
 					if ( true == $response['flag'] ) {
 						do_action( 'wps_rma_do_shiprocket_integration', $order_id, $return_data );
+
+						// save refund request count for user.
+						$wps_rma_disable_refund_user_count = get_option( 'wps_rma_disable_refund_user_count' );
+						$wps_rma_user_refund_request_count = get_user_meta( $user_id, 'wps_rma_user_refund_request_count', true );
+						if( 'on' == $wps_rma_disable_refund_user_count ){
+							$wps_rma_user_refund_request_count = (int)$wps_rma_user_refund_request_count + 1;
+							update_user_meta( $user_id, 'wps_rma_user_refund_request_count', $wps_rma_user_refund_request_count );
+						}
+						// save refund request count for user.
 					}
 				}
 			}

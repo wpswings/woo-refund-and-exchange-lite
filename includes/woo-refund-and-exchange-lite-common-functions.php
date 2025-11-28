@@ -243,6 +243,57 @@ if ( ! function_exists( 'wps_rma_show_buttons' ) ) {
 				$show_button = ucfirst( $func ) . esc_html__( 'is not available right now, Please try again later', 'woo-refund-and-exchange-lite' );
 			}
 		}
+		$wps_rma_disable_refund_user_count = get_option( 'wps_rma_disable_refund_user_count' );
+		if( 'on' == $wps_rma_disable_refund_user_count && 'refund' == $func ){
+
+			$current_user = wp_get_current_user();
+			$user_id = $current_user->ID;
+
+			$refund_request_count = get_user_meta( $user_id, 'wps_rma_user_refund_request_count', true );
+
+			$max_refund_request_count = get_option( 'wps_rma_refund_limit', 0 );
+
+			if( $refund_request_count >= $max_refund_request_count && $max_refund_request_count > 0 ){
+
+				$show_button = esc_html__( 'You have reached the maximum number of refund requests allowed.', 'woo-refund-and-exchange-lite' );
+			} else {
+				$show_button = 'yes';
+			}
+		}
+		$wps_rma_disable_exchange_user_count = get_option( 'wps_rma_disable_exchange_user_count' );
+		if( 'on' == $wps_rma_disable_exchange_user_count && 'exchange' == $func ){
+
+			$current_user = wp_get_current_user();
+			$user_id = $current_user->ID;
+
+			$exchange_request_count = get_user_meta( $user_id, 'wps_rma_user_exchange_request_count', true );
+
+			$max_exchange_request_count = get_option( 'wps_rma_exchange_user_count_limit', 0 );
+
+			if( $exchange_request_count >= $max_exchange_request_count && $max_exchange_request_count > 0 ){
+
+				$show_button = esc_html__( 'You have reached the maximum number of exchange requests allowed.', 'woo-refund-and-exchange-lite' );
+			} else {
+				$show_button = 'yes';
+			}
+		}
+		$wps_rma_disable_cancel_user_count = get_option( 'wps_rma_disable_cancel_user_count' );
+		if( 'on' == $wps_rma_disable_cancel_user_count && 'cancel' == $func ){
+
+			$current_user = wp_get_current_user();
+			$user_id = $current_user->ID;
+
+			$cancel_request_count = get_user_meta( $user_id, 'wps_rma_user_cancel_request_count', true );
+
+			$max_cancel_request_count = get_option( 'wps_rma_cancel_limit', 0 );
+
+			if( $cancel_request_count >= $max_cancel_request_count && $max_cancel_request_count > 0 ){
+
+				$show_button = esc_html__( 'You have reached the maximum number of cancel requests allowed.', 'woo-refund-and-exchange-lite' );
+			} else {
+				$show_button = 'yes';
+			}
+		}
 		return apply_filters( 'wps_rma_policies_functionality_extend', $show_button, $func, $order, $get_specific_setting );
 	}
 }

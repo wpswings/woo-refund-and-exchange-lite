@@ -475,6 +475,29 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					'placeholder' => '',
 					'options'     => $woocommerce_roles,
 				),
+
+				array(
+					'title'   => esc_html__( 'Enable/Disable Exchange Functionality based on User Count', 'woo-refund-and-exchange-lite' ),
+					'type'    => 'radio-switch',
+					'id'      => 'wps_rma_disable_exchange_user_count',
+					'value'   => get_option( 'wps_rma_disable_exchange_user_count' ),
+					'class'   => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
+					'options' => array(
+						'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+						'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
+					),
+				),
+				array(
+					'title'       => esc_html__( 'Exchange Limit for User Count', 'woo-refund-and-exchange-lite' ),
+					'type'        => 'number',
+					'description' => esc_html__( 'Need to enter a value for Exchange Limit for User Count.', 'woo-refund-and-exchange-lite' ),
+					'id'          => 'wps_rma_exchange_user_count_limit',
+					'value'       => get_option( 'wps_rma_exchange_user_count_limit' ),
+					'class'       => 'wrael-number-class ' . $this->rma_pro_activate,
+					'min'         => '0',
+					'max'         => '15',
+					'placeholder' => 'Enter the user count limit',
+				),
 			);
 			$wps_rma_settings_exchange =
 			// To extend the refund setting.
@@ -698,6 +721,29 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					'class'       => 'wrael-multiselect-class wps-defaut-multiselect ' . $this->rma_pro_activate,
 					'placeholder' => '',
 					'options'     => $woocommerce_roles,
+				),
+
+				array(
+					'title'   => esc_html__( 'Enable/Disable Cancel Functionality based on User Count', 'woo-refund-and-exchange-lite' ),
+					'type'    => 'radio-switch',
+					'id'      => 'wps_rma_disable_cancel_user_count',
+					'value'   => get_option( 'wps_rma_disable_cancel_user_count' ),
+					'class'   => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
+					'options' => array(
+					'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+					'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
+					),
+				),
+				array(
+					'title'       => esc_html__( 'Cancel Limit for User Count', 'woo-refund-and-exchange-lite' ),
+					'type'        => 'number',
+					'description' => esc_html__( 'Need to enter a value for Cancel Limit for User Count.', 'woo-refund-and-exchange-lite' ),
+					'id'          => 'wps_rma_cancel_limit',
+					'value'       => get_option( 'wps_rma_cancel_limit' ),
+					'class'       => 'wrael-number-class ' . $this->rma_pro_activate,
+					'min'         => '0',
+					'max'         => '15',
+					'placeholder' => 'Enter the cancel limit',
 				),
 				array(
 					'type' => 'breaker',

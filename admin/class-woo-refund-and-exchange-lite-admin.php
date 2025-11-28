@@ -640,6 +640,29 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				'placeholder' => '',
 				'options'     => $woocommerce_roles,
 			),
+			array(
+				'title'   => esc_html__( 'Enable/Disable Refund Functionality based on User Count', 'woo-refund-and-exchange-lite' ),
+				'type'    => 'radio-switch',
+				'id'      => 'wps_rma_disable_refund_user_count',
+				'value'   => get_option( 'wps_rma_disable_refund_user_count' ),
+				'class'   => 'wrael-radio-switch-class',
+				'options' => array(
+					'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+					'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
+				),
+			),
+
+			array(
+				'title'       => esc_html__( 'Refund Limit for User Count', 'woo-refund-and-exchange-lite' ),
+				'type'        => 'number',
+				'description' => esc_html__( 'Need to enter a value for Refund Limit for User Count.', 'woo-refund-and-exchange-lite' ),
+				'id'          => 'wps_rma_refund_limit',
+				'value'       => get_option( 'wps_rma_refund_limit' ),
+				'class'       => 'wrael-number-class',
+				'min'         => '0',
+				'max'         => '15',
+				'placeholder' => 'Enter the refund limit',
+			),
 		);
 		$wps_rma_settings_refund =
 		// To extend the refund setting.
