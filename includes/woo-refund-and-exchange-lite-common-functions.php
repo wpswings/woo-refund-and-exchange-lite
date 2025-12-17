@@ -54,76 +54,42 @@ if ( ! function_exists( 'wps_rma_show_buttons' ) ) {
 				// User is NOT allowed to request refund.
 				$show_button = 'yes';
 			}
+			$wps_rma_disable_refund_user_count = get_option( 'wps_rma_disable_refund_user_count' );
+			if ( 'on' == $wps_rma_disable_refund_user_count ) {
+
+				$current_user = wp_get_current_user();
+				$user_id = $current_user->ID;
+	
+				$refund_request_count = get_user_meta( $user_id, 'wps_rma_user_refund_request_count', true );
+	
+				$max_refund_request_count = get_option( 'wps_rma_refund_limit', 0 );
+	
+				if ( $refund_request_count >= $max_refund_request_count && $max_refund_request_count > 0 ){
+	
+					$show_button = esc_html__( 'You have reached the maximum number of refund requests allowed.', 'woo-refund-and-exchange-lite' );
+				} else {
+					$show_button = 'yes';
+				}
+			}
+
+			$wps_rma_disable_refund_specific_user = get_option( 'wps_rma_disable_refund_specific_user' );
+			if( 'on' == $wps_rma_disable_refund_specific_user ){
+
+				$current_user = wp_get_current_user();
+				$user_email = $current_user->user_email;
+
+				$refund_disable_specific_users = get_option( 'wps_rma_refund_disable_specific_users', array() );
+
+				if( in_array( $user_email, $refund_disable_specific_users ) ){
+
+					$show_button = esc_html__( 'You are restricted from making refund requests.', 'woo-refund-and-exchange-lite' );
+				} else {
+					$show_button = 'yes';
+				}
+			}
+
 		}
 		// user role feature for refund.
-
-		// user role feature for exchange.
-		if ( 'exchange' == $func ) {
-
-			$wps_rma_allow_exchange_user_role = get_option( 'wps_rma_disable_' . $func . '_user_role' );
-
-			$wps_rma_exchange_allowed_user_roles = get_option( 'wps_rma_' . $func . '_disable_user_roles' );
-
-			$current_user = wp_get_current_user();
-			$current_user_roles = (array) $current_user->roles;
-
-			$is_user_allowed_exchange = false;
-
-			if ( 'on' === $wps_rma_allow_exchange_user_role ) {
-				if ( ! empty( $wps_rma_exchange_allowed_user_roles ) && is_array( $wps_rma_exchange_allowed_user_roles ) ) {
-					// Check if user's role is in the allowed roles.
-					foreach ( $current_user_roles as $role ) {
-						if ( in_array( $role, $wps_rma_exchange_allowed_user_roles, true ) ) {
-							$is_user_allowed_exchange = true;
-							break;
-						}
-					}
-				}
-			}
-
-			if ( $is_user_allowed_exchange ) {
-				// User is allowed to request refund.
-				$show_button = esc_html__( 'You Are not allow to do exchange request', 'woo-refund-and-exchange-lite' );
-			} else {
-				// User is NOT allowed to request refund.
-				$show_button = 'yes';
-			}
-		}
-		// user role feature for exchange.
-
-		// user role feature for cancel.
-		if ( 'cancel' == $func ) {
-
-			$wps_rma_allow_cancel_user_role = get_option( 'wps_rma_disable_' . $func . '_user_role' );
-
-			$wps_rma_cancel_allowed_user_roles = get_option( 'wps_rma_' . $func . '_disable_user_roles' );
-
-			$current_user = wp_get_current_user();
-			$current_user_roles = (array) $current_user->roles;
-
-			$is_user_allowed_cancel = false;
-
-			if ( 'on' === $wps_rma_allow_cancel_user_role ) {
-				if ( ! empty( $wps_rma_cancel_allowed_user_roles ) && is_array( $wps_rma_cancel_allowed_user_roles ) ) {
-					// Check if user's role is in the allowed roles.
-					foreach ( $current_user_roles as $role ) {
-						if ( in_array( $role, $wps_rma_cancel_allowed_user_roles, true ) ) {
-							$is_user_allowed_cancel = true;
-							break;
-						}
-					}
-				}
-			}
-
-			if ( $is_user_allowed_cancel ) {
-				// User is allowed to request refund.
-				$show_button = esc_html__( 'You Are not allow to do cancel request', 'woo-refund-and-exchange-lite' );
-			} else {
-				// User is NOT allowed to request refund.
-				$show_button = 'yes';
-			}
-		}
-		// user role feature for cancel.
 
 		if ( 'on' === $check ) {
 			$get_setting = get_option( 'policies_setting_option', array() );
@@ -241,57 +207,6 @@ if ( ! function_exists( 'wps_rma_show_buttons' ) ) {
 			$wps_rma_to_time   = get_option( 'wps_rma_time_duration_to', false );
 			if ( $wps_rma_from_time && $wps_rma_to_time && ( strtotime( current_time( 'h:i A' ) ) < strtotime( $wps_rma_from_time ) || strtotime( current_time( 'h:i A' ) ) > strtotime( $wps_rma_to_time ) ) ) {
 				$show_button = ucfirst( $func ) . esc_html__( 'is not available right now, Please try again later', 'woo-refund-and-exchange-lite' );
-			}
-		}
-		$wps_rma_disable_refund_user_count = get_option( 'wps_rma_disable_refund_user_count' );
-		if( 'on' == $wps_rma_disable_refund_user_count && 'refund' == $func ){
-
-			$current_user = wp_get_current_user();
-			$user_id = $current_user->ID;
-
-			$refund_request_count = get_user_meta( $user_id, 'wps_rma_user_refund_request_count', true );
-
-			$max_refund_request_count = get_option( 'wps_rma_refund_limit', 0 );
-
-			if( $refund_request_count >= $max_refund_request_count && $max_refund_request_count > 0 ){
-
-				$show_button = esc_html__( 'You have reached the maximum number of refund requests allowed.', 'woo-refund-and-exchange-lite' );
-			} else {
-				$show_button = 'yes';
-			}
-		}
-		$wps_rma_disable_exchange_user_count = get_option( 'wps_rma_disable_exchange_user_count' );
-		if( 'on' == $wps_rma_disable_exchange_user_count && 'exchange' == $func ){
-
-			$current_user = wp_get_current_user();
-			$user_id = $current_user->ID;
-
-			$exchange_request_count = get_user_meta( $user_id, 'wps_rma_user_exchange_request_count', true );
-
-			$max_exchange_request_count = get_option( 'wps_rma_exchange_user_count_limit', 0 );
-
-			if( $exchange_request_count >= $max_exchange_request_count && $max_exchange_request_count > 0 ){
-
-				$show_button = esc_html__( 'You have reached the maximum number of exchange requests allowed.', 'woo-refund-and-exchange-lite' );
-			} else {
-				$show_button = 'yes';
-			}
-		}
-		$wps_rma_disable_cancel_user_count = get_option( 'wps_rma_disable_cancel_user_count' );
-		if( 'on' == $wps_rma_disable_cancel_user_count && 'cancel' == $func ){
-
-			$current_user = wp_get_current_user();
-			$user_id = $current_user->ID;
-
-			$cancel_request_count = get_user_meta( $user_id, 'wps_rma_user_cancel_request_count', true );
-
-			$max_cancel_request_count = get_option( 'wps_rma_cancel_limit', 0 );
-
-			if( $cancel_request_count >= $max_cancel_request_count && $max_cancel_request_count > 0 ){
-
-				$show_button = esc_html__( 'You have reached the maximum number of cancel requests allowed.', 'woo-refund-and-exchange-lite' );
-			} else {
-				$show_button = 'yes';
 			}
 		}
 		return apply_filters( 'wps_rma_policies_functionality_extend', $show_button, $func, $order, $get_specific_setting );

@@ -317,6 +317,32 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 			foreach ( $pages as $page ) {
 				$get_pages[ $page->ID ] = $page->post_title;
 			}
+
+			$woocommerce_user_emails = array();
+
+			/**
+			 * Get all users (you can limit roles if needed)
+			 */
+			$users = get_users( array(
+				'fields' => array( 'ID', 'user_email', 'display_name' ),
+			) );
+
+			if ( ! empty( $users ) ) {
+				foreach ( $users as $user ) {
+					// Key = email, Value = readable label
+					$woocommerce_user_emails[ $user->user_email ] =
+						$user->display_name . ' (' . $user->user_email . ')';
+				}
+			}
+
+			/**
+			 * Allow developers to add/remove users
+			 */
+			$woocommerce_user_emails = apply_filters(
+				'wps_rma_add_specific_users_email',
+				$woocommerce_user_emails
+			);
+
 			$wps_rma_settings_exchange = array(
 				array(
 					'title'       => esc_html__( 'Select Pages To Hide Exchange Button', 'woo-refund-and-exchange-lite' ),
@@ -451,7 +477,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					),
 				),
 
-					array(
+				array(
 					'title'   => esc_html__( 'Enable/Disable Exchange Functionality for Specific User Roles', 'woo-refund-and-exchange-lite' ),
 					'type'    => 'radio-switch',
 					'id'      => 'wps_rma_disable_exchange_user_role',
@@ -498,6 +524,30 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					'max'         => '15',
 					'placeholder' => 'Enter the user count limit',
 				),
+
+				array(
+					'title'   => esc_html__( 'Enable/Disable Exchange Functionality for For Particular User To Prevent Fraud', 'woo-refund-and-exchange-lite' ),
+					'type'    => 'radio-switch',
+					'id'      => 'wps_rma_disable_exchange_specific_user',
+					'value'   => get_option( 'wps_rma_disable_exchange_specific_user' ),
+					'class'   => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
+					'options' => array(
+						'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+						'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
+					),
+				),
+
+				array(
+					'title'       => esc_html__( 'Enter Particular User Email to Restrict From Exchange Functionality', 'woo-refund-and-exchange-lite' ),
+					'type'        => 'multiselect',
+					'description' =>  esc_html__( 'If no user email is selected, the exchange feature will be available for all user and multiple email can be enter', 'woo-refund-and-exchange-lite' ),
+					'id'          => 'wps_rma_exchange_disable_specific_users',
+					'value'       => get_option( 'wps_rma_exchange_disable_specific_users' ),
+					'class'       => 'wrael-multiselect-class wps-defaut-multiselect ' . $this->rma_pro_activate,
+					'placeholder' => '',
+					'options'     => $woocommerce_user_emails,
+				),
+
 			);
 			$wps_rma_settings_exchange =
 			// To extend the refund setting.
@@ -679,6 +729,32 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 
 			$woocommerce_roles = apply_filters( 'wps_rma_add_extra_user_role', $woocommerce_roles );
 
+
+			$woocommerce_user_emails = array();
+
+			/**
+			 * Get all users (you can limit roles if needed)
+			 */
+			$users = get_users( array(
+				'fields' => array( 'ID', 'user_email', 'display_name' ),
+			) );
+
+			if ( ! empty( $users ) ) {
+				foreach ( $users as $user ) {
+					// Key = email, Value = readable label
+					$woocommerce_user_emails[ $user->user_email ] =
+						$user->display_name . ' (' . $user->user_email . ')';
+				}
+			}
+
+			/**
+			 * Allow developers to add/remove users
+			 */
+			$woocommerce_user_emails = apply_filters(
+				'wps_rma_add_specific_users_email',
+				$woocommerce_user_emails
+			);
+
 			$wps_rma_settings_cancel = array(
 				array(
 					'title'   => esc_html__( 'Enable Cancel Order\'s Product', 'woo-refund-and-exchange-lite' ),
@@ -745,6 +821,30 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					'max'         => '15',
 					'placeholder' => 'Enter the cancel limit',
 				),
+
+				array(
+					'title'   => esc_html__( 'Enable/Disable Cancel Functionality For Particular User To Prevent Fraud', 'woo-refund-and-exchange-lite' ),
+					'type'    => 'radio-switch',
+					'id'      => 'wps_rma_disable_cancel_specific_user',
+					'value'   => get_option( 'wps_rma_disable_cancel_specific_user' ),
+					'class'   => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
+					'options' => array(
+					'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+					'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
+					),
+				),
+
+				array(
+					'title'       => esc_html__( 'Enter Particular User Email to Restrict From Cancel Functionality', 'woo-refund-and-exchange-lite' ),
+					'type'        => 'multiselect',
+					'description' =>  esc_html__( 'If no user email is selected, the cancel feature will be available for all user and multiple email can be enter', 'woo-refund-and-exchange-lite' ),
+					'id'          => 'wps_rma_cancel_disable_specific_users',
+					'value'       => get_option( 'wps_rma_cancel_disable_specific_users' ),
+					'class'       =>'wrael-multiselect-class wps-defaut-multiselect ' . $this->rma_pro_activate,
+					'placeholder' => '',
+					'options'     => $woocommerce_user_emails,
+				),
+
 				array(
 					'type' => 'breaker',
 					'id'   => 'Appearance',

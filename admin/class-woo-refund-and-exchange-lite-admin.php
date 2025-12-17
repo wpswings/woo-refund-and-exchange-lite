@@ -550,6 +550,31 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		foreach ( $pages as $page ) {
 			$get_pages[ $page->ID ] = $page->post_title;
 		}
+
+		$woocommerce_user_emails = array();
+
+		/**
+		 * Get all users (you can limit roles if needed)
+		 */
+		$users = get_users( array(
+			'fields' => array( 'ID', 'user_email', 'display_name' ),
+		) );
+
+		if ( ! empty( $users ) ) {
+			foreach ( $users as $user ) {
+				// Key = email, Value = readable label
+				$woocommerce_user_emails[ $user->user_email ] =
+					$user->display_name . ' (' . $user->user_email . ')';
+			}
+		}
+
+		/**
+		 * Allow developers to add/remove users
+		 */
+		$woocommerce_user_emails = apply_filters(
+			'wps_rma_add_specific_users_email',
+			$woocommerce_user_emails
+		);
 		$wps_rma_settings_refund = array(
 			array(
 				'title'       => esc_html__( 'Select Pages To Hide Refund Button', 'woo-refund-and-exchange-lite' ),
@@ -662,6 +687,29 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				'min'         => '0',
 				'max'         => '15',
 				'placeholder' => 'Enter the refund limit',
+			),
+
+			array(
+				'title'   => esc_html__( 'Enable/Disable Refund Functionality For Particular User To Prevent Fraud', 'woo-refund-and-exchange-lite' ),
+				'type'    => 'radio-switch',
+				'id'      => 'wps_rma_disable_refund_specific_user',
+				'value'   => get_option( 'wps_rma_disable_refund_specific_user' ),
+				'class'   => 'wrael-radio-switch-class',
+				'options' => array(
+					'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+					'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
+				),
+			),
+
+			array(
+				'title'       => esc_html__( 'Enter Particular User Email to Restrict From Refund Functionality', 'woo-refund-and-exchange-lite' ),
+				'type'        => 'multiselect',
+				'description' =>  esc_html__( 'If no user email is selected, the refund feature will be available for all user and multiple email can be enter', 'woo-refund-and-exchange-lite' ),
+				'id'          => 'wps_rma_refund_disable_specific_users',
+				'value'       => get_option( 'wps_rma_refund_disable_specific_users' ),
+				'class'       => 'wrael-multiselect-class wps-defaut-multiselect',
+				'placeholder' => '',
+				'options'     => $woocommerce_user_emails,
 			),
 		);
 		$wps_rma_settings_refund =
