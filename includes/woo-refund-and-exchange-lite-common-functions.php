@@ -79,12 +79,14 @@ if ( ! function_exists( 'wps_rma_show_buttons' ) ) {
 				$user_email = $current_user->user_email;
 
 				$refund_disable_specific_users = get_option( 'wps_rma_refund_disable_specific_users', array() );
+				if ( $refund_disable_specific_users ){
 
-				if( in_array( $user_email, $refund_disable_specific_users ) ){
-
-					$show_button = esc_html__( 'You are restricted from making refund requests.', 'woo-refund-and-exchange-lite' );
-				} else {
-					$show_button = 'yes';
+					if( in_array( $user_email, $refund_disable_specific_users ) ){
+	
+						$show_button = esc_html__( 'You are restricted from making refund requests.', 'woo-refund-and-exchange-lite' );
+					} else {
+						$show_button = 'yes';
+					}
 				}
 			}
 
