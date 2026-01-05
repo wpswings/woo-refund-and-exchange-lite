@@ -3,10 +3,10 @@ Contributors: wpswings
 Donate link: https://wpswings.com/
 Tags: refund, exchange, wallet, RMA, woocommerce cancel order
 Requires at least: 6.7.0
-Tested up to: 6.8.3
+Tested up to: 6.9
 WC requires at least: 6.5.0
-WC tested up to: 10.3.4
-Stable tag: 4.5.6
+WC tested up to: 10.4.3
+Stable tag: 4.5.7
 Requires PHP:  7.2
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -29,47 +29,52 @@ Empower your WooCommerce store with a complete RMA solution - manage returns, re
 
 == SALIENT FEATURES OF THE RETURN REFUND AND EXCHANGE FOR WOOCOMMERCE PLUGIN ==
 
-#### **1) Attachments For Refund & Exchange**:
+#### **1) Set The User Limit For Refunds 
+Merchants can now set the user limit for refunds. This helps the WooCommerce store owners to restrict fraudulent activities from happening.
+ 
+#### **2) Restrict A Particular User For The Refunds
+WooCommerce returns for a particular user can also be restricted by simply entering their email addresses. Store owners can avoid fraudulent activities from occurring.
+
+#### **3) Attachments For Refund & Exchange**:
 Merchants can allow customers to add attachments, i.e., either images or videos. This functionality helps merchants understand customers' problem with the purchased product. To further help them with the correct resolution. 
 
-#### **2) Return Access By User Roles**: 
+#### **4) Return Access By User Roles**: 
 The merchants utilise this unique functionality to restrict certain user roles (choose from the default WooCommerce user roles) from accessing the return functionality for any product listed on the website. 
 
-
-#### **3) API Settings**: 
+#### **5) API Settings**: 
 Return, Refund, and Exchange for WooCommerce allows admins to access information related to refunds -  accept, cancel, and approve through an external source. The overall setup of the API Settings is seamless and user-friendly.
 
-#### **4) Return Request Cancellation**: 
+#### **6) Return Request Cancellation**: 
 This functionality of the WooCommerce RMA plugin enables customers to cancel the return requests. Once the customers withdraw the requests, the admins will receive notifications as order notes, informing them about the withdrawals.
 
-#### **5) Template For Refund Requests**: 
+#### **7) Template For Refund Requests**: 
 The admin is provided with a dedicated template for the refund form, and the customers, have a clear and concise form, that they can fill out and share the refund requests.
 
-#### **6) Refund Shipping Charges**: 
+#### **8) Refund Shipping Charges**: 
 Admins can utilize this feature to refund the charged shipping amount during the refund process. 
 
-#### **7) Initiate Return For A Specific Period**: 
+#### **9) Initiate Return For A Specific Period**: 
 Our WordPress RMA plugin enables the admin to set a specific time frame for all the refund requests. During this defined period, customers will have access to these respective request options on the website, while outside this timeframe, they will no longer be visible.
 
-#### **8) Dedicated WooCommerce Refund System**: 
+#### **10) Dedicated WooCommerce Refund System**: 
 With our Return Refund and Exchange plugin, merchants can create a dedicated refund system, that offers a money-back guarantee, and where they can build an email template to send to the customers who ask for a refund. Merchants can add the name, email, email header, and footer for their email template 
 
-#### **9) Predefined Refund Reason**: 
+#### **11) Predefined Refund Reason**: 
 Merchants can notify the customers of different scenarios for the product refund. They can create different emails if a refund request is generated, approved, or canceled. Merchants can add a different subject line and content for every scenario. They can also use Shortcodes to add elements to the email content.
 
-#### **10) Mail Notification For Refund**: 
+#### **12) Mail Notification For Refund**: 
 By incorporating our WooCommerce Refund and Exchange with RMA, merchants can handle the tax on the refund products easily. They can simply enable or disable the tax calculation on the refund products by going to the plugin settings and enabling the Enable Tax option.
 
-#### **11) Efficient Tax Handling**: 
+#### **13) Efficient Tax Handling**: 
 By incorporating our WooCommerce Refund and Exchange with RMA, merchants can handle the tax on the refund products easily. They can simply enable or disable the tax calculation on the refund products by going to the plugin settings and enabling the “Enable Tax” option.
 
-#### **12) Stock Management**: 
+#### **14) Stock Management**: 
 Our WooCommerce Refund Plugin provides a feature to manage stock. Merchants need to enable this feature from the plugin settings. Once you enable this feature, the product stock will be increased whenever a refund request is accepted.
 
-#### **13) Refund on Selected Order Status**: 
+#### **15) Refund on Selected Order Status**: 
 You can select the order status on which a customer can submit a refund request. You can select either a single or multiple order status in this setting. For example, if you select Completed, and Failed order statuses, you’ll allow your customers to generate a refund request if their order is completed, or failed.
 
-#### **14) Order Related Messages and Email Notifications**: 
+#### **16) Order Related Messages and Email Notifications**: 
 You can allow your customers to send you order-related queries. Furthermore, you can also enable/disable the settings to let your customers add attachments i.e., images and videos, along with their messages.
 
 
@@ -222,6 +227,11 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 16. API Settings.
 
 == Changelog == 
+
+= 4.5.7 - Released on 5 January 2026 = 
+*  New - User Count Limit for refund functionality
+*  New - Restrict particular user for refund functionality through user email to prevent fraud refund request
+*  New - comptability with latest wp (6.9) and wc (10.4.3)
 
 = 4.5.6 - Released on 12 November 2025 = 
 * New - comptability with latest wp (6.8.3) and wc (10.3.4)
@@ -506,7 +516,7 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 == Upgrade Notice ==
 
-= 4.5.6 - Released on 12 November 2025 =
-* New - comptability with latest wp (6.8.3) and wc (10.3.4) 
-* Fix - vulnerable and security issue fix in term of cancel request process
-* Fix - vulnerable and security issue fix in term of view order message process
+= 4.5.6 - Released on 5 January 2026 = 
+*  New - User Count Limit for refund functionality
+*  New - Restrict particular user for refund functionality through user email to prevent fraud refund request
+*  New - comptability with latest wp (6.9) and wc (10.4.3)
