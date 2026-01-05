@@ -540,7 +540,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			'contributor'   => esc_html__( 'Contributor', 'woo-refund-and-exchange-lite' ),
 			'author'        => esc_html__( 'Author', 'woo-refund-and-exchange-lite' ),
 			'editor'        => esc_html__( 'Editor', 'woo-refund-and-exchange-lite' ),
-			'administrator' => esc_html__( 'Administrator', 'woo-refund-and-exchange-lite' )
+			'administrator' => esc_html__( 'Administrator', 'woo-refund-and-exchange-lite' ),
 		);
 
 		$woocommerce_roles = apply_filters( 'wps_rma_add_extra_user_role', $woocommerce_roles );
@@ -556,13 +556,15 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		/**
 		 * Get all users (you can limit roles if needed)
 		 */
-		$users = get_users( array(
-			'fields' => array( 'ID', 'user_email', 'display_name' ),
-		) );
+		$users = get_users(
+			array(
+				'fields' => array( 'ID', 'user_email', 'display_name' ),
+			)
+		);
 
 		if ( ! empty( $users ) ) {
 			foreach ( $users as $user ) {
-				// Key = email, Value = readable label
+				// Key = email, Value = readable label.
 				$woocommerce_user_emails[ $user->user_email ] =
 					$user->display_name . ' (' . $user->user_email . ')';
 			}
@@ -658,7 +660,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			array(
 				'title'       => esc_html__( 'Select User Roles to Restrict Refund Access', 'woo-refund-and-exchange-lite' ),
 				'type'        => 'multiselect',
-				'description' =>  esc_html__( 'If no user role is selected, the refund feature will be available for all user roles', 'woo-refund-and-exchange-lite' ),
+				'description' => esc_html__( 'If no user role is selected, the refund feature will be available for all user roles', 'woo-refund-and-exchange-lite' ),
 				'id'          => 'wps_rma_refund_disable_user_roles',
 				'value'       => get_option( 'wps_rma_refund_disable_user_roles' ),
 				'class'       => 'wrael-multiselect-class wps-defaut-multiselect',
@@ -704,7 +706,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			array(
 				'title'       => esc_html__( 'Enter Particular User Email to Restrict From Refund Functionality', 'woo-refund-and-exchange-lite' ),
 				'type'        => 'multiselect',
-				'description' =>  esc_html__( 'If no user email is selected, the refund feature will be available for all user and multiple email can be enter', 'woo-refund-and-exchange-lite' ),
+				'description' => esc_html__( 'If no user email is selected, the refund feature will be available for all user and multiple email can be enter', 'woo-refund-and-exchange-lite' ),
 				'id'          => 'wps_rma_refund_disable_specific_users',
 				'value'       => get_option( 'wps_rma_refund_disable_specific_users' ),
 				'class'       => 'wrael-multiselect-class wps-defaut-multiselect',
@@ -806,7 +808,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				'class' => 'mwr-radio-class',
 				'options' => array(
 					'' => esc_html__( 'Default', 'woo-refund-and-exchange-lite' ),
-					'template1' => esc_html__( 'Clean Slate', 'woo-refund-and-exchange-lite' )
+					'template1' => esc_html__( 'Clean Slate', 'woo-refund-and-exchange-lite' ),
 				),
 			);
 		}
@@ -1347,7 +1349,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	 *
 	 * @param array $wps_rma_settings_wallet .
 	 */
-	public function wps_rma_whatsapp_notification_settings_array( $wps_rma_settings_wallet ){
+	public function wps_rma_whatsapp_notification_settings_array( $wps_rma_settings_wallet ) {
 		$setting_obj = new Wps_Rma_Settings_Extend();
 		return $setting_obj->wps_rma_whatsapp_notification_settings_array_set( $wps_rma_settings_wallet );
 	}

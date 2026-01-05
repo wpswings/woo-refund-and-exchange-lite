@@ -281,7 +281,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					'class' => 'mwr-radio-class',
 					'options' => array(
 						'' => esc_html__( 'Default', 'woo-refund-and-exchange-lite' ),
-						'template1' => esc_html__( 'Clean Slate', 'woo-refund-and-exchange-lite' )
+						'template1' => esc_html__( 'Clean Slate', 'woo-refund-and-exchange-lite' ),
 					),
 				);
 			}
@@ -301,13 +301,13 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 			);
 
 			$woocommerce_roles = array(
-			'customer'      => esc_html__( 'Customer', 'woo-refund-and-exchange-lite' ),
-			'shop_manager'  => esc_html__( 'Shop Manager', 'woo-refund-and-exchange-lite' ),
-			'subscriber'    => esc_html__( 'Subscriber', 'woo-refund-and-exchange-lite' ),
-			'contributor'   => esc_html__( 'Contributor', 'woo-refund-and-exchange-lite' ),
-			'author'        => esc_html__( 'Author', 'woo-refund-and-exchange-lite' ),
-			'editor'        => esc_html__( 'Editor', 'woo-refund-and-exchange-lite' ),
-			'administrator' => esc_html__( 'Administrator', 'woo-refund-and-exchange-lite' )
+				'customer'      => esc_html__( 'Customer', 'woo-refund-and-exchange-lite' ),
+				'shop_manager'  => esc_html__( 'Shop Manager', 'woo-refund-and-exchange-lite' ),
+				'subscriber'    => esc_html__( 'Subscriber', 'woo-refund-and-exchange-lite' ),
+				'contributor'   => esc_html__( 'Contributor', 'woo-refund-and-exchange-lite' ),
+				'author'        => esc_html__( 'Author', 'woo-refund-and-exchange-lite' ),
+				'editor'        => esc_html__( 'Editor', 'woo-refund-and-exchange-lite' ),
+				'administrator' => esc_html__( 'Administrator', 'woo-refund-and-exchange-lite' ),
 			);
 
 			$woocommerce_roles = apply_filters( 'wps_rma_add_extra_user_role', $woocommerce_roles );
@@ -323,13 +323,15 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 			/**
 			 * Get all users (you can limit roles if needed)
 			 */
-			$users = get_users( array(
-				'fields' => array( 'ID', 'user_email', 'display_name' ),
-			) );
+			$users = get_users(
+				array(
+					'fields' => array( 'ID', 'user_email', 'display_name' ),
+				)
+			);
 
 			if ( ! empty( $users ) ) {
 				foreach ( $users as $user ) {
-					// Key = email, Value = readable label
+					// Key = email, Value = readable label.
 					$woocommerce_user_emails[ $user->user_email ] =
 						$user->display_name . ' (' . $user->user_email . ')';
 				}
@@ -489,8 +491,6 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					),
 				),
 
-				
-
 				array(
 					'title'       => esc_html__( 'Select User Roles to Restrict Exchange Access', 'woo-refund-and-exchange-lite' ),
 					'type'        => 'multiselect',
@@ -540,7 +540,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 				array(
 					'title'       => esc_html__( 'Enter Particular User Email to Restrict From Exchange Functionality', 'woo-refund-and-exchange-lite' ),
 					'type'        => 'multiselect',
-					'description' =>  esc_html__( 'If no user email is selected, the exchange feature will be available for all user and multiple email can be enter', 'woo-refund-and-exchange-lite' ),
+					'description' => esc_html__( 'If no user email is selected, the exchange feature will be available for all user and multiple email can be enter', 'woo-refund-and-exchange-lite' ),
 					'id'          => 'wps_rma_exchange_disable_specific_users',
 					'value'       => get_option( 'wps_rma_exchange_disable_specific_users' ),
 					'class'       => 'wrael-multiselect-class wps-defaut-multiselect ' . $this->rma_pro_activate,
@@ -685,7 +685,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 				'class' => 'mwr-radio-class ' . $this->rma_pro_activate,
 				'options' => array(
 					'' => esc_html__( 'Default', 'woo-refund-and-exchange-lite' ),
-					'template1' => esc_html__( 'Clean Slate', 'woo-refund-and-exchange-lite' )
+					'template1' => esc_html__( 'Clean Slate', 'woo-refund-and-exchange-lite' ),
 				),
 			);
 			$wps_rma_settings_exchange   =
@@ -718,30 +718,31 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 			}
 
 			$woocommerce_roles = array(
-			'customer'      => esc_html__( 'Customer', 'woo-refund-and-exchange-lite' ),
-			'shop_manager'  => esc_html__( 'Shop Manager', 'woo-refund-and-exchange-lite' ),
-			'subscriber'    => esc_html__( 'Subscriber', 'woo-refund-and-exchange-lite' ),
-			'contributor'   => esc_html__( 'Contributor', 'woo-refund-and-exchange-lite' ),
-			'author'        => esc_html__( 'Author', 'woo-refund-and-exchange-lite' ),
-			'editor'        => esc_html__( 'Editor', 'woo-refund-and-exchange-lite' ),
-			'administrator' => esc_html__( 'Administrator', 'woo-refund-and-exchange-lite' )
+				'customer'      => esc_html__( 'Customer', 'woo-refund-and-exchange-lite' ),
+				'shop_manager'  => esc_html__( 'Shop Manager', 'woo-refund-and-exchange-lite' ),
+				'subscriber'    => esc_html__( 'Subscriber', 'woo-refund-and-exchange-lite' ),
+				'contributor'   => esc_html__( 'Contributor', 'woo-refund-and-exchange-lite' ),
+				'author'        => esc_html__( 'Author', 'woo-refund-and-exchange-lite' ),
+				'editor'        => esc_html__( 'Editor', 'woo-refund-and-exchange-lite' ),
+				'administrator' => esc_html__( 'Administrator', 'woo-refund-and-exchange-lite' ),
 			);
 
 			$woocommerce_roles = apply_filters( 'wps_rma_add_extra_user_role', $woocommerce_roles );
-
 
 			$woocommerce_user_emails = array();
 
 			/**
 			 * Get all users (you can limit roles if needed)
 			 */
-			$users = get_users( array(
-				'fields' => array( 'ID', 'user_email', 'display_name' ),
-			) );
+			$users = get_users(
+				array(
+					'fields' => array( 'ID', 'user_email', 'display_name' ),
+				)
+			);
 
 			if ( ! empty( $users ) ) {
 				foreach ( $users as $user ) {
-					// Key = email, Value = readable label
+					// Key = email, Value = readable label.
 					$woocommerce_user_emails[ $user->user_email ] =
 						$user->display_name . ' (' . $user->user_email . ')';
 				}
@@ -806,8 +807,8 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					'value'   => get_option( 'wps_rma_disable_cancel_user_count' ),
 					'class'   => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
 					'options' => array(
-					'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
-					'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
+						'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+						'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 					),
 				),
 				array(
@@ -829,18 +830,18 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					'value'   => get_option( 'wps_rma_disable_cancel_specific_user' ),
 					'class'   => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
 					'options' => array(
-					'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
-					'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
+						'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+						'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 					),
 				),
 
 				array(
 					'title'       => esc_html__( 'Enter Particular User Email to Restrict From Cancel Functionality', 'woo-refund-and-exchange-lite' ),
 					'type'        => 'multiselect',
-					'description' =>  esc_html__( 'If no user email is selected, the cancel feature will be available for all user and multiple email can be enter', 'woo-refund-and-exchange-lite' ),
+					'description' => esc_html__( 'If no user email is selected, the cancel feature will be available for all user and multiple email can be enter', 'woo-refund-and-exchange-lite' ),
 					'id'          => 'wps_rma_cancel_disable_specific_users',
 					'value'       => get_option( 'wps_rma_cancel_disable_specific_users' ),
-					'class'       =>'wrael-multiselect-class wps-defaut-multiselect ' . $this->rma_pro_activate,
+					'class'       => 'wrael-multiselect-class wps-defaut-multiselect ' . $this->rma_pro_activate,
 					'placeholder' => '',
 					'options'     => $woocommerce_user_emails,
 				),
@@ -904,7 +905,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 				'class' => 'mwr-radio-class ' . $this->rma_pro_activate,
 				'options' => array(
 					'' => esc_html__( 'Default', 'woo-refund-and-exchange-lite' ),
-					'template1' => esc_html__( 'Clean Slate', 'woo-refund-and-exchange-lite' )
+					'template1' => esc_html__( 'Clean Slate', 'woo-refund-and-exchange-lite' ),
 				),
 			);
 			$wps_rma_settings_cancel[] = array(
@@ -1126,7 +1127,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 		 *
 		 * @param array $wps_rma_settings_whatsapp_notification .
 		 */
-		public function wps_rma_whatsapp_notification_settings_array_set( $wps_rma_settings_whatsapp_notification ){
+		public function wps_rma_whatsapp_notification_settings_array_set( $wps_rma_settings_whatsapp_notification ) {
 			$wps_rma_settings_sms_notification = array(
 				array(
 					'type' => 'breaker',
@@ -1139,12 +1140,12 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					'id'          => 'wps_rma_enable_whatsapp_notification',
 					'value'       => get_option( 'wps_rma_enable_whatsapp_notification' ),
 					'show_link'   => true,
-					'class'       => 'wrael-radio-switch-class ' . $this->rma_pro_activate ,
+					'class'       => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
 					'options'     => array(
 						'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
 						'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 					),
-					
+
 				),
 				array(
 					'title'       => esc_html__( 'Enter Phone number ID', 'woo-refund-and-exchange-lite' ),
@@ -1153,7 +1154,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					'value'       => get_option( 'wps_rma_whatsapp_number_id' ),
 					'class'       => 'wrael-text-class ' . $this->rma_pro_activate,
 					'placeholder' => esc_html__( 'Enter Phone number ID here.', 'woo-refund-and-exchange-lite' ),
-		
+
 				),
 
 				array(
@@ -1163,7 +1164,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					'value'       => get_option( 'wps_rma_whatsapp_access_token' ),
 					'class'       => 'wrael-text-class ' . $this->rma_pro_activate,
 					'placeholder' => esc_html__( 'Enable Access Token here.', 'woo-refund-and-exchange-lite' ),
-					'description' => esc_html__( ' you can go through this','woo-refund-and-exchange-lite') .'<a href="https://developers.facebook.com/docs/whatsapp/cloud-api/get-started" target="_blank">'. esc_html( ' docs ', 'woo-refund-and-exchange-lite') .'</a> you need to register from <a href="https://developers.facebook.com/docs/development/register" target="_blank">'. esc_html(' here ','woo-refund-and-exchange-lite').'</a>',
+					'description' => esc_html__( ' you can go through this', 'woo-refund-and-exchange-lite' ) . '<a href="https://developers.facebook.com/docs/whatsapp/cloud-api/get-started" target="_blank">' . esc_html( ' docs ', 'woo-refund-and-exchange-lite' ) . '</a> you need to register from <a href="https://developers.facebook.com/docs/development/register" target="_blank">' . esc_html( ' here ', 'woo-refund-and-exchange-lite' ) . '</a>',
 				),
 
 				array(
