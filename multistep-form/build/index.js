@@ -55717,6 +55717,7 @@ function FinalStep(props) {
       name: "consetCheck",
       color: "primary"
     }),
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Enable tracking', 'woo-refund-and-exchange-lite'),
     className: classes.margin
   })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["FormControlLabel"], {
     control: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["Switch"], {

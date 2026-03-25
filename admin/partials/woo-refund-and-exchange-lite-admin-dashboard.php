@@ -28,101 +28,283 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @subpackage One_Click_Upsell_Addon/admin/partials
  */
 
-?>
-
-<?php
-if ( ! wps_rma_standard_check_multistep() && wps_rma_pro_active() ) {
-	?>
-	<div id="react-app"></div>
-	<?php
-	return;
-}
 $secure_nonce      = wp_create_nonce( 'wps-rma-dashboard-nonce' );
 $id_nonce_verified = wp_verify_nonce( $secure_nonce, 'wps-rma-dashboard-nonce' );
 if ( ! $id_nonce_verified ) {
 	wp_die( esc_html__( 'Nonce Not verified', 'woo-refund-and-exchange-lite' ) );
 }
-global $wrael_wps_rma_obj;
-$wrael_active_tab   = isset( $_GET['wrael_tab'] ) ? sanitize_key( $_GET['wrael_tab'] ) : 'woo-refund-and-exchange-lite-general';
-$wrael_default_tabs = $wrael_wps_rma_obj->wps_rma_plug_default_tabs();
-if( is_plugin_active( 'woocommerce-rma-for-return-refund-and-exchange/mwb-woocommerce-rma.php' ) ){
-	$wrael_wps_video_link = "https://youtu.be/QyfzruqwnSM";
-} else {
-	$wrael_wps_video_link = "https://youtu.be/GQhXfBtzLE0";
-}
-$wrael_wps_document_link = "https://docs.wpswings.com/rma-return-refund-exchange-for-woocommerce/?utm_source=wpswings-rma-doc&utm_medium=rma-pro-backend&utm_campaign=doc" ;
-do_action( 'wps_rma_show_license_info' );
-?>
-<header>
-	<?php
-		// Used to get the settings during saving.
-		do_action( 'wps_rma_settings_saved_notice' );
-	?>
-	<div class="wps-header-container wps-bg-white wps-r-8">
-		<h1 class="wps-header-title"><?php echo esc_html( 'RETURN REFUND AND EXCHANGE FOR WOOCOMMERCE' ); ?></h1>
-		<?php
-		if ( ! is_plugin_active( 'woocommerce-rma-for-return-refund-and-exchange/mwb-woocommerce-rma.php' ) ) {
-			?>
-			<a class="wps_go_pro_link" style="background: #0aa000;color: white;font-weight: 700;padding: 2px 5px;border: 1px solid #139d09;border-radius: 5px;" target="_blank" href=""><?php esc_html_e( 'GO PRO', 'woo-refund-and-exchange-lite' ); ?></a>
-		<?php } ?>
-		<a href="<?php echo esc_attr( $wrael_wps_document_link ) ;?>"  target="_blank" class="wps-link"><?php esc_html_e( 'Documentation', 'woo-refund-and-exchange-lite' ); ?></a>
-		<span>|</span>
-		<a href="<?php echo esc_attr( $wrael_wps_video_link ); ?>" target="_blank" class="wps-link"><?php esc_html_e( 'Video', 'woo-refund-and-exchange-lite' ); ?></a>
-		<span>|</span>
-		<a href="https://wpswings.com/submit-query/?utm_source=wpswings-rma-support&utm_medium=rma-org-backend&utm_campaign=support/" target="_blank" class="wps-link"><?php esc_html_e( 'Support', 'woo-refund-and-exchange-lite' ); ?></a>
-	</div>
-</header>
-<main class="wps-main wps-bg-white wps-r-8">
-	<nav class="wps-navbar">
-		<ul class="wps-navbar__items">
-			<?php
-			if ( is_array( $wrael_default_tabs ) && ! empty( $wrael_default_tabs ) ) {
-				foreach ( $wrael_default_tabs as $wrael_tab_key => $wrael_default_tabs ) {
 
-					$wrael_tab_classes = 'wps-link ';
-					if ( isset( $wrael_default_tabs['class'] ) ) {
-						$wrael_tab_classes .= $wrael_default_tabs['class'] . ' ';
-					}
-					if ( ! empty( $wrael_active_tab ) && $wrael_active_tab === $wrael_tab_key ) {
-						$wrael_tab_classes .= 'active';
-					}
-					?>
-					<li>
-						<a id="<?php echo esc_attr( $wrael_tab_key ); ?>" href="<?php echo esc_url( admin_url( 'admin.php?page=woo_refund_and_exchange_lite_menu' ) . '&wrael_tab=' . esc_attr( $wrael_tab_key ) ); ?>" class="<?php echo esc_attr( $wrael_tab_classes ); ?>"><?php echo esc_html( $wrael_default_tabs['title'] ); ?></a>
-					</li>
-					<?php
-				}
-			}
-			?>
-		</ul>
-	</nav>
-	<section class="wps-section">
-		<div class="wps-rma__popup-for-pro-wrap">
-			<div class="wps-rma__popup-for-pro-shadow"></div>
-			<div class="wps-rma__popup-for-pro">
-				<span class="wps-rma__popup-for-pro-close">+</span>
-				<h2 class="wps-rma__popup-for-pro-title"><?php esc_html_e( 'Want More ?? Go Pro !!', 'woo-refund-and-exchange-lite' ); ?></h2>
-				<p class="wps-rma__popup-for-pro-content"><i><?php echo esc_html__( 'The Pro Version will unlock all of the feature', 'woo-refund-and-exchange-lite' ) . '<br/>' . esc_html__( 'This will easily process returns, refunds, exchange, and cancellation requests with outstanding auto re-stocking, global shipping, wallet integration, and email notifications feature making it the perfect return management system', 'woo-refund-and-exchange-lite' ); ?></i></p>
-				<div class="wps-rma__popup-for-pro-link-wrap">
-					<a target="_blank" href="https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma&utm_medium=rma-org-page&utm_campaign=go-pro" class="wps-rma__popup-for-pro-link"><?php esc_html_e( 'Go pro now', 'woo-refund-and-exchange-lite' ); ?></a>
-				</div>
+global $wrael_wps_rma_obj;
+
+$wrael_is_pro_active     = is_plugin_active( 'woocommerce-rma-for-return-refund-and-exchange/mwb-woocommerce-rma.php' );
+$wrael_is_multistep_mode = ! wps_rma_standard_check_multistep() && wps_rma_pro_active();
+$wrael_active_tab        = isset( $_GET['wrael_tab'] ) ? sanitize_key( $_GET['wrael_tab'] ) : 'woo-refund-and-exchange-lite-general';
+$wrael_default_tabs      = $wrael_wps_rma_obj->wps_rma_plug_default_tabs();
+$wrael_active_tab        = isset( $wrael_default_tabs[ $wrael_active_tab ] ) ? $wrael_active_tab : 'woo-refund-and-exchange-lite-general';
+$wrael_active_tab_data   = isset( $wrael_default_tabs[ $wrael_active_tab ] ) ? $wrael_default_tabs[ $wrael_active_tab ] : array();
+
+$wrael_wps_video_link    = $wrael_is_pro_active ? 'https://youtu.be/QyfzruqwnSM' : 'https://youtu.be/GQhXfBtzLE0';
+$wrael_wps_document_link = 'https://docs.wpswings.com/rma-return-refund-exchange-for-woocommerce/?utm_source=wpswings-rma-doc&utm_medium=rma-pro-backend&utm_campaign=doc';
+$wrael_support_link      = 'https://wpswings.com/submit-query/?utm_source=wpswings-rma-support&utm_medium=rma-org-backend&utm_campaign=support/';
+$wrael_upgrade_link      = 'https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma&utm_medium=rma-org-page&utm_campaign=go-pro';
+$wrael_plugins_link      = 'https://wpswings.com/woocommerce-plugins/?utm_source=wpswings-rma&utm_medium=rma-backend&utm_campaign=more-plugins';
+$wrael_hire_us_link      = 'https://wpswings.com/contact-us/?utm_source=wpswings-rma&utm_medium=rma-backend&utm_campaign=hire-us';
+$wrael_version_label     = $wrael_is_pro_active && defined( 'RMA_RETURN_REFUND_EXCHANGE_FOR_WOOCOMMERCE_PRO_VERSION' ) ? 'v' . RMA_RETURN_REFUND_EXCHANGE_FOR_WOOCOMMERCE_PRO_VERSION . ' Pro' : 'v' . WOO_REFUND_AND_EXCHANGE_LITE_VERSION . ' Lite';
+
+$wrael_get_tab_presentation = static function( $tab_key, $tab_data ) use ( $wrael_plugins_link, $wrael_support_link, $wrael_wps_document_link ) {
+	$presentation = array(
+		'eyebrow'      => esc_html__( 'Configuration', 'woo-refund-and-exchange-lite' ),
+		'title'        => isset( $tab_data['title'] ) ? $tab_data['title'] : esc_html__( 'Dashboard', 'woo-refund-and-exchange-lite' ),
+		'description'  => esc_html__( 'Review and configure your return, refund, exchange, policy, and communication settings from one dashboard.', 'woo-refund-and-exchange-lite' ),
+		'action_label' => esc_html__( 'Read Documentation', 'woo-refund-and-exchange-lite' ),
+		'action_url'   => $wrael_wps_document_link,
+	);
+
+	switch ( $tab_key ) {
+		case 'woo-refund-and-exchange-lite-overview':
+			$presentation['eyebrow']      = esc_html__( 'Overview', 'woo-refund-and-exchange-lite' );
+			$presentation['title']        = esc_html__( 'Return, refund, and exchange control center', 'woo-refund-and-exchange-lite' );
+			$presentation['description']  = esc_html__( 'Build a clearer post-purchase experience with refund requests, exchanges, order messaging, and policy management from one interface.', 'woo-refund-and-exchange-lite' );
+			$presentation['action_label'] = esc_html__( 'Explore More Plugins', 'woo-refund-and-exchange-lite' );
+			$presentation['action_url']   = $wrael_plugins_link;
+			break;
+		case 'woo-refund-and-exchange-lite-general':
+			$presentation['eyebrow']     = esc_html__( 'Settings', 'woo-refund-and-exchange-lite' );
+			$presentation['description'] = esc_html__( 'Control the base plugin behavior, refund enablement, order messaging, and request availability windows.', 'woo-refund-and-exchange-lite' );
+			break;
+		case 'woo-refund-and-exchange-lite-refund':
+			$presentation['eyebrow']     = esc_html__( 'Refund Flow', 'woo-refund-and-exchange-lite' );
+			$presentation['description'] = esc_html__( 'Configure refund request fields, attachment behavior, appearance, and related notification touchpoints.', 'woo-refund-and-exchange-lite' );
+			break;
+		case 'woo-refund-and-exchange-lite-policies':
+			$presentation['eyebrow']     = esc_html__( 'Rules Engine', 'woo-refund-and-exchange-lite' );
+			$presentation['description'] = esc_html__( 'Create policy-driven eligibility rules based on timelines, statuses, taxes, and pro feature extensions.', 'woo-refund-and-exchange-lite' );
+			break;
+		case 'woo-refund-and-exchange-lite-order-message':
+			$presentation['eyebrow']     = esc_html__( 'Conversations', 'woo-refund-and-exchange-lite' );
+			$presentation['description'] = esc_html__( 'Manage message-related options for merchant and customer communication tied to return workflows.', 'woo-refund-and-exchange-lite' );
+			break;
+		case 'woo-refund-and-exchange-lite-developer':
+			$presentation['eyebrow']      = esc_html__( 'Developers', 'woo-refund-and-exchange-lite' );
+			$presentation['description']  = esc_html__( 'Review the available admin and public hooks before extending refund, exchange, and policy behavior.', 'woo-refund-and-exchange-lite' );
+			$presentation['action_label'] = esc_html__( 'Contact Support', 'woo-refund-and-exchange-lite' );
+			$presentation['action_url']   = $wrael_support_link;
+			break;
+		case 'woo-refund-and-exchange-lite-api':
+			$presentation['eyebrow']     = esc_html__( 'API', 'woo-refund-and-exchange-lite' );
+			$presentation['description'] = esc_html__( 'Generate credentials and review request formats for refund-related programmatic integrations.', 'woo-refund-and-exchange-lite' );
+			break;
+		case 'rma-return-refund-exchange-for-woocommerce-pro-exchange':
+			$presentation['eyebrow']     = esc_html__( 'Exchange Flow', 'woo-refund-and-exchange-lite' );
+			$presentation['description'] = esc_html__( 'Configure exchange request logic, pricing rules, and related exchange email flows.', 'woo-refund-and-exchange-lite' );
+			break;
+		case 'rma-return-refund-exchange-for-woocommerce-pro-cancel':
+			$presentation['eyebrow']     = esc_html__( 'Cancellation', 'woo-refund-and-exchange-lite' );
+			$presentation['description'] = esc_html__( 'Set up order cancellation options, policies, and customer-side request behavior.', 'woo-refund-and-exchange-lite' );
+			break;
+		case 'rma-return-refund-exchange-for-woocommerce-pro-wallet':
+			$presentation['eyebrow']     = esc_html__( 'Wallet', 'woo-refund-and-exchange-lite' );
+			$presentation['description'] = esc_html__( 'Control wallet credit behavior, wallet-related refund logic, and customer balance flows.', 'woo-refund-and-exchange-lite' );
+			break;
+		case 'rma-return-refund-exchange-for-woocommerce-pro-global-shipping':
+		case 'rma-return-refund-exchange-for-woocommerce-pro-returnship-label':
+			$presentation['eyebrow']     = esc_html__( 'Operations', 'woo-refund-and-exchange-lite' );
+			$presentation['description'] = esc_html__( 'Configure shipping, return-label, and carrier integration settings that support advanced RMA operations.', 'woo-refund-and-exchange-lite' );
+			break;
+		case 'woo-refund-and-exchange-lite-sms-notification':
+		case 'woo-refund-and-exchange-lite-whatsapp-notification':
+			$presentation['eyebrow']     = esc_html__( 'Notifications', 'woo-refund-and-exchange-lite' );
+			$presentation['description'] = esc_html__( 'Enable and fine-tune customer notification channels that extend the return and exchange lifecycle.', 'woo-refund-and-exchange-lite' );
+			break;
+		case 'rma-return-refund-exchange-for-woocommerce-pro-license':
+			$presentation['eyebrow']     = esc_html__( 'License', 'woo-refund-and-exchange-lite' );
+			$presentation['description'] = esc_html__( 'Validate your purchase code to unlock the licensed pro feature set and maintain update eligibility.', 'woo-refund-and-exchange-lite' );
+			break;
+		case 'rma-return-refund-exchange-for-woocommerce-pro-system-status':
+			$presentation['eyebrow']     = esc_html__( 'System Status', 'woo-refund-and-exchange-lite' );
+			$presentation['description'] = esc_html__( 'Inspect WordPress and server environment details relevant to plugin compatibility and support.', 'woo-refund-and-exchange-lite' );
+			break;
+		default:
+			break;
+	}
+
+	return $presentation;
+};
+
+$wrael_render_sidebar = static function() use ( $wrael_wps_document_link, $wrael_wps_video_link, $wrael_support_link, $wrael_plugins_link, $wrael_hire_us_link ) {
+	?>
+	<aside class="wps-rma-shell__sidebar">
+		<div class="wps-rma-sidebar-card">
+			<h3><?php esc_html_e( 'Need help with this plugin?', 'woo-refund-and-exchange-lite' ); ?></h3>
+			<div class="wps-rma-sidebar-card__actions">
+				<a href="<?php echo esc_url( $wrael_wps_video_link ); ?>" target="_blank" class="wps-rma-sidebar-link"><?php esc_html_e( 'Watch Video', 'woo-refund-and-exchange-lite' ); ?></a>
+				<a href="<?php echo esc_url( $wrael_wps_document_link ); ?>" target="_blank" class="wps-rma-sidebar-link"><?php esc_html_e( 'Documentation', 'woo-refund-and-exchange-lite' ); ?></a>
+				<a href="<?php echo esc_url( $wrael_support_link ); ?>" target="_blank" class="wps-rma-sidebar-link"><?php esc_html_e( 'Support', 'woo-refund-and-exchange-lite' ); ?></a>
 			</div>
 		</div>
-		<div>
-			<?php
-				// desc - This hook is used for trial.
-				do_action( 'wps_rma_before_general_settings_form' );
-				// if submenu is directly clicked on woocommerce.
-			if ( empty( $wrael_active_tab ) ) {
-				$wrael_active_tab = 'wps_rma_plug_general';
-			}
-
-				// look for the path based on the tab id in the admin templates.
-				$wrael_default_tabs     = $wrael_wps_rma_obj->wps_rma_plug_default_tabs();
-				$wrael_tab_content_path = $wrael_default_tabs[ $wrael_active_tab ]['file_path'];
-				$wrael_wps_rma_obj->wps_rma_plug_load_template( $wrael_tab_content_path );
-				// desc - This hook is used for trial.
-				do_action( 'wps_rma_after_general_settings_form' );
-			?>
+		<div class="wps-rma-sidebar-card wps-rma-sidebar-card--accent">
+			<h3><?php esc_html_e( 'Still facing problems?', 'woo-refund-and-exchange-lite' ); ?></h3>
+			<p><?php esc_html_e( 'We are ready to resolve workflow, styling, and integration issues across your store setup.', 'woo-refund-and-exchange-lite' ); ?></p>
+			<a href="<?php echo esc_url( $wrael_hire_us_link ); ?>" target="_blank" class="wps-rma-sidebar-button"><?php esc_html_e( 'Hire Us', 'woo-refund-and-exchange-lite' ); ?></a>
 		</div>
-	</section>
+		<div class="wps-rma-sidebar-card">
+			<h3><?php esc_html_e( 'Explore more plugins', 'woo-refund-and-exchange-lite' ); ?></h3>
+			<p><?php esc_html_e( 'Discover additional commerce and automation plugins from the same product family.', 'woo-refund-and-exchange-lite' ); ?></p>
+			<a href="<?php echo esc_url( $wrael_plugins_link ); ?>" target="_blank" class="wps-rma-sidebar-link"><?php esc_html_e( 'View More Plugins', 'woo-refund-and-exchange-lite' ); ?></a>
+		</div>
+	</aside>
+	<?php
+};
+
+$wrael_active_tab_meta     = $wrael_get_tab_presentation( $wrael_active_tab, $wrael_active_tab_data );
+$wrael_visible_tab_limit = 8;
+$wrael_visible_tabs      = array_slice( $wrael_default_tabs, 0, $wrael_visible_tab_limit, true );
+$wrael_overflow_tabs     = array_slice( $wrael_default_tabs, $wrael_visible_tab_limit, null, true );
+$wrael_is_overflow_active = isset( $wrael_overflow_tabs[ $wrael_active_tab ] );
+
+do_action( 'wps_rma_show_license_info' );
+?>
+<div class="wps-rma-shell<?php echo $wrael_is_multistep_mode ? ' wps-rma-shell--multistep' : ''; ?>">
+	<?php
+	// Used to get the settings during saving.
+	do_action( 'wps_rma_settings_saved_notice' );
+	?>
+	<div class="wps-rma-shell__promo">
+		<div class="wps-rma-shell__promo-text">
+			<?php if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) : ?>
+				<span class="wps-rma-shell__promo-badge"><?php esc_html_e( 'Pro Active', 'woo-refund-and-exchange-lite' ); ?></span>
+				<?php esc_html_e( 'RMA Return Refund & Exchange for WooCommerce Pro', 'woo-refund-and-exchange-lite' ); ?>
+			<?php else : ?>
+				<span class="wps-rma-shell__promo-badge"><?php esc_html_e( 'Limited Offer', 'woo-refund-and-exchange-lite' ); ?></span>
+				<?php esc_html_e( 'Create a cleaner return experience with better customer communication and workflow control.', 'woo-refund-and-exchange-lite' ); ?>
+			<?php endif; ?>
+		</div>
+		<?php if ( ! function_exists( 'wps_rma_pro_active' ) || ! wps_rma_pro_active() ) : ?>
+			<a href="<?php echo esc_url( $wrael_upgrade_link ); ?>" target="_blank" class="wps-rma-shell__promo-link"><?php esc_html_e( 'Upgrade Now', 'woo-refund-and-exchange-lite' ); ?></a>
+		<?php endif; ?>
+	</div>
+
+	<div class="wps-rma-shell__frame">
+		<div class="wps-rma-shell__topbar">
+			<div class="wps-rma-shell__version"><?php echo esc_html( $wrael_version_label ); ?></div>
+			<?php if ( ! $wrael_is_multistep_mode ) : ?>
+				<nav class="wps-rma-shell__nav">
+					<ul class="wps-navbar__items wps-rma-shell__tabs">
+						<?php foreach ( $wrael_visible_tabs as $wrael_tab_key => $wrael_tab_data ) : ?>
+							<?php
+							$wrael_tab_classes = 'wps-link wps-rma-shell__tab-link';
+							if ( isset( $wrael_tab_data['class'] ) ) {
+								$wrael_tab_classes .= ' ' . $wrael_tab_data['class'];
+							}
+							if ( ! empty( $wrael_active_tab ) && $wrael_active_tab === $wrael_tab_key ) {
+								$wrael_tab_classes .= ' active';
+							}
+							?>
+							<li>
+								<a id="<?php echo esc_attr( $wrael_tab_key ); ?>" href="<?php echo esc_url( admin_url( 'admin.php?page=woo_refund_and_exchange_lite_menu' ) . '&wrael_tab=' . esc_attr( $wrael_tab_key ) ); ?>" class="<?php echo esc_attr( $wrael_tab_classes ); ?>"><?php echo esc_html( $wrael_tab_data['title'] ); ?></a>
+							</li>
+						<?php endforeach; ?>
+
+						<?php if ( ! empty( $wrael_overflow_tabs ) ) : ?>
+							<li class="wps-rma-shell__tab-overflow-item">
+								<details class="wps-rma-shell__tab-overflow<?php echo $wrael_is_overflow_active ? ' is-active' : ''; ?>">
+									<summary class="wps-rma-shell__tab-link wps-rma-shell__tab-summary<?php echo $wrael_is_overflow_active ? ' active' : ''; ?>">
+										<span><?php esc_html_e( 'More', 'woo-refund-and-exchange-lite' ); ?></span>
+									</summary>
+									<ul class="wps-rma-shell__tab-overflow-menu">
+										<?php foreach ( $wrael_overflow_tabs as $wrael_tab_key => $wrael_tab_data ) : ?>
+											<?php
+											$wrael_tab_classes = 'wps-link wps-rma-shell__overflow-link';
+											if ( isset( $wrael_tab_data['class'] ) ) {
+												$wrael_tab_classes .= ' ' . $wrael_tab_data['class'];
+											}
+											if ( ! empty( $wrael_active_tab ) && $wrael_active_tab === $wrael_tab_key ) {
+												$wrael_tab_classes .= ' active';
+											}
+											?>
+											<li>
+												<a id="<?php echo esc_attr( $wrael_tab_key ); ?>" href="<?php echo esc_url( admin_url( 'admin.php?page=woo_refund_and_exchange_lite_menu' ) . '&wrael_tab=' . esc_attr( $wrael_tab_key ) ); ?>" class="<?php echo esc_attr( $wrael_tab_classes ); ?>"><?php echo esc_html( $wrael_tab_data['title'] ); ?></a>
+											</li>
+										<?php endforeach; ?>
+									</ul>
+								</details>
+							</li>
+						<?php endif; ?>
+					</ul>
+				</nav>
+			<?php else : ?>
+				<div class="wps-rma-shell__setup-flag"><?php esc_html_e( 'Setup Assistant', 'woo-refund-and-exchange-lite' ); ?></div>
+			<?php endif; ?>
+
+			<?php if ( ! $wrael_is_pro_active ) : ?>
+				<a class="wps_go_pro_link wps-rma-shell__upgrade" target="_blank" href="<?php echo esc_url( $wrael_upgrade_link ); ?>"><?php esc_html_e( 'Upgrade to Pro', 'woo-refund-and-exchange-lite' ); ?></a>
+			<?php endif; ?>
+		</div>
+
+		<div class="wps-rma-shell__layout">
+			<div class="wps-rma-shell__main">
+				<?php if ( ! $wrael_is_multistep_mode ) : ?>
+					<div class="wps-rma__popup-for-pro-wrap">
+						<div class="wps-rma__popup-for-pro-shadow"></div>
+						<div class="wps-rma__popup-for-pro">
+							<span class="wps-rma__popup-for-pro-close">+</span>
+							<h2 class="wps-rma__popup-for-pro-title"><?php esc_html_e( 'Want More ?? Go Pro !!', 'woo-refund-and-exchange-lite' ); ?></h2>
+							<p class="wps-rma__popup-for-pro-content"><i><?php echo esc_html__( 'The Pro Version will unlock all of the feature', 'woo-refund-and-exchange-lite' ) . '<br/>' . esc_html__( 'This will easily process returns, refunds, exchange, and cancellation requests with outstanding auto re-stocking, global shipping, wallet integration, and email notifications feature making it the perfect return management system', 'woo-refund-and-exchange-lite' ); ?></i></p>
+							<div class="wps-rma__popup-for-pro-link-wrap">
+								<a target="_blank" href="<?php echo esc_url( $wrael_upgrade_link ); ?>" class="wps-rma__popup-for-pro-link"><?php esc_html_e( 'Go pro now', 'woo-refund-and-exchange-lite' ); ?></a>
+							</div>
+						</div>
+					</div>
+				<?php endif; ?>
+
+				<?php if ( $wrael_is_multistep_mode ) : ?>
+					<section class="wps-rma-shell__surface wps-rma-shell__surface--setup">
+						<div class="wps-rma-setup-modal">
+							<div class="wps-rma-setup-modal__header">
+								<span class="wps-rma-shell__eyebrow"><?php esc_html_e( 'Guided Setup', 'woo-refund-and-exchange-lite' ); ?></span>
+								<h1><?php esc_html_e( 'Set up your return workflow in a few focused steps', 'woo-refund-and-exchange-lite' ); ?></h1>
+								<p><?php esc_html_e( 'This setup flow keeps the existing configuration logic intact while bringing the experience in line with the redesigned dashboard.', 'woo-refund-and-exchange-lite' ); ?></p>
+							</div>
+							<div class="wps-rma-shell__multistep-app">
+								<div id="react-app"></div>
+							</div>
+						</div>
+					</section>
+				<?php else : ?>
+					<?php if ( 'woo-refund-and-exchange-lite-overview' !== $wrael_active_tab ) : ?>
+						<section class="wps-rma-shell__hero">
+							<div>
+								<span class="wps-rma-shell__eyebrow"><?php echo esc_html( $wrael_active_tab_meta['eyebrow'] ); ?></span>
+								<h1><?php echo esc_html( $wrael_active_tab_meta['title'] ); ?></h1>
+								<p><?php echo esc_html( $wrael_active_tab_meta['description'] ); ?></p>
+							</div>
+							<a class="wps-rma-shell__hero-action" href="<?php echo esc_url( $wrael_active_tab_meta['action_url'] ); ?>" target="_blank"><?php echo esc_html( $wrael_active_tab_meta['action_label'] ); ?></a>
+						</section>
+					<?php endif; ?>
+
+					<section class="wps-rma-shell__surface<?php echo 'woo-refund-and-exchange-lite-overview' === $wrael_active_tab ? ' wps-rma-shell__surface--overview' : ''; ?>">
+						<?php
+						// desc - This hook is used for trial.
+						do_action( 'wps_rma_before_general_settings_form' );
+
+						if ( empty( $wrael_active_tab ) ) {
+							$wrael_active_tab = 'wps_rma_plug_general';
+						}
+
+						$wrael_default_tabs     = $wrael_wps_rma_obj->wps_rma_plug_default_tabs();
+						$wrael_tab_content_path = isset( $wrael_default_tabs[ $wrael_active_tab ]['file_path'] ) ? $wrael_default_tabs[ $wrael_active_tab ]['file_path'] : '';
+						$wrael_wps_rma_obj->wps_rma_plug_load_template( $wrael_tab_content_path );
+
+						// desc - This hook is used for trial.
+						do_action( 'wps_rma_after_general_settings_form' );
+						?>
+					</section>
+				<?php endif; ?>
+			</div>
+
+			<?php if ( ! $wrael_is_multistep_mode ) : ?>
+				<?php $wrael_render_sidebar(); ?>
+			<?php endif; ?>
+		</div>
+	</div>
+</div>

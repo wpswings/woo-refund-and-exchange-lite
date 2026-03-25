@@ -1,13 +1,5 @@
 <?php
-/**
- * The public-facing functionality of the plugin.
- *
- * @link       https://wpswings.com/
- * @since      1.0.0
- *
- * @package    woo-refund-and-exchange-lite
- * @subpackage woo-refund-and-exchange-lite/public
- */
+
 
 /**
  * The public-facing functionality of the plugin.

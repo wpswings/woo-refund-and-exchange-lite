@@ -11,108 +11,69 @@
  * @subpackage woo-refund-and-exchange-lite/admin/partials
  */
 
+$wrael_support_link = 'https://wpswings.com/submit-query/?utm_source=wpswings-rma-support&utm_medium=rma-org-backend&utm_campaign=support/';
+$wrael_upgrade_link = 'https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma&utm_medium=rma-org-page&utm_campaign=go-pro';
 ?>
-
-<div class="wps-overview__wrapper">
-	<div class="wps-overview__banner">
-		<img src="<?php echo esc_html( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL ); ?>admin/image/banner.webp" alt="Overview banner image">
+<div class="wps-rma-overview">
+	<div class="wps-rma-overview__hero">
+		<div class="wps-rma-overview__icon"><?php esc_html_e( 'RMA', 'woo-refund-and-exchange-lite' ); ?></div>
+		<span class="wps-rma-overview__eyebrow"><?php esc_html_e( 'Overview', 'woo-refund-and-exchange-lite' ); ?></span>
+		<h2><?php esc_html_e( 'Return, refund, and exchange experience built for WooCommerce teams', 'woo-refund-and-exchange-lite' ); ?></h2>
+		<p><?php esc_html_e( 'Return Refund and Exchange for WooCommerce centralizes refund requests, customer communication, exchange flows, and policy enforcement so your support team can move faster with fewer manual steps.', 'woo-refund-and-exchange-lite' ); ?></p>
 	</div>
-	<div class="wps-overview__content">
-		<div class="wps-overview__content-description">
-			<h2><?php echo esc_html_e( 'What Is Woo Refund And Exchange Lite?', 'woo-refund-and-exchange-lite' ); ?></h2>
-			<p>
-				<?php
-				esc_html_e( 'Return Refund and Exchange for WooCommerce is a one-stop solution for complete refund management plugin for your WooCommerce store. This FREE plugin allows the admin to show a "Refund" button on the desired page of your store, that the customers can use to send you a refund request for their purchased product with which they are unsatisfied.', 'woo-refund-and-exchange-lite' );
-				?>
-			</p>
-			<p>
-				<?php
-				esc_html_e( 'Further, this plugin has a message feature that allows merchants and customers to connect with direct messages to solve refund related issues. Admin can set refund button text, allows customers to send reasons for refund request, set predefined reason, allow attachments along with refund request, set limits to number of attachments, set condition on products if and how long it is eligible for refund, etc.', 'woo-refund-and-exchange-lite' );
-				?>
-			</p>
-			<p>
-				<?php
-				esc_html_e( 'The whole process goes under a dedicated email based notification system which would keep both the parties on the same note. With WPML, the plugin can be translated into different languages, to engage multilingual buyers across the globe. ', 'woo-refund-and-exchange-lite' );
-				?>
-			</p>
+
+	<div class="wps-rma-overview__heading-row">
+		<span><?php esc_html_e( 'Top features of this plugin', 'woo-refund-and-exchange-lite' ); ?></span>
+	</div>
+
+	<div class="wps-rma-overview__grid">
+		<div class="wps-rma-overview-card">
+			<div class="wps-rma-overview-card__media">
+				<img src="<?php echo esc_url( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/image/Connect-via-Messages.png' ); ?>" alt="<?php esc_attr_e( 'Connect via messages', 'woo-refund-and-exchange-lite' ); ?>">
+			</div>
+			<h3><?php esc_html_e( 'Connect via messages', 'woo-refund-and-exchange-lite' ); ?></h3>
+			<p><?php esc_html_e( 'Let merchants and customers communicate directly inside the order workflow before or after a refund request.', 'woo-refund-and-exchange-lite' ); ?></p>
 		</div>
-		<h2> <?php esc_html_e( 'The Free Plugin Benefits', 'woo-refund-and-exchange-lite' ); ?></h2>
-		<div class="wps-overview__keywords">
-			<div class="wps-overview__keywords-item">
-				<div class="wps-overview__keywords-card">
-					<div class="wps-overview__keywords-image">
-						<img src="<?php echo esc_html( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/image/Connect-via-Messages.png' ); ?>" alt="AConnect-via-Messages image">
-					</div>
-					<div class="wps-overview__keywords-text">
-						<h3 class="wps-overview__keywords-heading"><?php echo esc_html_e( ' Connect via Messages ', 'woo-refund-and-exchange-lite' ); ?></h3>
-						<p class="wps-overview__keywords-description">
-							<?php
-							esc_html_e( 'Allow customers to send you messages in the refund panel.', 'woo-refund-and-exchange-lite' );
-							?>
-						</p>
-					</div>
-				</div>
+		<div class="wps-rma-overview-card">
+			<div class="wps-rma-overview-card__media">
+				<img src="<?php echo esc_url( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/image/Allow-And-Set-Attachments-Limit.png' ); ?>" alt="<?php esc_attr_e( 'Attachments', 'woo-refund-and-exchange-lite' ); ?>">
 			</div>
-			<div class="wps-overview__keywords-item">
-				<div class="wps-overview__keywords-card">
-					<div class="wps-overview__keywords-image">
-						<img src="<?php echo esc_html( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/image/Allow-And-Set-Attachments-Limit.png' ); ?>" alt="Allow-And-Set-Attachments-Limit image">
-					</div>
-					<div class="wps-overview__keywords-text">
-						<h3 class="wps-overview__keywords-heading"><?php echo esc_html_e( ' Allow And Set Attachments Limit ', 'woo-refund-and-exchange-lite' ); ?></h3>
-						<p class="wps-overview__keywords-description">
-							<?php
-							esc_html_e( 'Admin can allow and set a limit to the number of attachments on the refund request form.', 'woo-refund-and-exchange-lite' );
-							?>
-						</p>
-					</div>
-				</div>
+			<h3><?php esc_html_e( 'Attachment control', 'woo-refund-and-exchange-lite' ); ?></h3>
+			<p><?php esc_html_e( 'Accept evidence files with configurable limits so your team gets the context needed to resolve requests faster.', 'woo-refund-and-exchange-lite' ); ?></p>
+		</div>
+		<div class="wps-rma-overview-card">
+			<div class="wps-rma-overview-card__media">
+				<img src="<?php echo esc_url( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/image/Set-Return-Refund-Conditions.png' ); ?>" alt="<?php esc_attr_e( 'Policy conditions', 'woo-refund-and-exchange-lite' ); ?>">
 			</div>
-			<div class="wps-overview__keywords-item">
-				<div class="wps-overview__keywords-card">
-					<div class="wps-overview__keywords-image">
-						<img src="<?php echo esc_html( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/image/Set-Return-Refund-Conditions.png' ); ?>" alt="Set-Return-Refund-Conditions image">
-					</div>
-					<div class="wps-overview__keywords-text">
-						<h3 class="wps-overview__keywords-heading"><?php echo esc_html_e( ' Set Return Refund Conditions ', 'woo-refund-and-exchange-lite' ); ?></h3>
-						<p class="wps-overview__keywords-description">
-							<?php
-							esc_html_e( 'Admin can set conditions for the refund process.', 'woo-refund-and-exchange-lite' );
-							?>
-						</p>
-					</div>
-				</div>
+			<h3><?php esc_html_e( 'Policy-based eligibility', 'woo-refund-and-exchange-lite' ); ?></h3>
+			<p><?php esc_html_e( 'Apply timelines, order status checks, and tax rules so refund eligibility follows clear business logic.', 'woo-refund-and-exchange-lite' ); ?></p>
+		</div>
+		<div class="wps-rma-overview-card">
+			<div class="wps-rma-overview-card__media">
+				<img src="<?php echo esc_url( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/image/Send-Email-Notification.png' ); ?>" alt="<?php esc_attr_e( 'Email notifications', 'woo-refund-and-exchange-lite' ); ?>">
 			</div>
-			<div class="wps-overview__keywords-item">
-				<div class="wps-overview__keywords-card">
-					<div class="wps-overview__keywords-image">
-						<img src="<?php echo esc_html( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/image/Send-Email-Notification.png' ); ?>" alt="Send-Email-Notification image">
-					</div>
-					<div class="wps-overview__keywords-text">
-						<h3 class="wps-overview__keywords-heading"><?php echo esc_html_e( 'Send Email Notification', 'woo-refund-and-exchange-lite' ); ?></h3>
-						<p class="wps-overview__keywords-description">
-							<?php
-							esc_html_e( 'Set emails to notify each performing step during the refund process.', 'woo-refund-and-exchange-lite' );
-							?>
-						</p>
-					</div>
-				</div>
+			<h3><?php esc_html_e( 'Email notifications', 'woo-refund-and-exchange-lite' ); ?></h3>
+			<p><?php esc_html_e( 'Keep merchants and customers aligned through request, approval, cancellation, and message-based email updates.', 'woo-refund-and-exchange-lite' ); ?></p>
+		</div>
+		<div class="wps-rma-overview-card">
+			<div class="wps-rma-overview-card__media">
+				<img src="<?php echo esc_url( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/image/Manage-Product-Returns.png' ); ?>" alt="<?php esc_attr_e( 'Manage product returns', 'woo-refund-and-exchange-lite' ); ?>">
 			</div>
-			<div class="wps-overview__keywords-item">
-				<div class="wps-overview__keywords-card">
-					<div class="wps-overview__keywords-image">
-						<img src="<?php echo esc_html( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/image/Manage-Product-Returns.png' ); ?>" alt="Manage-Product-Returns image">
-					</div>
-					<div class="wps-overview__keywords-text">
-						<h3 class="wps-overview__keywords-heading"><?php echo esc_html_e( ' Manage Product Returns ', 'woo-refund-and-exchange-lite' ); ?></h3>
-						<p class="wps-overview__keywords-description">
-							<?php
-							esc_html_e( 'Provide a complete refund system with the manage stock and the refund amount', 'woo-refund-and-exchange-lite' );
-							?>
-						</p>
-					</div>
-				</div>
-			</div>
+			<h3><?php esc_html_e( 'Manage product returns', 'woo-refund-and-exchange-lite' ); ?></h3>
+			<p><?php esc_html_e( 'Track amounts, quantities, and follow-up activity across return-related workflows from one place.', 'woo-refund-and-exchange-lite' ); ?></p>
+		</div>
+	</div>
+
+	<div class="wps-rma-overview__cta">
+		<div>
+			<strong><?php esc_html_e( 'Facing issues?', 'woo-refund-and-exchange-lite' ); ?></strong>
+			<p><?php esc_html_e( 'We are ready to help you align refund operations, customer messaging, and advanced return workflows.', 'woo-refund-and-exchange-lite' ); ?></p>
+		</div>
+		<div class="wps-rma-overview__cta-actions">
+			<a href="<?php echo esc_url( $wrael_support_link ); ?>" target="_blank" class="wps-rma-overview__button wps-rma-overview__button--secondary"><?php esc_html_e( 'Contact Support', 'woo-refund-and-exchange-lite' ); ?></a>
+			<?php if ( ! function_exists( 'wps_rma_pro_active' ) || ! wps_rma_pro_active() ) : ?>
+				<a href="<?php echo esc_url( $wrael_upgrade_link ); ?>" target="_blank" class="wps-rma-overview__button"><?php esc_html_e( 'Unlock Pro Features', 'woo-refund-and-exchange-lite' ); ?></a>
+			<?php endif; ?>
 		</div>
 	</div>
 </div>

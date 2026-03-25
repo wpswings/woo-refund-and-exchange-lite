@@ -1,0 +1,802 @@
+:root {
+  --wps-rma-public-ink: #21133b;
+  --wps-rma-public-ink-soft: #6d6582;
+  --wps-rma-public-accent: #ffb13b;
+  --wps-rma-public-primary: #1d1237;
+  --wps-rma-public-border: #ece7f5;
+  --wps-rma-public-surface: #ffffff;
+  --wps-rma-public-surface-soft: #fbf9ff;
+  --wps-rma-public-shadow: 0 28px 70px rgba(29, 18, 55, 0.08);
+}
+
+.wps-rma-public-shell,
+.wps-rma-form__wrapper,
+.wps_rma_refund_form_wrapper {
+  background: linear-gradient(180deg, #ffffff 0%, #fcfbff 100%);
+  border: 1px solid var(--wps-rma-public-border);
+  border-radius: 28px;
+  box-shadow: var(--wps-rma-public-shadow);
+}
+
+.wps-rma-public-shell {
+  margin: 30px auto;
+  max-width: 1180px;
+  padding: 28px;
+}
+
+.wps-rma-public-shell__header {
+  margin: 0 auto 24px;
+  max-width: 760px;
+  text-align: center;
+}
+
+.wps-rma-public-shell__eyebrow {
+  color: var(--wps-rma-public-accent);
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.wps-rma-public-shell__header h1,
+.wps-rma-form__heading {
+  color: var(--wps-rma-public-ink);
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 1.08;
+  margin: 0 0 12px;
+}
+
+.wps-rma-public-shell__header p {
+  color: var(--wps-rma-public-ink-soft);
+  font-size: 16px;
+  line-height: 1.75;
+  margin: 0;
+}
+
+.wps-rma-form__wrapper,
+.wps_rma_refund_form_wrapper {
+  margin: 30px auto;
+  max-width: 1180px;
+  padding: 30px;
+}
+
+.wps-rma-form__header {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.wps-rma-product__table-wrapper,
+.wps_rma_exchange_form_wrapper {
+  background: var(--wps-rma-public-surface-soft);
+  border: 1px solid var(--wps-rma-public-border);
+  border-radius: 22px;
+  overflow: hidden;
+  padding: 16px;
+}
+
+.wps-rma-product__table,
+.wps_wrma_product_table {
+  background: transparent;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.wps-rma-product__table thead th,
+.wps_wrma_product_table thead th {
+  background: #fff;
+  color: var(--wps-rma-public-primary);
+  font-size: 14px;
+  font-weight: 800;
+  padding: 18px 16px;
+}
+
+.wps-rma-product__table tbody tr,
+.wps_wrma_product_table tbody tr {
+  background: transparent;
+  border-top: 1px solid var(--wps-rma-public-border);
+}
+
+.wps-rma-product__table td,
+.wps-rma-product__table th,
+.wps_wrma_product_table td,
+.wps_wrma_product_table th {
+  color: var(--wps-rma-public-ink);
+  padding: 18px 16px;
+  vertical-align: top;
+}
+
+.wps-rma-product__wrap {
+  align-items: center;
+  display: flex;
+  gap: 16px;
+}
+
+.wps-rma-product__wrap img {
+  background: #fff;
+  border: 1px solid var(--wps-rma-public-border);
+  border-radius: 18px;
+  height: 84px;
+  object-fit: contain;
+  padding: 10px;
+  width: 84px;
+}
+
+.wps-rma__product-title a,
+.wps_wrma_product_title a {
+  color: var(--wps-rma-public-primary);
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.wps-rma__product-title p,
+.wps_wrma_product_title p {
+  color: var(--wps-rma-public-ink-soft);
+  margin: 8px 0 0;
+}
+
+.wps-rma-form__wrapper input[type="text"],
+.wps-rma-form__wrapper input[type="number"],
+.wps-rma-form__wrapper input[type="tel"],
+.wps-rma-form__wrapper select,
+.wps-rma-form__wrapper textarea,
+.wps-rma-public-shell input[type="text"],
+.wps-rma-public-shell input[type="number"],
+.wps-rma-public-shell input[type="tel"],
+.wps-rma-public-shell textarea,
+.wps-rma-public-shell select {
+  background: #fff;
+  border: 1px solid var(--wps-rma-public-border) !important;
+  border-radius: 14px !important;
+  box-shadow: none !important;
+  color: var(--wps-rma-public-ink) !important;
+}
+
+.wps-rma-form__wrapper textarea,
+.wps-rma-public-shell textarea {
+  min-height: 132px;
+  padding: 14px 16px;
+}
+
+.wps-rma-form__wrapper input[type="submit"],
+.wps-rma-form__wrapper button,
+.wps-rma-public-shell input[type="submit"] {
+  background: var(--wps-rma-public-primary) !important;
+  border: 0 !important;
+  border-radius: 14px !important;
+  color: #fff !important;
+  font-size: 14px;
+  font-weight: 800;
+  min-height: 48px;
+  padding: 12px 20px !important;
+}
+
+.wps_rma_return_notification_checkbox,
+.wps_rma_exchange_notification_checkbox {
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.wps_rma_subject_dropdown,
+.wps_rma_other_subject,
+.wps_rma_reason_description,
+#bank_details,
+.wps_wrma_exchange_note,
+.ship_show_info,
+.ship_show,
+.wps_rma_section {
+  background: var(--wps-rma-public-surface-soft);
+  border: 1px solid var(--wps-rma-public-border);
+  border-radius: 18px;
+  margin-top: 18px;
+  padding: 18px;
+}
+
+.wps_rma_subject_dropdown label,
+.wps_rma_reason_description label,
+#bank_details label,
+.wps_wrma_exchange_note label,
+.wps_rma_section label {
+  color: var(--wps-rma-public-primary);
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.wps-rma-order-msg-wrapper {
+  background: var(--wps-rma-public-surface-soft);
+  border: 1px solid var(--wps-rma-public-border);
+  border-radius: 18px;
+  padding: 12px;
+}
+
+#wps_rma_order_msg_react .wps_order_msg_container {
+  max-width: 100%;
+}
+
+.wps-order-msg-back {
+  background: var(--wps-rma-public-primary);
+  border-radius: 14px;
+  color: #fff;
+  display: inline-flex;
+  font-size: 14px;
+  font-weight: 800;
+  margin-bottom: 14px;
+  padding: 12px 16px;
+}
+
+.wps-order-msg_column {
+  background: linear-gradient(90deg, #f8f4ff 0%, #fff8eb 100%);
+  border: 1px solid var(--wps-rma-public-border);
+  border-bottom: 0;
+  border-radius: 18px 18px 0 0;
+  color: var(--wps-rma-public-primary);
+  font-size: 15px;
+  font-weight: 800;
+  padding: 14px 18px;
+}
+
+.wps_order_msg_sub_container {
+  background: #fff;
+  border: 1px solid var(--wps-rma-public-border);
+  border-radius: 0 0 18px 18px;
+  max-height: 460px;
+  padding: 24px;
+}
+
+.wps-order-msg_row_shopmanager .wps_order_msg_detail_container,
+.wps-order-msg_row_customer .wps_order_msg_detail_container {
+  border-radius: 18px;
+  box-shadow: none;
+  line-height: 1.6;
+  max-width: 70%;
+  padding: 14px 16px;
+}
+
+.wps-order-msg_row_shopmanager .wps_order_msg_detail_container {
+  background: #edf3ff;
+  color: var(--wps-rma-public-primary);
+}
+
+.wps-order-msg_row_customer .wps_order_msg_detail_container {
+  background: var(--wps-rma-public-primary);
+  color: #fff;
+}
+
+.wps-order-msg-btn {
+  background: var(--wps-rma-public-primary);
+  border-radius: 14px;
+  min-width: 54px;
+  padding: 12px;
+}
+
+.wps_order_msg_att-wrap,
+.wps-order-msg-attachment-wrapper {
+  min-width: 42px;
+}
+
+.wps_o_m-label-wrap label,
+#wps_rma_notification_div .wps_rma_notification_label,
+.wps_order_msg_sender_details .wps_order_msg_date {
+  color: var(--wps-rma-public-ink-soft);
+}
+
+@media (max-width: 900px) {
+  .wps-rma-public-shell,
+  .wps-rma-form__wrapper,
+  .wps_rma_refund_form_wrapper {
+    padding: 20px;
+  }
+
+  .wps-rma-public-shell__header h1,
+  .wps-rma-form__heading {
+    font-size: 32px;
+  }
+
+  .wps-rma-product__wrap {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 640px) {
+  .wps-rma-public-shell,
+  .wps-rma-form__wrapper,
+  .wps_rma_refund_form_wrapper {
+    border-radius: 20px;
+    padding: 16px;
+  }
+
+  .wps-rma-product__table-wrapper,
+  .wps_rma_exchange_form_wrapper,
+  .wps_order_msg_sub_container {
+    padding: 12px;
+  }
+
+  .wps-order-msg_row_shopmanager .wps_order_msg_detail_container,
+  .wps-order-msg_row_customer .wps_order_msg_detail_container {
+    max-width: 88%;
+  }
+}
+
+
+.woocommerce-order form:has(.wps_rma_view_order),
+.woocommerce-order div:has(.wps_rma_cancel_order) {
+  display: inline-flex;
+  margin: 16px 12px 0 0;
+}
+
+.woocommerce-order form:has(.wps_rma_view_order) p,
+.woocommerce-order div:has(.wps_rma_cancel_order) p {
+  margin: 0;
+}
+
+.woocommerce-order input[type="submit"].wps_rma_view_order,
+.woocommerce-order button.wps_rma_cancel_order {
+  appearance: none;
+  -webkit-appearance: none;
+  align-items: center;
+  background: var(--wps-rma-public-primary) !important;
+  border: 0 !important;
+  border-radius: 14px !important;
+  box-shadow: 0 16px 35px rgba(29, 18, 55, 0.12);
+  color: #fff !important;
+  cursor: pointer;
+  display: inline-flex !important;
+  font-size: 14px;
+  font-weight: 800;
+  justify-content: center;
+  line-height: 1.2;
+  margin: 0 !important;
+  min-height: 48px;
+  min-width: 180px;
+  padding: 12px 20px !important;
+  text-align: center;
+  text-decoration: none !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.woocommerce-order button.wps_rma_cancel_order {
+  background: linear-gradient(135deg, #fff3d9 0%, #ffe6b0 100%) !important;
+  color: var(--wps-rma-public-primary) !important;
+}
+
+.woocommerce-order input[type="submit"].wps_rma_view_order:hover,
+.woocommerce-order button.wps_rma_cancel_order:hover {
+  box-shadow: 0 20px 40px rgba(29, 18, 55, 0.16);
+  transform: translateY(-1px);
+}
+
+.woocommerce-order input[type="submit"].wps_rma_view_order:focus,
+.woocommerce-order button.wps_rma_cancel_order:focus {
+  outline: none;
+}
+
+@media (max-width: 640px) {
+  .woocommerce-order form:has(.wps_rma_view_order),
+  .woocommerce-order div:has(.wps_rma_cancel_order) {
+    display: flex;
+    margin-right: 0;
+    width: 100%;
+  }
+
+  .woocommerce-order input[type="submit"].wps_rma_view_order,
+  .woocommerce-order button.wps_rma_cancel_order {
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+
+.wps-rma-public-shell--messages {
+  max-width: 1240px;
+  overflow: hidden;
+  padding: 34px;
+  position: relative;
+}
+
+.wps-rma-public-shell--messages::before {
+  background: radial-gradient(circle at top left, rgba(255, 177, 59, 0.16), transparent 34%), radial-gradient(circle at top right, rgba(139, 92, 246, 0.08), transparent 38%);
+  content: "";
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+.wps-rma-public-shell--messages > * {
+  position: relative;
+  z-index: 1;
+}
+
+.wps-rma-public-shell__header--messages {
+  margin: 0;
+  max-width: none;
+  text-align: left;
+}
+
+.wps-rma-public-shell__eyebrow-wrap {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.wps-rma-public-shell__status {
+  background: rgba(29, 18, 55, 0.08);
+  border: 1px solid rgba(29, 18, 55, 0.08);
+  border-radius: 999px;
+  color: var(--wps-rma-public-primary);
+  display: inline-flex;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  padding: 8px 12px;
+  text-transform: capitalize;
+}
+
+.wps-rma-public-shell__header--messages h1 {
+  font-size: clamp(34px, 4vw, 56px);
+  margin-bottom: 14px;
+  max-width: 760px;
+}
+
+.wps-rma-public-shell__header--messages p {
+  max-width: 760px;
+}
+
+.wps-rma-public-shell__summary {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 28px 0 32px;
+}
+
+.wps-rma-public-shell__summary-card {
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid var(--wps-rma-public-border);
+  border-radius: 20px;
+  box-shadow: 0 16px 40px rgba(29, 18, 55, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 112px;
+  padding: 20px 22px;
+}
+
+.wps-rma-public-shell__summary-label {
+  color: var(--wps-rma-public-ink-soft);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.wps-rma-public-shell__summary-card strong {
+  color: var(--wps-rma-public-primary);
+  font-size: 18px;
+  line-height: 1.45;
+}
+
+#wps_rma_order_msg_react .wps_order_msg_container {
+  max-width: 100%;
+}
+
+.wps-rma-public-shell--messages .wps-order-msg-back {
+  align-items: center;
+  background: linear-gradient(135deg, var(--wps-rma-public-primary) 0%, #342058 100%);
+  border: 0;
+  border-radius: 999px;
+  box-shadow: 0 18px 35px rgba(29, 18, 55, 0.12);
+  color: #fff;
+  display: inline-flex;
+  font-size: 14px;
+  font-weight: 800;
+  margin: 0 0 18px;
+  min-height: 44px;
+  padding: 0 18px;
+  text-decoration: none;
+}
+
+.wps-rma-public-shell--messages .wps-order-msg_column {
+  align-items: center;
+  background: linear-gradient(90deg, #f8f4ff 0%, #fff9ef 100%);
+  border: 1px solid var(--wps-rma-public-border);
+  border-radius: 20px 20px 0 0;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  padding: 18px 24px;
+}
+
+.wps-rma-public-shell--messages .wps-order-msg_column_name {
+  color: var(--wps-rma-public-primary);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.wps-rma-public-shell--messages .wps-order-msg_column_name:last-child {
+  text-align: right;
+}
+
+.wps-rma-public-shell--messages .wps_order_msg_sub_container {
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid var(--wps-rma-public-border);
+  border-radius: 0 0 24px 24px;
+  border-top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin: 0;
+  max-height: 540px;
+  min-height: 380px;
+  overflow: auto;
+  padding: 28px;
+}
+
+.wps-rma-public-shell--messages .wps_order_msg_sub_container:empty::before {
+  color: var(--wps-rma-public-ink-soft);
+  content: "No messages yet. Start the conversation with the store here.";
+  display: block;
+  font-size: 15px;
+  margin: auto;
+  max-width: 360px;
+  text-align: center;
+}
+
+.wps-rma-public-shell--messages .wps_order_msg_sub_container .wps-order-msg_row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+}
+
+.wps-rma-public-shell--messages .wps_order_msg_sub_container .wps-order-msg_row_customer {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.wps-rma-public-shell--messages .wps_order_msg_main_container {
+  margin: 0;
+}
+
+.wps-rma-public-shell--messages .wps_order_msg_sender_details {
+  color: var(--wps-rma-public-ink-soft);
+  font-size: 12px;
+  font-weight: 700;
+  gap: 4px;
+  letter-spacing: 0.02em;
+}
+
+.wps-rma-public-shell--messages .wmb-order-customer__msg-container .wps_order_msg_sender_details {
+  align-items: flex-end;
+}
+
+.wps-rma-public-shell--messages .wps_order_msg_sender_details .wps_order_msg_date {
+  color: inherit;
+  font-size: 12px;
+  margin: 0;
+}
+
+.wps-rma-public-shell--messages .wps-order-msg_row_shopmanager .wps_order_msg_detail_container,
+.wps-rma-public-shell--messages .wps-order-msg_row_customer .wps_order_msg_detail_container {
+  border-radius: 24px;
+  box-shadow: 0 18px 45px rgba(29, 18, 55, 0.08);
+  display: inline-block;
+  font-size: 15px;
+  line-height: 1.75;
+  max-width: min(74%, 720px);
+  padding: 16px 18px;
+}
+
+.wps-rma-public-shell--messages .wps-order-msg_row_shopmanager .wps_order_msg_detail_container {
+  background: #eef4ff;
+  border-bottom-left-radius: 8px;
+  color: var(--wps-rma-public-primary);
+}
+
+.wps-rma-public-shell--messages .wps-order-msg_row_customer .wps_order_msg_detail_container {
+  background: linear-gradient(135deg, var(--wps-rma-public-primary) 0%, #39205e 100%);
+  border-bottom-right-radius: 8px;
+  color: #fff;
+}
+
+.wps-rma-public-shell--messages .wps_order_msg_attach_container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.wps-rma-public-shell--messages .wps_order_msg_single_attachment a {
+  background: #fff;
+  border: 1px solid var(--wps-rma-public-border);
+  border-radius: 18px;
+  display: block;
+  padding: 8px;
+}
+
+.wps-rma-public-shell--messages .wps_order_msg_single_attachment img {
+  border: 0;
+  border-radius: 12px;
+  display: block;
+  height: 84px;
+  object-fit: cover;
+  width: 84px;
+}
+
+.wps-rma-public-shell--messages .wps-rma-order-msg-wrapper {
+  align-items: stretch;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--wps-rma-public-border);
+  border-radius: 24px;
+  box-shadow: 0 20px 45px rgba(29, 18, 55, 0.06);
+  display: grid;
+  gap: 16px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  margin: 22px 0 0;
+  padding: 18px;
+}
+
+.wps-rma-public-shell--messages .wps-rma-order-msg-wrapper #wps_order_new_msg {
+  background: #fff;
+  border: 1px solid var(--wps-rma-public-border);
+  border-radius: 18px;
+  color: var(--wps-rma-public-primary);
+  font-size: 15px;
+  min-height: 136px;
+  padding: 16px 18px;
+}
+
+.wps-rma-public-shell--messages .wps-rma-order-msg-wrapper .wps-order-msg-attachment-wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.wps-rma-public-shell--messages .wps_order_msg_att-wrap,
+.wps-rma-public-shell--messages .wps-order-msg-btn {
+  align-items: center;
+  background: #fff8eb;
+  border: 1px solid rgba(255, 177, 59, 0.24);
+  border-radius: 18px;
+  display: inline-flex;
+  height: 56px;
+  justify-content: center;
+  min-width: 56px;
+  padding: 0;
+}
+
+.wps-rma-public-shell--messages .wps_order_msg_att-wrap {
+  background: #fff;
+  border-color: var(--wps-rma-public-border);
+}
+
+.wps-rma-public-shell--messages .wps_order_msg_att-wrap svg,
+.wps-rma-public-shell--messages .wps-order-msg-btn svg {
+  height: 24px;
+  width: 24px;
+}
+
+.wps-rma-public-shell--messages .wps-order-msg-btn {
+  background: linear-gradient(135deg, var(--wps-rma-public-primary) 0%, #39205e 100%);
+  border-color: transparent;
+  box-shadow: 0 18px 35px rgba(29, 18, 55, 0.18);
+}
+
+.wps-rma-public-shell--messages .wps-order-msg-btn svg path {
+  stroke: #fff;
+}
+
+.wps-rma-public-shell--messages .wps_o_m-label-wrap {
+  margin-top: 12px;
+}
+
+.wps-rma-public-shell--messages .wps_o_m-label-wrap label {
+  font-size: 12px;
+  margin: 0;
+  text-align: right;
+}
+
+.wps-rma-public-shell--messages #wps_rma_notification_div {
+  margin: 18px 0 0 auto;
+}
+
+.wps-rma-public-shell--messages #wps_rma_notification_div label {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.wps-rma-public-shell--messages #wps_rma_notification_div label input[type=tel] {
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .wps-rma-public-shell--messages {
+    padding: 24px;
+  }
+
+  .wps-rma-public-shell__summary {
+    grid-template-columns: 1fr;
+  }
+
+  .wps-rma-public-shell--messages .wps-rma-order-msg-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .wps-rma-public-shell--messages .wps-rma-order-msg-wrapper .wps-order-msg-attachment-wrapper {
+    align-items: stretch;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 640px) {
+  .wps-rma-public-shell--messages {
+    padding: 18px;
+  }
+
+  .wps-rma-public-shell--messages .wps-order-msg_column {
+    gap: 10px;
+    grid-template-columns: 1fr;
+    padding: 16px 18px;
+  }
+
+  .wps-rma-public-shell--messages .wps-order-msg_column_name:last-child {
+    text-align: left;
+  }
+
+  .wps-rma-public-shell--messages .wps_order_msg_sub_container {
+    min-height: 320px;
+    padding: 18px;
+  }
+
+  .wps-rma-public-shell--messages .wps-order-msg_row_shopmanager .wps_order_msg_detail_container,
+  .wps-rma-public-shell--messages .wps-order-msg_row_customer .wps_order_msg_detail_container {
+    max-width: 100%;
+  }
+
+  .wps-rma-public-shell--messages .wps-rma-order-msg-wrapper #wps_order_new_msg {
+    min-height: 112px;
+  }
+}
+
+
+body:has(.wps_rma_refund_form_wrapper) #primary,
+body:has(.wps_rma_refund_form_wrapper) #main,
+body:has(.wps_rma_refund_form_wrapper) .content-area,
+body:has(.wps_rma_refund_form_wrapper) .site-main,
+body:has(.wps_rma_refund_form_wrapper) .woocommerce,
+body:has(.wps_rma_refund_form_wrapper) .woocommerce-page {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+body:has(.wps_rma_refund_form_wrapper) #secondary,
+body:has(.wps_rma_refund_form_wrapper) .widget-area,
+body:has(.wps_rma_refund_form_wrapper) aside.widget {
+  display: none !important;
+}
+
+.wps_rma_refund_form_wrapper.wps-rma-form__wrapper {
+  margin-left: 0;
+  margin-right: 0;
+  max-width: none;
+  width: 100%;
+}
+
+
+.wps-rma-item-note {
+  color: var(--wps-rma-public-ink-soft);
+  font-size: 12px;
+  line-height: 1.5;
+  margin: 8px 0 0;
+}
+
+.wps_rma_return_column--disabled {
+  opacity: 0.82;
+}
