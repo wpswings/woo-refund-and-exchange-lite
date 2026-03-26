@@ -1954,3 +1954,24 @@ a.wps-rma__popup-for-pro-link:hover {
 .wps-isnot-activated{
   pointer-events: none;   /* makes it unclickable */ 
 }
+.wps-link,
+.wps-link:hover,
+.wps-link.active {
+  color: #000000 !important;
+}
+
+.wps-link:after {
+  border-bottom-color: #000000;
+}
+.wps-navbar__items .wps_rma_pro_class {
+  display: inline-flex;
+  align-items: center;
+  padding-right: 42px !important;
+}
+
+.wps-navbar__items .wps_rma_pro_class:before {
+  right: 6px !important;
+  top: 50% !important;
+  transform: translateY(-50%);
+  margin-right: 0;
+}
