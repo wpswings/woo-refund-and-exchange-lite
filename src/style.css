@@ -288,3 +288,302 @@
 }
 
 /* Chats section End */
+
+/* Order Message Aurora Luxe */
+#wps_rma_order_msg_react.wps_rma_template2 {
+  background: linear-gradient(180deg, #fffdf7 0%, #fff7e8 100%);
+  border: 1px solid #efdcb0;
+  border-radius: 28px;
+  box-shadow: 0 28px 70px rgba(58, 37, 6, 0.08);
+  display: block;
+  margin: 0 auto 28px;
+  max-width: 1080px;
+  overflow: hidden;
+  padding: 24px;
+  position: relative;
+}
+
+#wps_rma_order_msg_react.wps_rma_template2::before {
+  background:
+    radial-gradient(circle at top right, rgba(255, 167, 38, 0.2), transparent 38%),
+    radial-gradient(circle at top left, rgba(255, 238, 199, 0.94), transparent 44%);
+  content: "";
+  inset: 0 0 auto;
+  height: 180px;
+  pointer-events: none;
+  position: absolute;
+}
+
+#wps_rma_order_msg_react.wps_rma_template2 > * {
+  position: relative;
+  z-index: 1;
+}
+
+#wps_rma_order_msg_react.wps_rma_template2 .wps_order_msg_container {
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+#wps_rma_order_msg_react.wps_rma_template2 .wps-order-msg-back {
+  align-items: center;
+  background: linear-gradient(135deg, #ffb02e 0%, #ff9300 100%);
+  border: 0;
+  border-radius: 999px;
+  box-shadow: 0 14px 24px rgba(255, 147, 0, 0.24);
+  color: #18120b;
+  display: inline-flex;
+  font-size: 14px;
+  font-weight: 800;
+  margin: 0 0 18px;
+  min-height: 44px;
+  padding: 0 18px;
+  text-decoration: none;
+}
+
+#wps_rma_order_msg_react.wps_rma_template2 .wps-order-msg_column {
+  align-items: center;
+  background: #fff1cf;
+  border: 1px solid #ebd4a2;
+  border-radius: 22px 22px 0 0;
+  color: #18120b;
+  display: grid;
+  font-size: 14px;
+  font-weight: 800;
+  gap: 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  padding: 18px 24px;
+}
+
+#wps_rma_order_msg_react.wps_rma_template2 .wps-order-msg_column_name,
+#wps_rma_order_msg_react.wps_rma_template2 .wps-order-msg_column .shop_man-title {
+  color: #18120b;
+}
+
+#wps_rma_order_msg_react.wps_rma_template2 .wps-order-msg_column_name:last-child {
+  text-align: right;
+}
+
+#wps_rma_order_msg_react.wps_rma_template2 .wps_order_msg_sub_container {
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid #ebdcb6;
+  border-radius: 0 0 24px 24px;
+  border-top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin: 0;
+  max-height: 540px;
+  min-height: 380px;
+  padding: 28px;
+}
+
+#wps_rma_order_msg_react.wps_rma_template2 .wps_order_msg_sub_container:empty::before {
+  color: #7a6943;
+  content: "No messages yet. Start the conversation here.";
+  display: block;
+  font-size: 15px;
+  margin: auto;
+  max-width: 320px;
+  text-align: center;
+}
+
+#wps_rma_order_msg_react.wps_rma_template2 .wps_order_msg_sub_container .wps-order-msg_row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+}
+
+#wps_rma_order_msg_react.wps_rma_template2 .wps_order_msg_sub_container .wps-order-msg_row_customer {
+  align-items: flex-end;
+  text-align: right;
+}
+
+#wps_rma_order_msg_react.wps_rma_template2 .wps_order_msg_main_container {
+  margin: 0;
+}
+
+#wps_rma_order_msg_react.wps_rma_template2 .wps_order_msg_sender_details {
+  color: #7a6943;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+#wps_rma_order_msg_react.wps_rma_template2 .wps_order_msg_detail_container {
+  border: 1px solid #ecdab3;
+  border-radius: 22px 22px 22px 8px;
+  box-shadow: 0 14px 30px rgba(47, 31, 5, 0.06);
+  color: #18120b;
+  display: inline-block;
+  line-height: 1.65;
+  max-width: 72%;
+  padding: 16px 18px;
+}
+
+#wps_rma_order_msg_react.wps_rma_template2 .wps-order-msg_row_shopmanager .wps_order_msg_detail_container {
+  background: #fffaf0;
+}
+
+#wps_rma_order_msg_react.wps_rma_template2 .wps-order-msg_row_customer .wps_order_msg_detail_container {
+  background: linear-gradient(135deg, #ffb02e 0%, #ff9800 100%);
+  border-color: #ffb02e;
+  border-radius: 22px 22px 8px 22px;
+  color: #18120b;
+  margin-left: auto;
+}
+
+#wps_rma_order_msg_react.wps_rma_template2 .wps_order_msg_attach_container {
+  gap: 12px;
+}
+
+#wps_rma_order_msg_react.wps_rma_template2 .wps_order_msg_single_attachment img {
+  background: #fff;
+  border: 1px solid #ecd8ab;
+  border-radius: 16px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.04);
+  max-width: 84px;
+  padding: 6px;
+}
+
+#wps_rma_order_msg_react.wps_rma_template2 .wps-rma-order-msg-wrapper {
+  align-items: stretch;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid #efdfbc;
+  border-radius: 22px;
+  box-shadow: 0 14px 34px rgba(47, 31, 5, 0.05);
+  gap: 14px;
+  margin: 20px 0 0;
+  padding: 16px;
+}
+
+#wps_rma_order_msg_react.wps_rma_template2 .wps-rma-order-msg-wrapper #wps_order_new_msg {
+  background: #fffefb;
+  border: 1px solid #e8d2a2;
+  border-radius: 16px;
+  color: #24190a;
+  min-height: 120px;
+  padding: 14px 16px;
+}
+
+#wps_rma_order_msg_react.wps_rma_template2 .wps-rma-order-msg-wrapper #wps_order_new_msg::placeholder {
+  color: #9b875e;
+}
+
+#wps_rma_order_msg_react.wps_rma_template2 .wps-rma-order-msg-wrapper .wps-order-msg-attachment-wrapper {
+  align-items: center;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+#wps_rma_order_msg_react.wps_rma_template2 .wps_order_msg_att-wrap,
+#wps_rma_order_msg_react.wps_rma_template2 .wps-order-msg-btn {
+  align-items: center;
+  background: #fff7e5;
+  border: 1px solid #ebd4a2;
+  border-radius: 18px;
+  display: inline-flex;
+  justify-content: center;
+  min-height: 52px;
+  min-width: 52px;
+}
+
+#wps_rma_order_msg_react.wps_rma_template2 .wps_order_msg_att-wrap {
+  padding: 0;
+}
+
+#wps_rma_order_msg_react.wps_rma_template2 .wps-order-msg-btn {
+  background: linear-gradient(135deg, #ffb02e 0%, #ff9300 100%);
+  border: 0;
+  box-shadow: 0 14px 24px rgba(255, 147, 0, 0.24);
+}
+
+#wps_rma_order_msg_react.wps_rma_template2 .wps_order_msg_att-wrap svg,
+#wps_rma_order_msg_react.wps_rma_template2 .wps-order-msg-btn svg {
+  width: 24px;
+}
+
+#wps_rma_order_msg_react.wps_rma_template2 .wps_order_msg_att-wrap svg path,
+#wps_rma_order_msg_react.wps_rma_template2 .wps-order-msg-btn svg path {
+  stroke: #18120b;
+}
+
+#wps_rma_order_msg_react.wps_rma_template2 .wps-order-msg-btn input,
+#wps_rma_order_msg_react.wps_rma_template2 .wps_order_msg_att-wrap #wps_order_msg_attachment {
+  min-height: 52px;
+  width: 52px;
+}
+
+#wps_rma_order_msg_react.wps_rma_template2 .wps_o_m-label-wrap label,
+#wps_rma_order_msg_react.wps_rma_template2 #wps_rma_notification_div .wps_rma_notification_label {
+  color: #7a6943;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+#wps_rma_order_msg_react.wps_rma_template2 #wps_rma_notification_div {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid #efdfbc;
+  border-radius: 22px;
+  margin: 18px auto 0;
+  max-width: 460px;
+  padding: 18px;
+}
+
+#wps_rma_order_msg_react.wps_rma_template2 #wps_rma_notification_div label {
+  align-items: flex-start;
+  color: #18120b;
+  display: flex;
+  font-size: 15px;
+  font-weight: 700;
+  gap: 10px;
+}
+
+#wps_rma_order_msg_react.wps_rma_template2 #wps_rma_notification_div label input[type="tel"] {
+  background: #fffefb;
+  border: 1px solid #e8d2a2;
+  border-radius: 14px;
+  color: #24190a;
+  width: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+  #wps_rma_order_msg_react.wps_rma_template2 {
+    border-radius: 22px;
+    padding: 18px;
+  }
+
+  #wps_rma_order_msg_react.wps_rma_template2 .wps_order_msg_sub_container {
+    min-height: 320px;
+    padding: 20px;
+  }
+
+  #wps_rma_order_msg_react.wps_rma_template2 .wps_order_msg_detail_container {
+    max-width: 86%;
+  }
+}
+
+@media only screen and (max-width: 580px) {
+  #wps_rma_order_msg_react.wps_rma_template2 .wps-order-msg_column {
+    gap: 10px;
+    padding: 14px 16px;
+  }
+
+  #wps_rma_order_msg_react.wps_rma_template2 .wps_order_msg_sub_container {
+    padding: 18px 16px;
+  }
+
+  #wps_rma_order_msg_react.wps_rma_template2 .wps-rma-order-msg-wrapper {
+    flex-direction: column;
+  }
+
+  #wps_rma_order_msg_react.wps_rma_template2 .wps-rma-order-msg-wrapper .wps-order-msg-attachment-wrapper {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  #wps_rma_order_msg_react.wps_rma_template2 .wps_order_msg_detail_container {
+    max-width: 100%;
+  }
+}

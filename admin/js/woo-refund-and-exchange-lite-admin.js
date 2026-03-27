@@ -501,3 +501,334 @@ jQuery(function($){
 		$(this).parent().toggleClass('open');
 	});
 });
+
+jQuery(function($){
+	if ( 'undefined' === typeof window.history || ! $( '.wps-rma-shell__frame' ).length ) {
+		return;
+	}
+
+	var wpsRmaDynamicTabLoading = false;
+	var wpsRmaDynamicTabSelector = '.wps-rma-shell__tab-link[href*="wrael_tab="], .wps-rma-shell__overflow-link[href*="wrael_tab="]';
+	var wpsRmaDashboardTableOptions = {
+		stateSave: true,
+		dom: '<"wps-dt-buttons"fB>tr<"bottom"lip>',
+		ordering: true,
+		buttons: [ 'copyHtml5', 'excelHtml5', 'csvHtml5' ],
+		language: {
+			lengthMenu: 'Rows per page _MENU_',
+			paginate: {
+				next: '<svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M1.99984 0L0.589844 1.41L5.16984 6L0.589844 10.59L1.99984 12L7.99984 6L1.99984 0Z" fill="#8E908F"/></svg>',
+				previous: '<svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M6.00016 12L7.41016 10.59L2.83016 6L7.41016 1.41L6.00016 -1.23266e-07L0.000156927 6L6.00016 12Z" fill="#8E908F"/></svg>'
+			}
+		}
+	};
+
+	function wpsRmaInitDashboardMdc( $scope ) {
+		if ( 'undefined' === typeof mdc ) {
+			return;
+		}
+
+		if ( mdc.textField && mdc.textField.MDCTextField ) {
+			[].forEach.call( $scope[0].querySelectorAll( '.mdc-text-field' ), function( element ) {
+				if ( ! element.dataset.wpsRmaMdcTextInit ) {
+					new mdc.textField.MDCTextField( element );
+					element.dataset.wpsRmaMdcTextInit = 'true';
+				}
+			} );
+		}
+
+		if ( mdc.ripple && mdc.ripple.MDCRipple ) {
+			[].forEach.call( $scope[0].querySelectorAll( '.mdc-button' ), function( element ) {
+				if ( ! element.dataset.wpsRmaMdcRippleInit ) {
+					new mdc.ripple.MDCRipple( element );
+					element.dataset.wpsRmaMdcRippleInit = 'true';
+				}
+			} );
+		}
+
+		if ( mdc.switchControl && mdc.switchControl.MDCSwitch ) {
+			[].forEach.call( $scope[0].querySelectorAll( '.mdc-switch' ), function( element ) {
+				if ( ! element.dataset.wpsRmaMdcSwitchInit ) {
+					new mdc.switchControl.MDCSwitch( element );
+					element.dataset.wpsRmaMdcSwitchInit = 'true';
+				}
+			} );
+		}
+	}
+
+	function wpsRmaInitDashboardSelect2( $scope ) {
+		if ( ! $.fn.select2 ) {
+			return;
+		}
+
+		$scope.find( '.wps-defaut-multiselect, .wps_rma_order_statues, #wps_wrma_ship_products' ).each( function() {
+			var $element = $( this );
+
+			if ( $element.hasClass( 'select2-hidden-accessible' ) ) {
+				return;
+			}
+
+			$element.select2();
+		} );
+	}
+
+	function wpsRmaInitDashboardDataTable( $scope ) {
+		var $table = $scope.find( '#wrael-datatable' );
+
+		if ( ! $table.length || ! $.fn.DataTable || ( $.fn.dataTable && $.fn.dataTable.isDataTable( $table[0] ) ) ) {
+			return;
+		}
+
+		$table.DataTable( wpsRmaDashboardTableOptions );
+	}
+
+	function wpsRmaInitDashboardState( $scope ) {
+		setTimeout( function() {
+			$scope.find( '.wps_rma_pro_class' ).parents( '.wps-form-group' ).addClass( 'wps_rma_pro_class_wrap' );
+		}, 1 );
+
+		$scope.find( '.wps_wrma_return_loader, .wps_wrma_returnship_loader' ).hide();
+		$scope.find( '.wps_rma_shipping_label_setting' ).show();
+		$scope.find( '.wps_rma_shipping_setting, .wps_rma_shiprocket_setting' ).hide();
+		$scope.find( '.show_returnship_label' ).addClass( 'shipClass' );
+		$scope.find( '.button_wps_rma_pro_class' ).parent( 'button' ).prop( 'disabled', true );
+		$scope.find( '.button_wps_rma_pro_div' ).css( {
+			'background-color': 'rgba(0,0,0,.12)',
+			'pointer-events': 'none'
+		} );
+		$scope.find( '.wps_rma_pro_class_wrap label, .wps_rma_pro_div label' ).attr( 'for', '' );
+
+		if ( $scope.find( '#wps_enable_ship_setting' ).is( ':checked' ) ) {
+			$scope.find( '#add_fee' ).show();
+		} else {
+			$scope.find( '#add_fee' ).hide();
+		}
+
+		if ( $.fn.timepicker ) {
+			$scope.find( '.wps_rma_date_time_picker1' ).timepicker( {
+				showPeriod: true,
+				showLeadingZero: true
+			} );
+			$scope.find( '.wps_rma_date_time_picker2' ).timepicker( {
+				showPeriod: true,
+				showLeadingZero: true
+			} );
+		}
+	}
+
+	function wpsRmaInitDynamicFrame( $scope ) {
+		if ( ! $scope.length ) {
+			return;
+		}
+
+		wpsRmaInitDashboardMdc( $scope );
+		wpsRmaInitDashboardSelect2( $scope );
+		wpsRmaInitDashboardDataTable( $scope );
+		wpsRmaInitDashboardState( $scope );
+	}
+
+	function wpsRmaUpdatePasswordField() {
+		var $passwordField = $( '.wps-form__password' );
+
+		if ( ! $passwordField.length ) {
+			return;
+		}
+
+		$passwordField.attr( 'type', 'text' === $passwordField.attr( 'type' ) ? 'password' : 'text' );
+	}
+
+	function wpsRmaFetchDashboardTab( url, shouldPushState ) {
+		var $currentFrame = $( '.wps-rma-shell__frame' ).first();
+
+		if ( ! $currentFrame.length || wpsRmaDynamicTabLoading ) {
+			return;
+		}
+
+		if ( url === window.location.href ) {
+			return;
+		}
+
+		wpsRmaDynamicTabLoading = true;
+		$currentFrame.addClass( 'wps-rma-shell__frame--loading' );
+
+		$.get( url ).done( function( response ) {
+			var $response = $( '<div />' ).append( $.parseHTML( response, document, true ) );
+			var $newFrame = $response.find( '.wps-rma-shell__frame' ).first();
+			var newTitle = $response.filter( 'title' ).text() || $response.find( 'title' ).first().text();
+
+			if ( ! $newFrame.length ) {
+				window.location.href = url;
+				return;
+			}
+
+			$currentFrame.replaceWith( $newFrame );
+			wpsRmaInitDynamicFrame( $newFrame );
+
+			if ( shouldPushState ) {
+				window.history.pushState( { wpsRmaTabUrl: url }, '', url );
+			}
+
+			if ( newTitle ) {
+				document.title = newTitle;
+			}
+
+			if ( $newFrame.offset() ) {
+				window.scrollTo( 0, Math.max( $newFrame.offset().top - 24, 0 ) );
+			}
+		} ).fail( function() {
+			window.location.href = url;
+		} ).always( function() {
+			wpsRmaDynamicTabLoading = false;
+			$( '.wps-rma-shell__frame' ).first().removeClass( 'wps-rma-shell__frame--loading' );
+		} );
+	}
+
+	$( document ).off( 'click.wpsRmaDynamicTabs', '.wps-password-hidden' ).on( 'click.wpsRmaDynamicTabs', '.wps-password-hidden', function() {
+		wpsRmaUpdatePasswordField();
+	} );
+
+	$( document ).off( 'change.wpsRmaDynamicTabs', '#wps_enable_ship_setting' ).on( 'change.wpsRmaDynamicTabs', '#wps_enable_ship_setting', function() {
+		var $container = $( this ).closest( '.wps-rma-shell__surface, body' );
+		$container.find( '#add_fee' )[ $( this ).is( ':checked' ) ? 'show' : 'hide' ]();
+	} );
+
+	$( document ).off( 'click.wpsRmaDynamicTabs', wpsRmaDynamicTabSelector ).on( 'click.wpsRmaDynamicTabs', wpsRmaDynamicTabSelector, function( event ) {
+		if ( event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || 1 !== event.which ) {
+			return;
+		}
+
+		event.preventDefault();
+		wpsRmaFetchDashboardTab( $( this ).attr( 'href' ), true );
+	} );
+
+	$( window ).off( 'popstate.wpsRmaDynamicTabs' ).on( 'popstate.wpsRmaDynamicTabs', function( event ) {
+		if ( ! $( '.wps-rma-shell__frame' ).length ) {
+			return;
+		}
+
+		var targetUrl = event.originalEvent.state && event.originalEvent.state.wpsRmaTabUrl ? event.originalEvent.state.wpsRmaTabUrl : window.location.href;
+		wpsRmaFetchDashboardTab( targetUrl, false );
+	} );
+
+	window.history.replaceState( { wpsRmaTabUrl: window.location.href }, '', window.location.href );
+	wpsRmaInitDynamicFrame( $( '.wps-rma-shell__frame' ).first() );
+});
+
+jQuery(function($) {
+	var wpsRmaAuroraTemplateSettings = {
+		wps_rma_return_template_css: [
+			'wps_rma_refund_background_color',
+			'wps_rma_refund_surface_color',
+			'wps_rma_refund_accent_color',
+			'wps_rma_refund_text_color',
+			'wps_rma_refund_button_text_color'
+		],
+		wps_rma_exchange_template_css: [
+			'wps_rma_exchange_background_color',
+			'wps_rma_exchange_surface_color',
+			'wps_rma_exchange_accent_color',
+			'wps_rma_exchange_text_color',
+			'wps_rma_exchange_button_text_color'
+		],
+		wps_rma_cancel_template_css: [
+			'wps_rma_cancel_background_color',
+			'wps_rma_cancel_surface_color',
+			'wps_rma_cancel_accent_color',
+			'wps_rma_cancel_text_color',
+			'wps_rma_cancel_button_text_color'
+		],
+		wps_rma_order_msg_template_css: [
+			'wps_rma_order_msg_background_color',
+			'wps_rma_order_msg_surface_color',
+			'wps_rma_order_msg_accent_color',
+			'wps_rma_order_msg_text_color',
+			'wps_rma_order_msg_button_text_color'
+		]
+	};
+	var wpsRmaAuroraTemplateSelector = Object.keys( wpsRmaAuroraTemplateSettings ).map( function( fieldName ) {
+		return 'input[name="' + fieldName + '"]';
+	} ).join( ', ' );
+	var wpsRmaAuroraToggleTimer = null;
+
+	function wpsRmaGetAuroraFieldWrapper( $field ) {
+		var $wrapper = $field.closest( 'tr' );
+
+		if ( $wrapper.length ) {
+			return $wrapper;
+		}
+
+		$wrapper = $field.closest( '.wps-form-group' );
+
+		if ( $wrapper.length ) {
+			return $wrapper;
+		}
+
+		$wrapper = $field.closest( '.forminp' );
+
+		if ( $wrapper.length ) {
+			return $wrapper;
+		}
+
+		return $field.parent();
+	}
+
+	function wpsRmaToggleAuroraCustomizer( $scope ) {
+		$scope = $scope && $scope.length ? $scope : $( document );
+
+		$.each( wpsRmaAuroraTemplateSettings, function( templateField, dependentFields ) {
+			var $checkedTemplate = $scope.find( 'input[name="' + templateField + '"]:checked' );
+
+			if ( ! $checkedTemplate.length ) {
+				$checkedTemplate = $( 'input[name="' + templateField + '"]:checked' );
+			}
+
+			if ( ! $checkedTemplate.length ) {
+				return;
+			}
+
+			$.each( dependentFields, function( _, dependentField ) {
+				var $field = $scope.find( '#' + dependentField );
+
+				if ( ! $field.length ) {
+					$field = $( '#' + dependentField );
+				}
+
+				if ( ! $field.length ) {
+					return;
+				}
+
+				wpsRmaGetAuroraFieldWrapper( $field ).toggle( 'template2' === $checkedTemplate.val() );
+			} );
+		} );
+	}
+
+	function wpsRmaScheduleAuroraCustomizer() {
+		clearTimeout( wpsRmaAuroraToggleTimer );
+		wpsRmaAuroraToggleTimer = setTimeout( function() {
+			var $frame = $( '.wps-rma-shell__frame' ).first();
+			wpsRmaToggleAuroraCustomizer( $frame.length ? $frame : $( document ) );
+		}, 0 );
+	}
+
+	$( document ).off( 'change.wpsRmaAuroraCustomizer', wpsRmaAuroraTemplateSelector ).on( 'change.wpsRmaAuroraCustomizer', wpsRmaAuroraTemplateSelector, function() {
+		var $container = $( this ).closest( '.wps-rma-shell__frame, .wrap' );
+		wpsRmaToggleAuroraCustomizer( $container.length ? $container : $( document ) );
+	} );
+
+	if ( 'MutationObserver' in window && document.body ) {
+		new MutationObserver( function( mutations ) {
+			for ( var i = 0; i < mutations.length; i++ ) {
+				if ( mutations[ i ].addedNodes.length || mutations[ i ].removedNodes.length ) {
+					wpsRmaScheduleAuroraCustomizer();
+					break;
+				}
+			}
+		} ).observe( document.body, {
+			childList: true,
+			subtree: true
+		} );
+	}
+
+	window.wpsRmaToggleAuroraCustomizer = wpsRmaToggleAuroraCustomizer;
+	wpsRmaScheduleAuroraCustomizer();
+});

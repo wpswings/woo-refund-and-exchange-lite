@@ -156,11 +156,24 @@ $wrael_render_sidebar = static function() use ( $wrael_wps_document_link, $wrael
 	<?php
 };
 
-$wrael_active_tab_meta     = $wrael_get_tab_presentation( $wrael_active_tab, $wrael_active_tab_data );
-$wrael_visible_tab_limit = 8;
-$wrael_visible_tabs      = array_slice( $wrael_default_tabs, 0, $wrael_visible_tab_limit, true );
-$wrael_overflow_tabs     = array_slice( $wrael_default_tabs, $wrael_visible_tab_limit, null, true );
-$wrael_is_overflow_active = isset( $wrael_overflow_tabs[ $wrael_active_tab ] );
+$wrael_active_tab_meta          = $wrael_get_tab_presentation( $wrael_active_tab, $wrael_active_tab_data );
+$wrael_visible_tab_limit        = 8;
+$wrael_visible_tabs             = array_slice( $wrael_default_tabs, 0, $wrael_visible_tab_limit, true );
+$wrael_overflow_tabs            = array_slice( $wrael_default_tabs, $wrael_visible_tab_limit, null, true );
+$wrael_is_overflow_active       = isset( $wrael_overflow_tabs[ $wrael_active_tab ] );
+$wrael_layout_notice_meta_key   = 'wrael_aurora_layout_notice_dismissed';
+$wrael_can_manage_layout_notice = current_user_can( 'manage_woocommerce' ) || current_user_can( 'manage_options' );
+$wrael_show_layout_notice       = ! $wrael_is_multistep_mode && $wrael_can_manage_layout_notice && 'yes' !== get_user_meta( get_current_user_id(), $wrael_layout_notice_meta_key, true );
+$wrael_layout_notice_dismiss_url = wp_nonce_url(
+	add_query_arg(
+		array(
+			'wrael_hide_layout_notice' => '1',
+			'wrael_tab'                => $wrael_active_tab,
+		),
+		admin_url( 'admin.php?page=woo_refund_and_exchange_lite_menu' )
+	),
+	'wrael_hide_layout_notice'
+);
 
 do_action( 'wps_rma_show_license_info' );
 ?>
@@ -169,6 +182,17 @@ do_action( 'wps_rma_show_license_info' );
 	// Used to get the settings during saving.
 	do_action( 'wps_rma_settings_saved_notice' );
 	?>
+	<?php if ( $wrael_show_layout_notice ) : ?>
+		<div class="wps-rma-layout-notice">
+			<div class="wps-rma-layout-notice__badge"><?php esc_html_e( 'New Layout', 'woo-refund-and-exchange-lite' ); ?></div>
+			<div class="wps-rma-layout-notice__content">
+				<h3><?php esc_html_e( 'Aurora Luxe is now available across your RMA flows', 'woo-refund-and-exchange-lite' ); ?></h3>
+				<p><?php esc_html_e( 'You can now enable the Aurora Luxe template for Refund, Exchange, Cancel, and Order Message, and fine-tune the visual style with the new customization fields.', 'woo-refund-and-exchange-lite' ); ?></p>
+			</div>
+			<a href="<?php echo esc_url( $wrael_layout_notice_dismiss_url ); ?>" class="wps-rma-layout-notice__dismiss"><?php esc_html_e( 'Dismiss', 'woo-refund-and-exchange-lite' ); ?></a>
+		</div>
+	<?php endif; ?>
+
 	<div class="wps-rma-shell__promo">
 		<div class="wps-rma-shell__promo-text">
 			<?php if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) : ?>

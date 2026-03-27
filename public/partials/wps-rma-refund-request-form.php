@@ -69,8 +69,75 @@ if ( isset( $_GET['wps_rma_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp
 			} else {
 				$template_id = 'wps_rma_return_request_container';
 			}
+			$wps_refund_visual_css = '';
+			if ( 'template2' === $template_class ) {
+				$wps_refund_visual_template = <<<'CSS'
+#%1$s.wps_rma_template2{background:%2$s!important;border-color:%4$s!important;color:%5$s!important;}
+#%1$s.wps_rma_template2::before{display:none!important;}
+#%1$s.wps_rma_template2 .wps-rma-form__header{border-bottom-color:%4$s!important;}
+#%1$s.wps_rma_template2 h1.wps-rma-form__heading,
+#%1$s.wps_rma_template2 label,
+#%1$s.wps_rma_template2 .woocommerce-column__title,
+#%1$s.wps_rma_template2 .wps_rma_customer_detail h2,
+#%1$s.wps_rma_template2 .wps-wrma_customer_detail h2,
+#%1$s.wps_rma_template2 .wps_rma_return_rules > h2,
+#%1$s.wps_rma_template2 .wps_rma_exchange_rules > h2,
+#%1$s.wps_rma_template2 .product-total,
+#%1$s.wps_rma_template2 .wps_rma_total_amount_wrap,
+#%1$s.wps_rma_template2 .wps_wrma_total_amount_wrap,
+#%1$s.wps_rma_template2 .wps_rma_product_title a,
+#%1$s.wps_rma_template2 .wps_wrma_product_title a,
+#%1$s.wps_rma_template2 .wps-rma__product-title a{color:%5$s!important;}
+#%1$s.wps_rma_template2 .wps-rma-product__table-wrapper,
+#%1$s.wps_rma_template2 .wps_rma_exchange_form_wrapper,
+#%1$s.wps_rma_template2 .ship_show,
+#%1$s.wps_rma_template2 .ship_show_info,
+#%1$s.wps_rma_template2 .wps_rma_subject_dropdown,
+#%1$s.wps_rma_template2 .wps_rma_other_subject,
+#%1$s.wps_rma_template2 .wps_rma_reason_description,
+#%1$s.wps_rma_template2 #bank_details,
+#%1$s.wps_rma_template2 .wps_wrma_exchange_note,
+#%1$s.wps_rma_template2 .wps_rma_section,
+#%1$s.wps_rma_template2 .wps_wrma_refund_method_div,
+#%1$s.wps_rma_template2 .wps-rma-col:last-of-type,
+#%1$s.wps_rma_template2 .wps-wrma-col:last-of-type,
+#%1$s.wps_rma_template2 .woocommerce-column,
+#%1$s.wps_rma_template2 .wps_rma_return_rules,
+#%1$s.wps_rma_template2 .wps_rma_exchange_rules{background:%3$s!important;border-color:%4$s!important;}
+#%1$s.wps_rma_template2 .wps-rma-product__table thead th,
+#%1$s.wps_rma_template2 .wps_wrma_product_table thead th,
+#%1$s.wps_rma_template2 .order_details thead th,
+#%1$s.wps_rma_template2 .ship_show table th,
+#%1$s.wps_rma_template2 .order_details th{background:%3$s!important;border-bottom-color:%4$s!important;color:%5$s!important;}
+#%1$s.wps_rma_template2 .wps-rma-product__table tbody tr:nth-of-type(even),
+#%1$s.wps_rma_template2 .wps_wrma_product_table tbody tr:nth-of-type(even),
+#%1$s.wps_rma_template2 .order_details tbody tr:nth-of-type(even),
+#%1$s.wps_rma_template2 .ship_show table tbody tr:nth-of-type(even){background:%3$s!important;}
+#%1$s.wps_rma_template2 input[type="text"],
+#%1$s.wps_rma_template2 input[type="number"],
+#%1$s.wps_rma_template2 input[type="tel"],
+#%1$s.wps_rma_template2 input[type="email"],
+#%1$s.wps_rma_template2 input[type="password"],
+#%1$s.wps_rma_template2 select,
+#%1$s.wps_rma_template2 textarea{background:%3$s!important;border-color:%4$s!important;color:%5$s!important;}
+#%1$s.wps_rma_template2 input[type="checkbox"]:checked{background:%4$s!important;border-color:%4$s!important;}
+#%1$s.wps_rma_template2 .button,
+#%1$s.wps_rma_template2 button,
+#%1$s.wps_rma_template2 input[type="submit"],
+#%1$s.wps_rma_template2 input[type="button"]{background:%4$s!important;color:%6$s!important;box-shadow:none!important;}
+CSS;
+				$wps_refund_visual_css = sprintf(
+					$wps_refund_visual_template,
+					esc_attr( $template_id ),
+					esc_attr( sanitize_hex_color( get_option( 'wps_rma_refund_background_color' ) ) ? get_option( 'wps_rma_refund_background_color' ) : '#fffdf7' ),
+					esc_attr( sanitize_hex_color( get_option( 'wps_rma_refund_surface_color' ) ) ? get_option( 'wps_rma_refund_surface_color' ) : '#ffffff' ),
+					esc_attr( sanitize_hex_color( get_option( 'wps_rma_refund_accent_color' ) ) ? get_option( 'wps_rma_refund_accent_color' ) : '#ff9800' ),
+					esc_attr( sanitize_hex_color( get_option( 'wps_rma_refund_text_color' ) ) ? get_option( 'wps_rma_refund_text_color' ) : '#18120b' ),
+					esc_attr( sanitize_hex_color( get_option( 'wps_rma_refund_button_text_color' ) ) ? get_option( 'wps_rma_refund_button_text_color' ) : '#18120b' )
+				);
+			}
 			?>
-			<style><?php echo wp_kses_post( $wps_return_css ); ?></style>
+			<style><?php echo wp_kses_post( $wps_refund_visual_css . $wps_return_css ); ?></style>
 			<div class="wps_rma_refund_form_wrapper wps-rma-form__wrapper <?php echo esc_html( $wps_refund_wrapper_class ); ?> wps_rma_<?php echo esc_html( $template_class ); ?>" id="<?php echo esc_html( $template_id ); ?>">
 				<div id="wps_rma_return_request_container" class="wps-rma-form__header">
 					<h1 class="wps-rma-form__heading"><?php esc_html_e( 'Order\'s Product Refund Request Form', 'woo-refund-and-exchange-lite' ); ?></h1>

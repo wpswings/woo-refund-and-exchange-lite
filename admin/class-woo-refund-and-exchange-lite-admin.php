@@ -175,6 +175,45 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	}
 
 	/**
+	 * Get the user meta key used for the Aurora layout introduction notice.
+	 *
+	 * @return string
+	 */
+	private function wrael_layout_notice_meta_key() {
+		return 'wrael_aurora_layout_notice_dismissed';
+	}
+
+	/**
+	 * Dismiss the Aurora layout notice for the current admin user.
+	 *
+	 * @return void
+	 */
+	public function wrael_maybe_dismiss_layout_notice() {
+		if ( ! isset( $_GET['wrael_hide_layout_notice'] ) || '1' !== sanitize_text_field( wp_unslash( $_GET['wrael_hide_layout_notice'] ) ) ) {
+			return;
+		}
+
+		if ( ! current_user_can( 'manage_woocommerce' ) && ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
+		check_admin_referer( 'wrael_hide_layout_notice' );
+
+		$user_id = get_current_user_id();
+		if ( ! empty( $user_id ) ) {
+			update_user_meta( $user_id, $this->wrael_layout_notice_meta_key(), 'yes' );
+		}
+
+		$redirect_url = admin_url( 'admin.php?page=woo_refund_and_exchange_lite_menu' );
+		if ( isset( $_GET['wrael_tab'] ) ) {
+			$redirect_url = add_query_arg( 'wrael_tab', sanitize_key( wp_unslash( $_GET['wrael_tab'] ) ), $redirect_url );
+		}
+
+		wp_safe_redirect( $redirect_url );
+		exit;
+	}
+
+	/**
 	 * Register the stylesheets for the admin area.
 	 *
 	 * @since 1.0.0
@@ -931,8 +970,54 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				'options' => array(
 					'' => esc_html__( 'Default', 'woo-refund-and-exchange-lite' ),
 					'template1' => esc_html__( 'Clean Slate', 'woo-refund-and-exchange-lite' ),
+					'template2' => esc_html__( 'Aurora Luxe', 'woo-refund-and-exchange-lite' ),
 				),
 			);
+
+		$wps_rma_settings_refund[] = array(
+			'title'       => esc_html__( 'Background Color', 'woo-refund-and-exchange-lite' ),
+			'type'        => 'text',
+			'id'          => 'wps_rma_refund_background_color',
+			'value'       => get_option( 'wps_rma_refund_background_color' ),
+			'class'       => 'wrael-text-class',
+			'placeholder' => esc_html__( '#fffdf7', 'woo-refund-and-exchange-lite' ),
+		);
+
+		$wps_rma_settings_refund[] = array(
+			'title'       => esc_html__( 'Surface Color', 'woo-refund-and-exchange-lite' ),
+			'type'        => 'text',
+			'id'          => 'wps_rma_refund_surface_color',
+			'value'       => get_option( 'wps_rma_refund_surface_color' ),
+			'class'       => 'wrael-text-class',
+			'placeholder' => esc_html__( '#ffffff', 'woo-refund-and-exchange-lite' ),
+		);
+
+		$wps_rma_settings_refund[] = array(
+			'title'       => esc_html__( 'Accent Color', 'woo-refund-and-exchange-lite' ),
+			'type'        => 'text',
+			'id'          => 'wps_rma_refund_accent_color',
+			'value'       => get_option( 'wps_rma_refund_accent_color' ),
+			'class'       => 'wrael-text-class',
+			'placeholder' => esc_html__( '#ff9800', 'woo-refund-and-exchange-lite' ),
+		);
+
+		$wps_rma_settings_refund[] = array(
+			'title'       => esc_html__( 'Text Color', 'woo-refund-and-exchange-lite' ),
+			'type'        => 'text',
+			'id'          => 'wps_rma_refund_text_color',
+			'value'       => get_option( 'wps_rma_refund_text_color' ),
+			'class'       => 'wrael-text-class',
+			'placeholder' => esc_html__( '#18120b', 'woo-refund-and-exchange-lite' ),
+		);
+
+		$wps_rma_settings_refund[] = array(
+			'title'       => esc_html__( 'Button Text Color', 'woo-refund-and-exchange-lite' ),
+			'type'        => 'text',
+			'id'          => 'wps_rma_refund_button_text_color',
+			'value'       => get_option( 'wps_rma_refund_button_text_color' ),
+			'class'       => 'wrael-text-class',
+			'placeholder' => esc_html__( '#18120b', 'woo-refund-and-exchange-lite' ),
+		);
 		}
 		$wps_rma_settings_refund   =
 		// To extend Refund Apperance setting.
@@ -996,6 +1081,62 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				'options' => $get_pages,
 			);
 		}
+		$wps_rma_settings_order_message[] = array(
+			'title' => esc_html__( 'Choose Template', 'woo-refund-and-exchange-lite' ),
+			'type'  => 'radio',
+			'id'    => 'wps_rma_order_msg_template_css',
+			'value' => get_option( 'wps_rma_order_msg_template_css' ),
+			'class' => 'mwr-radio-class',
+			'options' => array(
+				'' => esc_html__( 'Default', 'woo-refund-and-exchange-lite' ),
+				'template2' => esc_html__( 'Aurora Luxe', 'woo-refund-and-exchange-lite' ),
+			),
+		);
+
+		$wps_rma_settings_order_message[] = array(
+			'title'       => esc_html__( 'Background Color', 'woo-refund-and-exchange-lite' ),
+			'type'        => 'text',
+			'id'          => 'wps_rma_order_msg_background_color',
+			'value'       => get_option( 'wps_rma_order_msg_background_color' ),
+			'class'       => 'wrael-text-class',
+			'placeholder' => esc_html__( '#fffdf7', 'woo-refund-and-exchange-lite' ),
+		);
+
+		$wps_rma_settings_order_message[] = array(
+			'title'       => esc_html__( 'Surface Color', 'woo-refund-and-exchange-lite' ),
+			'type'        => 'text',
+			'id'          => 'wps_rma_order_msg_surface_color',
+			'value'       => get_option( 'wps_rma_order_msg_surface_color' ),
+			'class'       => 'wrael-text-class',
+			'placeholder' => esc_html__( '#ffffff', 'woo-refund-and-exchange-lite' ),
+		);
+
+		$wps_rma_settings_order_message[] = array(
+			'title'       => esc_html__( 'Accent Color', 'woo-refund-and-exchange-lite' ),
+			'type'        => 'text',
+			'id'          => 'wps_rma_order_msg_accent_color',
+			'value'       => get_option( 'wps_rma_order_msg_accent_color' ),
+			'class'       => 'wrael-text-class',
+			'placeholder' => esc_html__( '#ff9800', 'woo-refund-and-exchange-lite' ),
+		);
+
+		$wps_rma_settings_order_message[] = array(
+			'title'       => esc_html__( 'Text Color', 'woo-refund-and-exchange-lite' ),
+			'type'        => 'text',
+			'id'          => 'wps_rma_order_msg_text_color',
+			'value'       => get_option( 'wps_rma_order_msg_text_color' ),
+			'class'       => 'wrael-text-class',
+			'placeholder' => esc_html__( '#18120b', 'woo-refund-and-exchange-lite' ),
+		);
+
+		$wps_rma_settings_order_message[] = array(
+			'title'       => esc_html__( 'Button Text Color', 'woo-refund-and-exchange-lite' ),
+			'type'        => 'text',
+			'id'          => 'wps_rma_order_msg_button_text_color',
+			'value'       => get_option( 'wps_rma_order_msg_button_text_color' ),
+			'class'       => 'wrael-text-class',
+			'placeholder' => esc_html__( '#18120b', 'woo-refund-and-exchange-lite' ),
+		);
 		$wps_rma_settings_order_message =
 		// To Extend Order Message Appearance Setting.
 		apply_filters( 'wps_rma_order_message_appearance_setting_extend', $wps_rma_settings_order_message );

@@ -745,7 +745,7 @@ select {
   padding: 16px 25px;
   display: inline-block;
   border-radius: 100px;
-  background: #2196F3;
+  background: #000000;
   color: #ffffff;
   border: none;
   text-transform: uppercase;
@@ -991,7 +991,7 @@ select {
 .wps-section h4 input.shipClass {
   background: transparent;
   color: #ffffff;
-  background: #2196F3;
+  background: #000000;
   transition: 0.3s ease;
 }
 
@@ -1020,7 +1020,7 @@ select {
   padding: 16px 25px;
   display: inline-block;
   border-radius: 60px;
-  background: #2196F3;
+  background: #000000;
   color: #ffffff;
   border: none;
   text-transform: uppercase;
@@ -1168,7 +1168,7 @@ select {
 
 .wps-section h4 input.shipClass {
   background: transparent;
-  background: #2196f3;
+  background: #000000;
   color: #fff;
   transition: 0.3s ease;
 }
@@ -1192,7 +1192,7 @@ select {
 
 .wps-rma-admin__button,
 .wps-rma-admin__button.button {
-  background: #2196f3;
+  background: #000000;
   border: none;
   border-radius: 60px;
   color: #fff;
@@ -1343,7 +1343,7 @@ select {
 
 .wps-section h4 input.shipClass {
   background: transparent;
-  background: #2196f3;
+  background: #000000;
   color: #fff;
   transition: 0.3s ease;
 }
@@ -1367,7 +1367,7 @@ select {
 
 .wps-rma-admin__button,
 .wps-rma-admin__button.button {
-  background: #2196f3;
+  background: #000000;
   border: none;
   border-radius: 60px;
   color: #fff;
@@ -1961,7 +1961,7 @@ a.wps-rma__popup-for-pro-link:hover {
 }
 
 .wps-link:after {
-  border-bottom-color: #000000;
+  border-bottom-color: #f59e0b;
 }
 .wps-navbar__items .wps_rma_pro_class {
   display: inline-flex;

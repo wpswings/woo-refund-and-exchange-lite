@@ -279,7 +279,7 @@ body.wp-admin[class*="wp-swings_page_home"] {
 .wps-rma-sidebar-button,
 .wps-rma-overview__button,
 .wps-rma-license-panel__button {
-  background: var(--wps-rma-primary) !important;
+  background: #000000 !important;
   border: 0 !important;
   border-radius: 14px !important;
   color: #fff !important;
@@ -706,7 +706,7 @@ input.wps_rma_save_settings,
 .wps-rma-shell input[type="submit"],
 .wps-rma-shell button.button,
 .wps-rma-shell button.button-primary {
-  background: var(--wps-rma-primary) !important;
+  background: #000000 !important;
   border: 0 !important;
   border-radius: 14px !important;
   color: #fff !important;
@@ -1132,7 +1132,7 @@ input.wps_rma_save_settings,
 .wps-rma-report-shell__table-form .button,
 .wps-rma-report-shell .tablenav .button,
 .wps-rma-report-shell .search-box .button {
-  background: var(--wps-rma-primary) !important;
+  background: #000000 !important;
   border: 0 !important;
   border-radius: 14px !important;
   box-shadow: none !important;
@@ -1560,4 +1560,70 @@ body.wp-admin[class*="woo_refund_and_exchange_lite_menu"] #wpfooter,
 .wps-rma-shell--multistep .wps-rma__popup-for-pro,
 .wps-rma-shell--multistep .wps-rma__popup-for-pro-shadow {
   display: none !important;
+}
+
+.wps-rma-layout-notice {
+  align-items: center;
+  background: linear-gradient(135deg, #fff7ed 0%, #ffffff 100%);
+  border: 1px solid rgba(245, 158, 11, 0.22);
+  border-radius: 22px;
+  box-shadow: 0 16px 34px rgba(15, 23, 42, 0.06);
+  display: flex;
+  gap: 18px;
+  margin-bottom: 18px;
+  padding: 20px 22px;
+}
+
+.wps-rma-layout-notice__badge {
+  background: #f59e0b;
+  border-radius: 999px;
+  color: #ffffff;
+  display: inline-flex;
+  font-family: NunitoSans-ExtraBold, sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  padding: 10px 12px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.wps-rma-layout-notice__content {
+  flex: 1 1 auto;
+}
+
+.wps-rma-layout-notice__content h3 {
+  color: var(--wps-rma-ink);
+  font-family: NunitoSans-ExtraBold, sans-serif;
+  font-size: 20px;
+  line-height: 1.25;
+  margin: 0 0 6px;
+}
+
+.wps-rma-layout-notice__content p {
+  color: var(--wps-rma-ink-soft);
+  font-size: 14px;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.wps-rma-layout-notice__dismiss {
+  align-items: center;
+  background: #000000;
+  border-radius: 12px;
+  color: #ffffff !important;
+  display: inline-flex;
+  flex: 0 0 auto;
+  font-family: NunitoSans-ExtraBold, sans-serif;
+  font-size: 13px;
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px 16px;
+}
+
+@media (max-width: 900px) {
+  .wps-rma-layout-notice {
+    align-items: flex-start;
+    flex-direction: column;
+  }
 }
