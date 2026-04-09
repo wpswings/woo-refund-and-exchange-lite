@@ -8,17 +8,27 @@ jQuery(function($){
 		var selected_product = new Array();
 		var refund_method = '';
 		var pro_act = wrael_common_param.check_pro_active;
+		var is_subject_missing = false;
+		var is_reason_missing = false;
 
 		var rr_subject = $( '#wps_rma_return_request_subject' ).val();
 			
 		if (rr_subject == '' || rr_subject == null ) {
 			rr_subject = $( '#wps_rma_return_request_subject_text' ).val();
 			if (rr_subject == '' || rr_subject == null ) {
-				alerthtml += '<li>' + wrael_common_param.return_subject_msg + '</li>';
+				is_subject_missing = true;
 			}
 		}
 		var rr_reason = $( '.wps_rma_return_request_reason' ).val();
 		if ( typeof( rr_reason ) !== 'undefined' && ( rr_reason == '' || rr_reason == null ) ) {
+			is_reason_missing = true;
+		}
+
+		if ( is_subject_missing && is_reason_missing ) {
+			alerthtml += '<li>' + wrael_common_param.return_subject_reason_msg + '</li>';
+		} else if ( is_subject_missing ) {
+			alerthtml += '<li>' + wrael_common_param.return_subject_msg + '</li>';
+		} else if ( is_reason_missing ) {
 			alerthtml += '<li>' + wrael_common_param.return_reason_msg + '</li>';
 		}
 		if( pro_act && typeof wps_rma_return_alert_condition_addon == 'function' ){
@@ -109,7 +119,6 @@ jQuery(function($){
 			$( '#wps_rma_return_alert' ).html( alerthtml );
 			$( '#wps_rma_return_alert' ).addClass('woocommerce-error');
 			$( '#wps_rma_return_alert' ).removeClass('woocommerce-message');
-			$( '#wps_rma_return_alert' ).css('background-color', 'red');
 			$( 'html, body' ).animate(
 			{
 				scrollTop: $( '#wps_rma_return_request_container' ).offset().top
@@ -168,7 +177,6 @@ jQuery(function($){
 						// Start redirect page countdown on refund request form
 						$('#wps_rma_return_alert').removeClass('woocommerce-error');
 						$('#wps_rma_return_alert').addClass('woocommerce-message');
-						$('#wps_rma_return_alert').css('background-color', '#8FAE1B');
 						$('#wps_rma_return_alert' ).show();
 						$('#wps_rma_return_alert').html( response.msg + ' in ' + '<b><span id="countdownTimer"></span>' + ' seconds</b>' );
 						$('.wps_rma_return_notification').hide();
@@ -329,4 +337,3 @@ jQuery(function($){
 		});
 	});
 });
-

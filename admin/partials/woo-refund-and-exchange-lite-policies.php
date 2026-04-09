@@ -30,6 +30,13 @@ if ( empty( $rma_policies_setting ) || ( isset( $rma_policies_setting['wps_rma_s
 		),
 	);
 }
+
+$wps_rma_condition2_visible_policies = array(
+	'wps_rma_order_status',
+	'wps_rma_tax_handling',
+	'wps_rma_exclude_via_categories',
+	'wps_rma_exclude_via_products',
+);
 ?>
 <div id="add_more_rma_policies_clone">
 	<input type="hidden" value="1" class="wps_rma_get_current_i">
@@ -66,13 +73,13 @@ if ( empty( $rma_policies_setting ) || ( isset( $rma_policies_setting['wps_rma_s
 		<option value="wps_rma_less_than_equal"><?php esc_html_e( 'Less than equal to', 'woo-refund-and-exchange-lite' ); ?></option>
 		<option value="wps_rma_greater_than_equal"><?php esc_html_e( 'Greater than equal to', 'woo-refund-and-exchange-lite' ); ?></option>
 	</select>
-	<select name="wps_rma_setting[1][row_conditions2]" class="wps_rma_conditions2 wps_rma_policy_condition">
+	<select name="wps_rma_setting[1][row_conditions2]" class="wps_rma_conditions2 wps_rma_policy_condition" style="display:none;">
 		<option value="wps_rma_equal_to"><?php esc_html_e( 'Equal to', 'woo-refund-and-exchange-lite' ); ?></option>
 		<option value="wps_rma_not_equal_to"><?php esc_html_e( 'Not Equal to', 'woo-refund-and-exchange-lite' ); ?></option>
 	</select>
 	<input type="number" name="wps_rma_setting[1][row_value]" class="wps_rma_max_number_days" placeholder="<?php esc_html_e( 'Enter the max number of days for refund', 'woo-refund-and-exchange-lite' ); ?>">
 
-	<select name="wps_rma_setting[1][row_statuses][]" class="wps_rma_order_statues1" multiple>
+	<select name="wps_rma_setting[1][row_statuses][]" class="wps_rma_order_statues1" multiple style="display:none;" disabled>
 		<?php
 			$statuss = wc_get_order_statuses();
 		?>
@@ -80,7 +87,7 @@ if ( empty( $rma_policies_setting ) || ( isset( $rma_policies_setting['wps_rma_s
 			<option value="<?php echo esc_html( $key ); ?>" <?php echo isset( $value['row_statuses'] ) ? ( in_array( $key, $value['row_statuses'], true ) ? 'selected' : '' ) : ''; ?>><?php echo esc_html( $statuss ); ?></option>
 		<?php endforeach; ?>
 	</select> 
-	<select name="wps_rma_setting[1][row_tax]" class="wps_rma_tax_handling">
+	<select name="wps_rma_setting[1][row_tax]" class="wps_rma_tax_handling" style="display:none;" disabled>
 		<option value="wps_rma_inlcude_tax"><?php esc_html_e( 'Include Tax', 'woo-refund-and-exchange-lite' ); ?></option>
 		<option value="wps_rma_exclude_tax"><?php esc_html_e( 'Exclude Tax', 'woo-refund-and-exchange-lite' ); ?></option>
 	</select>
@@ -101,6 +108,11 @@ if ( empty( $rma_policies_setting ) || ( isset( $rma_policies_setting['wps_rma_s
 						continue;
 					}
 				}
+				$wps_rma_show_condition1 = empty( $value['row_policy'] ) || in_array( $value['row_policy'], array( 'wps_rma_maximum_days', 'wps_rma_min_order' ), true );
+				$wps_rma_show_condition2 = ! empty( $value['row_policy'] ) && in_array( $value['row_policy'], $wps_rma_condition2_visible_policies, true );
+				$wps_rma_show_number_field = ! empty( $value['row_policy'] ) && in_array( $value['row_policy'], array( 'wps_rma_maximum_days', 'wps_rma_min_order' ), true );
+				$wps_rma_show_status_field = ! empty( $value['row_policy'] ) && 'wps_rma_order_status' === $value['row_policy'];
+				$wps_rma_show_tax_field = ! empty( $value['row_policy'] ) && 'wps_rma_tax_handling' === $value['row_policy'];
 				?>
 				<div class="add_more_rma_policies">
 					<select name="wps_rma_setting[<?php echo esc_html( $count ); ?>][row_functionality]" class="wps_rma_on_functionality">
@@ -131,36 +143,38 @@ if ( empty( $rma_policies_setting ) || ( isset( $rma_policies_setting['wps_rma_s
 					</select>
 
 					<label class="wps_rma_conditions_label" ><?php esc_html_e( 'is', 'woo-refund-and-exchange-lite' ); ?></label>
-					<select name="wps_rma_setting[<?php echo esc_html( $count ); ?>][row_conditions1]" class="wps_rma_conditions1 wps_rma_policy_condition">
+					<select name="wps_rma_setting[<?php echo esc_html( $count ); ?>][row_conditions1]" class="wps_rma_conditions1 wps_rma_policy_condition" <?php echo $wps_rma_show_condition1 ? '' : 'style="display:none;"'; ?>>
 						<option value="wps_rma_less_than" <?php selected( 'wps_rma_less_than', isset( $value['row_conditions1'] ) ? $value['row_conditions1'] : '' ); ?>><?php esc_html_e( 'Less than', 'woo-refund-and-exchange-lite' ); ?></option>
 						<option value="wps_rma_greater_than" <?php selected( 'wps_rma_greater_than', isset( $value['row_conditions1'] ) ? $value['row_conditions1'] : '' ); ?>><?php esc_html_e( 'Greater than', 'woo-refund-and-exchange-lite' ); ?></option>
 						<option value="wps_rma_less_than_equal" <?php selected( 'wps_rma_less_than_equal', isset( $value['row_conditions1'] ) ? $value['row_conditions1'] : '' ); ?>><?php esc_html_e( 'Less than equal to', 'woo-refund-and-exchange-lite' ); ?></option>
 						<option value="wps_rma_greater_than_equal" <?php selected( 'wps_rma_greater_than_equal', isset( $value['row_conditions1'] ) ? $value['row_conditions1'] : '' ); ?>><?php esc_html_e( 'Greater than equal to', 'woo-refund-and-exchange-lite' ); ?></option>
 					</select>
-					<select name="wps_rma_setting[<?php echo esc_html( $count ); ?>][row_conditions2]" class="wps_rma_conditions2 wps_rma_policy_condition">
+					<select name="wps_rma_setting[<?php echo esc_html( $count ); ?>][row_conditions2]" class="wps_rma_conditions2 wps_rma_policy_condition" <?php echo $wps_rma_show_condition2 ? '' : 'style="display:none;"'; ?>>
 						<option value="wps_rma_equal_to" <?php selected( 'wps_rma_equal_to', isset( $value['row_conditions2'] ) ? $value['row_conditions2'] : '' ); ?>><?php esc_html_e( 'Equal to', 'woo-refund-and-exchange-lite' ); ?></option>
 						<option value="wps_rma_not_equal_to" <?php selected( 'wps_rma_not_equal_to', isset( $value['row_conditions2'] ) ? $value['row_conditions2'] : '' ); ?>><?php esc_html_e( 'Not Equal to', 'woo-refund-and-exchange-lite' ); ?></option>
 					</select>
-					<input type="number" name="wps_rma_setting[<?php echo esc_html( $count ); ?>][row_value]" class="wps_rma_max_number_days" placeholder="<?php esc_html_e( 'Enter the max number of days for refund', 'woo-refund-and-exchange-lite' ); ?>" value="<?php echo isset( $value['row_value'] ) ? esc_html( $value['row_value'] ) : ''; ?>">
-					<?php
-					// Add More Setting.
-					do_action( 'wps_rma_setting_extend_show_column5', $value, $count );
-					?>
-					<select name="wps_rma_setting[<?php echo esc_html( $count ); ?>][row_statuses][]" class="wps_rma_order_statues" multiple>
+					<input type="number" name="wps_rma_setting[<?php echo esc_html( $count ); ?>][row_value]" class="wps_rma_max_number_days" placeholder="<?php esc_html_e( 'Enter the max number of days for refund', 'woo-refund-and-exchange-lite' ); ?>" value="<?php echo isset( $value['row_value'] ) ? esc_html( $value['row_value'] ) : ''; ?>" <?php echo $wps_rma_show_number_field ? '' : 'style="display:none;"'; ?>>
+					<select name="wps_rma_setting[<?php echo esc_html( $count ); ?>][row_statuses][]" class="wps_rma_order_statues" multiple <?php echo $wps_rma_show_status_field ? '' : 'style="display:none;" disabled'; ?>>
 						<?php
 						$statuss = wc_get_order_statuses();
 						$statuss =
 						// To remove the unwanted order status.
 						apply_filters( 'wps_rma_unset_unsed_statuses', $statuss );
 						?>
-						<?php foreach ( $statuss as $key => $statuss ) : ?>
-							<option value="<?php echo esc_html( $key ); ?>" <?php echo isset( $value['row_statuses'] ) ? ( in_array( $key, $value['row_statuses'], true ) ? 'selected' : '' ) : ''; ?>><?php echo esc_html( $statuss ); ?></option>
+						<?php foreach ( $statuss as $status_key => $status_label ) : ?>
+							<option value="<?php echo esc_html( $status_key ); ?>" <?php echo isset( $value['row_statuses'] ) ? ( in_array( $status_key, $value['row_statuses'], true ) ? 'selected' : '' ) : ''; ?>><?php echo esc_html( $status_label ); ?></option>
 						<?php endforeach; ?>
 					</select>
-					<select name="wps_rma_setting[<?php echo esc_html( $count++ ); ?>][row_tax]" class="wps_rma_tax_handling">
+					<select name="wps_rma_setting[<?php echo esc_html( $count++ ); ?>][row_tax]" class="wps_rma_tax_handling" <?php echo $wps_rma_show_tax_field ? '' : 'style="display:none;" disabled'; ?>>
 						<option value="wps_rma_inlcude_tax" <?php selected( 'wps_rma_inlcude_tax', isset( $value['row_tax'] ) ? $value['row_tax'] : '' ); ?>><?php esc_html_e( 'Include Tax', 'woo-refund-and-exchange-lite' ); ?></option>
 						<option value="wps_rma_exclude_tax" <?php selected( 'wps_rma_exclude_tax', isset( $value['row_tax'] ) ? $value['row_tax'] : '' ); ?>><?php esc_html_e( 'Exclude Tax', 'woo-refund-and-exchange-lite' ); ?></option>
 					</select>
+					<?php
+					// Add More Setting.
+					do_action( 'wps_rma_setting_extend_show_column5', $value, $count );
+					?>
+					
+					
 					<input type="button" value="X" class="rma_policy_delete">
 				</div>
 				<?php

@@ -316,7 +316,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			wp_enqueue_script( 'wps-wrael-datatable', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/datatables.net/js/jquery.dataTables.min.js', array(), $this->wrael_asset_version( 'package/lib/datatables.net/js/jquery.dataTables.min.js' ), false );
 			wp_enqueue_script( 'wps-wrael-datatable-btn', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/datatables.net/buttons/dataTables.buttons.min.js', array(), $this->wrael_asset_version( 'package/lib/datatables.net/buttons/dataTables.buttons.min.js' ), false );
 			wp_enqueue_script( 'wps-wrael-datatable-btn-2', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/datatables.net/buttons/buttons.html5.min.js', array(), $this->wrael_asset_version( 'package/lib/datatables.net/buttons/buttons.html5.min.js' ), false );
-			wp_register_script( $this->plugin_name . 'admin-js', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/js/woo-refund-and-exchange-lite-admin.min.js', array( 'jquery', 'wps-wrael-select2', 'wps-wrael-metarial-js', 'wps-wrael-metarial-js2', 'wps-wrael-metarial-lite' ), $this->wrael_asset_version( 'admin/js/woo-refund-and-exchange-lite-admin.min.js' ), false );
+			wp_register_script( $this->plugin_name . 'admin-js', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/js/woo-refund-and-exchange-lite-admin.js', array( 'jquery', 'wps-wrael-select2', 'wps-wrael-metarial-js', 'wps-wrael-metarial-js2', 'wps-wrael-metarial-lite' ), $this->wrael_asset_version( 'admin/js/woo-refund-and-exchange-lite-admin.js' ), false );
 			wp_localize_script(
 				$this->plugin_name . 'admin-js',
 				'wrael_admin_param',
@@ -1095,7 +1095,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 
 		$wps_rma_settings_order_message[] = array(
 			'title'       => esc_html__( 'Background Color', 'woo-refund-and-exchange-lite' ),
-			'type'        => 'text',
+			'type'        => 'color',
 			'id'          => 'wps_rma_order_msg_background_color',
 			'value'       => get_option( 'wps_rma_order_msg_background_color' ),
 			'class'       => 'wrael-text-class',
@@ -1104,7 +1104,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 
 		$wps_rma_settings_order_message[] = array(
 			'title'       => esc_html__( 'Surface Color', 'woo-refund-and-exchange-lite' ),
-			'type'        => 'text',
+			'type'        => 'color',
 			'id'          => 'wps_rma_order_msg_surface_color',
 			'value'       => get_option( 'wps_rma_order_msg_surface_color' ),
 			'class'       => 'wrael-text-class',
@@ -1113,7 +1113,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 
 		$wps_rma_settings_order_message[] = array(
 			'title'       => esc_html__( 'Accent Color', 'woo-refund-and-exchange-lite' ),
-			'type'        => 'text',
+			'type'        => 'color',
 			'id'          => 'wps_rma_order_msg_accent_color',
 			'value'       => get_option( 'wps_rma_order_msg_accent_color' ),
 			'class'       => 'wrael-text-class',
@@ -1122,7 +1122,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 
 		$wps_rma_settings_order_message[] = array(
 			'title'       => esc_html__( 'Text Color', 'woo-refund-and-exchange-lite' ),
-			'type'        => 'text',
+			'type'        => 'color',
 			'id'          => 'wps_rma_order_msg_text_color',
 			'value'       => get_option( 'wps_rma_order_msg_text_color' ),
 			'class'       => 'wrael-text-class',
@@ -1131,7 +1131,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 
 		$wps_rma_settings_order_message[] = array(
 			'title'       => esc_html__( 'Button Text Color', 'woo-refund-and-exchange-lite' ),
-			'type'        => 'text',
+			'type'        => 'color',
 			'id'          => 'wps_rma_order_msg_button_text_color',
 			'value'       => get_option( 'wps_rma_order_msg_button_text_color' ),
 			'class'       => 'wrael-text-class',

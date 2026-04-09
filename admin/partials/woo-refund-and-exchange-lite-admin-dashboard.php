@@ -46,7 +46,6 @@ $wrael_active_tab_data   = isset( $wrael_default_tabs[ $wrael_active_tab ] ) ? $
 $wrael_wps_video_link    = $wrael_is_pro_active ? 'https://youtu.be/QyfzruqwnSM' : 'https://youtu.be/GQhXfBtzLE0';
 $wrael_wps_document_link = 'https://docs.wpswings.com/rma-return-refund-exchange-for-woocommerce/?utm_source=wpswings-rma-doc&utm_medium=rma-pro-backend&utm_campaign=doc';
 $wrael_support_link      = 'https://wpswings.com/submit-query/?utm_source=wpswings-rma-support&utm_medium=rma-org-backend&utm_campaign=support/';
-$wrael_upgrade_link      = 'https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma&utm_medium=rma-org-page&utm_campaign=go-pro';
 $wrael_plugins_link      = 'https://wpswings.com/woocommerce-plugins/?utm_source=wpswings-rma&utm_medium=rma-backend&utm_campaign=more-plugins';
 $wrael_hire_us_link      = 'https://wpswings.com/contact-us/?utm_source=wpswings-rma&utm_medium=rma-backend&utm_campaign=hire-us';
 $wrael_version_label     = $wrael_is_pro_active && defined( 'RMA_RETURN_REFUND_EXCHANGE_FOR_WOOCOMMERCE_PRO_VERSION' ) ? 'v' . RMA_RETURN_REFUND_EXCHANGE_FOR_WOOCOMMERCE_PRO_VERSION . ' Pro' : 'v' . WOO_REFUND_AND_EXCHANGE_LITE_VERSION . ' Lite';
@@ -118,7 +117,9 @@ $wrael_get_tab_presentation = static function( $tab_key, $tab_data ) use ( $wrae
 			break;
 		case 'rma-return-refund-exchange-for-woocommerce-pro-license':
 			$presentation['eyebrow']     = esc_html__( 'License', 'woo-refund-and-exchange-lite' );
-			$presentation['description'] = esc_html__( 'Validate your purchase code to unlock the licensed pro feature set and maintain update eligibility.', 'woo-refund-and-exchange-lite' );
+			$presentation['title']       = esc_html__( 'License Activation', 'woo-refund-and-exchange-lite' );
+			$presentation['description'] = esc_html__( 'Validate your purchase code to unlock the pro capability set and ongoing updates.', 'woo-refund-and-exchange-lite' );
+			$presentation['action_label'] = esc_html__( 'Documentation', 'woo-refund-and-exchange-lite' );
 			break;
 		case 'rma-return-refund-exchange-for-woocommerce-pro-system-status':
 			$presentation['eyebrow']     = esc_html__( 'System Status', 'woo-refund-and-exchange-lite' );
@@ -145,7 +146,7 @@ $wrael_render_sidebar = static function() use ( $wrael_wps_document_link, $wrael
 		<div class="wps-rma-sidebar-card wps-rma-sidebar-card--accent">
 			<h3><?php esc_html_e( 'Still facing problems?', 'woo-refund-and-exchange-lite' ); ?></h3>
 			<p><?php esc_html_e( 'We are ready to resolve workflow, styling, and integration issues across your store setup.', 'woo-refund-and-exchange-lite' ); ?></p>
-			<a href="<?php echo esc_url( $wrael_hire_us_link ); ?>" target="_blank" class="wps-rma-sidebar-button"><?php esc_html_e( 'Hire Us', 'woo-refund-and-exchange-lite' ); ?></a>
+			<a href="<?php echo esc_url( $wrael_hire_us_link ); ?>" target="_blank" class="wps-rma-sidebar-button"><?php esc_html_e( 'Contact Us', 'woo-refund-and-exchange-lite' ); ?></a>
 		</div>
 		<div class="wps-rma-sidebar-card">
 			<h3><?php esc_html_e( 'Explore more plugins', 'woo-refund-and-exchange-lite' ); ?></h3>
@@ -175,8 +176,7 @@ $wrael_layout_notice_dismiss_url = wp_nonce_url(
 	'wrael_hide_layout_notice'
 );
 
-do_action( 'wps_rma_show_license_info' );
-?>
+	?>
 <div class="wps-rma-shell<?php echo $wrael_is_multistep_mode ? ' wps-rma-shell--multistep' : ''; ?>">
 	<?php
 	// Used to get the settings during saving.
@@ -193,22 +193,21 @@ do_action( 'wps_rma_show_license_info' );
 		</div>
 	<?php endif; ?>
 
-	<div class="wps-rma-shell__promo">
-		<div class="wps-rma-shell__promo-text">
+		<div class="wps-rma-shell__promo">
+			<div class="wps-rma-shell__promo-text">
 			<?php if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) : ?>
 				<span class="wps-rma-shell__promo-badge"><?php esc_html_e( 'Pro Active', 'woo-refund-and-exchange-lite' ); ?></span>
 				<?php esc_html_e( 'RMA Return Refund & Exchange for WooCommerce Pro', 'woo-refund-and-exchange-lite' ); ?>
 			<?php else : ?>
-				<span class="wps-rma-shell__promo-badge"><?php esc_html_e( 'Limited Offer', 'woo-refund-and-exchange-lite' ); ?></span>
-				<?php esc_html_e( 'Create a cleaner return experience with better customer communication and workflow control.', 'woo-refund-and-exchange-lite' ); ?>
+				<span class="wps-rma-shell__promo-badge"><?php esc_html_e( 'Free Active', 'woo-refund-and-exchange-lite' ); ?></span>
+				<?php esc_html_e( 'Return Refund and Exchange for WooCommerce', 'woo-refund-and-exchange-lite' ); ?>
 			<?php endif; ?>
 		</div>
-		<?php if ( ! function_exists( 'wps_rma_pro_active' ) || ! wps_rma_pro_active() ) : ?>
-			<a href="<?php echo esc_url( $wrael_upgrade_link ); ?>" target="_blank" class="wps-rma-shell__promo-link"><?php esc_html_e( 'Upgrade Now', 'woo-refund-and-exchange-lite' ); ?></a>
-		<?php endif; ?>
-	</div>
+		</div>
 
-	<div class="wps-rma-shell__frame">
+		<?php do_action( 'wps_rma_show_license_info' ); ?>
+
+		<div class="wps-rma-shell__frame">
 		<div class="wps-rma-shell__topbar">
 			<div class="wps-rma-shell__version"><?php echo esc_html( $wrael_version_label ); ?></div>
 			<?php if ( ! $wrael_is_multistep_mode ) : ?>
@@ -260,27 +259,10 @@ do_action( 'wps_rma_show_license_info' );
 				<div class="wps-rma-shell__setup-flag"><?php esc_html_e( 'Setup Assistant', 'woo-refund-and-exchange-lite' ); ?></div>
 			<?php endif; ?>
 
-			<?php if ( ! $wrael_is_pro_active ) : ?>
-				<a class="wps_go_pro_link wps-rma-shell__upgrade" target="_blank" href="<?php echo esc_url( $wrael_upgrade_link ); ?>"><?php esc_html_e( 'Upgrade to Pro', 'woo-refund-and-exchange-lite' ); ?></a>
-			<?php endif; ?>
 		</div>
 
 		<div class="wps-rma-shell__layout">
 			<div class="wps-rma-shell__main">
-				<?php if ( ! $wrael_is_multistep_mode ) : ?>
-					<div class="wps-rma__popup-for-pro-wrap">
-						<div class="wps-rma__popup-for-pro-shadow"></div>
-						<div class="wps-rma__popup-for-pro">
-							<span class="wps-rma__popup-for-pro-close">+</span>
-							<h2 class="wps-rma__popup-for-pro-title"><?php esc_html_e( 'Want More ?? Go Pro !!', 'woo-refund-and-exchange-lite' ); ?></h2>
-							<p class="wps-rma__popup-for-pro-content"><i><?php echo esc_html__( 'The Pro Version will unlock all of the feature', 'woo-refund-and-exchange-lite' ) . '<br/>' . esc_html__( 'This will easily process returns, refunds, exchange, and cancellation requests with outstanding auto re-stocking, global shipping, wallet integration, and email notifications feature making it the perfect return management system', 'woo-refund-and-exchange-lite' ); ?></i></p>
-							<div class="wps-rma__popup-for-pro-link-wrap">
-								<a target="_blank" href="<?php echo esc_url( $wrael_upgrade_link ); ?>" class="wps-rma__popup-for-pro-link"><?php esc_html_e( 'Go pro now', 'woo-refund-and-exchange-lite' ); ?></a>
-							</div>
-						</div>
-					</div>
-				<?php endif; ?>
-
 				<?php if ( $wrael_is_multistep_mode ) : ?>
 					<section class="wps-rma-shell__surface wps-rma-shell__surface--setup">
 						<div class="wps-rma-setup-modal">
@@ -296,7 +278,7 @@ do_action( 'wps_rma_show_license_info' );
 					</section>
 				<?php else : ?>
 					<?php if ( 'woo-refund-and-exchange-lite-overview' !== $wrael_active_tab ) : ?>
-						<section class="wps-rma-shell__hero">
+						<section class="wps-rma-shell__hero<?php echo 'rma-return-refund-exchange-for-woocommerce-pro-license' === $wrael_active_tab ? ' wps-rma-shell__hero--license' : ''; ?>">
 							<div>
 								<span class="wps-rma-shell__eyebrow"><?php echo esc_html( $wrael_active_tab_meta['eyebrow'] ); ?></span>
 								<h1><?php echo esc_html( $wrael_active_tab_meta['title'] ); ?></h1>

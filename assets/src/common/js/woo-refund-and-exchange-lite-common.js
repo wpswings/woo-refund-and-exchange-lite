@@ -109,7 +109,6 @@ jQuery(function($){
 			$( '#wps_rma_return_alert' ).html( alerthtml );
 			$( '#wps_rma_return_alert' ).addClass('woocommerce-error');
 			$( '#wps_rma_return_alert' ).removeClass('woocommerce-message');
-			$( '#wps_rma_return_alert' ).css('background-color', 'red');
 			$( 'html, body' ).animate(
 			{
 				scrollTop: $( '#wps_rma_return_request_container' ).offset().top
@@ -168,7 +167,6 @@ jQuery(function($){
 						// Start redirect page countdown on refund request form
 						$('#wps_rma_return_alert').removeClass('woocommerce-error');
 						$('#wps_rma_return_alert').addClass('woocommerce-message');
-						$('#wps_rma_return_alert').css('background-color', '#8FAE1B');
 						$('#wps_rma_return_alert' ).show();
 						$('#wps_rma_return_alert').html( response.msg + ' in ' + '<b><span id="countdownTimer"></span>' + ' seconds</b>' );
 						$('.wps_rma_return_notification').hide();
@@ -329,4 +327,3 @@ jQuery(function($){
 		});
 	});
 });
-

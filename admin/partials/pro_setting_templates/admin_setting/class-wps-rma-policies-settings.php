@@ -91,6 +91,8 @@ if ( ! class_exists( 'Wps_Rma_Policies_Settings' ) ) {
 		public function wps_rma_setting_extend_show_column5_set( $value, $count ) {
 			$all_cat  = get_terms( 'product_cat' );
 			$cat_name = array();
+			$show_excluded_categories = ! empty( $value['row_policy'] ) && 'wps_rma_exclude_via_categories' === $value['row_policy'];
+			$show_excluded_products   = ! empty( $value['row_policy'] ) && 'wps_rma_exclude_via_products' === $value['row_policy'];
 			if ( $all_cat ) {
 				foreach ( $all_cat as $cat ) {
 					$cat_name[ $cat->term_id ] = $cat->name;
@@ -105,7 +107,7 @@ if ( ! class_exists( 'Wps_Rma_Policies_Settings' ) ) {
 				)
 			);
 			?>
-			<select name="wps_rma_setting[<?php echo esc_html( $count ); ?>][row_ex_cate][]" class="wps_rma_ex_cate" multiple>   
+			<select name="wps_rma_setting[<?php echo esc_html( $count ); ?>][row_ex_cate][]" class="wps_rma_ex_cate" multiple <?php echo $show_excluded_categories ? '' : 'style="display:none;" disabled'; ?>>   
 				<?php
 				foreach ( $cat_name as $key => $cat_name ) {
 					?>
@@ -122,7 +124,7 @@ if ( ! class_exists( 'Wps_Rma_Policies_Settings' ) ) {
 				}
 				?>
 			</select>
-			<select name="wps_rma_setting[<?php echo esc_html( $count ); ?>][row_ex_prod][]" class="wps_rma_ex_prod" multiple>   
+			<select name="wps_rma_setting[<?php echo esc_html( $count ); ?>][row_ex_prod][]" class="wps_rma_ex_prod" multiple <?php echo $show_excluded_products ? '' : 'style="display:none;" disabled'; ?>>   
 				<?php
 				foreach ( $all_products_ids as $key => $product_id ) {
 					$product = wc_get_product( $product_id );
@@ -162,14 +164,14 @@ if ( ! class_exists( 'Wps_Rma_Policies_Settings' ) ) {
 				)
 			);
 			?>
-			<select name="wps_rma_setting[1][row_ex_cate][]" class="wps_rma_ex_cate1" multiple>   
+			<select name="wps_rma_setting[1][row_ex_cate][]" class="wps_rma_ex_cate1" multiple style="display:none;" disabled>   
 			<?php
 			foreach ( $cat_name as $key => $cat_name ) {
 				echo '<option value="' . esc_html( $key ) . '">' . esc_html( $cat_name ) . '</option>';
 			}
 			?>
 			</select>
-			<select name="wps_rma_setting[1][row_ex_prod][]" class="wps_rma_ex_prod1" multiple>   
+			<select name="wps_rma_setting[1][row_ex_prod][]" class="wps_rma_ex_prod1" multiple style="display:none;" disabled>   
 			<?php
 			foreach ( $all_products_ids as $key => $product_id ) {
 				$product = wc_get_product( $product_id );

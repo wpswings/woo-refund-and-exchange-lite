@@ -1,20 +1,21 @@
 jQuery(function($){
-	// Show refund subject field if other option is selected.
-	var wps_rma_return_request_subject = $( '#wps_rma_return_request_subject' ).val();
-	if (wps_rma_return_request_subject == null || wps_rma_return_request_subject == '') {
-		$( '#wps_rma_return_request_subject_text' ).show();
-	} else {
-		$( '#wps_rma_return_request_subject_text' ).hide();
+	function toggleRefundSubjectField() {
+		var reason = $( '#wps_rma_return_request_subject' ).val();
+		var $otherSubjectWrap = $( '.wps_rma_other_subject' );
+
+		if ( reason == null || reason == '' ) {
+			$otherSubjectWrap.show();
+		} else {
+			$otherSubjectWrap.hide();
+		}
 	}
 
+	// Show refund subject field if other option is selected.
+	toggleRefundSubjectField();
+
 	// onchange Show refund subject field if other option is selected.
-	$( '#wps_rma_return_request_subject' ).on( 'click', function(){
-		var reason = $( this ).val();
-		if (reason == null || reason == '') {
-			$( '#wps_rma_return_request_subject_text' ).show();
-		} else {
-			$( '#wps_rma_return_request_subject_text' ).hide();
-		}
+	$( '#wps_rma_return_request_subject' ).on( 'click change', function(){
+		toggleRefundSubjectField();
 	});
 
 	// Add more file field on the refund request form.

@@ -288,7 +288,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 
 			$refund_app_setting_extend[] = array(
 				'title'       => esc_html__( 'Background Color', 'woo-refund-and-exchange-lite' ),
-				'type'        => 'text',
+				'type'        => 'color',
 				'id'          => 'wps_rma_refund_background_color',
 				'value'       => get_option( 'wps_rma_refund_background_color' ),
 				'class'       => 'wrael-text-class',
@@ -297,7 +297,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 
 			$refund_app_setting_extend[] = array(
 				'title'       => esc_html__( 'Surface Color', 'woo-refund-and-exchange-lite' ),
-				'type'        => 'text',
+				'type'        => 'color',
 				'id'          => 'wps_rma_refund_surface_color',
 				'value'       => get_option( 'wps_rma_refund_surface_color' ),
 				'class'       => 'wrael-text-class',
@@ -306,7 +306,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 
 			$refund_app_setting_extend[] = array(
 				'title'       => esc_html__( 'Accent Color', 'woo-refund-and-exchange-lite' ),
-				'type'        => 'text',
+				'type'        => 'color',
 				'id'          => 'wps_rma_refund_accent_color',
 				'value'       => get_option( 'wps_rma_refund_accent_color' ),
 				'class'       => 'wrael-text-class',
@@ -315,7 +315,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 
 			$refund_app_setting_extend[] = array(
 				'title'       => esc_html__( 'Text Color', 'woo-refund-and-exchange-lite' ),
-				'type'        => 'text',
+				'type'        => 'color',
 				'id'          => 'wps_rma_refund_text_color',
 				'value'       => get_option( 'wps_rma_refund_text_color' ),
 				'class'       => 'wrael-text-class',
@@ -324,7 +324,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 
 			$refund_app_setting_extend[] = array(
 				'title'       => esc_html__( 'Button Text Color', 'woo-refund-and-exchange-lite' ),
-				'type'        => 'text',
+				'type'        => 'color',
 				'id'          => 'wps_rma_refund_button_text_color',
 				'value'       => get_option( 'wps_rma_refund_button_text_color' ),
 				'class'       => 'wrael-text-class',
@@ -738,7 +738,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 
 			$wps_rma_settings_exchange[] = array(
 				'title'       => esc_html__( 'Background Color', 'woo-refund-and-exchange-lite' ),
-				'type'        => 'text',
+				'type'        => 'color',
 				'id'          => 'wps_rma_exchange_background_color',
 				'value'       => get_option( 'wps_rma_exchange_background_color' ),
 				'class'       => 'wrael-text-class ' . $this->rma_pro_activate,
@@ -747,7 +747,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 
 			$wps_rma_settings_exchange[] = array(
 				'title'       => esc_html__( 'Surface Color', 'woo-refund-and-exchange-lite' ),
-				'type'        => 'text',
+				'type'        => 'color',
 				'id'          => 'wps_rma_exchange_surface_color',
 				'value'       => get_option( 'wps_rma_exchange_surface_color' ),
 				'class'       => 'wrael-text-class ' . $this->rma_pro_activate,
@@ -756,7 +756,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 
 			$wps_rma_settings_exchange[] = array(
 				'title'       => esc_html__( 'Accent Color', 'woo-refund-and-exchange-lite' ),
-				'type'        => 'text',
+				'type'        => 'color',
 				'id'          => 'wps_rma_exchange_accent_color',
 				'value'       => get_option( 'wps_rma_exchange_accent_color' ),
 				'class'       => 'wrael-text-class ' . $this->rma_pro_activate,
@@ -765,7 +765,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 
 			$wps_rma_settings_exchange[] = array(
 				'title'       => esc_html__( 'Text Color', 'woo-refund-and-exchange-lite' ),
-				'type'        => 'text',
+				'type'        => 'color',
 				'id'          => 'wps_rma_exchange_text_color',
 				'value'       => get_option( 'wps_rma_exchange_text_color' ),
 				'class'       => 'wrael-text-class ' . $this->rma_pro_activate,
@@ -774,7 +774,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 
 			$wps_rma_settings_exchange[] = array(
 				'title'       => esc_html__( 'Button Text Color', 'woo-refund-and-exchange-lite' ),
-				'type'        => 'text',
+				'type'        => 'color',
 				'id'          => 'wps_rma_exchange_button_text_color',
 				'value'       => get_option( 'wps_rma_exchange_button_text_color' ),
 				'class'       => 'wrael-text-class ' . $this->rma_pro_activate,

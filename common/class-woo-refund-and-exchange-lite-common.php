@@ -75,7 +75,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 				$myaccount_page     = get_option( 'woocommerce_myaccount_page_id' );
 				$myaccount_page_url = get_permalink( $myaccount_page );
 			}
-			wp_register_script( $this->plugin_name . 'common', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'common/js/woo-refund-and-exchange-lite-common.min.js', array( 'jquery' ), $this->version, false );
+			wp_register_script( $this->plugin_name . 'common', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'common/js/woo-refund-and-exchange-lite-common.js', array( 'jquery' ), $this->version, false );
 			wp_localize_script(
 				$this->plugin_name . 'common',
 				'wrael_common_param',
@@ -84,6 +84,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 					'wps_rma_nonce'             => wp_create_nonce( 'wps_rma_ajax_security' ),
 					'return_subject_msg'        => esc_html__( 'Please Enter Refund Subject.', 'woo-refund-and-exchange-lite' ),
 					'return_reason_msg'         => esc_html__( 'Please Enter Refund Reason.', 'woo-refund-and-exchange-lite' ),
+					'return_subject_reason_msg' => esc_html__( 'Please Enter Refund Subject and Refund Reason.', 'woo-refund-and-exchange-lite' ),
 					'return_select_product'     => esc_html__( 'Please Select Product to refund.', 'woo-refund-and-exchange-lite' ),
 					'check_pro_active'          => esc_html( $pro_active ),
 					'message_sent'              => esc_html__( 'The message has been sent successfully', 'woo-refund-and-exchange-lite' ),

@@ -142,7 +142,7 @@ CSS;
 				<div id="wps_rma_return_request_container" class="wps-rma-form__header">
 					<h1 class="wps-rma-form__heading"><?php esc_html_e( 'Order\'s Product Refund Request Form', 'woo-refund-and-exchange-lite' ); ?></h1>
 				</div>
-				<ul id="wps_rma_return_alert" ></ul>
+				<ul id="wps_rma_return_alert" class="wps-rma-form__notice" aria-live="polite"></ul>
 				<div class="wps_rma_product_table_wrapper wps-rma-product__table-wrapper">
 					<table class="wps-rma-product__table">
 						<thead >
@@ -356,7 +356,7 @@ CSS;
 								<option value=""><?php esc_html_e( 'Other', 'woo-refund-and-exchange-lite' ); ?></option>
 							</select>
 						</div>
-						<div class="wps_rma_other_subject">
+							<div class="wps_rma_other_subject" style="display:none;">
 							<input type="text" name="ced_rnx_return_request_subject" class="wps_rma_return_request_subject_text" value="<?php echo esc_attr( $rr_subject ); ?>" id="wps_rma_return_request_subject_text" value="<?php echo esc_html( $rr_reason ); ?>" maxlength="5000" placeholder="<?php esc_html_e( 'Write your refund reason', 'woo-refund-and-exchange-lite' ); ?>">
 						</div>
 						<?php
@@ -477,4 +477,3 @@ if ( $wps_wrma_show_sidebar_on_form ) {
 }
 
 get_footer( 'shop' );
-

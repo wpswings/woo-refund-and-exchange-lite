@@ -626,6 +626,49 @@ class Woo_Refund_And_Exchange_Lite {
 							<?php
 							break;
 
+						case 'color':
+							$current_color = '';
+
+							if ( isset( $wrael_component['value'] ) && sanitize_hex_color( $wrael_component['value'] ) ) {
+								$current_color = $wrael_component['value'];
+							} elseif ( isset( $wrael_component['placeholder'] ) && sanitize_hex_color( $wrael_component['placeholder'] ) ) {
+								$current_color = $wrael_component['placeholder'];
+							} else {
+								$current_color = '#000000';
+							}
+							?>
+						<div class="wps-form-group wps-wrael-color">
+							<div class="wps-form-group__label">
+								<label for="<?php echo esc_attr( $wrael_component['id'] ); ?>" class="wps-form-label"><?php echo ( isset( $wrael_component['title'] ) ? esc_html( $wrael_component['title'] ) : '' ); ?></label>
+							</div>
+							<div class="wps-form-group__control">
+								<div class="wps-rma-color-field" style="--wps-rma-color-current: <?php echo esc_attr( $current_color ); ?>;">
+									<input
+									class="wps-rma-color-field__input <?php echo ( isset( $wrael_component['class'] ) ? esc_attr( $wrael_component['class'] ) : '' ); ?>"
+									name="<?php echo ( isset( $wrael_component['name'] ) ? esc_html( $wrael_component['name'] ) : esc_html( $wrael_component['id'] ) ); ?>"
+									id="<?php echo esc_attr( $wrael_component['id'] ); ?>"
+									type="color"
+									value="<?php echo esc_attr( $current_color ); ?>"
+									title="<?php echo esc_attr( $current_color ); ?>"
+									aria-label="<?php echo ( isset( $wrael_component['title'] ) ? esc_attr( $wrael_component['title'] ) : esc_attr__( 'Choose color', 'woo-refund-and-exchange-lite' ) ); ?>"
+									<?php echo ' ' . ( isset( $wrael_component['attr'] ) ? esc_attr( $wrael_component['attr'] ) : '' ); ?>
+									>
+									<div class="wps-rma-color-field__content">
+										<div class="wps-rma-color-field__meta">
+											<span class="wps-rma-color-field__eyebrow"><?php esc_html_e( 'Aurora Luxe', 'woo-refund-and-exchange-lite' ); ?></span>
+											<span class="wps-rma-color-field__value"><?php echo esc_html( strtoupper( $current_color ) ); ?></span>
+										</div>
+										<span class="wps-rma-color-field__hint"><?php esc_html_e( 'Choose a color for this Aurora Luxe setting.', 'woo-refund-and-exchange-lite' ); ?></span>
+									</div>
+								</div>
+								<div class="mdc-text-field-helper-line">
+									<div class="mdc-text-field-helper-text--persistent wps-helper-text" id="" aria-hidden="true"><?php echo ( isset( $wrael_component['description'] ) ? wp_kses_post( $wrael_component['description'] ) : '' ); ?></div>
+								</div>
+							</div>
+						</div>
+							<?php
+							break;
+
 						case 'password':
 							?>
 						<div class="wps-form-group">

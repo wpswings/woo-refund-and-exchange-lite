@@ -90,8 +90,8 @@
 #save_policies_setting_form input.wps_rma_max_number_days, 
 #save_policies_setting_form .wps_rma_tax_handling,
 #save_policies_setting_form .select2.select2-container.select2-container--default {
-    max-width: 180px;
-    min-width: 180px;
+    max-width: 180px !important;
+    min-width: 180px !important;
 }
 /*Refund tab form css*/
 .wps-wrael-gen-section-form .wps-form-group .wps-form-group__control .wps-form-select .mdl-textfield__label,

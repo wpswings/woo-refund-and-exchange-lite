@@ -107,6 +107,75 @@
     padding: 10px 15px;
     margin-top: 0;
 }
+.wps-rma-form__wrapper .wps-rma-form__notice {
+    border: 1px solid transparent;
+    border-radius: 14px;
+    box-shadow: none !important;
+    box-sizing: border-box;
+    display: none;
+    line-height: 1.5;
+    list-style: none;
+    margin: 18px 0 24px;
+    padding: 14px 18px !important;
+    width: 100%;
+}
+.wps-rma-form__wrapper .wps-rma-form__notice::before {
+    content: none !important;
+    display: none !important;
+}
+.wps-rma-form__wrapper .wps-rma-form__notice li {
+    align-items: flex-start !important;
+    display: flex !important;
+    font-size: 15px;
+    font-weight: 600;
+    gap: 10px;
+    line-height: 1.5;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.wps-rma-form__wrapper .wps-rma-form__notice li + li {
+    margin-top: 8px;
+}
+.wps-rma-form__wrapper .wps-rma-form__notice li::before {
+    align-items: center;
+    border-radius: 999px;
+    color: #ffffff;
+    display: inline-flex !important;
+    flex: 0 0 22px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    height: 22px;
+    justify-content: center;
+    line-height: 1;
+    margin-top: 1px;
+    width: 22px;
+}
+.wps-rma-form__wrapper .wps-rma-form__notice.woocommerce-error {
+    background: #fff3f1 !important;
+    border-color: #f2c2bc !important;
+    color: #8f2d22 !important;
+}
+.wps-rma-form__wrapper .wps-rma-form__notice.woocommerce-error li {
+    color: #8f2d22 !important;
+}
+.wps-rma-form__wrapper .wps-rma-form__notice.woocommerce-error li::before {
+    background: #e77467;
+    content: '!';
+}
+.wps-rma-form__wrapper .wps-rma-form__notice.woocommerce-message {
+    background: #edf9f0 !important;
+    border-color: #b8debf !important;
+    color: #1f6b33 !important;
+}
+.wps-rma-form__wrapper .wps-rma-form__notice.woocommerce-message li {
+    color: #1f6b33 !important;
+}
+.wps-rma-form__wrapper .wps-rma-form__notice.woocommerce-message li::before {
+    background: #31a24c;
+    content: '\2713';
+}
 .wps-rma-form__wrapper td,
 .wps-rma-form__wrapper th {
     border: 1px solid #cccccc;

@@ -12,7 +12,6 @@
  */
 
 $wrael_support_link = 'https://wpswings.com/submit-query/?utm_source=wpswings-rma-support&utm_medium=rma-org-backend&utm_campaign=support/';
-$wrael_upgrade_link = 'https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=wpswings-rma&utm_medium=rma-org-page&utm_campaign=go-pro';
 ?>
 <div class="wps-rma-overview">
 	<div class="wps-rma-overview__hero">
@@ -71,9 +70,6 @@ $wrael_upgrade_link = 'https://wpswings.com/product/rma-return-refund-exchange-f
 		</div>
 		<div class="wps-rma-overview__cta-actions">
 			<a href="<?php echo esc_url( $wrael_support_link ); ?>" target="_blank" class="wps-rma-overview__button wps-rma-overview__button--secondary"><?php esc_html_e( 'Contact Support', 'woo-refund-and-exchange-lite' ); ?></a>
-			<?php if ( ! function_exists( 'wps_rma_pro_active' ) || ! wps_rma_pro_active() ) : ?>
-				<a href="<?php echo esc_url( $wrael_upgrade_link ); ?>" target="_blank" class="wps-rma-overview__button"><?php esc_html_e( 'Unlock Pro Features', 'woo-refund-and-exchange-lite' ); ?></a>
-			<?php endif; ?>
 		</div>
 	</div>
 </div>
