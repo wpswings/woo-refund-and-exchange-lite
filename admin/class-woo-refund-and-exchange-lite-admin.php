@@ -976,7 +976,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 
 		$wps_rma_settings_refund[] = array(
 			'title'       => esc_html__( 'Background Color', 'woo-refund-and-exchange-lite' ),
-			'type'        => 'text',
+			'type'        => 'color',
 			'id'          => 'wps_rma_refund_background_color',
 			'value'       => get_option( 'wps_rma_refund_background_color' ),
 			'class'       => 'wrael-text-class',
@@ -985,7 +985,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 
 		$wps_rma_settings_refund[] = array(
 			'title'       => esc_html__( 'Surface Color', 'woo-refund-and-exchange-lite' ),
-			'type'        => 'text',
+			'type'        => 'color',
 			'id'          => 'wps_rma_refund_surface_color',
 			'value'       => get_option( 'wps_rma_refund_surface_color' ),
 			'class'       => 'wrael-text-class',
@@ -994,7 +994,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 
 		$wps_rma_settings_refund[] = array(
 			'title'       => esc_html__( 'Accent Color', 'woo-refund-and-exchange-lite' ),
-			'type'        => 'text',
+			'type'        => 'color',
 			'id'          => 'wps_rma_refund_accent_color',
 			'value'       => get_option( 'wps_rma_refund_accent_color' ),
 			'class'       => 'wrael-text-class',
@@ -1003,7 +1003,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 
 		$wps_rma_settings_refund[] = array(
 			'title'       => esc_html__( 'Text Color', 'woo-refund-and-exchange-lite' ),
-			'type'        => 'text',
+			'type'        => 'color',
 			'id'          => 'wps_rma_refund_text_color',
 			'value'       => get_option( 'wps_rma_refund_text_color' ),
 			'class'       => 'wrael-text-class',
@@ -1012,7 +1012,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 
 		$wps_rma_settings_refund[] = array(
 			'title'       => esc_html__( 'Button Text Color', 'woo-refund-and-exchange-lite' ),
-			'type'        => 'text',
+			'type'        => 'color',
 			'id'          => 'wps_rma_refund_button_text_color',
 			'value'       => get_option( 'wps_rma_refund_button_text_color' ),
 			'class'       => 'wrael-text-class',

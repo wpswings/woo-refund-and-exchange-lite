@@ -1004,7 +1004,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 
 			$wps_rma_settings_cancel[] = array(
 				'title'       => esc_html__( 'Background Color', 'woo-refund-and-exchange-lite' ),
-				'type'        => 'text',
+				'type'        => 'color',
 				'id'          => 'wps_rma_cancel_background_color',
 				'value'       => get_option( 'wps_rma_cancel_background_color' ),
 				'class'       => 'wrael-text-class ' . $this->rma_pro_activate,
@@ -1013,7 +1013,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 
 			$wps_rma_settings_cancel[] = array(
 				'title'       => esc_html__( 'Surface Color', 'woo-refund-and-exchange-lite' ),
-				'type'        => 'text',
+				'type'        => 'color',
 				'id'          => 'wps_rma_cancel_surface_color',
 				'value'       => get_option( 'wps_rma_cancel_surface_color' ),
 				'class'       => 'wrael-text-class ' . $this->rma_pro_activate,
@@ -1022,7 +1022,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 
 			$wps_rma_settings_cancel[] = array(
 				'title'       => esc_html__( 'Accent Color', 'woo-refund-and-exchange-lite' ),
-				'type'        => 'text',
+				'type'        => 'color',
 				'id'          => 'wps_rma_cancel_accent_color',
 				'value'       => get_option( 'wps_rma_cancel_accent_color' ),
 				'class'       => 'wrael-text-class ' . $this->rma_pro_activate,
@@ -1031,7 +1031,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 
 			$wps_rma_settings_cancel[] = array(
 				'title'       => esc_html__( 'Text Color', 'woo-refund-and-exchange-lite' ),
-				'type'        => 'text',
+				'type'        => 'color',
 				'id'          => 'wps_rma_cancel_text_color',
 				'value'       => get_option( 'wps_rma_cancel_text_color' ),
 				'class'       => 'wrael-text-class ' . $this->rma_pro_activate,
@@ -1040,7 +1040,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 
 			$wps_rma_settings_cancel[] = array(
 				'title'       => esc_html__( 'Button Text Color', 'woo-refund-and-exchange-lite' ),
-				'type'        => 'text',
+				'type'        => 'color',
 				'id'          => 'wps_rma_cancel_button_text_color',
 				'value'       => get_option( 'wps_rma_cancel_button_text_color' ),
 				'class'       => 'wrael-text-class ' . $this->rma_pro_activate,

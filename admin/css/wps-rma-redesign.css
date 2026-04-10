@@ -152,6 +152,11 @@ body.wp-admin[class*="wp-swings_page_home"] {
   color: var(--wps-rma-primary) !important;
 }
 
+.wps-rma-shell__tab-link.active,
+.wps-rma-shell__tab-summary.active {
+  background: transparent;
+}
+
 .wps-rma-shell__tab-overflow-item {
   position: relative;
   z-index: 150;
