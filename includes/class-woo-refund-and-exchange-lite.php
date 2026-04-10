@@ -83,7 +83,6 @@ class Woo_Refund_And_Exchange_Lite {
 		$this->plugin_name = 'return-refund-and-exchange-for-woocommerce';
 
 		$this->woo_refund_and_exchange_lite_dependencies();
-		$this->woo_refund_and_exchange_lite_locale();
 		if ( is_admin() ) {
 			$this->woo_refund_and_exchange_lite_admin_hooks();
 		} else {
@@ -118,12 +117,6 @@ class Woo_Refund_And_Exchange_Lite {
 		 */
 		include_once plugin_dir_path( __DIR__ ) . 'includes/class-woo-refund-and-exchange-lite-loader.php';
 
-		/**
-		 * The class responsible for defining internationalization functionality
-		 * of the plugin.
-		 */
-		include_once plugin_dir_path( __DIR__ ) . 'includes/class-woo-refund-and-exchange-lite-i18n.php';
-
 		if ( is_admin() ) {
 
 			// The class responsible for defining all actions that occur in the admin area.
@@ -155,31 +148,6 @@ class Woo_Refund_And_Exchange_Lite {
 		$this->loader = new Woo_Refund_And_Exchange_Lite_Loader();
 	}
 
-	/**
-	 * Define the locale for this plugin for internationalization.
-	 *
-	 * Uses the Woo_Refund_And_Exchange_Lite_I18n class in order to set the domain and to register the hook
-	 * with WordPress.
-	 *
-	 * @since 1.0.0
-	 */
-	private function woo_refund_and_exchange_lite_locale() {
-
-		$plugin_i18n = new Woo_Refund_And_Exchange_Lite_I18n();
-
-		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
-	}
-
-	/**
-	 * Define the name of the hook to save admin notices for this plugin.
-	 *
-	 * @since 1.0.0
-	 */
-	private function wps_saved_notice_hook_name() {
-		$wps_plugin_name                            = ! empty( explode( '/', plugin_basename( __FILE__ ) ) ) ? explode( '/', plugin_basename( __FILE__ ) )[0] : '';
-		$wps_plugin_settings_saved_notice_hook_name = $wps_plugin_name . '_settings_saved_notice';
-		return $wps_plugin_settings_saved_notice_hook_name;
-	}
 
 	/**
 	 * Register all of the hooks related to the admin area functionality

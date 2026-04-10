@@ -1,22 +1,21 @@
 <?php
-
-
 /**
  * The public-facing functionality of the plugin.
  *
- * Defines the plugin name, version, and two examples hooks for how to
- * enqueue the public-facing stylesheet and JavaScript.
- * namespace woo_refund_and_exchange_lite_public.
+ * @link       https://wpswings.com/
+ * @since      1.0.0
  *
  * @package    woo-refund-and-exchange-lite
  * @subpackage woo-refund-and-exchange-lite/public
  */
+
+
 class Woo_Refund_And_Exchange_Lite_Public {
 
 	/**
 	 * The ID of this plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.0	
 	 * @var      string    $plugin_name    The ID of this plugin.
 	 */
 	private $plugin_name;

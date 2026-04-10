@@ -3,10 +3,10 @@ Contributors: wpswings
 Donate link: https://wpswings.com/
 Tags: refund, exchange, wallet, RMA, woocommerce cancel order
 Requires at least: 6.7.0
-Tested up to: 6.9.1
+Tested up to: 6.9
 WC requires at least: 6.5.0
 WC tested up to: 10.5.1
-Stable tag: 4.5.8
+Stable tag: 4.5.9
 Requires PHP: 7.2
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
