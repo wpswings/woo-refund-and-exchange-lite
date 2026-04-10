@@ -298,8 +298,8 @@ input#s2id_autogen1 {
     display: inline-block;
     font-size: 20px;
     position: absolute;
-    right: 16px;
-    top: 10px;
+    right: 20px;
+    top: 15px;
     transition: transform 0.3s ease-out;
 }
 
