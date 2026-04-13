@@ -2112,3 +2112,11 @@ body.wp-admin[class*="woo_refund_and_exchange_lite_menu"] #wpfooter,
     padding: 14px 16px;
   }
 }
+
+
+.wps-form-group:has(.submit-btn) {
+    position: sticky;
+    bottom: 0;
+    background: #fff;
+    display: block;
+}

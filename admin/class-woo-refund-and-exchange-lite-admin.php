@@ -604,7 +604,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			'type'        => 'button',
 			'id'          => 'wps_rma_save_general_setting',
 			'button_text' => esc_html__( 'Save Setting', 'woo-refund-and-exchange-lite' ),
-			'class'       => 'wrael-button-class',
+			'class'       => 'wrael-button-class submit-btn',
 		);
 		return $wrael_settings_general;
 	}
@@ -1026,7 +1026,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			'type'        => 'button',
 			'id'          => 'wps_rma_save_refund_setting',
 			'button_text' => esc_html__( 'Save Setting', 'woo-refund-and-exchange-lite' ),
-			'class'       => 'wrael-button-class',
+			'class'       => 'wrael-button-class submit-btn',
 		);
 		return $wps_rma_settings_refund;
 	}
@@ -1144,7 +1144,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			'type'        => 'button',
 			'id'          => 'wps_rma_save_text_setting',
 			'button_text' => esc_html__( 'Save Setting', 'woo-refund-and-exchange-lite' ),
-			'class'       => 'wrael-button-class',
+			'class'       => 'wrael-button-class submit-btn',
 		);
 		return $wps_rma_settings_order_message;
 	}

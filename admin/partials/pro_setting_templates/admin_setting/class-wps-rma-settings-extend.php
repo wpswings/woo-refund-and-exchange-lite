@@ -787,7 +787,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 				'type'        => 'button',
 				'id'          => 'wps_rma_save_exchange_setting',
 				'button_text' => esc_html__( 'Save Setting', 'woo-refund-and-exchange-lite' ),
-				'class'       => 'wrael-button-class button_' . $this->rma_pro_activate,
+				'class'       => 'wrael-button-class submit-btn button_' . $this->rma_pro_activate ,
 			);
 			return $wps_rma_settings_exchange;
 		}
@@ -1050,7 +1050,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 				'type'        => 'button',
 				'id'          => 'wps_rma_save_cancel_setting',
 				'button_text' => esc_html__( 'Save Setting', 'woo-refund-and-exchange-lite' ),
-				'class'       => 'wrael-button-class button_' . $this->rma_pro_activate,
+				'class'       => 'wrael-button-class button_ submit-btn',
 			);
 			return $wps_rma_settings_cancel;
 		}
@@ -1132,7 +1132,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					'type'        => 'button',
 					'id'          => 'wps_rma_save_wallet_setting',
 					'button_text' => esc_html__( 'Save Setting', 'woo-refund-and-exchange-lite' ),
-					'class'       => 'wrael-button-class button_' . $this->rma_pro_activate,
+					'class'       => 'wrael-button-class button_ submit-btn',
 				),
 			);
 			return $wps_rma_settings_wallet;
@@ -1253,7 +1253,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					'type'        => 'button',
 					'id'          => 'wps_rma_save_sms_notification_setting',
 					'button_text' => esc_html__( 'Save Setting', 'woo-refund-and-exchange-lite' ),
-					'class'       => 'wrael-button-class button_' . $this->rma_pro_activate,
+					'class'       => 'wrael-button-class button_ submit-btn',
 				),
 
 			);
@@ -1381,7 +1381,7 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					'type'        => 'button',
 					'id'          => 'wps_rma_save_whatsapp_notification_setting',
 					'button_text' => esc_html__( 'Save Setting', 'woo-refund-and-exchange-lite' ),
-					'class'       => 'wrael-button-class button_' . $this->rma_pro_activate,
+					'class'       => 'wrael-button-class button_ submit-btn',
 				),
 			);
 			return $wps_rma_settings_sms_notification;
