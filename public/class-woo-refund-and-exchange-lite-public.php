@@ -12,7 +12,6 @@
  * @subpackage woo-refund-and-exchange-lite/includes
  */
 
-
 /**
  * The public-facing functionality of the plugin.
  *
