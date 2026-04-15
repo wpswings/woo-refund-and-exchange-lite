@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * The file that defines the core plugin class
  *
  * A class definition that includes attributes and functions used across both the
@@ -22,8 +22,6 @@
  * @package    woo-refund-and-exchange-lite
  * @subpackage woo-refund-and-exchange-lite/public
  */
-
-
 class Woo_Refund_And_Exchange_Lite_Public {
 
 	/**
