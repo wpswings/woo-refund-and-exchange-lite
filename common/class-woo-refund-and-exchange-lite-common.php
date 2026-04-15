@@ -576,52 +576,57 @@ class Woo_Refund_And_Exchange_Lite_Common {
 		check_ajax_referer( 'ajax-nonce', 'nonce' );
 		unset( $_POST['action'] );
 		unset( $_POST['nonce'] );
-		$checked_refund          = isset( $_POST['checkedRefund'] ) ? 'true' === sanitize_text_field( wp_unslash( $_POST['checkedRefund'] ) ) : false;
-		$checked_order_msg       = isset( $_POST['checkedOrderMsg'] ) ? 'true' === sanitize_text_field( wp_unslash( $_POST['checkedOrderMsg'] ) ) : false;
-		$checked_order_msg_email = isset( $_POST['checkedOrderMsgEmail'] ) ? 'true' === sanitize_text_field( wp_unslash( $_POST['checkedOrderMsgEmail'] ) ) : false;
-		$checked_exchange        = isset( $_POST['checkedExchange'] ) ? 'true' === sanitize_text_field( wp_unslash( $_POST['checkedExchange'] ) ) : false;
-		$checked_cancel          = isset( $_POST['checkedCancel'] ) ? 'true' === sanitize_text_field( wp_unslash( $_POST['checkedCancel'] ) ) : false;
-		$checked_cancel_prod     = isset( $_POST['checkedCancelProd'] ) ? 'true' === sanitize_text_field( wp_unslash( $_POST['checkedCancelProd'] ) ) : false;
-		$checked_wallet          = isset( $_POST['checkedWallet'] ) ? 'true' === sanitize_text_field( wp_unslash( $_POST['checkedWallet'] ) ) : false;
-		$checked_cod             = isset( $_POST['checkedCOD'] ) ? 'true' === sanitize_text_field( wp_unslash( $_POST['checkedCOD'] ) ) : false;
-		$checked_conset          = isset( $_POST['consetCheck'] ) ? 'true' === sanitize_text_field( wp_unslash( $_POST['consetCheck'] ) ) : false;
-		$checked_reset_license   = isset( $_POST['checkedResetLicense'] ) ? 'true' === sanitize_text_field( wp_unslash( $_POST['checkedResetLicense'] ) ) : false;
-		$license_code            = isset( $_POST['licenseCode'] ) ? sanitize_text_field( wp_unslash( $_POST['licenseCode'] ) ) : '';
-		if ( $checked_refund ) {
-			update_option( 'wps_rma_refund_enable', 'on' );
-		}
-		if ( $checked_order_msg ) {
-			update_option( 'wps_rma_general_om', 'on' );
-		}
-		if ( $checked_order_msg_email ) {
-			update_option( 'wps_rma_order_email', 'on' );
-		}
-		if ( $checked_exchange ) {
-			update_option( 'wps_rma_exchange_enable', 'on' );
-		}
-		if ( $checked_cancel ) {
-			update_option( 'wps_rma_cancel_enable', 'on' );
-		}
-		if ( $checked_cancel_prod ) {
-			update_option( 'wps_rma_cancel_product', 'on' );
-		}
-		if ( $checked_wallet ) {
-			update_option( 'wps_rma_wallet_enable', 'on' );
-		}
-		if ( $checked_cod ) {
-			update_option( 'wps_rma_hide_rec', 'on' );
-		}
-		if ( $checked_conset ) {
-			update_option( 'wrael_enable_tracking', 'on' );
-		}
-		if ( $checked_reset_license ) {
-			update_option( 'mwr_radio_reset_license', 'on' );
-		}
-		if ( ! empty( $license_code ) && function_exists( 'wps_rma_license_activate' ) ) {
-			wps_rma_license_activate( $license_code );
-		}
-		update_option( 'wps_rma_plugin_standard_multistep_done', 'yes' );
-		wp_send_json( 'yes' );
+
+		if ( current_user_can( 'manage_options' ) ) {
+
+
+			$checked_refund          = isset( $_POST['checkedRefund'] ) ? 'true' === sanitize_text_field( wp_unslash( $_POST['checkedRefund'] ) ) : false;
+			$checked_order_msg       = isset( $_POST['checkedOrderMsg'] ) ? 'true' === sanitize_text_field( wp_unslash( $_POST['checkedOrderMsg'] ) ) : false;
+			$checked_order_msg_email = isset( $_POST['checkedOrderMsgEmail'] ) ? 'true' === sanitize_text_field( wp_unslash( $_POST['checkedOrderMsgEmail'] ) ) : false;
+			$checked_exchange        = isset( $_POST['checkedExchange'] ) ? 'true' === sanitize_text_field( wp_unslash( $_POST['checkedExchange'] ) ) : false;
+			$checked_cancel          = isset( $_POST['checkedCancel'] ) ? 'true' === sanitize_text_field( wp_unslash( $_POST['checkedCancel'] ) ) : false;
+			$checked_cancel_prod     = isset( $_POST['checkedCancelProd'] ) ? 'true' === sanitize_text_field( wp_unslash( $_POST['checkedCancelProd'] ) ) : false;
+			$checked_wallet          = isset( $_POST['checkedWallet'] ) ? 'true' === sanitize_text_field( wp_unslash( $_POST['checkedWallet'] ) ) : false;
+			$checked_cod             = isset( $_POST['checkedCOD'] ) ? 'true' === sanitize_text_field( wp_unslash( $_POST['checkedCOD'] ) ) : false;
+			$checked_conset          = isset( $_POST['consetCheck'] ) ? 'true' === sanitize_text_field( wp_unslash( $_POST['consetCheck'] ) ) : false;
+			$checked_reset_license   = isset( $_POST['checkedResetLicense'] ) ? 'true' === sanitize_text_field( wp_unslash( $_POST['checkedResetLicense'] ) ) : false;
+			$license_code            = isset( $_POST['licenseCode'] ) ? sanitize_text_field( wp_unslash( $_POST['licenseCode'] ) ) : '';
+			if ( $checked_refund ) {
+				update_option( 'wps_rma_refund_enable', 'on' );
+			}
+			if ( $checked_order_msg ) {
+				update_option( 'wps_rma_general_om', 'on' );
+			}
+			if ( $checked_order_msg_email ) {
+				update_option( 'wps_rma_order_email', 'on' );
+			}
+			if ( $checked_exchange ) {
+				update_option( 'wps_rma_exchange_enable', 'on' );
+			}
+			if ( $checked_cancel ) {
+				update_option( 'wps_rma_cancel_enable', 'on' );
+			}
+			if ( $checked_cancel_prod ) {
+				update_option( 'wps_rma_cancel_product', 'on' );
+			}
+			if ( $checked_wallet ) {
+				update_option( 'wps_rma_wallet_enable', 'on' );
+			}
+			if ( $checked_cod ) {
+				update_option( 'wps_rma_hide_rec', 'on' );
+			}
+			if ( $checked_conset ) {
+				update_option( 'wrael_enable_tracking', 'on' );
+			}
+			if ( $checked_reset_license ) {
+				update_option( 'mwr_radio_reset_license', 'on' );
+			}
+			if ( ! empty( $license_code ) && function_exists( 'wps_rma_license_activate' ) ) {
+				wps_rma_license_activate( $license_code );
+			}
+			update_option( 'wps_rma_plugin_standard_multistep_done', 'yes' );
+			wp_send_json( 'yes' );
+	   }
 	}
 
 	/**

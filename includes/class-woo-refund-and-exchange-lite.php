@@ -297,7 +297,7 @@ class Woo_Refund_And_Exchange_Lite {
 
 		// Save ajax request for the plugin's multistep.
 		$this->loader->add_action( 'wp_ajax_wps_standard_save_settings_filter', $wrael_plugin_common, 'wps_rma_standard_save_settings_filter' );
-		$this->loader->add_action( 'wp_ajax_nopriv_wps_standard_save_settings_filter', $wrael_plugin_common, 'wps_rma_standard_save_settings_filter' );
+		
 		if ( self::is_enbale_usage_tracking() ) {
 			$this->loader->add_action( 'wpswings_tracker_send_event', $wrael_plugin_common, 'wps_rma_tracker_send_event' );
 		}
