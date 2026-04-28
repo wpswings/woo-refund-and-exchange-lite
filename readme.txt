@@ -2,11 +2,11 @@
 Contributors: wpswings
 Donate link: https://wpswings.com/
 Tags: refund, exchange, wallet, RMA, woocommerce cancel order
-Requires at least: 6.7.0
-Tested up to: 6.9.1
-WC requires at least: 6.5.0
-WC tested up to: 10.5.1
-Stable tag: 4.5.8
+Requires at least: 6.7
+Tested up to: 6.9
+WC requires at least: 6.5
+WC tested up to: 10.7
+Stable tag: 4.6.0
 Requires PHP: 7.2
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -15,7 +15,7 @@ Provide an easy refund service and increase customer satisfaction with WooCommer
 
 == Description ==
 
-**HIGHEST-RATED REFUND AND EXCHANGE MANAGEMENT PLUGIN THAT LIFTS CUSTOMER SATISFACTION, AND CREATES A SIMPLE WOOCOMMERCE REFUND SYSTEM WITH EXCHANGE, WALLET, AND CANCEL ORDER FEATURES.**
+**Highest-rated refund and exchange management plugin that lifts customer satisfaction, and creates a simple woocommerce refund system with exchange, wallet, and cancel order features.**
 
 Return Refund and Exchange for WooCommerce lets you create simple returns and WooCommerce refund requests management system stuffed with an organized refund, exchange, wallet, and cancel order features. [**RMA Return, Refund & Exchange Plugin for WooCommerce Pro**](https://wpswings.com/product/rma-return-refund-exchange-for-woocommerce-pro/?utm_source=rma-org&utm_medium=referral&utm_campaign=rma-pro) eliminates on-call complaints and helps manage returned stock. 
 
@@ -29,10 +29,10 @@ Empower your WooCommerce store with a complete RMA solution - manage returns, re
 
 == SALIENT FEATURES OF THE RETURN REFUND AND EXCHANGE FOR WOOCOMMERCE PLUGIN ==
 
-#### **1) Set The User Limit For Refunds 
+#### **1) Set The User Limit For Refunds**: 
 Merchants can now set the user limit for refunds. This helps the WooCommerce store owners to restrict fraudulent activities from happening.
  
-#### **2) Restrict A Particular User For The Refunds
+#### **2) Restrict A Particular User For The Refunds**”
 WooCommerce returns for a particular user can also be restricted by simply entering their email addresses. Store owners can avoid fraudulent activities from occurring.
 
 #### **3) Attachments For Refund & Exchange**:
@@ -206,6 +206,46 @@ The manual installation method involves downloading our Return Refund and Exchan
 
 Automatic updates should work like a charm; as always though, ensure you backup your site just in case.
 
+== External Services ==
+
+**WP Swings Notification Service**
+Used to fetch admin notifications and updates.
+
+Data sent: Plugin version and request action
+When: On admin dashboard load
+Endpoint: https://demo.wpswings.com/client-notification/woo-gift-cards-lite/wps-client-notify.php
+Terms: https://wpswings.com/terms-and-conditions/
+Privacy: https://wpswings.com/privacy-policy
+
+
+**WP Swings Usage Tracker**
+Used to collect usage and environment data for improving plugin performance.
+
+Data sent: WooCommerce store data (via WooCommerce tracking system)
+When: On admin initialization (scheduled tracking)
+Endpoint: https://tracking.wpswings.com/wp-json/mps-route/v1/mps-testing-data/
+Terms: https://wpswings.com/terms-and-conditions/
+Privacy: https://wpswings.com/privacy-policy
+
+
+**HubSpot Onboarding Form**
+Used to collect onboarding details and user registration data.
+
+Data sent: Name, email, IP address, page URL, and form inputs
+When: When user submits onboarding form
+Endpoint: https://api.hsforms.com/submissions/v3/integration/submit/25444144/2a2fe23c-0024-43f5-9473-cbfefdb06fe2
+Terms: https://legal.hubspot.com/terms-of-service
+Privacy: https://legal.hubspot.com/privacy-policy
+
+
+**HubSpot Deactivation Feedback Form**
+Used to collect plugin deactivation feedback.
+
+Data sent: Feedback, reason, IP address, and page details
+When: When user submits deactivation feedback
+Endpoint: https://api.hsforms.com/submissions/v3/integration/submit/25444144/67feecaa-9a93-4fda-8f85-f73168da2672
+Terms: https://legal.hubspot.com/terms-of-service
+Privacy: https://legal.hubspot.com/privacy-policy 
 
 == Screenshots ==
 
@@ -227,6 +267,14 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 16. API Settings.
 
 == Changelog == 
+
+= 4.6.0 - Released on 28 April 2026 = 
+*  New - comptability with latest wc (10.7)
+
+= 4.5.9 - Released on 21 April 2026 = 
+*  Enhancement - Performance optimization
+*  Enhancement - UI enhancement
+*  New - comptability with latest wp (6.9) and wc (10.6.2)
 
 = 4.5.8 - Released on 16 February 2026 = 
 *  New - comptability with latest wp (6.9.1) and wc (10.5.1)
@@ -519,5 +567,5 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 == Upgrade Notice ==
 
-= 4.5.8 - Released on 16 February 2026 = 
-*  New - comptability with latest wp (6.9.1) and wc (10.5.1)
+= 4.6.0 - Released on 28 April 2026 = 
+*  New - comptability with latest wc (10.7)
