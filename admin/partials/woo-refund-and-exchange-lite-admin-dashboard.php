@@ -48,6 +48,7 @@ $wrael_wps_document_link = 'https://docs.wpswings.com/rma-return-refund-exchange
 $wrael_support_link      = 'https://wpswings.com/submit-query/?utm_source=wpswings-rma-support&utm_medium=rma-org-backend&utm_campaign=support/';
 $wrael_plugins_link      = 'https://wpswings.com/woocommerce-plugins/?utm_source=wpswings-rma&utm_medium=rma-backend&utm_campaign=more-plugins';
 $wrael_hire_us_link      = 'https://wpswings.com/contact-us/?utm_source=wpswings-rma&utm_medium=rma-backend&utm_campaign=hire-us';
+$wrael_services_link     = Woo_Refund_And_Exchange_Lite_Talk_To_Expert_Form::wrael_get_services_landing_url();
 $wrael_version_label     = $wrael_is_pro_active && defined( 'RMA_RETURN_REFUND_EXCHANGE_FOR_WOOCOMMERCE_PRO_VERSION' ) ? 'v' . RMA_RETURN_REFUND_EXCHANGE_FOR_WOOCOMMERCE_PRO_VERSION . ' Pro' : 'v' . WOO_REFUND_AND_EXCHANGE_LITE_VERSION . ' Lite';
 
 $wrael_get_tab_presentation = static function( $tab_key, $tab_data ) use ( $wrael_plugins_link, $wrael_support_link, $wrael_wps_document_link ) {
@@ -70,18 +71,22 @@ $wrael_get_tab_presentation = static function( $tab_key, $tab_data ) use ( $wrae
 		case 'woo-refund-and-exchange-lite-general':
 			$presentation['eyebrow']     = esc_html__( 'Settings', 'woo-refund-and-exchange-lite' );
 			$presentation['description'] = esc_html__( 'Control the base plugin behavior, refund enablement, order messaging, and request availability windows.', 'woo-refund-and-exchange-lite' );
+			$presentation['action_url']  = 'https://docs.wpswings.com/rma-return-refund-exchange-for-woocommerce/#general-settings-51';
 			break;
 		case 'woo-refund-and-exchange-lite-refund':
 			$presentation['eyebrow']     = esc_html__( 'Refund Flow', 'woo-refund-and-exchange-lite' );
 			$presentation['description'] = esc_html__( 'Configure refund request fields, attachment behavior, appearance, and related notification touchpoints.', 'woo-refund-and-exchange-lite' );
+			$presentation['action_url']  = 'https://docs.wpswings.com/rma-return-refund-exchange-for-woocommerce/#woocommerce-refund-settings-tab';
 			break;
 		case 'woo-refund-and-exchange-lite-policies':
 			$presentation['eyebrow']     = esc_html__( 'Rules Engine', 'woo-refund-and-exchange-lite' );
 			$presentation['description'] = esc_html__( 'Create policy-driven eligibility rules based on timelines, statuses, taxes, and pro feature extensions.', 'woo-refund-and-exchange-lite' );
+			$presentation['action_url']  = 'https://docs.wpswings.com/rma-return-refund-exchange-for-woocommerce/#rma-policies-tab';
 			break;
 		case 'woo-refund-and-exchange-lite-order-message':
 			$presentation['eyebrow']     = esc_html__( 'Conversations', 'woo-refund-and-exchange-lite' );
 			$presentation['description'] = esc_html__( 'Manage message-related options for merchant and customer communication tied to return workflows.', 'woo-refund-and-exchange-lite' );
+			$presentation['action_url']  = 'https://docs.wpswings.com/rma-return-refund-exchange-for-woocommerce/#order-message-tab-2';
 			break;
 		case 'woo-refund-and-exchange-lite-developer':
 			$presentation['eyebrow']      = esc_html__( 'Developers', 'woo-refund-and-exchange-lite' );
@@ -132,7 +137,29 @@ $wrael_get_tab_presentation = static function( $tab_key, $tab_data ) use ( $wrae
 	return $presentation;
 };
 
-$wrael_render_sidebar = static function() use ( $wrael_wps_document_link, $wrael_wps_video_link, $wrael_support_link, $wrael_plugins_link, $wrael_hire_us_link ) {
+$wrael_render_sidebar = static function() use ( $wrael_wps_document_link, $wrael_wps_video_link, $wrael_support_link, $wrael_plugins_link, $wrael_hire_us_link, $wrael_services_link ) {
+	$wrael_marketing_services = array(
+		array(
+			'icon'        => 'seo',
+			'title'       => esc_html__( 'SEO Services', 'woo-refund-and-exchange-lite' ),
+			'description' => esc_html__( 'Improve rankings & organic traffic', 'woo-refund-and-exchange-lite' ),
+		),
+		array(
+			'icon'        => 'ads',
+			'title'       => esc_html__( 'Google Ads Setup And G4 Setup', 'woo-refund-and-exchange-lite' ),
+			'description' => esc_html__( 'Run profitable ad campaigns', 'woo-refund-and-exchange-lite' ),
+		),
+		array(
+			'icon'        => 'speed',
+			'title'       => esc_html__( 'Speed Optimization', 'woo-refund-and-exchange-lite' ),
+			'description' => esc_html__( 'Faster store, happier customers', 'woo-refund-and-exchange-lite' ),
+		),
+		array(
+			'icon'        => 'dev',
+			'title'       => esc_html__( 'WooCommerce Development Services', 'woo-refund-and-exchange-lite' ),
+			'description' => esc_html__( 'Custom Solution For your store needs', 'woo-refund-and-exchange-lite' ),
+		),
+	);
 	?>
 	<aside class="wps-rma-shell__sidebar">
 		<div class="wps-rma-sidebar-card">
@@ -142,6 +169,27 @@ $wrael_render_sidebar = static function() use ( $wrael_wps_document_link, $wrael
 				<a href="<?php echo esc_url( $wrael_wps_document_link ); ?>" target="_blank" class="wps-rma-sidebar-link"><?php esc_html_e( 'Documentation', 'woo-refund-and-exchange-lite' ); ?></a>
 				<a href="<?php echo esc_url( $wrael_support_link ); ?>" target="_blank" class="wps-rma-sidebar-link"><?php esc_html_e( 'Support', 'woo-refund-and-exchange-lite' ); ?></a>
 			</div>
+		</div>
+		<div class="wps-rma-sidebar-card wps-rma-sidebar-card--services">
+			<div class="wps-rma-sidebar-card__header">
+				<h3><?php esc_html_e( 'Grow Your Store With Our Services', 'woo-refund-and-exchange-lite' ); ?></h3>
+				<span class="wps-rma-sidebar-card__badge" aria-hidden="true"></span>
+			</div>
+			<p><?php esc_html_e( "Expert solutions to boost your store's performance.", 'woo-refund-and-exchange-lite' ); ?></p>
+			<div class="wps-rma-service-rail">
+				<?php foreach ( $wrael_marketing_services as $wrael_marketing_service ) : ?>
+					<a href="<?php echo esc_url( $wrael_services_link ); ?>" target="_blank" class="wps-rma-service-rail__item">
+						<span class="wps-rma-service-rail__icon wps-rma-service-rail__icon--<?php echo esc_attr( $wrael_marketing_service['icon'] ); ?>" aria-hidden="true"></span>
+						<span class="wps-rma-service-rail__content">
+							<span class="wps-rma-service-rail__title"><?php echo esc_html( $wrael_marketing_service['title'] ); ?></span>
+							<span class="wps-rma-service-rail__description"><?php echo esc_html( $wrael_marketing_service['description'] ); ?></span>
+						</span>
+						<span class="wps-rma-service-rail__arrow" aria-hidden="true">&rsaquo;</span>
+					</a>
+				<?php endforeach; ?>
+			</div>
+			<button type="button" class="wps-rma-sidebar-button wps-rma-sidebar-button--full" data-wrael-open-expert-modal><?php esc_html_e( 'Talk to an Expert', 'woo-refund-and-exchange-lite' ); ?></button>
+			<div class="wps-rma-service-rail__footer"><?php esc_html_e( 'Services by WP Swings', 'woo-refund-and-exchange-lite' ); ?></div>
 		</div>
 		<div class="wps-rma-sidebar-card wps-rma-sidebar-card--accent">
 			<h3><?php esc_html_e( 'Still facing problems?', 'woo-refund-and-exchange-lite' ); ?></h3>
@@ -312,5 +360,9 @@ $wrael_layout_notice_dismiss_url = wp_nonce_url(
 				<?php $wrael_render_sidebar(); ?>
 			<?php endif; ?>
 		</div>
+
+		<?php if ( ! $wrael_is_multistep_mode ) : ?>
+			<?php Woo_Refund_And_Exchange_Lite_Talk_To_Expert_Form::wrael_render_modal(); ?>
+		<?php endif; ?>
 	</div>
 </div>

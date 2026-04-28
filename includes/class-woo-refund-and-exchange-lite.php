@@ -77,7 +77,7 @@ class Woo_Refund_And_Exchange_Lite {
 			$this->version = WOO_REFUND_AND_EXCHANGE_LITE_VERSION;
 		} else {
 
-			$this->version = '4.5.9';
+			$this->version = '4.6.0';
 		}
 
 		$this->plugin_name = 'return-refund-and-exchange-for-woocommerce';
@@ -128,6 +128,7 @@ class Woo_Refund_And_Exchange_Lite {
 
 			// The class responsible for defining all actions that occur in the admin area.
 			include_once plugin_dir_path( __DIR__ ) . 'admin/class-woo-refund-and-exchange-lite-admin.php';
+			include_once plugin_dir_path( __DIR__ ) . 'includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php';
 
 			// The class responsible for on-boarding steps for plugin.
 			if ( is_dir( plugin_dir_path( __DIR__ ) . 'onboarding' ) && ! class_exists( 'Woo_Refund_And_Exchange_Lite_Onboarding_Steps' ) ) {
@@ -188,7 +189,8 @@ class Woo_Refund_And_Exchange_Lite {
 	 * @since 1.0.0
 	 */
 	private function woo_refund_and_exchange_lite_admin_hooks() {
-		$wrael_plugin_admin = new Woo_Refund_And_Exchange_Lite_Admin( $this->wrael_get_plugin_name(), $this->wrael_get_version() );
+		$wrael_plugin_admin      = new Woo_Refund_And_Exchange_Lite_Admin( $this->wrael_get_plugin_name(), $this->wrael_get_version() );
+		$wrael_talk_to_expert    = new Woo_Refund_And_Exchange_Lite_Talk_To_Expert_Form();
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $wrael_plugin_admin, 'wrael_admin_enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $wrael_plugin_admin, 'wrael_admin_enqueue_scripts' );
@@ -221,6 +223,7 @@ class Woo_Refund_And_Exchange_Lite {
 		$this->loader->add_action( 'wp_ajax_wps_rma_return_req_cancel', $wrael_plugin_admin, 'wps_rma_return_req_cancel' );
 		$this->loader->add_action( 'wp_ajax_wps_rma_manage_stock', $wrael_plugin_admin, 'wps_rma_manage_stock' );
 		$this->loader->add_action( 'wp_ajax_wps_rma_api_secret_key', $wrael_plugin_admin, 'wps_rma_api_secret_key' );
+		$this->loader->add_action( 'wp_ajax_' . Woo_Refund_And_Exchange_Lite_Talk_To_Expert_Form::AJAX_ACTION, $wrael_talk_to_expert, 'wrael_handle_ajax_submission' );
 
 		// Save policies setting.
 		$this->loader->add_action( 'wps_rma_settings_saved_notice', $wrael_plugin_admin, 'wps_rma_save_policies_setting' );

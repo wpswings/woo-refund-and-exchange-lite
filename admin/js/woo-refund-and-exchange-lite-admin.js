@@ -892,3 +892,129 @@ jQuery(function($) {
 	window.wpsRmaToggleAuroraCustomizer = wpsRmaToggleAuroraCustomizer;
 	wpsRmaScheduleAuroraCustomizer();
 });
+
+jQuery(function($) {
+	var modalSelector = '[data-wrael-expert-modal]';
+	var openTriggerSelector = '[data-wrael-open-expert-modal]';
+	var closeTriggerSelector = '[data-wrael-expert-modal-close]';
+	var formSelector = '[data-wrael-expert-modal-form]';
+	var statusSelector = '[data-wrael-expert-modal-status]';
+	var bodyLockClass = 'wps-rma-expert-modal-open';
+
+	function wpsRmaGetExpertModal() {
+		return $( modalSelector ).first();
+	}
+
+	function wpsRmaSetExpertStatus( $modal, message, statusType ) {
+		var $status = $modal.find( statusSelector ).first();
+
+		if ( ! $status.length ) {
+			return;
+		}
+
+		if ( ! message ) {
+			$status.attr( 'hidden', true ).removeClass( 'is-success is-error' ).text( '' );
+			return;
+		}
+
+		$status.removeAttr( 'hidden' ).removeClass( 'is-success is-error' ).addClass( 'is-' + statusType ).text( message );
+	}
+
+	function wpsRmaToggleExpertModal( shouldOpen ) {
+		var $modal = wpsRmaGetExpertModal();
+
+		if ( ! $modal.length ) {
+			return;
+		}
+
+		if ( shouldOpen ) {
+			$modal.removeAttr( 'hidden' );
+			$( 'body' ).addClass( bodyLockClass );
+			wpsRmaSetExpertStatus( $modal, '', '' );
+			return;
+		}
+
+		$modal.attr( 'hidden', true );
+		$( 'body' ).removeClass( bodyLockClass );
+	}
+
+	function wpsRmaNormalizeExpertPayload( formElement ) {
+		var payload = {};
+		var formData = new window.FormData( formElement );
+
+		formData.forEach( function( value, key ) {
+			var normalizedKey = key.replace( /\[\]$/, '' );
+
+			if ( Object.prototype.hasOwnProperty.call( payload, normalizedKey ) ) {
+				if ( ! Array.isArray( payload[ normalizedKey ] ) ) {
+					payload[ normalizedKey ] = [ payload[ normalizedKey ] ];
+				}
+
+				payload[ normalizedKey ].push( value );
+				return;
+			}
+
+			payload[ normalizedKey ] = value;
+		} );
+
+		return payload;
+	}
+
+	$( document ).off( 'click.wraelExpertModalOpen', openTriggerSelector ).on( 'click.wraelExpertModalOpen', openTriggerSelector, function(event) {
+		event.preventDefault();
+		wpsRmaToggleExpertModal( true );
+	} );
+
+	$( document ).off( 'click.wraelExpertModalClose', closeTriggerSelector ).on( 'click.wraelExpertModalClose', closeTriggerSelector, function(event) {
+		event.preventDefault();
+		wpsRmaToggleExpertModal( false );
+	} );
+
+	$( document ).off( 'keydown.wraelExpertModal' ).on( 'keydown.wraelExpertModal', function(event) {
+		if ( 'Escape' === event.key ) {
+			wpsRmaToggleExpertModal( false );
+		}
+	} );
+
+	$( document ).off( 'submit.wraelExpertModal', formSelector ).on( 'submit.wraelExpertModal', formSelector, function(event) {
+		var $form = $( this );
+		var $modal = $form.closest( modalSelector );
+		var $submitButton = $form.find( 'button[type="submit"]' ).first();
+		var submitLabel = $submitButton.attr( 'data-submit-label' ) || $submitButton.text();
+		var loadingLabel = $submitButton.attr( 'data-loading-label' ) || 'Sending...';
+
+		event.preventDefault();
+		wpsRmaSetExpertStatus( $modal, '', '' );
+		$submitButton.prop( 'disabled', true ).text( loadingLabel );
+
+		$.ajax( {
+			url: wrael_admin_param.ajaxurl,
+			type: 'POST',
+			dataType: 'json',
+			data: {
+				action: wrael_admin_param.wrael_expert_action,
+				nonce: wrael_admin_param.wrael_expert_nonce,
+				form_data: JSON.stringify( wpsRmaNormalizeExpertPayload( $form.get( 0 ) ) )
+			}
+		} ).done( function( response ) {
+			var isSuccess = !! ( response && response.success );
+			var message = response && response.data && response.data.message ? response.data.message : '';
+
+			if ( ! message ) {
+				message = isSuccess ? 'Thank you for submitting your request.' : 'We could not submit your request right now. Please try again.';
+			}
+
+			wpsRmaSetExpertStatus( $modal, message, isSuccess ? 'success' : 'error' );
+		} ).fail( function( xhr ) {
+			var message = 'We could not submit your request right now. Please try again.';
+
+			if ( xhr && xhr.responseJSON && xhr.responseJSON.data && xhr.responseJSON.data.message ) {
+				message = xhr.responseJSON.data.message;
+			}
+
+			wpsRmaSetExpertStatus( $modal, message, 'error' );
+		} ).always( function() {
+			$submitButton.prop( 'disabled', false ).text( submitLabel );
+		} );
+	} );
+});
