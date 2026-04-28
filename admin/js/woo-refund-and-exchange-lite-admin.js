@@ -900,6 +900,7 @@ jQuery(function($) {
 	var formSelector = '[data-wrael-expert-modal-form]';
 	var statusSelector = '[data-wrael-expert-modal-status]';
 	var bodyLockClass = 'wps-rma-expert-modal-open';
+	var successCloseTimer = null;
 
 	function wpsRmaGetExpertModal() {
 		return $( modalSelector ).first();
@@ -925,6 +926,11 @@ jQuery(function($) {
 
 		if ( ! $modal.length ) {
 			return;
+		}
+
+		if ( successCloseTimer ) {
+			window.clearTimeout( successCloseTimer );
+			successCloseTimer = null;
 		}
 
 		if ( shouldOpen ) {
@@ -1005,6 +1011,12 @@ jQuery(function($) {
 			}
 
 			wpsRmaSetExpertStatus( $modal, message, isSuccess ? 'success' : 'error' );
+
+			if ( isSuccess && message ) {
+				successCloseTimer = window.setTimeout( function() {
+					wpsRmaToggleExpertModal( false );
+				}, 3000 );
+			}
 		} ).fail( function( xhr ) {
 			var message = 'We could not submit your request right now. Please try again.';
 
