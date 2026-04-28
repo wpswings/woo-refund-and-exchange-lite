@@ -172,7 +172,7 @@ $wrael_render_sidebar = static function() use ( $wrael_wps_document_link, $wrael
 		</div>
 		<div class="wps-rma-sidebar-card wps-rma-sidebar-card--services">
 			<div class="wps-rma-sidebar-card__header">
-				<h3><?php esc_html_e( 'Grow Your Store With Our Services', 'woo-refund-and-exchange-lite' ); ?></h3>
+				<h3><?php esc_html_e( 'Grow Your Store With WP Swings', 'woo-refund-and-exchange-lite' ); ?></h3>
 				<span class="wps-rma-sidebar-card__badge" aria-hidden="true"></span>
 			</div>
 			<p><?php esc_html_e( "Expert solutions to boost your store's performance.", 'woo-refund-and-exchange-lite' ); ?></p>

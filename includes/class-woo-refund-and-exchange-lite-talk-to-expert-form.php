@@ -159,7 +159,6 @@ class Woo_Refund_And_Exchange_Lite_Talk_To_Expert_Form {
 					<span aria-hidden="true">&times;</span>
 				</button>
 				<div class="wps-rma-expert-modal__header">
-					<span class="wps-rma-expert-modal__eyebrow"><?php esc_html_e( 'Marketing Services', 'woo-refund-and-exchange-lite' ); ?></span>
 					<h2 id="wps-rma-expert-modal-title"><?php esc_html_e( 'Talk to an Expert', 'woo-refund-and-exchange-lite' ); ?></h2>
 					<p><?php esc_html_e( 'Share your store goals and our team will reach out with the right next step.', 'woo-refund-and-exchange-lite' ); ?></p>
 				</div>
@@ -216,6 +215,18 @@ class Woo_Refund_And_Exchange_Lite_Talk_To_Expert_Form {
 							><?php esc_html_e( 'Submit Request', 'woo-refund-and-exchange-lite' ); ?></button>
 						</div>
 					</form>
+					<div class="wps-rma-expert-modal__success" data-wrael-expert-modal-success hidden aria-live="polite">
+						<div class="wps-rma-expert-modal__success-mark" aria-hidden="true">
+							<span class="wps-rma-expert-modal__success-ring"></span>
+							<span class="wps-rma-expert-modal__success-core">
+								<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+									<path d="M6.5 12.5l3.4 3.4L17.8 8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+								</svg>
+							</span>
+						</div>
+						<h3><?php esc_html_e( 'Thank you', 'woo-refund-and-exchange-lite' ); ?></h3>
+						<p data-wrael-expert-modal-success-message><?php esc_html_e( 'Thank you for submitting your request.', 'woo-refund-and-exchange-lite' ); ?></p>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -899,6 +899,8 @@ jQuery(function($) {
 	var closeTriggerSelector = '[data-wrael-expert-modal-close]';
 	var formSelector = '[data-wrael-expert-modal-form]';
 	var statusSelector = '[data-wrael-expert-modal-status]';
+	var successSelector = '[data-wrael-expert-modal-success]';
+	var successMessageSelector = '[data-wrael-expert-modal-success-message]';
 	var bodyLockClass = 'wps-rma-expert-modal-open';
 	var successCloseTimer = null;
 
@@ -921,6 +923,61 @@ jQuery(function($) {
 		$status.removeAttr( 'hidden' ).removeClass( 'is-success is-error' ).addClass( 'is-' + statusType ).text( message );
 	}
 
+	function wpsRmaResetExpertModalState( $modal ) {
+		var $form = $modal.find( formSelector ).first();
+		var $success = $modal.find( successSelector ).first();
+		var $successMessage = $modal.find( successMessageSelector ).first();
+		var $submitButton = $form.find( 'button[type="submit"]' ).first();
+
+		if ( $form.length ) {
+			if ( $form.get( 0 ) && 'function' === typeof $form.get( 0 ).reset ) {
+				$form.get( 0 ).reset();
+			}
+
+			$form.removeAttr( 'hidden' );
+		}
+
+		if ( $submitButton.length ) {
+			$submitButton
+				.prop( 'disabled', false )
+				.text( $submitButton.attr( 'data-submit-label' ) || 'Submit Request' );
+		}
+
+		if ( $success.length ) {
+			$success.attr( 'hidden', true ).removeClass( 'is-visible' );
+		}
+
+		if ( $successMessage.length ) {
+			$successMessage.text( 'Thank you for submitting your request.' );
+		}
+
+		wpsRmaSetExpertStatus( $modal, '', '' );
+	}
+
+	function wpsRmaShowExpertSuccessState( $modal, message ) {
+		var $form = $modal.find( formSelector ).first();
+		var $success = $modal.find( successSelector ).first();
+		var $successMessage = $modal.find( successMessageSelector ).first();
+
+		if ( $form.length ) {
+			$form.attr( 'hidden', true );
+		}
+
+		wpsRmaSetExpertStatus( $modal, '', '' );
+
+		if ( $successMessage.length ) {
+			$successMessage.text( message );
+		}
+
+		if ( $success.length ) {
+			$success.removeAttr( 'hidden' );
+
+			window.setTimeout( function() {
+				$success.addClass( 'is-visible' );
+			}, 20 );
+		}
+	}
+
 	function wpsRmaToggleExpertModal( shouldOpen ) {
 		var $modal = wpsRmaGetExpertModal();
 
@@ -936,12 +993,13 @@ jQuery(function($) {
 		if ( shouldOpen ) {
 			$modal.removeAttr( 'hidden' );
 			$( 'body' ).addClass( bodyLockClass );
-			wpsRmaSetExpertStatus( $modal, '', '' );
+			wpsRmaResetExpertModalState( $modal );
 			return;
 		}
 
 		$modal.attr( 'hidden', true );
 		$( 'body' ).removeClass( bodyLockClass );
+		wpsRmaResetExpertModalState( $modal );
 	}
 
 	function wpsRmaNormalizeExpertPayload( formElement ) {
@@ -1010,13 +1068,16 @@ jQuery(function($) {
 				message = isSuccess ? 'Thank you for submitting your request.' : 'We could not submit your request right now. Please try again.';
 			}
 
-			wpsRmaSetExpertStatus( $modal, message, isSuccess ? 'success' : 'error' );
-
 			if ( isSuccess && message ) {
+				wpsRmaShowExpertSuccessState( $modal, message );
+
 				successCloseTimer = window.setTimeout( function() {
 					wpsRmaToggleExpertModal( false );
 				}, 3000 );
+				return;
 			}
+
+			wpsRmaSetExpertStatus( $modal, message, 'error' );
 		} ).fail( function( xhr ) {
 			var message = 'We could not submit your request right now. Please try again.';
 
