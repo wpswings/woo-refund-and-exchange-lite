@@ -58,10 +58,10 @@ class Woo_Refund_And_Exchange_Lite_Talk_To_Expert_Form {
 	 */
 	public static function wrael_get_service_options() {
 		return array(
-			'seo_services'                      => 'SEO services',
-			'google_ads_setup_and_ga4_setup'   => 'Google Ads Setup and GA4 setup',
-			'speed_optimization'               => 'Speed Optimization',
-			'woocommerce_development_services' => 'WooCommerce Development Services',
+			'seo_services'                      => esc_html__( 'SEO services', 'woo-refund-and-exchange-lite' ),
+			'google_ads_setup_and_ga4_setup'   => esc_html__( 'Google Ads Setup and GA4 setup', 'woo-refund-and-exchange-lite' ),
+			'speed_optimization'               => esc_html__( 'Speed Optimization', 'woo-refund-and-exchange-lite' ),
+			'woocommerce_development_services' => esc_html__( 'WooCommerce Development Services', 'woo-refund-and-exchange-lite' ),
 		);
 	}
 
@@ -311,21 +311,27 @@ class Woo_Refund_And_Exchange_Lite_Talk_To_Expert_Form {
 	 * @return array
 	 */
 	public static function wrael_sanitize_submission( $form_data ) {
-		$form_data = is_array( $form_data ) ? $form_data : array();
-		$services  = self::wrael_get_service_options();
-		$budgets   = self::wrael_get_budget_options();
-
+		$form_data          = is_array( $form_data ) ? $form_data : array();
+		$services           = self::wrael_get_service_options();
+		$budgets            = self::wrael_get_budget_options();
 		$submitted_services = array();
-		if ( isset( $form_data['what_services_do_you_need_help_with'] ) && is_array( $form_data['what_services_do_you_need_help_with'] ) ) {
-			$submitted_services = array_map( 'sanitize_text_field', wp_unslash( $form_data['what_services_do_you_need_help_with'] ) );
+
+		if ( isset( $form_data['what_services_do_you_need_help_with'] ) ) {
+			$raw_services = wp_unslash( $form_data['what_services_do_you_need_help_with'] );
+
+			if ( ! is_array( $raw_services ) ) {
+				$raw_services = array( $raw_services );
+			}
+
+			$submitted_services = array_filter(
+				array_map( 'sanitize_text_field', $raw_services ),
+				static function( $service ) {
+					return '' !== $service;
+				}
+			);
 		}
 
-		$valid_services = array_values(
-			array_intersect(
-				array_keys( $services ),
-				$submitted_services
-			)
-		);
+		$valid_services = array_values( array_intersect( array_keys( $services ), $submitted_services ) );
 
 		$budget = isset( $form_data['budget'] ) ? sanitize_text_field( wp_unslash( $form_data['budget'] ) ) : '';
 		if ( ! array_key_exists( $budget, $budgets ) || '' === $budget ) {
@@ -340,6 +346,7 @@ class Woo_Refund_And_Exchange_Lite_Talk_To_Expert_Form {
 			'what_services_do_you_need_help_with' => $valid_services,
 			'budget'                            => $budget,
 			'message'                           => isset( $form_data['message'] ) ? sanitize_textarea_field( wp_unslash( $form_data['message'] ) ) : '',
+			'annualrevenue'                     => self::wrael_get_annual_revenue_last_12_months(),
 		);
 	}
 
@@ -350,12 +357,28 @@ class Woo_Refund_And_Exchange_Lite_Talk_To_Expert_Form {
 	 * @return array
 	 */
 	public static function wrael_get_hubspot_request_args( $sanitized_data ) {
+		$payload = self::wrael_build_hubspot_payload( $sanitized_data );
+
 		return array(
-			'headers' => array(
+			'method'      => 'POST',
+			'timeout'     => 45,
+			'redirection' => 5,
+			'httpversion' => '1.0',
+			'blocking'    => true,
+			'headers'     => array(
 				'Content-Type' => 'application/json',
 			),
-			'body'    => wp_json_encode( self::wrael_build_hubspot_payload( $sanitized_data ) ),
-			'timeout' => 20,
+			'body'        => wp_json_encode(
+				array(
+					'fields'  => $payload['fields'],
+					'context' => array(
+						'pageUri'   => admin_url( 'admin.php?page=woo_refund_and_exchange_lite_menu' ),
+						'pageName'  => self::wrael_get_plugin_label(),
+						'ipAddress' => self::wrael_get_client_ip(),
+					),
+				)
+			),
+			'cookies'     => array(),
 		);
 	}
 
@@ -366,23 +389,16 @@ class Woo_Refund_And_Exchange_Lite_Talk_To_Expert_Form {
 	 * @return array
 	 */
 	public static function wrael_build_hubspot_payload( $sanitized_data ) {
-		$service_options = self::wrael_get_service_options();
-		$selected_labels = array();
-
-		if ( ! empty( $sanitized_data['what_services_do_you_need_help_with'] ) && is_array( $sanitized_data['what_services_do_you_need_help_with'] ) ) {
-			foreach ( $sanitized_data['what_services_do_you_need_help_with'] as $service_key ) {
-				if ( isset( $service_options[ $service_key ] ) ) {
-					$selected_labels[] = $service_options[ $service_key ];
-				}
-			}
-		}
+		$selected_services = ! empty( $sanitized_data['what_services_do_you_need_help_with'] ) && is_array( $sanitized_data['what_services_do_you_need_help_with'] )
+			? array_values( $sanitized_data['what_services_do_you_need_help_with'] )
+			: array();
 
 		$fields = array(
 			self::wrael_maybe_build_hubspot_field( 'firstname', isset( $sanitized_data['firstname'] ) ? $sanitized_data['firstname'] : '' ),
 			self::wrael_maybe_build_hubspot_field( 'lastname', isset( $sanitized_data['lastname'] ) ? $sanitized_data['lastname'] : '' ),
 			self::wrael_maybe_build_hubspot_field( 'email', isset( $sanitized_data['email'] ) ? $sanitized_data['email'] : '' ),
 			self::wrael_maybe_build_hubspot_field( 'phone', isset( $sanitized_data['phone'] ) ? $sanitized_data['phone'] : '' ),
-			self::wrael_maybe_build_hubspot_field( 'what_services_do_you_need_help_with', $selected_labels ),
+			self::wrael_maybe_build_hubspot_field( 'what_services_do_you_need_help_with', $selected_services ),
 			self::wrael_maybe_build_hubspot_field( 'budget', isset( $sanitized_data['budget'] ) ? $sanitized_data['budget'] : '' ),
 			self::wrael_maybe_build_hubspot_field( 'message', isset( $sanitized_data['message'] ) ? $sanitized_data['message'] : '' ),
 			self::wrael_maybe_build_hubspot_field( 'currency', self::wrael_get_store_currency() ),
@@ -390,7 +406,7 @@ class Woo_Refund_And_Exchange_Lite_Talk_To_Expert_Form {
 			self::wrael_maybe_build_hubspot_field( 'company', function_exists( 'get_bloginfo' ) ? get_bloginfo( 'name' ) : '' ),
 			self::wrael_maybe_build_hubspot_field( 'website', function_exists( 'home_url' ) ? home_url( '/' ) : '' ),
 			self::wrael_maybe_build_hubspot_field( 'country', self::wrael_get_store_country_label() ),
-			self::wrael_maybe_build_hubspot_field( 'annualrevenue', self::wrael_get_annual_revenue_last_12_months() ),
+			self::wrael_maybe_build_hubspot_field( 'annualrevenue', isset( $sanitized_data['annualrevenue'] ) ? $sanitized_data['annualrevenue'] : self::wrael_get_annual_revenue_last_12_months() ),
 		);
 
 		return array(
@@ -467,6 +483,39 @@ class Woo_Refund_And_Exchange_Lite_Talk_To_Expert_Form {
 	}
 
 	/**
+	 * Resolve the client IP address for HubSpot context.
+	 *
+	 * @return string
+	 */
+	public static function wrael_get_client_ip() {
+		$ip_headers = array(
+			'HTTP_CF_CONNECTING_IP',
+			'HTTP_X_FORWARDED_FOR',
+			'HTTP_X_REAL_IP',
+			'REMOTE_ADDR',
+		);
+
+		foreach ( $ip_headers as $header_key ) {
+			if ( empty( $_SERVER[ $header_key ] ) ) {
+				continue;
+			}
+
+			$raw_value = wp_unslash( $_SERVER[ $header_key ] );
+			$ip_list   = is_string( $raw_value ) ? explode( ',', $raw_value ) : array( $raw_value );
+
+			foreach ( $ip_list as $ip_candidate ) {
+				$ip_candidate = trim( sanitize_text_field( (string) $ip_candidate ) );
+
+				if ( filter_var( $ip_candidate, FILTER_VALIDATE_IP ) ) {
+					return $ip_candidate;
+				}
+			}
+		}
+
+		return '';
+	}
+
+	/**
 	 * Resolve the message from a HubSpot response.
 	 *
 	 * @param array $response_body Response payload.
@@ -537,6 +586,7 @@ class Woo_Refund_And_Exchange_Lite_Talk_To_Expert_Form {
 		global $wpdb;
 
 		$amount = null;
+		$fallback_amount = null;
 
 		if ( isset( $wpdb ) && is_object( $wpdb ) && ! empty( $wpdb->prefix ) ) {
 			$table_name = $wpdb->prefix . 'wc_order_stats';
@@ -546,8 +596,16 @@ class Woo_Refund_And_Exchange_Lite_Talk_To_Expert_Form {
 			}
 		}
 
+		if ( null === $amount || (float) $amount <= 0 ) {
+			$fallback_amount = self::wrael_get_revenue_from_wc_orders();
+
+			if ( null === $amount || (float) $fallback_amount > 0 ) {
+				$amount = $fallback_amount;
+			}
+		}
+
 		if ( null === $amount ) {
-			$amount = self::wrael_get_revenue_from_wc_orders();
+			$amount = 0;
 		}
 
 		return number_format( (float) $amount, 2, '.', '' );
@@ -602,14 +660,16 @@ class Woo_Refund_And_Exchange_Lite_Talk_To_Expert_Form {
 			return 0.0;
 		}
 
+		$cutoff_timestamp = strtotime( '-12 months', current_time( 'timestamp', true ) );
 		$orders = wc_get_orders(
 			array(
-				'limit'     => -1,
-				'status'    => function_exists( 'wc_get_is_paid_statuses' ) ? wc_get_is_paid_statuses() : array( 'processing', 'completed' ),
-				'type'      => 'shop_order',
-				'parent'    => 0,
-				'return'    => 'objects',
-				'date_paid' => '>=' . gmdate( 'Y-m-d H:i:s', strtotime( '-12 months' ) ),
+				'limit'   => -1,
+				'status'  => function_exists( 'wc_get_is_paid_statuses' ) ? wc_get_is_paid_statuses() : array( 'processing', 'completed' ),
+				'type'    => 'shop_order',
+				'parent'  => 0,
+				'return'  => 'objects',
+				'orderby' => 'date',
+				'order'   => 'DESC',
 			)
 		);
 
@@ -620,11 +680,16 @@ class Woo_Refund_And_Exchange_Lite_Talk_To_Expert_Form {
 				continue;
 			}
 
-			if ( method_exists( $order, 'get_date_paid' ) && ! $order->get_date_paid() ) {
+			if ( ! method_exists( $order, 'get_date_paid' ) || ! $order->get_date_paid() ) {
 				continue;
 			}
 
 			if ( method_exists( $order, 'get_parent_id' ) && (int) $order->get_parent_id() > 0 ) {
+				continue;
+			}
+
+			$date_paid = $order->get_date_paid();
+			if ( ! $date_paid || ! method_exists( $date_paid, 'getTimestamp' ) || $date_paid->getTimestamp() < $cutoff_timestamp ) {
 				continue;
 			}
 

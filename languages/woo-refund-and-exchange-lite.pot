@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Return Refund and Exchange for WooCommerce 4.6.0\n"
-"POT-Creation-Date: 2026-04-28 17:57+0530\n"
+"POT-Creation-Date: 2026-04-28 18:48+0530\n"
 "PO-Revision-Date: 2023-09-25 13:54+0530\n"
 "Last-Translator: \n"
 "Language-Team: WP Swings\n"
@@ -1753,7 +1753,7 @@ msgid "Support"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-admin-dashboard.php:175
-msgid "Grow Your Store With Our Services"
+msgid "Grow Your Store With WP Swings"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-admin-dashboard.php:178
@@ -1761,7 +1761,7 @@ msgid "Expert solutions to boost your store's performance."
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-admin-dashboard.php:191
-#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:163
+#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:162
 msgid "Talk to an Expert"
 msgstr ""
 
@@ -2468,6 +2468,7 @@ msgid "Your {site_title} order {order_id} message from {message_date}"
 msgstr ""
 
 #: emails/class-wps-rma-order-messages-email.php:134
+#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:227
 msgid "Thank you"
 msgstr ""
 
@@ -2587,7 +2588,7 @@ msgid "What is your contact number?"
 msgstr ""
 
 #: includes/class-woo-refund-and-exchange-lite-onboarding-steps.php:373
-#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:183
+#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:182
 msgid "Contact Number"
 msgstr ""
 
@@ -2605,88 +2606,85 @@ msgstr ""
 msgid "Close Talk to an Expert form"
 msgstr ""
 
-#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:162
-msgid "Marketing Services"
-msgstr ""
-
-#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:164
+#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:163
 msgid ""
 "Share your store goals and our team will reach out with the right next step."
 msgstr ""
 
-#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:171
+#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:170
 msgid "First Name"
 msgstr ""
 
-#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:172
+#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:171
 msgid "John"
 msgstr ""
 
-#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:175
+#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:174
 msgid "Last Name"
 msgstr ""
 
-#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:176
+#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:175
 msgid "Doe"
 msgstr ""
 
-#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:179
+#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:178
 msgid "Work Email"
 msgstr ""
 
-#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:180
+#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:179
 msgid "name@yourstore.com"
 msgstr ""
 
-#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:184
+#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:183
 msgid "+1 000 000 0000"
 msgstr ""
 
-#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:188
+#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:187
 msgid "What services do you need help with?"
 msgstr ""
 
-#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:199
+#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:198
 msgid "Budget"
 msgstr ""
 
-#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:207
+#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:206
 msgid "What do you need help with?"
 msgstr ""
 
-#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:208
+#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:207
 msgid "Share your goals, blockers, or the service you need."
 msgstr ""
 
-#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:214
-#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:216
+#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:213
+#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:215
 #: public/partials/wps-rma-refund-request-form.php:433
 msgid "Submit Request"
 msgstr ""
 
-#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:215
+#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:214
 msgid "Sending..."
 msgstr ""
 
-#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:236
+#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:228
+#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:493
+msgid "Thank you for submitting your request."
+msgstr ""
+
+#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:247
 msgid "You are not allowed to submit this request."
 msgstr ""
 
-#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:248
+#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:259
 msgid "Invalid request payload."
 msgstr ""
 
-#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:259
+#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:270
 msgid "Please enter a valid email address."
 msgstr ""
 
-#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:270
-#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:485
+#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:281
+#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:496
 msgid "We could not submit your request right now. Please try again."
-msgstr ""
-
-#: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:482
-msgid "Thank you for submitting your request."
 msgstr ""
 
 #: includes/class-woo-refund-and-exchange-lite.php:463
