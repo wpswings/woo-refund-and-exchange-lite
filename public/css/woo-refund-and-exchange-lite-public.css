@@ -839,6 +839,33 @@ table.wps-rma-product__table:not(.has-background) tbody tr:nth-child(2n) td, tab
   font-size: 18px;
 }
 
+@media only screen and (max-width: 640px) {
+  .wps-rma-form__wrapper .product-quantity input {
+    min-width: 80px;
+    width: 80px;
+  }
+}
+
+@media only screen and (max-width: 580px) {
+  #wps_rma_template2.wps_rma_template2 {
+    overflow-x: auto;
+  }
+
+  #wps_rma_template2.wps_rma_template2 h1.wps-rma-form__heading {
+    font-size: 22px;
+  }
+
+  #wps_rma_template2.wps_rma_template2 .wps-rma-product__wrap img {
+    height: 56px;
+    width: 56px;
+  }
+
+  #wps_rma_template2.wps_rma_template2 .wps-rma-product__table-wrapper,
+  #wps_rma_template2.wps_rma_template2 .wps_rma_exchange_form_wrapper {
+    overflow-x: auto;
+  }
+}
+
 @media only screen and (min-width: 600px){
   .wps-rma-refund-request__row {
     display: flex;

@@ -390,4 +390,79 @@ table.wps-rma-product__table td.product-name img {
         padding: 0;
     }
 
+    /* Aurora Luxe (template2): revert stacked layout — use horizontal scroll instead */
+    #wps_rma_template2.wps_rma_template2 .wps-rma-product__table thead th {
+        display: table-cell;
+    }
+
+    #wps_rma_template2.wps_rma_template2 .wps-rma-product__table tr,
+    #wps_rma_template2.wps_rma_template2 .wps-rma-product__table-wrapper tr {
+        display: table-row;
+    }
+
+    #wps_rma_template2.wps_rma_template2 .wps-rma-product__table-wrapper tbody {
+        display: table-row-group;
+    }
+
+    #wps_rma_template2.wps_rma_template2 .wps-rma-product__table tbody td:nth-of-type(3),
+    #wps_rma_template2.wps_rma_template2 .wps-rma-product__table tbody td:nth-of-type(4) {
+        padding-top: 14px;
+        position: static;
+    }
+
+    #wps_rma_template2.wps_rma_template2 .wps-rma-product__table tbody td:nth-of-type(3)::after,
+    #wps_rma_template2.wps_rma_template2 .wps-rma-product__table tbody td:nth-of-type(4)::after {
+        content: none;
+    }
+
+    #wps_rma_template2.wps_rma_template2 .wps-rma-product__table-wrapper,
+    #wps_rma_template2.wps_rma_template2 .wps_rma_exchange_form_wrapper {
+        overflow-x: auto;
+    }
+
+    /* Aurora Luxe (template2): exchanged products table — revert stacked layout */
+    #wps_rma_template2.wps_rma_template2 .wps_wrma_exchanged_products_wrapper thead th {
+        display: table-cell;
+    }
+
+    #wps_rma_template2.wps_rma_template2 .wps_wrma_exchanged_products thead th:first-of-type {
+        color: inherit;
+        position: static;
+    }
+
+    #wps_rma_template2.wps_rma_template2 .wps_wrma_exchanged_products thead th:first-of-type::after {
+        content: none;
+    }
+
+    #wps_rma_template2.wps_rma_template2 .wps_wrma_exchanged_products_wrapper tr {
+        display: table-row;
+        position: static;
+    }
+
+    #wps_rma_template2.wps_rma_template2 .wps_wrma_exchanged_products_wrapper tbody td:nth-of-type(2),
+    #wps_rma_template2.wps_rma_template2 .wps_wrma_exchanged_products_wrapper tbody td:nth-of-type(3),
+    #wps_rma_template2.wps_rma_template2 .wps_wrma_exchanged_products_wrapper tbody td:nth-of-type(4) {
+        padding-top: 14px;
+        position: static;
+    }
+
+    #wps_rma_template2.wps_rma_template2 .wps_wrma_exchanged_products_wrapper tbody td:nth-of-type(2)::after,
+    #wps_rma_template2.wps_rma_template2 .wps_wrma_exchanged_products_wrapper tbody td:nth-of-type(3)::after,
+    #wps_rma_template2.wps_rma_template2 .wps_wrma_exchanged_products_wrapper tbody td:nth-of-type(4)::after {
+        content: none;
+    }
+
+    #wps_rma_template2.wps_rma_template2 .wps_wrma_exchanged_products_wrapper .wps_wrma_exchnaged_product_remove a {
+        position: static;
+        font-size: 20px;
+    }
+
+    #wps_rma_template2.wps_rma_template2 .wps_wrma_exchanged_products_wrapper {
+        overflow-x: auto;
+    }
+
+    #wps_rma_template2.wps_rma_template2 .wps_wrma_exchanged_products {
+        min-width: 520px;
+    }
+
 }
