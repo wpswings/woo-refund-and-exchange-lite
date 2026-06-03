@@ -165,13 +165,14 @@ $wps_rma_condition2_visible_policies = array(
 							<option value="<?php echo esc_html( $status_key ); ?>" <?php echo isset( $value['row_statuses'] ) ? ( in_array( $status_key, $value['row_statuses'], true ) ? 'selected' : '' ) : ''; ?>><?php echo esc_html( $status_label ); ?></option>
 						<?php endforeach; ?>
 					</select>
-					<select name="wps_rma_setting[<?php echo esc_html( $count++ ); ?>][row_tax]" class="wps_rma_tax_handling" <?php echo $wps_rma_show_tax_field ? '' : 'style="display:none;" disabled'; ?>>
+					<select name="wps_rma_setting[<?php echo esc_html( $count ); ?>][row_tax]" class="wps_rma_tax_handling" <?php echo $wps_rma_show_tax_field ? '' : 'style="display:none;" disabled'; ?>>
 						<option value="wps_rma_inlcude_tax" <?php selected( 'wps_rma_inlcude_tax', isset( $value['row_tax'] ) ? $value['row_tax'] : '' ); ?>><?php esc_html_e( 'Include Tax', 'woo-refund-and-exchange-lite' ); ?></option>
 						<option value="wps_rma_exclude_tax" <?php selected( 'wps_rma_exclude_tax', isset( $value['row_tax'] ) ? $value['row_tax'] : '' ); ?>><?php esc_html_e( 'Exclude Tax', 'woo-refund-and-exchange-lite' ); ?></option>
 					</select>
 					<?php
 					// Add More Setting.
 					do_action( 'wps_rma_setting_extend_show_column5', $value, $count );
+					++$count;
 					?>
 					
 					

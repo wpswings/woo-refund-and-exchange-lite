@@ -766,7 +766,7 @@ select {
 }
 
 .admin-bar #save_policies_setting_form .wps_rma_policy_condition {
-  min-width: 180px;
+  min-width: 110px;
 }
 
 .admin-bar #save_policies_setting_form input.rma_policy_delete {

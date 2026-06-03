@@ -233,6 +233,10 @@ body.wp-admin[class*="wp-swings_page_home"] {
   padding: 28px;
 }
 
+.wps-rma-shell__layout--full {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .wps-rma-shell__main {
   min-width: 0;
 }
@@ -1496,15 +1500,15 @@ input.wps_rma_save_settings,
 }
 
 .add_more_rma_policies {
-  align-items: flex-start;
+  align-items: center;
   background: var(--wps-rma-surface-soft);
   border: 1px solid var(--wps-rma-border);
-  border-radius: 18px;
+  border-radius: 14px;
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 14px;
-  padding: 16px;
+  gap: 8px;
+  margin-bottom: 10px;
+  padding: 10px 12px;
 }
 
 .add_more_rma_policies .wps_rma_on_functionality,
@@ -1547,14 +1551,16 @@ input.wps_rma_save_settings,
 #add_more_rma_policies_clone input[type="number"] {
   background: #fff;
   border: 1px solid var(--wps-rma-border);
-  border-radius: 12px;
+  border-radius: 10px;
+  font-size: 13px;
   min-height: 44px;
-  padding: 8px 12px;
+  min-width: 0;
+  padding: 8px 10px;
 }
 
 .add_more_rma_policies .select2-container .select2-selection--single,
 .add_more_rma_policies .select2-container .select2-selection--multiple {
-  min-height: 44px;
+  min-height: 44px !important;
 }
 
 .rma_policy_delete {
@@ -1562,6 +1568,7 @@ input.wps_rma_save_settings,
   border: 1px solid #ffd2d2 !important;
   color: #d63d3d !important;
   flex: 0 0 44px;
+  font-size: 13px;
   min-height: 44px;
   min-width: 44px;
   padding: 0 !important;
@@ -1571,19 +1578,13 @@ input.wps_rma_save_settings,
   .add_more_rma_policies {
     align-items: flex-start;
     display: flex;
-    flex-wrap: wrap;
-    gap: 14px 18px;
-    padding: 20px 76px 20px 20px;
+    flex-wrap: nowrap;
+    gap: 8px;
+    padding: 10px 48px 10px 14px;
     position: relative;
   }
 
-  .add_more_rma_policies .wps_rma_on_functionality,
-  .add_more_rma_policies .wps_rma_settings_label {
-    flex: 0 0 112px;
-    max-width: 112px;
-    order: 1;
-  }
-
+  /* Reset: clear mobile widths/min-widths so desktop values take over */
   .add_more_rma_policies .wps_rma_conditions_label,
   .add_more_rma_policies .wps_rma_settings,
   .add_more_rma_policies .wps_rma_conditions1,
@@ -1599,62 +1600,77 @@ input.wps_rma_save_settings,
     width: auto !important;
   }
 
+  .add_more_rma_policies .wps_rma_on_functionality,
+  .add_more_rma_policies .wps_rma_settings_label {
+    flex: 0 0 110px;
+    max-width: 110px;
+    min-width: 0;
+    order: 1;
+  }
+
   .add_more_rma_policies .wps_rma_settings {
-    flex: 0 0 152px;
-    max-width: 152px;
+    flex: 0 0 160px;
+    max-width: 160px;
     order: 2;
   }
 
   .add_more_rma_policies .wps_rma_conditions_label {
-    flex: 0 0 42px;
+    flex: 0 0 28px;
     justify-content: center;
-    max-width: 42px;
+    max-width: 28px;
     order: 3;
   }
 
   .add_more_rma_policies .wps_rma_conditions1,
   .add_more_rma_policies .wps_rma_conditions2,
   .add_more_rma_policies .wps_rma_policy_condition {
-    flex: 0 0 176px;
-    max-width: 176px;
+    flex: 0 0 140px;
+    max-width: 140px;
     order: 4;
   }
 
+  /* Value fields — fill remaining space */
   .add_more_rma_policies .wps_rma_max_number_days,
   .add_more_rma_policies .wps_rma_tax_handling {
-    flex: 0 0 180px;
-    max-width: 180px;
+    flex: 1 1 120px;
+    max-width: 260px;
     order: 8;
-    width: 180px !important;
+    width: auto !important;
   }
 
+  /* Multiselects — fill remaining space, grow to show all chips */
   .add_more_rma_policies .wps_rma_order_statues,
   .add_more_rma_policies .wps_rma_order_statues + .select2-container,
   .add_more_rma_policies .wps_rma_ex_cate,
   .add_more_rma_policies .wps_rma_ex_cate + .select2-container,
   .add_more_rma_policies .wps_rma_ex_prod,
   .add_more_rma_policies .wps_rma_ex_prod + .select2-container {
-    flex: 1 1 360px;
-    max-width: 460px;
-    min-width: 320px;
+    align-self: stretch;
+    flex: 1 1 280px;
+    max-width: 100%;
+    min-width: 280px !important;
     order: 8;
-    width: 100% !important;
+    width: auto !important;
   }
 
   .add_more_rma_policies .wps_rma_order_statues + .select2-container .select2-selection--multiple,
   .add_more_rma_policies .wps_rma_ex_cate + .select2-container .select2-selection--multiple,
   .add_more_rma_policies .wps_rma_ex_prod + .select2-container .select2-selection--multiple {
-    min-height: 52px;
+    flex-wrap: wrap;
+    height: 100%;
+    min-height: 44px;
   }
 
+  /* Delete button pinned to top-right */
   .rma_policy_delete {
     position: absolute;
-    right: 20px;
-    top: 20px;
+    right: 8px;
+    top: 8px;
+    transform: none;
   }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 960px) {
   .add_more_rma_policies .wps_rma_on_functionality,
   .add_more_rma_policies .wps_rma_settings_label,
   .add_more_rma_policies .wps_rma_conditions_label,
@@ -1666,7 +1682,7 @@ input.wps_rma_save_settings,
   .add_more_rma_policies .wps_rma_tax_handling,
   .add_more_rma_policies .select2.select2-container,
   .add_more_rma_policies .select2-container {
-    flex: 1 1 180px;
+    flex: 1 1 140px;
     max-width: 100%;
     min-width: 0;
     width: auto !important;

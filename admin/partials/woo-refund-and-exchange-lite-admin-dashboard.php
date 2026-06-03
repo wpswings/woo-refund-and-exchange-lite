@@ -309,7 +309,7 @@ $wrael_layout_notice_dismiss_url = wp_nonce_url(
 
 		</div>
 
-		<div class="wps-rma-shell__layout">
+		<div class="wps-rma-shell__layout<?php echo 'woo-refund-and-exchange-lite-policies' === $wrael_active_tab ? ' wps-rma-shell__layout--full' : ''; ?>">
 			<div class="wps-rma-shell__main">
 				<?php if ( $wrael_is_multistep_mode ) : ?>
 					<section class="wps-rma-shell__surface wps-rma-shell__surface--setup">
@@ -356,7 +356,7 @@ $wrael_layout_notice_dismiss_url = wp_nonce_url(
 				<?php endif; ?>
 			</div>
 
-			<?php if ( ! $wrael_is_multistep_mode ) : ?>
+			<?php if ( ! $wrael_is_multistep_mode && 'woo-refund-and-exchange-lite-policies' !== $wrael_active_tab ) : ?>
 				<?php $wrael_render_sidebar(); ?>
 			<?php endif; ?>
 		</div>
