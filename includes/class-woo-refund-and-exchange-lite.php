@@ -283,6 +283,11 @@ class Woo_Refund_And_Exchange_Lite {
 		$this->loader->add_action( 'admin_init', $wrael_plugin_admin, 'wrael_maybe_dismiss_layout_notice' );
 		$this->loader->add_action( 'wps_wgm_check_for_notification_update', $wrael_plugin_admin, 'wps_rma_save_banner_info' );
 		$this->loader->add_action( 'wp_ajax_wps_rma_dismiss_notice_banner', $wrael_plugin_admin, 'wps_rma_dismiss_notice_banner_callback' );
+
+		// Export refund orders button and handler.
+		$this->loader->add_action( 'restrict_manage_posts', $wrael_plugin_admin, 'wps_rma_add_export_refund_button' );
+		$this->loader->add_action( 'woocommerce_order_list_table_restrict_manage_orders', $wrael_plugin_admin, 'wps_rma_add_export_refund_button' );
+		$this->loader->add_action( 'admin_init', $wrael_plugin_admin, 'wps_rma_handle_export_refund_orders' );
 	}
 
 	/**

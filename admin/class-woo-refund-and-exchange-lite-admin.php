@@ -1750,4 +1750,149 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			wp_send_json_success();
 		}
 	}
+
+	/**
+	 * Add "Export Refund Orders" button to the WooCommerce orders list page.
+	 *
+	 * Fires on both the legacy shop_order list (restrict_manage_posts) and the
+	 * HPOS order list (woocommerce_order_list_table_restrict_manage_orders).
+	 *
+	 * @param string $post_type Post type passed by restrict_manage_posts, empty for HPOS hook.
+	 */
+	public function wps_rma_add_export_refund_button( $post_type = '' ) {
+		if ( ! empty( $post_type ) && 'shop_order' !== $post_type ) {
+			return;
+		}
+		if ( ! current_user_can( 'manage_woocommerce' ) && ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+		$has_orders = wc_get_orders(
+			array(
+				'status'  => array( 'return-requested', 'return-approved', 'return-cancelled', 'refunded' ),
+				'limit'   => 1,
+				'return'  => 'ids',
+			)
+		);
+		if ( empty( $has_orders ) ) {
+			return;
+		}
+		$export_url = wp_nonce_url(
+			add_query_arg( 'wps_rma_export_refund_orders', '1' ),
+			'wps_rma_export_refund_orders'
+		);
+		echo '<a href="' . esc_url( $export_url ) . '" class="button button-secondary" style="margin-left:4px;">'
+			. esc_html__( 'Export Refund Orders', 'woo-refund-and-exchange-lite' )
+			. '</a>';
+	}
+
+	/**
+	 * Stream a CSV of all refund-related orders when the export button is clicked.
+	 *
+	 * Statuses included: Refund Requested, Refund Approved, Refund Cancelled, Refunded.
+	 */
+	public function wps_rma_handle_export_refund_orders() {
+		if ( ! isset( $_GET['wps_rma_export_refund_orders'] ) || '1' !== $_GET['wps_rma_export_refund_orders'] ) {
+			return;
+		}
+		if ( ! current_user_can( 'manage_woocommerce' ) && ! current_user_can( 'manage_options' ) ) {
+			wp_die( esc_html__( 'Unauthorized', 'woo-refund-and-exchange-lite' ) );
+		}
+		check_admin_referer( 'wps_rma_export_refund_orders' );
+
+		$orders = wc_get_orders(
+			array(
+				'status'  => array( 'return-requested', 'return-approved', 'return-cancelled', 'refunded' ),
+				'limit'   => -1,
+				'orderby' => 'date',
+				'order'   => 'DESC',
+			)
+		);
+
+		$filename = 'refund-orders-' . date_i18n( 'Y-m-d' ) . '.csv';
+		header( 'Content-Type: text/csv; charset=utf-8' );
+		header( 'Content-Disposition: attachment; filename="' . $filename . '"' );
+		header( 'Pragma: no-cache' );
+		header( 'Expires: 0' );
+
+		$out = fopen( 'php://output', 'w' ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fopen
+
+		// UTF-8 BOM so Excel opens the file correctly.
+		fwrite( $out, "\xEF\xBB\xBF" ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fwrite
+
+		fputcsv(
+			$out,
+			array(
+				__( 'Order ID', 'woo-refund-and-exchange-lite' ),
+				__( 'Order Date', 'woo-refund-and-exchange-lite' ),
+				__( 'Order Status', 'woo-refund-and-exchange-lite' ),
+				__( 'Customer Name', 'woo-refund-and-exchange-lite' ),
+				__( 'Customer Email', 'woo-refund-and-exchange-lite' ),
+				__( 'Billing Phone', 'woo-refund-and-exchange-lite' ),
+				__( 'Order Total', 'woo-refund-and-exchange-lite' ),
+				__( 'Request Date', 'woo-refund-and-exchange-lite' ),
+				__( 'Refund Reason', 'woo-refund-and-exchange-lite' ),
+				__( 'Refund Method', 'woo-refund-and-exchange-lite' ),
+				__( 'Products (Name | Qty | Price)', 'woo-refund-and-exchange-lite' ),
+				__( 'Refund Amount', 'woo-refund-and-exchange-lite' ),
+			)
+		);
+
+		foreach ( $orders as $order ) {
+			$order_id    = $order->get_id();
+			$status_name = wc_get_order_status_name( $order->get_status() );
+			$order_date  = $order->get_date_created() ? date_i18n( wc_date_format(), $order->get_date_created()->getTimestamp() ) : '';
+			$return_data = wps_rma_get_meta_data( $order_id, 'wps_rma_return_product', true );
+
+			if ( ! empty( $return_data ) && is_array( $return_data ) ) {
+				foreach ( $return_data as $timestamp => $data ) {
+					$products_str = '';
+					if ( isset( $data['products'] ) && is_array( $data['products'] ) ) {
+						$parts = array();
+						foreach ( $data['products'] as $item ) {
+							$pid      = isset( $item['variation_id'] ) && ! empty( $item['variation_id'] ) ? $item['variation_id'] : ( isset( $item['product_id'] ) ? $item['product_id'] : 0 );
+							$prod_obj = $pid ? wc_get_product( $pid ) : null;
+							$name     = $prod_obj ? $prod_obj->get_name() : ( 'Product #' . $pid );
+							$parts[]  = $name . ' x' . ( isset( $item['qty'] ) ? $item['qty'] : 1 ) . ' @ ' . wc_format_decimal( isset( $item['price'] ) ? $item['price'] : 0, 2 );
+						}
+						$products_str = implode( '; ', $parts );
+					}
+
+					fputcsv(
+						$out,
+						array(
+							$order_id,
+							$order_date,
+							$status_name,
+							trim( $order->get_billing_first_name() . ' ' . $order->get_billing_last_name() ),
+							$order->get_billing_email(),
+							$order->get_billing_phone(),
+							wc_format_decimal( $order->get_total(), 2 ),
+							is_numeric( $timestamp ) ? date_i18n( wc_date_format(), (int) $timestamp ) : $timestamp,
+							isset( $data['subject'] ) ? $data['subject'] : '',
+							isset( $data['refund_method'] ) ? $data['refund_method'] : '',
+							$products_str,
+							isset( $data['amount'] ) ? wc_format_decimal( $data['amount'], 2 ) : '',
+						)
+					);
+				}
+			} else {
+				fputcsv(
+					$out,
+					array(
+						$order_id,
+						$order_date,
+						$status_name,
+						trim( $order->get_billing_first_name() . ' ' . $order->get_billing_last_name() ),
+						$order->get_billing_email(),
+						$order->get_billing_phone(),
+						wc_format_decimal( $order->get_total(), 2 ),
+						'', '', '', '', '',
+					)
+				);
+			}
+		}
+
+		fclose( $out ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose
+		exit;
+	}
 }
