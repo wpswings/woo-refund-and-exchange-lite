@@ -68,6 +68,13 @@ $wrael_get_tab_presentation = static function( $tab_key, $tab_data ) use ( $wrae
 			$presentation['action_label'] = esc_html__( 'Explore More Plugins', 'woo-refund-and-exchange-lite' );
 			$presentation['action_url']   = $wrael_plugins_link;
 			break;
+		case 'woo-refund-and-exchange-lite-rma-request':
+			$presentation['eyebrow']      = esc_html__( 'Request Log', 'woo-refund-and-exchange-lite' );
+			$presentation['title']        = esc_html__( 'RMA Request', 'woo-refund-and-exchange-lite' );
+			$presentation['description']  = esc_html__( 'Filter and review all return, exchange, and cancellation requests. Search by order ID or narrow results by type and date range.', 'woo-refund-and-exchange-lite' );
+			$presentation['action_label'] = esc_html__( 'Read Documentation', 'woo-refund-and-exchange-lite' );
+			$presentation['action_url']   = $wrael_wps_document_link;
+			break;
 		case 'woo-refund-and-exchange-lite-general':
 			$presentation['eyebrow']     = esc_html__( 'Settings', 'woo-refund-and-exchange-lite' );
 			$presentation['description'] = esc_html__( 'Control the base plugin behavior, refund enablement, order messaging, and request availability windows.', 'woo-refund-and-exchange-lite' );
@@ -309,7 +316,8 @@ $wrael_layout_notice_dismiss_url = wp_nonce_url(
 
 		</div>
 
-		<div class="wps-rma-shell__layout<?php echo 'woo-refund-and-exchange-lite-policies' === $wrael_active_tab ? ' wps-rma-shell__layout--full' : ''; ?>">
+		<?php $wrael_is_full_layout = in_array( $wrael_active_tab, array( 'woo-refund-and-exchange-lite-policies', 'woo-refund-and-exchange-lite-rma-request' ), true ); ?>
+		<div class="wps-rma-shell__layout<?php echo $wrael_is_full_layout ? ' wps-rma-shell__layout--full' : ''; ?>">
 			<div class="wps-rma-shell__main">
 				<?php if ( $wrael_is_multistep_mode ) : ?>
 					<section class="wps-rma-shell__surface wps-rma-shell__surface--setup">
@@ -356,7 +364,7 @@ $wrael_layout_notice_dismiss_url = wp_nonce_url(
 				<?php endif; ?>
 			</div>
 
-			<?php if ( ! $wrael_is_multistep_mode && 'woo-refund-and-exchange-lite-policies' !== $wrael_active_tab ) : ?>
+			<?php if ( ! $wrael_is_multistep_mode && ! $wrael_is_full_layout ) : ?>
 				<?php $wrael_render_sidebar(); ?>
 			<?php endif; ?>
 		</div>

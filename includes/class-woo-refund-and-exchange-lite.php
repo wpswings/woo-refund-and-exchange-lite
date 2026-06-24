@@ -464,6 +464,11 @@ class Woo_Refund_And_Exchange_Lite {
 			'name'      => 'woo-refund-and-exchange-lite-overview',
 			'file_path' => WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/woo-refund-and-exchange-lite-overview.php',
 		);
+		$wrael_default_tabs['woo-refund-and-exchange-lite-rma-request'] = array(
+			'title'     => esc_html__( 'RMA Request', 'woo-refund-and-exchange-lite' ),
+			'name'      => 'woo-refund-and-exchange-lite-rma-request',
+			'file_path' => WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/woo-refund-and-exchange-lite-rma-request.php',
+		);
 		$wrael_default_tabs['woo-refund-and-exchange-lite-general'] = array(
 			'title'     => esc_html__( 'General', 'woo-refund-and-exchange-lite' ),
 			'name'      => 'woo-refund-and-exchange-lite-general',
