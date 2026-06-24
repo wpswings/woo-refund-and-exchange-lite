@@ -1576,7 +1576,8 @@ input.wps_rma_save_settings,
 
 @media (min-width: 961px) {
   .add_more_rma_policies {
-    align-items: flex-start;
+    /* center-align so all items (same height) sit flush on one horizontal axis */
+    align-items: center;
     display: flex;
     flex-wrap: nowrap;
     gap: 8px;
@@ -1600,6 +1601,25 @@ input.wps_rma_save_settings,
     width: auto !important;
   }
 
+  /* Cancel old CSS margin-right: 30px which adds on top of the flex gap */
+  .add_more_rma_policies select,
+  .add_more_rma_policies label,
+  .add_more_rma_policies input {
+    margin-right: 0 !important;
+  }
+
+  /* Cancel old CSS max-height: 50px that clips the styled select height */
+  #save_policies_setting_form select {
+    max-height: none !important;
+    min-height: 44px !important;
+  }
+
+  /* Cancel old CSS padding-bottom: 20px that adds dead space inside each row */
+  #save_policies_setting_form .add_more_rma_policies,
+  #save_policies_setting_form .add_more_rma_policies:last-child {
+    padding-bottom: 10px !important;
+  }
+
   .add_more_rma_policies .wps_rma_on_functionality,
   .add_more_rma_policies .wps_rma_settings_label {
     flex: 0 0 110px;
@@ -1621,19 +1641,21 @@ input.wps_rma_save_settings,
     order: 3;
   }
 
+  /* Allow conditions dropdowns to grow — fills the row on blank "Choose Option" rows
+     where no order-8 value field is visible */
   .add_more_rma_policies .wps_rma_conditions1,
   .add_more_rma_policies .wps_rma_conditions2,
   .add_more_rma_policies .wps_rma_policy_condition {
-    flex: 0 0 140px;
-    max-width: 140px;
+    flex: 1 1 140px;
+    max-width: 260px;
     order: 4;
   }
 
-  /* Value fields — fill remaining space */
+  /* Value fields — fill ALL remaining space (remove the 260px cap that left a dead zone) */
   .add_more_rma_policies .wps_rma_max_number_days,
   .add_more_rma_policies .wps_rma_tax_handling {
     flex: 1 1 120px;
-    max-width: 260px;
+    max-width: none;
     order: 8;
     width: auto !important;
   }
@@ -2155,6 +2177,44 @@ a.wps-rma-shell__hero-action {
   flex-wrap: wrap;
   gap: 12px;
   justify-content: space-between;
+}
+
+/* br.clear inside a flex tablenav acts as an accidental row-break — hide it */
+.wps-rma-report-shell .tablenav br.clear {
+  display: none;
+}
+
+/* Bulk-actions row: align select + Apply button on the same horizontal axis */
+.wps-rma-report-shell .tablenav .bulkactions {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+}
+
+.wps-rma-report-shell .tablenav .bulkactions select {
+  background: #fff;
+  border: 1px solid var(--wps-rma-border, #dde3ed) !important;
+  border-radius: 10px !important;
+  box-shadow: none !important;
+  color: var(--wps-rma-ink, #1a1a2e);
+  height: 38px;
+  min-height: 0 !important;
+  padding: 4px 10px;
+}
+
+/* Apply button — tighter height to sit flush with the select */
+.wps-rma-report-shell .tablenav .bulkactions .button {
+  min-height: 38px !important;
+  padding: 6px 14px !important;
+}
+
+/* Search box — flex row so input + button share the same baseline */
+.wps-rma-report-shell__table-form .search-box {
+  align-items: center;
+  display: flex;
+  float: none;
+  gap: 8px;
+  margin: 0 0 14px;
 }
 
 .wps-rma-report-shell .tablenav-pages,
