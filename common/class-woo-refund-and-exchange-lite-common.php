@@ -162,12 +162,14 @@ class Woo_Refund_And_Exchange_Lite_Common {
 		require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'emails/class-wps-rma-refund-request-email.php';
 		require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'emails/class-wps-rma-refund-request-accept-email.php';
 		require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'emails/class-wps-rma-refund-request-cancel-email.php';
+		require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'emails/class-wps-rma-sla-alert-email.php';
 		// add the email class to the list of email classes that WooCommerce loads.
 
 		$email_classes['wps_rma_order_messages_email']        = new Wps_Rma_Order_Messages_Email();
 		$email_classes['wps_rma_refund_request_email']        = new Wps_Rma_Refund_Request_Email();
 		$email_classes['wps_rma_refund_request_accept_email'] = new Wps_Rma_Refund_Request_Accept_Email();
 		$email_classes['wps_rma_refund_request_cancel_email'] = new Wps_Rma_Refund_Request_Cancel_Email();
+		$email_classes['wps_rma_sla_alert_email']             = new Wps_Rma_Sla_Alert_Email();
 		return $email_classes;
 	}
 

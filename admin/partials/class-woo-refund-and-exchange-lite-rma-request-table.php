@@ -24,24 +24,51 @@ if ( ! class_exists( 'WP_List_Table' ) ) {
  */
 class Woo_Refund_And_Exchange_Lite_Rma_Request_Table extends WP_List_Table {
 
-	/**
-	 * Table row data.
-	 *
-	 * @var array
-	 */
+	/** @var array Table row data. */
 	protected $data = array();
 
 	/**
-	 * Define table columns.
+	 * Cached result of all-filter+SLA-filtered rows, shared between
+	 * wps_rma_request_data() and wps_get_total_request_data() so the full
+	 * order-meta scan runs only once per page load.
+	 *
+	 * @var array|null
 	 */
+	private $cached_filtered_rows = null;
+
+	/** @var array Statuses that mean the request is fully resolved. */
+	private static $terminal_statuses = array( 'accepted', 'cancel', 'cancelled' );
+
+	/**
+	 * SLA label → display config.
+	 *
+	 * @return array
+	 */
+	private function wps_sla_display_map() {
+		return array(
+			'on_track' => array( '#16a34a', '#f0fdf4', __( 'On Track', 'woo-refund-and-exchange-lite' ) ),
+			'warning'  => array( '#d97706', '#fffbeb', __( 'Warning',  'woo-refund-and-exchange-lite' ) ),
+			'overdue'  => array( '#dc2626', '#fef2f2', __( 'Overdue',  'woo-refund-and-exchange-lite' ) ),
+			'approved' => array( '#0d9488', '#f0fdfa', __( 'Approved', 'woo-refund-and-exchange-lite' ) ),
+			'accepted' => array( '#2563eb', '#eff6ff', __( 'Accepted', 'woo-refund-and-exchange-lite' ) ),
+		);
+	}
+
+	// -------------------------------------------------------------------------
+	// Columns
+	// -------------------------------------------------------------------------
+
+	/** Define table columns. */
 	public function get_columns() {
 		return array(
 			'cb'                     => '<input type="checkbox" />',
-			'wps_rma_order_id'       => __( 'Order ID', 'woo-refund-and-exchange-lite' ),
-			'wps_rma_request_type'   => __( 'Request Type', 'woo-refund-and-exchange-lite' ),
+			'wps_rma_order_id'       => __( 'Order ID',       'woo-refund-and-exchange-lite' ),
+			'wps_rma_request_type'   => __( 'Request Type',   'woo-refund-and-exchange-lite' ),
 			'wps_rma_request_status' => __( 'Request Status', 'woo-refund-and-exchange-lite' ),
-			'wps_rma_order_status'   => __( 'Order Status', 'woo-refund-and-exchange-lite' ),
-			'wps_rma_request_date'   => __( 'Request Date', 'woo-refund-and-exchange-lite' ),
+			'wps_rma_order_status'   => __( 'Order Status',   'woo-refund-and-exchange-lite' ),
+			'wps_rma_request_date'   => __( 'Request Date',   'woo-refund-and-exchange-lite' ),
+			'wps_rma_sla_status'     => __( 'Deadline Status', 'woo-refund-and-exchange-lite' ),
+			'wps_rma_action'         => __( 'Action',         'woo-refund-and-exchange-lite' ),
 		);
 	}
 
@@ -60,16 +87,16 @@ class Woo_Refund_And_Exchange_Lite_Rma_Request_Table extends WP_List_Table {
 					$item[ $column_name ] = 'Exchange requested';
 				}
 				return esc_html( $item[ $column_name ] );
+			case 'wps_rma_sla_status':
+				return $this->wps_rma_render_sla_status( $item );
+			case 'wps_rma_action':
+				return $this->wps_rma_render_action( $item );
 			default:
 				return isset( $item[ $column_name ] ) ? esc_html( $item[ $column_name ] ) : '';
 		}
 	}
 
-	/**
-	 * Checkbox column.
-	 *
-	 * @param array $item Row data.
-	 */
+	/** Checkbox column. */
 	public function column_cb( $item ) {
 		return sprintf(
 			'<input type="checkbox" name="wps_rma_order_ids[]" value="%s" />',
@@ -77,80 +104,256 @@ class Woo_Refund_And_Exchange_Lite_Rma_Request_Table extends WP_List_Table {
 		);
 	}
 
+	// -------------------------------------------------------------------------
+	// SLA logic
+	// -------------------------------------------------------------------------
+
 	/**
-	 * Prepare table items.
+	 * Compute the internal SLA label for a row.
+	 *
+	 * Rules (evaluated in order):
+	 *   - Request Status = "complete"   → 'approved'
+	 *   - Request Status = "accepted"   → 'accepted'
+	 *   - Request Status = cancel/cancelled → 'none'
+	 *   - SLA not configured (0)        → 'none'
+	 *   - hours_remaining <= 0          → 'overdue'
+	 *   - hours_remaining <= reminder   → 'warning'
+	 *   - otherwise                     → 'on_track'
+	 *
+	 * @param array $item Row data.
+	 * @return string One of: 'on_track','warning','overdue','approved','accepted','none'
 	 */
-	public function prepare_items() {
-		$per_page              = 10;
-		$columns               = $this->get_columns();
-		$hidden                = array();
-		$sortable              = $this->get_sortable_columns();
-		$this->_column_headers = array( $columns, $hidden, $sortable );
-		$this->process_bulk_action();
+	public function wps_rma_compute_sla_label( $item ) {
+		$request_status = strtolower( trim( $item['wps_rma_request_status'] ) );
 
-		$this->data = $this->wps_rma_request_data();
-		$data       = $this->data;
+		if ( 'complete' === $request_status ) {
+			return 'approved';
+		}
+		if ( 'accepted' === $request_status ) {
+			return 'accepted';
+		}
+		if ( in_array( $request_status, array( 'cancel', 'cancelled' ), true ) ) {
+			return 'none';
+		}
 
-		$current_page = $this->get_pagenum();
-		$total_items  = $this->wps_get_total_request_data();
+		$type = $item['wps_rma_request_type'];
+		if ( 'Return' === $type ) {
+			$sla_hours      = (int) get_option( 'wps_rma_return_sla_hours', 0 );
+			$reminder_hours = (int) get_option( 'wps_rma_return_sla_reminder_hours', 6 );
+		} elseif ( 'Exchange' === $type ) {
+			$sla_hours      = (int) get_option( 'wps_rma_exchange_sla_hours', 0 );
+			$reminder_hours = (int) get_option( 'wps_rma_exchange_sla_reminder_hours', 6 );
+		} else {
+			return 'none';
+		}
 
-		$this->items = $data;
-		$this->set_pagination_args(
-			array(
-				'total_items' => $total_items,
-				'per_page'    => $per_page,
-				'total_pages' => ceil( $total_items / $per_page ),
-			)
+		if ( ! $sla_hours || empty( $item['wps_rma_request_timestamp'] ) ) {
+			return 'none';
+		}
+
+		$deadline        = (int) $item['wps_rma_request_timestamp'] + ( $sla_hours * HOUR_IN_SECONDS );
+		$now             = current_time( 'timestamp' );
+		$hours_remaining = ( $deadline - $now ) / HOUR_IN_SECONDS;
+
+		if ( $hours_remaining <= 0 ) {
+			return 'overdue';
+		}
+		if ( $hours_remaining <= $reminder_hours ) {
+			return 'warning';
+		}
+		return 'on_track';
+	}
+
+	/**
+	 * Render a colour-coded SLA badge for a row.
+	 *
+	 * on_track / warning also show hours remaining.
+	 * overdue, approved, accepted show a plain label.
+	 *
+	 * @param array $item Row data.
+	 * @return string HTML.
+	 */
+	private function wps_rma_render_sla_status( $item ) {
+		$label = $this->wps_rma_compute_sla_label( $item );
+		$map   = $this->wps_sla_display_map();
+
+		if ( ! isset( $map[ $label ] ) ) {
+			return '&mdash;';
+		}
+
+		list( $color, $bg, $text ) = $map[ $label ];
+
+		// For time-based statuses, append hours remaining to the label.
+		if ( in_array( $label, array( 'on_track', 'warning' ), true ) ) {
+			$type = $item['wps_rma_request_type'];
+			$sla_hours = ( 'Return' === $type )
+				? (int) get_option( 'wps_rma_return_sla_hours', 0 )
+				: (int) get_option( 'wps_rma_exchange_sla_hours', 0 );
+
+			if ( $sla_hours && ! empty( $item['wps_rma_request_timestamp'] ) ) {
+				$deadline        = (int) $item['wps_rma_request_timestamp'] + ( $sla_hours * HOUR_IN_SECONDS );
+				$hours_remaining = ( $deadline - current_time( 'timestamp' ) ) / HOUR_IN_SECONDS;
+				/* translators: %d: hours remaining */
+				$text .= ' — ' . sprintf( __( '%dh left', 'woo-refund-and-exchange-lite' ), (int) ceil( $hours_remaining ) );
+			}
+		}
+
+		return sprintf(
+			'<span style="display:inline-block;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;color:%s;background:%s">%s</span>',
+			esc_attr( $color ),
+			esc_attr( $bg ),
+			esc_html( $text )
 		);
 	}
 
 	/**
-	 * Fetch and filter request rows.
+	 * Render the Action column.
+	 * Shows "View Order" link only for non-terminal, non-completed requests.
 	 *
+	 * @param array $item Row data.
+	 * @return string HTML link or em-dash.
+	 */
+	private function wps_rma_render_action( $item ) {
+		$status = strtolower( trim( $item['wps_rma_request_status'] ) );
+
+		// Hide action for fully-resolved statuses.
+		if ( in_array( $status, array_merge( self::$terminal_statuses, array( 'complete' ) ), true ) ) {
+			return '&mdash;';
+		}
+
+		$url = admin_url( 'post.php?post=' . absint( $item['wps_rma_order_id'] ) . '&action=edit' );
+		return '<a href="' . esc_url( $url ) . '" target="_blank" rel="noopener noreferrer" class="button button-small">'
+			. esc_html__( 'View Order', 'woo-refund-and-exchange-lite' )
+			. '</a>';
+	}
+
+	// -------------------------------------------------------------------------
+	// Prepare items (called once, uses cache)
+	// -------------------------------------------------------------------------
+
+	/** Prepare table items. */
+	public function prepare_items() {
+		$columns               = $this->get_columns();
+		$this->_column_headers = array( $columns, array(), $this->get_sortable_columns() );
+		$this->process_bulk_action();
+
+		$per_page     = 10;
+		$current_page = $this->get_pagenum();
+		$all          = $this->wps_rma_get_all_filtered_rows();
+		$total_items  = count( $all );
+
+		$this->data  = array_slice( $all, ( $current_page - 1 ) * $per_page, $per_page );
+		$this->items = $this->data;
+
+		$this->set_pagination_args( array(
+			'total_items' => $total_items,
+			'per_page'    => $per_page,
+			'total_pages' => ceil( $total_items / $per_page ),
+		) );
+	}
+
+	// -------------------------------------------------------------------------
+	// Public helpers used by the partial
+	// -------------------------------------------------------------------------
+
+	/**
+	 * @deprecated kept for backward compat with the partial.
 	 * @return array
 	 */
 	public function wps_rma_request_data() {
+		$per_page     = 10;
+		$current_page = $this->get_pagenum();
+		$all          = $this->wps_rma_get_all_filtered_rows();
+		return array_slice( $all, ( $current_page - 1 ) * $per_page, $per_page );
+	}
+
+	/**
+	 * @deprecated kept for backward compat with the partial.
+	 * @return int
+	 */
+	public function wps_get_total_request_data() {
+		return count( $this->wps_rma_get_all_filtered_rows() );
+	}
+
+	// -------------------------------------------------------------------------
+	// Core data pipeline
+	// -------------------------------------------------------------------------
+
+	/**
+	 * Fetch ALL matching order IDs, build rows, apply SLA-status filter.
+	 * Result is cached on the object so it's computed only once per page load.
+	 *
+	 * @return array
+	 */
+	private function wps_rma_get_all_filtered_rows() {
+		if ( null !== $this->cached_filtered_rows ) {
+			return $this->cached_filtered_rows;
+		}
+
+		$order_ids = $this->wps_rma_fetch_all_order_ids();
+		$rows      = $this->prepare_data_to_display( $order_ids );
+
+		// Apply SLA status filter if one is saved.
+		$saved_data = get_option( 'wsp_rma_report_filter' );
+		$sla_filter = isset( $saved_data['sla_status'] ) ? sanitize_text_field( wp_unslash( $saved_data['sla_status'] ) ) : '';
+
+		if ( $sla_filter ) {
+			$rows = array_values( array_filter( $rows, function ( $row ) use ( $sla_filter ) {
+				return $this->wps_rma_compute_sla_label( $row ) === $sla_filter;
+			} ) );
+		}
+
+		$this->cached_filtered_rows = $rows;
+		return $rows;
+	}
+
+	/**
+	 * Return all matching order IDs for the current filter state.
+	 * Search-by-ID takes priority over date/type filters.
+	 * No LIMIT — pagination is done in PHP after SLA filtering.
+	 *
+	 * @return array
+	 */
+	private function wps_rma_fetch_all_order_ids() {
 		global $wpdb;
 
-		$current_page    = isset( $_GET['paged'] ) ? absint( $_GET['paged'] ) : 1;
-		$orders_per_page = 10;
-		$offset          = ( $current_page - 1 ) * $orders_per_page;
+		// --- search by order ID ---
+		if ( isset( $_REQUEST['s'] ) && '' !== trim( $_REQUEST['s'] ) ) {
+			$is_pro      = function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active();
+			$order_id    = absint( $_REQUEST['s'] );
+			$ret_data    = wps_rma_get_meta_data( $order_id, 'wps_rma_return_product', true );
+			$exch_data   = $is_pro ? wps_rma_get_meta_data( $order_id, 'wps_wrma_exchange_product', true ) : array();
+			$cancel_data = $is_pro ? wps_rma_get_meta_data( $order_id, 'wps_rma_cancel_req_date', true ) : '';
 
+			return ( ! empty( $ret_data ) || ! empty( $exch_data ) || ! empty( $cancel_data ) )
+				? array( $order_id )
+				: array();
+		}
+
+		// --- date / type filter ---
 		$saved_data  = get_option( 'wsp_rma_report_filter' );
 		$filter_type = isset( $saved_data['type'] ) ? sanitize_text_field( wp_unslash( $saved_data['type'] ) ) : null;
 		$start_date  = isset( $saved_data['start_date'] ) ? sanitize_text_field( wp_unslash( $saved_data['start_date'] ) ) : null;
 		$end_date    = isset( $saved_data['end_date'] ) ? sanitize_text_field( wp_unslash( $saved_data['end_date'] ) ) : null;
 
-		$query_keys = $this->wps_get_query_keys( $filter_type );
-
+		$query_keys         = $this->wps_get_query_keys( $filter_type );
 		$query_placeholders = implode( ', ', array_fill( 0, count( $query_keys ), '%s' ) );
 
-		if ( isset( $_REQUEST['s'] ) && ! empty( $_REQUEST['s'] ) ) {
-			$is_pro        = function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active();
-			$order_id      = absint( $_REQUEST['s'] );
-			$return_data   = wps_rma_get_meta_data( $order_id, 'wps_rma_return_product', true );
-			$exchange_data = $is_pro ? wps_rma_get_meta_data( $order_id, 'wps_wrma_exchange_product', true ) : array();
-			$cancel_data   = $is_pro ? wps_rma_get_meta_data( $order_id, 'wps_rma_cancel_req_date', true ) : '';
-
-			$order_ids = ( ! empty( $return_data ) || ! empty( $exchange_data ) || ! empty( $cancel_data ) )
-				? array( $order_id )
-				: array();
-
-			return $this->prepare_data_to_display( $order_ids );
-		}
+		$hpos = class_exists( '\Automattic\WooCommerce\Utilities\OrderUtil' )
+			&& \Automattic\WooCommerce\Utilities\OrderUtil::custom_orders_table_usage_is_enabled();
 
 		if ( $start_date && $end_date ) {
 			$start_date = date_i18n( 'Ymd', strtotime( $start_date ) );
 			$end_date   = date_i18n( 'Ymd', strtotime( $end_date ) );
 
-			if ( OrderUtil::custom_orders_table_usage_is_enabled() ) {
+			if ( $hpos ) {
 				$sql = $wpdb->prepare(
 					"SELECT p.id FROM {$wpdb->prefix}wc_orders AS p
 					INNER JOIN {$wpdb->prefix}wc_orders_meta AS pm ON p.id = pm.order_id
 					WHERE pm.meta_key IN ($query_placeholders)
 					AND pm.meta_value >= %s AND pm.meta_value <= %s
-					ORDER BY p.id DESC LIMIT %d, %d",
-					array_merge( $query_keys, array( $start_date, $end_date, $offset, $orders_per_page ) )
+					ORDER BY p.id DESC",
+					array_merge( $query_keys, array( $start_date, $end_date ) )
 				);
 			} else {
 				$sql = $wpdb->prepare(
@@ -159,17 +362,17 @@ class Woo_Refund_And_Exchange_Lite_Rma_Request_Table extends WP_List_Table {
 					WHERE p.post_type = 'shop_order'
 					AND pm.meta_key IN ($query_placeholders)
 					AND pm.meta_value >= %s AND pm.meta_value <= %s
-					ORDER BY p.ID DESC LIMIT %d, %d",
-					array_merge( $query_keys, array( $start_date, $end_date, $offset, $orders_per_page ) )
+					ORDER BY p.ID DESC",
+					array_merge( $query_keys, array( $start_date, $end_date ) )
 				);
 			}
-		} elseif ( OrderUtil::custom_orders_table_usage_is_enabled() ) {
+		} elseif ( $hpos ) {
 			$sql = $wpdb->prepare(
 				"SELECT p.id FROM {$wpdb->prefix}wc_orders AS p
 				INNER JOIN {$wpdb->prefix}wc_orders_meta AS pm ON p.id = pm.order_id
 				WHERE pm.meta_key IN ($query_placeholders)
-				ORDER BY p.id DESC LIMIT %d, %d",
-				array_merge( $query_keys, array( $offset, $orders_per_page ) )
+				ORDER BY p.id DESC",
+				$query_keys
 			);
 		} else {
 			$sql = $wpdb->prepare(
@@ -177,94 +380,19 @@ class Woo_Refund_And_Exchange_Lite_Rma_Request_Table extends WP_List_Table {
 				INNER JOIN {$wpdb->prefix}postmeta AS pm ON p.ID = pm.post_id
 				WHERE p.post_type = 'shop_order'
 				AND pm.meta_key IN ($query_placeholders)
-				ORDER BY p.ID DESC LIMIT %d, %d",
-				array_merge( $query_keys, array( $offset, $orders_per_page ) )
-			);
-		}
-
-		$order_ids = $wpdb->get_col( $sql );
-		return $this->prepare_data_to_display( $order_ids );
-	}
-
-	/**
-	 * Count total matching rows for pagination.
-	 *
-	 * @return int
-	 */
-	public function wps_get_total_request_data() {
-		global $wpdb;
-
-		$saved_data  = get_option( 'wsp_rma_report_filter' );
-		$filter_type = isset( $saved_data['type'] ) ? sanitize_text_field( wp_unslash( $saved_data['type'] ) ) : null;
-		$start_date  = isset( $saved_data['start_date'] ) ? sanitize_text_field( wp_unslash( $saved_data['start_date'] ) ) : null;
-		$end_date    = isset( $saved_data['end_date'] ) ? sanitize_text_field( wp_unslash( $saved_data['end_date'] ) ) : null;
-
-		$query_keys = $this->wps_get_query_keys( $filter_type );
-
-		$query_placeholders = implode( ', ', array_fill( 0, count( $query_keys ), '%s' ) );
-
-		if ( isset( $_REQUEST['s'] ) && ! empty( $_REQUEST['s'] ) ) {
-			$is_pro        = function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active();
-			$order_id      = absint( $_REQUEST['s'] );
-			$return_data   = wps_rma_get_meta_data( $order_id, 'wps_rma_return_product', true );
-			$exchange_data = $is_pro ? wps_rma_get_meta_data( $order_id, 'wps_wrma_exchange_product', true ) : array();
-			$cancel_data   = $is_pro ? wps_rma_get_meta_data( $order_id, 'wps_rma_cancel_req_date', true ) : '';
-
-			$order_ids = ( ! empty( $return_data ) || ! empty( $exchange_data ) || ! empty( $cancel_data ) )
-				? array( $order_id )
-				: array();
-
-			return count( $this->prepare_data_to_display( $order_ids ) );
-		}
-
-		if ( $start_date && $end_date ) {
-			$start_date = date_i18n( 'Ymd', strtotime( $start_date ) );
-			$end_date   = date_i18n( 'Ymd', strtotime( $end_date ) );
-
-			if ( OrderUtil::custom_orders_table_usage_is_enabled() ) {
-				$sql = $wpdb->prepare(
-					"SELECT p.id FROM {$wpdb->prefix}wc_orders AS p
-					INNER JOIN {$wpdb->prefix}wc_orders_meta AS pm ON p.id = pm.order_id
-					WHERE pm.meta_key IN ($query_placeholders)
-					AND pm.meta_value >= %s AND pm.meta_value <= %s",
-					array_merge( $query_keys, array( $start_date, $end_date ) )
-				);
-			} else {
-				$sql = $wpdb->prepare(
-					"SELECT p.ID FROM {$wpdb->prefix}posts AS p
-					INNER JOIN {$wpdb->prefix}postmeta AS pm ON p.ID = pm.post_id
-					WHERE p.post_type = 'shop_order'
-					AND pm.meta_key IN ($query_placeholders)
-					AND pm.meta_value >= %s AND pm.meta_value <= %s",
-					array_merge( $query_keys, array( $start_date, $end_date ) )
-				);
-			}
-		} elseif ( OrderUtil::custom_orders_table_usage_is_enabled() ) {
-			$sql = $wpdb->prepare(
-				"SELECT p.id FROM {$wpdb->prefix}wc_orders AS p
-				INNER JOIN {$wpdb->prefix}wc_orders_meta AS pm ON p.id = pm.order_id
-				WHERE pm.meta_key IN ($query_placeholders)",
-				$query_keys
-			);
-		} else {
-			$sql = $wpdb->prepare(
-				"SELECT p.ID FROM {$wpdb->prefix}posts AS p
-				INNER JOIN {$wpdb->prefix}postmeta AS pm ON p.ID = pm.post_id
-				WHERE p.post_type = 'shop_order'
-				AND pm.meta_key IN ($query_placeholders)",
+				ORDER BY p.ID DESC",
 				$query_keys
 			);
 		}
 
-		$order_ids = $wpdb->get_col( $sql );
-		return is_array( $order_ids ) ? count( $order_ids ) : 0;
+		return $wpdb->get_col( $sql );
 	}
 
 	/**
 	 * Map filter type to the relevant meta key(s).
-	 * When pro is not active, only return requests are available.
+	 * Free plugin: only return requests.
 	 *
-	 * @param string|null $filter_type 'return', 'exchange', 'cancellation', or all.
+	 * @param string|null $filter_type
 	 * @return array
 	 */
 	private function wps_get_query_keys( $filter_type ) {
@@ -273,12 +401,13 @@ class Woo_Refund_And_Exchange_Lite_Rma_Request_Table extends WP_List_Table {
 		if ( ! $is_pro ) {
 			return array( 'wps_rma_return_req_date' );
 		}
-
 		if ( 'return' === $filter_type ) {
 			return array( 'wps_rma_return_req_date' );
-		} elseif ( 'exchange' === $filter_type ) {
+		}
+		if ( 'exchange' === $filter_type ) {
 			return array( 'wps_rma_exchange_req_date' );
-		} elseif ( 'cancellation' === $filter_type ) {
+		}
+		if ( 'cancellation' === $filter_type ) {
 			return array( 'wps_rma_cancel_req_date' );
 		}
 		return array( 'wps_rma_return_req_date', 'wps_rma_exchange_req_date', 'wps_rma_cancel_req_date' );
@@ -286,6 +415,7 @@ class Woo_Refund_And_Exchange_Lite_Rma_Request_Table extends WP_List_Table {
 
 	/**
 	 * Build display rows from a list of order IDs.
+	 * Includes wps_rma_request_timestamp (Unix int) for SLA calculation.
 	 *
 	 * @param array $get_data Order IDs.
 	 * @return array
@@ -309,11 +439,12 @@ class Woo_Refund_And_Exchange_Lite_Rma_Request_Table extends WP_List_Table {
 			if ( is_array( $return_request_data ) && ! empty( $return_request_data ) ) {
 				foreach ( $return_request_data as $date => $return_data ) {
 					$wps_rma_data[] = array(
-						'wps_rma_order_id'       => $id,
-						'wps_rma_request_status' => ucfirst( $return_data['status'] ),
-						'wps_rma_request_type'   => 'Return',
-						'wps_rma_request_date'   => date_i18n( wc_date_format(), $date ),
-						'wps_rma_order_status'   => ucfirst( str_replace( '-', ' ', $order_status ) ),
+						'wps_rma_order_id'          => $id,
+						'wps_rma_request_status'    => ucfirst( $return_data['status'] ),
+						'wps_rma_request_type'      => 'Return',
+						'wps_rma_request_date'      => date_i18n( wc_date_format(), $date ),
+						'wps_rma_request_timestamp' => (int) $date,
+						'wps_rma_order_status'      => ucfirst( str_replace( '-', ' ', $order_status ) ),
 					);
 				}
 			}
@@ -325,22 +456,24 @@ class Woo_Refund_And_Exchange_Lite_Rma_Request_Table extends WP_List_Table {
 				if ( is_array( $exchange_request_data ) && ! empty( $exchange_request_data ) ) {
 					foreach ( $exchange_request_data as $date => $exchange_data ) {
 						$wps_rma_data[] = array(
-							'wps_rma_order_id'       => $id,
-							'wps_rma_request_status' => ucfirst( $exchange_data['status'] ),
-							'wps_rma_request_type'   => 'Exchange',
-							'wps_rma_request_date'   => date_i18n( wc_date_format(), $date ),
-							'wps_rma_order_status'   => ucfirst( str_replace( '-', ' ', $order_status ) ),
+							'wps_rma_order_id'          => $id,
+							'wps_rma_request_status'    => ucfirst( $exchange_data['status'] ),
+							'wps_rma_request_type'      => 'Exchange',
+							'wps_rma_request_date'      => date_i18n( wc_date_format(), $date ),
+							'wps_rma_request_timestamp' => (int) $date,
+							'wps_rma_order_status'      => ucfirst( str_replace( '-', ' ', $order_status ) ),
 						);
 					}
 				}
 
 				if ( ! empty( $cancel_request_date ) ) {
 					$wps_rma_data[] = array(
-						'wps_rma_order_id'       => $id,
-						'wps_rma_request_status' => esc_html__( 'Cancelled', 'woo-refund-and-exchange-lite' ),
-						'wps_rma_request_type'   => ucwords( str_replace( '_', ' ', $order->get_meta( 'wps_rma_cancel_req_reason' ) ) ),
-						'wps_rma_request_date'   => date_i18n( wc_date_format(), strtotime( $cancel_request_date ) ),
-						'wps_rma_order_status'   => ucfirst( str_replace( '-', ' ', $order_status ) ),
+						'wps_rma_order_id'          => $id,
+						'wps_rma_request_status'    => esc_html__( 'Cancelled', 'woo-refund-and-exchange-lite' ),
+						'wps_rma_request_type'      => ucwords( str_replace( '_', ' ', $order->get_meta( 'wps_rma_cancel_req_reason' ) ) ),
+						'wps_rma_request_date'      => date_i18n( wc_date_format(), strtotime( $cancel_request_date ) ),
+						'wps_rma_request_timestamp' => (int) strtotime( $cancel_request_date ),
+						'wps_rma_order_status'      => ucfirst( str_replace( '-', ' ', $order_status ) ),
 					);
 				}
 			}
@@ -349,18 +482,15 @@ class Woo_Refund_And_Exchange_Lite_Rma_Request_Table extends WP_List_Table {
 		return $wps_rma_data;
 	}
 
-	/**
-	 * Available bulk actions.
-	 *
-	 * @return array
-	 */
+	// -------------------------------------------------------------------------
+	// Bulk actions
+	// -------------------------------------------------------------------------
+
+	/** @return array */
 	public function get_bulk_actions() {
 		return apply_filters( 'wps_rma_lite_request_bulk_option', array() );
 	}
 
-	/**
-	 * Handle bulk actions.
-	 */
 	public function process_bulk_action() {
 		do_action( 'wps_rma_lite_process_bulk_request_action', $this->current_action(), $_POST );
 	}

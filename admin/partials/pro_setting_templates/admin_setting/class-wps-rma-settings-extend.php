@@ -783,6 +783,31 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 			$wps_rma_settings_exchange   =
 			// To extend Refund Apperance setting.
 			apply_filters( 'wps_rma_exchange_appearance_setting_extend', $wps_rma_settings_exchange );
+
+			$wps_rma_settings_exchange[] = array(
+				'type' => 'breaker',
+				'id'   => 'Resolution Deadline Settings',
+				'name' => 'Resolution Deadline Settings',
+			);
+			$wps_rma_settings_exchange[] = array(
+				'title'       => esc_html__( 'Exchange Resolution Hours', 'woo-refund-and-exchange-lite' ),
+				'type'        => 'number',
+				'id'          => 'wps_rma_exchange_sla_hours',
+				'value'       => get_option( 'wps_rma_exchange_sla_hours', 72 ),
+				'class'       => 'wrael-number-class ' . $this->rma_pro_activate,
+				'description' => esc_html__( 'Hours allowed to resolve an exchange request before the resolution deadline. Set 0 to disable.', 'woo-refund-and-exchange-lite' ),
+				'placeholder' => '72',
+			);
+			$wps_rma_settings_exchange[] = array(
+				'title'       => esc_html__( 'Exchange Reminder Hours', 'woo-refund-and-exchange-lite' ),
+				'type'        => 'number',
+				'id'          => 'wps_rma_exchange_sla_reminder_hours',
+				'value'       => get_option( 'wps_rma_exchange_sla_reminder_hours', 6 ),
+				'class'       => 'wrael-number-class ' . $this->rma_pro_activate,
+				'description' => esc_html__( 'Send admin email alert this many hours before the exchange resolution deadline.', 'woo-refund-and-exchange-lite' ),
+				'placeholder' => '6',
+			);
+
 			$wps_rma_settings_exchange[] = array(
 				'type'        => 'button',
 				'id'          => 'wps_rma_save_exchange_setting',

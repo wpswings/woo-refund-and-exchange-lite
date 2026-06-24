@@ -21,28 +21,84 @@ if ( ! $id_nonce_verified ) {
 
 $wps_rma_is_pro = function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active();
 
+// Handle filter form submission.
 if ( isset( $_POST['wps_rma_date_submit'] ) ) {
 	$start_date  = isset( $_REQUEST['wps_rma_start_date'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['wps_rma_start_date'] ) ) : null;
 	$end_date    = isset( $_REQUEST['wps_rma_end_date'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['wps_rma_end_date'] ) ) : null;
 	$filter_type = isset( $_REQUEST['rma_report_request_filter'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['rma_report_request_filter'] ) ) : null;
+	$sla_status  = isset( $_REQUEST['rma_sla_status_filter'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['rma_sla_status_filter'] ) ) : '';
 
-	update_option( 'wsp_rma_report_filter', array( 'type' => $filter_type, 'start_date' => $start_date, 'end_date' => $end_date ) );
+	update_option( 'wsp_rma_report_filter', array(
+		'type'       => $filter_type,
+		'start_date' => $start_date,
+		'end_date'   => $end_date,
+		'sla_status' => $sla_status,
+	) );
 } elseif ( isset( $_POST['wps_rma_clear_filter'] ) ) {
-	update_option( 'wsp_rma_report_filter', array( 'type' => null, 'start_date' => null, 'end_date' => null ) );
+	update_option( 'wsp_rma_report_filter', array(
+		'type'       => null,
+		'start_date' => null,
+		'end_date'   => null,
+		'sla_status' => '',
+	) );
 }
 
 $saved_data  = get_option( 'wsp_rma_report_filter' );
 $filter_type = isset( $saved_data['type'] ) ? sanitize_text_field( wp_unslash( $saved_data['type'] ) ) : null;
 $start_date  = isset( $saved_data['start_date'] ) ? sanitize_text_field( wp_unslash( $saved_data['start_date'] ) ) : null;
 $end_date    = isset( $saved_data['end_date'] ) ? sanitize_text_field( wp_unslash( $saved_data['end_date'] ) ) : null;
+$sla_status  = isset( $saved_data['sla_status'] ) ? sanitize_text_field( wp_unslash( $saved_data['sla_status'] ) ) : '';
 
-// Initialize and prepare table before HTML so search_box() and display() can be split across the layout.
+// Initialize and prepare table before HTML so search_box() and display() can be split.
 require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/class-woo-refund-and-exchange-lite-rma-request-table.php';
 $wps_rma_request_table = null;
 if ( class_exists( 'Woo_Refund_And_Exchange_Lite_Rma_Request_Table' ) ) {
 	$wps_rma_request_table = new Woo_Refund_And_Exchange_Lite_Rma_Request_Table();
 	$wps_rma_request_table->prepare_items();
 }
+
+// SLA status options used in dropdown and legend.
+$wps_sla_options = array(
+	''          => __( 'All Deadline Status', 'woo-refund-and-exchange-lite' ),
+	'on_track'  => __( 'On Track',       'woo-refund-and-exchange-lite' ),
+	'warning'   => __( 'Warning',         'woo-refund-and-exchange-lite' ),
+	'overdue'   => __( 'Overdue',         'woo-refund-and-exchange-lite' ),
+	'approved'  => __( 'Approved',        'woo-refund-and-exchange-lite' ),
+	'accepted'  => __( 'Accepted',        'woo-refund-and-exchange-lite' ),
+);
+
+$wps_sla_legend = array(
+	'on_track' => array(
+		'color' => '#16a34a',
+		'bg'    => '#f0fdf4',
+		'label' => __( 'On Track', 'woo-refund-and-exchange-lite' ),
+		'desc'  => __( 'Request is active and within the configured resolution deadline window.', 'woo-refund-and-exchange-lite' ),
+	),
+	'warning'  => array(
+		'color' => '#d97706',
+		'bg'    => '#fffbeb',
+		'label' => __( 'Warning', 'woo-refund-and-exchange-lite' ),
+		'desc'  => __( 'Request is within the reminder window — action required soon.', 'woo-refund-and-exchange-lite' ),
+	),
+	'overdue'  => array(
+		'color' => '#dc2626',
+		'bg'    => '#fef2f2',
+		'label' => __( 'Overdue', 'woo-refund-and-exchange-lite' ),
+		'desc'  => __( 'Request has passed its resolution deadline without resolution.', 'woo-refund-and-exchange-lite' ),
+	),
+	'approved' => array(
+		'color' => '#0d9488',
+		'bg'    => '#f0fdfa',
+		'label' => __( 'Approved', 'woo-refund-and-exchange-lite' ),
+		'desc'  => __( 'Request has been marked Complete — resolution deadline met.', 'woo-refund-and-exchange-lite' ),
+	),
+	'accepted' => array(
+		'color' => '#2563eb',
+		'bg'    => '#eff6ff',
+		'label' => __( 'Accepted', 'woo-refund-and-exchange-lite' ),
+		'desc'  => __( 'Request has been accepted by admin.', 'woo-refund-and-exchange-lite' ),
+	),
+);
 ?>
 <style>
 /* RMA Request tab — scoped styles */
@@ -152,9 +208,7 @@ if ( class_exists( 'Woo_Refund_And_Exchange_Lite_Rma_Request_Table' ) ) {
 	padding: 0;
 	float: none;
 }
-.wps-rma-req-search-form .search-box label {
-	display: none;
-}
+.wps-rma-req-search-form .search-box label { display: none; }
 .wps-rma-req-search-form .search-box input[type="search"] {
 	height: 32px;
 	line-height: 30px;
@@ -179,23 +233,65 @@ if ( class_exists( 'Woo_Refund_And_Exchange_Lite_Rma_Request_Table' ) ) {
 .wps-rma-req-table-wrap .wp-list-table { border: none; box-shadow: none; }
 .wps-rma-req-table-wrap .wp-list-table th,
 .wps-rma-req-table-wrap .wp-list-table td { padding: 10px 12px; }
+
+/* SLA Legend */
+.wps-rma-sla-legend {
+	border-top: 1px solid #f0f2f5;
+	padding-top: 20px;
+	margin-top: 20px;
+}
+.wps-rma-sla-legend__title {
+	font-size: 13px;
+	font-weight: 600;
+	color: #1e293b;
+	margin: 0 0 12px;
+}
+.wps-rma-sla-legend__grid {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+.wps-rma-sla-legend__item {
+	display: flex;
+	align-items: flex-start;
+	gap: 8px;
+	font-size: 12px;
+	color: #475569;
+	min-width: 180px;
+	flex: 1 1 180px;
+}
+.wps-rma-sla-legend__badge {
+	display: inline-block;
+	padding: 2px 10px;
+	border-radius: 12px;
+	font-size: 11px;
+	font-weight: 700;
+	white-space: nowrap;
+	flex-shrink: 0;
+}
+.wps-rma-sla-legend__desc {
+	line-height: 1.5;
+	padding-top: 1px;
+}
 </style>
 
 <div class="wps-rma-req-card">
 
 	<div class="wps-rma-req-card__head">
 		<h2><?php esc_html_e( 'Request Log', 'woo-refund-and-exchange-lite' ); ?></h2>
-		<p><?php esc_html_e( 'Filter request records by type and date range, then search directly by order ID.', 'woo-refund-and-exchange-lite' ); ?></p>
+		<p><?php esc_html_e( 'Filter request records by type, date range or deadline status, then search directly by order ID.', 'woo-refund-and-exchange-lite' ); ?></p>
 	</div>
 
 	<div class="wps-rma-req-controls-row">
 
 		<form method="post" class="wps-rma-req-filters">
+
+			<?php /* Request type dropdown */ ?>
 			<?php if ( $wps_rma_is_pro ) : ?>
 				<select name="rma_report_request_filter">
-					<option value="all" <?php selected( 'all', $filter_type ); ?>><?php esc_html_e( 'All', 'woo-refund-and-exchange-lite' ); ?></option>
-					<option value="return" <?php selected( 'return', $filter_type ); ?>><?php esc_html_e( 'Return', 'woo-refund-and-exchange-lite' ); ?></option>
-					<option value="exchange" <?php selected( 'exchange', $filter_type ); ?>><?php esc_html_e( 'Exchange', 'woo-refund-and-exchange-lite' ); ?></option>
+					<option value="all"          <?php selected( 'all',          $filter_type ); ?>><?php esc_html_e( 'All',          'woo-refund-and-exchange-lite' ); ?></option>
+					<option value="return"       <?php selected( 'return',       $filter_type ); ?>><?php esc_html_e( 'Return',       'woo-refund-and-exchange-lite' ); ?></option>
+					<option value="exchange"     <?php selected( 'exchange',     $filter_type ); ?>><?php esc_html_e( 'Exchange',     'woo-refund-and-exchange-lite' ); ?></option>
 					<option value="cancellation" <?php selected( 'cancellation', $filter_type ); ?>><?php esc_html_e( 'Cancellation', 'woo-refund-and-exchange-lite' ); ?></option>
 				</select>
 			<?php else : ?>
@@ -203,11 +299,21 @@ if ( class_exists( 'Woo_Refund_And_Exchange_Lite_Rma_Request_Table' ) ) {
 					<option value="return"><?php esc_html_e( 'Return', 'woo-refund-and-exchange-lite' ); ?></option>
 				</select>
 			<?php endif; ?>
+
+			<?php /* SLA status dropdown */ ?>
+			<select name="rma_sla_status_filter">
+				<?php foreach ( $wps_sla_options as $val => $label ) : ?>
+					<option value="<?php echo esc_attr( $val ); ?>" <?php selected( $val, $sla_status ); ?>>
+						<?php echo esc_html( $label ); ?>
+					</option>
+				<?php endforeach; ?>
+			</select>
+
 			<input name="wps_rma_start_date" type="date" value="<?php echo esc_attr( $start_date ); ?>" />
 			<span class="wps-rma-req-to-label"><?php esc_html_e( 'To', 'woo-refund-and-exchange-lite' ); ?></span>
 			<input name="wps_rma_end_date" type="date" value="<?php echo esc_attr( $end_date ); ?>" />
-			<input class="button button-primary" name="wps_rma_date_submit" type="submit" value="<?php esc_attr_e( 'Filter', 'woo-refund-and-exchange-lite' ); ?>">
-			<input class="button" name="wps_rma_clear_filter" type="submit" value="<?php esc_attr_e( 'Clear', 'woo-refund-and-exchange-lite' ); ?>">
+			<input class="button button-primary" name="wps_rma_date_submit"  type="submit" value="<?php esc_attr_e( 'Filter', 'woo-refund-and-exchange-lite' ); ?>">
+			<input class="button"               name="wps_rma_clear_filter" type="submit" value="<?php esc_attr_e( 'Clear',  'woo-refund-and-exchange-lite' ); ?>">
 		</form>
 
 		<?php if ( $wps_rma_request_table ) : ?>
@@ -227,5 +333,21 @@ if ( class_exists( 'Woo_Refund_And_Exchange_Lite_Rma_Request_Table' ) ) {
 		<?php $wps_rma_request_table->display(); ?>
 	</form>
 	<?php endif; ?>
+
+	<!-- SLA Status Legend -->
+	<div class="wps-rma-sla-legend">
+		<p class="wps-rma-sla-legend__title"><?php esc_html_e( 'Deadline Status Legend', 'woo-refund-and-exchange-lite' ); ?></p>
+		<div class="wps-rma-sla-legend__grid">
+			<?php foreach ( $wps_sla_legend as $entry ) : ?>
+			<div class="wps-rma-sla-legend__item">
+				<span class="wps-rma-sla-legend__badge"
+				      style="color:<?php echo esc_attr( $entry['color'] ); ?>;background:<?php echo esc_attr( $entry['bg'] ); ?>;">
+					<?php echo esc_html( $entry['label'] ); ?>
+				</span>
+				<span class="wps-rma-sla-legend__desc"><?php echo esc_html( $entry['desc'] ); ?></span>
+			</div>
+			<?php endforeach; ?>
+		</div>
+	</div>
 
 </div>

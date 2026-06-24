@@ -1026,6 +1026,31 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		$wps_rma_settings_refund   =
 		// To extend Refund Apperance setting.
 		apply_filters( 'wps_rma_refund_appearance_setting_extend', $wps_rma_settings_refund );
+
+		$wps_rma_settings_refund[] = array(
+			'type' => 'breaker',
+			'id'   => 'Resolution Deadline Settings',
+			'name' => 'Resolution Deadline Settings',
+		);
+		$wps_rma_settings_refund[] = array(
+			'title'       => esc_html__( 'Return Resolution Hours', 'woo-refund-and-exchange-lite' ),
+			'type'        => 'number',
+			'id'          => 'wps_rma_return_sla_hours',
+			'value'       => get_option( 'wps_rma_return_sla_hours', 48 ),
+			'class'       => 'wrael-number-class',
+			'description' => esc_html__( 'Hours allowed to resolve a return request before the resolution deadline. Set 0 to disable.', 'woo-refund-and-exchange-lite' ),
+			'placeholder' => '48',
+		);
+		$wps_rma_settings_refund[] = array(
+			'title'       => esc_html__( 'Return Reminder Hours', 'woo-refund-and-exchange-lite' ),
+			'type'        => 'number',
+			'id'          => 'wps_rma_return_sla_reminder_hours',
+			'value'       => get_option( 'wps_rma_return_sla_reminder_hours', 6 ),
+			'class'       => 'wrael-number-class',
+			'description' => esc_html__( 'Send admin email alert this many hours before the return resolution deadline.', 'woo-refund-and-exchange-lite' ),
+			'placeholder' => '6',
+		);
+
 		$wps_rma_settings_refund[] = array(
 			'type'        => 'button',
 			'id'          => 'wps_rma_save_refund_setting',
@@ -1896,5 +1921,366 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 
 		fclose( $out ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose
 		exit;
+	}
+
+	// -------------------------------------------------------------------------
+	// SLA: Cron registration
+	// -------------------------------------------------------------------------
+
+	/**
+	 * Schedule the hourly SLA cron event (runs on admin_init so it registers
+	 * after the plugin is fully loaded).
+	 */
+	public function wps_rma_register_sla_cron() {
+		if ( ! wp_next_scheduled( 'wps_rma_sla_hourly_check' ) ) {
+			wp_schedule_event( time(), 'hourly', 'wps_rma_sla_hourly_check' );
+		}
+	}
+
+	// -------------------------------------------------------------------------
+	// SLA: Hourly cron callback
+	// -------------------------------------------------------------------------
+
+	/**
+	 * Scan all active RMA requests, send admin email when the request enters
+	 * the reminder window, and again (once) when it becomes overdue.
+	 */
+	public function wps_rma_sla_cron_callback() {
+		global $wpdb;
+
+		$return_sla_hours        = (int) get_option( 'wps_rma_return_sla_hours', 0 );
+		$return_reminder_hours   = (int) get_option( 'wps_rma_return_sla_reminder_hours', 6 );
+		$exchange_sla_hours      = (int) get_option( 'wps_rma_exchange_sla_hours', 0 );
+		$exchange_reminder_hours = (int) get_option( 'wps_rma_exchange_sla_reminder_hours', 6 );
+		$is_pro                  = function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active();
+
+		if ( ! $return_sla_hours && ! ( $is_pro && $exchange_sla_hours ) ) {
+			return;
+		}
+
+		$query_keys = array( 'wps_rma_return_req_date' );
+		if ( $is_pro && $exchange_sla_hours ) {
+			$query_keys[] = 'wps_rma_exchange_req_date';
+		}
+
+		$placeholders = implode( ', ', array_fill( 0, count( $query_keys ), '%s' ) );
+
+		if ( class_exists( '\Automattic\WooCommerce\Utilities\OrderUtil' )
+			&& \Automattic\WooCommerce\Utilities\OrderUtil::custom_orders_table_usage_is_enabled() ) {
+			$sql = $wpdb->prepare(
+				"SELECT DISTINCT p.id FROM {$wpdb->prefix}wc_orders AS p
+				INNER JOIN {$wpdb->prefix}wc_orders_meta AS pm ON p.id = pm.order_id
+				WHERE pm.meta_key IN ($placeholders)",
+				$query_keys
+			);
+		} else {
+			$sql = $wpdb->prepare(
+				"SELECT DISTINCT p.ID FROM {$wpdb->prefix}posts AS p
+				INNER JOIN {$wpdb->prefix}postmeta AS pm ON p.ID = pm.post_id
+				WHERE p.post_type = 'shop_order'
+				AND pm.meta_key IN ($placeholders)",
+				$query_keys
+			);
+		}
+
+		$order_ids = $wpdb->get_col( $sql );
+		if ( empty( $order_ids ) ) {
+			return;
+		}
+
+		$terminal = array( 'accepted', 'cancel', 'cancelled' );
+
+		foreach ( $order_ids as $order_id ) {
+			$order = wc_get_order( $order_id );
+			if ( ! $order ) {
+				continue;
+			}
+
+			// --- Return requests ---
+			if ( $return_sla_hours ) {
+				$return_data = $order->get_meta( 'wps_rma_return_product' );
+				if ( is_array( $return_data ) ) {
+					foreach ( $return_data as $timestamp => $req ) {
+						if ( in_array( strtolower( $req['status'] ?? '' ), $terminal, true ) ) {
+							continue;
+						}
+						$this->wps_rma_maybe_send_sla_alert(
+							$order,
+							(int) $timestamp,
+							'Return',
+							$return_sla_hours,
+							$return_reminder_hours
+						);
+					}
+				}
+			}
+
+			// --- Exchange requests (pro only) ---
+			if ( $is_pro && $exchange_sla_hours ) {
+				$exchange_data = $order->get_meta( 'wps_wrma_exchange_product' );
+				if ( is_array( $exchange_data ) ) {
+					foreach ( $exchange_data as $timestamp => $req ) {
+						if ( in_array( strtolower( $req['status'] ?? '' ), $terminal, true ) ) {
+							continue;
+						}
+						$this->wps_rma_maybe_send_sla_alert(
+							$order,
+							(int) $timestamp,
+							'Exchange',
+							$exchange_sla_hours,
+							$exchange_reminder_hours
+						);
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * Check a single request's SLA and fire the alert email if thresholds are met.
+	 * Uses per-request order meta flags to avoid duplicate sends.
+	 *
+	 * @param WC_Order $order           The order object.
+	 * @param int      $timestamp       Unix timestamp when the request was created.
+	 * @param string   $type            'Return' or 'Exchange'.
+	 * @param int      $sla_hours       Total SLA hours configured.
+	 * @param int      $reminder_hours  Reminder window hours configured.
+	 */
+	private function wps_rma_maybe_send_sla_alert( $order, $timestamp, $type, $sla_hours, $reminder_hours ) {
+		$type_key        = strtolower( $type );
+		$deadline        = $timestamp + ( $sla_hours * HOUR_IN_SECONDS );
+		$now             = current_time( 'timestamp' );
+		$hours_remaining = ( $deadline - $now ) / HOUR_IN_SECONDS;
+
+		if ( $hours_remaining > $reminder_hours ) {
+			return;
+		}
+
+		$meta_key = $hours_remaining <= 0
+			? "wps_rma_sla_{$type_key}_overdue_sent_{$timestamp}"
+			: "wps_rma_sla_{$type_key}_reminder_sent_{$timestamp}";
+
+		if ( $order->get_meta( $meta_key ) ) {
+			return;
+		}
+
+		$email_classes = WC()->mailer()->get_emails();
+		if ( isset( $email_classes['wps_rma_sla_alert_email'] ) ) {
+			$email_classes['wps_rma_sla_alert_email']->trigger(
+				$order->get_id(),
+				$type,
+				$hours_remaining,
+				$deadline
+			);
+		}
+
+		$order->update_meta_data( $meta_key, $now );
+		$order->save();
+	}
+
+	// -------------------------------------------------------------------------
+	// SLA: Dashboard widget
+	// -------------------------------------------------------------------------
+
+	/**
+	 * Register the SLA overdue dashboard widget.
+	 */
+	public function wps_rma_sla_dashboard_widget_setup() {
+		wp_add_dashboard_widget(
+			'wps_rma_sla_overdue',
+			esc_html__( 'RMA Deadline Overview', 'woo-refund-and-exchange-lite' ),
+			array( $this, 'wps_rma_sla_dashboard_widget_display' )
+		);
+	}
+
+	/**
+	 * Render the SLA dashboard widget.
+	 * Shows pending request counts broken down by SLA status (on_track / warning / overdue).
+	 * Results are cached in a 1-hour transient to keep the dashboard fast.
+	 */
+	public function wps_rma_sla_dashboard_widget_display() {
+		$counts = get_transient( 'wps_rma_sla_status_counts' );
+
+		if ( false === $counts ) {
+			$counts = $this->wps_rma_count_requests_by_sla_status();
+			set_transient( 'wps_rma_sla_status_counts', $counts, HOUR_IN_SECONDS );
+		}
+
+		$total_pending = $counts['on_track'] + $counts['warning'] + $counts['overdue'];
+		$tab_url       = admin_url( 'admin.php?page=wps_wra_menu_slug&active_tab=woo-refund-and-exchange-lite-rma-request' );
+
+		$rows = array(
+			array(
+				'key'   => 'on_track',
+				'color' => '#16a34a',
+				'bg'    => '#f0fdf4',
+				/* translators: %d: count */
+				'label' => sprintf( esc_html__( '%d On Track', 'woo-refund-and-exchange-lite' ), $counts['on_track'] ),
+			),
+			array(
+				'key'   => 'warning',
+				'color' => '#d97706',
+				'bg'    => '#fffbeb',
+				/* translators: %d: count */
+				'label' => sprintf( esc_html__( '%d Warning', 'woo-refund-and-exchange-lite' ), $counts['warning'] ),
+			),
+			array(
+				'key'   => 'overdue',
+				'color' => '#dc2626',
+				'bg'    => '#fef2f2',
+				/* translators: %d: count */
+				'label' => sprintf( esc_html__( '%d Overdue', 'woo-refund-and-exchange-lite' ), $counts['overdue'] ),
+			),
+		);
+		?>
+		<div style="padding:4px 0;">
+
+			<?php if ( 0 === $total_pending ) : ?>
+				<p style="color:#16a34a;font-weight:600;margin:0 0 10px;">
+					&#10003; <?php esc_html_e( 'No pending RMA requests.', 'woo-refund-and-exchange-lite' ); ?>
+				</p>
+			<?php else : ?>
+				<p style="font-size:13px;color:#475569;margin:0 0 10px;">
+					<?php
+					printf(
+						/* translators: %d: total pending count */
+						esc_html__( '%d pending request(s) by deadline status:', 'woo-refund-and-exchange-lite' ),
+						esc_html( $total_pending )
+					);
+					?>
+				</p>
+				<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:12px;">
+					<?php foreach ( $rows as $row ) : ?>
+					<div style="display:flex;align-items:center;justify-content:space-between;padding:7px 12px;background:<?php echo esc_attr( $row['bg'] ); ?>;border-radius:6px;">
+						<span style="font-size:13px;font-weight:600;color:<?php echo esc_attr( $row['color'] ); ?>;">
+							<?php echo esc_html( $row['label'] ); ?>
+						</span>
+						<?php if ( $counts[ $row['key'] ] > 0 ) : ?>
+						<a href="<?php echo esc_url( add_query_arg( array(
+							'page'       => 'wps_wra_menu_slug',
+							'active_tab' => 'woo-refund-and-exchange-lite-rma-request',
+						), admin_url( 'admin.php' ) ) ); ?>"
+						   style="font-size:11px;color:<?php echo esc_attr( $row['color'] ); ?>;text-decoration:underline;">
+							<?php esc_html_e( 'View', 'woo-refund-and-exchange-lite' ); ?>
+						</a>
+						<?php endif; ?>
+					</div>
+					<?php endforeach; ?>
+				</div>
+			<?php endif; ?>
+
+			<a href="<?php echo esc_url( $tab_url ); ?>" style="font-size:13px;">
+				<?php esc_html_e( 'View all RMA Requests &rarr;', 'woo-refund-and-exchange-lite' ); ?>
+			</a>
+		</div>
+		<?php
+	}
+
+	/**
+	 * Count active (non-terminal) requests grouped by SLA status.
+	 * Terminal statuses (complete / accepted / cancel / cancelled) are excluded.
+	 *
+	 * @return array { on_track: int, warning: int, overdue: int }
+	 */
+	private function wps_rma_count_requests_by_sla_status() {
+		global $wpdb;
+
+		$counts   = array( 'on_track' => 0, 'warning' => 0, 'overdue' => 0 );
+		$is_pro   = function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active();
+		$terminal = array( 'accepted', 'cancel', 'cancelled', 'complete' );
+
+		$return_sla_hours        = (int) get_option( 'wps_rma_return_sla_hours', 0 );
+		$return_reminder_hours   = (int) get_option( 'wps_rma_return_sla_reminder_hours', 6 );
+		$exchange_sla_hours      = (int) get_option( 'wps_rma_exchange_sla_hours', 0 );
+		$exchange_reminder_hours = (int) get_option( 'wps_rma_exchange_sla_reminder_hours', 6 );
+
+		if ( ! $return_sla_hours && ! ( $is_pro && $exchange_sla_hours ) ) {
+			return $counts;
+		}
+
+		$query_keys = array();
+		if ( $return_sla_hours ) {
+			$query_keys[] = 'wps_rma_return_req_date';
+		}
+		if ( $is_pro && $exchange_sla_hours ) {
+			$query_keys[] = 'wps_rma_exchange_req_date';
+		}
+
+		$placeholders = implode( ', ', array_fill( 0, count( $query_keys ), '%s' ) );
+		$hpos         = class_exists( '\Automattic\WooCommerce\Utilities\OrderUtil' )
+			&& \Automattic\WooCommerce\Utilities\OrderUtil::custom_orders_table_usage_is_enabled();
+
+		if ( $hpos ) {
+			$sql = $wpdb->prepare(
+				"SELECT DISTINCT p.id FROM {$wpdb->prefix}wc_orders AS p
+				INNER JOIN {$wpdb->prefix}wc_orders_meta AS pm ON p.id = pm.order_id
+				WHERE pm.meta_key IN ($placeholders)",
+				$query_keys
+			);
+		} else {
+			$sql = $wpdb->prepare(
+				"SELECT DISTINCT p.ID FROM {$wpdb->prefix}posts AS p
+				INNER JOIN {$wpdb->prefix}postmeta AS pm ON p.ID = pm.post_id
+				WHERE p.post_type = 'shop_order'
+				AND pm.meta_key IN ($placeholders)",
+				$query_keys
+			);
+		}
+
+		$order_ids = $wpdb->get_col( $sql );
+		$now       = current_time( 'timestamp' );
+
+		foreach ( $order_ids as $order_id ) {
+			$order = wc_get_order( $order_id );
+			if ( ! $order ) {
+				continue;
+			}
+
+			// Return requests.
+			if ( $return_sla_hours ) {
+				$return_data = $order->get_meta( 'wps_rma_return_product' );
+				if ( is_array( $return_data ) ) {
+					foreach ( $return_data as $ts => $req ) {
+						if ( in_array( strtolower( $req['status'] ?? '' ), $terminal, true ) ) {
+							continue;
+						}
+						$deadline        = (int) $ts + ( $return_sla_hours * HOUR_IN_SECONDS );
+						$hours_remaining = ( $deadline - $now ) / HOUR_IN_SECONDS;
+
+						if ( $hours_remaining <= 0 ) {
+							++$counts['overdue'];
+						} elseif ( $hours_remaining <= $return_reminder_hours ) {
+							++$counts['warning'];
+						} else {
+							++$counts['on_track'];
+						}
+					}
+				}
+			}
+
+			// Exchange requests (pro only).
+			if ( $is_pro && $exchange_sla_hours ) {
+				$exchange_data = $order->get_meta( 'wps_wrma_exchange_product' );
+				if ( is_array( $exchange_data ) ) {
+					foreach ( $exchange_data as $ts => $req ) {
+						if ( in_array( strtolower( $req['status'] ?? '' ), $terminal, true ) ) {
+							continue;
+						}
+						$deadline        = (int) $ts + ( $exchange_sla_hours * HOUR_IN_SECONDS );
+						$hours_remaining = ( $deadline - $now ) / HOUR_IN_SECONDS;
+
+						if ( $hours_remaining <= 0 ) {
+							++$counts['overdue'];
+						} elseif ( $hours_remaining <= $exchange_reminder_hours ) {
+							++$counts['warning'];
+						} else {
+							++$counts['on_track'];
+						}
+					}
+				}
+			}
+		}
+
+		return $counts;
 	}
 }
