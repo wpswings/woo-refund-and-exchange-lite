@@ -735,6 +735,10 @@ jQuery(function($){
 			if ( $newFrame.offset() ) {
 				window.scrollTo( 0, Math.max( $newFrame.offset().top - 24, 0 ) );
 			}
+
+			// Notify any listeners (e.g. the floating save bar) that new tab
+			// content is live so they can re-check button visibility.
+			$( document ).trigger( 'wps:rma:tabLoaded' );
 		} ).fail( function() {
 			window.location.href = url;
 		} ).always( function() {
@@ -1090,4 +1094,88 @@ jQuery(function($) {
 			$submitButton.prop( 'disabled', false ).text( submitLabel );
 		} );
 	} );
+
+	// Floating Save Setting bar — shows when the real submit button is out of the viewport.
+	(function () {
+		if ( ! $( '.wps-rma-shell__surface' ).length ) return;
+
+		// Always re-query: tab switches replace the entire .wps-rma-shell__frame in the
+		// DOM, so a cached $surface reference becomes stale after every tab load.
+		function getSurface() {
+			return $( '.wps-rma-shell__surface' );
+		}
+
+		var params = ( typeof wrael_admin_param !== 'undefined' ) ? wrael_admin_param : {};
+		var $floatingBar = $(
+			'<div class="wps-rma-floating-save" role="complementary" aria-label="Floating save">' +
+				'<button type="button" class="wps-rma-floating-save__btn button button-primary">' + ( params.floating_save_btn || 'Save Setting' ) + '</button>' +
+			'</div>'
+		);
+		$( 'body' ).append( $floatingBar );
+
+		function getSubmitBtns() {
+			// Include: explicit submit inputs AND buttons without type (defaults to submit).
+			// Exclude: type="button" / type="reset".
+			return getSurface().find( 'input[type="submit"], button:not([type="button"]):not([type="reset"])' );
+		}
+
+		function checkVisibility() {
+			var $btns = getSubmitBtns();
+			if ( ! $btns.length ) {
+				$floatingBar.removeClass( 'is-visible' );
+				return;
+			}
+			var anyInView = false;
+			$btns.each( function () {
+				var rect = this.getBoundingClientRect();
+				if ( rect.top < window.innerHeight && rect.bottom > 0 ) {
+					anyInView = true;
+					return false;
+				}
+			} );
+			$floatingBar.toggleClass( 'is-visible', ! anyInView );
+		}
+
+		$( window ).on( 'scroll.wpsRmaFloat resize.wpsRmaFloat', checkVisibility );
+		setTimeout( checkVisibility, 300 );
+
+		// Re-check whenever a tab finishes loading (wpsRmaFetchDashboardTab triggers
+		// this after replaceWith so getSurface() will find the freshly inserted content).
+		$( document ).on( 'wps:rma:tabLoaded', checkVisibility );
+
+		$floatingBar.on( 'click', '.wps-rma-floating-save__btn', function () {
+			var $btn = getSubmitBtns().last();
+			if ( ! $btn.length ) return;
+
+			// Resolve the form — for orphaned <tr>-wrapped submit inputs the browser
+			// keeps the input inside the form; closest() still works.
+			var $form = $btn.closest( 'form' );
+			if ( ! $form.length ) {
+				$form = getSurface().find( '.wps-wrael-gen-section-form, .wps-mwr-gen-section-form, form' ).first();
+			}
+			if ( ! $form.length ) return;
+
+			var $floatBtn = $( this );
+			var originalHtml = $floatBtn.html();
+			$floatBtn.prop( 'disabled', true ).text( 'Saving…' );
+
+			// Use fetch() instead of form.submit() to avoid the Chrome
+			// "Form submission canceled because the form is not connected" warning.
+			var formData = new FormData( $form[ 0 ] );
+			var btnName  = $btn.attr( 'name' );
+			if ( btnName ) {
+				formData.append( btnName, $btn.val() || '' );
+			}
+
+			fetch( window.location.href, {
+				method:      'POST',
+				body:        formData,
+				credentials: 'same-origin'
+			} ).then( function () {
+				window.location.reload();
+			} ).catch( function () {
+				$floatBtn.prop( 'disabled', false ).html( originalHtml );
+			} );
+		} );
+	}());
 });

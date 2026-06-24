@@ -329,6 +329,8 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 					'wrael_admin_param_location' => admin_url( 'admin.php?page=woo_refund_and_exchange_lite_menu&wrael_tab=woo-refund-and-exchange-lite-general' ),
 					'check_pro_active'           => esc_html( $pro_active ),
 					'wps_policy_already_exist'   => esc_html__( 'Policy already exists', 'woo-refund-and-exchange-lite' ),
+					'floating_save_label'        => esc_html__( 'Unsaved changes?', 'woo-refund-and-exchange-lite' ),
+					'floating_save_btn'          => esc_html__( 'Save Setting', 'woo-refund-and-exchange-lite' ),
 				)
 			);
 			wp_enqueue_script( $this->plugin_name . 'admin-js' );

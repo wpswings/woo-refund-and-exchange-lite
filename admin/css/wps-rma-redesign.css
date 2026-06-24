@@ -2629,3 +2629,58 @@ body.wp-admin[class*="woo_refund_and_exchange_lite_menu"] #wpfooter,
     padding: 14px 16px;
   }
 }
+
+/* Floating Save Setting button */
+.wps-rma-floating-save {
+  bottom: 24px;
+  left: 67%;
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  transform: translateX(-50%) translateY(12px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 9989;
+}
+
+.wps-rma-floating-save.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.wps-rma-floating-save__btn {
+  background: #000 !important;
+  border: 0 !important;
+  border-radius: 10px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18) !important;
+  color: #fff !important;
+  cursor: pointer;
+  font-size: 14px;
+  min-height: 44px;
+  padding: 10px 24px !important;
+  white-space: nowrap;
+}
+
+/* Align the save button row with the controls column (same offset as the label column) */
+/* case 'button': type — button is inside .wps-form-group__control */
+.wps-form-group > .wps-form-group__control:only-child {
+  margin-left: 260px;
+  max-width: calc(100% - 260px);
+}
+
+/* case 'submit': type — browser strips orphaned <tr><td>, leaving input as direct child */
+.wrael-secion-wrap > input[type="submit"] {
+  display: block;
+  margin-left: 260px;
+}
+
+@media (max-width: 960px) {
+  .wps-form-group > .wps-form-group__control:only-child {
+    margin-left: 0;
+    max-width: 100%;
+  }
+
+  .wrael-secion-wrap > input[type="submit"] {
+    margin-left: 0;
+  }
+}
