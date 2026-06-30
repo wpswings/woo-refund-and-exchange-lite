@@ -293,8 +293,24 @@ class Woo_Refund_And_Exchange_Lite_Rma_Request_Table extends WP_List_Table {
 		$order_ids = $this->wps_rma_fetch_all_order_ids();
 		$rows      = $this->prepare_data_to_display( $order_ids );
 
-		// Apply SLA status filter if one is saved.
+		// For the free plugin, apply date-range filter in PHP (the SQL query fetches all
+		// orders by meta-key presence; date comparison on serialized meta isn't possible in SQL).
+		$is_pro     = function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active();
 		$saved_data = get_option( 'wsp_rma_report_filter' );
+		$start_date = isset( $saved_data['start_date'] ) ? sanitize_text_field( wp_unslash( $saved_data['start_date'] ) ) : null;
+		$end_date   = isset( $saved_data['end_date'] ) ? sanitize_text_field( wp_unslash( $saved_data['end_date'] ) ) : null;
+
+		if ( ! $is_pro && $start_date && $end_date ) {
+			$start_ts = (int) strtotime( $start_date );
+			$end_ts   = (int) strtotime( $end_date ) + DAY_IN_SECONDS - 1;
+			$rows     = array_values( array_filter( $rows, function ( $row ) use ( $start_ts, $end_ts ) {
+				return ! empty( $row['wps_rma_request_timestamp'] )
+					&& $row['wps_rma_request_timestamp'] >= $start_ts
+					&& $row['wps_rma_request_timestamp'] <= $end_ts;
+			} ) );
+		}
+
+		// Apply SLA status filter if one is saved.
 		$sla_filter = isset( $saved_data['sla_status'] ) ? sanitize_text_field( wp_unslash( $saved_data['sla_status'] ) ) : '';
 
 		if ( $sla_filter ) {
@@ -336,13 +352,17 @@ class Woo_Refund_And_Exchange_Lite_Rma_Request_Table extends WP_List_Table {
 		$start_date  = isset( $saved_data['start_date'] ) ? sanitize_text_field( wp_unslash( $saved_data['start_date'] ) ) : null;
 		$end_date    = isset( $saved_data['end_date'] ) ? sanitize_text_field( wp_unslash( $saved_data['end_date'] ) ) : null;
 
+		$is_pro             = function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active();
 		$query_keys         = $this->wps_get_query_keys( $filter_type );
 		$query_placeholders = implode( ', ', array_fill( 0, count( $query_keys ), '%s' ) );
 
 		$hpos = class_exists( '\Automattic\WooCommerce\Utilities\OrderUtil' )
 			&& \Automattic\WooCommerce\Utilities\OrderUtil::custom_orders_table_usage_is_enabled();
 
-		if ( $start_date && $end_date ) {
+		// SQL date-range filter only works for pro: pro stores flat Ymd date strings in
+		// wps_rma_*_req_date. Free plugin stores a serialized array in wps_rma_return_product,
+		// so date filtering must happen in PHP (see wps_rma_get_all_filtered_rows).
+		if ( $is_pro && $start_date && $end_date ) {
 			$start_date = date_i18n( 'Ymd', strtotime( $start_date ) );
 			$end_date   = date_i18n( 'Ymd', strtotime( $end_date ) );
 
@@ -389,8 +409,19 @@ class Woo_Refund_And_Exchange_Lite_Rma_Request_Table extends WP_List_Table {
 	}
 
 	/**
-	 * Map filter type to the relevant meta key(s).
-	 * Free plugin: only return requests.
+	 * Map filter type to the relevant meta key(s) for the SQL existence check.
+	 *
+	 * Return requests are queried by wps_rma_return_product in all cases (free and pro)
+	 * because that is the only meta key the free plugin writes at submission time.
+	 * wps_rma_return_req_date is only written by the pro plugin's analytics hook, so it
+	 * is absent on orders submitted before pro was installed — using it as the lookup key
+	 * would silently drop those orders.
+	 *
+	 * Exchange/cancel queries still use their own date meta keys (pro only), since those
+	 * are pro-only request types and are always written by the pro plugin at submission.
+	 *
+	 * Date filtering for return (and exchange when wps_wrma_exchange_product is used)
+	 * happens in PHP inside wps_rma_get_all_filtered_rows(), not in SQL.
 	 *
 	 * @param string|null $filter_type
 	 * @return array
@@ -399,10 +430,11 @@ class Woo_Refund_And_Exchange_Lite_Rma_Request_Table extends WP_List_Table {
 		$is_pro = function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active();
 
 		if ( ! $is_pro ) {
-			return array( 'wps_rma_return_req_date' );
+			return array( 'wps_rma_return_product' );
 		}
 		if ( 'return' === $filter_type ) {
-			return array( 'wps_rma_return_req_date' );
+			// wps_rma_return_product is the only reliable key — present on ALL return orders.
+			return array( 'wps_rma_return_product' );
 		}
 		if ( 'exchange' === $filter_type ) {
 			return array( 'wps_rma_exchange_req_date' );
@@ -410,7 +442,8 @@ class Woo_Refund_And_Exchange_Lite_Rma_Request_Table extends WP_List_Table {
 		if ( 'cancellation' === $filter_type ) {
 			return array( 'wps_rma_cancel_req_date' );
 		}
-		return array( 'wps_rma_return_req_date', 'wps_rma_exchange_req_date', 'wps_rma_cancel_req_date' );
+		// "all" — include return orders alongside exchange/cancel.
+		return array( 'wps_rma_return_product', 'wps_rma_exchange_req_date', 'wps_rma_cancel_req_date' );
 	}
 
 	/**

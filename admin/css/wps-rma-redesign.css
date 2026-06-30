@@ -1311,6 +1311,9 @@ body.wps-rma-expert-modal-open {
 input.wps_rma_save_settings,
 #wps_rma_add_more,
 .wps-rma-shell input[type="submit"],
+.wps-rma-shell input[type="button"].wps-rma-admin__button,
+.wps-rma-shell a.wps-rma-admin__button,
+.wps-rma-shell button.wps-rma-admin__button,
 .wps-rma-shell button.button,
 .wps-rma-shell button.button-primary {
   background: #000000 !important;
@@ -2716,8 +2719,10 @@ body.wp-admin[class*="woo_refund_and_exchange_lite_menu"] #wpfooter,
   color: #fff !important;
   cursor: pointer;
   font-size: 14px;
+  font-weight: bold !important;
   min-height: 44px;
   padding: 10px 24px !important;
+  text-transform: uppercase !important;
   white-space: nowrap;
 }
 

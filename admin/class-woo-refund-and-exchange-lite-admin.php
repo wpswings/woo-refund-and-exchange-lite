@@ -1958,7 +1958,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			return;
 		}
 
-		$query_keys = array( 'wps_rma_return_req_date' );
+		$query_keys = array( 'wps_rma_return_product' );
 		if ( $is_pro && $exchange_sla_hours ) {
 			$query_keys[] = 'wps_rma_exchange_req_date';
 		}
@@ -2200,7 +2200,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 
 		$query_keys = array();
 		if ( $return_sla_hours ) {
-			$query_keys[] = 'wps_rma_return_req_date';
+			$query_keys[] = 'wps_rma_return_product';
 		}
 		if ( $is_pro && $exchange_sla_hours ) {
 			$query_keys[] = 'wps_rma_exchange_req_date';

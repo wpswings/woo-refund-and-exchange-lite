@@ -11,6 +11,9 @@ if ( function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active() ) {
 	$rma_pro_activate = null;
 }
 ?>
+<style>
+.wps-rma-floating-save { display: none !important; }
+</style>
 <h4>
 	<input type="button" class="show_returnship_label wps-rma-admin__button" value="ReturnShip Label" />
 	<input class="show_shipintegration wps-rma-admin__button" type="button" value="Ship Integration" />
