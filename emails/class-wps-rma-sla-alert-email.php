@@ -18,16 +18,32 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Wps_Rma_Sla_Alert_Email extends WC_Email {
 
-	/** @var int */
+	/**
+	 * Order id set.
+	 *
+	 * @var int WooCommerce order ID.
+	 */
 	public $order_id = 0;
 
-	/** @var string 'Return' or 'Exchange' */
+	/**
+	 * Request type.
+	 *
+	 * @var string 'Return' or 'Exchange'
+	 */
 	public $request_type = '';
 
-	/** @var float Hours remaining (negative = overdue) */
+	/**
+	 * Hours remaining until deadline (negative = overdue).
+	 *
+	 * @var float
+	 */
 	public $hours_remaining = 0;
 
-	/** @var int Unix timestamp of the SLA deadline */
+	/**
+	 * Unix timestamp of the SLA deadline.
+	 *
+	 * @var int
+	 */
 	public $deadline = 0;
 
 	/**
