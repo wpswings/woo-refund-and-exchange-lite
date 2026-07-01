@@ -1579,13 +1579,12 @@ input.wps_rma_save_settings,
 
 @media (min-width: 961px) {
   .add_more_rma_policies {
-    /* center-align so all items (same height) sit flush on one horizontal axis */
     align-items: center;
     display: flex;
     flex-wrap: nowrap;
     gap: 8px;
-    padding: 10px 48px 10px 14px;
-    position: relative;
+    padding: 10px 14px;
+    position: static;
   }
 
   /* Reset: clear mobile widths/min-widths so desktop values take over */
@@ -1617,23 +1616,23 @@ input.wps_rma_save_settings,
     min-height: 44px !important;
   }
 
-  /* Cancel old CSS padding-bottom: 20px that adds dead space inside each row */
+  /* Cancel old CSS padding overrides that fight the uniform 10px 14px padding */
   #save_policies_setting_form .add_more_rma_policies,
   #save_policies_setting_form .add_more_rma_policies:last-child {
-    padding-bottom: 10px !important;
+    padding: 10px 14px !important;
   }
 
   .add_more_rma_policies .wps_rma_on_functionality,
   .add_more_rma_policies .wps_rma_settings_label {
-    flex: 0 0 110px;
-    max-width: 110px;
+    flex: 1 1 0;
+    max-width: none;
     min-width: 0;
     order: 1;
   }
 
   .add_more_rma_policies .wps_rma_settings {
-    flex: 0 0 160px;
-    max-width: 160px;
+    flex: 1 1 0;
+    max-width: none;
     order: 2;
   }
 
@@ -1644,20 +1643,18 @@ input.wps_rma_save_settings,
     order: 3;
   }
 
-  /* Allow conditions dropdowns to grow — fills the row on blank "Choose Option" rows
-     where no order-8 value field is visible */
   .add_more_rma_policies .wps_rma_conditions1,
   .add_more_rma_policies .wps_rma_conditions2,
   .add_more_rma_policies .wps_rma_policy_condition {
-    flex: 1 1 140px;
-    max-width: 260px;
+    flex: 1 1 0;
+    max-width: none;
     order: 4;
   }
 
-  /* Value fields — fill ALL remaining space (remove the 260px cap that left a dead zone) */
+  /* Value fields — equal share of remaining space */
   .add_more_rma_policies .wps_rma_max_number_days,
   .add_more_rma_policies .wps_rma_tax_handling {
-    flex: 1 1 120px;
+    flex: 1 1 0;
     max-width: none;
     order: 8;
     width: auto !important;
@@ -1686,12 +1683,11 @@ input.wps_rma_save_settings,
     min-height: 44px;
   }
 
-  /* Delete button pinned to top-right */
+  /* Delete button as last flex item — no overlap */
   .rma_policy_delete {
-    position: absolute;
-    right: 8px;
-    top: 8px;
-    transform: none;
+    flex: 0 0 44px;
+    order: 99;
+    position: static;
   }
 }
 
