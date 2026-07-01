@@ -214,12 +214,6 @@ class Woo_Refund_And_Exchange_Lite_Rma_Request_Table extends WP_List_Table {
 	 * @return string HTML link or em-dash.
 	 */
 	private function wps_rma_render_action( $item ) {
-		$status = strtolower( trim( $item['wps_rma_request_status'] ) );
-
-		// Hide action for fully-resolved statuses.
-		if ( in_array( $status, array_merge( self::$terminal_statuses, array( 'complete' ) ), true ) ) {
-			return '&mdash;';
-		}
 
 		$url = admin_url( 'post.php?post=' . absint( $item['wps_rma_order_id'] ) . '&action=edit' );
 		return '<a href="' . esc_url( $url ) . '" target="_blank" rel="noopener noreferrer" class="button button-small">'
