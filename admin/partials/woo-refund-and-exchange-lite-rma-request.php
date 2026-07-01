@@ -28,6 +28,11 @@ if ( isset( $_POST['wps_rma_date_submit'] ) ) {
 	$filter_type = isset( $_REQUEST['rma_report_request_filter'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['rma_report_request_filter'] ) ) : null;
 	$sla_status  = isset( $_REQUEST['rma_sla_status_filter'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['rma_sla_status_filter'] ) ) : '';
 
+	// "To" date cannot be earlier than "From" date.
+	if ( $start_date && $end_date && strtotime( $end_date ) < strtotime( $start_date ) ) {
+		$end_date = $start_date;
+	}
+
 	update_option( 'wsp_rma_report_filter', array(
 		'type'       => $filter_type,
 		'start_date' => $start_date,
@@ -64,7 +69,6 @@ $wps_sla_options = array(
 	'warning'   => __( 'Warning',         'woo-refund-and-exchange-lite' ),
 	'overdue'   => __( 'Overdue',         'woo-refund-and-exchange-lite' ),
 	'approved'  => __( 'Approved',        'woo-refund-and-exchange-lite' ),
-	'accepted'  => __( 'Accepted',        'woo-refund-and-exchange-lite' ),
 );
 
 $wps_sla_legend = array(
@@ -91,12 +95,6 @@ $wps_sla_legend = array(
 		'bg'    => '#f0fdfa',
 		'label' => __( 'Approved', 'woo-refund-and-exchange-lite' ),
 		'desc'  => __( 'Request has been marked Complete — resolution deadline met.', 'woo-refund-and-exchange-lite' ),
-	),
-	'accepted' => array(
-		'color' => '#2563eb',
-		'bg'    => '#eff6ff',
-		'label' => __( 'Accepted', 'woo-refund-and-exchange-lite' ),
-		'desc'  => __( 'Request has been accepted by admin.', 'woo-refund-and-exchange-lite' ),
 	),
 );
 ?>
@@ -309,9 +307,9 @@ $wps_sla_legend = array(
 				<?php endforeach; ?>
 			</select>
 
-			<input name="wps_rma_start_date" type="date" value="<?php echo esc_attr( $start_date ); ?>" />
+			<input id="wps_rma_start_date" name="wps_rma_start_date" type="date" value="<?php echo esc_attr( $start_date ); ?>" max="<?php echo esc_attr( $end_date ); ?>" />
 			<span class="wps-rma-req-to-label"><?php esc_html_e( 'To', 'woo-refund-and-exchange-lite' ); ?></span>
-			<input name="wps_rma_end_date" type="date" value="<?php echo esc_attr( $end_date ); ?>" />
+			<input id="wps_rma_end_date" name="wps_rma_end_date" type="date" value="<?php echo esc_attr( $end_date ); ?>" min="<?php echo esc_attr( $start_date ); ?>" />
 			<input class="button button-primary" name="wps_rma_date_submit"  type="submit" value="<?php esc_attr_e( 'Filter', 'woo-refund-and-exchange-lite' ); ?>">
 			<input class="button"               name="wps_rma_clear_filter" type="submit" value="<?php esc_attr_e( 'Clear',  'woo-refund-and-exchange-lite' ); ?>">
 		</form>
@@ -349,5 +347,40 @@ $wps_sla_legend = array(
 			<?php endforeach; ?>
 		</div>
 	</div>
+
+	<script>
+	( function () {
+		var startInput = document.getElementById( 'wps_rma_start_date' );
+		var endInput   = document.getElementById( 'wps_rma_end_date' );
+		var filterForm = document.querySelector( '.wps-rma-req-filters' );
+
+		if ( ! startInput || ! endInput ) {
+			return;
+		}
+
+		startInput.addEventListener( 'change', function () {
+			endInput.min = startInput.value;
+			if ( startInput.value && endInput.value && endInput.value < startInput.value ) {
+				endInput.value = startInput.value;
+			}
+		} );
+
+		endInput.addEventListener( 'change', function () {
+			startInput.max = endInput.value;
+			if ( startInput.value && endInput.value && endInput.value < startInput.value ) {
+				startInput.value = endInput.value;
+			}
+		} );
+
+		if ( filterForm ) {
+			filterForm.addEventListener( 'submit', function ( e ) {
+				if ( startInput.value && endInput.value && endInput.value < startInput.value ) {
+					e.preventDefault();
+					alert( '<?php echo esc_js( __( '"To" date cannot be earlier than "From" date.', 'woo-refund-and-exchange-lite' ) ); ?>' );
+				}
+			} );
+		}
+	} )();
+	</script>
 
 </div>
