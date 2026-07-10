@@ -787,6 +787,18 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				'placeholder' => 'Enter the attachment limit',
 			),
 			array(
+				'title'       => esc_html__( 'Mandatory Attachment', 'woo-refund-and-exchange-lite' ),
+				'type'        => 'radio-switch',
+				'id'          => 'wps_rma_refund_attachment_mandatory',
+				'value'       => get_option( 'wps_rma_refund_attachment_mandatory' ),
+				'description' => esc_html__( 'When enabled, the customer must attach a file to submit the refund request. Only applies when Enable Attachment is on.', 'woo-refund-and-exchange-lite' ),
+				'class'       => 'wrael-radio-switch-class',
+				'options'     => array(
+					'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+					'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
+				),
+			),
+			array(
 				'title'   => esc_html__( 'Enable To Refund Shipping Charge', 'woo-refund-and-exchange-lite' ),
 				'type'    => 'radio-switch',
 				'id'      => 'wps_rma_allow_refund_shipping_charge',
@@ -863,6 +875,19 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				'value'   => get_option( 'wps_rma_disable_refund_specific_user' ),
 				'class'   => 'wrael-radio-switch-class',
 				'options' => array(
+					'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+					'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
+				),
+			),
+
+			array(
+				'title'       => esc_html__( 'Enable To Notify Customer When Blocked/Unblocked From Refund', 'woo-refund-and-exchange-lite' ),
+				'type'        => 'radio-switch',
+				'id'          => 'wps_rma_refund_block_user_notify_mail',
+				'value'       => get_option( 'wps_rma_refund_block_user_notify_mail' ),
+				'description' => esc_html__( 'If enabled, an email will be sent to the customer whenever their email is added to or removed from the restricted list below.', 'woo-refund-and-exchange-lite' ),
+				'class'       => 'wrael-radio-switch-class',
+				'options'     => array(
 					'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
 					'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 				),
@@ -1071,6 +1096,19 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		foreach ( $pages as $page ) {
 			$get_pages[ $page->ID ] = $page->post_title;
 		}
+
+		$woocommerce_roles = array(
+			'customer'      => esc_html__( 'Customer', 'woo-refund-and-exchange-lite' ),
+			'shop_manager'  => esc_html__( 'Shop Manager', 'woo-refund-and-exchange-lite' ),
+			'subscriber'    => esc_html__( 'Subscriber', 'woo-refund-and-exchange-lite' ),
+			'contributor'   => esc_html__( 'Contributor', 'woo-refund-and-exchange-lite' ),
+			'author'        => esc_html__( 'Author', 'woo-refund-and-exchange-lite' ),
+			'editor'        => esc_html__( 'Editor', 'woo-refund-and-exchange-lite' ),
+			'administrator' => esc_html__( 'Administrator', 'woo-refund-and-exchange-lite' ),
+		);
+
+		$woocommerce_roles = apply_filters( 'wps_rma_add_extra_user_role', $woocommerce_roles );
+
 		$wps_rma_settings_order_message = array(
 			array(
 				'title'   => esc_html__( 'Enable Attachment', 'woo-refund-and-exchange-lite' ),
@@ -1082,6 +1120,39 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 					'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
 					'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 				),
+			),
+			array(
+				'title'       => esc_html__( 'Mandatory Attachment', 'woo-refund-and-exchange-lite' ),
+				'type'        => 'radio-switch',
+				'id'          => 'wps_rma_general_om_attachment_mandatory',
+				'value'       => get_option( 'wps_rma_general_om_attachment_mandatory' ),
+				'description' => esc_html__( 'When enabled, a file attachment is required to send an order message. Only applies when Enable Attachment is on.', 'woo-refund-and-exchange-lite' ),
+				'class'       => 'wrael-radio-switch-class',
+				'options'     => array(
+					'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+					'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
+				),
+			),
+			array(
+				'title'   => esc_html__( 'Enable/Disable Order Message Functionality for Specific User Roles', 'woo-refund-and-exchange-lite' ),
+				'type'    => 'radio-switch',
+				'id'      => 'wps_rma_disable_order_message_user_role',
+				'value'   => get_option( 'wps_rma_disable_order_message_user_role' ),
+				'class'   => 'wrael-radio-switch-class',
+				'options' => array(
+					'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+					'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
+				),
+			),
+			array(
+				'title'       => esc_html__( 'Select User Roles to Restrict Order Message Access', 'woo-refund-and-exchange-lite' ),
+				'type'        => 'multiselect',
+				'description' => esc_html__( 'If no user role is selected, the order message feature will be available for all user roles', 'woo-refund-and-exchange-lite' ),
+				'id'          => 'wps_rma_order_message_disable_user_roles',
+				'value'       => get_option( 'wps_rma_order_message_disable_user_roles' ),
+				'class'       => 'wrael-multiselect-class wps-defaut-multiselect',
+				'placeholder' => '',
+				'options'     => $woocommerce_roles,
 			),
 		);
 		$wps_rma_settings_order_message =

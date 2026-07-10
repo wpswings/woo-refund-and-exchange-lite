@@ -448,6 +448,18 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					'placeholder' => 'Enter the attachment limit',
 				),
 				array(
+					'title'       => esc_html__( 'Mandatory Attachment', 'woo-refund-and-exchange-lite' ),
+					'type'        => 'radio-switch',
+					'id'          => 'wps_rma_exchange_attachment_mandatory',
+					'value'       => get_option( 'wps_rma_exchange_attachment_mandatory' ),
+					'description' => esc_html__( 'When enabled, the customer must attach a file to submit the exchange request. Only applies when Enable Attachment is on.', 'woo-refund-and-exchange-lite' ),
+					'class'       => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
+					'options'     => array(
+						'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+						'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
+					),
+				),
+				array(
 					'title'   => esc_html__( 'Enable to Exchange on Sales Item', 'woo-refund-and-exchange-lite' ),
 					'type'    => 'radio-switch',
 					'id'      => 'wps_rma_exchange_on_sale',
@@ -578,6 +590,19 @@ if ( ! class_exists( 'Wps_Rma_Settings_Extend' ) ) {
 					'value'   => get_option( 'wps_rma_disable_exchange_specific_user' ),
 					'class'   => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
 					'options' => array(
+						'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+						'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
+					),
+				),
+
+				array(
+					'title'       => esc_html__( 'Enable To Notify Customer When Blocked/Unblocked From Exchange', 'woo-refund-and-exchange-lite' ),
+					'type'        => 'radio-switch',
+					'id'          => 'wps_rma_exchange_block_user_notify_mail',
+					'value'       => get_option( 'wps_rma_exchange_block_user_notify_mail' ),
+					'description' => esc_html__( 'If enabled, an email will be sent to the customer whenever their email is added to or removed from the restricted list below.', 'woo-refund-and-exchange-lite' ),
+					'class'       => 'wrael-radio-switch-class ' . $this->rma_pro_activate,
+					'options'     => array(
 						'yes' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
 						'no'  => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
 					),

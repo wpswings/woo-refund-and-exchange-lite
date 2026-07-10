@@ -215,6 +215,34 @@ if ( ! function_exists( 'wps_rma_show_buttons' ) ) {
 	}
 }
 
+if ( ! function_exists( 'wps_rma_order_message_role_allowed' ) ) {
+	/**
+	 * Check whether the current user's role is permitted to use the order message feature.
+	 *
+	 * @return string 'yes' if allowed, otherwise a rejection message.
+	 */
+	function wps_rma_order_message_role_allowed() {
+		$show_button = 'yes';
+
+		$wps_rma_disable_order_message_user_role  = get_option( 'wps_rma_disable_order_message_user_role' );
+		$wps_rma_order_message_disable_user_roles = get_option( 'wps_rma_order_message_disable_user_roles' );
+
+		if ( 'on' === $wps_rma_disable_order_message_user_role && ! empty( $wps_rma_order_message_disable_user_roles ) && is_array( $wps_rma_order_message_disable_user_roles ) ) {
+			$current_user        = wp_get_current_user();
+			$current_user_roles  = (array) $current_user->roles;
+
+			foreach ( $current_user_roles as $role ) {
+				if ( in_array( $role, $wps_rma_order_message_disable_user_roles, true ) ) {
+					$show_button = esc_html__( 'You are not allowed to use the order message feature.', 'woo-refund-and-exchange-lite' );
+					break;
+				}
+			}
+		}
+
+		return apply_filters( 'wps_rma_order_message_role_allowed', $show_button );
+	}
+}
+
 if ( ! function_exists( 'wps_wrma_format_price' ) ) {
 	/**
 	 * Format the price showing on the frontend and the backend

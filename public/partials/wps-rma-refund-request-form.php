@@ -391,15 +391,16 @@ CSS;
 						?>
 						<form action="" method="post" id="wps_rma_return_request_form" data-orderid="<?php echo esc_html( $order_id ); ?>" enctype="multipart/form-data">
 							<?php
-							$return_attachment = get_option( 'wps_rma_refund_attachment', false );
-							$attach_limit      = get_option( 'wps_rma_attachment_limit', '15' );
+							$return_attachment   = get_option( 'wps_rma_refund_attachment', false );
+							$attach_limit        = get_option( 'wps_rma_attachment_limit', '15' );
+							$attachment_mandatory = get_option( 'wps_rma_refund_attachment_mandatory' );
 							if ( empty( $attach_limit ) ) {
 								$attach_limit = 5;
 							}
 							if ( isset( $return_attachment ) && ! empty( $return_attachment ) ) {
 								if ( 'on' === $return_attachment ) {
 									?>
-									<label><b><?php esc_html_e( 'Attach Files', 'woo-refund-and-exchange-lite' ); ?></b></label>
+									<label><b><?php esc_html_e( 'Attach Files', 'woo-refund-and-exchange-lite' ); ?><?php echo ( 'on' === $attachment_mandatory ) ? ' *' : ''; ?></b></label>
 									<div class="wps_rma_attach_files">
 										<p>
 											<span id="wps_rma_return_request_files">

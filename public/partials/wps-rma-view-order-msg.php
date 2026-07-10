@@ -22,7 +22,11 @@ if ( isset( $_GET['wps_rma_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp
 	$order_obj    = wc_get_order( $order_id );
 	if ( ! empty( $order_id ) && ! empty( $order_obj ) ) {
 		$user_id = $order_obj->get_user_id();
-		if ( function_exists( 'get_current_user_id' ) && ! empty( get_current_user_id() ) && ( 1 === get_current_user_id() || get_current_user_id() === $user_id ) ) {
+		if ( function_exists( 'get_current_user_id' ) && ! empty( get_current_user_id() ) && ( 1 === get_current_user_id() || get_current_user_id() === $user_id ) && 'yes' !== wps_rma_order_message_role_allowed() ) {
+			?>
+			<p class="wps_rma_order_msg_restricted"><?php echo esc_html( wps_rma_order_message_role_allowed() ); ?></p>
+			<?php
+		} elseif ( function_exists( 'get_current_user_id' ) && ! empty( get_current_user_id() ) && ( 1 === get_current_user_id() || get_current_user_id() === $user_id ) ) {
 			$order_msg_template_class = get_option( 'wps_rma_order_msg_template_css', '' );
 			$wps_order_msg_visual_css = '';
 			if ( 'template2' === $order_msg_template_class ) {

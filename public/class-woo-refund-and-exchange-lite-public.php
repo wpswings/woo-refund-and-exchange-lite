@@ -95,7 +95,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 		$view_msg           = get_option( 'wps_rma_general_om', 'no' );
 		$wps_rma_return     = get_option( 'wps_rma_refund_enable', false );
 		$refund_hide        = get_option( 'wps_rma_refund_button_pages', false );
-		if ( isset( $view_msg ) && 'on' === $view_msg ) {
+		if ( isset( $view_msg ) && 'on' === $view_msg && 'yes' === wps_rma_order_message_role_allowed() ) {
 			$order_msg_button_text = get_option( 'wps_rma_order_message_button_text', false );
 			if ( isset( $order_msg_button_text ) && ! empty( $order_msg_button_text ) ) {
 				$order_msg_button_text = $order_msg_button_text;
@@ -155,18 +155,25 @@ class Woo_Refund_And_Exchange_Lite_Public {
 		} else {
 			$wps_rma_order_message_button_text = esc_html__( 'View Order Message', 'woo-refund-and-exchange-lite' );
 		}
-		$view_msg     = get_option( 'wps_rma_general_om', 'no' );
-		$redirect_uri = isset( $_SERVER['REQUEST_URI'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '';
+		$view_msg              = get_option( 'wps_rma_general_om', 'no' );
+		$order_msg_role_status = wps_rma_order_message_role_allowed();
+		$redirect_uri          = isset( $_SERVER['REQUEST_URI'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '';
 		if ( isset( $redirect_uri ) ) {
 			if ( isset( $view_msg ) && 'on' === $view_msg ) {
-				?>
-				<form action="<?php echo esc_html( add_query_arg( 'order_id', $order->get_id(), $view_order_msg_url ) ); ?>" method="post">
-					<input type="hidden" value="<?php echo esc_html( $order->get_id() ); ?>" name="order_id">
-					<p>
-						<input type="submit" class="btn button wps_rma_view_order" value="<?php echo esc_html( $wps_rma_order_message_button_text ); ?>">
-					</p>
-				</form>
-				<?php
+				if ( 'yes' === $order_msg_role_status ) {
+					?>
+					<form action="<?php echo esc_html( add_query_arg( 'order_id', $order->get_id(), $view_order_msg_url ) ); ?>" method="post">
+						<input type="hidden" value="<?php echo esc_html( $order->get_id() ); ?>" name="order_id">
+						<p>
+							<input type="submit" class="btn button wps_rma_view_order" value="<?php echo esc_html( $wps_rma_order_message_button_text ); ?>">
+						</p>
+					</form>
+					<?php
+				} else {
+					?>
+					<p class="wps_rma_order_msg_restricted"><?php echo esc_html( $order_msg_role_status ); ?></p>
+					<?php
+				}
 			}
 		}
 		// View order message code end.

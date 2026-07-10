@@ -91,6 +91,8 @@ class Woo_Refund_And_Exchange_Lite_Common {
 					'message_empty'             => esc_html__( 'Please Enter a Message.', 'woo-refund-and-exchange-lite' ),
 					'myaccount_url'             => esc_attr( $myaccount_page_url ),
 					'refund_form_attachment'    => get_option( 'wps_rma_refund_attachment' ),
+					'refund_form_attachment_mandatory' => get_option( 'wps_rma_refund_attachment_mandatory' ),
+					'return_attachment_msg'     => esc_html__( 'Please attach a file to submit your refund request.', 'woo-refund-and-exchange-lite' ),
 					'order_msg_attachment'      => get_option( 'wps_rma_general_enable_om_attachment' ),
 					'file_not_supported'        => esc_html__( 'Attached File type is not supported', 'woo-refund-and-exchange-lite' ),
 					'qty_error'                 => esc_html__( 'Selected product must have the quantity', 'woo-refund-and-exchange-lite' ),
@@ -103,8 +105,8 @@ class Woo_Refund_And_Exchange_Lite_Common {
 		$wps_rma_view_order_msg_page_id = get_option( 'wps_rma_view_order_msg_page_id', true );
 
 		if ( is_page( $wps_rma_view_order_msg_page_id ) || ( function_exists( 'get_current_screen' ) && ! empty( get_current_screen() ) && ( 'woocommerce_page_wc-orders' === get_current_screen()->id || 'shop_order' === get_current_screen()->id ) ) ) {
-			$script_path       = '../../build/index.js';
-			$script_asset_path = WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'build/index-asset.php';
+			$script_path       = WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'build/index.js';
+			$script_asset_path = WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'build/index.asset.php';
 			$script_asset      = file_exists( $script_asset_path )
 			? require $script_asset_path
 			: array(
@@ -133,6 +135,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 					'ajaxurl'            => admin_url( 'admin-ajax.php' ),
 					'wps_rma_react_nonce' => wp_create_nonce( 'ajax-nonce' ),
 					'upload_attach' => get_option( 'wps_rma_general_enable_om_attachment', 'no' ),
+					'upload_attach_mandatory' => get_option( 'wps_rma_general_om_attachment_mandatory', 'no' ),
 					'wps_rma_enable_sms_notification' => get_option( 'wps_rma_enable_sms_notification' ),
 					'wps_rma_enable_sms_notification_for_customer' => get_option( 'wps_rma_enable_sms_notification_for_customer' ),
 					'reload_image' => WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'public/images/reload-icon.png',
@@ -163,14 +166,64 @@ class Woo_Refund_And_Exchange_Lite_Common {
 		require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'emails/class-wps-rma-refund-request-accept-email.php';
 		require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'emails/class-wps-rma-refund-request-cancel-email.php';
 		require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'emails/class-wps-rma-sla-alert-email.php';
+		require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'emails/class-wps-rma-refund-user-restriction-email.php';
 		// add the email class to the list of email classes that WooCommerce loads.
 
-		$email_classes['wps_rma_order_messages_email']        = new Wps_Rma_Order_Messages_Email();
-		$email_classes['wps_rma_refund_request_email']        = new Wps_Rma_Refund_Request_Email();
-		$email_classes['wps_rma_refund_request_accept_email'] = new Wps_Rma_Refund_Request_Accept_Email();
-		$email_classes['wps_rma_refund_request_cancel_email'] = new Wps_Rma_Refund_Request_Cancel_Email();
-		$email_classes['wps_rma_sla_alert_email']             = new Wps_Rma_Sla_Alert_Email();
+		$email_classes['wps_rma_order_messages_email']          = new Wps_Rma_Order_Messages_Email();
+		$email_classes['wps_rma_refund_request_email']          = new Wps_Rma_Refund_Request_Email();
+		$email_classes['wps_rma_refund_request_accept_email']   = new Wps_Rma_Refund_Request_Accept_Email();
+		$email_classes['wps_rma_refund_request_cancel_email']   = new Wps_Rma_Refund_Request_Cancel_Email();
+		$email_classes['wps_rma_sla_alert_email']               = new Wps_Rma_Sla_Alert_Email();
+		$email_classes['wps_rma_refund_user_restriction_email'] = new Wps_Rma_Refund_User_Restriction_Email();
 		return $email_classes;
+	}
+
+	/**
+	 * Notify a customer by email when their email is added to, or removed
+	 * from, the refund fraud-prevention block list — only when both the
+	 * block feature and the notification setting are enabled.
+	 *
+	 * @param mixed $old_value Previous value of 'wps_rma_refund_disable_specific_users'.
+	 * @param mixed $new_value New value of 'wps_rma_refund_disable_specific_users'.
+	 */
+	public function wps_rma_refund_block_user_notify( $old_value, $new_value ) {
+		if ( 'on' !== get_option( 'wps_rma_refund_block_user_notify_mail' ) || 'on' !== get_option( 'wps_rma_disable_refund_specific_user' ) ) {
+			return;
+		}
+
+		$old_value = is_array( $old_value ) ? $old_value : array();
+		$new_value = is_array( $new_value ) ? $new_value : array();
+
+		$newly_blocked   = array_diff( $new_value, $old_value );
+		$newly_unblocked = array_diff( $old_value, $new_value );
+
+		if ( ! $newly_blocked && ! $newly_unblocked ) {
+			return;
+		}
+
+		$email_classes = WC()->mailer()->get_emails();
+		if ( ! isset( $email_classes['wps_rma_refund_user_restriction_email'] ) ) {
+			return;
+		}
+
+		foreach ( $newly_blocked as $user_email ) {
+			$email_classes['wps_rma_refund_user_restriction_email']->trigger( $user_email, 'blocked' );
+		}
+		foreach ( $newly_unblocked as $user_email ) {
+			$email_classes['wps_rma_refund_user_restriction_email']->trigger( $user_email, 'unblocked' );
+		}
+	}
+
+	/**
+	 * Handle the case where the block-list option is created for the very
+	 * first time (WordPress fires `add_option_...` instead of
+	 * `update_option_...` when the option previously did not exist).
+	 *
+	 * @param string $option Option name.
+	 * @param mixed  $value  New value.
+	 */
+	public function wps_rma_refund_block_user_notify_added( $option, $value ) {
+		$this->wps_rma_refund_block_user_notify( array(), $value );
 	}
 
 	/**
@@ -230,29 +283,31 @@ class Woo_Refund_And_Exchange_Lite_Common {
 						}
 					}
 
-					$request_files = wps_rma_get_meta_data( $order_id, 'wps_rma_return_attachment', true );
+					if ( ! empty( $filename ) ) {
+						$request_files = wps_rma_get_meta_data( $order_id, 'wps_rma_return_attachment', true );
 
-					$pending = true;
-					if ( isset( $request_files ) && ! empty( $request_files ) ) {
-						foreach ( $request_files as $date => $request_file ) {
-							if ( 'pending' === $request_file['status'] ) {
-								unset( $request_files[ $date ][0] );
-								$request_files[ $date ]['files']  = $filename;
-								$request_files[ $date ]['status'] = 'pending';
-								$pending                          = false;
-								break;
+						$pending = true;
+						if ( isset( $request_files ) && ! empty( $request_files ) ) {
+							foreach ( $request_files as $date => $request_file ) {
+								if ( 'pending' === $request_file['status'] ) {
+									unset( $request_files[ $date ][0] );
+									$request_files[ $date ]['files']  = $filename;
+									$request_files[ $date ]['status'] = 'pending';
+									$pending                          = false;
+									break;
+								}
 							}
 						}
-					}
 
-					if ( $pending ) {
-						$request_files                    = array();
-						$date                             = gmdate( 'd-m-Y' );
-						$request_files[ $date ]['files']  = $filename;
-						$request_files[ $date ]['status'] = 'pending';
-					}
+						if ( $pending ) {
+							$request_files                    = array();
+							$date                             = gmdate( 'd-m-Y' );
+							$request_files[ $date ]['files']  = $filename;
+							$request_files[ $date ]['status'] = 'pending';
+						}
 
-					wps_rma_update_meta_data( $order_id, 'wps_rma_return_attachment', $request_files );
+						wps_rma_update_meta_data( $order_id, 'wps_rma_return_attachment', $request_files );
+					}
 				}
 			}
 			echo 'success';
@@ -278,6 +333,14 @@ class Woo_Refund_And_Exchange_Lite_Common {
 				$allowed_roles     = array( 'administrator', 'shop_manager' );
 				// Check if the user ID is not the current user or if not an admin.
 				if ( get_current_user_id() === $user_id || array_intersect( $allowed_roles, $user->roles ) ) {
+					if ( 'on' === get_option( 'wps_rma_refund_attachment' ) && 'on' === get_option( 'wps_rma_refund_attachment_mandatory' ) && empty( wps_rma_get_meta_data( $order_id, 'wps_rma_return_attachment', true ) ) ) {
+						$response = array(
+							'flag' => false,
+							'msg'  => esc_html__( 'Please attach a file to submit your refund request.', 'woo-refund-and-exchange-lite' ),
+						);
+						echo wp_json_encode( $response );
+						wp_die();
+					}
 					$bank_details  = get_option( 'wps_rma_refund_manually_de', false );
 					if ( 'on' === $bank_details && ! empty( $_POST['bankdetails'] ) ) {
 						wps_rma_update_meta_data( $order_id, 'wps_rma_bank_details', sanitize_text_field( wp_unslash( $_POST['bankdetails'] ) ) );
@@ -695,6 +758,17 @@ class Woo_Refund_And_Exchange_Lite_Common {
 
 		$order = wc_get_order( $order_id );
 		if ( $order ) {
+			$order_msg_role_status = wps_rma_order_message_role_allowed();
+			if ( 'yes' !== $order_msg_role_status ) {
+				echo wp_json_encode(
+					array(
+						'flag'    => false,
+						'message' => $order_msg_role_status,
+					)
+				);
+				wp_die();
+			}
+
 			$user_id = $order->get_user_id();
 			// Check if the user ID is not the current user or if not an admin, security purpose.
 			$user              = wp_get_current_user();
@@ -703,7 +777,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			if ( get_current_user_id() === $user_id || array_intersect( $allowed_roles, $user->roles ) ) {
 				// User is authorized.
 				$wps_order_messages = wps_rma_get_meta_data( $order_id, 'wps_cutomer_order_msg', true );
-		
+
 				echo wp_json_encode( $wps_order_messages );
 				wp_die();
 			} else {
@@ -742,12 +816,32 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			$to     = get_option( 'woocommerce_email_from_address', get_option( 'admin_email' ) );
 		}
 
+		$order_msg_role_status = wps_rma_order_message_role_allowed();
+		if ( 'yes' !== $order_msg_role_status ) {
+			echo wp_json_encode(
+				array(
+					'status' => 403,
+					'msg'    => $order_msg_role_status,
+				)
+			);
+			wp_die();
+		}
+
 		$order = wc_get_order( $order_id );
 		$user_id = $order->get_user_id();
 		$user              = wp_get_current_user();
 		$allowed_roles     = array( 'editor', 'administrator', 'shop_manager' );
 		// Check if the user ID is not the current user or if not an admin.
 		if ( get_current_user_id() === $user_id || array_intersect( $allowed_roles, $user->roles ) ) {
+			if ( 'on' === get_option( 'wps_rma_general_enable_om_attachment' ) && 'on' === get_option( 'wps_rma_general_om_attachment_mandatory' ) && empty( $_FILES['wps_order_msg_attachment']['tmp_name'][0] ) ) {
+				echo wp_json_encode(
+					array(
+						'status' => 400,
+						'msg'    => esc_html__( 'Please attach a file to send your message.', 'woo-refund-and-exchange-lite' ),
+					)
+				);
+				wp_die();
+			}
 			$wps_rma_customer_contact_order_message_get = wps_rma_get_meta_data( $order_id, 'wps_rma_customer_contact_order_message', true );
 			$wps_rma_customer_contact_order_message     = isset( $_POST['wps_rma_customer_contact_order_message'] ) ? sanitize_text_field( wp_unslash( $_POST['wps_rma_customer_contact_order_message'] ) ) : '';
 			if ( $wps_rma_customer_contact_order_message && empty( $wps_rma_customer_contact_order_message_get ) ) {

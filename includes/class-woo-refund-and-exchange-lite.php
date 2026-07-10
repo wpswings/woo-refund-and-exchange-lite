@@ -77,7 +77,7 @@ class Woo_Refund_And_Exchange_Lite {
 			$this->version = WOO_REFUND_AND_EXCHANGE_LITE_VERSION;
 		} else {
 
-			$this->version = '4.6.2';
+			$this->version = '4.6.3';
 		}
 
 		$this->plugin_name = 'return-refund-and-exchange-for-woocommerce';
@@ -314,6 +314,10 @@ class Woo_Refund_And_Exchange_Lite {
 
 		// Add the RMA Email.
 		$this->loader->add_filter( 'woocommerce_email_classes', $wrael_plugin_common, 'wps_rma_woocommerce_emails' );
+
+		// Notify customer when their email is blocked/unblocked from raising refund requests.
+		$this->loader->add_action( 'update_option_wps_rma_refund_disable_specific_users', $wrael_plugin_common, 'wps_rma_refund_block_user_notify', 10, 2 );
+		$this->loader->add_action( 'add_option_wps_rma_refund_disable_specific_users', $wrael_plugin_common, 'wps_rma_refund_block_user_notify_added', 10, 2 );
 
 		// Save atachment on the refund request form.
 		$this->loader->add_action( 'wp_ajax_wps_rma_return_upload_files', $wrael_plugin_common, 'wps_rma_order_return_attach_files' );

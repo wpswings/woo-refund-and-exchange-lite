@@ -36,9 +36,11 @@ jQuery(function($){
 		}
 		var attachment_enable = wrael_common_param.refund_form_attachment;
 		if ( attachment_enable && 'on' == attachment_enable ) {
+			var refund_total_files = 0;
 			$('.wps_rma_return_request_files').each(function(){
 				var up_files = $(this);
 				var totalfiles = up_files[0].files.length;
+				refund_total_files += totalfiles;
 				if ( totalfiles ) {
 					var file_type = up_files[0].files[0].type;
 
@@ -57,6 +59,10 @@ jQuery(function($){
 					}
 				}
 			});
+			var attachment_mandatory = wrael_common_param.refund_form_attachment_mandatory;
+			if ( attachment_mandatory && 'on' == attachment_mandatory && ! refund_total_files ) {
+				alerthtml += '<li>'+ wrael_common_param.return_attachment_msg + '</li>';
+			}
 		}
 
 		var wps_rma_customer_contact_refund = null;

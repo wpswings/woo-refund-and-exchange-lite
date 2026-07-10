@@ -12,6 +12,7 @@ export const OrderMessage = () => {
     const enableSmsNotification = wps_rma_react_object.wps_rma_enable_sms_notification;
     const enableSmsForCustomer = wps_rma_react_object.wps_rma_enable_sms_notification_for_customer;
     const uploadAttach = wps_rma_react_object.upload_attach;
+    const uploadAttachMandatory = wps_rma_react_object.upload_attach_mandatory;
 
     const screenID = wps_rma_react_object.is_admin;
 
@@ -241,6 +242,7 @@ export const OrderMessage = () => {
                             id="wps_order_msg_attachment"
                             name="wps_order_msg_attachment"
                             onChange={handleFileChange}
+                            required={'on' === uploadAttachMandatory}
                             multiple
                           />
                         </div>
