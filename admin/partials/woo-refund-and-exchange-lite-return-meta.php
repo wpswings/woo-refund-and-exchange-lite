@@ -193,6 +193,16 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 			// To show some fields when refund request is pending.
 			do_action( 'wps_rma_return_ship_attach_upload_html', $order_id );
 			if ( 'pending' === $return_data['status'] ) {
+				if ( 'on' === get_option( 'wps_rma_refund_without_return' ) ) {
+					?>
+					<p id="wps_rma_keep_item_wrapper">
+						<label for="wps_rma_keep_item">
+							<input type="checkbox" id="wps_rma_keep_item">
+							<?php esc_html_e( 'Refund only — let the customer keep the item (no return required)', 'woo-refund-and-exchange-lite' ); ?>
+						</label>
+					</p>
+					<?php
+				}
 				?>
 				<p id="wps_rma_return_package">
 				<input type="button" value="<?php esc_html_e( 'Accept Request', 'woo-refund-and-exchange-lite' ); ?>" class="button button-primary" id="wps_rma_accept_return" data-orderid="<?php echo esc_html( $order_id ); ?>" data-date="<?php echo esc_html( $key ); ?>">
@@ -219,6 +229,11 @@ if ( isset( $return_datas ) && ! empty( $return_datas ) ) {
 				<?php echo esc_html( $approve_date ); ?>.
 			</b>
 			<?php
+			if ( 'yes' === wps_rma_get_meta_data( $order_id, 'wps_rma_keep_item', true ) ) {
+				?>
+				<p><span style="display:inline-block;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;color:#0d9488;background:#f0fdfa;"><?php esc_html_e( 'Refunded without return — item kept', 'woo-refund-and-exchange-lite' ); ?></span></p>
+				<?php
+			}
 			if ( 'yes' !== $wps_rma_refund_amount ) {
 				?>
 				<input type="button" class="button button-primary" name="wps_rma_left_amount" data-refund_method="<?php echo esc_html( $refund_method ); ?>" class="button button-primary" data-orderid="<?php echo esc_html( $order_id ); ?>" id="wps_rma_left_amount" Value="<?php esc_html_e( 'Refund Amount', 'woo-refund-and-exchange-lite' ); ?>" >

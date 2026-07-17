@@ -218,6 +218,13 @@ class Woo_Refund_And_Exchange_Lite {
 		// Add metaboxes.
 		$this->loader->add_action( 'add_meta_boxes', $wrael_plugin_admin, 'wps_wrma_add_metaboxes' );
 
+		// Bulk approve/reject on the RMA request list table.
+		$this->loader->add_filter( 'wps_rma_lite_request_bulk_option', $wrael_plugin_admin, 'wps_rma_lite_request_bulk_option' );
+		$this->loader->add_action( 'wps_rma_lite_process_bulk_request_action', $wrael_plugin_admin, 'wps_rma_lite_process_bulk_request_action', 10, 2 );
+
+		// Refund without return: never restock a kept item (priority 20 to override the pro auto-restock).
+		$this->loader->add_filter( 'wps_rma_auto_restock_item_refund', $wrael_plugin_admin, 'wps_rma_keep_item_no_restock', 20, 2 );
+
 		// Ajax hooks.
 		$this->loader->add_action( 'wp_ajax_wps_rma_return_req_approve', $wrael_plugin_admin, 'wps_rma_return_req_approve' );
 		$this->loader->add_action( 'wp_ajax_wps_rma_return_req_cancel', $wrael_plugin_admin, 'wps_rma_return_req_cancel' );

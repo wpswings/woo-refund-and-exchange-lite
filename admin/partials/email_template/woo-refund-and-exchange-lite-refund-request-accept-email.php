@@ -25,6 +25,14 @@ if ( isset( $products ) && ! empty( $products ) ) {
 		break;
 	}
 }
+$keep_item_notice = '';
+if ( 'yes' === wps_rma_get_meta_data( $order_id, 'wps_rma_keep_item', true ) ) {
+	$keep_item_notice =
+	'<div style="margin:0 0 16px;padding:12px 16px;border-radius:6px;background:#f0fdfa;border:1px solid #0d9488;color:#0d5049;">
+		<strong>' . esc_html__( 'No return needed.', 'woo-refund-and-exchange-lite' ) . '</strong> '
+		. esc_html__( 'Your refund has been approved and you may keep the item. There is no need to send it back.', 'woo-refund-and-exchange-lite' ) .
+	'</div>';
+}
 $message            =
 '<div class="wps_rma_refund_accept_email>
     <div class="header">
@@ -32,6 +40,7 @@ $message            =
     </div>
     <div class="content">
         <div class="reason">
+        ' . $keep_item_notice . '
         </div>
         <div class="Order">
 			<h4>Order #' . $order_id . '</h4>

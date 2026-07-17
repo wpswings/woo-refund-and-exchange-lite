@@ -400,7 +400,7 @@ CSS;
 							if ( isset( $return_attachment ) && ! empty( $return_attachment ) ) {
 								if ( 'on' === $return_attachment ) {
 									?>
-									<label><b><?php esc_html_e( 'Attach Files', 'woo-refund-and-exchange-lite' ); ?><?php echo ( 'on' === $attachment_mandatory ) ? ' *' : ''; ?></b></label>
+									<label><b><?php esc_html_e( 'Attach Files', 'woo-refund-and-exchange-lite' ); ?><?php echo ( 'on' === $attachment_mandatory ) ? ' <span class="wps_rma_required" style="color:red;">*</span>' : ''; ?></b></label>
 									<div class="wps_rma_attach_files">
 										<p>
 											<span id="wps_rma_return_request_files">

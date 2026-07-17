@@ -144,6 +144,16 @@ class Woo_Refund_And_Exchange_Lite_Public {
 		$condition          = wps_rma_show_buttons( 'refund', $order );
 		$get_order_currency = get_woocommerce_currency_symbol( $order->get_currency() );
 
+		// Refund without return: let the customer know they may keep the item.
+		if ( 'yes' === wps_rma_get_meta_data( $order->get_id(), 'wps_rma_keep_item', true ) ) {
+			?>
+			<p class="wps_rma_keep_item_notice" style="padding:10px 14px;border-radius:6px;background:#f0fdfa;border:1px solid #0d9488;color:#0d5049;">
+				<strong><?php esc_html_e( 'Refund issued — no return needed.', 'woo-refund-and-exchange-lite' ); ?></strong>
+				<?php esc_html_e( 'Your refund has been approved and you may keep the item. There is no need to send it back.', 'woo-refund-and-exchange-lite' ); ?>
+			</p>
+			<?php
+		}
+
 		// View order message code start.
 		$wps_rma_view_order_msg_page_id    = get_option( 'wps_rma_view_order_msg_page_id', true );
 		$view_order_msg_url                = get_permalink( $wps_rma_view_order_msg_page_id );

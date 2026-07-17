@@ -263,10 +263,12 @@ jQuery(function($){
 			$( '.wps_rma_return_loader' ).show();
 			var orderid = $( this ).data( 'orderid' );
 			var date   = $( this ).data( 'date' );
+			var keep_item = $( '#wps_rma_keep_item' ).is( ':checked' ) ? 'yes' : 'no';
 			var data = {
 				action:'wps_rma_return_req_approve',
 				orderid:orderid,
 				date:date,
+				keep_item:keep_item,
 				security_check	: wrael_admin_param.wps_rma_nonce
 			};
 			$.ajax(
