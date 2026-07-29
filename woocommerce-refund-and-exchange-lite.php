@@ -23,7 +23,7 @@
  * Requires Plugins:  woocommerce
  *
  * Requires at least: 6.7.0
- * Tested up to: 7.0.1
+ * Tested up to: 7.0.2
  * WC requires at least: 6.5.0
  * WC tested up to: 10.9.4
  *
@@ -241,7 +241,33 @@ if ( $activated ) {
 
 		if ( 'shop_order' === OrderUtil::get_order_type( $id ) && OrderUtil::custom_orders_table_usage_is_enabled() ) {
 			// HPOS usage is enabled.
-			$order    = wc_get_order( $id );
+			$order       = wc_get_order( $id );
+			$order_props = array(
+				'_customer_user'       => 'get_customer_id',
+				'_billing_first_name'  => 'get_billing_first_name',
+				'_billing_last_name'   => 'get_billing_last_name',
+				'_billing_email'       => 'get_billing_email',
+				'_billing_phone'       => 'get_billing_phone',
+				'_billing_country'     => 'get_billing_country',
+				'_billing_address_1'   => 'get_billing_address_1',
+				'_billing_address_2'   => 'get_billing_address_2',
+				'_billing_state'       => 'get_billing_state',
+				'_billing_postcode'    => 'get_billing_postcode',
+				'_shipping_first_name' => 'get_shipping_first_name',
+				'_shipping_last_name'  => 'get_shipping_last_name',
+				'_shipping_company'    => 'get_shipping_company',
+				'_shipping_country'    => 'get_shipping_country',
+				'_shipping_address_1'  => 'get_shipping_address_1',
+				'_shipping_address_2'  => 'get_shipping_address_2',
+				'_shipping_state'      => 'get_shipping_state',
+				'_shipping_postcode'   => 'get_shipping_postcode',
+				'_payment_method_title' => 'get_payment_method_title',
+				'_order_shipping'      => 'get_shipping_total',
+			);
+			if ( isset( $order_props[ $key ] ) ) {
+				$getter = $order_props[ $key ];
+				return $order->$getter();
+			}
 			$meta_val = $order->get_meta( $key );
 			return $meta_val;
 		} else {

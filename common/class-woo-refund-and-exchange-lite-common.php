@@ -346,7 +346,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 						wps_rma_update_meta_data( $order_id, 'wps_rma_bank_details', sanitize_text_field( wp_unslash( $_POST['bankdetails'] ) ) );
 					}
 					$refund_method = isset( $_POST['refund_method'] ) ? sanitize_text_field( wp_unslash( $_POST['refund_method'] ) ) : '';
-					if ( wps_rma_pro_active() && wps_rma_is_wallet_enable() && ! wps_rma_is_choose_method_enable() ) {
+					if ( wps_rma_pro_active() && function_exists( 'wps_rma_is_wallet_enable' ) && wps_rma_is_wallet_enable() && function_exists( 'wps_rma_is_choose_method_enable' ) && ! wps_rma_is_choose_method_enable() ) {
 						$is_terrawallet = wps_rma_is_terra_wallet_enable() && wps_rma_is_terrawallet_plugin_activated();
 						if ( $is_terrawallet ) {
 							$refund_method = 'terrawallet';

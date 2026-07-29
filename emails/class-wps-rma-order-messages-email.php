@@ -80,7 +80,7 @@ class Wps_Rma_Order_Messages_Email extends WC_Email {
 	public function trigger( $msg, $attachment, $to, $order_id ) {
 		if ( $to ) {
 			$this->setup_locale();
-			$this->receicer                       = $to;
+			$this->recipient                       = $to;
 			$this->msg                            = $msg;
 			$this->order_id                       = $order_id;
 			$this->placeholders['{message_date}'] = date_i18n( wc_date_format() );
@@ -90,7 +90,7 @@ class Wps_Rma_Order_Messages_Email extends WC_Email {
 				return;
 			}
 
-			$this->send( $this->receicer, $this->get_subject(), $this->get_content(), $this->get_headers(), $attachment );
+			$this->send( $this->recipient, $this->get_subject(), $this->get_content(), $this->get_headers(), $attachment );
 		}
 		$this->restore_locale();
 	}
