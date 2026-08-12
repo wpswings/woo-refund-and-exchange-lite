@@ -390,6 +390,7 @@ CSS;
 						do_action( 'wps_rma_above_the_attachment' );
 						?>
 						<form action="" method="post" id="wps_rma_return_request_form" data-orderid="<?php echo esc_html( $order_id ); ?>" enctype="multipart/form-data">
+							<input type="hidden" name="order_key" value="<?php echo esc_attr( $order_obj->get_order_key() ); ?>">
 							<?php
 							$return_attachment   = get_option( 'wps_rma_refund_attachment', false );
 							$attach_limit        = get_option( 'wps_rma_attachment_limit', '15' );

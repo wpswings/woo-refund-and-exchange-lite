@@ -241,7 +241,8 @@ class Woo_Refund_And_Exchange_Lite_Common {
 
 		if ( isset( $_FILES['wps_rma_return_request_files'] ) && isset( $_FILES['wps_rma_return_request_files']['tmp_name'] ) && isset( $_FILES['wps_rma_return_request_files']['name'] ) ) {
 			$filename = array();
-			$order_id = isset( $_POST['wps_rma_return_request_order'] ) ? sanitize_text_field( wp_unslash( $_POST['wps_rma_return_request_order'] ) ) : sanitize_text_field( wp_unslash( $_POST['wps_rma_return_request_order'] ) );
+			$order_id  = isset( $_POST['wps_rma_return_request_order'] ) ? sanitize_text_field( wp_unslash( $_POST['wps_rma_return_request_order'] ) ) : '';
+			$order_key = isset( $_POST['order_key'] ) ? sanitize_text_field( wp_unslash( $_POST['order_key'] ) ) : '';
 
 			$order = wc_get_order( $order_id );
 			if ( $order ) {
@@ -249,8 +250,8 @@ class Woo_Refund_And_Exchange_Lite_Common {
 
 				$user              = wp_get_current_user();
 				$allowed_roles     = array( 'editor', 'administrator', 'shop_manager' );
-				// Check if the user ID is not the current user or if not an admin.
-				if ( get_current_user_id() === $user_id || array_intersect( $allowed_roles, $user->roles ) ) {
+				// Guest orders (user_id 0) are authorized via the order key instead of user identity.
+				if ( ( 0 === $user_id && $order->get_order_key() && hash_equals( $order->get_order_key(), $order_key ) ) || ( $user_id > 0 && get_current_user_id() === $user_id ) || array_intersect( $allowed_roles, $user->roles ) ) {
 					$count    = count( $_FILES['wps_rma_return_request_files']['tmp_name'] );
 					for ( $i = 0; $i < $count; $i++ ) {
 						if ( isset( $_FILES['wps_rma_return_request_files']['tmp_name'][ $i ] ) && isset( $_FILES['wps_rma_return_request_files']['name'][ $i ] ) ) {
@@ -323,7 +324,8 @@ class Woo_Refund_And_Exchange_Lite_Common {
 		$check_ajax = check_ajax_referer( 'wps_rma_ajax_security', 'security_check' );
 		if ( $check_ajax && current_user_can( 'wps-rma-refund-request' ) ) {
 
-			$order_id = isset( $_POST['orderid'] ) ? sanitize_text_field( wp_unslash( $_POST['orderid'] ) ) : '';
+			$order_id  = isset( $_POST['orderid'] ) ? sanitize_text_field( wp_unslash( $_POST['orderid'] ) ) : '';
+			$order_key = isset( $_POST['order_key'] ) ? sanitize_text_field( wp_unslash( $_POST['order_key'] ) ) : '';
 
 			$order = wc_get_order( $order_id );
 			if ( $order ) {
@@ -331,8 +333,8 @@ class Woo_Refund_And_Exchange_Lite_Common {
 				// Check if the user ID is not the current user or if not an admin, security purpose.
 				$user              = wp_get_current_user();
 				$allowed_roles     = array( 'administrator', 'shop_manager' );
-				// Check if the user ID is not the current user or if not an admin.
-				if ( get_current_user_id() === $user_id || array_intersect( $allowed_roles, $user->roles ) ) {
+				// Guest orders (user_id 0) are authorized via the order key instead of user identity.
+				if ( ( 0 === $user_id && $order->get_order_key() && hash_equals( $order->get_order_key(), $order_key ) ) || ( $user_id > 0 && get_current_user_id() === $user_id ) || array_intersect( $allowed_roles, $user->roles ) ) {
 					if ( 'on' === get_option( 'wps_rma_refund_attachment' ) && 'on' === get_option( 'wps_rma_refund_attachment_mandatory' ) && empty( wps_rma_get_meta_data( $order_id, 'wps_rma_return_attachment', true ) ) ) {
 						$response = array(
 							'flag' => false,
@@ -721,15 +723,16 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	public function wps_rma_cancel_return_request_callback() {
 		check_ajax_referer( 'wps_rma_ajax_security', 'security_check' );
 
-		$order_id = isset( $_POST['order_id'] ) ? filter_input( INPUT_POST, 'order_id' ) : '';
+		$order_id  = isset( $_POST['order_id'] ) ? filter_input( INPUT_POST, 'order_id' ) : '';
+		$order_key = isset( $_POST['order_key'] ) ? sanitize_text_field( wp_unslash( $_POST['order_key'] ) ) : '';
 		$order = wc_get_order( $order_id );
 		if ( $order ) {
 			$user_id = $order->get_user_id();
 			// Check if the user ID is not the current user or if not an admin, security purpose.
 			$user              = wp_get_current_user();
 			$allowed_roles     = array( 'administrator', 'shop_manager' );
-			// Check if the user ID is not the current user or if not an admin.
-			if ( get_current_user_id() === $user_id || array_intersect( $allowed_roles, $user->roles ) ) {
+			// Guest orders (user_id 0) are authorized via the order key instead of user identity.
+			if ( ( 0 === $user_id && $order->get_order_key() && hash_equals( $order->get_order_key(), $order_key ) ) || ( $user_id > 0 && get_current_user_id() === $user_id ) || array_intersect( $allowed_roles, $user->roles ) ) {
 				$products = wps_rma_get_meta_data( $order_id, 'wps_rma_return_product', true );
 				$response = wps_rma_return_req_cancel_callback( $order_id, $products, true );
 			} else {
@@ -774,7 +777,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			$user              = wp_get_current_user();
 			$allowed_roles     = array( 'administrator', 'shop_manager' );
 			// Check if the user ID is not the current user or if not an admin.
-			if ( get_current_user_id() === $user_id || array_intersect( $allowed_roles, $user->roles ) ) {
+			if ( ( $user_id > 0 && get_current_user_id() === $user_id ) || array_intersect( $allowed_roles, $user->roles ) ) {
 				// User is authorized.
 				$wps_order_messages = wps_rma_get_meta_data( $order_id, 'wps_cutomer_order_msg', true );
 
@@ -832,7 +835,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 		$user              = wp_get_current_user();
 		$allowed_roles     = array( 'editor', 'administrator', 'shop_manager' );
 		// Check if the user ID is not the current user or if not an admin.
-		if ( get_current_user_id() === $user_id || array_intersect( $allowed_roles, $user->roles ) ) {
+		if ( ( $user_id > 0 && get_current_user_id() === $user_id ) || array_intersect( $allowed_roles, $user->roles ) ) {
 			if ( 'on' === get_option( 'wps_rma_general_enable_om_attachment' ) && 'on' === get_option( 'wps_rma_general_om_attachment_mandatory' ) && empty( $_FILES['wps_order_msg_attachment']['tmp_name'][0] ) ) {
 				echo wp_json_encode(
 					array(

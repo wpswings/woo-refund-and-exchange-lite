@@ -139,10 +139,11 @@ jQuery(function($){
 	
 		var data = {
 			action	:'wps_rma_save_return_request',
-			products: selected_product, 
+			products: selected_product,
 			subject	: rr_subject,
 			reason	: rr_reason,
 			orderid : orderid,
+			order_key : $( this ).find( 'input[name="order_key"]' ).val(),
 			bankdetails : $( '#wps_rma_bank_details' ).val(),
 			refund_method : refund_method,
 			security_check	: wrael_common_param.wps_rma_nonce,
@@ -324,10 +325,12 @@ jQuery(function($){
 			return; // Exit if the user clicks "Cancel"
 		}
 		const order_id = $('.wps_rma_cancel_return_request').val();
+		const order_key = $('.wps_rma_cancel_return_request_key').val();
 
 		var data = {
 			action	:'wps_rma_cancel_return_request',
 			order_id: order_id,
+			order_key: order_key,
 			security_check	: wrael_common_param.wps_rma_nonce,
 		}
 		//cancel return request

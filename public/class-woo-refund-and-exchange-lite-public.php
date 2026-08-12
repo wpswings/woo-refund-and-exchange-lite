@@ -343,6 +343,7 @@ class Woo_Refund_And_Exchange_Lite_Public {
 										<?php if( 'on' === get_option( 'wps_rma_refund_cancellation' ) ): ?>
 										<form action="/" id="wps_rma_cancel_return_request" method="post">
 											<input type="hidden" class="wps_rma_cancel_return_request" value="<?php echo esc_html( $order->get_id() ); ?>" name="order_id">
+											<input type="hidden" class="wps_rma_cancel_return_request_key" value="<?php echo esc_attr( $order->get_order_key() ); ?>" name="order_key">
 											<p>
 												<input type="submit" class="btn button" value="<?php esc_html_e( 'Cancel Request', 'woo-refund-and-exchange-lite' ); ?>" name="wps_rma_cancel_return_request">
 											</p>
