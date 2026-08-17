@@ -3,10 +3,10 @@ Contributors: wpswings
 Donate link: https://wpswings.com/
 Tags: refund, exchange, wallet, RMA, woocommerce cancel order
 Requires at least: 6.7
-Tested up to: 7.0.2
+Tested up to: 7.0.4
 WC requires at least: 6.5
-WC tested up to: 10.9.4
-Stable tag: 4.6.3
+WC tested up to: 10.1.1
+Stable tag: 4.6.4
 Requires PHP: 7.4
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -283,6 +283,11 @@ Privacy: https://legal.hubspot.com/privacy-policy
 17. API Settings.
 
 == Changelog == 
+
+= 4.6.4 - Released on 17 Aug 2026 = 
+*  New: Compatibility with latest WP (7.0.4) and  WC (10.1.1) 
+*  Fix: Resolved a vulnerability allowing unauthorized access to guest order data and actions. 
+*  Fix: loader issue solved in view order message functionality 
 
 = 4.6.3 - Released on 30 July 2026 = 
 *  New: Notify user when their email is blocked by admin for refund 
@@ -600,10 +605,7 @@ Privacy: https://legal.hubspot.com/privacy-policy
 
 == Upgrade Notice ==
 
-= 4.6.3 - Released on 30 July 2026 = 
-*  New: Notify user when their email is blocked by admin for refund 
-*  New: Attachment Mandatory/Optional Toggle for refund 
-*  New: Order Message Restriction via user role 
-*  New: compatibility with latest WP ( 7.0.2 ) and WC ( 10.9.4 )
-*  New: Keep the Item via refund process 
-*  New: Bulk Approve/Reject incase of Refund Request using RMA Request Tab
+= 4.6.4 - Released on 17 Aug 2026 = 
+*  New: Compatibility with latest WP (7.0.4) and  WC (10.1.1) 
+*  Fix: Resolved a vulnerability allowing unauthorized access to guest order data and actions. 
+*  Fix: loader issue solved in view order message functionality
