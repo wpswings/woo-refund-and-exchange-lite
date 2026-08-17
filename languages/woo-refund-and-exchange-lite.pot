@@ -1,8 +1,8 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Return Refund and Exchange for WooCommerce 4.6.3\n"
-"POT-Creation-Date: 2026-07-29 18:26+0530\n"
+"Project-Id-Version: Return Refund and Exchange for WooCommerce 4.6.4\n"
+"POT-Creation-Date: 2026-08-17 11:56+0530\n"
 "PO-Revision-Date: 2023-09-25 13:54+0530\n"
 "Last-Translator: \n"
 "Language-Team: WP Swings\n"
@@ -2575,7 +2575,7 @@ msgid "is"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-policies.php:187
-#: public/partials/wps-rma-refund-request-form.php:411
+#: public/partials/wps-rma-refund-request-form.php:412
 msgid "Add More"
 msgstr ""
 
@@ -2674,7 +2674,7 @@ msgid "Accept Request"
 msgstr ""
 
 #: admin/partials/woo-refund-and-exchange-lite-return-meta.php:209
-#: public/class-woo-refund-and-exchange-lite-public.php:347
+#: public/class-woo-refund-and-exchange-lite-public.php:348
 msgid "Cancel Request"
 msgstr ""
 
@@ -2798,7 +2798,7 @@ msgid "Please Enter a Message."
 msgstr ""
 
 #: common/class-woo-refund-and-exchange-lite-common.php:95
-#: common/class-woo-refund-and-exchange-lite-common.php:339
+#: common/class-woo-refund-and-exchange-lite-common.php:341
 msgid "Please attach a file to submit your refund request."
 msgstr ""
 
@@ -2823,7 +2823,7 @@ msgid "Write a message you want to send"
 msgstr ""
 
 #: common/class-woo-refund-and-exchange-lite-common.php:147
-#: public/partials/wps-rma-refund-request-form.php:412
+#: public/partials/wps-rma-refund-request-form.php:413
 msgid "Only PNG, JPG, JPEG, MP4, and WEBM files are supported"
 msgstr ""
 
@@ -2839,42 +2839,42 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:447
+#: common/class-woo-refund-and-exchange-lite-common.php:449
 #, php-format
 msgid "Refund Requested <span class=\"count\">(%s)</span>"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:458
+#: common/class-woo-refund-and-exchange-lite-common.php:460
 #, php-format
 msgid "Refund Approved <span class=\"count\">(%s)</span>"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:469
+#: common/class-woo-refund-and-exchange-lite-common.php:471
 #, php-format
 msgid "Refund Cancelled <span class=\"count\">(%s)</span>"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:487
+#: common/class-woo-refund-and-exchange-lite-common.php:489
 msgid "Refund Requested"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:488
+#: common/class-woo-refund-and-exchange-lite-common.php:490
 msgid "Refund Approved"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:489
+#: common/class-woo-refund-and-exchange-lite-common.php:491
 msgid "Refund Cancelled"
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:739
+#: common/class-woo-refund-and-exchange-lite-common.php:742
 msgid "You are not authorized to cancel this return request."
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:787
+#: common/class-woo-refund-and-exchange-lite-common.php:790
 msgid "You are not authorized to view this order messages."
 msgstr ""
 
-#: common/class-woo-refund-and-exchange-lite-common.php:840
+#: common/class-woo-refund-and-exchange-lite-common.php:843
 msgid "Please attach a file to send your message."
 msgstr ""
 
@@ -3236,7 +3236,7 @@ msgstr ""
 
 #: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:213
 #: includes/class-woo-refund-and-exchange-lite-talk-to-expert-form.php:215
-#: public/partials/wps-rma-refund-request-form.php:434
+#: public/partials/wps-rma-refund-request-form.php:435
 msgid "Submit Request"
 msgstr ""
 
@@ -3535,39 +3535,39 @@ msgstr ""
 msgid "Update Request"
 msgstr ""
 
-#: public/class-woo-refund-and-exchange-lite-public.php:356
+#: public/class-woo-refund-and-exchange-lite-public.php:357
 msgid "The above product Refund request is approved on"
 msgstr ""
 
-#: public/class-woo-refund-and-exchange-lite-public.php:363
+#: public/class-woo-refund-and-exchange-lite-public.php:364
 msgid "The above product Refund request is cancelled on"
 msgstr ""
 
-#: public/class-woo-refund-and-exchange-lite-public.php:371
+#: public/class-woo-refund-and-exchange-lite-public.php:372
 msgid "No Refund Request Found For this order"
 msgstr ""
 
-#: public/class-woo-refund-and-exchange-lite-public.php:403
+#: public/class-woo-refund-and-exchange-lite-public.php:404
 msgid "Refund Rules"
 msgstr ""
 
-#: public/class-woo-refund-and-exchange-lite-public.php:429
+#: public/class-woo-refund-and-exchange-lite-public.php:430
 #, php-format
 msgid "Refund are valid for %s days"
 msgstr ""
 
-#: public/class-woo-refund-and-exchange-lite-public.php:432
+#: public/class-woo-refund-and-exchange-lite-public.php:433
 #, php-format
 msgid "Refund days are exceed, must be less than %s days"
 msgstr ""
 
-#: public/class-woo-refund-and-exchange-lite-public.php:437
-#: public/class-woo-refund-and-exchange-lite-public.php:440
+#: public/class-woo-refund-and-exchange-lite-public.php:438
+#: public/class-woo-refund-and-exchange-lite-public.php:441
 #, php-format
 msgid "Refund are valid after %s days"
 msgstr ""
 
-#: public/class-woo-refund-and-exchange-lite-public.php:455
+#: public/class-woo-refund-and-exchange-lite-public.php:456
 #, php-format
 msgid "Refund allowed for these order statuses :- %s"
 msgstr ""
@@ -3622,19 +3622,19 @@ msgstr ""
 msgid "Write your description for a refund"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:403
+#: public/partials/wps-rma-refund-request-form.php:404
 msgid "Attach Files"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:426
+#: public/partials/wps-rma-refund-request-form.php:427
 msgid "Recieve Refund Related update over Message : "
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:428
+#: public/partials/wps-rma-refund-request-form.php:429
 msgid "Phone number with country code. Ex : 1XXXXXXX987 ( \"+\" not allowed)"
 msgstr ""
 
-#: public/partials/wps-rma-refund-request-form.php:468
+#: public/partials/wps-rma-refund-request-form.php:469
 msgid "Refund Request Can't make on this order"
 msgstr ""
 
