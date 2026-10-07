@@ -41,20 +41,26 @@ if ( ! class_exists( 'Woo_Refund_And_Exchange_Lite_Api_Process' ) ) {
 		 * @return  Array $wps_rma_rest_response    returns processed data and status of operations.
 		 */
 		public static function wps_rma_refund_request_process($wrael_request) {
-			$data          = $wrael_request->get_params();
-			$order_id      = isset($data['order_id']) ? absint($data['order_id']) : 0;
-			$refund_items  = isset($data['refund_items']) ? $data['refund_items'] : '';
-			$reason        = isset($data['reason']) ? $data['reason'] : '';
-			$refund_method = isset($data['refund_method']) ? $data['refund_method'] : '';
-			$response      = array();
-			$order         = wc_get_order($order_id);
-		
+			$data           = $wrael_request->get_params();
+			$order_id       = isset($data['order_id']) ? absint($data['order_id']) : 0;
+			$refund_items   = isset($data['refund_items']) ? $data['refund_items'] : '';
+			$reason         = isset($data['reason']) ? $data['reason'] : '';
+			$refund_method  = isset($data['refund_method']) ? $data['refund_method'] : '';
+			$customer_email = isset($data['customer_email']) ? sanitize_email($data['customer_email']) : '';
+			$response       = array();
+			$order          = wc_get_order($order_id);
+
 			if (!$order_id || !$order) {
 				$response['status'] = 404;
 				$response['data']   = esc_html__('Please provide a valid order ID.', 'woo-refund-and-exchange-lite');
 				return $response;
 			}
-		
+
+			// Verify the caller is authorized for this order: customer_email must match billing email.
+			if ( ! empty( $customer_email ) && ! hash_equals( strtolower( $order->get_billing_email() ), strtolower( $customer_email ) ) ) {
+				return [ 'status' => 403, 'data' => esc_html__( 'You are not authorized to submit a refund request for this order.', 'woo-refund-and-exchange-lite' ) ];
+			}
+
 			$check_refund = wps_rma_show_buttons('refund', $order);
 			if ('yes' !== $check_refund) {
 				return ['status' => 404, 'data' => $check_refund];

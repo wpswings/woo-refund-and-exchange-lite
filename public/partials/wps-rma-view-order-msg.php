@@ -21,12 +21,17 @@ if ( isset( $_GET['wps_rma_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp
 	$order_id = sanitize_text_field( wp_unslash( $_GET['order_id'] ) );
 	$order_obj    = wc_get_order( $order_id );
 	if ( ! empty( $order_id ) && ! empty( $order_obj ) ) {
-		$user_id = $order_obj->get_user_id();
-		if ( function_exists( 'get_current_user_id' ) && ! empty( get_current_user_id() ) && ( 1 === get_current_user_id() || get_current_user_id() === $user_id ) && 'yes' !== wps_rma_order_message_role_allowed() ) {
+		$user_id             = $order_obj->get_user_id();
+		$current_user_id     = get_current_user_id();
+		$privileged_roles    = array( 'editor', 'administrator', 'shop_manager' );
+		$current_user        = wp_get_current_user();
+		$is_privileged       = ! empty( array_intersect( $privileged_roles, $current_user->roles ) );
+		$is_order_owner      = $current_user_id > 0 && $current_user_id === $user_id;
+		if ( ! empty( $current_user_id ) && ( $is_privileged || $is_order_owner ) && 'yes' !== wps_rma_order_message_role_allowed() ) {
 			?>
 			<p class="wps_rma_order_msg_restricted"><?php echo esc_html( wps_rma_order_message_role_allowed() ); ?></p>
 			<?php
-		} elseif ( function_exists( 'get_current_user_id' ) && ! empty( get_current_user_id() ) && ( 1 === get_current_user_id() || get_current_user_id() === $user_id ) ) {
+		} elseif ( ! empty( $current_user_id ) && ( $is_privileged || $is_order_owner ) ) {
 			$order_msg_template_class = get_option( 'wps_rma_order_msg_template_css', '' );
 			$wps_order_msg_visual_css = '';
 			if ( 'template2' === $order_msg_template_class ) {
