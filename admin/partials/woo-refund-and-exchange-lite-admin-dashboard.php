@@ -75,6 +75,13 @@ $wrael_get_tab_presentation = static function( $tab_key, $tab_data ) use ( $wrae
 			$presentation['action_label'] = esc_html__( 'Read Documentation', 'woo-refund-and-exchange-lite' );
 			$presentation['action_url']   = $wrael_wps_document_link;
 			break;
+		case 'woo-refund-and-exchange-lite-analytics':
+			$presentation['eyebrow']      = esc_html__( 'Analytics', 'woo-refund-and-exchange-lite' );
+			$presentation['title']        = esc_html__( 'Refund & Exchange Analytics', 'woo-refund-and-exchange-lite' );
+			$presentation['description']  = esc_html__( 'Track return request volume, refund values, top returned products, and root-cause reason breakdown across your store.', 'woo-refund-and-exchange-lite' );
+			$presentation['action_label'] = esc_html__( 'Read Documentation', 'woo-refund-and-exchange-lite' );
+			$presentation['action_url']   = $wrael_wps_document_link;
+			break;
 		case 'woo-refund-and-exchange-lite-general':
 			$presentation['eyebrow']     = esc_html__( 'Settings', 'woo-refund-and-exchange-lite' );
 			$presentation['description'] = esc_html__( 'Control the base plugin behavior, refund enablement, order messaging, and request availability windows.', 'woo-refund-and-exchange-lite' );
@@ -316,7 +323,7 @@ $wrael_layout_notice_dismiss_url = wp_nonce_url(
 
 		</div>
 
-		<?php $wrael_is_full_layout = in_array( $wrael_active_tab, array( 'woo-refund-and-exchange-lite-policies', 'woo-refund-and-exchange-lite-rma-request' ), true ); ?>
+		<?php $wrael_is_full_layout = in_array( $wrael_active_tab, array( 'woo-refund-and-exchange-lite-policies', 'woo-refund-and-exchange-lite-rma-request', 'woo-refund-and-exchange-lite-analytics' ), true ); ?>
 		<div class="wps-rma-shell__layout<?php echo $wrael_is_full_layout ? ' wps-rma-shell__layout--full' : ''; ?>">
 			<div class="wps-rma-shell__main">
 				<?php if ( $wrael_is_multistep_mode ) : ?>

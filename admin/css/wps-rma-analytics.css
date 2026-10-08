@@ -1,0 +1,362 @@
+/* =========================================================
+   RMA Analytics Tab — scoped styles (.wps-rma-analytics)
+   ========================================================= */
+
+/* Hide the floating Save Setting bar on this tab */
+.wps-rma-analytics + .wps-rma-floating-save,
+body.wps-rma-analytics-active .wps-rma-floating-save {
+	display: none !important;
+}
+
+/* ---- Layout ---- */
+.wps-rma-analytics {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+/* ---- Card base ---- */
+.wps-rma-analytics__card {
+	background: #fff;
+	border: 1px solid #e2e8f0;
+	border-radius: 8px;
+	padding: 24px 28px;
+}
+
+.wps-rma-analytics__card-head {
+	margin-bottom: 16px;
+	padding-bottom: 14px;
+	border-bottom: 1px solid #f0f2f5;
+}
+
+.wps-rma-analytics__card-head h2 {
+	font-size: 15px;
+	font-weight: 600;
+	color: #1e293b;
+	margin: 0 0 4px;
+	line-height: 1.4;
+}
+
+.wps-rma-analytics__card-head p {
+	font-size: 13px;
+	color: #64748b;
+	margin: 0;
+}
+
+/* ---- Filter form ---- */
+.wps-rma-analytics__filters {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px;
+}
+
+.wps-rma-analytics__filters select,
+.wps-rma-analytics__filters input[type="date"] {
+	height: 32px;
+	line-height: 30px;
+	padding: 0 8px;
+	font-size: 13px;
+	border: 1px solid #dde1e7;
+	border-radius: 4px;
+	background: #fff;
+	color: #1e293b;
+	box-sizing: border-box;
+}
+
+.wps-rma-analytics__filters select { min-width: 140px; }
+.wps-rma-analytics__filters input[type="date"] { width: 148px; }
+
+.wps-rma-analytics__to-label {
+	font-size: 12px;
+	color: #64748b;
+	font-weight: 500;
+	flex-shrink: 0;
+}
+
+.wps-rma-analytics__filters .button {
+	height: 32px;
+	line-height: 30px;
+	padding: 0 16px;
+	font-size: 13px;
+	flex-shrink: 0;
+}
+
+/* ---- KPI Cards row ---- */
+.wps-rma-analytics__kpi-row {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	gap: 14px;
+}
+
+@media (max-width: 1280px) {
+	.wps-rma-analytics__kpi-row { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 900px) {
+	.wps-rma-analytics__kpi-row { grid-template-columns: repeat(2, 1fr); }
+}
+
+.wps-rma-analytics__kpi {
+	background: #fff;
+	border: 1px solid #e2e8f0;
+	border-radius: 8px;
+	padding: 18px 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.wps-rma-analytics__kpi-label {
+	font-size: 11px;
+	font-weight: 600;
+	color: #64748b;
+	text-transform: uppercase;
+	letter-spacing: .06em;
+}
+
+.wps-rma-analytics__kpi-value {
+	font-size: 30px;
+	font-weight: 700;
+	color: #1e293b;
+	line-height: 1;
+}
+
+.wps-rma-analytics__kpi-value--sm {
+	font-size: 20px;
+}
+
+.wps-rma-analytics__kpi--total    { border-top: 3px solid #2563eb; }
+.wps-rma-analytics__kpi--pending  { border-top: 3px solid #d97706; }
+.wps-rma-analytics__kpi--completed { border-top: 3px solid #16a34a; }
+.wps-rma-analytics__kpi--cancelled { border-top: 3px solid #dc2626; }
+.wps-rma-analytics__kpi--value    { border-top: 3px solid #0d9488; }
+
+/* ---- Charts row (2 columns) ---- */
+.wps-rma-analytics__charts-row {
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+	gap: 20px;
+}
+
+@media (max-width: 900px) {
+	.wps-rma-analytics__charts-row { grid-template-columns: 1fr; }
+}
+
+/* ---- CSS Bar Chart (Requests Over Time) ---- */
+.wps-rma-analytics__barchart {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.wps-rma-analytics__barchart-row {
+	display: grid;
+	grid-template-columns: 110px 1fr 36px;
+	align-items: center;
+	gap: 10px;
+}
+
+.wps-rma-analytics__barchart-label {
+	font-size: 12px;
+	color: #475569;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.wps-rma-analytics__barchart-track {
+	height: 16px;
+	background: #f1f5f9;
+	border-radius: 4px;
+	overflow: hidden;
+}
+
+.wps-rma-analytics__barchart-fill {
+	height: 100%;
+	background: #2563eb;
+	border-radius: 4px;
+	min-width: 4px;
+	transition: width 0.3s ease;
+}
+
+.wps-rma-analytics__barchart-count {
+	font-size: 12px;
+	font-weight: 600;
+	color: #1e293b;
+	text-align: right;
+}
+
+/* ---- Status list (Breakdown) ---- */
+.wps-rma-analytics__status-list {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.wps-rma-analytics__status-row {
+	display: grid;
+	grid-template-columns: 10px 80px 1fr 32px 38px;
+	align-items: center;
+	gap: 10px;
+}
+
+.wps-rma-analytics__status-dot {
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	flex-shrink: 0;
+}
+
+.wps-rma-analytics__status-name {
+	font-size: 13px;
+	color: #334155;
+	font-weight: 500;
+}
+
+.wps-rma-analytics__status-track {
+	height: 8px;
+	background: #f1f5f9;
+	border-radius: 4px;
+	overflow: hidden;
+}
+
+.wps-rma-analytics__status-fill {
+	height: 100%;
+	border-radius: 4px;
+	min-width: 3px;
+}
+
+.wps-rma-analytics__status-count {
+	font-size: 13px;
+	font-weight: 600;
+	color: #1e293b;
+	text-align: right;
+}
+
+.wps-rma-analytics__status-pct {
+	font-size: 11px;
+	color: #64748b;
+	text-align: right;
+}
+
+/* ---- Tables row (2 columns) ---- */
+.wps-rma-analytics__tables-row {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 20px;
+}
+
+@media (max-width: 900px) {
+	.wps-rma-analytics__tables-row { grid-template-columns: 1fr; }
+}
+
+/* ---- Inner tables ---- */
+.wps-rma-analytics__table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 13px;
+}
+
+.wps-rma-analytics__table th {
+	text-align: left;
+	font-weight: 600;
+	color: #64748b;
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: .05em;
+	padding: 6px 8px;
+	border-bottom: 2px solid #f0f2f5;
+}
+
+.wps-rma-analytics__table td {
+	padding: 8px;
+	border-bottom: 1px solid #f5f7fa;
+	color: #334155;
+	vertical-align: middle;
+}
+
+.wps-rma-analytics__table tr:last-child td { border-bottom: none; }
+
+.wps-rma-analytics__th-right,
+.wps-rma-analytics__td-right { text-align: right; }
+
+.wps-rma-analytics__reason-bar-wrap {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.wps-rma-analytics__reason-bar {
+	display: inline-block;
+	height: 8px;
+	border-radius: 4px;
+	background: #2563eb;
+	min-width: 3px;
+	flex-shrink: 0;
+}
+
+/* ---- Empty state ---- */
+.wps-rma-analytics__empty {
+	text-align: center;
+	color: #94a3b8;
+	font-size: 13px;
+	padding: 28px 0;
+	margin: 0;
+}
+
+/* ---- Pro-locked grid ---- */
+.wps-rma-analytics__pro-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 14px;
+}
+
+@media (max-width: 1100px) {
+	.wps-rma-analytics__pro-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 700px) {
+	.wps-rma-analytics__pro-grid { grid-template-columns: 1fr; }
+}
+
+.wps-rma-analytics__pro-card {
+	background: #f8fafc;
+	border: 1px dashed #cbd5e1;
+	border-radius: 8px;
+	padding: 18px 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.wps-rma-analytics__pro-badge {
+	display: inline-block;
+	padding: 2px 8px;
+	background: #1e293b;
+	color: #f8fafc;
+	font-size: 10px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: .08em;
+	border-radius: 10px;
+	width: fit-content;
+}
+
+.wps-rma-analytics__pro-card h3 {
+	font-size: 13px;
+	font-weight: 600;
+	color: #334155;
+	margin: 2px 0 0;
+}
+
+.wps-rma-analytics__pro-card p {
+	font-size: 12px;
+	color: #64748b;
+	margin: 0;
+	line-height: 1.5;
+}
+
+.wps-rma-analytics__pro-card .button {
+	margin-top: 4px;
+	font-size: 12px;
+	width: fit-content;
+}

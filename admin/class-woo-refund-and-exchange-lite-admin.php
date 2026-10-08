@@ -158,6 +158,18 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	}
 
 	/**
+	 * Determine whether the current request is the Analytics tab.
+	 *
+	 * @param string $screen_id Current screen id.
+	 * @return bool
+	 */
+	private function wrael_is_analytics_screen( $screen_id ) {
+		return $this->wrael_is_settings_screen( $screen_id )
+			&& isset( $_GET['wrael_tab'] ) // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			&& 'woo-refund-and-exchange-lite-analytics' === sanitize_key( wp_unslash( $_GET['wrael_tab'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	}
+
+	/**
 	 * Resolve a stable asset version based on file modification time.
 	 *
 	 * @param string $relative_path Asset path relative to the lite plugin root.
@@ -249,6 +261,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 			wp_enqueue_style( 'wps-admin-min-css', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/css/woo-refund-and-exchange-lite-admin.min.css', array(), $this->wrael_asset_version( 'admin/css/woo-refund-and-exchange-lite-admin.min.css' ), 'all' );
 			wp_enqueue_style( 'wps-datatable-css', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'package/lib/datatables/media/css/jquery.dataTables.min.css', array(), $this->wrael_asset_version( 'package/lib/datatables/media/css/jquery.dataTables.min.css' ), 'all' );
 			wp_enqueue_style( 'wps-rma-admin-redesign', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/css/wps-rma-redesign.css', array( 'wps-admin-min-css' ), $this->wrael_asset_version( 'admin/css/wps-rma-redesign.css' ), 'all' );
+			wp_enqueue_style( 'wps-rma-analytics', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/css/wps-rma-analytics.css', array( 'wps-rma-admin-redesign' ), $this->wrael_asset_version( 'admin/css/wps-rma-analytics.css' ), 'all' );
 		}
 
 		if ( $this->wrael_is_order_screen( $screen_id ) ) {
@@ -351,6 +364,16 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 
 		if ( $this->wrael_is_settings_screen( $screen_id ) ) {
 			wp_enqueue_script( 'wps-rma-script-timepicker', WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/js/jquery.ui.timepicker.js', array( 'jquery' ), $this->wrael_asset_version( 'admin/js/jquery.ui.timepicker.js' ), true );
+		}
+
+		if ( $this->wrael_is_analytics_screen( $screen_id ) ) {
+			wp_enqueue_script(
+				'wps-rma-analytics',
+				WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL . 'admin/js/wps-rma-analytics.js',
+				array( 'jquery' ),
+				$this->wrael_asset_version( 'admin/js/wps-rma-analytics.js' ),
+				true
+			);
 		}
 	}
 
