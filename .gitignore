@@ -6,6 +6,9 @@ node_modules/*
 .vscode/*
 vendor
 vendor/*
+script/*
+docs/*
+pull_requests/*
 # ignore compiled files
 *.com
 *.class

@@ -1611,6 +1611,9 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	public function wps_rma_refund_amount() {
 		$check_ajax = check_ajax_referer( 'wps_rma_ajax_seurity', 'security_check' );
 		if ( $check_ajax ) {
+			if ( ! current_user_can( 'wps-rma-refund-amount' ) ) {
+				wp_send_json_error( array( 'message' => esc_html__( 'You do not have permission to perform this action.', 'woo-refund-and-exchange-lite' ) ), 403 );
+			}
 			$refund_method = isset( $_POST['refund_method'] ) ? sanitize_text_field( wp_unslash( $_POST['refund_method'] ) ) : '';
 			$order_id      = isset( $_POST['order_id'] ) ? sanitize_text_field( wp_unslash( $_POST['order_id'] ) ) : '';
 			$response      = array();
@@ -1732,6 +1735,9 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	public function wps_rma_api_secret_key() {
 		$check_ajax = check_ajax_referer( 'wps_rma_ajax_seurity', 'security_check' );
 		if ( $check_ajax ) {
+			if ( ! current_user_can( 'manage_options' ) ) {
+				wp_send_json_error( array( 'message' => esc_html__( 'You do not have permission to perform this action.', 'woo-refund-and-exchange-lite' ) ), 403 );
+			}
 			$value = 'wps_' . wc_rand_hash();
 			update_option( 'wps_rma_secret_key', $value );
 			return 'success';
@@ -2035,7 +2041,9 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	/** Dismiss the banner */
 	public function wps_rma_dismiss_notice_banner_callback() {
 		if ( isset( $_REQUEST['wps_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['wps_nonce'] ) ), 'wps_rma_ajax_seurity' ) ) {
-
+			if ( ! current_user_can( 'manage_options' ) ) {
+				wp_send_json_error( array( 'message' => esc_html__( 'You do not have permission to perform this action.', 'woo-refund-and-exchange-lite' ) ), 403 );
+			}
 			$banner_id = get_option( 'wps_wgm_notify_new_banner_id', false );
 			if ( isset( $banner_id ) && '' != $banner_id ) {
 				update_option( 'wps_wgm_notify_hide_baneer_notification', $banner_id );

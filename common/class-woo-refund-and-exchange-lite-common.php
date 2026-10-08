@@ -641,6 +641,9 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	 */
 	public function wps_rma_standard_save_settings_filter() {
 		check_ajax_referer( 'ajax-nonce', 'nonce' );
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array( 'message' => esc_html__( 'You do not have permission to perform this action.', 'woo-refund-and-exchange-lite' ) ), 403 );
+		}
 		unset( $_POST['action'] );
 		unset( $_POST['nonce'] );
 		$checked_refund          = isset( $_POST['checkedRefund'] ) ? 'true' === sanitize_text_field( wp_unslash( $_POST['checkedRefund'] ) ) : false;
@@ -757,7 +760,8 @@ class Woo_Refund_And_Exchange_Lite_Common {
 
 		check_ajax_referer( 'ajax-nonce', 'nonce' );
 
-		$order_id = isset( $_POST['order_id'] ) ? filter_input( INPUT_POST, 'order_id' ) : '';
+		$order_id  = isset( $_POST['order_id'] ) ? filter_input( INPUT_POST, 'order_id' ) : '';
+		$order_key = isset( $_POST['order_key'] ) ? sanitize_text_field( wp_unslash( $_POST['order_key'] ) ) : '';
 
 		$order = wc_get_order( $order_id );
 		if ( $order ) {
@@ -772,13 +776,11 @@ class Woo_Refund_And_Exchange_Lite_Common {
 				wp_die();
 			}
 
-			$user_id = $order->get_user_id();
-			// Check if the user ID is not the current user or if not an admin, security purpose.
-			$user              = wp_get_current_user();
-			$allowed_roles     = array( 'administrator', 'shop_manager' );
-			// Check if the user ID is not the current user or if not an admin.
-			if ( ( $user_id > 0 && get_current_user_id() === $user_id ) || array_intersect( $allowed_roles, $user->roles ) ) {
-				// User is authorized.
+			$user_id       = $order->get_user_id();
+			$user          = wp_get_current_user();
+			$allowed_roles = array( 'administrator', 'shop_manager' );
+			// Guest orders (user_id 0) are authorized via the order key instead of user identity.
+			if ( ( 0 === $user_id && $order->get_order_key() && hash_equals( $order->get_order_key(), $order_key ) ) || ( $user_id > 0 && get_current_user_id() === $user_id ) || array_intersect( $allowed_roles, $user->roles ) ) {
 				$wps_order_messages = wps_rma_get_meta_data( $order_id, 'wps_cutomer_order_msg', true );
 
 				echo wp_json_encode( $wps_order_messages );
@@ -786,7 +788,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 			} else {
 				echo wp_json_encode(
 					array(
-						'flag' => false,
+						'flag'    => false,
 						'message' => esc_html__( 'You are not authorized to view this order messages.', 'woo-refund-and-exchange-lite' ),
 					)
 				);
@@ -809,12 +811,14 @@ class Woo_Refund_And_Exchange_Lite_Common {
 
 		$order_id = isset( $_POST['order_id'] ) ? filter_input( INPUT_POST, 'order_id' ) : '';
 		$msg      = isset( $_POST['msg'] ) ? filter_input( INPUT_POST, 'msg' ) : '';
-		$msg_type = isset( $_POST['order_msg_type'] ) ? filter_input( INPUT_POST, 'order_msg_type' ) : '';
 		$order    = wc_get_order( $order_id );
-		if ( 'shop_manager' === $msg_type ) {
+		// Determine sender from actual user role, not client-supplied value.
+		$current_user       = wp_get_current_user();
+		$privileged_roles   = array( 'editor', 'administrator', 'shop_manager' );
+		if ( array_intersect( $privileged_roles, $current_user->roles ) ) {
 			$sender = 'Shop Manager';
 			$to     = $order->get_billing_email();
-		} elseif ( 'customer' === $msg_type ) {
+		} else {
 			$sender = 'Customer';
 			$to     = get_option( 'woocommerce_email_from_address', get_option( 'admin_email' ) );
 		}
