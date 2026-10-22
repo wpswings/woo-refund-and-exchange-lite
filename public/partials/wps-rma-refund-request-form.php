@@ -411,6 +411,10 @@ CSS;
 											</span>
 											<div><input type="button" value="<?php esc_html_e( 'Add More', 'woo-refund-and-exchange-lite' ); ?>" class="wps_rma_return_request_morefiles" data-count="1" data-max="<?php echo esc_html( $attach_limit ); ?>"></div>
 											<i><?php esc_html_e( 'Only PNG, JPG, JPEG, MP4, and WEBM files are supported', 'woo-refund-and-exchange-lite' ); ?>.</i>
+											<?php
+											// Fires after the refund form's attachment field, for example to show a photo inspection disclosure.
+											do_action( 'wps_rma_after_refund_attachment_field', $order_id );
+											?>
 										</p>
 									</div>
 									<?php

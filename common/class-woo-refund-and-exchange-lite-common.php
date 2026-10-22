@@ -260,22 +260,15 @@ class Woo_Refund_And_Exchange_Lite_Common {
 								wp_mkdir_p( $directory, 0755, true );
 							}
 
-							$file_format = pathinfo( sanitize_file_name( $_FILES['wps_rma_return_request_files']['name'][ $i ] ), PATHINFO_EXTENSION );
+							$file_format = strtolower( pathinfo( sanitize_file_name( $_FILES['wps_rma_return_request_files']['name'][ $i ] ), PATHINFO_EXTENSION ) );
 
 							$file_name = wps_rma_generate_random_filename( $file_format );
 
-							$allowed_types = array(
-								'png',
-								'jpeg',
-								'mp4',
-								'webm',
-								'ogg',
-								'quicktime',
-								'x-msvideo',
-							);
+							// File extensions matching the MIME types accepted by the request form JS.
+							$allowed_types = wps_rma_allowed_attachment_extensions();
 
-							if ( in_array( $file_format, $allowed_types, true ) ) {
-								$source_path = sanitize_text_field( wp_unslash( $_FILES['wps_rma_return_request_files']['tmp_name'][ $i ] ) );
+							$source_path = sanitize_text_field( wp_unslash( $_FILES['wps_rma_return_request_files']['tmp_name'][ $i ] ) );
+							if ( in_array( $file_format, $allowed_types, true ) && wps_rma_is_valid_attachment_file( $source_path, sanitize_file_name( $_FILES['wps_rma_return_request_files']['name'][ $i ] ) ) ) {
 								$target_path = $directory . '/' . sanitize_file_name( $file_name );
 								$filename[] = $file_name;
 								$wp_filesystem->move( $source_path, $target_path, true );
