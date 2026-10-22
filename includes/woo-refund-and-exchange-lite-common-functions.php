@@ -765,6 +765,41 @@ if ( ! function_exists( 'wps_rma_generate_random_filename' ) ) {
 	}
 }
 
+if ( ! function_exists( 'wps_rma_allowed_attachment_extensions' ) ) {
+	/**
+	 * File extensions accepted for refund and exchange request attachments.
+	 *
+	 * These match the MIME types the request form JS accepts (image/png, image/jpeg,
+	 * video/mp4, video/webm, video/ogg, video/quicktime, video/x-msvideo).
+	 *
+	 * @return array
+	 */
+	function wps_rma_allowed_attachment_extensions() {
+		$extensions = array( 'png', 'jpg', 'jpeg', 'mp4', 'webm', 'ogg', 'ogv', 'mov', 'avi' );
+		return apply_filters( 'wps_rma_allowed_attachment_extensions', $extensions );
+	}
+}
+
+if ( ! function_exists( 'wps_rma_is_valid_attachment_file' ) ) {
+	/**
+	 * Check that an uploaded file's real content matches an allowed type.
+	 *
+	 * @param string $tmp_path Path of the uploaded temporary file.
+	 * @param string $name     Original file name sent by the browser.
+	 * @return bool
+	 */
+	function wps_rma_is_valid_attachment_file( $tmp_path, $name ) {
+		if ( empty( $tmp_path ) || ! is_uploaded_file( $tmp_path ) ) {
+			return false;
+		}
+		$check = wp_check_filetype_and_ext( $tmp_path, $name );
+		if ( empty( $check['ext'] ) || empty( $check['type'] ) ) {
+			return false;
+		}
+		return in_array( strtolower( $check['ext'] ), wps_rma_allowed_attachment_extensions(), true );
+	}
+}
+
 if ( ! function_exists( 'wps_rma_is_wallet_plugin_activated' ) ) {
 	/**
 	 * Use to know if the Wallet System for WooCommerce plugin is installed and activated
