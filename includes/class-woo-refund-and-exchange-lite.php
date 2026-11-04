@@ -368,6 +368,7 @@ class Woo_Refund_And_Exchange_Lite {
 		$this->loader->add_action( 'wp_ajax_nopriv_wps_rma_fetch_order_msgs', $wrael_plugin_common, 'wps_rma_fetch_order_msgs_callback' );
 		$this->loader->add_action( 'wp_ajax_wps_rma_send_order_msg', $wrael_plugin_common, 'wps_rma_send_order_msg_callback' );
 		$this->loader->add_action( 'wp_ajax_nopriv_wps_rma_send_order_msg', $wrael_plugin_common, 'wps_rma_send_order_msg_callback' );
+		$this->loader->add_action( 'wp_ajax_wps_rma_save_order_msg_contact', $wrael_plugin_common, 'wps_rma_save_order_msg_contact_callback' );
 	}
 
 	/**

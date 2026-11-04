@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * The public-facing functionality of the plugin.
+ *
+ * @package    woo-refund-and-exchange-lite
+ * @subpackage woo-refund-and-exchange-lite/public
+ */
 
 /**
  * The public-facing functionality of the plugin.

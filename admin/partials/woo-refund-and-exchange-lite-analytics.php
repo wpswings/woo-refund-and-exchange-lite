@@ -244,7 +244,7 @@ $pro_upgrade_url = 'https://wpswings.com/product/rma-return-refund-exchange-for-
 						<?php foreach ( $top_products as $row ) : ?>
 							<tr>
 								<td><a href="<?php echo esc_url( get_edit_post_link( $row['product_id'] ) ); ?>" target="_blank"><?php echo esc_html( $row['name'] ); ?></a></td>
-								<td><?php echo esc_html( $row['sku'] ?: '—' ); ?></td>
+								<td><?php echo esc_html( ! empty( $row['sku'] ) ? $row['sku'] : '—' ); ?></td>
 								<td class="wps-rma-analytics__td-right"><?php echo esc_html( number_format_i18n( $row['count'] ) ); ?></td>
 								<td class="wps-rma-analytics__td-right"><?php echo esc_html( number_format_i18n( $row['qty'] ) ); ?></td>
 								<td class="wps-rma-analytics__td-right"><?php echo wp_kses_post( wc_price( $row['value'] ) ); ?></td>
