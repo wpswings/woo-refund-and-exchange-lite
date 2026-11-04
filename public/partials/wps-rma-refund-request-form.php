@@ -187,11 +187,11 @@ CSS;
 									$coupon_discount = get_option( 'wps_rma_refund_deduct_coupon', 'no' );
 									if ( 'on' === $coupon_discount ) {
 										$item_price_inc_tax = $item->get_total() + $item->get_total_tax();
-										$item_price_exc_tax = $item->get_total() - $item->get_total_tax();
+										$item_price_exc_tax = $item->get_total();
 										$item_price = $item->get_total();
 									} else {
 										$item_price_inc_tax = $item->get_subtotal() + $item->get_subtotal_tax();
-										$item_price_exc_tax = $item->get_subtotal() - $item->get_subtotal_tax();
+										$item_price_exc_tax = $item->get_subtotal();
 										$item_price = $item->get_subtotal();
 									}
 									if ( 'wps_rma_inlcude_tax' === $wps_rma_check_tax ) {

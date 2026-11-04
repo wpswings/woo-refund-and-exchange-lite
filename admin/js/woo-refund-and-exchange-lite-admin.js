@@ -1117,8 +1117,8 @@ jQuery(function($) {
 
 		function getSubmitBtns() {
 			// Include: explicit submit inputs AND buttons without type (defaults to submit).
-			// Exclude: type="button" / type="reset".
-			return getSurface().find( 'input[type="submit"], button:not([type="button"]):not([type="reset"])' );
+			// Exclude: type="button" / type="reset", and the Analytics filter buttons (no settings to save there).
+			return getSurface().find( 'input[type="submit"], button:not([type="button"]):not([type="reset"])' ).not( '.wps-rma-analytics *' );
 		}
 
 		function checkVisibility() {

@@ -270,9 +270,10 @@ class Woo_Refund_And_Exchange_Lite_Common {
 							$source_path = sanitize_text_field( wp_unslash( $_FILES['wps_rma_return_request_files']['tmp_name'][ $i ] ) );
 							if ( in_array( $file_format, $allowed_types, true ) && wps_rma_is_valid_attachment_file( $source_path, sanitize_file_name( $_FILES['wps_rma_return_request_files']['name'][ $i ] ) ) ) {
 								$target_path = $directory . '/' . sanitize_file_name( $file_name );
-								$filename[] = $file_name;
-								$wp_filesystem->move( $source_path, $target_path, true );
-								$wp_filesystem->chmod( $target_path, 0644 ); // For files permission issue.
+								if ( $wp_filesystem->move( $source_path, $target_path, true ) ) {
+									wps_rma_set_attachment_file_permissions( $target_path );
+									$filename[] = $file_name;
+								}
 							}
 						}
 					}
@@ -369,11 +370,11 @@ class Woo_Refund_And_Exchange_Lite_Common {
 									$coupon_discount = get_option( 'wps_rma_refund_deduct_coupon', 'no' );
 									if ( 'on' === $coupon_discount ) {
 										$item_price_inc_tax = $item->get_total() + $item->get_total_tax();
-										$item_price_exc_tax = $item->get_total() - $item->get_total_tax();
+										$item_price_exc_tax = $item->get_total();
 										$item_price = $item->get_total();
 									} else {
 										$item_price_inc_tax = $item->get_subtotal() + $item->get_subtotal_tax();
-										$item_price_exc_tax = $item->get_subtotal() - $item->get_subtotal_tax();
+										$item_price_exc_tax = $item->get_subtotal();
 										$item_price = $item->get_subtotal();
 									}
 									if ( 'wps_rma_inlcude_tax' === $wps_rma_check_tax ) {
@@ -873,13 +874,13 @@ class Woo_Refund_And_Exchange_Lite_Common {
 								$sourcepath = sanitize_text_field( wp_unslash( $_FILES['wps_order_msg_attachment']['tmp_name'][ $i ] ) );
 								$targetpath = $directory . '/' . sanitize_file_name( $file_name );
 
-								$filename[ $i ] ['img'] = true;
-								$filename[ $i ]['name'] = $file_name;
-								$attachment[ $i ]       = $targetpath;
+								if ( $wp_filesystem->move( $sourcepath, $targetpath, true ) ) {
+									wps_rma_set_attachment_file_permissions( $targetpath );
 
-								$wp_filesystem->move( $sourcepath, $targetpath, true );
-								$wp_filesystem->chmod( $targetpath, 0644 ); // For files permission issue.
-
+									$filename[ $i ] ['img'] = true;
+									$filename[ $i ]['name'] = $file_name;
+									$attachment[ $i ]       = $targetpath;
+								}
 							}
 						}
 					}
