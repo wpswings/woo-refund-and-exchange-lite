@@ -356,9 +356,10 @@ class Woo_Refund_And_Exchange_Lite_Rma_Request_Table extends WP_List_Table {
 		global $wpdb;
 
 		// --- search by order ID ---
-		if ( isset( $_REQUEST['s'] ) && '' !== trim( $_REQUEST['s'] ) ) {
+		$search = isset( $_REQUEST['s'] ) ? trim( sanitize_text_field( wp_unslash( $_REQUEST['s'] ) ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( '' !== $search ) {
 			$is_pro      = function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active();
-			$order_id    = absint( $_REQUEST['s'] );
+			$order_id    = absint( $search );
 			$ret_data    = wps_rma_get_meta_data( $order_id, 'wps_rma_return_product', true );
 			$exch_data   = $is_pro ? wps_rma_get_meta_data( $order_id, 'wps_wrma_exchange_product', true ) : array();
 			$cancel_data = $is_pro ? wps_rma_get_meta_data( $order_id, 'wps_rma_cancel_req_date', true ) : '';
@@ -374,9 +375,8 @@ class Woo_Refund_And_Exchange_Lite_Rma_Request_Table extends WP_List_Table {
 		$start_date  = isset( $saved_data['start_date'] ) ? sanitize_text_field( wp_unslash( $saved_data['start_date'] ) ) : null;
 		$end_date    = isset( $saved_data['end_date'] ) ? sanitize_text_field( wp_unslash( $saved_data['end_date'] ) ) : null;
 
-		$is_pro             = function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active();
-		$query_keys         = $this->wps_get_query_keys( $filter_type );
-		$query_placeholders = implode( ', ', array_fill( 0, count( $query_keys ), '%s' ) );
+		$is_pro     = function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active();
+		$query_keys = $this->wps_get_query_keys( $filter_type );
 
 		$hpos = class_exists( '\Automattic\WooCommerce\Utilities\OrderUtil' )
 			&& \Automattic\WooCommerce\Utilities\OrderUtil::custom_orders_table_usage_is_enabled();
@@ -389,45 +389,53 @@ class Woo_Refund_And_Exchange_Lite_Rma_Request_Table extends WP_List_Table {
 			$end_date   = date_i18n( 'Ymd', strtotime( $end_date ) );
 
 			if ( $hpos ) {
-				$sql = $wpdb->prepare(
-					"SELECT p.id FROM {$wpdb->prefix}wc_orders AS p
-					INNER JOIN {$wpdb->prefix}wc_orders_meta AS pm ON p.id = pm.order_id
-					WHERE pm.meta_key IN ($query_placeholders)
-					AND pm.meta_value >= %s AND pm.meta_value <= %s
-					ORDER BY p.id DESC",
-					array_merge( $query_keys, array( $start_date, $end_date ) )
+				return $wpdb->get_col(
+					$wpdb->prepare(
+						"SELECT p.id FROM {$wpdb->prefix}wc_orders AS p
+						INNER JOIN {$wpdb->prefix}wc_orders_meta AS pm ON p.id = pm.order_id
+						WHERE pm.meta_key IN (" . implode( ', ', array_fill( 0, count( $query_keys ), '%s' ) ) . ')
+						AND pm.meta_value >= %s AND pm.meta_value <= %s
+						ORDER BY p.id DESC',
+						array_merge( $query_keys, array( $start_date, $end_date ) )
+					)
 				);
-			} else {
-				$sql = $wpdb->prepare(
+			}
+
+			return $wpdb->get_col(
+				$wpdb->prepare(
 					"SELECT p.ID FROM {$wpdb->prefix}posts AS p
 					INNER JOIN {$wpdb->prefix}postmeta AS pm ON p.ID = pm.post_id
 					WHERE p.post_type = 'shop_order'
-					AND pm.meta_key IN ($query_placeholders)
+					AND pm.meta_key IN (" . implode( ', ', array_fill( 0, count( $query_keys ), '%s' ) ) . ')
 					AND pm.meta_value >= %s AND pm.meta_value <= %s
-					ORDER BY p.ID DESC",
+					ORDER BY p.ID DESC',
 					array_merge( $query_keys, array( $start_date, $end_date ) )
-				);
-			}
-		} elseif ( $hpos ) {
-			$sql = $wpdb->prepare(
-				"SELECT p.id FROM {$wpdb->prefix}wc_orders AS p
-				INNER JOIN {$wpdb->prefix}wc_orders_meta AS pm ON p.id = pm.order_id
-				WHERE pm.meta_key IN ($query_placeholders)
-				ORDER BY p.id DESC",
-				$query_keys
-			);
-		} else {
-			$sql = $wpdb->prepare(
-				"SELECT p.ID FROM {$wpdb->prefix}posts AS p
-				INNER JOIN {$wpdb->prefix}postmeta AS pm ON p.ID = pm.post_id
-				WHERE p.post_type = 'shop_order'
-				AND pm.meta_key IN ($query_placeholders)
-				ORDER BY p.ID DESC",
-				$query_keys
+				)
 			);
 		}
 
-		return $wpdb->get_col( $sql );
+		if ( $hpos ) {
+			return $wpdb->get_col(
+				$wpdb->prepare(
+					"SELECT p.id FROM {$wpdb->prefix}wc_orders AS p
+					INNER JOIN {$wpdb->prefix}wc_orders_meta AS pm ON p.id = pm.order_id
+					WHERE pm.meta_key IN (" . implode( ', ', array_fill( 0, count( $query_keys ), '%s' ) ) . ')
+					ORDER BY p.id DESC',
+					$query_keys
+				)
+			);
+		}
+
+		return $wpdb->get_col(
+			$wpdb->prepare(
+				"SELECT p.ID FROM {$wpdb->prefix}posts AS p
+				INNER JOIN {$wpdb->prefix}postmeta AS pm ON p.ID = pm.post_id
+				WHERE p.post_type = 'shop_order'
+				AND pm.meta_key IN (" . implode( ', ', array_fill( 0, count( $query_keys ), '%s' ) ) . ')
+				ORDER BY p.ID DESC',
+				$query_keys
+			)
+		);
 	}
 
 	/**
@@ -554,6 +562,11 @@ class Woo_Refund_And_Exchange_Lite_Rma_Request_Table extends WP_List_Table {
 	 * Process the bulk action for the current table.
 	 */
 	public function process_bulk_action() {
-		do_action( 'wps_rma_lite_process_bulk_request_action', $this->current_action(), $_POST );
+		$action = $this->current_action();
+		$nonce  = isset( $_POST['wps_rma_request_table_lite'] ) ? sanitize_text_field( wp_unslash( $_POST['wps_rma_request_table_lite'] ) ) : '';
+		if ( ! $action || ! wp_verify_nonce( $nonce, 'wps_rma_request_table_lite' ) ) {
+			return;
+		}
+		do_action( 'wps_rma_lite_process_bulk_request_action', $action, $_POST );
 	}
 }

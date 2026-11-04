@@ -24,8 +24,8 @@ if ( isset( $_GET['wps_rma_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp
 		$user_id             = $order_obj->get_user_id();
 		$current_user_id     = get_current_user_id();
 		$privileged_roles    = array( 'editor', 'administrator', 'shop_manager' );
-		$current_user        = wp_get_current_user();
-		$is_privileged       = ! empty( array_intersect( $privileged_roles, $current_user->roles ) );
+		$wps_rma_user        = wp_get_current_user();
+		$is_privileged       = ! empty( array_intersect( $privileged_roles, $wps_rma_user->roles ) );
 		$is_order_owner      = $current_user_id > 0 && $current_user_id === $user_id;
 		if ( ! empty( $current_user_id ) && ( $is_privileged || $is_order_owner ) && 'yes' !== wps_rma_order_message_role_allowed() ) {
 			?>

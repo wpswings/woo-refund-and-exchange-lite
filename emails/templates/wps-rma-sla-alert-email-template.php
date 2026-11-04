@@ -86,8 +86,8 @@ else :
 					<?php if ( $is_overdue ) : ?>
 						<?php
 						printf(
-							/* translators: 1: request type, 2: linked order ID */
 							wp_kses(
+								/* translators: 1: request type, 2: linked order ID */
 								__( 'The <strong>%1$s</strong> request for <strong>Order %2$s</strong> has <strong style="color:#dc2626;">passed its resolution deadline</strong> and requires immediate attention.', 'woo-refund-and-exchange-lite' ),
 								array( 'strong' => array( 'style' => array() ) )
 							),
@@ -98,8 +98,8 @@ else :
 					<?php else : ?>
 						<?php
 						printf(
-							/* translators: 1: request type, 2: linked order ID, 3: hours count */
 							wp_kses(
+								/* translators: 1: request type, 2: linked order ID, 3: hours count */
 								__( 'The <strong>%1$s</strong> request for <strong>Order %2$s</strong> will reach its resolution deadline in <strong style="color:#d97706;">%3$d hour(s)</strong>.', 'woo-refund-and-exchange-lite' ),
 								array( 'strong' => array( 'style' => array() ) )
 							),

@@ -36,7 +36,11 @@ class Wps_Rma_Analytics {
 	private $entries = null;
 
 	/**
+	 * Set up the analytics query for the given filter.
+	 *
 	 * @param array $filter {
+	 *     Optional. Filter arguments.
+	 *
 	 *     @type string $start_date  Y-m-d start date (inclusive).
 	 *     @type string $end_date    Y-m-d end date   (inclusive).
 	 *     @type string $status      pending|complete|accepted|cancel|cancelled|'' for all.
@@ -118,7 +122,7 @@ class Wps_Rma_Analytics {
 			$label_format = 'M j, Y';
 		} elseif ( $range_days <= 365 ) {
 			$format       = 'Y-W';
-			$label_format = null; // handled specially below
+			$label_format = null; // Handled specially below.
 		} else {
 			$format       = 'Y-m';
 			$label_format = 'M Y';
@@ -126,15 +130,15 @@ class Wps_Rma_Analytics {
 
 		$groups = array();
 		foreach ( $entries as $entry ) {
-			$key = date( $format, $entry['timestamp'] ); // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
+			$key = gmdate( $format, $entry['timestamp'] );
 			if ( ! isset( $groups[ $key ] ) ) {
 				$groups[ $key ] = array( 'count' => 0, 'label' => '' );
 			}
 			$groups[ $key ]['count']++;
 			if ( empty( $groups[ $key ]['label'] ) ) {
 				if ( null === $label_format ) {
-					// ISO week label e.g. "Week 41, 2026"
-					$groups[ $key ]['label'] = 'Wk ' . date( 'W', $entry['timestamp'] ) . ', ' . date( 'Y', $entry['timestamp'] ); // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
+					// ISO week label, e.g. "Wk 41, 2026".
+					$groups[ $key ]['label'] = 'Wk ' . gmdate( 'W', $entry['timestamp'] ) . ', ' . gmdate( 'Y', $entry['timestamp'] );
 				} else {
 					$groups[ $key ]['label'] = date_i18n( $label_format, $entry['timestamp'] );
 				}
