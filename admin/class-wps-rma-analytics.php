@@ -291,13 +291,9 @@ class Wps_Rma_Analytics {
 					continue;
 				}
 
-				// Resolve reason — stored under the POST field name used in the form.
-				$reason = '';
-				if ( ! empty( $entry['ced_rnx_return_request_subject'] ) ) {
-					$reason = sanitize_text_field( $entry['ced_rnx_return_request_subject'] );
-				} elseif ( ! empty( $entry['reason'] ) ) {
-					$reason = sanitize_text_field( $entry['reason'] );
-				}
+				// Resolve reason — the selected/typed refund reason is stored as 'subject';
+				// 'reason' holds the customer's free-text description, not the root cause.
+				$reason = ! empty( $entry['subject'] ) ? sanitize_text_field( $entry['subject'] ) : '';
 
 				// Reason filter.
 				if ( $reason_filter && $reason !== $reason_filter ) {

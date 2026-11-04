@@ -468,10 +468,8 @@ if ( ! function_exists( 'wps_rma_return_req_approve_callback' ) ) {
 								$prod_price = $item->get_subtotal();
 							}
 							if ( 'wps_rma_inlcude_tax' === $wps_rma_check_tax ) {
-								$item_tax                                    = $item->get_subtotal_tax() / $requested_product['qty'];
-								$line_items_refund[ $item_id ]['refund_tax'] = array( 1 => $item_tax );
-							} elseif ( 'wps_rma_exclude_tax' === $wps_rma_check_tax ) {
-								$prod_price -= $item->get_subtotal_tax() / $requested_product['qty'];
+								// Refund the tax against the order's own tax rate IDs, for the returned quantity only.
+								$line_items_refund[ $item_id ]['refund_tax'] = wps_rma_get_item_refund_taxes( $item, $requested_product['qty'], 'on' === $coupon_discount );
 							}
 							$line_items_refund[ $item_id ]['qty']          = $requested_product['qty'];
 							$line_items_refund[ $item_id ]['refund_total'] = wc_format_decimal( $prod_price * $requested_product['qty'] / $item->get_quantity() );
@@ -496,9 +494,7 @@ if ( ! function_exists( 'wps_rma_return_req_approve_callback' ) ) {
 					foreach ( $shipping_methods as $index => $shipping_method ) {
 
 						$new_refund_item = array(
-							'refund_tax' => array(
-								1 => $shipping_method->get_total_tax(),
-							),
+							'refund_tax' => array_filter( $shipping_method->get_taxes()['total'], 'strlen' ),
 							'qty' => 1,
 							'refund_total' => $shipping_method->get_total(),
 
@@ -800,6 +796,40 @@ if ( ! function_exists( 'wps_rma_is_valid_attachment_file' ) ) {
 	}
 }
 
+if ( ! function_exists( 'wps_rma_set_attachment_file_permissions' ) ) {
+	/**
+	 * Make a stored attachment readable by the web server.
+	 *
+	 * Uploaded temp files are created with 0600, and a rename keeps that mode, so the
+	 * file is served as 403 unless the mode is reset after the move.
+	 *
+	 * @param string $path Absolute path of the stored attachment.
+	 * @return bool
+	 */
+	function wps_rma_set_attachment_file_permissions( $path ) {
+		global $wp_filesystem;
+
+		if ( empty( $path ) || ! file_exists( $path ) ) {
+			return false;
+		}
+		$mode = defined( 'FS_CHMOD_FILE' ) ? FS_CHMOD_FILE : ( ( fileperms( ABSPATH . 'index.php' ) & 0777 ) | 0644 );
+
+		if ( @chmod( $path, $mode ) ) { // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged, WordPress.WP.AlternativeFunctions.file_system_operations_chmod
+			return true;
+		}
+		if ( $wp_filesystem && $wp_filesystem->chmod( $path, $mode ) ) {
+			return true;
+		}
+		if ( function_exists( 'wc_get_logger' ) ) {
+			wc_get_logger()->error(
+				sprintf( 'Could not set permissions %s on attachment %s; it may return 403 Forbidden.', decoct( $mode ), $path ),
+				array( 'source' => 'woo-refund-and-exchange-lite' )
+			);
+		}
+		return false;
+	}
+}
+
 if ( ! function_exists( 'wps_rma_is_wallet_plugin_activated' ) ) {
 	/**
 	 * Use to know if the Wallet System for WooCommerce plugin is installed and activated
@@ -833,5 +863,28 @@ if ( ! function_exists( 'wps_rma_is_terrawallet_plugin_activated' ) ) {
 	 */
 	function wps_rma_is_terrawallet_plugin_activated() {
 		return function_exists( 'woo_wallet' );
+	}
+}
+
+if ( ! function_exists( 'wps_rma_get_item_refund_taxes' ) ) {
+	/**
+	 * Per-rate tax of an order item for the refunded quantity, keyed by tax rate ID.
+	 *
+	 * @param WC_Order_Item_Product $item       Order item.
+	 * @param int                   $refund_qty Quantity being refunded.
+	 * @param bool                  $use_total  Use the after-coupon tax instead of the subtotal tax.
+	 * @return array
+	 */
+	function wps_rma_get_item_refund_taxes( $item, $refund_qty, $use_total = false ) {
+		$taxes      = $item->get_taxes();
+		$rate_taxes = $use_total ? $taxes['total'] : $taxes['subtotal'];
+		$item_qty   = max( 1, (int) $item->get_quantity() );
+		$refund_tax = array();
+		foreach ( (array) $rate_taxes as $rate_id => $tax ) {
+			if ( '' !== $tax ) {
+				$refund_tax[ $rate_id ] = wc_format_decimal( (float) $tax * $refund_qty / $item_qty );
+			}
+		}
+		return $refund_tax;
 	}
 }
