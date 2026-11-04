@@ -277,8 +277,15 @@ body.wps-rma-analytics-active .wps-rma-floating-save {
 
 .wps-rma-analytics__table tr:last-child td { border-bottom: none; }
 
-.wps-rma-analytics__th-right,
-.wps-rma-analytics__td-right { text-align: right; }
+/* Numeric columns: right-aligned (header must out-specify the th rule above) and
+   shrink-to-fit so the first column absorbs the remaining width. */
+.wps-rma-analytics__table th.wps-rma-analytics__th-right,
+.wps-rma-analytics__table td.wps-rma-analytics__td-right {
+	text-align: center;
+	width: 1%;
+	white-space: nowrap;
+	padding-left: 24px;
+}
 
 .wps-rma-analytics__reason-bar-wrap {
 	display: flex;
