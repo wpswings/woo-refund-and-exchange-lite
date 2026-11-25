@@ -2221,6 +2221,90 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	}
 
 	// -------------------------------------------------------------------------
+	// WPS-8385: Request Log CSV export
+	// -------------------------------------------------------------------------
+
+	/**
+	 * Stream a CSV of the currently-filtered RMA request log when the
+	 * "Export CSV" button is clicked on the Request tab.
+	 *
+	 * Respects all active filters: type, date range, request status, SLA status.
+	 * Triggered via admin_init by a GET param + nonce.
+	 */
+	public function wps_rma_handle_export_request_log() {
+		if ( ! isset( $_GET['wps_rma_export_request_log'] ) || '1' !== $_GET['wps_rma_export_request_log'] ) {
+			return;
+		}
+		if ( ! current_user_can( 'manage_woocommerce' ) && ! current_user_can( 'manage_options' ) ) {
+			wp_die( esc_html__( 'Unauthorized', 'woo-refund-and-exchange-lite' ) );
+		}
+		check_admin_referer( 'wps_rma_export_request_log' );
+
+		require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/class-woo-refund-and-exchange-lite-rma-request-table.php';
+
+		$table = new Woo_Refund_And_Exchange_Lite_Rma_Request_Table();
+		$rows  = $table->wps_rma_get_export_rows();
+
+		$filename = 'rma-request-log-' . date_i18n( 'Y-m-d' ) . '.csv';
+		header( 'Content-Type: text/csv; charset=utf-8' );
+		header( 'Content-Disposition: attachment; filename="' . $filename . '"' );
+		header( 'Pragma: no-cache' );
+		header( 'Expires: 0' );
+
+		$out = fopen( 'php://output', 'w' ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fopen
+
+		// UTF-8 BOM so Excel opens the file correctly.
+		fwrite( $out, "\xEF\xBB\xBF" ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fwrite
+
+		fputcsv(
+			$out,
+			array(
+				__( 'Order ID', 'woo-refund-and-exchange-lite' ),
+				__( 'Customer Name', 'woo-refund-and-exchange-lite' ),
+				__( 'Customer Email', 'woo-refund-and-exchange-lite' ),
+				__( 'Request Type', 'woo-refund-and-exchange-lite' ),
+				__( 'Request Status', 'woo-refund-and-exchange-lite' ),
+				__( 'Request Date', 'woo-refund-and-exchange-lite' ),
+				__( 'Order Status', 'woo-refund-and-exchange-lite' ),
+				__( 'Deadline Status', 'woo-refund-and-exchange-lite' ),
+			)
+		);
+
+		foreach ( $rows as $row ) {
+			$order = wc_get_order( $row['wps_rma_order_id'] );
+			$name  = $order ? trim( $order->get_billing_first_name() . ' ' . $order->get_billing_last_name() ) : '';
+			$email = $order ? $order->get_billing_email() : '';
+
+			$sla_map   = array(
+				'on_track' => __( 'On Track', 'woo-refund-and-exchange-lite' ),
+				'warning'  => __( 'Warning', 'woo-refund-and-exchange-lite' ),
+				'overdue'  => __( 'Overdue', 'woo-refund-and-exchange-lite' ),
+				'approved' => __( 'Approved', 'woo-refund-and-exchange-lite' ),
+				'accepted' => __( 'Accepted', 'woo-refund-and-exchange-lite' ),
+			);
+			$sla_label_key = $table->wps_rma_compute_sla_label( $row );
+			$sla_text      = isset( $sla_map[ $sla_label_key ] ) ? $sla_map[ $sla_label_key ] : '';
+
+			fputcsv(
+				$out,
+				array(
+					$row['wps_rma_order_id'],
+					$name,
+					$email,
+					$row['wps_rma_request_type'],
+					$row['wps_rma_request_status'],
+					$row['wps_rma_request_date'],
+					$row['wps_rma_order_status'],
+					$sla_text,
+				)
+			);
+		}
+
+		fclose( $out ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose
+		exit;
+	}
+
+	// -------------------------------------------------------------------------
 	// SLA: Cron registration
 	// -------------------------------------------------------------------------
 

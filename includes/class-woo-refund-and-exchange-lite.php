@@ -300,6 +300,9 @@ class Woo_Refund_And_Exchange_Lite {
 		$this->loader->add_action( 'restrict_manage_posts', $wrael_plugin_admin, 'wps_rma_add_export_refund_button' );
 		$this->loader->add_action( 'woocommerce_order_list_table_restrict_manage_orders', $wrael_plugin_admin, 'wps_rma_add_export_refund_button' );
 		$this->loader->add_action( 'admin_init', $wrael_plugin_admin, 'wps_rma_handle_export_refund_orders' );
+
+		// WPS-8385: Request log CSV export handler.
+		$this->loader->add_action( 'admin_init', $wrael_plugin_admin, 'wps_rma_handle_export_request_log' );
 	}
 
 	/**
