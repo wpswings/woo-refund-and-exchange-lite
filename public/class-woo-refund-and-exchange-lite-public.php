@@ -87,6 +87,31 @@ class Woo_Refund_And_Exchange_Lite_Public {
 	}
 
 	/**
+	 * Conditionally enqueue the Cloudflare Turnstile JS on the return request form page.
+	 * WPS-8386: Spam protection — Turnstile widget.
+	 *
+	 * @since    1.0.0
+	 */
+	public function wps_rma_enqueue_turnstile_script() {
+		if ( 'on' !== get_option( 'wps_rma_spam_protection_enable', 'on' ) ) {
+			return;
+		}
+		$site_key = get_option( 'wps_rma_turnstile_site_key', '' );
+		if ( empty( $site_key ) ) {
+			return;
+		}
+		if ( function_exists( 'wps_rma_css_and_js_load_page' ) && wps_rma_css_and_js_load_page() ) {
+			wp_enqueue_script(
+				'wps-rma-turnstile',
+				'https://challenges.cloudflare.com/turnstile/v0/api.js',
+				array(),
+				null, // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
+				true
+			);
+		}
+	}
+
+	/**
 	 * Add return button on my-account order section.
 	 *
 	 * @param array  $actions is current order action.

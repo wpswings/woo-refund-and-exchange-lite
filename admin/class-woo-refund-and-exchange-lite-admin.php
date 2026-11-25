@@ -2221,6 +2221,65 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	}
 
 	// -------------------------------------------------------------------------
+	// WPS-8386: Spam protection — General settings
+	// -------------------------------------------------------------------------
+
+	/**
+	 * Add spam-protection settings to the General tab via the
+	 * wps_rma_general_setting_extend filter.
+	 *
+	 * @param array $settings Existing settings array.
+	 * @return array
+	 */
+	public function wps_rma_spam_protection_settings( $settings ) {
+		$settings[] = array(
+			'title'       => esc_html__( 'Spam Protection', 'woo-refund-and-exchange-lite' ),
+			'type'        => 'title',
+			'id'          => 'wps_rma_spam_protection_title',
+			'description' => esc_html__( 'Protect return and withdrawal forms from spam and bot submissions.', 'woo-refund-and-exchange-lite' ),
+		);
+		$settings[] = array(
+			'title'   => esc_html__( 'Enable Spam Protection', 'woo-refund-and-exchange-lite' ),
+			'type'    => 'radio-switch',
+			'id'      => 'wps_rma_spam_protection_enable',
+			'value'   => get_option( 'wps_rma_spam_protection_enable', 'on' ),
+			'class'   => 'wrael-radio-switch-class',
+			'options' => array(
+				'on'  => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+				'off' => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
+			),
+		);
+		$settings[] = array(
+			'title'       => esc_html__( 'Max Submissions Per Hour (per IP)', 'woo-refund-and-exchange-lite' ),
+			'type'        => 'number',
+			'id'          => 'wps_rma_spam_rate_limit',
+			'value'       => get_option( 'wps_rma_spam_rate_limit', '10' ),
+			'class'       => 'wrael-text-class',
+			'placeholder' => '10',
+			'description' => esc_html__( 'Block an IP address after this many form submissions in one hour. Default: 10.', 'woo-refund-and-exchange-lite' ),
+		);
+		$settings[] = array(
+			'title'       => esc_html__( 'Cloudflare Turnstile Site Key', 'woo-refund-and-exchange-lite' ),
+			'type'        => 'text',
+			'id'          => 'wps_rma_turnstile_site_key',
+			'value'       => get_option( 'wps_rma_turnstile_site_key', '' ),
+			'class'       => 'wrael-text-class',
+			'placeholder' => esc_html__( 'Leave empty to disable Turnstile', 'woo-refund-and-exchange-lite' ),
+			'description' => esc_html__( 'Optional. Obtain from the Cloudflare Turnstile dashboard.', 'woo-refund-and-exchange-lite' ),
+		);
+		$settings[] = array(
+			'title'       => esc_html__( 'Cloudflare Turnstile Secret Key', 'woo-refund-and-exchange-lite' ),
+			'type'        => 'text',
+			'id'          => 'wps_rma_turnstile_secret_key',
+			'value'       => get_option( 'wps_rma_turnstile_secret_key', '' ),
+			'class'       => 'wrael-text-class',
+			'placeholder' => esc_html__( 'Leave empty to disable Turnstile', 'woo-refund-and-exchange-lite' ),
+			'description' => esc_html__( 'Keep this key secret — it is used server-side only.', 'woo-refund-and-exchange-lite' ),
+		);
+		return $settings;
+	}
+
+	// -------------------------------------------------------------------------
 	// WPS-8385: Request Log CSV export
 	// -------------------------------------------------------------------------
 
