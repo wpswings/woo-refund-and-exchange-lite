@@ -303,6 +303,9 @@ class Woo_Refund_And_Exchange_Lite {
 
 		// WPS-8385: Request log CSV export handler.
 		$this->loader->add_action( 'admin_init', $wrael_plugin_admin, 'wps_rma_handle_export_request_log' );
+
+		// WPS-8386: Spam protection settings.
+		$this->loader->add_filter( 'wps_rma_general_setting_extend', $wrael_plugin_admin, 'wps_rma_spam_protection_settings' );
 	}
 
 	/**
@@ -386,6 +389,8 @@ class Woo_Refund_And_Exchange_Lite {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $wrael_plugin_public, 'wrael_public_enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $wrael_plugin_public, 'wrael_public_enqueue_scripts' );
+		// WPS-8386: Enqueue Turnstile JS when site key is set.
+		$this->loader->add_action( 'wp_enqueue_scripts', $wrael_plugin_public, 'wps_rma_enqueue_turnstile_script' );
 
 		$this->loader->add_filter( 'woocommerce_my_account_my_orders_actions', $wrael_plugin_public, 'wps_rma_refund_button', 10, 2 );
 		$this->loader->add_action( 'woocommerce_order_details_after_order_table', $wrael_plugin_public, 'wps_rma_return_button_and_details' );

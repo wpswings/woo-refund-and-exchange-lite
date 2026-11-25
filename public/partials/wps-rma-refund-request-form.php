@@ -391,6 +391,11 @@ CSS;
 						?>
 						<form action="" method="post" id="wps_rma_return_request_form" data-orderid="<?php echo esc_html( $order_id ); ?>" enctype="multipart/form-data">
 							<input type="hidden" name="order_key" value="<?php echo esc_attr( $order_obj->get_order_key() ); ?>">
+							<?php // WPS-8386: Honeypot spam trap — hidden from real users, bots fill it. ?>
+							<div style="position:absolute;left:-9999px;top:-9999px;" aria-hidden="true">
+								<label for="wps_rma_hp"><?php esc_html_e( 'Leave this field empty', 'woo-refund-and-exchange-lite' ); ?></label>
+								<input type="text" id="wps_rma_hp" name="wps_rma_hp" value="" tabindex="-1" autocomplete="off">
+							</div>
 							<?php
 							$return_attachment   = get_option( 'wps_rma_refund_attachment', false );
 							$attach_limit        = get_option( 'wps_rma_attachment_limit', '15' );
@@ -435,7 +440,16 @@ CSS;
 								<?php
 							}
 							?>
-							<div>
+							<?php
+							// WPS-8386: Cloudflare Turnstile widget — rendered only when site key is configured.
+							$wps_rma_ts_site_key = get_option( 'wps_rma_turnstile_site_key', '' );
+							if ( ! empty( $wps_rma_ts_site_key ) && 'on' === get_option( 'wps_rma_spam_protection_enable', 'on' ) ) {
+								?>
+								<div class="cf-turnstile wps-rma-turnstile" data-sitekey="<?php echo esc_attr( $wps_rma_ts_site_key ); ?>"></div>
+								<?php
+							}
+							?>
+						<div>
 								<input type="submit" name="wps_rma_return_request_submit" value="<?php esc_html_e( 'Submit Request', 'woo-refund-and-exchange-lite' ); ?>" class="button btn">
 								<div class="wps_rma_return_notification"><img src="<?php echo esc_html( esc_url( WOO_REFUND_AND_EXCHANGE_LITE_DIR_URL ) ); ?>public/images/loading.gif" width="40px"></div>
 							</div>

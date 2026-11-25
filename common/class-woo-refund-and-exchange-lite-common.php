@@ -338,6 +338,109 @@ class Woo_Refund_And_Exchange_Lite_Common {
 		wp_die();
 	}
 
+	// =========================================================================
+	// WPS-8386: Spam protection helpers
+	// =========================================================================
+
+	/**
+	 * Check whether spam protection is globally enabled.
+	 *
+	 * @return bool
+	 */
+	private function wps_rma_spam_enabled() {
+		return 'on' === get_option( 'wps_rma_spam_protection_enable', 'on' );
+	}
+
+	/**
+	 * Check the honeypot field.  Returns false (spam) when the field is non-empty.
+	 *
+	 * @return bool True = clean, false = spam.
+	 */
+	private function wps_rma_spam_check_honeypot() {
+		$hp = isset( $_POST['wps_rma_hp'] ) ? $_POST['wps_rma_hp'] : null; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		return null === $hp || '' === $hp;
+	}
+
+	/**
+	 * Enforce per-IP rate limiting via transients.
+	 * Returns false when the caller is over the limit.
+	 *
+	 * @param string $action Unique key suffix distinguishing form types.
+	 * @return bool True = within limit, false = exceeded.
+	 */
+	private function wps_rma_spam_check_rate_limit( $action = 'submit' ) {
+		$limit = max( 1, (int) get_option( 'wps_rma_spam_rate_limit', 10 ) );
+		$ip    = isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : 'unknown';
+		$key   = 'wps_rma_rl_' . substr( md5( $ip . '_' . $action ), 0, 20 );
+		$count = (int) get_transient( $key );
+		if ( $count >= $limit ) {
+			return false;
+		}
+		set_transient( $key, $count + 1, HOUR_IN_SECONDS );
+		return true;
+	}
+
+	/**
+	 * Verify a Cloudflare Turnstile token.
+	 * Returns true when Turnstile is not configured (opt-in).
+	 *
+	 * @return bool
+	 */
+	private function wps_rma_spam_verify_turnstile() {
+		$secret = get_option( 'wps_rma_turnstile_secret_key', '' );
+		if ( empty( $secret ) ) {
+			return true; // Turnstile not configured — skip.
+		}
+		$token = isset( $_POST['cf-turnstile-response'] ) ? sanitize_text_field( wp_unslash( $_POST['cf-turnstile-response'] ) ) : '';
+		if ( '' === $token ) {
+			return false;
+		}
+		$ip       = isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '';
+		$response = wp_remote_post(
+			'https://challenges.cloudflare.com/turnstile/v0/siteverify',
+			array(
+				'timeout' => 10,
+				'body'    => array(
+					'secret'   => $secret,
+					'response' => $token,
+					'remoteip' => $ip,
+				),
+			)
+		);
+		if ( is_wp_error( $response ) ) {
+			return false;
+		}
+		$body = json_decode( wp_remote_retrieve_body( $response ), true );
+		return ! empty( $body['success'] );
+	}
+
+	/**
+	 * Run all spam checks in sequence.
+	 * Returns a WP_Error on failure (with a human-readable message) or true on pass.
+	 *
+	 * @param string $rate_key Unique suffix for the rate-limit transient key.
+	 * @return true|\WP_Error
+	 */
+	private function wps_rma_run_spam_checks( $rate_key = 'submit' ) {
+		if ( ! $this->wps_rma_spam_enabled() ) {
+			return true;
+		}
+		if ( ! $this->wps_rma_spam_check_honeypot() ) {
+			return new \WP_Error( 'wps_rma_spam_honeypot', esc_html__( 'Spam detected. Please try again.', 'woo-refund-and-exchange-lite' ) );
+		}
+		if ( ! $this->wps_rma_spam_check_rate_limit( $rate_key ) ) {
+			return new \WP_Error( 'wps_rma_spam_rate_limit', esc_html__( 'Too many requests. Please wait before submitting again.', 'woo-refund-and-exchange-lite' ) );
+		}
+		if ( ! $this->wps_rma_spam_verify_turnstile() ) {
+			return new \WP_Error( 'wps_rma_spam_turnstile', esc_html__( 'Security challenge failed. Please complete the CAPTCHA.', 'woo-refund-and-exchange-lite' ) );
+		}
+		return true;
+	}
+
+	// =========================================================================
+	// End spam protection helpers
+	// =========================================================================
+
 	/**
 	 * This function is to save return request.
 	 */
@@ -345,6 +448,13 @@ class Woo_Refund_And_Exchange_Lite_Common {
 
 		$check_ajax = check_ajax_referer( 'wps_rma_ajax_security', 'security_check' );
 		if ( $check_ajax && current_user_can( 'wps-rma-refund-request' ) ) {
+
+			// WPS-8386: Spam protection.
+			$spam_result = $this->wps_rma_run_spam_checks( 'return_request' );
+			if ( is_wp_error( $spam_result ) ) {
+				echo wp_json_encode( array( 'flag' => false, 'msg' => $spam_result->get_error_message() ) );
+				wp_die();
+			}
 
 			$order_id  = isset( $_POST['orderid'] ) ? sanitize_text_field( wp_unslash( $_POST['orderid'] ) ) : '';
 			$order_key = isset( $_POST['order_key'] ) ? sanitize_text_field( wp_unslash( $_POST['order_key'] ) ) : '';
@@ -747,6 +857,13 @@ class Woo_Refund_And_Exchange_Lite_Common {
 	 */
 	public function wps_rma_cancel_return_request_callback() {
 		check_ajax_referer( 'wps_rma_ajax_security', 'security_check' );
+
+		// WPS-8386: Spam protection on the withdrawal (cancel-request) form.
+		$spam_result = $this->wps_rma_run_spam_checks( 'cancel_request' );
+		if ( is_wp_error( $spam_result ) ) {
+			echo wp_json_encode( array( 'flag' => false, 'message' => $spam_result->get_error_message() ) );
+			wp_die();
+		}
 
 		$order_id  = isset( $_POST['order_id'] ) ? filter_input( INPUT_POST, 'order_id' ) : '';
 		$order_key = isset( $_POST['order_key'] ) ? sanitize_text_field( wp_unslash( $_POST['order_key'] ) ) : '';
