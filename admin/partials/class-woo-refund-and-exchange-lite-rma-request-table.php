@@ -327,6 +327,20 @@ class Woo_Refund_And_Exchange_Lite_Rma_Request_Table extends WP_List_Table {
 			);
 		}
 
+		// Apply request status filter if one is saved.
+		$status_filter = isset( $saved_data['request_status'] ) ? strtolower( sanitize_text_field( wp_unslash( $saved_data['request_status'] ) ) ) : '';
+
+		if ( $status_filter ) {
+			$rows = array_values(
+				array_filter(
+					$rows,
+					function ( $row ) use ( $status_filter ) {
+						return strtolower( $row['wps_rma_request_status'] ) === $status_filter;
+					}
+				)
+			);
+		}
+
 		// Apply SLA status filter if one is saved.
 		$sla_filter = isset( $saved_data['sla_status'] ) ? sanitize_text_field( wp_unslash( $saved_data['sla_status'] ) ) : '';
 
@@ -346,8 +360,17 @@ class Woo_Refund_And_Exchange_Lite_Rma_Request_Table extends WP_List_Table {
 	}
 
 	/**
+	 * Return all filtered rows for CSV export (all pages, respects current filter state).
+	 *
+	 * @return array
+	 */
+	public function wps_rma_get_export_rows() {
+		return $this->wps_rma_get_all_filtered_rows();
+	}
+
+	/**
 	 * Return all matching order IDs for the current filter state.
-	 * Search-by-ID takes priority over date/type filters.
+	 * Search-by-ID or search-by-email takes priority over date/type filters.
 	 * No LIMIT — pagination is done in PHP after SLA filtering.
 	 *
 	 * @return array
@@ -355,10 +378,33 @@ class Woo_Refund_And_Exchange_Lite_Rma_Request_Table extends WP_List_Table {
 	private function wps_rma_fetch_all_order_ids() {
 		global $wpdb;
 
-		// --- search by order ID ---
+		// --- search by order ID or customer email ---
 		$search = isset( $_REQUEST['s'] ) ? trim( sanitize_text_field( wp_unslash( $_REQUEST['s'] ) ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( '' !== $search ) {
-			$is_pro      = function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active();
+			$is_pro = function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active();
+
+			// Email search: contains '@' or is not purely numeric.
+			if ( false !== strpos( $search, '@' ) || ! ctype_digit( $search ) ) {
+				$email_orders = wc_get_orders(
+					array(
+						'billing_email' => sanitize_email( $search ),
+						'limit'         => -1,
+						'return'        => 'ids',
+					)
+				);
+				$result = array();
+				foreach ( $email_orders as $oid ) {
+					$ret_data    = wps_rma_get_meta_data( $oid, 'wps_rma_return_product', true );
+					$exch_data   = $is_pro ? wps_rma_get_meta_data( $oid, 'wps_wrma_exchange_product', true ) : array();
+					$cancel_data = $is_pro ? wps_rma_get_meta_data( $oid, 'wps_rma_cancel_req_date', true ) : '';
+					if ( ! empty( $ret_data ) || ! empty( $exch_data ) || ! empty( $cancel_data ) ) {
+						$result[] = (int) $oid;
+					}
+				}
+				return $result;
+			}
+
+			// Numeric: search by order ID.
 			$order_id    = absint( $search );
 			$ret_data    = wps_rma_get_meta_data( $order_id, 'wps_rma_return_product', true );
 			$exch_data   = $is_pro ? wps_rma_get_meta_data( $order_id, 'wps_wrma_exchange_product', true ) : array();

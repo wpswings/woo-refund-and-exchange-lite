@@ -23,10 +23,11 @@ $wps_rma_is_pro = function_exists( 'wps_rma_pro_active' ) && wps_rma_pro_active(
 
 // Handle filter form submission.
 if ( isset( $_POST['wps_rma_date_submit'] ) ) {
-	$start_date  = isset( $_REQUEST['wps_rma_start_date'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['wps_rma_start_date'] ) ) : null;
-	$end_date    = isset( $_REQUEST['wps_rma_end_date'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['wps_rma_end_date'] ) ) : null;
-	$filter_type = isset( $_REQUEST['rma_report_request_filter'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['rma_report_request_filter'] ) ) : null;
-	$sla_status  = isset( $_REQUEST['rma_sla_status_filter'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['rma_sla_status_filter'] ) ) : '';
+	$start_date     = isset( $_REQUEST['wps_rma_start_date'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['wps_rma_start_date'] ) ) : null;
+	$end_date       = isset( $_REQUEST['wps_rma_end_date'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['wps_rma_end_date'] ) ) : null;
+	$filter_type    = isset( $_REQUEST['rma_report_request_filter'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['rma_report_request_filter'] ) ) : null;
+	$sla_status     = isset( $_REQUEST['rma_sla_status_filter'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['rma_sla_status_filter'] ) ) : '';
+	$request_status = isset( $_REQUEST['rma_request_status_filter'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['rma_request_status_filter'] ) ) : '';
 
 	// "To" date cannot be earlier than "From" date.
 	if ( $start_date && $end_date && strtotime( $end_date ) < strtotime( $start_date ) ) {
@@ -34,25 +35,28 @@ if ( isset( $_POST['wps_rma_date_submit'] ) ) {
 	}
 
 	update_option( 'wsp_rma_report_filter', array(
-		'type'       => $filter_type,
-		'start_date' => $start_date,
-		'end_date'   => $end_date,
-		'sla_status' => $sla_status,
+		'type'           => $filter_type,
+		'start_date'     => $start_date,
+		'end_date'       => $end_date,
+		'sla_status'     => $sla_status,
+		'request_status' => $request_status,
 	) );
 } elseif ( isset( $_POST['wps_rma_clear_filter'] ) ) {
 	update_option( 'wsp_rma_report_filter', array(
-		'type'       => null,
-		'start_date' => null,
-		'end_date'   => null,
-		'sla_status' => '',
+		'type'           => null,
+		'start_date'     => null,
+		'end_date'       => null,
+		'sla_status'     => '',
+		'request_status' => '',
 	) );
 }
 
-$saved_data  = get_option( 'wsp_rma_report_filter' );
-$filter_type = isset( $saved_data['type'] ) ? sanitize_text_field( wp_unslash( $saved_data['type'] ) ) : null;
-$start_date  = isset( $saved_data['start_date'] ) ? sanitize_text_field( wp_unslash( $saved_data['start_date'] ) ) : null;
-$end_date    = isset( $saved_data['end_date'] ) ? sanitize_text_field( wp_unslash( $saved_data['end_date'] ) ) : null;
-$sla_status  = isset( $saved_data['sla_status'] ) ? sanitize_text_field( wp_unslash( $saved_data['sla_status'] ) ) : '';
+$saved_data     = get_option( 'wsp_rma_report_filter' );
+$filter_type    = isset( $saved_data['type'] ) ? sanitize_text_field( wp_unslash( $saved_data['type'] ) ) : null;
+$start_date     = isset( $saved_data['start_date'] ) ? sanitize_text_field( wp_unslash( $saved_data['start_date'] ) ) : null;
+$end_date       = isset( $saved_data['end_date'] ) ? sanitize_text_field( wp_unslash( $saved_data['end_date'] ) ) : null;
+$sla_status     = isset( $saved_data['sla_status'] ) ? sanitize_text_field( wp_unslash( $saved_data['sla_status'] ) ) : '';
+$request_status = isset( $saved_data['request_status'] ) ? sanitize_text_field( wp_unslash( $saved_data['request_status'] ) ) : '';
 
 // Initialize and prepare table before HTML so search_box() and display() can be split.
 require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/class-woo-refund-and-exchange-lite-rma-request-table.php';
@@ -298,6 +302,15 @@ $wps_sla_legend = array(
 				</select>
 			<?php endif; ?>
 
+			<?php /* Request status dropdown */ ?>
+			<select name="rma_request_status_filter">
+				<option value="" <?php selected( '', $request_status ); ?>><?php esc_html_e( 'All Statuses', 'woo-refund-and-exchange-lite' ); ?></option>
+				<option value="pending"  <?php selected( 'pending',  $request_status ); ?>><?php esc_html_e( 'Pending',   'woo-refund-and-exchange-lite' ); ?></option>
+				<option value="accepted" <?php selected( 'accepted', $request_status ); ?>><?php esc_html_e( 'Accepted',  'woo-refund-and-exchange-lite' ); ?></option>
+				<option value="complete" <?php selected( 'complete', $request_status ); ?>><?php esc_html_e( 'Complete',  'woo-refund-and-exchange-lite' ); ?></option>
+				<option value="cancel"   <?php selected( 'cancel',   $request_status ); ?>><?php esc_html_e( 'Cancelled', 'woo-refund-and-exchange-lite' ); ?></option>
+			</select>
+
 			<?php /* SLA status dropdown */ ?>
 			<select name="rma_sla_status_filter">
 				<?php foreach ( $wps_sla_options as $val => $label ) : ?>
@@ -314,11 +327,22 @@ $wps_sla_legend = array(
 			<input class="button"               name="wps_rma_clear_filter" type="submit" value="<?php esc_attr_e( 'Clear',  'woo-refund-and-exchange-lite' ); ?>">
 		</form>
 
+		<?php
+		// CSV export link — rendered after any pending filter save so the nonce URL carries the latest state.
+		$wps_csv_export_url = wp_nonce_url(
+			add_query_arg( 'wps_rma_export_request_log', '1' ),
+			'wps_rma_export_request_log'
+		);
+		?>
+		<a href="<?php echo esc_url( $wps_csv_export_url ); ?>" class="button button-secondary" style="flex-shrink:0;">
+			<?php esc_html_e( 'Export CSV', 'woo-refund-and-exchange-lite' ); ?>
+		</a>
+
 		<?php if ( $wps_rma_request_table ) : ?>
 		<form method="post" class="wps-rma-req-search-form">
 			<input type="hidden" name="page" value="wps_rma_request_table_lite">
 			<?php wp_nonce_field( 'wps_rma_request_table_lite', 'wps_rma_request_table_lite' ); ?>
-			<?php $wps_rma_request_table->search_box( esc_html__( 'Search Orders By ID', 'woo-refund-and-exchange-lite' ), 'wps_rma_request_lite' ); ?>
+			<?php $wps_rma_request_table->search_box( esc_html__( 'Search by Order ID or Email', 'woo-refund-and-exchange-lite' ), 'wps_rma_request_lite' ); ?>
 		</form>
 		<?php endif; ?>
 
