@@ -5,7 +5,7 @@ Tags: refund, exchange, wallet, RMA, woocommerce cancel order
 Requires at least: 6.7
 Tested up to: 7.1
 WC requires at least: 6.5
-WC tested up to: 10.2.2
+WC tested up to: 11.2.2
 Stable tag: 4.7.0
 Requires PHP: 7.4
 License: GPLv3 or later 
@@ -117,6 +117,8 @@ You can allow your customers to send you order-related queries. Furthermore, you
 
 * Compatible with WooCommerce High-Performance Order Storage (HPOS).
 
+* Compatible with WooCommerce Cart Blocks and Checkout Blocks (declared via `FeaturesUtil` compatibility API).
+
 
 == WHAT PREMIUM VERSION WOOCOMMERCE REFUND AND EXCHANGE WITH RMA OFFERS == 
 
@@ -202,6 +204,10 @@ Yes! The plugin automatically manages the stock after every successful refund of
 = Is there any plugin that is compatible with Return Refund & Exchange for WooCommerce? =
 
 The Return RMA Plugin is compatible with the [**WooCommerce Gift Cards**](https://wordpress.org/plugins/woo-gift-cards-lite/) and [**Gift Cards For WooCommerce Pro**](https://wpswings.com/product/gift-cards-for-woocommerce-pro/?utm_source=rma-org-page&utm_medium=referral&utm_campaign=gc-pro). Admin can now provide refund functionality on gift cards to its users. But for the practical implementation users are required to fulfill two conditions i.e. the expiration period of the gift card shouldn't be achieved and its usability should be equal to zero.
+
+= Is this plugin compatible with WooCommerce HPOS and Cart/Checkout Blocks? =
+
+Yes! Return Refund and Exchange for WooCommerce is fully compatible with WooCommerce High-Performance Order Storage (HPOS), Cart Blocks, and Checkout Blocks. Compatibility is declared via the WooCommerce `FeaturesUtil` API so no warnings appear in your WooCommerce status screen.
 
 = My question is not listed? =
 
