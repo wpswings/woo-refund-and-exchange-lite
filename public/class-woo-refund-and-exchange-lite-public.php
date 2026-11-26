@@ -716,4 +716,32 @@ class Woo_Refund_And_Exchange_Lite_Public {
 		include WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'public/partials/wps-rma-eu-withdrawal-shortcode.php';
 		return ob_get_clean();
 	}
+
+	// -------------------------------------------------------------------------
+	// WPS-8379: Guest Return Form shortcode
+	// -------------------------------------------------------------------------
+
+	/**
+	 * Register the [wps_rma_guest_return_form] shortcode.
+	 */
+	public function wps_rma_guest_return_register_shortcode() {
+		add_shortcode( 'wps_rma_guest_return_form', array( $this, 'wps_rma_guest_return_shortcode' ) );
+	}
+
+	/**
+	 * Shortcode handler: render the guest return form inline.
+	 *
+	 * Requires the refund feature to be enabled (wps_rma_refund_enable = 'on').
+	 *
+	 * @param array $atts Shortcode attributes (unused).
+	 * @return string HTML output.
+	 */
+	public function wps_rma_guest_return_shortcode( $atts ) {
+		if ( 'on' !== get_option( 'wps_rma_refund_enable', false ) ) {
+			return '';
+		}
+		ob_start();
+		include WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'public/partials/wps-rma-guest-return-shortcode.php';
+		return ob_get_clean();
+	}
 }

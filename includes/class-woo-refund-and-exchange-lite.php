@@ -410,6 +410,10 @@ class Woo_Refund_And_Exchange_Lite {
 		$this->loader->add_action( 'woocommerce_email_order_details', $wrael_plugin_public, 'wps_rma_eu_withdrawal_email_link', 20, 4 );
 		$this->loader->add_filter( 'template_include', $wrael_plugin_public, 'wps_rma_eu_withdrawal_template' );
 		$this->loader->add_action( 'init', $wrael_plugin_public, 'wps_rma_eu_withdrawal_register_shortcode' );
+
+		// WPS-8379: Guest Returns.
+		$this->loader->add_action( 'init', $wrael_plugin_public, 'wps_rma_guest_return_register_shortcode' );
+		$this->loader->add_action( 'wps_rma_guest_return_send_link', $wrael_plugin_common, 'wps_rma_guest_return_send_link', 10, 2 );
 	}
 
 	/**

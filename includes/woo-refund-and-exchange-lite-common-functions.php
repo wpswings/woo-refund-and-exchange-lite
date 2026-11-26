@@ -958,3 +958,87 @@ if ( ! function_exists( 'wps_rma_eu_withdrawal_button_url' ) ) {
 		return wp_nonce_url( $url, 'wps_rma_eu_withdrawal_btn_' . $order_id, 'wps_rma_ew_nonce' );
 	}
 }
+
+// =============================================================================
+// WPS-8379: Guest Returns — rate-limiting and token helpers
+// =============================================================================
+
+if ( ! function_exists( 'wps_rma_guest_return_check_rate_limit' ) ) {
+	/**
+	 * Check whether the current IP is within the allowed lookup attempts per hour.
+	 * Increments the counter on each call; returns false when the limit is exceeded.
+	 *
+	 * @return bool True when the request is allowed, false when rate-limited.
+	 */
+	function wps_rma_guest_return_check_rate_limit() {
+		$ip    = isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : 'unknown';
+		$key   = 'wps_rma_gr_rl_' . md5( $ip );
+		$limit = (int) apply_filters( 'wps_rma_guest_return_rate_limit', 5 );
+		$count = (int) get_transient( $key );
+
+		if ( $count >= $limit ) {
+			return false;
+		}
+
+		set_transient( $key, $count + 1, HOUR_IN_SECONDS );
+		return true;
+	}
+}
+
+if ( ! function_exists( 'wps_rma_guest_return_create_token' ) ) {
+	/**
+	 * Generate a 40-character alphanumeric one-time token, store it as a 24-hour
+	 * transient keyed to the given order and billing email, then return the token.
+	 *
+	 * @param int    $order_id      WooCommerce order ID.
+	 * @param string $billing_email Billing email address (used for verification on issue).
+	 * @return string The generated token.
+	 */
+	function wps_rma_guest_return_create_token( $order_id, $billing_email ) {
+		$token = wp_generate_password( 40, false, false );
+		set_transient(
+			'wps_rma_grt_' . $token,
+			array(
+				'order_id' => (int) $order_id,
+				'email'    => sanitize_email( $billing_email ),
+			),
+			24 * HOUR_IN_SECONDS
+		);
+		return $token;
+	}
+}
+
+if ( ! function_exists( 'wps_rma_guest_return_verify_token' ) ) {
+	/**
+	 * Verify a guest return token and return its payload.
+	 *
+	 * @param string $token Raw token from URL/form.
+	 * @return array|false Array with 'order_id' and 'email' on success, false otherwise.
+	 */
+	function wps_rma_guest_return_verify_token( $token ) {
+		if ( empty( $token ) ) {
+			return false;
+		}
+		// Strip anything that is not alphanumeric to prevent transient-key injection.
+		$token = preg_replace( '/[^a-zA-Z0-9]/', '', (string) $token );
+		if ( 40 !== strlen( $token ) ) {
+			return false;
+		}
+		$data = get_transient( 'wps_rma_grt_' . $token );
+		return is_array( $data ) ? $data : false;
+	}
+}
+
+if ( ! function_exists( 'wps_rma_guest_return_consume_token' ) ) {
+	/**
+	 * Invalidate a guest return token so it cannot be reused.
+	 *
+	 * @param string $token Raw token.
+	 */
+	function wps_rma_guest_return_consume_token( $token ) {
+		$token = preg_replace( '/[^a-zA-Z0-9]/', '', (string) $token );
+		if ( ! empty( $token ) ) {
+			delete_transient( 'wps_rma_grt_' . $token );
+		}
+	}
+}
