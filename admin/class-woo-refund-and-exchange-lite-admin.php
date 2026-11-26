@@ -643,7 +643,7 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 	 */
 	public function wrael_admin_save_tab_settings() {
 		global $wrael_wps_rma_obj;
-		if ( ( isset( $_POST['wps_rma_save_general_setting'] ) || isset( $_POST['wps_rma_save_refund_setting'] ) || isset( $_POST['wps_rma_save_text_setting'] ) || isset( $_POST['wps_rma_save_api_setting'] ) )
+		if ( ( isset( $_POST['wps_rma_save_general_setting'] ) || isset( $_POST['wps_rma_save_refund_setting'] ) || isset( $_POST['wps_rma_save_text_setting'] ) || isset( $_POST['wps_rma_save_api_setting'] ) || isset( $_POST['wps_rma_save_eu_withdrawal_setting'] ) )
 			&& ( ! empty( $_POST['wps_tabs_nonce'] )
 			&& wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['wps_tabs_nonce'] ) ), 'admin_save_data' ) )
 		) {
@@ -662,8 +662,12 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 				apply_filters( 'wps_rma_order_message_settings_array', array() );
 			} elseif ( isset( $_POST['wps_rma_save_api_setting'] ) ) {
 				$wrael_genaral_settings =
-				// The Order Message tab settings.
+				// The API tab settings.
 				apply_filters( 'wps_rma_api_settings_array', array() );
+			} elseif ( isset( $_POST['wps_rma_save_eu_withdrawal_setting'] ) ) {
+				$wrael_genaral_settings =
+				// The EU Withdrawal tab settings.
+				apply_filters( 'wps_rma_eu_withdrawal_settings_array', array() );
 			}
 			$wrael_button_index = array_search( 'submit', array_column( $wrael_genaral_settings, 'type' ), true );
 			if ( isset( $wrael_button_index ) && ( null == $wrael_button_index || '' == $wrael_button_index ) ) {
@@ -2725,5 +2729,106 @@ class Woo_Refund_And_Exchange_Lite_Admin {
 		}
 
 		return $counts;
+	}
+
+	// -------------------------------------------------------------------------
+	// WPS-8378: EU Withdrawal settings
+	// -------------------------------------------------------------------------
+
+	/**
+	 * Build the EU Withdrawal settings array for the settings tab.
+	 *
+	 * @param array $settings Existing settings (passed via filter, unused — we build fresh).
+	 * @return array
+	 */
+	public function wps_rma_eu_withdrawal_settings_array( $settings ) {
+		$pages        = get_pages();
+		$page_options = array( '' => esc_html__( 'Select a page', 'woo-refund-and-exchange-lite' ) );
+		foreach ( $pages as $page ) {
+			$page_options[ $page->ID ] = $page->post_title;
+		}
+
+		return array(
+			array(
+				'title'   => esc_html__( 'Enable EU Withdrawal Button', 'woo-refund-and-exchange-lite' ),
+				'type'    => 'radio-switch',
+				'id'      => 'wps_rma_eu_withdrawal_enable',
+				'value'   => get_option( 'wps_rma_eu_withdrawal_enable', '' ),
+				'class'   => 'wrael-radio-switch-class',
+				'options' => array(
+					'on' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+					''   => esc_html__( 'NO', 'woo-refund-and-exchange-lite' ),
+				),
+			),
+			array(
+				'title'       => esc_html__( 'Withdrawal Window (days)', 'woo-refund-and-exchange-lite' ),
+				'type'        => 'number',
+				'id'          => 'wps_rma_eu_withdrawal_window_days',
+				'value'       => get_option( 'wps_rma_eu_withdrawal_window_days', '14' ),
+				'class'       => 'wrael-text-class',
+				'placeholder' => '14',
+				'min'         => '1',
+				'max'         => '365',
+				'description' => esc_html__( 'Number of days from the order (or delivery) date during which withdrawal is allowed. Default: 14.', 'woo-refund-and-exchange-lite' ),
+			),
+			array(
+				'title'       => esc_html__( 'Date Basis', 'woo-refund-and-exchange-lite' ),
+				'type'        => 'select',
+				'id'          => 'wps_rma_eu_withdrawal_date_basis',
+				'value'       => get_option( 'wps_rma_eu_withdrawal_date_basis', 'order_date' ),
+				'class'       => 'wrael-select-class',
+				'placeholder' => '',
+				'options'     => array(
+					'order_date'    => esc_html__( 'Order date', 'woo-refund-and-exchange-lite' ),
+					'delivery_date' => esc_html__( 'Delivery date (requires _wps_rma_delivery_date order meta)', 'woo-refund-and-exchange-lite' ),
+				),
+				'description' => esc_html__( 'Start the withdrawal window from the order date or delivery date.', 'woo-refund-and-exchange-lite' ),
+			),
+			array(
+				'title'   => esc_html__( 'EU Billing Countries Only', 'woo-refund-and-exchange-lite' ),
+				'type'    => 'radio-switch',
+				'id'      => 'wps_rma_eu_withdrawal_eu_only',
+				'value'   => get_option( 'wps_rma_eu_withdrawal_eu_only', '' ),
+				'class'   => 'wrael-radio-switch-class',
+				'options' => array(
+					'on' => esc_html__( 'YES', 'woo-refund-and-exchange-lite' ),
+					''   => esc_html__( 'NO (all countries)', 'woo-refund-and-exchange-lite' ),
+				),
+			),
+			array(
+				'title'       => esc_html__( 'Withdrawal Form Page', 'woo-refund-and-exchange-lite' ),
+				'type'        => 'select',
+				'id'          => 'wps_rma_eu_withdrawal_page_id',
+				'value'       => get_option( 'wps_rma_eu_withdrawal_page_id', '' ),
+				'class'       => 'wrael-select-class',
+				'placeholder' => '',
+				'options'     => $page_options,
+				'description' => esc_html__( 'The page where the [wps_rma_eu_withdrawal_form] shortcode is placed.', 'woo-refund-and-exchange-lite' ),
+			),
+			array(
+				'title'       => esc_html__( 'Button Text', 'woo-refund-and-exchange-lite' ),
+				'type'        => 'text',
+				'id'          => 'wps_rma_eu_withdrawal_button_text',
+				'value'       => get_option( 'wps_rma_eu_withdrawal_button_text', '' ),
+				'class'       => 'wrael-text-class',
+				'placeholder' => esc_html__( 'Withdraw from Contract', 'woo-refund-and-exchange-lite' ),
+				'description' => esc_html__( 'Button label shown to customers. Leave blank for the default.', 'woo-refund-and-exchange-lite' ),
+			),
+			array(
+				'title'       => esc_html__( 'Admin Notification Email', 'woo-refund-and-exchange-lite' ),
+				'type'        => 'email',
+				'id'          => 'wps_rma_eu_withdrawal_admin_email',
+				'value'       => get_option( 'wps_rma_eu_withdrawal_admin_email', get_option( 'admin_email' ) ),
+				'class'       => 'wrael-text-class',
+				'placeholder' => get_option( 'admin_email' ),
+				'description' => esc_html__( 'Email address that receives admin notifications for new withdrawal requests.', 'woo-refund-and-exchange-lite' ),
+			),
+			array(
+				'type'  => 'submit',
+				'id'    => 'wps_rma_save_eu_withdrawal_setting',
+				'class' => 'wps-btn wps-btn__filled wps-btn__xl',
+				'value' => esc_html__( 'Save Settings', 'woo-refund-and-exchange-lite' ),
+			),
+		);
 	}
 }

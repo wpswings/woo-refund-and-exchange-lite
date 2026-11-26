@@ -888,3 +888,73 @@ if ( ! function_exists( 'wps_rma_get_item_refund_taxes' ) ) {
 		return $refund_tax;
 	}
 }
+
+// -------------------------------------------------------------------------
+// WPS-8378: EU Withdrawal helper functions
+// -------------------------------------------------------------------------
+
+if ( ! function_exists( 'wps_rma_eu_withdrawal_in_window' ) ) {
+	/**
+	 * Check whether an order is still within the EU withdrawal window.
+	 *
+	 * @param WC_Order $order      WooCommerce order object.
+	 * @return bool
+	 */
+	function wps_rma_eu_withdrawal_in_window( $order ) {
+		$days       = max( 1, (int) get_option( 'wps_rma_eu_withdrawal_window_days', 14 ) );
+		$date_basis = get_option( 'wps_rma_eu_withdrawal_date_basis', 'order_date' );
+
+		$timestamp = 0;
+		if ( 'delivery_date' === $date_basis ) {
+			$delivery_ts = (int) wps_rma_get_meta_data( $order->get_id(), 'wps_rma_delivery_date', true );
+			if ( $delivery_ts > 0 ) {
+				$timestamp = $delivery_ts;
+			}
+		}
+		if ( 0 === $timestamp ) {
+			$date = $order->get_date_created();
+			if ( empty( $date ) ) {
+				return false;
+			}
+			$timestamp = $date->getTimestamp();
+		}
+
+		$diff_days = ( time() - $timestamp ) / DAY_IN_SECONDS;
+		return $diff_days <= $days;
+	}
+}
+
+if ( ! function_exists( 'wps_rma_eu_withdrawal_eu_check' ) ) {
+	/**
+	 * Check whether the order's billing country qualifies for EU withdrawal rights.
+	 * When the EU-only setting is off, all orders qualify.
+	 *
+	 * @param WC_Order $order WooCommerce order object.
+	 * @return bool
+	 */
+	function wps_rma_eu_withdrawal_eu_check( $order ) {
+		if ( 'on' !== get_option( 'wps_rma_eu_withdrawal_eu_only' ) ) {
+			return true;
+		}
+		$eu_countries = array( 'AT', 'BE', 'BG', 'CY', 'CZ', 'DE', 'DK', 'EE', 'ES', 'FI', 'FR', 'GR', 'HR', 'HU', 'IE', 'IT', 'LT', 'LU', 'LV', 'MT', 'NL', 'PL', 'PT', 'RO', 'SE', 'SI', 'SK' );
+		return in_array( $order->get_billing_country(), $eu_countries, true );
+	}
+}
+
+if ( ! function_exists( 'wps_rma_eu_withdrawal_button_url' ) ) {
+	/**
+	 * Build the URL for the EU withdrawal button (links to the form page with order context).
+	 *
+	 * @param int $order_id WooCommerce order ID.
+	 * @return string URL or empty string when no form page is set.
+	 */
+	function wps_rma_eu_withdrawal_button_url( $order_id ) {
+		$page_id = get_option( 'wps_rma_eu_withdrawal_page_id' );
+		if ( empty( $page_id ) ) {
+			return '';
+		}
+		$url = get_permalink( $page_id );
+		$url = add_query_arg( 'order_id', $order_id, $url );
+		return wp_nonce_url( $url, 'wps_rma_eu_withdrawal_btn_' . $order_id, 'wps_rma_ew_nonce' );
+	}
+}

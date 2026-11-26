@@ -195,6 +195,8 @@ class Woo_Refund_And_Exchange_Lite_Common {
 		require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'emails/class-wps-rma-refund-request-cancel-email.php';
 		require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'emails/class-wps-rma-sla-alert-email.php';
 		require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'emails/class-wps-rma-refund-user-restriction-email.php';
+		// WPS-8378: EU Withdrawal acknowledgement email.
+		require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'emails/class-wps-rma-eu-withdrawal-email.php';
 		// add the email class to the list of email classes that WooCommerce loads.
 
 		$email_classes['wps_rma_order_messages_email']          = new Wps_Rma_Order_Messages_Email();
@@ -203,7 +205,44 @@ class Woo_Refund_And_Exchange_Lite_Common {
 		$email_classes['wps_rma_refund_request_cancel_email']   = new Wps_Rma_Refund_Request_Cancel_Email();
 		$email_classes['wps_rma_sla_alert_email']               = new Wps_Rma_Sla_Alert_Email();
 		$email_classes['wps_rma_refund_user_restriction_email'] = new Wps_Rma_Refund_User_Restriction_Email();
+		$email_classes['wps_rma_eu_withdrawal_email']           = new Wps_Rma_Eu_Withdrawal_Email();
 		return $email_classes;
+	}
+
+	/**
+	 * Send customer acknowledgement and admin notification emails after a
+	 * successful EU withdrawal submission.
+	 *
+	 * @param int   $order_id  WooCommerce order ID.
+	 * @param array $log_entry Audit log entry for this submission.
+	 */
+	public function wps_rma_eu_withdrawal_send_emails( $order_id, $log_entry ) {
+		$email_classes = WC()->mailer()->get_emails();
+
+		// Customer acknowledgement.
+		if ( isset( $email_classes['wps_rma_eu_withdrawal_email'] ) ) {
+			$email_classes['wps_rma_eu_withdrawal_email']->trigger( $order_id, $log_entry );
+		}
+
+		// Admin notification (plain email).
+		$admin_email = get_option( 'wps_rma_eu_withdrawal_admin_email', get_option( 'admin_email' ) );
+		if ( ! empty( $admin_email ) ) {
+			$order   = wc_get_order( $order_id );
+			$subject = sprintf(
+				/* translators: %s: order number */
+				esc_html__( '[%s] EU Withdrawal Request Submitted – Order #%s', 'woo-refund-and-exchange-lite' ),
+				get_bloginfo( 'name' ),
+				$order ? $order->get_order_number() : $order_id
+			);
+			$message = sprintf(
+				/* translators: 1: order number, 2: customer email, 3: date */
+				esc_html__( "A customer has submitted an EU withdrawal request.\n\nOrder: #%1\$s\nCustomer email: %2\$s\nDate: %3\$s\n\nPlease review the request in the WooCommerce order.", 'woo-refund-and-exchange-lite' ),
+				$order ? $order->get_order_number() : $order_id,
+				isset( $log_entry['billing_email'] ) ? $log_entry['billing_email'] : '',
+				date_i18n( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), isset( $log_entry['timestamp'] ) ? $log_entry['timestamp'] : time() )
+			);
+			wp_mail( sanitize_email( $admin_email ), $subject, $message );
+		}
 	}
 
 	/**

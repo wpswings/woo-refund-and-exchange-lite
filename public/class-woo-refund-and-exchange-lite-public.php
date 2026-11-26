@@ -553,4 +553,167 @@ class Woo_Refund_And_Exchange_Lite_Public {
 		}
 		return $template;
 	}
+
+	// -------------------------------------------------------------------------
+	// WPS-8378: EU Withdrawal Button & Form
+	// -------------------------------------------------------------------------
+
+	/**
+	 * Check whether the EU withdrawal button should be shown for a given order.
+	 *
+	 * @param WC_Order $order WooCommerce order.
+	 * @return bool
+	 */
+	private function wps_rma_eu_withdrawal_should_show( $order ) {
+		if ( 'on' !== get_option( 'wps_rma_eu_withdrawal_enable' ) ) {
+			return false;
+		}
+		if ( empty( get_option( 'wps_rma_eu_withdrawal_page_id' ) ) ) {
+			return false;
+		}
+		if ( ! function_exists( 'wps_rma_eu_withdrawal_in_window' ) || ! wps_rma_eu_withdrawal_in_window( $order ) ) {
+			return false;
+		}
+		if ( ! function_exists( 'wps_rma_eu_withdrawal_eu_check' ) || ! wps_rma_eu_withdrawal_eu_check( $order ) ) {
+			return false;
+		}
+		// Do not show if a withdrawal log entry already exists and was submitted.
+		$log = wps_rma_get_meta_data( $order->get_id(), 'wps_rma_eu_withdrawal_log', true );
+		if ( ! empty( $log ) ) {
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Add "Withdraw from Contract" button to the My Account orders list.
+	 *
+	 * @param array    $actions Existing action buttons.
+	 * @param WC_Order $order   Order object.
+	 * @return array
+	 */
+	public function wps_rma_eu_withdrawal_button( $actions, $order ) {
+		if ( ! $this->wps_rma_eu_withdrawal_should_show( $order ) ) {
+			return $actions;
+		}
+		$button_text = get_option( 'wps_rma_eu_withdrawal_button_text', '' );
+		$button_text = ! empty( $button_text ) ? $button_text : esc_html__( 'Withdraw from Contract', 'woo-refund-and-exchange-lite' );
+
+		$url = function_exists( 'wps_rma_eu_withdrawal_button_url' ) ? wps_rma_eu_withdrawal_button_url( $order->get_id() ) : '';
+		if ( empty( $url ) ) {
+			return $actions;
+		}
+		$actions['eu_withdrawal'] = array(
+			'url'  => $url,
+			'name' => $button_text,
+		);
+		return $actions;
+	}
+
+	/**
+	 * Add "Withdraw from Contract" button/link on the single order view page.
+	 *
+	 * @param WC_Order $order Order object.
+	 */
+	public function wps_rma_eu_withdrawal_button_order_view( $order ) {
+		if ( ! $this->wps_rma_eu_withdrawal_should_show( $order ) ) {
+			return;
+		}
+		$button_text = get_option( 'wps_rma_eu_withdrawal_button_text', '' );
+		$button_text = ! empty( $button_text ) ? $button_text : esc_html__( 'Withdraw from Contract', 'woo-refund-and-exchange-lite' );
+
+		$url = function_exists( 'wps_rma_eu_withdrawal_button_url' ) ? wps_rma_eu_withdrawal_button_url( $order->get_id() ) : '';
+		if ( empty( $url ) ) {
+			return;
+		}
+		?>
+		<div class="wps-rma-eu-withdrawal-action" style="margin-top:16px;">
+			<a href="<?php echo esc_url( $url ); ?>" class="button wps-rma-eu-withdrawal-btn">
+				<?php echo esc_html( $button_text ); ?>
+			</a>
+		</div>
+		<?php
+	}
+
+	/**
+	 * Add a plain-text withdrawal link at the bottom of WooCommerce order emails
+	 * (durable-medium requirement for EU stores).
+	 *
+	 * @param WC_Order $order         Order object.
+	 * @param bool     $sent_to_admin Whether the email is for the admin.
+	 * @param bool     $plain_text    Whether this is a plain-text email.
+	 * @param WC_Email $email         Email class instance.
+	 */
+	public function wps_rma_eu_withdrawal_email_link( $order, $sent_to_admin, $plain_text, $email ) {
+		if ( $sent_to_admin ) {
+			return;
+		}
+		if ( 'on' !== get_option( 'wps_rma_eu_withdrawal_enable' ) ) {
+			return;
+		}
+		if ( ! function_exists( 'wps_rma_eu_withdrawal_in_window' ) || ! wps_rma_eu_withdrawal_in_window( $order ) ) {
+			return;
+		}
+		if ( ! function_exists( 'wps_rma_eu_withdrawal_eu_check' ) || ! wps_rma_eu_withdrawal_eu_check( $order ) ) {
+			return;
+		}
+		$page_id = get_option( 'wps_rma_eu_withdrawal_page_id' );
+		if ( empty( $page_id ) ) {
+			return;
+		}
+		$url         = get_permalink( $page_id );
+		$url         = add_query_arg( 'order_id', $order->get_id(), $url );
+		$button_text = get_option( 'wps_rma_eu_withdrawal_button_text', '' );
+		$button_text = ! empty( $button_text ) ? $button_text : esc_html__( 'Withdraw from Contract', 'woo-refund-and-exchange-lite' );
+		if ( $plain_text ) {
+			/* translators: %1$s: button text, %2$s: URL */
+			echo "\n" . sprintf( esc_html__( '%1$s: %2$s', 'woo-refund-and-exchange-lite' ), esc_html( $button_text ), esc_url( $url ) ) . "\n";
+		} else {
+			?>
+			<p style="margin-top:16px;">
+				<a href="<?php echo esc_url( $url ); ?>"><?php echo esc_html( $button_text ); ?></a>
+			</p>
+			<?php
+		}
+	}
+
+	/**
+	 * Load the EU withdrawal form template when the visitor is on the form page.
+	 *
+	 * @param string $template Default template path.
+	 * @return string
+	 */
+	public function wps_rma_eu_withdrawal_template( $template ) {
+		$page_id = get_option( 'wps_rma_eu_withdrawal_page_id' );
+		if ( ! empty( $page_id ) && is_page( $page_id ) ) {
+			$new_template = WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'public/partials/wps-rma-eu-withdrawal-form.php';
+			if ( file_exists( $new_template ) ) {
+				return $new_template;
+			}
+		}
+		return $template;
+	}
+
+	/**
+	 * Register the [wps_rma_eu_withdrawal_form] shortcode.
+	 * The shortcode renders the form inline (without replacing the full page template).
+	 */
+	public function wps_rma_eu_withdrawal_register_shortcode() {
+		add_shortcode( 'wps_rma_eu_withdrawal_form', array( $this, 'wps_rma_eu_withdrawal_shortcode' ) );
+	}
+
+	/**
+	 * Shortcode handler: render the EU withdrawal form inline.
+	 *
+	 * @param array $atts Shortcode attributes (unused).
+	 * @return string HTML output.
+	 */
+	public function wps_rma_eu_withdrawal_shortcode( $atts ) {
+		if ( 'on' !== get_option( 'wps_rma_eu_withdrawal_enable' ) ) {
+			return '';
+		}
+		ob_start();
+		include WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'public/partials/wps-rma-eu-withdrawal-shortcode.php';
+		return ob_get_clean();
+	}
 }

@@ -112,6 +112,11 @@ $wrael_get_tab_presentation = static function( $tab_key, $tab_data ) use ( $wrae
 			$presentation['eyebrow']     = esc_html__( 'API', 'woo-refund-and-exchange-lite' );
 			$presentation['description'] = esc_html__( 'Generate credentials and review request formats for refund-related programmatic integrations.', 'woo-refund-and-exchange-lite' );
 			break;
+		case 'woo-refund-and-exchange-lite-eu-withdrawal':
+			$presentation['eyebrow']     = esc_html__( 'EU Withdrawal', 'woo-refund-and-exchange-lite' );
+			$presentation['title']       = esc_html__( 'EU Right of Withdrawal (Directive 2023/2673)', 'woo-refund-and-exchange-lite' );
+			$presentation['description'] = esc_html__( 'Configure the "Withdraw from Contract" button and form required for EU B2C stores. Set the withdrawal window, limit to EU billing countries, and customise the button text.', 'woo-refund-and-exchange-lite' );
+			break;
 		case 'rma-return-refund-exchange-for-woocommerce-pro-exchange':
 			$presentation['eyebrow']     = esc_html__( 'Exchange Flow', 'woo-refund-and-exchange-lite' );
 			$presentation['description'] = esc_html__( 'Configure exchange request logic, pricing rules, and related exchange email flows.', 'woo-refund-and-exchange-lite' );
