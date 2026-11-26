@@ -197,6 +197,8 @@ class Woo_Refund_And_Exchange_Lite_Common {
 		require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'emails/class-wps-rma-refund-user-restriction-email.php';
 		// WPS-8378: EU Withdrawal acknowledgement email.
 		require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'emails/class-wps-rma-eu-withdrawal-email.php';
+		// WPS-8379: Guest return magic-link email.
+		require_once WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'emails/class-wps-rma-guest-return-link-email.php';
 		// add the email class to the list of email classes that WooCommerce loads.
 
 		$email_classes['wps_rma_order_messages_email']          = new Wps_Rma_Order_Messages_Email();
@@ -206,6 +208,7 @@ class Woo_Refund_And_Exchange_Lite_Common {
 		$email_classes['wps_rma_sla_alert_email']               = new Wps_Rma_Sla_Alert_Email();
 		$email_classes['wps_rma_refund_user_restriction_email'] = new Wps_Rma_Refund_User_Restriction_Email();
 		$email_classes['wps_rma_eu_withdrawal_email']           = new Wps_Rma_Eu_Withdrawal_Email();
+		$email_classes['wps_rma_guest_return_link_email']       = new Wps_Rma_Guest_Return_Link_Email();
 		return $email_classes;
 	}
 
@@ -245,7 +248,27 @@ class Woo_Refund_And_Exchange_Lite_Common {
 		}
 	}
 
+
+	// -------------------------------------------------------------------------
+	// WPS-8379: Guest Returns — send magic-link email
+	// -------------------------------------------------------------------------
+
 	/**
+	 * Send the return magic-link email to the customer.
+	 *
+	 * Hooked to 'wps_rma_guest_return_send_link'.
+	 *
+	 * @param int    $order_id    WooCommerce order ID.
+	 * @param string $return_link Tokenised return link URL.
+	 */
+	public function wps_rma_guest_return_send_link( $order_id, $return_link ) {
+		$email_classes = WC()->mailer()->get_emails();
+		if ( isset( $email_classes['wps_rma_guest_return_link_email'] ) ) {
+			$email_classes['wps_rma_guest_return_link_email']->trigger( $order_id, $return_link );
+		}
+	}
+
+		/**
 	 * Notify a customer by email when their email is added to, or removed
 	 * from, the refund fraud-prevention block list — only when both the
 	 * block feature and the notification setting are enabled.
