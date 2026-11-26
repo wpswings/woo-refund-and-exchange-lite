@@ -306,6 +306,9 @@ class Woo_Refund_And_Exchange_Lite {
 
 		// WPS-8386: Spam protection settings.
 		$this->loader->add_filter( 'wps_rma_general_setting_extend', $wrael_plugin_admin, 'wps_rma_spam_protection_settings' );
+
+		// WPS-8378: EU Withdrawal settings tab.
+		$this->loader->add_filter( 'wps_rma_eu_withdrawal_settings_array', $wrael_plugin_admin, 'wps_rma_eu_withdrawal_settings_array', 10 );
 	}
 
 	/**
@@ -375,6 +378,9 @@ class Woo_Refund_And_Exchange_Lite {
 		$this->loader->add_action( 'wp_ajax_wps_rma_send_order_msg', $wrael_plugin_common, 'wps_rma_send_order_msg_callback' );
 		$this->loader->add_action( 'wp_ajax_nopriv_wps_rma_send_order_msg', $wrael_plugin_common, 'wps_rma_send_order_msg_callback' );
 		$this->loader->add_action( 'wp_ajax_wps_rma_save_order_msg_contact', $wrael_plugin_common, 'wps_rma_save_order_msg_contact_callback' );
+
+		// WPS-8378: EU Withdrawal submission handler and admin notification.
+		$this->loader->add_action( 'wps_rma_eu_withdrawal_submitted', $wrael_plugin_common, 'wps_rma_eu_withdrawal_send_emails', 10, 2 );
 	}
 
 	/**
@@ -397,6 +403,13 @@ class Woo_Refund_And_Exchange_Lite {
 
 		// template include.
 		$this->loader->add_filter( 'template_include', $wrael_plugin_public, 'wps_rma_product_return_template' );
+
+		// WPS-8378: EU Withdrawal button hooks.
+		$this->loader->add_filter( 'woocommerce_my_account_my_orders_actions', $wrael_plugin_public, 'wps_rma_eu_withdrawal_button', 20, 2 );
+		$this->loader->add_action( 'woocommerce_order_details_after_order_table', $wrael_plugin_public, 'wps_rma_eu_withdrawal_button_order_view' );
+		$this->loader->add_action( 'woocommerce_email_order_details', $wrael_plugin_public, 'wps_rma_eu_withdrawal_email_link', 20, 4 );
+		$this->loader->add_filter( 'template_include', $wrael_plugin_public, 'wps_rma_eu_withdrawal_template' );
+		$this->loader->add_action( 'init', $wrael_plugin_public, 'wps_rma_eu_withdrawal_register_shortcode' );
 	}
 
 	/**
@@ -519,6 +532,12 @@ class Woo_Refund_And_Exchange_Lite {
 			'title'     => esc_html__( 'Order Message', 'woo-refund-and-exchange-lite' ),
 			'name'      => 'woo-refund-and-exchange-lite-order-message',
 			'file_path' => WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/woo-refund-and-exchange-lite-order-message.php',
+		);
+		// WPS-8378: EU Withdrawal tab.
+		$wrael_default_tabs['woo-refund-and-exchange-lite-eu-withdrawal'] = array(
+			'title'     => esc_html__( 'EU Withdrawal', 'woo-refund-and-exchange-lite' ),
+			'name'      => 'woo-refund-and-exchange-lite-eu-withdrawal',
+			'file_path' => WOO_REFUND_AND_EXCHANGE_LITE_DIR_PATH . 'admin/partials/woo-refund-and-exchange-lite-eu-withdrawal.php',
 		);
 		$wrael_default_tabs = apply_filters( 'wps_rma_plugin_admin_settings_tabs_addon_after', $wrael_default_tabs );
 		$wrael_default_tabs['woo-refund-and-exchange-lite-developer']     = array(
